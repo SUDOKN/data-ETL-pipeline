@@ -1,0 +1,923 @@
+subject: superiortech.org
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+  sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+golden_set_version: 1
+anchored_on: search/expectations/superiortech_org/industries.yaml
+labels:
+- id: superiortech_org-industries-0001
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 838
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19101
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 27941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0002
+  form: Automation & Machine Building
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: Automation & Machine Building
+    approx_offset: 29735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0003
+  form: Automation & Robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 849
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19045
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex including
+      machining of exotic materials used parts such as machine parts, pump & valve housings, auto parts,
+      tool components, automation & robotics components, test fixtures and tooling for Aerospace, Automotive,
+      Indu
+    approx_offset: 40713
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0004
+  form: Automation and Robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 31489
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 48319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0005
+  form: Automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 872
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19112
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 27952
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0006
+  form: Automotive & Alternative Fuels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: Automotive & Alternative Fuels
+    approx_offset: 29766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0007
+  form: Automotive Fuel Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 31464
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 48294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0008
+  form: Construction & Industrial Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 27964
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 56215
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0009
+  form: Construction Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 884
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0010
+  form: Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 908
+  - quote: Military & Defense
+    approx_offset: 29837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0011
+  form: Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: Electronics
+    approx_offset: 29798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0012
+  form: HVAC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: HVAC
+    approx_offset: 29811
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0013
+  form: Industrial & Consumer Products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 944
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19124
+  - quote: Power Tools, (Industrial & Consumer Products)
+    approx_offset: 29923
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0014
+  form: Industrial Tools & Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 31514
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 48344
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0015
+  form: Medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 917
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19190
+  - quote: Medical
+    approx_offset: 29817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0016
+  form: Medical Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19190
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 33222
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex including
+      machining of exotic materials used parts such as machine parts, pump & valve housings, auto parts,
+      tool components, automation & robotics components, test fixtures and tooling for Aerospace, Automotive,
+      Indu
+    approx_offset: 40866
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0017
+  form: Military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19209
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 28001
+  - quote: Military & Defense
+    approx_offset: 29826
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0018
+  form: Military & Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: Military & Defense
+    approx_offset: 29826
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0019
+  form: Office Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 926
+  - quote: Office Equipment
+    approx_offset: 29846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0020
+  form: Oil & Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: Large Vertical Turning Lathes (VTL’s) allow us to manufacture large turnings such as Train
+      Brake Rotors & Axles, Pump & Compressor Housings, Oil & Gas Industry Parts.
+    approx_offset: 28221
+  - quote: Oil & Gas
+    approx_offset: 29898
+  - quote: Large Vertical Turning Lathes (VTL’s) allow us to manufacture large turnings such as Train
+      Brake Rotors & Axles, Pump & Compressor Housings, Oil & Gas Industry Parts.
+    approx_offset: 56472
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0021
+  form: Oil and Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 28011
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 56262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0022
+  form: Optics and Precision Instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19156
+  - quote: Optics and Precision Instruments
+    approx_offset: 29864
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 33251
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0023
+  form: Power Generation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 28024
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 56275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0024
+  form: Power Tool
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19219
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 33285
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex including
+      machining of exotic materials used parts such as machine parts, pump & valve housings, auto parts,
+      tool components, automation & robotics components, test fixtures and tooling for Aerospace, Automotive,
+      Indu
+    approx_offset: 40895
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0025
+  form: Power Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: Power Tools, (Industrial & Consumer Products)
+    approx_offset: 29909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0026
+  form: Rail
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 976
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 28042
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 31544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0027
+  form: Rail Transit
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 31544
+  - quote: 'The value added assembly and test is cost effective and efficient, due to our innovative methods,
+      in house tooling design, and low overhead solutions developed from many years of working with customers
+      in many industries including Automotive Fuel Systems, Automation and Robotics, Industrial Tools
+      & '
+    approx_offset: 48374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0028
+  form: Railway Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/industries-served-superior-technology-inc/
+  evidence:
+  - quote: Railway Systems
+    approx_offset: 29966
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0029
+  form: Robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 862
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 982
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19058
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0030
+  form: Robotics & Automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex including
+      machining of exotic materials used parts such as machine parts, pump & valve housings, auto parts,
+      tool components, automation & robotics components, test fixtures and tooling for Aerospace, Automotive,
+      Indu
+    approx_offset: 40907
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex including
+      machining of exotic materials used parts such as machine parts, pump & valve housings, auto parts,
+      tool components, automation & robotics components, test fixtures and tooling for Aerospace, Automotive,
+      Indu
+    approx_offset: 46792
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0031
+  form: Robotics and Automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 19231
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 33297
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 50090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0032
+  form: Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: With a companywide focus on quality, we serve a diverse range of customers including Fortune
+      500 companies, OEM’s, small independent companies, and startups across a wide range of industries,
+      including Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical,
+      Office Equ
+    approx_offset: 995
+  - quote: 'Superior Technology, Inc’s large capacity CNC machines which differentiate us from other machine
+      shops, which allow to easily handle and machine wide range of larger parts in production quantities,
+      for parts to be used in Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil
+      and '
+    approx_offset: 28053
+  - quote: Transportation
+    approx_offset: 29983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0033
+  form: auto industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0034
+  form: auto industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0035
+  form: auto, imaging, and fastener industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/history-of-excellence-superior-technology-inc/
+  evidence:
+  - quote: Superior Industries first started as a small screw machine house in a small rented space in
+      the center of Rochester City, servicing the auto, imaging, and fastener industries
+    approx_offset: 37823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0036
+  form: fastener industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/history-of-excellence-superior-technology-inc/
+  evidence:
+  - quote: Superior Industries first started as a small screw machine house in a small rented space in
+      the center of Rochester City, servicing the auto, imaging, and fastener industries
+    approx_offset: 37842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-industries-0037
+  form: imaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/history-of-excellence-superior-technology-inc/
+  evidence:
+  - quote: Superior Industries first started as a small screw machine house in a small rented space in
+      the center of Rochester City, servicing the auto, imaging, and fastener industries
+    approx_offset: 37829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

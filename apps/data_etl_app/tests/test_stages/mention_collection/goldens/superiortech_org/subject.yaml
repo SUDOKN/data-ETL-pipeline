@@ -1,0 +1,340 @@
+subject: superiortech.org
+slug: superiortech_org
+subject_name: Superior Technology, Inc.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+  sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+role: full_unit
+role_source: 'kept verbatim from search/expectations/superiortech_org/subject.yaml; the value is in this
+  schema''s enum and is reused unchanged. It is the right role for this stage too: all six capability
+  fields are non-empty, the file is small enough to grade exhaustively, and the subject''s distinguishing
+  feature -- a machine census sitting beside a hedged vendor list in the same first-person voice -- is
+  a location problem, not an admission problem.'
+business_type: family-owned build-to-print precision CNC machine shop, Rochester NY, 81,000 sq ft, ISO
+  9001:2015; the corpus's largest owned-equipment census, plus a second tier of processes that are subcontracted
+  to unnamed vendors and written in the same voice
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/superiortech_org/subject.yaml
+- apps/data_etl_app/tests/test_stages/GOLDEN_CORPUS_EXPANSION_2026-08-27.md (rows 6, 18, 20, 21)
+third_party_roster:
+- HARDINGE
+- OKUMA
+- DOOSAN
+- MAZAK
+- MATSUURA
+- MITSUBISHI
+- MORI SEIKI
+- FANUC
+- KIA
+- HYUNDAI KIA
+- HWACHEON
+- YOUJI
+- KIWA
+- MAKINO
+- TOYODA
+- TRUMPF
+- BOURNE & KOCH
+- BARBER COLEMAN
+- CREST
+- MILES
+- HANDSFORD
+- SUNNEN
+- HOFFMAN
+- PEMSERTER
+- PROTOTRAK
+- BRIDGEPORT
+- TIMESAVER
+- MILLER
+- LINDE
+- WENZEL
+- ZEISS
+- BROWN & SHARPE
+- OGP
+- TESA
+- Mitutoyo
+- ISO
+- ASME
+- AWS
+- unnamed heat-treat, plating and testing vendors ('our trusted vendors')
+third_party_roster_note: 34 machine-tool and metrology builders, all of them named ONLY inside the 90
+  rows of the facilities-list census; three standards bodies; and one un-named party that matters more
+  than any of them -- the subcontractors behind the outsourced process tier, who are referred to only
+  as 'our trusted vendors'. No customer is named anywhere in the file (the site says 'Fortune 500, OEM's,
+  smaller companies and startups' and stops there), so `customer` should be a rare whose_words value on
+  this subject and `vendor` a common one.
+shape:
+  pages: 30
+  distinct_page_bodies: 20
+  total_lines: 1164
+  bytes: 60180
+  characters: 59416
+  nonblank_lines: 599
+  distinct_nonblank_lines: 320
+  share_of_nonblank_lines_occurring_2x_or_more: 59.6%
+  share_of_nonblank_chars_occurring_2x_or_more: 58.9%
+  nonascii_chars: 473
+  distinct_nonascii_codepoints: 11
+  nbsp_count: 139
+  zwsp_count: 0
+  tab_count: 31
+  note: 'all measured on this pass. The 31 tabs are all line-leading, and they are how the value-added-services
+    page marks its sub-headings. Non-ASCII census: U+201D RIGHT DOUBLE QUOTATION MARK 146, U+00A0 NO-BREAK
+    SPACE 139, U+2033 DOUBLE PRIME 103, U+00A9 COPYRIGHT SIGN 30, U+2019 RIGHT SINGLE QUOTATION MARK 29,
+    U+2013 EN DASH 10, U+00BE VULGAR FRACTION THREE QUARTERS 6, U+00B1 PLUS-MINUS SIGN 5, U+00B5 MICRO
+    SIGN 2, U+201C LEFT DOUBLE QUOTATION MARK 2, U+2026 HORIZONTAL ELLIPSIS 1.'
+equipment_census:
+  location: lines 376-600, the facilities-list page, which appears ONCE in the file
+  sections:
+  - CNC PRECISION TURNING (line 376)
+  - CNC PRECISION MILLING (line 446)
+  - CNC PRECISION GRINDING (line 500)
+  - MISCELLANEOUS EQUIPMENT (line 510)
+  - ELECTRO-MECHANICAL ASSEMBLY & TEST (line 536)
+  - TOOLROOM (line 552), with a WELDING sub-heading at line 568
+  - QUALITY ASSURANCE (line 580)
+  count_prefixed_rows: 90
+  machine_units: 152
+  distinct_designations: 85
+  rows_per_section:
+    CNC PRECISION TURNING:
+      rows: 32
+      units: 42
+    CNC PRECISION MILLING:
+      rows: 24
+      units: 29
+    CNC PRECISION GRINDING:
+      rows: 3
+      units: 6
+    MISCELLANEOUS EQUIPMENT:
+      rows: 11
+      units: 17
+    ELECTRO-MECHANICAL ASSEMBLY & TEST:
+      rows: 4
+      units: 14
+    TOOLROOM:
+      rows: 9
+      units: 28
+    QUALITY ASSURANCE:
+      rows: 7
+      units: 16
+  correction_to_the_prior_profiles: 'the brief and search/expectations both say ''~100 machine units,
+    ~75 distinct designations, lines 376-606''. Counted here: 90 count-prefixed rows carrying 152 machine
+    units and 85 distinct designations, over lines 378-596. The unit total is ~50% higher than reported
+    because several rows carry a count of 4, 5, 6 or 10 (the largest is ''(10) BRIDGEPORT Manual & CNC
+    Milling Machines''). Method: rows matching ''^\(\d{1,2}\)\s''; the naive ''^\(\d+\)'' pattern also
+    swallows the ''(585) ...'' phone number in every page''s nav and inflates the total to 1,322, which
+    is worth knowing before anyone re-runs this count.'
+coverage: full_text
+coverage_note: all 1,164 lines / 59,416 characters read. The 20 distinct page bodies were read in full;
+  the 10 duplicate bodies were matched by sha256 rather than re-read. Every count in this file was computed
+  over the whole text.
+text_hazards:
+- hazard: substring_trap
+  note: 'PET. The stage''s word-boundary and short-form rule in its purest form, and the numbers come
+    out cleaner than reported. Word-boundary occurrences of PET: ZERO. Case-SENSITIVE substring occurrences
+    of the literal ''PET'': ZERO -- the uppercase string is not in the file at all. Case-INSENSITIVE substring
+    occurrences: 9, and all 9 sit inside the single word ''competitive''. So the trap only fires for a
+    matcher that case-folds, which is exactly the refinement a short-form rule has to get right: PET is
+    a polymer abbreviation, it is spelled in capitals, and folding case to find it is what turns 0 into
+    9. Confirms the expansion doc''s ''9x'' and adds the case condition.'
+  quote: are cost competitive, and meet production timing.
+  measured:
+    word_boundary_any_case: 0
+    substring_case_sensitive_PET: 0
+    substring_case_insensitive: 9
+    enclosing_words:
+      competitive: 9
+  approx_offset: 1703
+- hazard: substring_trap
+  note: 'ITAR. Same shape, same count, same case condition. Word-boundary occurrences: ZERO. Case-sensitive
+    substring ''ITAR'': ZERO. Case-insensitive substring: 9, every one inside the word ''Military''. The
+    quoted line is the crispest of the nine because it is a STANDALONE served-industry heading -- so a
+    case-folding matcher does not merely find a phantom ITAR, it finds one in the highest-confidence context
+    the page offers, a bare heading line with no sentence to disconfirm it. Confirms the expansion doc''s
+    ''9x''.'
+  quote: Military & Defense
+  measured:
+    word_boundary_any_case: 0
+    substring_case_sensitive_ITAR: 0
+    substring_case_insensitive: 9
+    enclosing_words:
+      Military: 9
+  approx_offset: 29826
+- hazard: substring_trap
+  note: 'Iron -- the third of the same family, carried over from search/expectations and re-verified here.
+    Word-boundary occurrences of ''iron'' in any case: ZERO. Substring occurrences: 7, five inside ''environment''
+    and two inside ''environmental''. Unlike PET and ITAR this one is NOT case-conditional, which makes
+    it the harder of the three: no casing rule saves a matcher from it, only the word boundary does.'
+  quote: environmental and durability testing.
+  measured:
+    word_boundary_any_case: 0
+    substring_any_case: 7
+    enclosing_words:
+      environment: 5
+      environmental: 2
+  approx_offset: 12064
+- hazard: table_like_structure
+  note: 'the equipment census: 90 rows in the shape ''(N)<space-ish>DESIGNATION; spec; spec; spec'', one
+    machine family per line, no sentence anywhere. Every equipment form on this subject clips to one of
+    these rows, so the snippet is a parts list and the only thing saying whose machines they are is the
+    ALL-CAPS section heading up to 30 lines above. The quoted row is the first row of the census and carries
+    a unit count of 4.'
+  quote: (4)  HARDINGE CONQUEST GT; Super Precision; 1” Capacity; .00001 programmability; bar feeders
+  approx_offset: 20142
+- hazard: table_like_structure
+  note: the outsourced tier has NO table and NO machines -- it is a single hedged sentence per process
+    family, and the hedge is the point. 'Available process include but are not limited to;' introduces
+    a seven-item comma list, so seven distinct process forms all clip to the SAME sentence, and that sentence's
+    subject is 'our trusted vendors' two lines above, not Superior Technology. This exact line occurs
+    twice (the value-added page is served at two URLs); its sibling at lines 184/1026 does the same for
+    nine surface treatments. This is the corpus's clearest side-by-side of a machine-backed capability
+    and a vendor-list capability written in one voice.
+  quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+    induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+  approx_offset: 10203
+- hazard: heading_style_all_caps
+  note: the census's seven section headings are bare ALL-CAPS lines and are the ONLY thing assigning the
+    rows beneath them to a capability. They are also candidate forms in their own right, so the same string
+    is both the heading a snippet needs and a mention to be collected. Fifteen distinct ALL-CAPS standalone
+    lines exist in the file; three of them are census ROWS that happen to be fully capitalised, which
+    means an ALL-CAPS test cannot be used to identify headings here.
+  quote: MISCELLANEOUS EQUIPMENT
+  approx_offset: 25138
+- hazard: heading_only_line
+  note: an ALL-CAPS census row that is indistinguishable from a heading by shape -- no count digits are
+    visible without the parentheses, no specs follow, and the whole line is capitalised. Two more like
+    it exist ('(1) HANDSFORD KEY SEATER', and the CMM row at line 586). Any heuristic that treats a fully-capitalised
+    standalone line as a section heading will mis-classify these three machines.
+  quote: (1)  CREST ULTRASONIC CLEANER
+  approx_offset: 25300
+- hazard: nbsp_inside_designation
+  note: '139 NO-BREAK SPACEs, and their placement in the census is INCONSISTENT in three different ways:
+    ''(1)<NBSP><space>MITSUBISHI'', ''(2)<space><NBSP>SUNNEN'', and worst, ''(1)<space>WENZEL<space><NBSP>XO97''
+    where the NBSP falls INSIDE the machine designation between the brand and the model. A form retyped
+    with ordinary spaces matches none of them. The quoted row is the WENZEL one, NBSP intact, and it also
+    carries U+201D, U+2033 and U+00B5 in a single line.'
+  quote: (1) WENZEL  XO97 CMM (36”/60”/24”) Resolution 0.000004” (4 millionths). 0.1µm
+  approx_offset: 26616
+- hazard: mixed_inch_marks
+  note: inch marks are inconsistently U+201D RIGHT DOUBLE QUOTATION MARK (146x) and U+2033 DOUBLE PRIME
+    (103x), and the quoted row uses BOTH -- U+201D after the chuck size, U+2033 after the turn diameter
+    and turn length, in one line. There is no ASCII double-quote inch mark anywhere in the file.
+  quote: (1)  HWACHEON VT650R VERTICAL TURNING CENTER 18” chuck; live tooling, 32″ turn diameter, 30″
+    turn length
+  approx_offset: 22406
+- hazard: en_dash_in_designation
+  note: 10 EN DASHes, and in the census one separates a brand from its machine type, so the designation
+    is not hyphen-joined and not space-joined. Two census rows do this (PEMSERTER and PRODUCTION BRAZING
+    STATION); the rest of the EN DASHes separate a capability name from its size envelope on the prose
+    pages ('CNC Turned – Diameters up to 50” x 36″ Long.'), and one line at 313 has a DOUBLED en dash,
+    'CNC Swiss Turned – – Diameters', which is a scrape artifact preserved as-is.
+  quote: (3)  PEMSERTER – Self-Clinching Fastener Press
+  approx_offset: 25699
+- hazard: duplicate_page
+  note: '30 page URLs, only 20 distinct bodies. Seven capability pages are served under two URL prefixes
+    (/capabilities-superior-technology-inc/X and either /capabilities/X or the bare /X), so almost every
+    prose entity has EXACTLY TWO occurrences and a count of 2 is the baseline rather than corroboration.
+    The machine census is the exception: the facilities-list page appears ONCE, so every machine designation
+    occurs exactly once while every prose capability occurs twice. That inversion is the cheapest probe
+    on this subject for whether an occurrence count means repetition or duplication.'
+  quote: https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  approx_offset: 55796
+- hazard: stub_page
+  note: 'FOUR of the 30 pages scrape to an identical 293-character stub that is nothing but the 3-line
+    nav and the 4-line footer -- no body at all. They are the ISO 9001:2015 certificate page, a WordPress
+    image-attachment page, the NEWS page, and a malformed URL ending in a stray ''l'' (quoted below).
+    The certificate page having no content is the notable one: the site''s single attestation document
+    is a dead page, and every ISO 9001 mention in the file therefore comes from the footer strip instead.'
+  quote: https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/l
+  approx_offset: 57220
+- hazard: repeated_footer
+  note: a 4-line footer -- address line, a whitespace-only line, the certification strip, the copyright
+    -- repeats on all 30 pages, 120 of 599 non-blank lines. The strip carries the site's ONLY attestation,
+    so 30 of the 37 'ISO 9001' occurrences in the file are this footer line and resolve to an identical
+    snippet with no sentence around it. The address line above it is padded with NO-BREAK SPACEs, not
+    ordinary ones.
+  quote: ISO 9001:2015 CERTIFIED
+  approx_offset: 3117
+- hazard: repeated_nav
+  note: 'a 3-line nav heads every page: ''REQUEST A QUOTE'' (31 occurrences -- 30 as nav plus one in the
+    contact page body), the phone number, and ''Toggle navigation'' (30), a raw CMS control label that
+    leaked into the text. Note the phone line begins with a NO-BREAK SPACE and that ''(585)'' is a parenthesised
+    number at line start, which is the exact shape of a census row''s unit count.'
+  quote: Toggle navigation
+  approx_offset: 108
+- hazard: tab_indented_sublist
+  note: the value-added-services page marks its six process sub-headings with a LEADING TAB and nothing
+    else -- all 31 tabs in the file are line-leading. The sub-heading is the only thing separating one
+    outsourced process family from the next, and a clip to the line returns a tab plus a noun phrase.
+    The quoted sub-heading occurs twice, because the whole value-added page is served at two URLs.
+  quote: "\tDeburring and Part Finishing"
+  approx_offset: 8991
+- hazard: catch_all_list_line
+  note: two census lines abandon the '(N) DESIGNATION' shape entirely and dump four or five machines into
+    one 'Misc Tools:' line with no counts. Every form matching inside them shares one snippet, and 'Sheetmetal'
+    in the quoted line is ONE WORD -- 'Sheet Metal' with a space has ZERO occurrences in the file, so
+    the spaced form is a fabrication and the joined form a single hit.
+  quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender
+    & Shear'
+  approx_offset: 26258
+third_party_voice:
+- speaker: unnamed subcontractors, referred to only as 'our trusted vendors'
+  whose_words: site
+  note: 'THE attribution problem on this subject, and note that whose_words is `site` while the CAPABILITY
+    is the vendor''s -- the site really is speaking, it is simply speaking about somebody else''s shop.
+    That is why this subject is worth a location label: the speaker and the actor come apart without any
+    change of voice, and `belongs_to` is the element that has to carry it. The phrase appears 4 times
+    and governs the heat-treatment, plating and destructive/chemical-testing lists beneath it. Everything
+    on the same page under ''In house capabilities'' (2 occurrences) is genuinely Superior''s.'
+  quote: Working with our trusted vendors, we are able to control all aspects of the process and guarantee
+    the process, certifying and traceable parts to many industrial and Mil-Spec’s
+- speaker: machine-tool and metrology builders (Hardinge, Okuma, Mazak, Doosan, Matsuura, Fanuc, Zeiss,
+    Wenzel, Brown & Sharpe, Mitutoyo and 24 more)
+  whose_words: vendor
+  note: 34 brands, every one of them confined to the 90 census rows and named nowhere else in the file.
+    The census is Superior asserting ownership OF another company's product, so the brand is the vendor's
+    and the machine is the site's -- the inverse of the trusted-vendors case above, and the reason the
+    expansion doc's 'owned machine -> own product leak' fires here ('Large Capacity 4-Axis Horizontal
+    CNC Machining Centers').
+  quote: (10) BRIDGEPORT Manual & CNC Milling Machines
+- speaker: ISO, and ASME/AWS named as a certifiability standard
+  whose_words: standards_body
+  note: the footer strip states the one attestation the company holds. Separately, the TOOLROOM census
+    carries a welding sub-heading that claims only CERTIFIABILITY, not certification -- 'ASME AWS certifiable'
+    -- with two NO-BREAK SPACEs before the parenthesis. A snippet that clips away the word 'certifiable'
+    converts a hedge into a held certificate, which is the single most damaging mis-clip available on
+    this subject.
+  quote: WELDING   (ASME AWS certifiable)
+- speaker: customers, described only as a class and never named
+  whose_words: customer
+  note: no customer is named anywhere in 59,416 characters. The closest the site comes is the quoted line,
+    which names a market segment and occurs once. Consequently `customer` should be close to an empty
+    class on this subject, and a location label predicting it is almost certainly wrong -- a useful negative
+    control against a model that over-predicts customer voice on build-to-print shops.
+  quote: Serving diverse range of customers including Fortune 500, OEM’s, smaller companies and startups
+    with parts that exceed quality expectations, are cost competitive, and meet production timing.
+notes: 'The corpus''s best stratification case for THIS stage, because the two tiers are indistinguishable
+  by voice and distinguishable only by structure. Tier one is a 90-row, 152-unit machine census that occurs
+  ONCE in the file, has no sentences at all, and hangs entirely off seven ALL-CAPS section headings. Tier
+  two is a set of hedged one-sentence vendor lists that occur TWICE each (URL duplication), read as first-person
+  capability claims, and are governed by a ''our trusted vendors'' clause one or two lines above the clip.
+  A snippet clipped to the sentence gets tier two wrong unless it reaches up for that clause; a snippet
+  clipped to the line gets tier one wrong unless it reaches up for the heading. Both failures are the
+  same failure and this subject is where to measure it. Second: the three substring traps (PET, ITAR,
+  Iron) are all confirmed at the counts on record, and the new detail is that PET and ITAR are ZERO even
+  as case-sensitive substrings -- the 9 hits each exist only for a case-folding matcher, while Iron''s
+  7 exist regardless. Third: 30 pages, 20 distinct bodies, 4 of them a content-free 293-character stub,
+  one of which is the ISO certificate page itself.'
+provenance:
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: harvested:search
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: harvested:expansion-doc
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: corpus-seed

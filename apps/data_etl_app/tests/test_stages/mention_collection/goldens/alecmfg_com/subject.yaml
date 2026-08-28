@@ -1,0 +1,118 @@
+subject: alecmfg.com
+subject_name: Alec Model
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+role: full_unit
+role_provenance: 'reused verbatim from search/expectations/alecmfg_com/subject.yaml (role: full_unit);
+  not re-derived.'
+third_party_roster:
+- Robovision DK (customer; CTO quoted)
+- Jean Dupont, Electrical Integration Group (France) (customer)
+- Michael Grant, Controls Division (U.S.) (customer)
+- Jason Miller, Automation Division, Ohio (customer)
+- Oliver B., Senior Mechanical Engineer (customer)
+- Ryan McAllister, Offshore Controls Division (customer)
+- Emory (customer)
+- Knut, Swedish EV Startup (customer)
+- cookiedatabase.org / Complianz (cookie-policy template author)
+- SNCF
+- IATF
+text_hazards:
+- hazard: atomized_table_cells
+  note: 'THE dominant clipping hazard here. Every case-study table (surface-treatment parameters, the
+    validation/inspection table with its ''Equipment Used'' column, the project-timeline table) and the
+    cookie-policy services table are flattened ONE CELL PER LINE, with blank lines and bare-TAB lines
+    between cells: 49 bare-tab lines surround ~78 distinct cell lines (~L1036-1200, ~L88-134). A snippet
+    clipped to the line holding a form is therefore a naked cell with NO row label and NO column header.
+    The quoted cell sits under the header ''Equipment Used'' (L1100), 17 lines earlier, and in the row
+    ''Hole Position Tolerance'' (L1105), 12 lines earlier. Neither can be recovered from the clipped line.'
+  quote: Zeiss CONTURA G2 CMM
+- hazard: vendor_generated_cookie_policy_occupies_the_homepage_url
+  note: 'The block for https://alecmfg.com/ (L1-174, ~6% of the file) is NOT homepage content: it is a
+    cookie-consent policy generated from a third-party compliance template, written throughout in first-person
+    plural (''our website ... we''), and carrying a services table naming WordPress, Google Analytics,
+    Elementor, LiteSpeed, Complianz, YouTube. whose_words for anything clipped from this block is `vendor`,
+    not `site`, even though the prose says ''we''.'
+  quote: This Cookie Policy was synchronized with cookiedatabase.org on July 31, 2025.
+- hazard: cross_page_teaser_blocks_multiply_every_occurrence
+  note: '''More Posts'' blocks at the foot of each blog post repeat a case-study title plus its opening
+    paragraph. Each of the four case-study titles occurs 11x and its opening paragraph 10-11x, so anything
+    named in a title or first paragraph is inflated roughly 10x and nearly every one of those occurrences
+    sits in a teaser, not in the article. 41% of nonblank lines belong to a line text repeated >=3x.'
+  quote: 'Precision Manufacturing Case Study: High-Precision Stainless Steel Valve Body for Semiconductor
+    Equipment'
+- hazard: mid_sentence_truncated_archive_excerpts
+  note: Blog-index and author-archive pages carry excerpts cut mid-sentence and closed with U+2026 (22
+    such lines, ~L1867-1903 and ~L2340-2376). There is no sentence terminator to clip to, so the snippet
+    is an unterminated fragment. Some also start mid-clause because the preceding heading was consumed.
+  quote: In Q3 2024, we were approached by a rail technology manufacturer based in France—one of the primary
+    suppliers to SNCF (the French National Railway Company). The client specializes in structural…
+- hazard: heading_fused_into_body_text
+  note: 'Headings run into the following sentence with no punctuation and sometimes no space at all, so
+    a sentence-level clip spans a heading and unrelated prose. In the quoted line ''Project Background:
+    Conquering Ultra-Clean and Micron-Level Precision Challenges'' is the heading and ''In early 2025,
+    ...'' is the body. L1899 is worse: ''...IATF 16949:2016 CertificationStrengthening Our Commitment...''
+    with no space at the seam.'
+  quote: 'Project Background: Conquering Ultra-Clean and Micron-Level Precision Challenges In early 2025,
+    as a leading'
+- hazard: customer_testimonials_with_attribution_on_earlier_lines
+  note: 8 customer testimonials. The speaker's name and the speaker's title sit on the one or two lines
+    BEFORE the quote (here 'Michael Grant' on L1532 and '— Lead Manufacturing Engineer, Controls Division
+    (U.S.)' on L1533), so a line-clipped snippet of the quote itself carries no attribution at all. whose_words
+    for all 8 is `customer`. Others at L1138 (Mads, CTO, Robovision DK), L1447, L1641, L2098, L2269, L2496/L2499,
+    L2611.
+  quote: “Every plate fit right into the frame without adjustment. The ground pads tested perfect, and
+    the inserts were spot-on.”
+- hazard: template_name_glitch_fuses_two_speaker_names
+  note: 'Two testimonial attributions kept a leftover template name fused to the real one: the quoted
+    line, and ''Mads'' standing above Jean L.''s quote. Treat neither leading token as a person or a party;
+    do not let it become the `whose_words` answer.'
+  quote: George— Oliver B., Senior Mechanical Engineer
+- hazard: duplicate_stub_pages
+  note: 37 of the 71 page blocks contain nothing but the sentinel line quoted here, including /about-us/capabilities/
+    and /industries/ — the two pages whose names promise the densest in-field content. The sentinel is
+    itself a clippable line and must never become a snippet.
+  quote: '[duplicate — content identical to a previously scraped page]'
+- hazard: emoji_and_symbol_led_headings
+  note: 91 lines lead with an emoji or symbol. Case-study titles open with a regional-indicator flag pair
+    (🇺🇸, 🇫🇷, 🇩🇪), section headings with ▶ / 📊 / ✅ / 📎, and one line uses a CJK fullwidth colon inside
+    English text ('Time：9:00 AM-9:00 PM', L456). The leading glyph is often the only marker that the line
+    is a heading rather than prose.
+  quote: 📊 Validation & Inspection Results
+- hazard: byline_and_bio_block_repeat_with_a_spacing_split
+  note: 'The author byline ''JoeVin'' (no space) occurs 32x as a bare line and the bio quoted here 13x.
+    The bio is site voice about a named person, not a capability claim. Note the grouping consequence:
+    the byline is ''JoeVin'' and the bio says ''Joe Vin'' — the same person under two spellings that normalize
+    differently.'
+  quote: Joe Vin is the Operations Director at Alec Model, a CNC machining and 3D printing manufacturer
+    in China.
+- hazard: share_and_nav_chrome_as_bare_word_lines
+  note: '45% of nonblank lines are <=3 words with no terminal period. Bare social/nav tokens repeat heavily:
+    ''Next'' 36x, ''Read More'' 21x, ''Prev'' 19x, ''Previous'' 18x, ''Email'' 13x, and ''Facebook''/''Twitter''/''LinkedIn''/the
+    quoted line 12x each. Note that the three social names sit as consecutive bare lines directly above
+    the author byline (L1221-1224), so a clip there yields a brand name with no sentence.'
+  quote: Read More »
+- hazard: repeated_cta_footer_with_a_typo
+  note: 'Cross-page CTA boilerplate: ''Ready to Start Your CNC Project?'' closes 21 page blocks, and the
+    quoted companion line carries a typo (''poroject'') on both of its 2 occurrences. Neither is evidence
+    of anything, and the typo makes the second one a string that will not group with any correctly spelled
+    variant.'
+  quote: Partner with a trusted CNC machining specialist for your next poroject
+coverage: full_text
+notes: '141 KB / 2,857 lines / 71 page blocks; read in full. NOTE FOR GRADERS: this is one of only two
+  corpus subjects with real v3 pipeline history, so this profile is exercised immediately. Nothing here
+  contradicts search/expectations/alecmfg_com — this pass adds the clipping-and-voice layer that harness
+  did not record. One refinement: the search harness calls the case-study tables ''flattened ... arrive
+  as separate lines far apart''; measured here, they are fully ATOMIZED (one cell per line, blank+bare-tab
+  separators), which is stricter than ''far apart'' and means no line-level clip can recover a header.
+  Second refinement: the search harness attributes the cookie policy to the homepage block but not its
+  authorship; L174 shows it is third-party template text, which changes whose_words for ~174 lines. Unlike
+  the other three subjects, alecmfg has essentially NO ALL-CAPS headings (8 short all-caps lines in the
+  whole file) — headings here are title-case standalone lines or emoji-led lines, so an all-caps heuristic
+  finds nothing.'
+provenance:
+- action: added
+  by: seed-agent-batch2
+  date: '2026-08-27'
+  source: harvested:search

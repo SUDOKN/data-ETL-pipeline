@@ -1,0 +1,1514 @@
+subject: blackadvtech.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+golden_set_version: 1
+anchored_on: search/expectations/blackadvtech_com/industries.yaml
+labels:
+- id: blackadvtech_com-industries-0001
+  form: AUTOMOBILE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 87748
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 114228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0002
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Aerospace
+    approx_offset: 137354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0003
+  form: Automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Automotive Industry
+    approx_offset: 136860
+  - quote: Automotive parts that are mainly subjected to wear and tear are made of carbon steels.
+    approx_offset: 203081
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0004
+  form: Coast Guard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: military — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 2698
+  - quote: military for many years — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 28666
+  - quote: Coast Guard
+    approx_offset: 37299
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0005
+  form: Furniture for Laboratories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Enclosures, & Covers Furniture for Laboratories.
+    approx_offset: 2581
+  - quote: Enclosures & Covers, Furniture for Laboratories
+    approx_offset: 67477
+  - quote: Furniture for Laboratories
+    approx_offset: 76329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0006
+  form: Heavy Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Heavy Equipment and Manufacturing
+    approx_offset: 138128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0007
+  form: INDUSTRIAL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+  evidence:
+  - quote: INDUSTRIAL
+    approx_offset: 2094
+  - quote: INDUSTRIAL WELDING SERVICES
+    approx_offset: 9400
+  - quote: INDUSTRIAL SHEET METAL FABRICATION
+    approx_offset: 48089
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0008
+  form: Industrial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/industries-served/
+    - https://blackadvtech.com/site-map/
+  evidence:
+  - quote: Industrial Sheet Metal Painting
+    approx_offset: 5045
+  - quote: Industrial Welding Options
+    approx_offset: 10365
+  - quote: Industrial
+    approx_offset: 16769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0009
+  form: LABORATORY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+  evidence:
+  - quote: LABORATORY FURNITURE & ENCLOSURE MANUFACTURING
+    approx_offset: 76062
+  - quote: LABORATORY FURNITURE & ENCLOSURE MANUFACTURING
+    approx_offset: 116706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0010
+  form: Laboratories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Enclosures, & Covers Furniture for Laboratories.
+    approx_offset: 2595
+  - quote: Enclosures & Covers, Furniture for Laboratories
+    approx_offset: 67491
+  - quote: Furniture for Laboratories
+    approx_offset: 76343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0011
+  form: MARINE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: MILITARY & MARINE SHEET METAL FURNITURE FABRICATION
+    approx_offset: 28511
+  - quote: STANDARD MILITARY & MARINE METAL PRODUCTS
+    approx_offset: 28860
+  - quote: MARINE SECURITY FILING CABINETS
+    approx_offset: 29114
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0012
+  form: MILITARY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/blog
+    - https://blackadvtech.com/blog/
+  evidence:
+  - quote: MILITARY
+    approx_offset: 2610
+  - quote: MILITARY
+    approx_offset: 17125
+  - quote: MILITARY & MARINE SHEET METAL FURNITURE FABRICATION
+    approx_offset: 28500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0013
+  form: MILITARY & MARINE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: MILITARY & MARINE SHEET METAL FURNITURE FABRICATION
+    approx_offset: 28500
+  - quote: STANDARD MILITARY & MARINE METAL PRODUCTS
+    approx_offset: 28849
+  - quote: MILITARY & MARINE SHEET METAL FURNITURE FABRICATION
+    approx_offset: 115172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0014
+  form: Marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/category/military/
+    - https://blackadvtech.com/category/sheet-metal/
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: How Marine Fuel Tanks and Sheet Metal Fabrication Coexist
+    approx_offset: 100132
+  - quote: How Marine Fuel Tanks and Sheet Metal Fabrication Coexist
+    approx_offset: 106886
+  - quote: Marine tank fabrication is a long process that involves lots of handling and precision.
+    approx_offset: 173832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0015
+  form: Marines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: military — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 2685
+  - quote: military for many years — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 28653
+  - quote: military for many years — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 67211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0016
+  form: Military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/industries-served/
+    - https://blackadvtech.com/site-map/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Military
+    approx_offset: 16851
+  - quote: Military
+    approx_offset: 37311
+  - quote: Military
+    approx_offset: 67101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0017
+  form: NAVY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: NAVY SCBA LOCKERS
+    approx_offset: 29146
+  - quote: NAVY SCBA LOCKERS
+    approx_offset: 115818
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0018
+  form: Navy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/industries-served/military
+  evidence:
+  - quote: military — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 2679
+  - quote: military for many years — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 28647
+  - quote: Navy and internationally known corporations thanks to our world-class customer service.
+    approx_offset: 65238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0019
+  form: Passenger Car
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Passenger Car Components
+    approx_offset: 87912
+  - quote: Passenger Car Components
+    approx_offset: 114392
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0020
+  form: RAIL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 87741
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 114221
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0021
+  form: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 87741
+  - quote: RAIL & AUTOMOBILE COMPONENT MANUFACTURING
+    approx_offset: 114221
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0022
+  form: SCIENTIFIC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+  evidence:
+  - quote: SCIENTIFIC
+    approx_offset: 2422
+  - quote: SCIENTIFIC
+    approx_offset: 172343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0023
+  form: Scientific
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/
+    - https://blackadvtech.com/industries-served/scientific
+  evidence:
+  - quote: Manufactured numerous solutions for the Scientific industry.
+    approx_offset: 2474
+  - quote: Scientific
+    approx_offset: 16931
+  - quote: Scientific
+    approx_offset: 37283
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0024
+  form: Scientific industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Manufactured numerous solutions for the Scientific industry.
+    approx_offset: 2474
+  - quote: We have manufactured numerous solutions for the Scientific industry.
+    approx_offset: 67362
+  - quote: We have manufactured numerous solutions for the Scientific industry.
+    approx_offset: 76186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0025
+  form: Shipbuilding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Shipbuilding
+    approx_offset: 137781
+  - quote: Shipbuilding is another industry that benefits from robotic welding.
+    approx_offset: 137795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0026
+  form: TRANSPORTATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: TRANSPORTATION
+    approx_offset: 2309
+  - quote: TRANSPORTATION COMPONENTS MANUFACTURING
+    approx_offset: 87452
+  - quote: TRANSPORTATION COMPONENTS MANUFACTURING
+    approx_offset: 113932
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0027
+  form: Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/industries-served/
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+    - https://blackadvtech.com/site-map/
+  evidence:
+  - quote: Transportation
+    approx_offset: 17042
+  - quote: Transportation
+    approx_offset: 37268
+  - quote: Transportation
+    approx_offset: 66911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0028
+  form: U.S. Coast Guard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/industries-served/
+  evidence:
+  - quote: U.S. Coast Guard
+    approx_offset: 37294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0029
+  form: U.S. Navy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We are sheet metal fabricators trusted by the U.S. Navy
+    approx_offset: 65233
+  - quote: We are sheet metal fabricators trusted by the U.S. Navy
+    approx_offset: 77377
+  - quote: We are sheet metal fabricators trusted by the U.S. Navy
+    approx_offset: 167320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0030
+  form: U.S. military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: A trusted partner for the U.S. military
+    approx_offset: 2646
+  - quote: Blackstone has been a trusted partner for the U.S. military
+    approx_offset: 28599
+  - quote: Blackstone has been a trusted partner for the U.S. military
+    approx_offset: 67157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0031
+  form: aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: This increased efficiency translates into higher output with fewer human resources, which is
+      particularly valuable in industries like automotive manufacturing, aerospace, and heavy machinery
+      production.
+    approx_offset: 135074
+  - quote: This precision is crucial, particularly in high-stakes industries such as aerospace and medical
+      device manufacturing, where a single flaw can have catastrophic consequences.
+    approx_offset: 135507
+  - quote: In aerospace manufacturing, precision is paramount, and even the slightest flaw in a weld can
+      result in catastrophic failure.
+    approx_offset: 137368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0032
+  form: aerospace industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Robotic welders in the aerospace industry are tasked with creating strong, high-precision welds
+      in critical components such as aircraft frames and turbine engines.
+    approx_offset: 137514
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0033
+  form: aerospace manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: In aerospace manufacturing, precision is paramount, and even the slightest flaw in a weld can
+      result in catastrophic failure.
+    approx_offset: 137368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0034
+  form: automobile
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Mostly, seam welding is used to fabricate sheet metal containers and automobile mufflers.
+    approx_offset: 182799
+  - quote: First, it’s used in the manufacture of fuel tanks in the automobile industry.
+    approx_offset: 185654
+  - quote: Whether you are fabricating military equipment or automobile parts, it’s essential to follow
+      the stipulated guidelines.
+    approx_offset: 191869
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0035
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Wet paint is commonly used in various applications, including residential and commercial painting
+      projects, automotive refinishing, furniture finishing, and artistic creations.
+    approx_offset: 126783
+  - quote: Welding has been an essential manufacturing process for centuries, used in everything from
+      automotive production to infrastructure development.
+    approx_offset: 133714
+  - quote: This increased efficiency translates into higher output with fewer human resources, which is
+      particularly valuable in industries like automotive manufacturing, aerospace, and heavy machinery
+      production.
+    approx_offset: 135048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0036
+  form: automotive industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Automotive Industry
+    approx_offset: 136860
+  - quote: One of the earliest and most prominent adopters of robotic welding was the automotive industry.
+    approx_offset: 136956
+  - quote: In the automotive industry, seam welding has various uses.
+    approx_offset: 185545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0037
+  form: automotive refinishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: Wet paint is commonly used in various applications, including residential and commercial painting
+      projects, automotive refinishing, furniture finishing, and artistic creations.
+    approx_offset: 126783
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0038
+  form: construction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 1348
+  - quote: Strong 11-18 gauge USA steel construction
+    approx_offset: 52659
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 64461
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0039
+  form: energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Robotic welding systems can efficiently handle large-scale assemblies, creating strong and
+      reliable welds that meet the rigorous standards of industries such as construction, mining, and
+      energy.
+    approx_offset: 138458
+  - quote: High Energy Efficiency
+    approx_offset: 189056
+  - quote: High welding speeds limit thermal addition, thus saving much on energy.
+    approx_offset: 189142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0040
+  form: glass industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: making moulds and accessories for the glass industry
+    approx_offset: 188368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0041
+  form: heavy equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Robots are also making waves in the heavy equipment sector, where large, durable parts are
+      welded together.
+    approx_offset: 138199
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0042
+  form: heavy machinery production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: This increased efficiency translates into higher output with fewer human resources, which is
+      particularly valuable in industries like automotive manufacturing, aerospace, and heavy machinery
+      production.
+    approx_offset: 135089
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0043
+  form: industrial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 1372
+  - quote: With over 100 years in the industry, Blackstone Advanced Technologies is committed to providing
+      strong, dependable sheet metal fabrication for industrial manufacturing.
+    approx_offset: 3212
+  - quote: View a full list of our industrial painting, powder coating, and other finishing machines and
+      capabilities.
+    approx_offset: 6758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0044
+  form: industrial manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: With over 100 years in the industry, Blackstone Advanced Technologies is committed to providing
+      strong, dependable sheet metal fabrication for industrial manufacturing.
+    approx_offset: 3212
+  - quote: With over 100 years in the industry, Blackstone Advanced Technologies is committed to providing
+      strong, dependable sheet metal fabrication for industrial manufacturing.
+    approx_offset: 69807
+  - quote: With over 100 years in the industry, Blackstone Advanced Technologies is committed to providing
+      strong, dependable sheet metal fabrication for industrial manufacturing.
+    approx_offset: 173133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0045
+  form: infrastructure development
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Welding has been an essential manufacturing process for centuries, used in everything from
+      automotive production to infrastructure development.
+    approx_offset: 133739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0046
+  form: laboratory
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+  evidence:
+  - quote: Get a quote for scientific & laboratory sheet metal fabrication!
+    approx_offset: 76670
+  - quote: Get a quote for scientific & laboratory sheet metal fabrication!
+    approx_offset: 117314
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0047
+  form: locomotives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We produce products for locomotives and passenger cars.
+    approx_offset: 67066
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0048
+  form: manufacturing industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: Welding is a common technique used in the manufacturing industry to create structures, products,
+      and components.
+    approx_offset: 161293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0049
+  form: marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 1341
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2743
+  - quote: We fabricate for numerous applications, including transportation, military & marine, industrial,
+      scientific, and more.
+    approx_offset: 12765
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0050
+  form: marine construction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 1341
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 64454
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 171262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0051
+  form: medical device manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: This precision is crucial, particularly in high-stakes industries such as aerospace and medical
+      device manufacturing, where a single flaw can have catastrophic consequences.
+    approx_offset: 135521
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0052
+  form: metal industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Both steel (carbon steel) and stainless steel are the essential metal materials used in the
+      majority of metal industries.
+    approx_offset: 200122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0053
+  form: military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 1362
+  - quote: military — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 2651
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2730
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0054
+  form: military & marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We fabricate for numerous applications, including transportation, military & marine, industrial,
+      scientific, and more.
+    approx_offset: 12754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0055
+  form: military and marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2730
+  - quote: We produce standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 28700
+  - quote: We produce standard military and marine sheet metal products.
+    approx_offset: 67257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0056
+  form: mining industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 2240
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 48310
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 66842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0057
+  form: scientific
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 1384
+  - quote: We fabricate for numerous applications, including transportation, military & marine, industrial,
+      scientific, and more.
+    approx_offset: 12785
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 64497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0058
+  form: the Navy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: military — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 2675
+  - quote: military for many years — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 28643
+  - quote: military for many years — specifically the Navy, Marines, and Coast Guard.
+    approx_offset: 67201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0059
+  form: the U.S. military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: A trusted partner for the U.S. military
+    approx_offset: 2642
+  - quote: Blackstone has been a trusted partner for the U.S. military
+    approx_offset: 28595
+  - quote: Blackstone has been a trusted partner for the U.S. military
+    approx_offset: 67153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0060
+  form: the glass industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: making moulds and accessories for the glass industry
+    approx_offset: 188364
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0061
+  form: the mining industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 2236
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 48306
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 66838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0062
+  form: transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We’ve designed winning products for many industries including transportation, marine construction,
+      military, industrial, scientific, and more.
+    approx_offset: 1325
+  - quote: Ability to fabricate a variety of large sheet metal components for the transportation industry.
+    approx_offset: 2396
+  - quote: We fabricate for numerous applications, including transportation, military & marine, industrial,
+      scientific, and more.
+    approx_offset: 12738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0063
+  form: transportation industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Ability to fabricate a variety of large sheet metal components for the transportation industry.
+    approx_offset: 2396
+  - quote: Blackstone has the ability to fabricate a variety of large sheet metal components for the transportation
+      industry.
+    approx_offset: 67017
+  - quote: Blackstone has fabricated a variety of large sheet metal components for the transportation
+      industry.
+    approx_offset: 87569
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0064
+  form: underground mining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 2278
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 48348
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 66880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0065
+  form: wind turbine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Provides enclosures for Windurance, a global supplier of wind turbine blade pitch control systems.
+    approx_offset: 2163
+  - quote: Blackstone provides enclosures for Windurance, a global supplier of wind turbine blade pitch
+      control systems.
+    approx_offset: 48233
+  - quote: Blackstone provides enclosures for Windurance, a global supplier of wind turbine blade pitch
+      control systems.
+    approx_offset: 66765
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-industries-0066
+  form: wind turbine blade pitch control systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Provides enclosures for Windurance, a global supplier of wind turbine blade pitch control systems.
+    approx_offset: 2163
+  - quote: Blackstone provides enclosures for Windurance, a global supplier of wind turbine blade pitch
+      control systems.
+    approx_offset: 48233
+  - quote: Blackstone provides enclosures for Windurance, a global supplier of wind turbine blade pitch
+      control systems.
+    approx_offset: 66765
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

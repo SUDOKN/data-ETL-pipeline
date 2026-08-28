@@ -1,0 +1,1223 @@
+subject: mathewsco.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+golden_set_version: 1
+anchored_on: search/expectations/mathewsco_com/material_caps.yaml
+labels:
+- id: mathewsco_com-material_caps-0001
+  form: '319'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0002
+  form: '356'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0003
+  form: A357
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0004
+  form: Alloy Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26620
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0005
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself
+      to compete against off shore manufacturer by offering quick turnaround lead times, medium to high
+      volume runs, competitive tooling pricing and producing high quality parts.
+    approx_offset: 24435
+  - quote: A large range of materials; Stainless Steel, Aluminum, CRS and HRPO .
+    approx_offset: 24925
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25564
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0006
+  form: Aluminum (319, 356 and A357)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25564
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0007
+  form: Buna
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25301
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0008
+  form: CRS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: A large range of materials; Stainless Steel, Aluminum, CRS and HRPO .
+    approx_offset: 24935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0009
+  form: Cellular foam material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0010
+  form: Delrin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: STADCO produces parts of carbon steel, all stainless grades, brass, aluminum, Monel, Teflon
+      and Delrin.
+    approx_offset: 53985
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0011
+  form: Ductile
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Ductile Gray Castings
+    approx_offset: 23016
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0012
+  form: Ductile (Full range of ASTM A536-80)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0013
+  form: Ductile Gray Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Ductile Gray Castings
+    approx_offset: 23016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0014
+  form: Flat Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Flat Steel
+    approx_offset: 58631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0015
+  form: Gray Irons
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0016
+  form: Gulf Plastic Petroleum E
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0017
+  form: HRPO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: A large range of materials; Stainless Steel, Aluminum, CRS and HRPO .
+    approx_offset: 24943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0018
+  form: Monel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: STADCO produces parts of carbon steel, all stainless grades, brass, aluminum, Monel, Teflon
+      and Delrin.
+    approx_offset: 53967
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0019
+  form: Mu metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0020
+  form: Oil
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating - is useful for corrosion resistance
+    approx_offset: 49890
+  - quote: Oil Impregnation - makes bearings self-lubricate and is ideal for applications where lubrecation
+      is difficult, needed frequently, or impossible.
+    approx_offset: 50035
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0021
+  form: Oil Dip Coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating - is useful for corrosion resistance
+    approx_offset: 49890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0022
+  form: Oil Impregnation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Oil Impregnation - makes bearings self-lubricate and is ideal for applications where lubrecation
+      is difficult, needed frequently, or impossible.
+    approx_offset: 50035
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0023
+  form: Plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping,
+      Custom Plastic Insert and Injection Molding company.
+    approx_offset: 4065
+  - quote: We specialize in custom Plastic Injection and Insert Molding that feature a high degree of
+      difficulty on both product design and high performance molding resins.
+    approx_offset: 4272
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4452
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0024
+  form: Pressure Sensitive Adhesives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: We can apply Pressure Sensitive Adhesives on most materials.
+    approx_offset: 25453
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0025
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: A large range of materials; Stainless Steel, Aluminum, CRS and HRPO .
+    approx_offset: 24908
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0026
+  form: Teflon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: STADCO produces parts of carbon steel, all stainless grades, brass, aluminum, Monel, Teflon
+      and Delrin.
+    approx_offset: 53974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0027
+  form: Vespel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=93&Itemid=54
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=99&Itemid=160
+  evidence:
+  - quote: DuPontâ€“Vespel Parts & Shapes
+    approx_offset: 22753
+  - quote: Dupont - Vespel
+    approx_offset: 32610
+  - quote: DuPont™ Vespel® Parts and Shapes
+    approx_offset: 45253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0028
+  form: alloy, stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7744
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0029
+  form: aluminized steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0030
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7775
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself
+      to compete against off shore manufacturer by offering quick turnaround lead times, medium to high
+      volume runs, competitive tooling pricing and producing high quality parts.
+    approx_offset: 24488
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0031
+  form: bar stock
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: '"Near net" bar stock is often specified to eliminate secondary machining and lower costs.'
+    approx_offset: 54004
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0032
+  form: barstock
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: This special barstock is available in carbon steel and stainless grades, also aluminum and
+      brass alloys, with profiles including hex, square, triangular, grooved and splined.
+    approx_offset: 54096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0033
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34227
+  - quote: STADCO produces parts of carbon steel, all stainless grades, brass, aluminum, Monel, Teflon
+      and Delrin.
+    approx_offset: 53950
+  - quote: This special barstock is available in carbon steel and stainless grades, also aluminum and
+      brass alloys, with profiles including hex, square, triangular, grooved and splined.
+    approx_offset: 54174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0034
+  form: brass alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: This special barstock is available in carbon steel and stainless grades, also aluminum and
+      brass alloys, with profiles including hex, square, triangular, grooved and splined.
+    approx_offset: 54174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0035
+  form: carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26606
+  - quote: STADCO produces parts of carbon steel, all stainless grades, brass, aluminum, Monel, Teflon
+      and Delrin.
+    approx_offset: 53914
+  - quote: This special barstock is available in carbon steel and stainless grades, also aluminum and
+      brass alloys, with profiles including hex, square, triangular, grooved and splined.
+    approx_offset: 54121
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0036
+  form: cast metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They also offer rapid prototype in a cast metal in a couple of weeks from your CAD drawings.
+    approx_offset: 24322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0037
+  form: cold rolled steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0038
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0039
+  form: cupro nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0040
+  form: elastomeric rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25248
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0041
+  form: ferrous and non-ferrous materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24250
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0042
+  form: food grade oils
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49453
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0043
+  form: graphite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49405
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0044
+  form: graphite fortified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49405
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0045
+  form: high performance metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0046
+  form: molding resins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: We specialize in custom Plastic Injection and Insert Molding that feature a high degree of
+      difficulty on both product design and high performance molding resins.
+    approx_offset: 4394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0047
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7788
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34252
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0048
+  form: nickel alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0049
+  form: non-ferrous
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24262
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26665
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0050
+  form: non-ferrous metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26665
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0051
+  form: petroleum-based
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0052
+  form: petroleum-based lubricants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0053
+  form: plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36672
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0054
+  form: resins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: We specialize in custom Plastic Injection and Insert Molding that feature a high degree of
+      difficulty on both product design and high performance molding resins.
+    approx_offset: 4402
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0055
+  form: silicone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25268
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0056
+  form: silicone materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25268
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0057
+  form: stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7751
+  - quote: A large range of materials; Stainless Steel, Aluminum, CRS and HRPO .
+    approx_offset: 24908
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0058
+  form: stainless grades
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: STADCO produces parts of carbon steel, all stainless grades, brass, aluminum, Monel, Teflon
+      and Delrin.
+    approx_offset: 53932
+  - quote: This special barstock is available in carbon steel and stainless grades, also aluminum and
+      brass alloys, with profiles including hex, square, triangular, grooved and splined.
+    approx_offset: 54138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0059
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34139
+  - quote: Our materials include aluminum, brass, steel, and stainless steel with more than 35 decorative
+      finishes.
+    approx_offset: 60385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0060
+  form: steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: A large range of materials; Stainless Steel, Aluminum, CRS and HRPO .
+    approx_offset: 24918
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26613
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0061
+  form: titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' core capabilities include expertise with a variety of high performance
+      metals, including stainless steel and titanium, along with aluminum, aluminized steel, cold rolled
+      steel, brass, copper, Mu metal, nickel, cupro nickel and more.
+    approx_offset: 34159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-material_caps-0062
+  form: tool steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

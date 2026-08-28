@@ -1,0 +1,8 @@
+subject: tanfel.com
+field: contract_products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+golden_set_version: 1
+anchored_on: search/expectations/tanfel_com/contract_products.yaml
+labels: []

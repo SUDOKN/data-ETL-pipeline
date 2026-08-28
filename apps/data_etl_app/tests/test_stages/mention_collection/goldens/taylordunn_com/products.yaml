@@ -1,0 +1,133 @@
+subject: taylordunn.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/taylordunn.com.txt
+  sha256: dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113
+golden_set_version: 1
+anchored_on: search/expectations/taylordunn_com/products.yaml
+labels:
+- id: taylordunn_com-products-0001
+  form: Bigfoot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 84
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: BUILD A BIGFOOT
+    approx_offset: 164
+  - quote: Bigfoot Burden Carriers
+    approx_offset: 6749
+  - quote: Build a Bigfoot
+    approx_offset: 7202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-products-0002
+  form: Bigfoot Burden Carriers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Bigfoot Burden Carriers
+    approx_offset: 6749
+  - quote: Bigfoot Burden Carriers
+    approx_offset: 14102
+  - quote: Bigfoot Burden Carriers
+    approx_offset: 21444
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-products-0003
+  form: Personnel Carriers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Personnel Carriers
+    approx_offset: 6786
+  - quote: Personnel Carriers
+    approx_offset: 14139
+  - quote: Personnel Carriers
+    approx_offset: 21481
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-products-0004
+  form: Stockchasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Stockchasers
+    approx_offset: 6773
+  - quote: Stockchasers
+    approx_offset: 14126
+  - quote: Stockchasers
+    approx_offset: 21468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-products-0005
+  form: Utility Vehicles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Utility Vehicles
+    approx_offset: 6732
+  - quote: Utility Vehicles
+    approx_offset: 14085
+  - quote: Utility Vehicles
+    approx_offset: 21427
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

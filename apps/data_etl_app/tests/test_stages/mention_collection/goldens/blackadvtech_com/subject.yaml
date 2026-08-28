@@ -1,0 +1,154 @@
+subject: blackadvtech.com
+subject_name: Blackstone Advanced Technologies
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+role: genre_probe
+role_note: >-
+  Seeded as `degenerate_input_probe` before this corpus adopted the search harness's
+  vocabulary wholesale. Normalized to search's `genre_probe` on 2026-08-27:
+  it is the same roster, and a second vocabulary would fork the corpus
+  silently. The earlier value is kept here because the reasoning behind
+  it describes what THIS stage sees, which search's word may not.
+role_provenance: 'search/expectations/blackadvtech_com/subject.yaml assigns role: genre_probe, which is
+  NOT one of this schema''s five values, so it could not be reused verbatim. Mapped to degenerate_input_probe
+  on measured evidence: 3 live DB-error page blocks, 2 404s scraped as content, 2 lorem-ipsum slots, a
+  raw Divi shortcode dump, a raw HubSpot <script> blob, 10 unrendered CTA shortcodes, 13 pages scraped
+  twice, and 339 NBSP-only lines. NOT scale_stress: at 246 KB it is the largest of this batch but far
+  below acimachine. The genre_probe sense the search harness meant (SEO blog naming processes the shop
+  does not perform) is a search-admission question and is out of scope for this stage.'
+third_party_roster:
+- Matic Group (customer testimonial)
+- Swartfarger Welding Inc. (customer testimonial)
+- Buffalo Business First (trade press)
+- The Post-Journal (press)
+- The Buffalo News (press)
+- Manufacturing Today (trade press)
+- Richard / Ricky Turner, owner (quoted by press)
+- Preferred Registrar Group, Inc. (ISO registrar)
+- AMTEC Registries (ISO registrar; contradicts the above)
+- AWS (standards body, welder certification)
+- Cassadaga Valley Central School welding class
+text_hazards:
+- hazard: database_error_pages_with_no_content
+  note: 'VERIFIED: exactly 3 page blocks (/contact-us/ L682-688, /about-us/faq/ L724-730, /community/
+    L732-738) contain nothing but a 3-line MySQL failure — the quoted line, then ''This site is currently
+    experiencing issues. Please try visiting at a later time.'', then ''Error: 2002''. Three clippable
+    lines that are pure infrastructure noise, on pages whose names promise contact and FAQ prose.'
+  quote: Could not connect to database
+- hazard: 404_pages_scraped_as_content
+  note: 'VERIFIED: 2 blocks (https://blackadvtech.com/?page_id=35351 L1543-1554 and ?page_id=30294 L2155-2166)
+    are 404 pages captured as if they were pages. Each is the line ''404'', the quoted line, and four
+    bare all-caps nav labels (HOME PAGE, ABOUT, CONTACT US, SITEMAP).'
+  quote: The Page You Were Looking For Couldn't Be Found
+- hazard: lorem_ipsum_directly_under_real_headings
+  note: 'VERIFIED: 2 unreplaced lorem-ipsum slots on /work-with-blackstone/. The worse one is L2002, sitting
+    under the genuine heading ''What Our Customers Say'' (L2000) and immediately ABOVE the two real testimonials
+    — so the placeholder is sandwiched between real headings and real third-party quotes. The other (quoted,
+    L1986) sits under ''Advancing products, processes and solutions''.'
+  quote: Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum
+    dolor sit, dolore magna aliquyam consetetur sadipscing.
+- hazard: divi_shortcode_dump_and_hubspot_blobs
+  note: 'VERIFIED: /capabilities/vmi-program/ ends in ~25 lines of raw [et_pb_*] Divi builder markup carrying
+    social URLs and hex colours (L1832-1856, quoted). /custom-projects/ has a raw HubSpot <script> blob
+    with [et_pb_line_break_holder] separators as its entire body (L697). And 10 lines across 6 blog posts
+    leak an unrendered HubSpot CTA shortcode using curly quotes: ''{{cta(‘1615cd3c-4bbe-4d95-8408-39a73e91a111′,’justifycenter’)}}''.'
+  quote: '[/et_pb_cta][/et_pb_column][/et_pb_row][/et_pb_section]'
+- hazard: nbsp_is_the_paragraph_separator_and_sits_inside_phrases
+  note: '1,081 non-breaking spaces, the most of any subject in this batch. 339 lines (5.4% of the file)
+    consist ONLY of an NBSP and act as the paragraph spacer throughout the ~22 blog posts, so a ''blank
+    line means paragraph break'' heuristic never fires there. NBSPs also sit INSIDE phrases: the quoted
+    heading has one between ''METAL'' and ''FABRICATION'', so ''CUSTOM SHEET METAL FABRICATION PROJECTS''
+    typed with ordinary spaces will not match. The nav line L701 is built entirely from NBSP runs.'
+  quote: CUSTOM SHEET METAL FABRICATION PROJECTS
+- hazard: allcaps_is_simultaneously_heading_content_and_blog_category_tag
+  note: '620 short ALL-CAPS lines — the dominant heading style, but NOT a reliable heading signal, because
+    the same casing carries three different things. (a) Real section headings: ''FACILITY & EQUIPMENT'',
+    ''LASER CUTTING''. (b) Chrome: ''FOLLOW'' 36x, ''DATE''/''MORE''/''ARTICLES'' 25x each, ''PREVIOUS''/''NEXT''
+    24x. (c) BLOG CATEGORY TAGS on /site-map/ and /blog/ — ''WELDING'' 14x, ''MILITARY'' 12x, ''MATERIAL''/''PROCESS''/''SHEET
+    METAL'' 10x each — which follow the quoted heading as bare lines (L671-675) and are navigation, not
+    capability text. A location model that reads a lone ''WELDING'' as a capability heading will be wrong
+    about 10 of its 14 occurrences.'
+  quote: Blog Categories
+- hazard: equipment_list_process_lives_only_in_the_group_heading
+  note: 'Both machine lists (/about-us/facility/ L744-, /capabilities/machinery/) are bulleted quantity-model
+    lines under ALL-CAPS process headings (LASER CUTTING, PUNCHING, MIG WELDERS, TIG WELDERS, SPOT WELDING,
+    MACHINING, FORMING, ...). The heading is the ONLY thing that says which process a machine serves:
+    a clip of ''• 13 – Lincoln STT II'' (L776) carries no process at all. Worse, the structure is inconsistent
+    — two headings are FUSED onto their first item on one line (quoted, plus ''HANDHELD WELDER • 1 – IPG
+    LightWeld 2000XR'' at L795) — and one sub-item uses a letter ''o'' as its bullet (''o March 360 4
+    tray sheet loader system'', L755).'
+  quote: SEAM WELDERS • 1 – Pandjiris 8′ bed
+- hazard: customer_testimonials_attributed_two_lines_below_the_quote
+  note: 'The two real testimonials on /work-with-blackstone/ put the speaker''s name TWO lines BELOW the
+    quote with a blank line between: the quoted testimonial (L2004) is attributed to ''Matic Group'' at
+    L2006, and the second (L2008) to ''Swartfarger Welding Inc.'' at L2010. A line-clipped snippet of
+    either quote carries no speaker, and a clip of ''Matic Group'' is a bare company name. whose_words
+    for both is `customer` — note that both quotes are ABOUT Blackstone in the third person, so the first-person
+    ''We have maintained'' is the CUSTOMER''s we, not the site''s.'
+  quote: “We have maintained a valuable relationship with Blackstone Advanced Technologies for over several
+    years due to their commitment to Quality, Detail and Overall Focus on schedule.”
+- hazard: press_excerpts_are_journalists_words_about_the_subject
+  note: '/news/ (L1411-1488) is five trade-press excerpts written by JOURNALISTS about Blackstone, each
+    closing with a parenthetical naming the outlet and date — ''(Buffalo Business First: March 26, 2015)''
+    L1468, ''(The Post-Journal...)'' L1480, ''(The Buffalo News...)'' L1486. The quoted line is a third
+    layer: a journalist quoting the owner in direct speech, so the passage holds press voice wrapping
+    owner voice. whose_words here is `third_party`, and the outlet parenthetical is the only evidence
+    — it sits at the END of a long line, so a short clip loses it.'
+  quote: “There aren’t a lot of big opportunities in western New York for business-people with MBA’s,”
+    Richard Turner says.
+- hazard: seo_blog_is_third_person_industry_explainer_with_a_first_person_close
+  note: '~22 blog posts explain metalworking at large in impersonal third person and then close with a
+    first-person call to action, so voice flips inside one document. The quoted opening of /advantages-of-seam-welding/
+    is generic encyclopedia prose; the same post''s body says ''The welding operator should as well wear
+    gloves...'' (L4627) and a sibling post ends ''Contact us today for the u...'' (L4643). Whether such
+    a process should have been searched for at all is the search eval''s question, but the LOCATION answer
+    here is unambiguous: kind_of_text is an industry explainer, belongs_to is a blog post, whose_words
+    is `site`.'
+  quote: Seam welding is among the most popular welding processes for joining metals in a continuous weld.
+- hazard: identical_sentence_names_two_contradictory_registrars
+  note: 'The same sentence template appears 4x naming DIFFERENT certifying bodies: ''Preferred Registrar
+    Group, Inc.'' at L62 and L4423, ''Preferred Registrar Group'' at L1313, and ''AMTEC Registries'' in
+    the quoted line at L1945 on /work-with-blackstone/. Near-identical strings that must NOT be grouped,
+    and a case where the surrounding sentence is no help in choosing between them.'
+  quote: Quality is something we take seriously. We are ISO 9001:2015 certified by AMTEC Registries, and
+    we have a comprehensive Quality Management System.
+- hazard: concatenated_checkbox_labels_destroy_word_boundaries
+  note: The job-application checkbox group arrives as ONE unpunctuated line with 12 process names fused
+    together and the first one truncated ('Mig Weldin'), on 2 pages (L3061 /jobs/qc-inspector/, L3359).
+    A clip yields all 12 at once, and word boundaries are destroyed at every seam — 'OtherWelding', 'WeldingCNC'
+    — so substring matching for 'Welding' finds hits with no boundary on either side.
+  quote: Mig WeldinTig WeldingSpot WeldingOtherWeldingCNC Machine OperationCNC Machine Set-upNon-CNC MachiningForklift
+    DrivingPowder-Wet Coat PaintingMachine MaintenanceBlueprint ReadingQuality Control Devices
+- hazard: repeated_footer_and_doubled_pages
+  note: '41.8% of nonblank lines belong to a text repeated >=3x. The quoted NAICS line and ''CAGE Code:
+    71XE8'' sit in a 5-line contact footer on 39 blocks; ''716-665-5410'' 83x, ''Share This'' 71x, the
+    nav line 38x, ''Blackstone Advanced Technologies, LLC'' 41x. 13 pages are scraped twice under http://
+    and https:// or with and without a trailing slash. A ''MORE / ARTICLES'' teaser block repeats three
+    post titles and dates 25-29x each.'
+  quote: 'NAICS Codes: 332116, 332312, 332313, 332322, 332439, 332999, 336399, 336413, 336991'
+- hazard: private_use_area_glyphs_and_a_garbled_glyph_run
+  note: '39 each of U+E00B, U+E010 and U+E01D (Divi icon-font glyphs) sit on their own lines inside the
+    footer contact block, each followed by a bare-tab line, so the address, phone and NAICS lines are
+    separated by unrenderable characters rather than by structure. Separately, the industrial-welding
+    page opens with a garbled glyph run FUSED onto its first word (L428, quoted), so the first sentence
+    of that page begins with junk that no tokenizer will split off. Also present: 204 curly apostrophes,
+    55 double-prime inch marks and 43 prime foot marks inside phrases (e.g. ''4′ bending roll'').'
+  quote: 'DROBDDDFOur AWS certified welders offer a wide variety of industrial welding services for all
+    of your needs:'
+coverage: full_text
+notes: '246 KB / 6,289 lines / 87 page blocks; read across the degenerate blocks, both machine lists,
+  the capability and industries pages, /news/, /site-map/, /work-with-blackstone/ and a sample of the
+  blog, plus full-file censuses of non-ASCII, all-caps lines, tab lines and repeated lines. Every degeneracy
+  the expansion doc predicted is CONFIRMED with a line number (3 DB-error pages, 2 404s, Divi dump, lorem
+  ipsum). TWO CORRECTIONS TO THE EXISTING PROFILES. (1) The search harness quotes ''Aluminum\tStainless
+  Steel\tATSM 81011 steel'' as if tab-delimited tables were a pattern here; measured, that is the ONLY
+  non-trivial tab-delimited row in the entire 6,289-line file — the other 123 tab lines are bare tabs
+  in the footer icon block. There are no spec tables to clip badly from; the equipment data is a bulleted
+  list whose group headings carry the process, which is a different and larger hazard. (2) role could
+  not be reused: the search harness''s ''genre_probe'' is not a value this schema admits (see role_provenance).'
+provenance:
+- action: added
+  by: seed-agent-batch2
+  date: '2026-08-27'
+  source: harvested:expansion-doc

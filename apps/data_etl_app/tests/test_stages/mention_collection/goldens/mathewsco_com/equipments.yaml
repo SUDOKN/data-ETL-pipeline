@@ -1,0 +1,195 @@
+subject: mathewsco.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+golden_set_version: 1
+anchored_on: search/expectations/mathewsco_com/equipments.yaml
+labels:
+- id: mathewsco_com-equipments-0001
+  form: 9-axis Swiss machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 25994
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0002
+  form: Laser cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Laser cutters including 2-D and 5 axis 3-D.
+    approx_offset: 24990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0003
+  form: Swiss machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0004
+  form: complete vacuum systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0005
+  form: controlled atmosphere sintering furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Seven controlled atmosphere sintering furnaces heat up the situation as we operate our plant
+      24 hours a day, five days a week.
+    approx_offset: 49505
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0006
+  form: presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Equipment- presses from 20 to 400 tons.
+    approx_offset: 24961
+  - quote: began with a 5,000 square foot building, three production presses and a full time staff of
+      five.
+    approx_offset: 49030
+  - quote: Presently, we operate 70 compacting (molding to 100t in 2) and 40 coining (sizing to 60T in
+      2) presses.
+    approx_offset: 49323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0007
+  form: production presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: began with a 5,000 square foot building, three production presses and a full time staff of
+      five.
+    approx_offset: 49019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0008
+  form: punch presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Learn more about the solutions we offer...such as laser technology, in-house tooling with CAD
+      assistance, value-added operations to stamping, and punch presses with coil feeds and a capacity
+      range of 45 to 400 tons.
+    approx_offset: 51963
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0009
+  form: sintering furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Seven controlled atmosphere sintering furnaces heat up the situation as we operate our plant
+      24 hours a day, five days a week.
+    approx_offset: 49527
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-equipments-0010
+  form: vacuum systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

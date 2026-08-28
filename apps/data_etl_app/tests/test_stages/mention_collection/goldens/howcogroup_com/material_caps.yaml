@@ -1,0 +1,3417 @@
+subject: howcogroup.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+golden_set_version: 1
+anchored_on: search/expectations/howcogroup_com/material_caps.yaml
+labels:
+- id: howcogroup_com-material_caps-0001
+  form: 13 CR – STAINLESS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-420-modified/
+  evidence:
+  - quote: 13 CR – STAINLESS
+    approx_offset: 121927
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0002
+  form: 13-5-2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+  evidence:
+  - quote: GRADE 13-5-2
+    approx_offset: 29883
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 13-5-2
+    approx_offset: 29980
+  - quote: 13-5-2/ Super 13Cr
+    approx_offset: 34280
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0003
+  form: 13Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+  evidence:
+  - quote: 420 Modified/13Cr
+    approx_offset: 34275
+  - quote: 13-5-2/ Super 13Cr
+    approx_offset: 34294
+  - quote: GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42298
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0004
+  form: 1515-HS MAX / SCF-260
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: 1515-HS MAX / SCF-260
+    approx_offset: 34838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0005
+  form: 17-4 PH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: GRADE 17-4 PH
+    approx_offset: 3936
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 17-4 PH
+    approx_offset: 4034
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper.
+    approx_offset: 4091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0006
+  form: 22 Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: S31803-F51 (Duplex) /22 Cr
+    approx_offset: 34333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0007
+  form: 25 Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: S32760-F55 (Super Duplex)/25 Cr
+    approx_offset: 34365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0008
+  form: 28CR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: 28CR
+    approx_offset: 34211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0009
+  form: 304 austenitic stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: High strength, including good properties up to 315°C (600°F) and excellent corrosion resistance
+      (comparable to 304 austenitic stainless in many environments) makes this alloy extremely versatile.
+    approx_offset: 4437
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0010
+  form: 304/316L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: 304/316L
+    approx_offset: 34249
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0011
+  form: '316'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: Material Ti6Al4V, 625, 316 and C103.
+    approx_offset: 14098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0012
+  form: '4130'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+  evidence:
+  - quote: AISI 4130
+    approx_offset: 27049
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4130
+    approx_offset: 27111
+  - quote: 'LOW ALLOY 4130: ASTM A29'
+    approx_offset: 27126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0013
+  form: '4140'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+  evidence:
+  - quote: Often used in preference to AISI 4140 at the higher strength levels because of its better hardenability
+      and improved CVN impact toughness.
+    approx_offset: 15340
+  - quote: It is similar to 4140 which has a higher carbon level giving 4130 improved weldability, at
+      the expense of through thickness strength.
+    approx_offset: 27308
+  - quote: 4140/4140M
+    approx_offset: 34400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0014
+  form: '4145'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+  evidence:
+  - quote: 4145/4145M
+    approx_offset: 34411
+  - quote: AISI 4145
+    approx_offset: 73396
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4145
+    approx_offset: 73458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0015
+  form: 420 Mod
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: The “Super 13 Cr” family of martensitic stainless steels offer enhanced mechanical properties
+      allied to higher corrosion resistance than standard 13 Cr or 420 Mod.
+    approx_offset: 30187
+  - quote: GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42280
+  - quote: HOME  MATERIALS  MECHANICAL TUBING & OCTG  GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0016
+  form: 420 Modified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-420-modified/
+  evidence:
+  - quote: 420 Modified/13Cr
+    approx_offset: 34262
+  - quote: GRADE 420 MODIFIED
+    approx_offset: 121811
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 420 MODIFIED
+    approx_offset: 121914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0017
+  form: '4324'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: '4324'
+    approx_offset: 34422
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0018
+  form: 4330v
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: AISI 4330V
+    approx_offset: 15015
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4330V
+    approx_offset: 15078
+  - quote: 'LOW ALLOY 4330V: ASTM A29'
+    approx_offset: 15094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0019
+  form: '4340'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: '4340'
+    approx_offset: 34433
+  - quote: AISI 4340
+    approx_offset: 50925
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4340
+    approx_offset: 50987
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0020
+  form: '8620'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: '8620'
+    approx_offset: 34438
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0021
+  form: '8630'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-8630/
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: 8630/ 8630M
+    approx_offset: 34443
+  - quote: AISI 8630
+    approx_offset: 125144
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 8630
+    approx_offset: 125206
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0022
+  form: 9 CR/1 MO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+  evidence:
+  - quote: 9 CR/1 MO
+    approx_offset: 40989
+  - quote: HOME  MATERIALS  MECHANICAL TUBING & OCTG  9 CR/1 MO
+    approx_offset: 41069
+  - quote: 9 CR/1 MO
+    approx_offset: 135871
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0023
+  form: 9Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: 9Cr
+    approx_offset: 34464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0024
+  form: A625
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: The strength of age-hardened A725 is twice that of A625 annealed.
+    approx_offset: 90589
+  - quote: In the age hardened condition, A625 Plus offers exceptional resistance to stress-corrosion
+      cracking as well as general pitting and crevice corrosion.
+    approx_offset: 117538
+  - quote: Marine environments could be considered a candidate where A625 Plus has proven success.
+    approx_offset: 117890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0025
+  form: A625 Plus
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: In the age hardened condition, A625 Plus offers exceptional resistance to stress-corrosion
+      cracking as well as general pitting and crevice corrosion.
+    approx_offset: 117538
+  - quote: Marine environments could be considered a candidate where A625 Plus has proven success.
+    approx_offset: 117890
+  - quote: The higher strength capability of A625 Plus may also be useful for fasteners, shafts and hangers.
+    approx_offset: 117954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0026
+  form: A725
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: The strength of age-hardened A725 is twice that of A625 annealed.
+    approx_offset: 90567
+  - quote: Strength in A725 is obtained by heat treatment and can also be cold worked for even higher
+      strength.
+    approx_offset: 90616
+  - quote: A725 is also used for high-strength fasteners in marine applications to resist corrosion, pitting
+      and crevice attack in sea water.
+    approx_offset: 91149
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0027
+  form: AISI 4130
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-4130-4140-4145-tube/
+  evidence:
+  - quote: AISI 4130
+    approx_offset: 27044
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4130
+    approx_offset: 27106
+  - quote: AISI 4130 low alloy steel containing nominally 0.3% carbon, 1% chromium and 0.2% molybdenum
+      is widely used in oil patch applications.
+    approx_offset: 27157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0028
+  form: AISI 4140
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+  evidence:
+  - quote: Often used in preference to AISI 4140 at the higher strength levels because of its better hardenability
+      and improved CVN impact toughness.
+    approx_offset: 15335
+  - quote: AISI 4140
+    approx_offset: 37167
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4140
+    approx_offset: 37229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0029
+  form: AISI 4145
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-4130-4140-4145-tube/
+  evidence:
+  - quote: AISI 4145
+    approx_offset: 73391
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4145
+    approx_offset: 73453
+  - quote: AISI 4145 low alloy steel containing 0.20% molybdenum is widely used particularly throughout
+      oil patch applications.
+    approx_offset: 73504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0030
+  form: AISI 4330V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+  evidence:
+  - quote: AISI 4330V
+    approx_offset: 15010
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4330V
+    approx_offset: 15073
+  - quote: AISI 4330V is a low alloy steel containing nominally 0.4% C, 0.8% Cr, 0.25% Mo and 1.8% Ni.
+    approx_offset: 15126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0031
+  form: AISI 4340
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+  evidence:
+  - quote: AISI 4340
+    approx_offset: 50920
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4340
+    approx_offset: 50982
+  - quote: AISI 4340 is a low alloy steel containing nominally 0.4% C, 0.8% Cr, 0.25% Mo and 1.8% Ni.
+    approx_offset: 51033
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0032
+  form: AISI 8630
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-8630/
+  evidence:
+  - quote: AISI 8630
+    approx_offset: 125139
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 8630
+    approx_offset: 125201
+  - quote: AISI 8630
+    approx_offset: 135829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0033
+  form: ALLOY 28
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+  evidence:
+  - quote: ALLOY 825 & ALLOY 28 TUBE
+    approx_offset: 79881
+  - quote: HOME  MATERIALS  MECHANICAL TUBING & OCTG  ALLOY 825 & ALLOY 28 TUBE
+    approx_offset: 79977
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0034
+  form: ALLOY 625
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: ALLOY 625
+    approx_offset: 75105
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 625
+    approx_offset: 75179
+  - quote: ALLOY 625 PLUS
+    approx_offset: 117227
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0035
+  form: ALLOY 625 PLUS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: ALLOY 625 PLUS
+    approx_offset: 117227
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 625 PLUS
+    approx_offset: 117306
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0036
+  form: ALLOY 718
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: ALLOY 718
+    approx_offset: 84585
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 718
+    approx_offset: 84659
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0037
+  form: ALLOY 725
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: ALLOY 725
+    approx_offset: 90258
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 725
+    approx_offset: 90332
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0038
+  form: ALLOY 825
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: ALLOY 825
+    approx_offset: 16733
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 825
+    approx_offset: 16807
+  - quote: ALLOY 825 & ALLOY 28 TUBE
+    approx_offset: 79869
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0039
+  form: ALLOY 925
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: ALLOY 925 TUBE
+    approx_offset: 67331
+  - quote: HOME  MATERIALS  MECHANICAL TUBING & OCTG  ALLOY 925 TUBE
+    approx_offset: 67416
+  - quote: ALLOY 925
+    approx_offset: 103530
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0040
+  form: ALLOY 945
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+  evidence:
+  - quote: ALLOY 945
+    approx_offset: 128916
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 945
+    approx_offset: 128990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0041
+  form: ALLOY 945X
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: ALLOY 945X
+    approx_offset: 119861
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 945X
+    approx_offset: 119936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0042
+  form: API 5CT 13CR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+  evidence:
+  - quote: GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42290
+  - quote: HOME  MATERIALS  MECHANICAL TUBING & OCTG  GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42394
+  - quote: Grade 420 MOD & API 5CT 13CR Tube
+    approx_offset: 135970
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0043
+  form: API 5CT 13Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+  evidence:
+  - quote: API 5CT 13Cr
+    approx_offset: 43431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0044
+  form: Alloy 28
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+  evidence:
+  - quote: Alloy 825 & Alloy 28 Tube
+    approx_offset: 135894
+  - quote: Alloy 825 & Alloy 28 Tube
+    approx_offset: 167924
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0045
+  form: Alloy 625
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: Alloy 625
+    approx_offset: 34137
+  - quote: Alloy 625 is a Nickel – Chromium alloy with additions of Niobium (Columbium) and Molybdenum.
+    approx_offset: 75234
+  - quote: Alloy 625 Plus* is a precipitation-hardenable alloy, which displays corrosion resistance similar
+      to that of A718.
+    approx_offset: 117393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0046
+  form: Alloy 625 Plus
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: Alloy 625 Plus* is a precipitation-hardenable alloy, which displays corrosion resistance similar
+      to that of A718.
+    approx_offset: 117393
+  - quote: '*Alloy 625 Plus is a registered trademark of Carpenter Technology Corp.'
+    approx_offset: 118020
+  - quote: Alloy 625 Plus
+    approx_offset: 136023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0047
+  form: Alloy 718
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Alloy 718
+    approx_offset: 34147
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84740
+  - quote: Alloy 718
+    approx_offset: 136039
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0048
+  form: Alloy 725
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: Alloy 725
+    approx_offset: 34157
+  - quote: Alloy 725 is highly resistant to corrosion and is age hardenable for extremely high strength.
+    approx_offset: 90382
+  - quote: Alloy 725
+    approx_offset: 136050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0049
+  form: Alloy 825
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: Alloy 825 is a Ni-Cr-Fe-Mo-Cu alloy with excellent resistance to stress corrosion cracking,
+      and good pitting resistance in all environments except strongly oxidizing chloride solutions.
+    approx_offset: 16872
+  - quote: Alloy 825
+    approx_offset: 34167
+  - quote: Alloy 825 & Alloy 28 Tube
+    approx_offset: 135882
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0050
+  form: Alloy 925
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: Alloy 925
+    approx_offset: 34177
+  - quote: Alloy 925 is a nickel based alloy containing Iron and Chromium as major additions, and also
+      additions of Molybdenum, Copper, Titanium and Aluminium.
+    approx_offset: 103641
+  - quote: Alloy 925 Tube
+    approx_offset: 135909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0051
+  form: Alloy 945
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+  evidence:
+  - quote: Alloy 945
+    approx_offset: 34187
+  - quote: Alloy 945 is a superior age-hardenable alloy designed to provide a combination of high strength
+      and excellent corrosion resistance.
+    approx_offset: 129027
+  - quote: As Alloy 945 is resistant to sulphide stress-corrosion cracking and stress cracking in H₂S
+      environments, it is suitable for down hole and surface gas well components.
+    approx_offset: 129375
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0052
+  form: Alloy 945X
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: Alloy 945X
+    approx_offset: 34197
+  - quote: Alloy 945X is a high strength grade of 945 superior age-hardenable alloy designed to provide
+      a combination of high strength and excellent corrosion resistance.
+    approx_offset: 119982
+  - quote: As Alloy 945X is resistant to sulphide stress-corrosion cracking and stress cracking in H₂S
+      environments, it is suitable for down hole and surface gas well components.
+    approx_offset: 120366
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0053
+  form: Alloy 945x
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+  evidence:
+  - quote: Alloy 945x
+    approx_offset: 136094
+  - quote: Alloy 945x
+    approx_offset: 140891
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0054
+  form: Aluminium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: Shot blasting (aluminium 60-80)
+    approx_offset: 40060
+  - quote: Alloy 925 is a nickel based alloy containing Iron and Chromium as major additions, and also
+      additions of Molybdenum, Copper, Titanium and Aluminium.
+    approx_offset: 103779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0055
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+  evidence:
+  - quote: This is an age-hardenable Nickel based alloy containing Iron and Chromium as major additions,
+      and also additions of Molybdenum, Copper, Titanium and Aluminum.
+    approx_offset: 67607
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0056
+  form: Bonded Molybdenum Disulphide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 39954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0057
+  form: C103
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: Material Ti6Al4V, 625, 316 and C103.
+    approx_offset: 14106
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0058
+  form: C110
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: C110 P110
+    approx_offset: 34476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0059
+  form: C110 P110
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: C110 P110
+    approx_offset: 34476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0060
+  form: Carbon, Stainless and Duplex materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0061
+  form: Chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: AISI 4140 low alloy steel containing Chromium and Molybdenum is the most widely used low alloy
+      steel for oil patch applications.
+    approx_offset: 37326
+  - quote: This is an age-hardenable Nickel based alloy containing Iron and Chromium as major additions,
+      and also additions of Molybdenum, Copper, Titanium and Aluminum.
+    approx_offset: 67523
+  - quote: The combination of Nickel and Chromium renders protection in both oxidising and reducing atmospheres.
+    approx_offset: 67903
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0062
+  form: Columbium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: Alloy 625 is a Nickel – Chromium alloy with additions of Niobium (Columbium) and Molybdenum.
+    approx_offset: 75300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0063
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: This is an age-hardenable Nickel based alloy containing Iron and Chromium as major additions,
+      and also additions of Molybdenum, Copper, Titanium and Aluminum.
+    approx_offset: 67586
+  - quote: Alloy 925 is a nickel based alloy containing Iron and Chromium as major additions, and also
+      additions of Molybdenum, Copper, Titanium and Aluminium.
+    approx_offset: 103758
+  - quote: The characteristic features of high strength and corrosion resistance exhibited by the dual
+      microstructure (50% Austenite, 50% Ferrite) associated with Duplex Stainless Steels, are enhanced
+      by a further addition of Chromium (to 25%), and also Tungsten and Copper.
+    approx_offset: 108069
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0064
+  form: DUPLEX STAINLESS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 88760
+  - quote: The characteristic feature of duplex stainless steels is their dual phase microstructure, comprising
+      of approximately 50% of austenitic and 50% of ferrite.
+    approx_offset: 88860
+  - quote: The characteristic features of high strength and corrosion resistance exhibited by the dual
+      microstructure (50% Austenite, 50% Ferrite) associated with Duplex Stainless Steels, are enhanced
+      by a further addition of Chromium (to 25%), and also Tungsten and Copper.
+    approx_offset: 107965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0065
+  form: Duplex
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 52
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+  evidence:
+  - quote: STAINLESS, DUPLEX, SUPER DUPLEX
+    approx_offset: 3956
+  - quote: STAINLESS, DUPLEX, SUPER DUPLEX
+    approx_offset: 3970
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 17-4 PH
+    approx_offset: 4006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0066
+  form: Duplex Stainless Steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: The characteristic features of high strength and corrosion resistance exhibited by the dual
+      microstructure (50% Austenite, 50% Ferrite) associated with Duplex Stainless Steels, are enhanced
+      by a further addition of Chromium (to 25%), and also Tungsten and Copper.
+    approx_offset: 107965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0067
+  form: Ethylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 53467
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0068
+  form: Everslik
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 39935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0069
+  form: Everslik 1201/1301
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 39935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0070
+  form: F22
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: F22/F22M
+    approx_offset: 34455
+  - quote: F22
+    approx_offset: 127244
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  F22
+    approx_offset: 127300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0071
+  form: F51
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: S31803-F51 (Duplex) /22 Cr
+    approx_offset: 34319
+  - quote: GRADE S31803 – F51
+    approx_offset: 88634
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE S31803 – F51
+    approx_offset: 88737
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0072
+  form: F55
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: S32760-F55 (Super Duplex)/25 Cr
+    approx_offset: 34346
+  - quote: GRADE S32760 – F55
+    approx_offset: 107621
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE S32760 – F55
+    approx_offset: 107724
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0073
+  form: F6NM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: F6NM
+    approx_offset: 34299
+  - quote: GRADE F6NM
+    approx_offset: 45780
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE F6NM
+    approx_offset: 45875
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0074
+  form: G3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 101
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: G3 7UL
+    approx_offset: 3679
+  - quote: G3 7UL
+    approx_offset: 5941
+  - quote: G3 7UL
+    approx_offset: 14776
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0075
+  form: GRADE 17-4 PH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: GRADE 17-4 PH
+    approx_offset: 3930
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 17-4 PH
+    approx_offset: 4028
+  - quote: Grade 17-4 PH
+    approx_offset: 136153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0076
+  form: GRADE 410
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+  evidence:
+  - quote: GRADE 410
+    approx_offset: 113072
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 410
+    approx_offset: 113166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0077
+  form: GRADE F6NM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: GRADE F6NM
+    approx_offset: 45774
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE F6NM
+    approx_offset: 45869
+  - quote: Grade F6NM
+    approx_offset: 136199
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0078
+  form: Glass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/howco-ryder-cup-scotland-v-england-charity-golf-day/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 53512
+  - quote: The winning team all received a beautifully engraved whisky glass to commemorate their triumph.
+    approx_offset: 212056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0079
+  form: Grade 410
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+  evidence:
+  - quote: Grade 410
+    approx_offset: 136168
+  - quote: Grade 410
+    approx_offset: 137263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0080
+  form: Hastelloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0081
+  form: Hastelloy®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0082
+  form: Hydrochloric
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Acid Production and Use, including Sulfuric, Hydrochloric, Nitric Acids
+    approx_offset: 53365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0083
+  form: Inconel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0084
+  form: Inconel®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0085
+  form: Iron and Chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: This is an age-hardenable Nickel based alloy containing Iron and Chromium as major additions,
+      and also additions of Molybdenum, Copper, Titanium and Aluminum.
+    approx_offset: 67514
+  - quote: Alloy 925 is a nickel based alloy containing Iron and Chromium as major additions, and also
+      additions of Molybdenum, Copper, Titanium and Aluminium.
+    approx_offset: 103686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0086
+  form: L80
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: L80 T95
+    approx_offset: 34468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0087
+  form: L80 T95
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: L80 T95
+    approx_offset: 34468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0088
+  form: LOW ALLOY 4130
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+  evidence:
+  - quote: 'LOW ALLOY 4130: ASTM A29'
+    approx_offset: 27116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0089
+  form: LOW ALLOY 4140
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+  evidence:
+  - quote: 'LOW ALLOY 4140: ASTM A29 (VO1.05)'
+    approx_offset: 37239
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0090
+  form: LOW ALLOY 4145
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+  evidence:
+  - quote: 'LOW ALLOY 4145: ASTM A29'
+    approx_offset: 73463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0091
+  form: LOW ALLOY 4330V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+  evidence:
+  - quote: 'LOW ALLOY 4330V: ASTM A29'
+    approx_offset: 15084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0092
+  form: LOW ALLOY 4340
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+  evidence:
+  - quote: 'LOW ALLOY 4340: ASTM A29'
+    approx_offset: 50992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0093
+  form: LOW ALLOY 8630
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-8630/
+  evidence:
+  - quote: 'LOW ALLOY 8630: ASTM A29'
+    approx_offset: 125211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0094
+  form: LOW ALLOY STEEL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/low-alloy-steel/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+  evidence:
+  - quote: LOW ALLOY STEEL
+    approx_offset: 15022
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4330V
+    approx_offset: 15056
+  - quote: LOW ALLOY STEEL
+    approx_offset: 27055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0095
+  form: Low alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 41
+    pages:
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/integrated-services/forging/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+    - https://www.howcogroup.com/materials/
+  evidence:
+  - quote: LOW ALLOY STEEL
+    approx_offset: 15022
+  - quote: HOME  MATERIALS  LOW ALLOY STEEL  AISI 4330V
+    approx_offset: 15056
+  - quote: 'LOW ALLOY 4330V: ASTM A29'
+    approx_offset: 15084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0096
+  form: Martensitic Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+  evidence:
+  - quote: UNS S41000 is a Martensitic Stainless Steel often utilised in valve bodies, bonnets, end and
+      outlet connections and valve seat facings.
+    approx_offset: 113262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0097
+  form: Moly Disulphide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Phenolic Based Thermosetting Resin (Primer with Moly Disulphide) coatings
+    approx_offset: 39909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0098
+  form: Molybdenum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: AISI 4140 low alloy steel containing Chromium and Molybdenum is the most widely used low alloy
+      steel for oil patch applications.
+    approx_offset: 37339
+  - quote: The most common change is to increase the Molybdenum level at 0.35% max to improve the hardenability.
+    approx_offset: 37764
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 39961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0099
+  form: Molybdenum Disulphide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 39961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0100
+  form: Monel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0101
+  form: Monel®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0102
+  form: N09946
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: UNS N09945, N09946
+    approx_offset: 119959
+  - quote: UNS N09946 is approved under NACE MR0175 when solution annealed and age hardened with a maximum
+      hardness of 46HRC.
+    approx_offset: 120730
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0103
+  form: NICKEL & SUPER ALLOYS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: NICKEL & SUPER ALLOYS
+    approx_offset: 16744
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 825
+    approx_offset: 16784
+  - quote: NICKEL & SUPER ALLOYS
+    approx_offset: 34115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0104
+  form: NON-MAG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: NON-MAG
+    approx_offset: 34830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0105
+  form: Nickel Alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/integrated-services/forging/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+    - https://www.howcogroup.com/news/howco-exhibiting-at-spe-offshore-europe-2023/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Howco prides itself on operating one of the largest capacity heat treatment facilities in the
+      UK, specialising in the heat treatment of Nickel Alloys, Stainless and Low Alloy steels.
+    approx_offset: 92588
+  - quote: On offshore wind farms, our nickel alloys are used in gearing and generator components.
+    approx_offset: 115697
+  - quote: Meanwhile, many hydroelectric installations use turbines that contain our nickel alloys to
+      prevent erosion and corrosion.
+    approx_offset: 116212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0106
+  form: Nickel steel alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Nickel steel alloy is the most effective choice because it remains deductive – and won’t crack
+      or shatter – even at -196*C.
+    approx_offset: 54018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0107
+  form: Niobium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: Alloy 625 is a Nickel – Chromium alloy with additions of Niobium (Columbium) and Molybdenum.
+    approx_offset: 75291
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0108
+  form: Niobium (Columbium)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: Alloy 625 is a Nickel – Chromium alloy with additions of Niobium (Columbium) and Molybdenum.
+    approx_offset: 75291
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0109
+  form: Nitric
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Acid Production and Use, including Sulfuric, Hydrochloric, Nitric Acids
+    approx_offset: 53379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0110
+  form: P110
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: C110 P110
+    approx_offset: 34481
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0111
+  form: PTFE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Phenolic Based Thermosetting Resin (PTFE) coatings
+    approx_offset: 39846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0112
+  form: Phenolic Based Thermosetting Resin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Phenolic Based Thermosetting Resin (PTFE) coatings
+    approx_offset: 39810
+  - quote: Phenolic Based Thermosetting Resin (Primer with Moly Disulphide) coatings
+    approx_offset: 39861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0113
+  form: Plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 53499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0114
+  form: Polyethylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 53477
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0115
+  form: Polyurethane
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Polyurethane Coatings
+    approx_offset: 39992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0116
+  form: Polyurethane Coatings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Polyurethane Coatings
+    approx_offset: 39992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0117
+  form: Q125
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Q125
+    approx_offset: 34486
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0118
+  form: Rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 53491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0119
+  form: S31803
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+  evidence:
+  - quote: S31803-F51 (Duplex) /22 Cr
+    approx_offset: 34312
+  - quote: GRADE S31803 – F51
+    approx_offset: 88625
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE S31803 – F51
+    approx_offset: 88728
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0120
+  form: S32760
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: S32760-F55 (Super Duplex)/25 Cr
+    approx_offset: 34339
+  - quote: GRADE S32760 – F55
+    approx_offset: 107612
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE S32760 – F55
+    approx_offset: 107715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0121
+  form: S41426
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+  evidence:
+  - quote: 'UNS S41425 : S41426 : S41427'
+    approx_offset: 30000
+  - quote: S41426
+    approx_offset: 31014
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0122
+  form: S41427
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+  evidence:
+  - quote: 'UNS S41425 : S41426 : S41427'
+    approx_offset: 30009
+  - quote: S41427
+    approx_offset: 31228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0123
+  form: SCF-19
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: SCF-19
+    approx_offset: 34860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0124
+  form: STAINLESS, DUPLEX, SUPER DUPLEX
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+  evidence:
+  - quote: STAINLESS, DUPLEX, SUPER DUPLEX
+    approx_offset: 3945
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 17-4 PH
+    approx_offset: 3995
+  - quote: STAINLESS, DUPLEX, SUPER DUPLEX
+    approx_offset: 29891
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0125
+  form: SUPER DUPLEX
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: STAINLESS, DUPLEX, SUPER DUPLEX
+    approx_offset: 3964
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 17-4 PH
+    approx_offset: 4014
+  - quote: STAINLESS, DUPLEX, SUPER DUPLEX
+    approx_offset: 29910
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0126
+  form: Stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 50
+    pages:
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/integrated-services/forging/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: STAINLESS, DUPLEX, SUPER DUPLEX
+    approx_offset: 3945
+  - quote: HOME  MATERIALS  STAINLESS, DUPLEX, SUPER DUPLEX  GRADE 17-4 PH
+    approx_offset: 3995
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper.
+    approx_offset: 4140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0127
+  form: Stellite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102406
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0128
+  form: Stellite™
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102406
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0129
+  form: Sulfuric
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Acid Production and Use, including Sulfuric, Hydrochloric, Nitric Acids
+    approx_offset: 53355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0130
+  form: Sulfuric, Hydrochloric, Nitric Acids
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Acid Production and Use, including Sulfuric, Hydrochloric, Nitric Acids
+    approx_offset: 53355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0131
+  form: Super 13 Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+  evidence:
+  - quote: The “Super 13 Cr” family of martensitic stainless steels offer enhanced mechanical properties
+      allied to higher corrosion resistance than standard 13 Cr or 420 Mod.
+    approx_offset: 30037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0132
+  form: Super 13Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: 13-5-2/ Super 13Cr
+    approx_offset: 34288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0133
+  form: Super Duplex
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: S32760-F55 (Super Duplex)/25 Cr
+    approx_offset: 34351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0134
+  form: Ti6Al4V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: Material Ti6Al4V, 625, 316 and C103.
+    approx_offset: 14084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0135
+  form: Titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: This is an age-hardenable Nickel based alloy containing Iron and Chromium as major additions,
+      and also additions of Molybdenum, Copper, Titanium and Aluminum.
+    approx_offset: 67594
+  - quote: Alloy 925 is a nickel based alloy containing Iron and Chromium as major additions, and also
+      additions of Molybdenum, Copper, Titanium and Aluminium.
+    approx_offset: 103766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0136
+  form: Tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: The characteristic features of high strength and corrosion resistance exhibited by the dual
+      microstructure (50% Austenite, 50% Ferrite) associated with Duplex Stainless Steels, are enhanced
+      by a further addition of Chromium (to 25%), and also Tungsten and Copper.
+    approx_offset: 108056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0137
+  form: UNS K21590
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+  evidence:
+  - quote: 'UNS K21590: ASTM A182'
+    approx_offset: 127304
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0138
+  form: UNS N06625
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: 'UNS N06625: ASTM B446 & B564'
+    approx_offset: 75189
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0139
+  form: UNS N07716
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: 'API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)'
+    approx_offset: 117333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0140
+  form: UNS N07718
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
+    approx_offset: 84669
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0141
+  form: UNS N07725
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: API 6A CRA (UNS N07725)
+    approx_offset: 90354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0142
+  form: UNS N08028
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+  evidence:
+  - quote: UNS N08028
+    approx_offset: 80549
+  - quote: 'Condition: UNS N08028 Annealed'
+    approx_offset: 80882
+  - quote: 'Condition: UNS N08028 Cold Worked'
+    approx_offset: 81072
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0143
+  form: UNS N08825
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: 'UNS N08825 : ASTM B425 & B564 (VO2.04)'
+    approx_offset: 16817
+  - quote: 'UNS N08825 : ASTM B423 UNS N080287 : ASTM B668GENERAL SCOPE'
+    approx_offset: 79991
+  - quote: UNS N08825
+    approx_offset: 80310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0144
+  form: UNS N09925
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: UNS N09925
+    approx_offset: 67431
+  - quote: UNS N09925
+    approx_offset: 103614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0145
+  form: UNS N09945
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: UNS N09945, N09946
+    approx_offset: 119947
+  - quote: UNS N09945
+    approx_offset: 129000
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0146
+  form: UNS S17400
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: 'UNS S17400 : ASTM A564 GRADE 630'
+    approx_offset: 4042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0147
+  form: UNS S41000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+  evidence:
+  - quote: 'UNS S41000 : 13 CR.'
+    approx_offset: 113176
+  - quote: UNS S41000 is a Martensitic Stainless Steel often utilised in valve bodies, bonnets, end and
+      outlet connections and valve seat facings.
+    approx_offset: 113246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0148
+  form: UNS S41425
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+  evidence:
+  - quote: 'UNS S41425 : S41426 : S41427'
+    approx_offset: 29987
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0149
+  form: UNS S41500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: 'UNS S41500: ASTM A182'
+    approx_offset: 45880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0150
+  form: UNS S50400
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+  evidence:
+  - quote: 'UNS S50400: ASTM A182'
+    approx_offset: 41079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0151
+  form: carbon steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s partners have a wide range of qualified procedures in place for cladding low alloy/carbon
+      steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®.
+    approx_offset: 102352
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0152
+  form: chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-4130-4140-4145-tube/
+  evidence:
+  - quote: AISI 4130 low alloy steel containing nominally 0.3% carbon, 1% chromium and 0.2% molybdenum
+      is widely used in oil patch applications.
+    approx_offset: 27220
+  - quote: A martensitic steel containing 9% chromium and 1% molybdenum is most commonly used in the hardened
+      and tempered condition.
+    approx_offset: 41151
+  - quote: These nickel chromium alloys combine excellent corrosion resistance with a wide range of mechanical
+      strengths.
+    approx_offset: 80080
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0153
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper.
+    approx_offset: 4168
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0154
+  form: duplex stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+  evidence:
+  - quote: The characteristic feature of duplex stainless steels is their dual phase microstructure, comprising
+      of approximately 50% of austenitic and 50% of ferrite.
+    approx_offset: 88860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0155
+  form: fine metal powders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: We specialise in direct metal laser melting, or DMLM; a process which uses high-precision lasers
+      to apply fine metal powders in a meticulous, accurate, and virtually error-free manner.
+    approx_offset: 171948
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0156
+  form: high performance alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/
+  evidence:
+  - quote: Howco manufactures and distributes high performance alloys and components for deployment in
+      the world’s most challenging scenarios, conditions and locations
+    approx_offset: 128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0157
+  form: high-performance alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/careers/
+    - https://www.howcogroup.com/news/howco-strength-in-uncertain-times/
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: With several decades of proven technical and engineering expertise, Howco is a market-leading
+      manufacturer, processor and distributor of high-performance alloys and precision machined components
+      for all energy sectors worldwide.
+    approx_offset: 18438
+  - quote: 'As one of the world’s leading distributors of high-performance alloys and supplier of highly-engineered
+      components, we combine material supply with unparalleled processing and manufacturing capabilities:
+      Machining, Heat Treatment, Testing, Additive Manufacturing and Electromechanical Assembly servic'
+    approx_offset: 69907
+  - quote: That’s why we’re continually investing in equipment, technology, and talent to ensure we remain
+      the supplier of choice for high-performance alloys and precision components.
+    approx_offset: 133575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0158
+  form: low alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+  evidence:
+  - quote: AISI 4330V is a low alloy steel containing nominally 0.4% C, 0.8% Cr, 0.25% Mo and 1.8% Ni.
+    approx_offset: 15142
+  - quote: AISI 4130 low alloy steel containing nominally 0.3% carbon, 1% chromium and 0.2% molybdenum
+      is widely used in oil patch applications.
+    approx_offset: 27167
+  - quote: AISI 4140 low alloy steel containing Chromium and Molybdenum is the most widely used low alloy
+      steel for oil patch applications.
+    approx_offset: 37299
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0159
+  form: martensitic stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-420-modified/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper.
+    approx_offset: 4128
+  - quote: This is a martensitic stainless steel used in the hardened and tempered condition.
+    approx_offset: 42438
+  - quote: F6NM is a martensitic stainless steel.
+    approx_offset: 45928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0160
+  form: metal powders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: We specialise in direct metal laser melting, or DMLM; a process which uses high-precision lasers
+      to apply fine metal powders in a meticulous, accurate, and virtually error-free manner.
+    approx_offset: 171953
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0161
+  form: molybdenum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-4130-4140-4145-tube/
+  evidence:
+  - quote: AISI 4130 low alloy steel containing nominally 0.3% carbon, 1% chromium and 0.2% molybdenum
+      is widely used in oil patch applications.
+    approx_offset: 27238
+  - quote: A martensitic steel containing 9% chromium and 1% molybdenum is most commonly used in the hardened
+      and tempered condition.
+    approx_offset: 41167
+  - quote: AISI 4145 low alloy steel containing 0.20% molybdenum is widely used particularly throughout
+      oil patch applications.
+    approx_offset: 73547
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0162
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 45
+    pages:
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/integrated-services/forging/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+    - https://www.howcogroup.com/materials/
+  evidence:
+  - quote: NICKEL & SUPER ALLOYS
+    approx_offset: 16744
+  - quote: HOME  MATERIALS  NICKEL & SUPER ALLOYS  ALLOY 825
+    approx_offset: 16784
+  - quote: Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless,
+      duplex and super duplex materials and is a global provider of these products to a range of industries
+      including upstream, mid and downstream and the energy sector.
+    approx_offset: 33778
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0163
+  form: nickel and super alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless,
+      duplex and super duplex materials and is a global provider of these products to a range of industries
+      including upstream, mid and downstream and the energy sector.
+    approx_offset: 33778
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0164
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/integrated-services/forging/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-13-5-2/
+  evidence:
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper.
+    approx_offset: 4140
+  - quote: This stainless steel is available in bar and tube form.
+    approx_offset: 30582
+  - quote: Though often referred to as a stainless steel the grade does not meet the accepted criteria
+      to be considered a stainless steel.
+    approx_offset: 41272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0165
+  form: super duplex
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless,
+      duplex and super duplex materials and is a global provider of these products to a range of industries
+      including upstream, mid and downstream and the energy sector.
+    approx_offset: 33825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0166
+  form: superalloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-material_caps-0167
+  form: superalloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: With a primary focus on superalloys, Howco AM leaves no stone unturned in delivering comprehensive
+      solutions tailored to the unique needs of each client – even if they don’t need to go quite as far
+      as space!
+    approx_offset: 172365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

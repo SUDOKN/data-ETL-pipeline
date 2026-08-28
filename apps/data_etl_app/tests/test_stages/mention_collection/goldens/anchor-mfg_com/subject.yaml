@@ -1,0 +1,99 @@
+subject: anchor-mfg.com
+subject_name: Anchor Manufacturing Group
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+role: inventory_subject
+role_provenance: 'reused verbatim from search/expectations/anchor-mfg_com/subject.yaml (role: inventory_subject);
+  not re-derived.'
+third_party_roster:
+- Anchor Tool & Die Co. (own legal entity, footer speaker)
+- Anchor Metal Processing, Inc. (own legal entity)
+- Anchor Die Technologies, Inc. (own legal entity)
+- Anchor Manufacturing Group, Inc. (own legal entity)
+- Anchor's suppliers ('Seller' in the purchasing T&Cs)
+- Anchor's customers ('Buyer' in the quotation T&Cs)
+- Employee Navigator (benefits-website vendor)
+- Medical Mutual / medmutual.com (health-plan vendor)
+- Precision Metalforming Association (PMA)
+text_hazards:
+- hazard: flat_bare_token_capability_list_with_no_hierarchy_markers
+  note: 'THE headline hazard. The whole of /capabilities-services/ (L170-238, ~68 lines) is a flat list
+    of bare lines: no bullets, no indentation, no punctuation. Its section headings — Materials, Metal
+    Stamping, Welding, Assembly, Fabricating, Machining, Powder Coating, Tool & Die — are TYPOGRAPHICALLY
+    IDENTICAL to the items under them, so nothing in a clipped line says whether it is a heading or a
+    member, nor which heading it belongs to. A line clip for ''Resistance Welding'' (L200) is exactly
+    those two words. 56% of nonblank lines are <=3 words with no terminal period — the highest bare-token
+    density of the four subjects in this batch. The quoted line also shows U+2019 used as a foot mark.'
+  quote: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+- hazard: nav_and_footer_chrome_on_all_15_pages
+  note: '9 nav lines plus the footer line and the copyright line repeat on every one of the 15 page blocks;
+    50% of nonblank lines belong to a text repeated >=3x. USEFUL DISCRIMINATOR: on this site ALL-CAPS
+    is used ONLY for nav items and legal document titles (82 all-caps lines, 75 of them nav), never for
+    capability text, so casing separates chrome from content here — unlike blackadvtech, where all-caps
+    is also content.'
+  quote: Home Capabilities & Services Industries Served About Contact Us Customer Portal Employee Portal
+- hazard: chrome_only_page_block
+  note: /history-anchor/ (L51-76) has nav, submenu and footer and NO body at all. Every line in that block
+    is boilerplate, so any occurrence landing there is a chrome occurrence on a page whose name promises
+    history prose.
+  quote: History of Anchor
+- hazard: industry_token_appears_as_list_item_and_again_as_heading
+  note: 'On /industries-served/ the seven industries appear FIRST as a bare nav-style list (L409-415)
+    and THEN again 4-40 lines later as section headings over real prose (L419, 425, 431, 437, 443, 449,
+    455). The same seven-item list also sits on the home page (L27-33) and on /capabilities-services/
+    (L171-177), and the whole industries page is duplicated byte-for-byte under /Anchor/industries-served/.
+    So the quoted form occurs 6x, of which only 2 sit above a describing paragraph and 4 are context-free
+    list tokens. GROUPING TRAP inside the same page: the list spells it ''Consumer Products'' (L413) and
+    the heading spells it ''Consumer Product'' (L443).'
+  quote: Commercial Vehicle
+- hazard: role_inverted_legal_boilerplate_seller_means_opposite_parties
+  note: The single sharpest whose_words trap on this site. 'Seller', 'Purchaser' and 'Buyer' denote OPPOSITE
+    parties on two different pages. On /customer-portal/ (L263-, 17 clauses) Anchor IS the Seller. On
+    /productiontool-purchasing-general-terms-conditions/ (L616-, 23 clauses) Anchor is the PURCHASER and
+    'Seller' is Anchor's supplier, so clauses of supplier obligations read like Anchor capability text.
+    Roughly half the corpus bytes are legal/CSR/HR boilerplate of this kind.
+  quote: 1.AGREEMENT. Seller agrees to sell and deliver the goods or services specified in the order of
+    either Anchor Tool & Die Co.
+- hazard: numbered_clause_caption_period_splits_the_clause
+  note: Purchasing clause captions are fused to their numeral with no space and closed with a period ('1.AGREEMENT.',
+    '2. ACCEPTANCE.', '5. INSPECTION AND REJECTIONS.'), so a sentence splitter cuts a two-word caption
+    off as its own sentence and leaves the clause body orphaned. Each clause is one very long physical
+    line holding several sentences.
+  quote: 1.AGREEMENT.
+- hazard: portal_pages_are_bare_document_title_lists
+  note: '/supplier-portal/ and its byte-identical duplicate /supplier-portal-2/ each list five bare PDF
+    link titles (L483-491). These are DOCUMENT TITLES, not statements: the quoted line is the label on
+    a downloadable certificate, and ''EMS Certificate 03.015.1'' sits beside it. A snippet here is a filename-like
+    label, and its kind_of_text is a portal link list.'
+  quote: IATF Certificate without Product Design 03.225.5
+- hazard: nbsp_inside_sentences_and_as_the_paragraph_spacer
+  note: 27 non-breaking spaces. 19 lines consist only of an NBSP and serve as the paragraph spacer on
+    /industries-served/ (L417, 423, 429, ...), so a 'blank line means paragraph break' heuristic sees
+    a NON-blank line between every industry block. The quoted fragment embeds an NBSP after 'means', so
+    a retyped quote with an ordinary space will not string-match.
+  quote: Machine-readable file means a digital representation of data
+- hazard: own_name_in_footer_collides_with_a_real_capability_heading
+  note: The copyright footer repeats on all 15 pages, so the string 'Tool & Die' matches chrome 15x plus
+    the one genuine capability heading 'Tool & Die' at L225. Four Anchor legal entities are additionally
+    named inside the T&C clauses, so own-name occurrences are dense and mostly non-evidential.
+  quote: Copyright © 2018 Anchor Tool & Die Co.
+- hazard: hr_and_benefits_prose_borrows_capability_vocabulary
+  note: The careers page offers 'certificate programs' as an EMPLOYEE BENEFIT, not a conformity attestation,
+    inside one long run-on line. The employee portal names 'Employee Navigator' (a benefits website) on
+    a bare line and calls health-plan transparency files 'machine readable files' — neither is machinery
+    or software capability.
+  quote: lunch and learns, course reimbursements, certificate programs
+coverage: full_text
+notes: '55 KB / 780 lines / 15 page blocks; read in full. Nothing here contradicts search/expectations/anchor-mfg_com
+  or grounding/expectations/anchor-mfg_com. One refinement worth recording: the search harness describes
+  the nav/footer repetition and the T&C wrong-actor pump, but the more damaging fact for THIS stage is
+  that the capability page has no hierarchy markers at all, which makes `belongs_to` unrecoverable from
+  a line clip for ~68 of the site''s most in-field lines. Equipment here is entirely unbranded (no make
+  or model names anywhere), so equipment mentions are all descriptive phrases like the quoted press-brake
+  line rather than proper nouns.'
+provenance:
+- action: added
+  by: seed-agent-batch2
+  date: '2026-08-27'
+  source: harvested:search

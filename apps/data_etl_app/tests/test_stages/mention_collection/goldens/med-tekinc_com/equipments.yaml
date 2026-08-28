@@ -1,0 +1,259 @@
+subject: med-tekinc.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+golden_set_version: 1
+anchored_on: search/expectations/med-tekinc_com/equipments.yaml
+labels:
+- id: med-tekinc_com-equipments-0001
+  form: All Case Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Super 30 Gas Fired All Case Furnaces with Warm Oil Quench — With Endothermic
+      Atmospheres and Normal Operating Temperatures Between 1,400 and 1,700 Degrees Fahrenheit.
+    approx_offset: 3650
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0002
+  form: Box Draw Gas-Fired Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Pit and Box Draw Gas-Fired Furnaces — With Air Atmospheres and Operating Temperatures Of 200
+      to 1,450 Degrees Fahrenheit.
+    approx_offset: 3879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0003
+  form: Electric Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum — Furnaces Operate
+      At Temperatures Of Up To 1,250 Degrees Fahrenheit and Have a 30" x 48" x 30" Capacity.
+    approx_offset: 4549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0004
+  form: Induction Hardening Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Low and High-Frequency Induction Hardening Equipment — Power Levels Range From 50 KW To 200
+      KW.
+    approx_offset: 4091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0005
+  form: Low and High-Frequency Induction Hardening Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Low and High-Frequency Induction Hardening Equipment — Power Levels Range From 50 KW To 200
+      KW.
+    approx_offset: 4068
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0006
+  form: Pit and Box Draw Gas-Fired Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Pit and Box Draw Gas-Fired Furnaces — With Air Atmospheres and Operating Temperatures Of 200
+      to 1,450 Degrees Fahrenheit.
+    approx_offset: 3871
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0007
+  form: Salt Bath Line
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0008
+  form: Salt Bath Line Incorporating Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0009
+  form: Scanner
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Scanner Length Is Up To 60".
+    approx_offset: 4164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0010
+  form: Single Chamber Vacuum Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench — With
+      Vacuum or Nitrogen Atmospheres and Normal Operating Temperatures Between 600 and 2,300 Degrees Fahrenheit.
+    approx_offset: 3359
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0011
+  form: Super 30 Gas Fired All Case Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Super 30 Gas Fired All Case Furnaces with Warm Oil Quench — With Endothermic
+      Atmospheres and Normal Operating Temperatures Between 1,400 and 1,700 Degrees Fahrenheit.
+    approx_offset: 3631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0012
+  form: Surface Combustion Single Chamber Vacuum Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench — With
+      Vacuum or Nitrogen Atmospheres and Normal Operating Temperatures Between 600 and 2,300 Degrees Fahrenheit.
+    approx_offset: 3340
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0013
+  form: Surface Combustion Super 30 Gas Fired All Case Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Super 30 Gas Fired All Case Furnaces with Warm Oil Quench — With Endothermic
+      Atmospheres and Normal Operating Temperatures Between 1,400 and 1,700 Degrees Fahrenheit.
+    approx_offset: 3612
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-equipments-0014
+  form: Vacuum Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench — With
+      Vacuum or Nitrogen Atmospheres and Normal Operating Temperatures Between 600 and 2,300 Degrees Fahrenheit.
+    approx_offset: 3374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

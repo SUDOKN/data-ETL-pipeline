@@ -1,0 +1,334 @@
+subject: superiortech.org
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+  sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+golden_set_version: 1
+anchored_on: search/expectations/superiortech_org/conformity_attestations.yaml
+labels:
+- id: superiortech_org-conformity_attestations-0001
+  form: APQP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: We fully believe that quality is designed into the process and by ensuring that our Quality
+      Processes, Documentation, Fixturing, Tooling and Gage are designed and implements in such a way
+      to minimize product error, we follow industry wide systems such as APQP, PPAP.
+    approx_offset: 42577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0002
+  form: ASME
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12249
+  - quote: WELDING   (ASME AWS certifiable)
+    approx_offset: 26373
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0003
+  form: ASME AWS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12249
+  - quote: WELDING   (ASME AWS certifiable)
+    approx_offset: 26373
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0004
+  form: ASME AWS certifiable
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: WELDING   (ASME AWS certifiable)
+    approx_offset: 26373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0005
+  form: ASME AWS standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12249
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0006
+  form: AWS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12254
+  - quote: WELDING   (ASME AWS certifiable)
+    approx_offset: 26378
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54501
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0007
+  form: ISO 9001-2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: Our Quality Management System is ISO 9001-2015 compliant.
+    approx_offset: 26590
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0008
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 36
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/about-us-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/careers-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/history-of-excellence-superior-technology-inc/
+  evidence:
+  - quote: We are a family owned and operated precision machine shop based in Rochester, NY, operating
+      modern CNC machine tools in a climate controlled, ISO 9001:2015 certified 81,000sq.
+    approx_offset: 570
+  - quote: We are a family owned and operated precision machine shop based in Rochester, NY, operating
+      modern CNC machine tools in a climate controlled, ISO 9001:2015 certified 81,000sq.
+    approx_offset: 2624
+  - quote: ISO 9001:2015 CERTIFIED
+    approx_offset: 3117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0009
+  form: ISO 9001:2015 CERTIFIED
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/about-us-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/careers-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/history-of-excellence-superior-technology-inc/
+  evidence:
+  - quote: ISO 9001:2015 CERTIFIED
+    approx_offset: 3117
+  - quote: ISO 9001:2015 CERTIFIED
+    approx_offset: 4773
+  - quote: ISO 9001:2015 CERTIFIED
+    approx_offset: 6659
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0010
+  form: ISO 9001:2015 certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/about-us-superior-technology-inc/
+  evidence:
+  - quote: We are a family owned and operated precision machine shop based in Rochester, NY, operating
+      modern CNC machine tools in a climate controlled, ISO 9001:2015 certified 81,000sq.
+    approx_offset: 570
+  - quote: We are a family owned and operated precision machine shop based in Rochester, NY, operating
+      modern CNC machine tools in a climate controlled, ISO 9001:2015 certified 81,000sq.
+    approx_offset: 2624
+  - quote: We are a family owned and operated precision machine shop based in Rochester, NY, operating
+      modern CNC machine tools in a climate controlled, ISO 9001:2015 certified 81,000sq.
+    approx_offset: 34126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0011
+  form: Mil-Spec
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Working with our trusted vendors, some of whom we have over 50 years relationship with, we
+      are able to manage all aspects of the process and guarantee the result, suppling certified parts
+      which are traceable to many Mil-Spec’s and commercial specifications for all processes.
+    approx_offset: 8900
+  - quote: Working with our trusted vendors, we are able to control all aspects of the process and guarantee
+      the process, certifying and traceable parts to many industrial and Mil-Spec’s
+    approx_offset: 10191
+  - quote: Working with our trusted vendors, some of whom we have over 50 years relationship with, we
+      are able to manage all aspects of the process and guarantee the result, suppling certified parts
+      which are traceable to many Mil-Spec’s and commercial specifications for all processes.
+    approx_offset: 51147
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0012
+  form: Mil-Spec’s
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Working with our trusted vendors, some of whom we have over 50 years relationship with, we
+      are able to manage all aspects of the process and guarantee the result, suppling certified parts
+      which are traceable to many Mil-Spec’s and commercial specifications for all processes.
+    approx_offset: 8900
+  - quote: Working with our trusted vendors, we are able to control all aspects of the process and guarantee
+      the process, certifying and traceable parts to many industrial and Mil-Spec’s
+    approx_offset: 10191
+  - quote: Working with our trusted vendors, some of whom we have over 50 years relationship with, we
+      are able to manage all aspects of the process and guarantee the result, suppling certified parts
+      which are traceable to many Mil-Spec’s and commercial specifications for all processes.
+    approx_offset: 51147
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0013
+  form: NIST
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: All equipment is calibrated regularly and tracked back to traceable to NIST & ISO national
+      and International Standards
+    approx_offset: 43028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-conformity_attestations-0014
+  form: PPAP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: We fully believe that quality is designed into the process and by ensuring that our Quality
+      Processes, Documentation, Fixturing, Tooling and Gage are designed and implements in such a way
+      to minimize product error, we follow industry wide systems such as APQP, PPAP.
+    approx_offset: 42583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

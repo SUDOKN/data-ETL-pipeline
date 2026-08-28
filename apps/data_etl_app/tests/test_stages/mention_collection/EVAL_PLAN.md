@@ -1,6 +1,123 @@
 # Mention-stage evaluation — design plan
 
-**Status: PROPOSED 2026-08-26, revised same day. Nothing below is built.**
+## REVISION 2026-08-27 — read this before anything below
+
+Three sibling instruments (`search/`, `grounding/`, `synthesis/`) were built and
+committed (`319c083`) while this plan sat unbuilt, and the mention stage itself
+was rewritten the same day (`bbfc42b`). Both invalidate parts of §1–§8.
+
+**A. The stage changed (`bbfc42b`, 2026-08-27).**
+- **D8 REVERSED**: longest-span containment no longer suppresses nested hits.
+  Containment was measured to hide **34% of all occurrences** and to be **the
+  sole cause of every empty bundle in the corpus**. Expect mentions ~+34% and
+  empty groups → ~0 on the next run. **Every baseline in §5 is stale** (they
+  came from `20260824T020729`, the old fold). No run exists yet on the new code.
+- **D21 COLLAPSE**: new bundle status `collapsed` (+ `collapsed_into`), dial
+  `collapse_compounds` on by default; 16 of 3,309 groups collapsed on 194457.
+- **New fold-dump keys**: `collapse_compounds`, `collapsed_groups`,
+  `synthesized_groups`, `max_entries_in_a_group`, `groups_over_50_entries`.
+- Consequences here: the six-class empty-group taxonomy (§4 Layer 0, §6.4)
+  **collapses to one class and moves to the search eval** — the fold's own
+  docstring now says an empty group is "only a search false positive". The
+  containment-attribution judgment pass (§4 Layer 2) is **moot**. Replacing
+  both: **decentralization dilution** — a generic head noun now inherits every
+  specific mention (`door` 60 → 157 entries, per `fold_dump_util`'s own
+  comment). That is the stage's new central quality question, and it is
+  unmeasured.
+- The hash-collision latent probe (§6.4) is **already enforced in code**
+  (`MentionIdCollisionError`); downgrade to a no-op check.
+
+**B. Prerequisite #1 is DONE, not by this session.** Full-run dumps now carry
+the `fold` block — `keyword_reconcile_node.py` / `concept_reconcile_node.py`
+call `build_fold_dump` under the same guard as the synthesis block. §2.1 is
+closed; the partial-dump fallback in §9 is no longer needed.
+
+**C. Conform to the sibling layout — this plan deviates in four ways.**
+1. `taxonomy.md` → **`TAXONOMY.md`** (all three siblings uppercase).
+2. `ledger/metrics.jsonl` + `reports/<run>.md` → **`history/metrics.jsonl`** and
+   **`history/runs/<run_id>/*.md`**. The root `.gitignore` whitelists only those
+   paths; the proposed ones would break the tracking convention.
+3. "Layers 0–3" is a taxonomy of CHECKS, not a run protocol. The run protocol
+   is **Phase A (deterministic) → B (judge fan-out) → C (verify + merge) →
+   D (report + evolve)**, per `grounding/RUNBOOK.md`.
+4. Add `RUNBOOK.md` (trigger phrase + standing agent-fan-out authorization),
+   `config/common.yaml` + `config/fields/*.yaml`, `checks/run_eval.py` with
+   `--run/--pull/--merge-judgments`, `tests/` (marker `integration` or none —
+   `--strict-markers` forbids inventing one), and `expectations/<slug>/`
+   with `subject.yaml` + one file per field.
+5. Import `_shared/text_matching.py` for every text comparison. Its three
+   traps (non-breaking spaces mid-phrase — 843 in steelcraft, whitespace runs,
+   short-form substrings) would have made this plan's central invariant
+   ("form occurs whole-word in its own snippet") emit false failures; the
+   search harness hit exactly that and produced a false RED.
+6. Mongo: **copy, don't import** (sibling `checks/` are not importable across
+   folders). Query is `{"request.custom_id": {"$regex": ">llm_phrase_mention_collection>"}}`;
+   precedent script `pipeline_v3_evidence/2026-08-22_mention_stage_underanswer/pull_mention_requests.py`.
+7. Judge model is a house rule, not config: "use the default model, not a
+   smaller one, for judging" (`grounding/RUNBOOK.md`).
+
+**D. Cross-stage couplings discovered (act on these).**
+- **`collapsed` is unknown to the siblings.** `grounding/checks/run_eval.py`
+  `KNOWN_STATUSES` lacks it, so every collapsed row fires a spurious
+  `status_accounting` finding on the first post-`bbfc42b` run; synthesis's
+  INV-4 (`no_mentions` with a synthesis) needs the analogous `collapsed` case.
+  Owed: a heads-up to both, since the change originates in this stage.
+- **A mention/location prompt edit re-digests every synthesis request**
+  (`synthesis/RUNBOOK.md`), invalidating synthesis's whole verdict cache —
+  which currently holds 546 judged records with 1,587 pending. Any location
+  prompt recommendation from this eval must be sequenced against that.
+- **Location text is evidence downstream**: grounding and synthesis both
+  instruct judges to count it ("a heading like 'More from Allegion' is
+  provenance"). Location correctness is load-bearing for two other
+  instruments' party-attribution numbers.
+- **Synthesis has already nominated this stage**: candidate dimension C1
+  (fragment completion) blames upstream snippet truncation and points at the
+  clipping radius — a concrete inbound item for the snippet-extent judgment.
+- `groups_over_50_entries` meets synthesis's `max_entries_per_request = 50`
+  packing, the channel synthesis named as its worst defect (evidence bleed).
+
+**E. Census size, measured.** Excluding `contract_products` (a byte-copy of
+`products` — 12 eval units per 2-subject run, never 14): **3,345 snippets +
+2,248 groups = 5,593 judgment units** on the old fold, before D8 inflation.
+Larger than grounding (~2,500) and synthesis (2,133) — and synthesis hit the
+account's **monthly spend limit** at 546 of 2,133, leaving 1,587 pending.
+
+**F. USER DECISIONS 2026-08-27 (round 2) — supersede §9 where they differ.**
+1. **Cache accepted**: exhaustive COVERAGE with the content-keyed verdict cache
+   (synthesis's shape), not a literal re-read of byte-identical content.
+2. **NO seeding runs.** Instead: **build the golden corpus — golden LABELS for
+   every field of the mention stage, for the whole subject roster, the way the
+   search harness did.** Labels are derived from the TEXTS, run-independent.
+   Evals may be deterministic AND non-deterministic (agent-judged). **Cost is
+   explicitly not a constraint. Everything exhaustive.**
+3. **Stage sequence is the curation order** (search done → mention now →
+   synthesis after). **Redoing or revisiting synthesis is EXPLICITLY OK** — so
+   location/mention prompt findings are NOT held back for synthesis's cache.
+   The §D coupling stands as a fact to state in reports, not a blocker.
+
+**G. The roster grew: 20 subjects, not 8.** `test_stages/sample_scraped_texts/`
+(a NEW shared snapshot dir, distinct from `knowledge/sample_scraped_texts/`)
+holds 20 texts; `search/expectations/` carries **9,506 entities, 8,462
+confirmed**, span-witnessed with `acceptable_forms` + quote + advisory offset.
+That inventory is this stage's natural anchor set (it is literally what search
+hands the mention stage). Measured with the real `collect_window` over those
+confirmed forms (giant texts capped at 400k chars for the estimate):
+
+| | count |
+|---|---|
+| subjects | 20 |
+| forms (confirmed `acceptable_forms`) | 14,401 |
+| occurrences to label | **41,448** |
+| distinct snippets to label (the judgment population) | **10,857** |
+
+Occurrence labels are mechanical and free; the ~10,857 snippet/location labels
+are the real work. Built ONCE and run-independent, versus 5,593 units per
+2-subject run — the corpus is ~2x one run's census but covers 20 subjects and
+is reused by every future run.
+
+---
+
+**Status: PROPOSED 2026-08-26, revised 2026-08-27. Nothing below is built.**
 Revision: search-stage quality is OUT OF SCOPE — a parallel session owns the
 search stage and its own evaluation. This eval takes the sent-forms list as a
 given input and judges only what the mention stage does with it. This file is

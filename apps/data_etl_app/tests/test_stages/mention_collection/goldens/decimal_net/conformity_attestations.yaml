@@ -1,0 +1,1241 @@
+subject: decimal.net
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+golden_set_version: 1
+anchored_on: search/expectations/decimal_net/conformity_attestations.yaml
+labels:
+- id: decimal_net-conformity_attestations-0001
+  form: AS 9100D
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: Decimal Engineering’s Quality Management System is Certified to AS 9100D and ISO
+    approx_offset: 25241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0002
+  form: AS9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 63
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1439
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 2971
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0003
+  form: AS9100 Certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 48
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1439
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 2971
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0004
+  form: AS9100 Revision C Certified (#12912)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: AS9100 Revision C Certified (#12912)
+    approx_offset: 10007
+  - quote: AS9100 Revision C Certified (#12912)
+    approx_offset: 23041
+  - quote: AS9100 Revision C Certified (#12912)
+    approx_offset: 28028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0005
+  form: AS9100C
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+  evidence:
+  - quote: As an ISO 9001:2008 and AS9100C certified manufacturer, quality is built into our process.
+    approx_offset: 46554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0006
+  form: CWI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: CWI (Certified Weld Inspection)
+    approx_offset: 21419
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0007
+  form: CWI (Certified Weld Inspection)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: CWI (Certified Weld Inspection)
+    approx_offset: 21419
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0008
+  form: Certified Mil-Spec Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0009
+  form: Conflict Materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Conflict Materials Compliant
+    approx_offset: 10044
+  - quote: Conflict Materials Compliant
+    approx_offset: 23078
+  - quote: Conflict Materials Compliant
+    approx_offset: 28065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0010
+  form: Conflict Materials Compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Conflict Materials Compliant
+    approx_offset: 10044
+  - quote: Conflict Materials Compliant
+    approx_offset: 23078
+  - quote: Conflict Materials Compliant
+    approx_offset: 28065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0011
+  form: D1.1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: D1.1 & D1.2 Compliant
+    approx_offset: 21451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0012
+  form: D1.1 & D1.2 Compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: D1.1 & D1.2 Compliant
+    approx_offset: 21451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0013
+  form: D1.2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: D1.1 & D1.2 Compliant
+    approx_offset: 21458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0014
+  form: DFAR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 54
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1491
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3023
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4281
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0015
+  form: DFAR Compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 53
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1491
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3023
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4281
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0016
+  form: GB 4208
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: "Standards Met\tISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB\
+      \ 4208, GB 7000.1"
+    approx_offset: 61995
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0017
+  form: GB 7000.1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: "Standards Met\tISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB\
+      \ 4208, GB 7000.1"
+    approx_offset: 62004
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0018
+  form: IEC 60335-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: "Standards Met\tISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB\
+      \ 4208, GB 7000.1"
+    approx_offset: 61969
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0019
+  form: IEC 60529
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: "Standards Met\tISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB\
+      \ 4208, GB 7000.1"
+    approx_offset: 61945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0020
+  form: IEC 60598-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: "Standards Met\tISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB\
+      \ 4208, GB 7000.1"
+    approx_offset: 61956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0021
+  form: IEC 60745-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: "Standards Met\tISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB\
+      \ 4208, GB 7000.1"
+    approx_offset: 61982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0022
+  form: IEC and GB national standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: Backed by our ISO compliance as well as IEC and GB national standards for quality control,
+      we’ve built a reputation as a premier provider of high quality CNC machining services.
+    approx_offset: 61105
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0023
+  form: ISO 9000:2008
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: At Decimal Engineering, we are ISO 9000:2008 compliant and had to adhere to several standards
+      related to this project, including AS9100 quality management for Aerospace components, P.S.
+    approx_offset: 43000
+  - quote: "Standards Met\tISO 9000:2008, AS9100, QQ-A-250/11, MIL-A-8625, P.S."
+    approx_offset: 44103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0024
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 61
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1456
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 2988
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0025
+  form: ISO 9001 Certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 47
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1456
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 2988
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0026
+  form: ISO 9001:2008
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+  evidence:
+  - quote: ISO 9001:2008 Certified (#12912)ITAR Registered (M23878)
+    approx_offset: 10088
+  - quote: Our ISO 9001:2008 compliant process ensured consistent production quality, while also inspecting
+      each part using thread gauge measurements.
+    approx_offset: 12031
+  - quote: "Standards Met\tISO 9001:2008"
+    approx_offset: 12962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0027
+  form: ISO 9001:2008 Certified (#12912)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: ISO 9001:2008 Certified (#12912)ITAR Registered (M23878)
+    approx_offset: 10088
+  - quote: ISO 9001:2008 Certified (#12912)
+    approx_offset: 23123
+  - quote: ISO 9001:2008 Certified (#12912)ITAR Registered (M23878)
+    approx_offset: 28109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0028
+  form: ITAR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 59
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1475
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3007
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0029
+  form: ITAR Registered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 53
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1475
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3007
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0030
+  form: ITAR Registered (M23878)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: ISO 9001:2008 Certified (#12912)ITAR Registered (M23878)
+    approx_offset: 10120
+  - quote: ITAR Registered (M23878)
+    approx_offset: 23157
+  - quote: ISO 9001:2008 Certified (#12912)ITAR Registered (M23878)
+    approx_offset: 28141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0031
+  form: ITAR registered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Decimal is ITAR registered, DFAR, RoHS and SVHC compliant as well as ISO 9001 & AS9100 Certified.
+    approx_offset: 35074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0032
+  form: MIL-A-8625
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: Upon completion, each servo body was anodized according to MIL-A-8625 requirements.
+    approx_offset: 42857
+  - quote: "Standards Met\tISO 9000:2008, AS9100, QQ-A-250/11, MIL-A-8625, P.S."
+    approx_offset: 44139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0033
+  form: Mil-Spec
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34239
+  - quote: Mil-Spec Welded Raw Aluminum Assembly Military
+    approx_offset: 81302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0034
+  form: NADCAP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: For NADCAP certified finishing, we work with a number of trusted suppliers who can provide
+      full process compliance.
+    approx_offset: 6946
+  - quote: Plating Certified to AS9100, ISO, ITAR & NADCAP
+    approx_offset: 9117
+  - quote: If your project has a NADCAP requirement, we accommodate with certified finishing from one
+      of our trusted suppliers that provide full process compliance.
+    approx_offset: 19571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0035
+  form: NADCAP certified finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: For NADCAP certified finishing, we work with a number of trusted suppliers who can provide
+      full process compliance.
+    approx_offset: 6946
+  - quote: If your requirements call for NADCAP certified finishing, our network of trusted suppliers
+      can provide full process compliance.
+    approx_offset: 25426
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0036
+  form: NADCAP requirement
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: If your project has a NADCAP requirement, we accommodate with certified finishing from one
+      of our trusted suppliers that provide full process compliance.
+    approx_offset: 19571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0037
+  form: P.S. 806-1-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: At Decimal Engineering, we are ISO 9000:2008 compliant and had to adhere to several standards
+      related to this project, including AS9100 quality management for Aerospace components, P.S. 806-1-1
+    approx_offset: 43150
+  - quote: "Standards Met\tISO 9000:2008, AS9100, QQ-A-250/11, MIL-A-8625, P.S. 806-1-1"
+    approx_offset: 44151
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0038
+  form: P.S. 806-3-20A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: 806-1-1, and P.S. 806-3-20A
+    approx_offset: 43168
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0039
+  form: P.S.806-3-20A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: 806-1-1, P.S.806-3-20A
+    approx_offset: 44165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0040
+  form: PPAP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0041
+  form: PPAP (Production Part Approval Process)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0042
+  form: PQR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We specialize in PQR and WPS compliant welding; though these standards are mostly for the defense
+      industry, our ability to provide conformity is a testament to our dedication to quality.
+    approx_offset: 19020
+  - quote: PQR’s
+    approx_offset: 21533
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0043
+  form: PQR and WPS compliant welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We specialize in PQR and WPS compliant welding; though these standards are mostly for the defense
+      industry, our ability to provide conformity is a testament to our dedication to quality.
+    approx_offset: 19020
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0044
+  form: PQR’s
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: PQR’s
+    approx_offset: 21533
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0045
+  form: Production Part Approval Process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+  evidence:
+  - quote: Non-destructive TestingPPAP (Production Part Approval Process)
+    approx_offset: 47391
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0046
+  form: QQ-A-250/11
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: "Standards Met\tISO 9000:2008, AS9100, QQ-A-250/11, MIL-A-8625, P.S."
+    approx_offset: 44126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0047
+  form: QQ-A-250/11F
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machine, we fabricated each servo body with a
+      diameter of 8.263″ x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed
+      to QQ-A-250/11F specifications.
+    approx_offset: 42648
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0048
+  form: Reach
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Reach Compliant
+    approx_offset: 10145
+  - quote: Reach Compliant
+    approx_offset: 23182
+  - quote: Reach Compliant
+    approx_offset: 28166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0049
+  form: Reach Compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Reach Compliant
+    approx_offset: 10145
+  - quote: Reach Compliant
+    approx_offset: 23182
+  - quote: Reach Compliant
+    approx_offset: 28166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0050
+  form: RoHS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/faqs/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Can Decimal Engineering provide RoHS compliant parts?
+    approx_offset: 1875
+  - quote: Decimal is ITAR registered, DFAR, RoHS and SVHC compliant as well as ISO 9001 & AS9100 Certified.
+    approx_offset: 35097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0051
+  form: RoHS compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/faqs/
+  evidence:
+  - quote: Can Decimal Engineering provide RoHS compliant parts?
+    approx_offset: 1875
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0052
+  form: RoHs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 58
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1506
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3038
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0053
+  form: RoHs Compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 58
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1506
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3038
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0054
+  form: SVHC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 54
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1521
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3053
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4311
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0055
+  form: SVHC Compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 54
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/2020-decimal-engineering-new-company-profile-video/
+    - https://www.decimal.net/2020-decimal-engineering-sales-reps-awards/
+    - https://www.decimal.net/2021-decimal-employee-awards/
+    - https://www.decimal.net/about/
+  evidence:
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 1521
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 3053
+  - quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant
+      SVHC Compliant
+    approx_offset: 4311
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0056
+  form: WPS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We specialize in PQR and WPS compliant welding; though these standards are mostly for the defense
+      industry, our ability to provide conformity is a testament to our dedication to quality.
+    approx_offset: 19028
+  - quote: WPS
+    approx_offset: 21589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0057
+  form: WPS compliant welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We specialize in PQR and WPS compliant welding; though these standards are mostly for the defense
+      industry, our ability to provide conformity is a testament to our dedication to quality.
+    approx_offset: 19028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-conformity_attestations-0058
+  form: military grade standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: Each unit adhered to stringent material and machining requirements, including a serialization
+      procedure that conformed to military grade standards.
+    approx_offset: 42429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

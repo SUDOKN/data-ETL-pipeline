@@ -1,0 +1,3876 @@
+subject: howcogroup.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+golden_set_version: 1
+anchored_on: search/expectations/howcogroup_com/process_caps.yaml
+labels:
+- id: howcogroup_com-process_caps-0001
+  form: 3D scanning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/reverse-engineering-and-inspection/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: Featuring the latest generation of blue laser technology and advanced algorithms, the HandySCAN
+      Black Elite delivers fast and accurate 3D scanning, even on complex surfaces and shiny or dark materials.
+    approx_offset: 56880
+  - quote: Additionally, our in-house capabilities include 3D scanning for reverse engineering and inspection
+      purposes.
+    approx_offset: 172279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0002
+  form: 5 axis machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+  evidence:
+  - quote: This allows them to exploit the full capabilities of our machine tools including features such
+      as; 5 axis machining, Facing & Contouring Heads, Multi – Angled Milling Heads and Outfacing Bars.
+    approx_offset: 97219
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0003
+  form: 90-degree drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0004
+  form: AM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+    - https://www.howcogroup.com/news/howco-am-components-went-to-the-moon/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+  evidence:
+  - quote: Howco AM Components Went to The Moon!
+    approx_offset: 165915
+  - quote: For businesses operating across many industries, AM is still an unknown – but change is unstoppable,
+      and very much on the way.
+    approx_offset: 169540
+  - quote: From our base in Houston – the heart of technological advancement, Howco AM has quickly established
+      itself as an industry expert in laser powder bed fusion processes, setting new standards and redefining
+      possibilities to offer clients a wide range of pioneering metal additive manufacturing solutions
+    approx_offset: 169880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0005
+  form: ASSEMBLY AND PRESSURE TESTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+  evidence:
+  - quote: ASSEMBLY AND PRESSURE TESTING
+    approx_offset: 109618
+  - quote: HOME  CNC MACHINING & MANUFACTURING  ASSEMBLY AND PRESSURE TESTING
+    approx_offset: 109685
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0006
+  form: Additive manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+    - https://www.howcogroup.com/additive-manufacturing/reverse-engineering-and-inspection/
+    - https://www.howcogroup.com/additive-manufacturing/turnkey-manufacturing/
+  evidence:
+  - quote: HOME  ADDITIVE MANUFACTURING  PRINTING
+    approx_offset: 13481
+  - quote: Howco Additive Manufacturing
+    approx_offset: 14393
+  - quote: HOME  ADDITIVE MANUFACTURING  TURNKEY MANUFACTURING
+    approx_offset: 28879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0007
+  form: Age Hardened
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: 'Condition: Solution Treated and Age Hardened'
+    approx_offset: 68728
+  - quote: 'Condition: Solution Annealed and Age Hardened'
+    approx_offset: 86451
+  - quote: 'Condition: Solution Annealed and Age Hardened'
+    approx_offset: 91716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0008
+  form: Alkaline degreasing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Alkaline degreasing equipment
+    approx_offset: 40288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0009
+  form: Annealed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: 'Condition: Annealed'
+    approx_offset: 17685
+  - quote: 'Condition: Annealed'
+    approx_offset: 76102
+  - quote: 'Condition: UNS N08825 Annealed'
+    approx_offset: 80800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0010
+  form: Annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 92919
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0011
+  form: Aqueous UHV cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Aqueous UHV cleaning
+    approx_offset: 111083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0012
+  form: Assembly and Pressure Test
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+  evidence:
+  - quote: 2 x 550 m² Assembly and Pressure Test Facilities.
+    approx_offset: 109935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0013
+  form: BUTT WELDING STATIONS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: BUTT WELDING STATIONS
+    approx_offset: 44756
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds.
+    approx_offset: 44786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0014
+  form: Bored / Honed Bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Bored / Honed Bar
+    approx_offset: 34603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0015
+  form: Bundle cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: Bundle cutting for large quantities for all sections – round, squares and flats
+    approx_offset: 33025
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0016
+  form: Butt Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: BUTT WELDING STATIONS
+    approx_offset: 44756
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds.
+    approx_offset: 44786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0017
+  form: CMM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+  evidence:
+  - quote: With our high resolution scanner and in-house CMM, we can produce new parts by reverse engineering
+      your existing components.
+    approx_offset: 50052
+  - quote: CMM – LK Evolution 3000 x 2000 x 1500mm
+    approx_offset: 82172
+  - quote: CMM – LK G-90C 2000 x 1200 x 1000mm
+    approx_offset: 82212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0018
+  form: CNC MACHINING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: HOME  CNC MACHINING & MANUFACTURING  COATING & FINISHING
+    approx_offset: 39174
+  - quote: HOME  CNC MACHINING & MANUFACTURING  WELDING & CLADDING
+    approx_offset: 44398
+  - quote: HOME  CNC MACHINING & MANUFACTURING  TESTING & NDT
+    approx_offset: 57799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0019
+  form: CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 12
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0020
+  form: COATING & FINISHING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: COATING & FINISHING
+    approx_offset: 39148
+  - quote: HOME  CNC MACHINING & MANUFACTURING  COATING & FINISHING
+    approx_offset: 39205
+  - quote: COATING & FINISHING PROCESS
+    approx_offset: 39225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0021
+  form: CVN Impacts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: "CVN Impacts @ -29°C (-20°F)\t40 Joules\t(30 ft-lbf)"
+    approx_offset: 5602
+  - quote: "CVN Impacts @ -60°C (-75°F)\t40 Joules\t(30 ft-lbf)"
+    approx_offset: 31582
+  - quote: "CVN Impacts @ -10°C (14°F)\t55 Joules\t(40 ft-lbf)"
+    approx_offset: 31765
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0022
+  form: Cleanroom technology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Cleanroom technology (Class 10,000)
+    approx_offset: 111104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0023
+  form: Cleanroom technology (Class 10,000)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Cleanroom technology (Class 10,000)
+    approx_offset: 111104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0024
+  form: Cold Worked
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+  evidence:
+  - quote: 'Condition: UNS N08825 Cold Worked'
+    approx_offset: 80986
+  - quote: 'Condition: UNS N08028 Cold Worked'
+    approx_offset: 81083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0025
+  form: Corrosion Test
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Corrosion Test.
+    approx_offset: 58715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0026
+  form: Corrosion testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Corrosion testing
+    approx_offset: 93335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0027
+  form: DEEP HOLE BORING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore
+    approx_offset: 3223
+  - quote: We’re very pleased to announce the arrival of a state-of-the-art 4 metre Deep Hole Boring Machine...
+    approx_offset: 3351
+  - quote: New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore
+    approx_offset: 23508
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0028
+  form: DMLM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: We specialise in direct metal laser melting, or DMLM; a process which uses high-precision lasers
+      to apply fine metal powders in a meticulous, accurate, and virtually error-free manner.
+    approx_offset: 171890
+  - quote: DMLM produces elaborately designed, super strong parts for the most demanding applications.
+    approx_offset: 172027
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0029
+  form: Dye Penetrant Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Dye Penetrant Inspection (PT).
+    approx_offset: 59264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0030
+  form: Dye Penetrant Inspection (PT)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Dye Penetrant Inspection (PT).
+    approx_offset: 59264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0031
+  form: ESR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85322
+  - quote: The alloy is produced by a vacuum remelt process, but can be supplied using an air melt single
+      consumable electrode (VAR or ESR) practice if the material specification allows.
+    approx_offset: 104408
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0032
+  form: Electromechanical Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+    - https://www.howcogroup.com/news/howco-strength-in-uncertain-times/
+  evidence:
+  - quote: 'As one of the world’s leading distributors of high-performance alloys and supplier of highly-engineered
+      components, we combine material supply with unparalleled processing and manufacturing capabilities:
+      Machining, Heat Treatment, Testing, Additive Manufacturing and Electromechanical Assembly servic'
+    approx_offset: 70128
+  - quote: Electromechanical Assembly
+    approx_offset: 111140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0033
+  form: FCAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0034
+  form: FIRST STAGE MACHINING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/contact/
+    - https://www.howcogroup.com/integrated-services/
+    - https://www.howcogroup.com/integrated-services/first-stage-machining/
+  evidence:
+  - quote: FIRST STAGE MACHINING
+    approx_offset: 21914
+  - quote: HOME  INTEGRATED SERVICES  FIRST STAGE MACHINING
+    approx_offset: 21963
+  - quote: WORLD WIDE FIRST STAGE MACHINING RESOURCES
+    approx_offset: 21996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0035
+  form: FORGING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/integrated-services/
+    - https://www.howcogroup.com/integrated-services/forging/
+  evidence:
+  - quote: FORGING
+    approx_offset: 63928
+  - quote: FORGING
+    approx_offset: 134277
+  - quote: HOME  INTEGRATED SERVICES  FORGING
+    approx_offset: 134312
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0036
+  form: Ferrite Count
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Ferrite Count.
+    approx_offset: 58682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0037
+  form: Fillet weld fracture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: 'Bend : Fillet weld fracture : Hardness : Impact : Nick-break.'
+    approx_offset: 58861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0038
+  form: Forged and Rolled Round Bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Forged and Rolled Round Bar
+    approx_offset: 34007
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0039
+  form: GTAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: The Cladding Systems of our established supply chain partners are designed to perform fully-automated
+      GTAW build-up of corrosion-resistant alloy welding on engineered components for the oil & gas, petrochemical
+      and engineering sectors.
+    approx_offset: 44621
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds.
+    approx_offset: 44842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0040
+  form: GTAW build-up
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: The Cladding Systems of our established supply chain partners are designed to perform fully-automated
+      GTAW build-up of corrosion-resistant alloy welding on engineered components for the oil & gas, petrochemical
+      and engineering sectors.
+    approx_offset: 44621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0041
+  form: Gas Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+  evidence:
+  - quote: IN HOUSE HYDROSTATIC AND GAS TESTING FACILITIES
+    approx_offset: 109740
+  - quote: Gas Testing up to 20,000 psi.
+    approx_offset: 110053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0042
+  form: Gas testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+  evidence:
+  - quote: Approved Hydrostatic and Gas testing facilities in-house, complete with full electronic data
+      recording capabilities for real time production of certification.
+    approx_offset: 109789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0043
+  form: General Fabrications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: GENERAL FABRICATIONS / WELDMENTS
+    approx_offset: 72836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0044
+  form: Grain Size
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/integrated-services/forging/
+  evidence:
+  - quote: Grain Size.
+    approx_offset: 58670
+  - quote: Grain flow, strength enhancement and consolidation are critical considerations, as is achieving
+      the required grain size, forging reduction ratio, shape and microstructure that will give optimal
+      results when heat treated and tested in our internal facilities.
+    approx_offset: 134602
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0045
+  form: Grain Size. Ferrite Count.
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Grain Size. Ferrite Count.
+    approx_offset: 58670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0046
+  form: HEAT TREATMENT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+    - https://www.howcogroup.com/integrated-services/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment
+      of welded components to industry standards / requirements or for stress relieving operations which
+      assists with maintaining machining tolerance during production.
+    approx_offset: 45002
+  - quote: AS9100 approved for Manufacture of Additively Manufactured Parts including Machining, Heat
+      Treatment, Testing and Hot Isostatic Pressing.
+    approx_offset: 50225
+  - quote: HEAT TREATMENT
+    approx_offset: 63947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0047
+  form: HIP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/turnkey-manufacturing/
+  evidence:
+  - quote: With our supply chain partners we can to provide you with turnkey components, including HIP
+      and post machining.
+    approx_offset: 29070
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0048
+  form: HYDROSTATIC AND GAS TESTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+  evidence:
+  - quote: IN HOUSE HYDROSTATIC AND GAS TESTING FACILITIES
+    approx_offset: 109724
+  - quote: Approved Hydrostatic and Gas testing facilities in-house, complete with full electronic data
+      recording capabilities for real time production of certification.
+    approx_offset: 109773
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0049
+  form: Hardened and Double Tempered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-420-modified/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: 'Condition: Hardened and Double Tempered'
+    approx_offset: 5466
+  - quote: 'Condition: Hardened and Double Tempered'
+    approx_offset: 47068
+  - quote: The grade is approved by NACE MR0175 subject to a maximum hardness requirement of 22 HRC and
+      it being supplied in the hardened and double tempered condition.
+    approx_offset: 113631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0050
+  form: Hardness inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Hardness inspection
+    approx_offset: 93219
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0051
+  form: Hardness testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+  evidence:
+  - quote: Hardness testing (HBW, HRC, HRB)
+    approx_offset: 82378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0052
+  form: Hardness testing (HBW, HRC, HRB)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+  evidence:
+  - quote: Hardness testing (HBW, HRC, HRB)
+    approx_offset: 82378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0053
+  form: Helium leak checking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Helium leak checking (Min.
+    approx_offset: 111167
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0054
+  form: Hot Isostatic Pressing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+  evidence:
+  - quote: AS9100 approved for Manufacture of Additively Manufactured Parts including Machining, Heat
+      Treatment, Testing and Hot Isostatic Pressing.
+    approx_offset: 50253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0055
+  form: Hydrostatic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+  evidence:
+  - quote: IN HOUSE HYDROSTATIC AND GAS TESTING FACILITIES
+    approx_offset: 109724
+  - quote: Approved Hydrostatic and Gas testing facilities in-house, complete with full electronic data
+      recording capabilities for real time production of certification.
+    approx_offset: 109773
+  - quote: Hydrostatic Pressure Testing up to 23,000 psi.
+    approx_offset: 110006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0056
+  form: Hydrostatic Pressure Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+  evidence:
+  - quote: Hydrostatic Pressure Testing up to 23,000 psi.
+    approx_offset: 110006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0057
+  form: Impact.
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/news/howco-makes-a-difference-by-reading-on-houston-reads-day/
+  evidence:
+  - quote: Impact.
+    approx_offset: 58820
+  - quote: 175% increase in the number of students served, amplifying the program’s reach and impact.
+    approx_offset: 194686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0058
+  form: LPI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: PCN NDE Level II Non-destructive Testing MT, LPI, UT
+    approx_offset: 72761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0059
+  form: MECHANICAL TESTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: 'MECHANICAL TESTS:'
+    approx_offset: 58793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0060
+  form: METALLURGICAL TESTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: 'METALLURGICAL TESTS:'
+    approx_offset: 58649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0061
+  form: MMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0062
+  form: Macro Examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Macro Examination.
+    approx_offset: 58773
+  - quote: Macro examination in accordance with specific welding codes.
+    approx_offset: 58916
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0063
+  form: Magnetic Particle Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Magnetic Particle Inspection (MT).
+    approx_offset: 59229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0064
+  form: Magnetic Particle Inspection (MT)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Magnetic Particle Inspection (MT).
+    approx_offset: 59229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0065
+  form: Micro Examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Micro Examination (including API 6A CRA).
+    approx_offset: 58731
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0066
+  form: Milling Heads
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+  evidence:
+  - quote: This allows them to exploit the full capabilities of our machine tools including features such
+      as; 5 axis machining, Facing & Contouring Heads, Multi – Angled Milling Heads and Outfacing Bars.
+    approx_offset: 97279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0067
+  form: NDT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/news/howco-exhibiting-at-spe-offshore-europe-2023/
+  evidence:
+  - quote: TESTING & NDT
+    approx_offset: 57789
+  - quote: HOME  CNC MACHINING & MANUFACTURING  TESTING & NDT
+    approx_offset: 57840
+  - quote: '& NDT'
+    approx_offset: 112481
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0068
+  form: NON DESTRUCTIVE TESTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: 'NON DESTRUCTIVE TESTS:'
+    approx_offset: 58978
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0069
+  form: Nick-break
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: 'Bend : Fillet weld fracture : Hardness : Impact : Nick-break.'
+    approx_offset: 58904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0070
+  form: Non-destructive testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: PCN NDE Level II Non-destructive Testing MT, LPI, UT
+    approx_offset: 72733
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 93353
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0071
+  form: Normalised
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+  evidence:
+  - quote: 'Condition: Normalised, Hardened and Tempered to 75 KSI'
+    approx_offset: 128025
+  - quote: 'Condition: Normalised, Hardened and Tempered to 105 KSI'
+    approx_offset: 128238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0072
+  form: PMI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Positive Material Inspection (PMI).
+    approx_offset: 59325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0073
+  form: PRECISION FABRICATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: PRECISION FABRICATION
+    approx_offset: 71360
+  - quote: HOME  CNC MACHINING & MANUFACTURING  PRECISION FABRICATION
+    approx_offset: 71419
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0074
+  form: PWHT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: PWHT / STRESS RELIEVING
+    approx_offset: 44958
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0075
+  form: Phased Array Ultrasonic testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Phased Array Ultrasonic testing.
+    approx_offset: 59123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0076
+  form: Phospating process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Phospating process – M-ZN 4333
+    approx_offset: 40014
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0077
+  form: Phosphate dip process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Phosphate dip process
+    approx_offset: 40318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0078
+  form: Positive Material Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Positive Material Inspection (PMI).
+    approx_offset: 59295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0079
+  form: Positive Material Inspection (PMI)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Positive Material Inspection (PMI).
+    approx_offset: 59295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0080
+  form: Post Weld Heat Treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment
+      of welded components to industry standards / requirements or for stress relieving operations which
+      assists with maintaining machining tolerance during production.
+    approx_offset: 44992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0081
+  form: QUALITY CONTROL INSPECTION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+  evidence:
+  - quote: QUALITY CONTROL INSPECTION
+    approx_offset: 81698
+  - quote: HOME  CNC MACHINING & MANUFACTURING  QUALITY CONTROL INSPECTION
+    approx_offset: 81762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0082
+  form: Quality control system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+  evidence:
+  - quote: Our Quality control system is the process through which Howco seeks to ensure that product
+      quality is maintained or improved throughout the manufacturing process.
+    approx_offset: 82013
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0083
+  form: Quench media
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Quench media – water, polymer, oil with sub 60 second transfer time
+    approx_offset: 93020
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0084
+  form: REVERSE ENGINEERING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/reverse-engineering-and-inspection/
+  evidence:
+  - quote: REVERSE ENGINEERING
+    approx_offset: 56612
+  - quote: HOME  ADDITIVE MANUFACTURING  REVERSE ENGINEERING AND INSPECTION
+    approx_offset: 56677
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0085
+  form: Rolled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Forged and Rolled Round Bar
+    approx_offset: 34018
+  - quote: Rolled Ring Forgings
+    approx_offset: 34802
+  - quote: We have significant experience of providing ingot/billet, forged and rolled round and flat
+      bar, semi and finish machined components.
+    approx_offset: 60598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0086
+  form: Rolled Ring Forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Rolled Ring Forgings
+    approx_offset: 34802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0087
+  form: SAWING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/integrated-services/
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: SAWING
+    approx_offset: 32342
+  - quote: HOME  INTEGRATED SERVICES  SAWING
+    approx_offset: 32376
+  - quote: WORLDWIDE LEADER IN METAL SAWING CAPABILITIES
+    approx_offset: 32409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0088
+  form: SEMI-FINISH MACHINING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: SEMI-FINISH MACHINING
+    approx_offset: 100049
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0089
+  form: STRESS RELIEVING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: PWHT / STRESS RELIEVING
+    approx_offset: 44965
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment
+      of welded components to industry standards / requirements or for stress relieving operations which
+      assists with maintaining machining tolerance during production.
+    approx_offset: 45019
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment
+      of welded components to industry standards / requirements or for stress relieving operations which
+      assists with maintaining machining tolerance during production.
+    approx_offset: 45139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0090
+  form: Shot blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Shot blasting (aluminium 60-80)
+    approx_offset: 40045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0091
+  form: Solution Annealed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+  evidence:
+  - quote: 'Condition: Solution Annealed and Age Hardened'
+    approx_offset: 86429
+  - quote: 'Condition: Solution Annealed and Water Quenched'
+    approx_offset: 89540
+  - quote: 'Condition: Solution Annealed and Age Hardened'
+    approx_offset: 91694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0092
+  form: Solution annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Solution annealing
+    approx_offset: 92984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0093
+  form: Spray painters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Spray painters I Cats trained
+    approx_offset: 40230
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0094
+  form: Straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Straightening to commercial tolerances up to 14” diameter / 350mm
+    approx_offset: 93088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0095
+  form: Stress relieving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Stress relieving
+    approx_offset: 93003
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0096
+  form: Sub Arc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72167
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0097
+  form: Sub Arc welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72167
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0098
+  form: TESTING & NDT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: TESTING & NDT
+    approx_offset: 57779
+  - quote: HOME  CNC MACHINING & MANUFACTURING  TESTING & NDT
+    approx_offset: 57830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0099
+  form: TURNKEY MANUFACTURING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/turnkey-manufacturing/
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: TURNKEY MANUFACTURING
+    approx_offset: 28851
+  - quote: HOME  ADDITIVE MANUFACTURING  TURNKEY MANUFACTURING
+    approx_offset: 28903
+  - quote: TURNKEY MANUFACTURING
+    approx_offset: 100498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0100
+  form: Tempered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+  evidence:
+  - quote: 'Condition: Hardened and Double Tempered'
+    approx_offset: 5486
+  - quote: 'Condition: Hardened and Tempered'
+    approx_offset: 16090
+  - quote: 'Condition: Hardened and Tempered to 22 HRC max.'
+    approx_offset: 28192
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0101
+  form: Tensile. Impact. Hardness.
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Tensile. Impact. Hardness.
+    approx_offset: 58811
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0102
+  form: TiG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0103
+  form: TiG welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0104
+  form: U-drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0105
+  form: Ultrasonic Testing (UT)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Ultrasonic Testing (UT) – Forgings / Wrought Products & the Weld sector.
+    approx_offset: 59156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0106
+  form: Ultrasonic testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Phased Array Ultrasonic testing.
+    approx_offset: 59136
+  - quote: Ultrasonic Testing (UT) – Forgings / Wrought Products & the Weld sector.
+    approx_offset: 59156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0107
+  form: VIM/ESR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0108
+  form: VIM/VAR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85245
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0109
+  form: Visual Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Visual Inspection (VT).
+    approx_offset: 59331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0110
+  form: Visual Inspection (VT)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Visual Inspection (VT).
+    approx_offset: 59331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0111
+  form: WELDING & FABRICATION CAPABILITIES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: WELDING & FABRICATION CAPABILITIES
+    approx_offset: 71441
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0112
+  form: WELDING TESTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: 'WELDING TESTS:'
+    approx_offset: 58839
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0113
+  form: Water Quenched
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: 'Condition: Solution Annealed and Water Quenched'
+    approx_offset: 89562
+  - quote: 'Condition: Solution Annealed and Water Quenched'
+    approx_offset: 108903
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0114
+  form: Weld Cladding & Overlay
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Weld Cladding & Overlay Facility.
+    approx_offset: 44448
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0115
+  form: Weld cladding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Weld Cladding & Overlay Facility.
+    approx_offset: 44448
+  - quote: Weld cladding is a cost-effective surface treatment when components are used in high-wear or
+      extremely corrosive settings.
+    approx_offset: 102137
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0116
+  form: Weld overlay cladding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Weld overlay cladding applied to either prolong the life of new process or pipeline components
+      or refurbish parts that have corroded or become worn.
+    approx_offset: 101854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0117
+  form: additive manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+    - https://www.howcogroup.com/news/an-introduction-to-our-new-look-website/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+  evidence:
+  - quote: We’ve also invested in new technologies such as additive manufacturing and blockchain.
+    approx_offset: 66027
+  - quote: Howco provides turnkey manufacturing of parts, either by machining or additive manufacturing
+      processes within our own plants, conveniently located near to our major customers.
+    approx_offset: 100591
+  - quote: 'Since first launching as part of our service portfolio in 2019, our Additive Manufacturing
+      team has embarked on an extraordinary journey with one clear objective: to become leaders of innovation
+      and excellence in additive manufacturing.'
+    approx_offset: 165509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0118
+  form: age & precipitation hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 92943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0119
+  form: age hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: In addition to limiting the hardness, NACE MR0175 restricts the age hardening cycles that can
+      be applied to the alloy to two of the several available.
+    approx_offset: 4586
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress
+      relief, solution annealing and age hardening.
+    approx_offset: 123615
+  - quote: We also have the ability to heat treat parts in-house for stress relief, solution annealing,
+      and age hardening.
+    approx_offset: 172216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0120
+  form: annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: Solution annealing
+    approx_offset: 92993
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress
+      relief, solution annealing and age hardening.
+    approx_offset: 123601
+  - quote: We also have the ability to heat treat parts in-house for stress relief, solution annealing,
+      and age hardening.
+    approx_offset: 172201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0121
+  form: automated GTAW butt Welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds.
+    approx_offset: 44832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0122
+  form: automatic gas quenching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: The HVF 101-xb also boasts a range of advanced features, including real-time monitoring and
+      control, automatic gas quenching, and advanced heating and cooling capabilities.
+    approx_offset: 124001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0123
+  form: band sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: In the metals industry, band sawing is one of the primary methods used to cut metal materials.
+    approx_offset: 32454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0124
+  form: both destructive testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: We apply a combination of both destructive testing and non-destructive testing methods to metals
+      to determine their potential properties, performance, strength, durability and resistance to corrosion.
+    approx_offset: 58091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0125
+  form: butt Welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds.
+    approx_offset: 44847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0126
+  form: cladding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: WELDING & CLADDING
+    approx_offset: 44383
+  - quote: HOME  CNC MACHINING & MANUFACTURING  WELDING & CLADDING
+    approx_offset: 44439
+  - quote: Weld Cladding & Overlay Facility.
+    approx_offset: 44453
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0127
+  form: clean room facility
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco’s clean room facility is fully equipped with the latest manufacturing equipment, and
+      staffed by highly trained, experienced personnel able to source and assemble complex products.
+    approx_offset: 102826
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0128
+  form: coating and finishing services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Through our established supply chain partners, Howco provides a comprehensive range of coating
+      and finishing services to our customers who operate in the most challenging environments where protective
+      and anti-corrosive properties are paramount.
+    approx_offset: 101457
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0129
+  form: coating facility
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Located in West Central Scotland and with excellent road, rail & air transport links, the Howco
+      Irvine site comprises of a modern coating facility offering services to the oil & gas, petrochemical,
+      aviation and heavy engineering sectors.
+    approx_offset: 39383
+  - quote: COATING FACILITY PROCESSES
+    approx_offset: 39736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0130
+  form: cold worked
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: Strength in A725 is obtained by heat treatment and can also be cold worked for even higher
+      strength.
+    approx_offset: 90667
+  - quote: Thin sections (Tubulars) are capable of being cold worked to give yield strength of 105 KSI
+      min.
+    approx_offset: 108304
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0131
+  form: cold working
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: The alloy cannot be hardened by heat-treatment, but enhanced mechanical properties can be obtained
+      by cold working, especially in sour well tubing strings, and for heat-exchangers, and in chemical
+      processing plants.
+    approx_offset: 17285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0132
+  form: counter and pull boring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: As a result, we are able to machine an extensive range of products using solid, counter and
+      pull boring techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 83960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0133
+  form: curing ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 5 curing ovens
+    approx_offset: 40342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0134
+  form: deep hole boring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/news/howco-exhibiting-at-spe-offshore-europe-2023/
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: This cutting-edge machine complements the four existing deep hole boring and honing machines
+      already in operation at the Singapore site, creating a robust and versatile machining capability
+      particularly suited to supporting our downhole completion product customers.
+    approx_offset: 131914
+  - quote: The decision to expand our deep hole boring capability at Singapore reflects Howco’s strategy
+      to build resilience and responsiveness across our global network.
+    approx_offset: 132741
+  - quote: You will find us at stand 1H40 where we look forward to welcoming customers old and new to
+      share how our industry knowledge and technical expertise can assist with all of your raw material
+      requirements from inventory management, forging, deep hole boring, heat treatment, semi-finish and
+      precision ma
+    approx_offset: 214459
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0135
+  form: deep hole drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: AT THE FOREFRONT OF DEEP HOLE DRILLING TOOLING
+    approx_offset: 83137
+  - quote: Deep hole drilling is the most accurate method for precision hole drilling of single holes
+      in components.
+    approx_offset: 83165
+  - quote: With global investment in the latest machines Howco is at the forefront of deep hole drilling
+      tooling.
+    approx_offset: 83346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0136
+  form: direct metal laser melting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: We specialise in direct metal laser melting, or DMLM; a process which uses high-precision lasers
+      to apply fine metal powders in a meticulous, accurate, and virtually error-free manner.
+    approx_offset: 171859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0137
+  form: double vacuum melt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0138
+  form: drilling, tapping, boring, U-drilling, regular drilling and turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0139
+  form: dye penetrant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Dye Penetrant Inspection (PT).
+    approx_offset: 59264
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 93409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0140
+  form: electro slag refining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0141
+  form: electromechanical assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: We provide turnkey electromechanical assemblies and sub-assemblies to customer drawings/designs/specifications.
+    approx_offset: 110990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0142
+  form: fabrication services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing,
+      assembly and fabrication services.
+    approx_offset: 53630
+  - quote: Integral to Howco’s operations is its fabrication and welding capabilities – providing fabrication
+      services via our established supply chain partners to our customers worldwide.
+    approx_offset: 71564
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing,
+      assembly and fabrication services.
+    approx_offset: 115458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0143
+  form: failure analysis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: Howco has a very comprehensive range of materials testing services available which covers materials
+      selection, application and performance testing as well as failure analysis.
+    approx_offset: 58046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0144
+  form: first stage machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/first-stage-machining/
+  evidence:
+  - quote: Howco’s global first stage machining capabilities utilise both conventional and CNC machinery.
+    approx_offset: 22044
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0145
+  form: forged
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Forged and Rolled Round Bar
+    approx_offset: 34007
+  - quote: Forged Flat Bar
+    approx_offset: 34035
+  - quote: FORGED PRODUCTS
+    approx_offset: 34756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0146
+  form: forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/integrated-services/forging/
+    - https://www.howcogroup.com/news/howco-exhibiting-at-spe-offshore-europe-2023/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: On a worldwide basis, we provide everything from supplying raw materials, through its processing,
+      forging and machining into finished or semi-finished components.
+    approx_offset: 60237
+  - quote: One of Howco’s many core strengths is our technical expertise in forging to precise parameters
+      that meet the exacting needs of our customers.
+    approx_offset: 134416
+  - quote: Grain flow, strength enhancement and consolidation are critical considerations, as is achieving
+      the required grain size, forging reduction ratio, shape and microstructure that will give optimal
+      results when heat treated and tested in our internal facilities.
+    approx_offset: 134614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0147
+  form: grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187089
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0148
+  form: heat treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: Howco has extensive experience heat treating and supplying this alloy at a number of strength
+      levels.
+    approx_offset: 15769
+  - quote: Howco has significant experience heat treating this grade and other strength levels can be
+      considered.
+    approx_offset: 38074
+  - quote: Howco has significant experience heat treating this alloy to a number of different strength
+      levels, including 125ksi, 140ksi and 150ksi 0.2% yield in line with the relevant standards.
+    approx_offset: 85946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0149
+  form: heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+  evidence:
+  - quote: Higher strength levels up to 150 KSI 0.2% PS may be achieved by suitable heat treatment.
+    approx_offset: 15291
+  - quote: The hardenability limitations of this grade (depth to which it will harden / obtain the specified
+      mechanical properties after heat treatment) must always be taken into account when designing and
+      selecting equipment.
+    approx_offset: 15647
+  - quote: The hardenability limitations of this grade (depth to which it will harden / obtain the specified
+      mechanical properties after heat treatment) must always be taken into account when designing and
+      selecting equipment.
+    approx_offset: 27714
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0150
+  form: honed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+  evidence:
+  - quote: Bored / Honed Bar
+    approx_offset: 34611
+  - quote: Howco provides semi-finished components, supplied cut, rough machined, bored and honed, which
+      not only improves throughput times and enables the rapid set-up and optimisation of our customer’s
+      work centres – it even reduces machine wear.
+    approx_offset: 100153
+  - quote: The polished bore receptacle (PBR) is a precision-engineered honed tubular, produced with extremely
+      tight manufacturing tolerances to ensure optimal sealing performance.
+    approx_offset: 158126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0151
+  form: honing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: As a result, we are able to machine an extensive range of products using solid, counter and
+      pull boring techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 84028
+  - quote: This cutting-edge machine complements the four existing deep hole boring and honing machines
+      already in operation at the Singapore site, creating a robust and versatile machining capability
+      particularly suited to supporting our downhole completion product customers.
+    approx_offset: 131935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0152
+  form: inspected for compliance both in-process and on completion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+  evidence:
+  - quote: All manufactured parts are inspected for compliance both in-process and on completion using
+      modern equipment to measure all 2D and 3D dimensions with a high degree of accuracy.
+    approx_offset: 81859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0153
+  form: laser powder bed fusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: From our base in Houston – the heart of technological advancement, Howco AM has quickly established
+      itself as an industry expert in laser powder bed fusion processes, setting new standards and redefining
+      possibilities to offer clients a wide range of pioneering metal additive manufacturing solutions
+    approx_offset: 169939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0154
+  form: magnetic particle
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Magnetic Particle Inspection (MT).
+    approx_offset: 59229
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 93390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0155
+  form: measure all 2D and 3D dimensions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+  evidence:
+  - quote: All manufactured parts are inspected for compliance both in-process and on completion using
+      modern equipment to measure all 2D and 3D dimensions with a high degree of accuracy.
+    approx_offset: 81944
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0156
+  form: mechanical and metallurgical testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
+    approx_offset: 93287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0157
+  form: mechanical testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'ISO 17025: TEST LABORATORY MECHANICAL TESTING'
+    approx_offset: 87670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0158
+  form: metal 3D printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+  evidence:
+  - quote: With our cutting-edge metal 3D printing capabilities, you can create complex geometries, achieve
+      intricate details, and produce high-strength parts that are ready for real-world applications.
+    approx_offset: 48098
+  - quote: From aerospace to oil and gas, our metal 3D printing services are trusted by industries across
+      the board, across the world.
+    approx_offset: 48303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0159
+  form: metal sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: WORLDWIDE LEADER IN METAL SAWING CAPABILITIES
+    approx_offset: 32403
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0160
+  form: metallurgical testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
+    approx_offset: 93302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0161
+  form: milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: This allows them to exploit the full capabilities of our machine tools including features such
+      as; 5 axis machining, Facing & Contouring Heads, Multi – Angled Milling Heads and Outfacing Bars.
+    approx_offset: 97279
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187102
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0162
+  form: near net shape
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/integrated-services/first-stage-machining/
+    - https://www.howcogroup.com/integrated-services/forging/
+  evidence:
+  - quote: 'Supplying a near net shape component provides :'
+    approx_offset: 22498
+  - quote: By ensuring that the optimum characteristics are achieved during forging, we are able to supply
+      the highest quality products in Nickel Alloys, Stainless Steel and Low Alloy from raw ingot through
+      to fully heat treated near net shape components.
+    approx_offset: 134970
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0163
+  form: near net shape component
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/first-stage-machining/
+  evidence:
+  - quote: 'Supplying a near net shape component provides :'
+    approx_offset: 22498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0164
+  form: non-destructive testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: We apply a combination of both destructive testing and non-destructive testing methods to metals
+      to determine their potential properties, performance, strength, durability and resistance to corrosion.
+    approx_offset: 58120
+  - quote: Our wide-ranging test facilities around the world, qualified inspectors and technicians conduct
+      mechanical, metallurgical and non-destructive testing across the whole range of products as well
+      as offering consultancy services in these fields of expertise.
+    approx_offset: 58518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0165
+  form: normalising
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 92930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0166
+  form: phased array
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Phased Array Ultrasonic testing.
+    approx_offset: 59123
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 93424
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0167
+  form: powder bed fusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: We have the latest powder bed fusion technology, with high volume capacity.
+    approx_offset: 49596
+  - quote: From our base in Houston – the heart of technological advancement, Howco AM has quickly established
+      itself as an industry expert in laser powder bed fusion processes, setting new standards and redefining
+      possibilities to offer clients a wide range of pioneering metal additive manufacturing solutions
+    approx_offset: 169945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0168
+  form: precipitation hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper.
+    approx_offset: 4104
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 92949
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0169
+  form: precision machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+    - https://www.howcogroup.com/news/howco-exhibiting-at-spe-offshore-europe-2023/
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: WORLD CLASS SPECIALIST PRECISION MACHINING
+    approx_offset: 96387
+  - quote: At Howco we are proud to offer specialist precision machining to a range of industries where
+      quality and reliability is of paramount importance.
+    approx_offset: 96450
+  - quote: Also known as vertical borers or vertical turning lathes (VTLs), these state-of-the-art turning
+      centres will further our precision machining capability.
+    approx_offset: 186318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0170
+  form: pressure testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/assembly-and-pressure-testing/
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing,
+      assembly and fabrication services.
+    approx_offset: 53599
+  - quote: ASSEMBLY AND PRESSURE TESTING
+    approx_offset: 109631
+  - quote: HOME  CNC MACHINING & MANUFACTURING  ASSEMBLY AND PRESSURE TESTING
+    approx_offset: 109698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0171
+  form: pull boring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: As a result, we are able to machine an extensive range of products using solid, counter and
+      pull boring techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 83972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0172
+  form: regular drilling and turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187162
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0173
+  form: reverse engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: With our high resolution scanner and in-house CMM, we can produce new parts by reverse engineering
+      your existing components.
+    approx_offset: 50085
+  - quote: Additionally, our in-house capabilities include 3D scanning for reverse engineering and inspection
+      purposes.
+    approx_offset: 172295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0174
+  form: rough machined
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco provides semi-finished components, supplied cut, rough machined, bored and honed, which
+      not only improves throughput times and enables the rapid set-up and optimisation of our customer’s
+      work centres – it even reduces machine wear.
+    approx_offset: 100127
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0175
+  form: sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: In the metals industry, band sawing is one of the primary methods used to cut metal materials.
+    approx_offset: 32459
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0176
+  form: semi-finished components, supplied cut, rough machined, bored and honed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco provides semi-finished components, supplied cut, rough machined, bored and honed, which
+      not only improves throughput times and enables the rapid set-up and optimisation of our customer’s
+      work centres – it even reduces machine wear.
+    approx_offset: 100087
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0177
+  form: shot blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Large shot blasting chamber
+    approx_offset: 40266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0178
+  form: skiving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: As a result, we are able to machine an extensive range of products using solid, counter and
+      pull boring techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 84016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0179
+  form: solid, counter and pull boring techniques
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: As a result, we are able to machine an extensive range of products using solid, counter and
+      pull boring techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 83953
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0180
+  form: solution annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress
+      relief, solution annealing and age hardening.
+    approx_offset: 123592
+  - quote: We also have the ability to heat treat parts in-house for stress relief, solution annealing,
+      and age hardening.
+    approx_offset: 172192
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0181
+  form: specialist precision machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+  evidence:
+  - quote: WORLD CLASS SPECIALIST PRECISION MACHINING
+    approx_offset: 96376
+  - quote: At Howco we are proud to offer specialist precision machining to a range of industries where
+      quality and reliability is of paramount importance.
+    approx_offset: 96439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0182
+  form: spray booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: X 1 Large spray booth
+    approx_offset: 40218
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0183
+  form: spray booths
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: X 2 medium spray booths
+    approx_offset: 40195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0184
+  form: stress relief
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress
+      relief, solution annealing and age hardening.
+    approx_offset: 123577
+  - quote: We also have the ability to heat treat parts in-house for stress relief, solution annealing,
+      and age hardening.
+    approx_offset: 172177
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0185
+  form: tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0186
+  form: tempering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 92974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0187
+  form: turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/howco-supporting-the-reigning-formula-studentchampions/
+    - https://www.howcogroup.com/news/howco-supports-a-winning-formula/
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: New Horizontal and Vertical CNC Turning Centres Now in Operation at Bredbury
+    approx_offset: 24197
+  - quote: As part of our ongoing commitment to precision manufacturing, we’re delighted to confirm the
+      addition of two new state-of-the-art Horizontal and Vertical CNC Turning Centres at our Bredbury
+      site.
+    approx_offset: 24414
+  - quote: New Vertical CNC Turning Centres Arrive at Our Irvine Site
+    approx_offset: 166244
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0188
+  form: turnkey manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+    - https://www.howcogroup.com/news/howco-exhibiting-at-spe-offshore-europe-2023/
+  evidence:
+  - quote: Howco provides turnkey manufacturing of parts, either by machining or additive manufacturing
+      processes within our own plants, conveniently located near to our major customers.
+    approx_offset: 100536
+  - quote: Howco Scientific is involved in a number of sectors including Oilfield, Semi-Conductor and
+      Scientific Instrument Industries and our vision is to become a one-source supplier for all our customers’
+      turnkey manufacturing requirements.
+    approx_offset: 110935
+  - quote: You will find us at stand 1H40 where we look forward to welcoming customers old and new to
+      share how our industry knowledge and technical expertise can assist with all of your raw material
+      requirements from inventory management, forging, deep hole boring, heat treatment, semi-finish and
+      precision ma
+    approx_offset: 214562
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0189
+  form: ultrasonic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Phased Array Ultrasonic testing.
+    approx_offset: 59136
+  - quote: Ultrasonic Testing (UT) – Forgings / Wrought Products & the Weld sector.
+    approx_offset: 59156
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 93378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0190
+  form: vacuum arc remelting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0191
+  form: vacuum induction melting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85254
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85327
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0192
+  form: vacuum remelt process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: The alloy is produced by a vacuum remelt process.
+    approx_offset: 68153
+  - quote: The alloy is produced by a vacuum remelt process, but can be supplied using an air melt single
+      consumable electrode (VAR or ESR) practice if the material specification allows.
+    approx_offset: 104311
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0193
+  form: weld overlay
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: It is also used as a weld overlay for corrosion resistance purposes.
+    approx_offset: 75763
+  - quote: Weld overlay cladding applied to either prolong the life of new process or pipeline components
+      or refurbish parts that have corroded or become worn.
+    approx_offset: 101854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0194
+  form: welder qualification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72233
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0195
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: 'ISO 3834 : 2 Quality Requirements for Welding'
+    approx_offset: 39602
+  - quote: WELDING & CLADDING
+    approx_offset: 44373
+  - quote: HOME  CNC MACHINING & MANUFACTURING  WELDING & CLADDING
+    approx_offset: 44429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-process_caps-0196
+  form: welding capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Integral to Howco’s operations is its fabrication and welding capabilities – providing fabrication
+      services via our established supply chain partners to our customers worldwide.
+    approx_offset: 71531
+  - quote: WELDING CAPABILITIES
+    approx_offset: 72083
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities
+      with a suite of welding procedures & welder qualification covering Carbon, Stainless and Duplex
+      materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 72175
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

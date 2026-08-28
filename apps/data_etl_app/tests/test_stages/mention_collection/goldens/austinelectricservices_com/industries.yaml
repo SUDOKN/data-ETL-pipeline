@@ -1,0 +1,225 @@
+subject: austinelectricservices.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: 26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118
+golden_set_version: 1
+anchored_on: search/expectations/austinelectricservices_com/industries.yaml
+labels:
+- id: austinelectricservices_com-industries-0001
+  form: constructores residenciales
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/es/bajo-voltaje/
+  evidence:
+  - quote: Austin Integration ofrece servicios integrales de cableado de bajo voltaje e instalación de
+      productos “inteligentes” a constructores residenciales en el valle.
+    approx_offset: 33914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0002
+  form: home building
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/hvac/
+    - https://www.austin-companies.com/hvac/how-we-do-it/
+  evidence:
+  - quote: We have perfected our process for efficient on time scheduling management to ensure your project
+      stays on track within the new home building timeline.
+    approx_offset: 11404
+  - quote: We have perfected our process for efficient on time scheduling management to ensure your project
+      stays on track within the new home building timeline.
+    approx_offset: 76124
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0003
+  form: home-building
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/low-voltage/who-we-are/
+    - https://www.austin-companies.com/low-voltage/who-we-are/our-history/
+  evidence:
+  - quote: Utilizing resources already in place at Austin Electrical Services, its parent company Synergos,
+      and its sister company Focus Electric (Las Vegas, NV), Austin Integration has the advantage of decades
+      of experience in the low-voltage trade, as well as many other specialty trades, and in the home-buil
+    approx_offset: 65675
+  - quote: Utilizing resources already in place at Austin Electrical Services, its parent company Synergos,
+      and its sister company Focus Electric (Las Vegas, NV), Austin Integration has the advantage of decades
+      of experience in the low-voltage trade, as well as many other specialty trades, and in the home-buil
+    approx_offset: 140220
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0004
+  form: home-building and development industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/low-voltage/who-we-are/
+    - https://www.austin-companies.com/low-voltage/who-we-are/our-history/
+  evidence:
+  - quote: Utilizing resources already in place at Austin Electrical Services, its parent company Synergos,
+      and its sister company Focus Electric (Las Vegas, NV), Austin Integration has the advantage of decades
+      of experience in the low-voltage trade, as well as many other specialty trades, and in the home-buil
+    approx_offset: 65675
+  - quote: Utilizing resources already in place at Austin Electrical Services, its parent company Synergos,
+      and its sister company Focus Electric (Las Vegas, NV), Austin Integration has the advantage of decades
+      of experience in the low-voltage trade, as well as many other specialty trades, and in the home-buil
+    approx_offset: 140220
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0005
+  form: homebuilding industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/low-voltage/who-we-are/our-team/
+    - https://www.austin-companies.com/who-we-are/austin-integration/
+  evidence:
+  - quote: Greg has nearly 25 years of experience in the homebuilding industry.
+    approx_offset: 119005
+  - quote: Greg has nearly 25 years of experience in the homebuilding industry.
+    approx_offset: 123088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0006
+  form: industrias de construcción y desarrollo de viviendas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/es/bajo-voltaje/quienes-somos/
+    - https://www.austin-companies.com/es/bajo-voltaje/quienes-somos/nuestra-historia/
+  evidence:
+  - quote: Al utilizar los recursos ya disponibles en Austin Electrical Services, su empresa matriz Synergos
+      y su empresa hermana Focus Electric (Las Vegas, NV), Austin Integration tiene la ventaja de décadas
+      de experiencia en el comercio de bajo voltaje, así como en muchos otros oficios especializados y
+      en la
+    approx_offset: 114453
+  - quote: Al utilizar los recursos ya disponibles en Austin Electrical Services, su empresa matriz Synergos
+      y su empresa hermana Focus Electric (Las Vegas, NV), Austin Integration tiene la ventaja de décadas
+      de experiencia en el comercio de bajo voltaje, así como en muchos otros oficios especializados y
+      en la
+    approx_offset: 141224
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0007
+  form: new home construction industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/hvac/who-we-are/our-history/
+  evidence:
+  - quote: Since its inception, Austin Heating Ventilation and Air Conditioning, LLC has quicky earned
+      the respect of the new home construction industry for delivering quality installation to the Metro
+      Phoenix area.
+    approx_offset: 124864
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0008
+  form: production builders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.austin-companies.com/hvac/
+    - https://www.austin-companies.com/hvac/what-we-do/
+  evidence:
+  - quote: We lead the industry in innovation and productivity, offering complete HVAC solutions for residential
+      and multi-family production builders.
+    approx_offset: 11127
+  - quote: We offer complete HVAC solutions for our residential and multi-family production builders.
+    approx_offset: 11230
+  - quote: We offer complete HVAC solutions for our residential and multi-family production builders.
+    approx_offset: 71894
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0009
+  form: residential and multi-family production builders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.austin-companies.com/hvac/
+    - https://www.austin-companies.com/hvac/what-we-do/
+  evidence:
+  - quote: We lead the industry in innovation and productivity, offering complete HVAC solutions for residential
+      and multi-family production builders.
+    approx_offset: 11098
+  - quote: We offer complete HVAC solutions for our residential and multi-family production builders.
+    approx_offset: 11201
+  - quote: We offer complete HVAC solutions for our residential and multi-family production builders.
+    approx_offset: 71865
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-industries-0010
+  form: residential builders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/low-voltage/
+  evidence:
+  - quote: Austin Integration provides comprehensive low voltage wiring and “smart” product installation
+      services to residential builders in the valley.
+    approx_offset: 6840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

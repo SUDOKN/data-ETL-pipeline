@@ -1,0 +1,119 @@
+subject: austinelectricservices.com
+subject_name: Austin Electric Services
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: 26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118
+role: out_of_domain_negative
+role_provenance: 'reused from search/expectations/austinelectricservices_com/subject.yaml (role: out_of_domain_negative)
+  and VERIFIED against the text rather than assumed: the crawl is the austin-companies.com umbrella site
+  for a residential electrical/HVAC/concrete/low-voltage CONTRACTOR; no page describes a manufacturing
+  facility, machine or material capability. Confirmed independently by grounding/expectations/austinelectricservices_com/subject.yaml.'
+third_party_roster:
+- Synergos Companies (parent, 16x)
+- Austin HVAC (sibling division)
+- Austin Concrete (sibling division)
+- Austin Integration (sibling division, speaks as 'we' on /security-systems/)
+- Erickson Framing (sibling, 6x)
+- DSI / Door Sales & Installations (sibling, 29x)
+- Brewer Companies (sibling)
+- Focus Electric, Las Vegas NV (sibling)
+- Alarm Grid (security-hardware vendor; source name fused into pasted device copy)
+- Post-Tensioning Institute (standards body)
+- Energy Star / EPA (standards body; EPA 608 in HVAC job ads)
+text_hazards:
+- hazard: spanish_is_page_level_mirroring_not_sentence_interleaving
+  note: 'MEASURED, because the interleaving pattern decides how badly clipping is hurt: 48 of the 100
+    page blocks are whole-page /es/ mirrors of an English page (/es/electrica/, /es/carreras/, 11 mirrored
+    job ads, /es/terminos-y-condiciones/, ...). Spanish is NOT interleaved inside English paragraphs,
+    so sentence boundaries themselves are ordinary. The real cost is duplication: almost every fact occurs
+    twice, once per language, and the two copies are different strings, so they never group. The documented
+    exception is /security-systems/, which has no Spanish counterpart.'
+  quote: Somos líderes en la industria en eficiencia y productividad de fabricación.
+- hazard: english_proper_nouns_survive_untranslated_inside_spanish_sentences
+  note: 'THE stage-specific consequence of the bilingual site, and the highest-value item here. Brand,
+    standard and company names are left in English inside Spanish prose, so an ENGLISH search form matches
+    and the snippet handed to the location model is a SPANISH sentence. The quoted line names a US standards
+    body inside Spanish (the English twin is at L2038). Same pattern: ''• Sistemas con certificación Energy
+    Star/Eficiencia Energética'' (L2823), ''la certificación EPA 608'' (L2270), ''AFLAC – Seguro de discapacidad
+    a corto plazo'' (L607), ''Técnico de puesta en marcha de sistemas HVAC'' (L631), ''DSI es el lugar
+    para usted'' (L618), and ''Austin Electric Services'' itself opening Spanish sentences (L65, L68).'
+  quote: Los técnicos están certificados por el Programa de Certificación de Campo del Post-Tensioning
+    Institute
+- hazard: language_toggle_token_is_in_the_other_language
+  note: Every ENGLISH page carries the Spanish line 'VER EN ESPAÑOL' (50x) and every SPANISH page carries
+    'VIEW IN ENGLISH' (48x), both as the first chrome line of the block. So the presence of Spanish text
+    on a page is not evidence the page is Spanish, and vice versa; language must be judged from the body,
+    not from any one clipped line.
+  quote: VER EN ESPAÑOL
+- hazard: repeated_chrome_is_72_percent_of_lines
+  note: 'The highest chrome share of the four subjects in this batch: 72.3% of nonblank lines belong to
+    a line text repeated >=3x, and 61% of nonblank lines are <=3 words with no terminal period — also
+    the highest. ''MENU'' 100x, ''Careers'' 53x, ''CONTACT'' 52x, the quoted copyright 52x plus its Spanish
+    twin ''© 2025 Austin Companies. Todos los derechos reservados.'' 48x.'
+  quote: © 2025 Austin Companies. All Rights Reserved.
+- hazard: tab_delimited_job_table_rows
+  note: '24 lines on the two careers pages are 4-column TAB-DELIMITED rows (L154-165 English, L628-639
+    Spanish). Unlike alecmfg, where cells are atomized onto separate lines, here a line clip FUSES all
+    four cells: job title, city, department and the ''Apply Now'' call to action arrive as one passage.
+    The header row ''Job Type\tLocation\tDepartment\tMore Info'' is L154.'
+  quote: "Rough Electrician\tPhoenix Area\tField\tApply Now"
+- hazard: form_widget_option_tokens_repeat_on_22_job_pages
+  note: 'The application form on all 22 job pages emits its dropdown options and upload hints as bare
+    lines with no prose around them: ''Web Banner Ad'', ''Social Media'', ''Google Search'', ''Job Fair'',
+    ''Billboard'', ''Referral'', ''Craigslist'', ''LinkedIn'', ''Indeed'', ''Truck Signage'', ''DSI Referral
+    Card'' (22x each), plus ''(mm/dd/yyyy)'' 22x and ''"*" indicates required fields'' 24x. Their kind_of_text
+    is a form control, not a sentence, and no line clip can show that.'
+  quote: 'Accepted file types: pdf, doc, docx, Max. file size: 5 MB.'
+- hazard: umbrella_site_so_first_person_we_is_ambiguous
+  note: 'The crawl is austin-companies.com, not austinelectricservices.com. The subject''s division pages
+    sit beside sibling divisions'' pages (Austin HVAC, Austin Concrete, Austin Integration) written in
+    the same first-person ''we'', and the parent Synergos speaks on the history pages. So `whose_words:
+    site` is under-specified here: the speaker of a clipped ''we'' passage may be a sibling division or
+    the parent. L1748 attributes low-voltage experience to ''its parent company Synergos, and its sister
+    company Focus Electric (Las Vegas, NV)''.'
+  quote: In 2020 Austin Electric Services was acquired by Synergos Companies. Synergos Companies is a
+    family of companies focused on working as an integrated team to reduce residential construction cycle
+    times. The Synergos family of companies also includes Erickson Framing, DSI, Austin HVAC and Austin
+    Concrete.
+- hazard: vendor_device_copy_with_the_source_name_fused_to_the_sentence
+  note: '/security-systems/ is the only designation-rich page in the crawl and its device descriptions
+    read as pasted retailer copy. The quoted line ends with the source name ''Alarm Grid'' welded onto
+    ''security.'' with no space — direct evidence that the passage is a vendor''s words, not the site''s.
+    Named third-party devices on this page: VDB750, V723X, V515, PowerG + 319MHz Smart Panel, Flex IO
+    Sensor. Every device line also starts with a parenthesised quantity, e.g. ''(10) Wireless Door & Window
+    Sensors: ...''.'
+  quote: '(1) Wireless PIR Motion Sensor: Utilizes passive infrared technology to detect movement, providing
+    real-time alerts and enhancing security.Alarm Grid'
+- hazard: manufacturing_tagline_as_a_standalone_heading_line
+  note: The strongest in-English manufacturing bait in the corpus is a bare heading line with no sentence
+    around it, sitting directly above the real descriptive sentence on both the electrical landing page
+    (L7) and the umbrella home page; the Spanish mirror renders it with 'fabricación' (L64). The company
+    manufactures nothing. A line clip yields the tagline alone, with nothing to contradict it.
+  quote: We Lead the Industry in Efficiency and Manufacturing Productivity
+- hazard: hr_bullets_read_as_capability_statements
+  note: '22 of 100 pages are job postings (11 English + 11 Spanish) whose responsibility and requirement
+    bullets are bare one-line claims in HR voice: ''Knowledge of residential HVAC and codes.'' (L942),
+    ''Strong knowledge of HVAC code.'' (L951), ''Ability to lift 50 lbs. frequently.'' (L944). Clipped
+    alone they read like first-party capability statements; their `belongs_to` is a job listing, which
+    only the ''JOB LISTING'' heading 9 lines up establishes.'
+  quote: Must be able to read blueprints.
+- hazard: duplicate_legal_pages_only
+  note: 'Measured across all 100 blocks: exactly TWO URLs are scraped twice, /terms-and-conditions and
+    /privacy-policy, each with and without a trailing slash. Apart from the Spanish mirrors this crawl
+    is otherwise duplicate-free — materially cleaner than blackadvtech (13 doubled pages) or alecmfg (37
+    duplicate stubs).'
+  quote: https://www.austin-companies.com/terms-and-conditions
+coverage: full_text
+notes: '140 KB / 3,689 lines / 100 page blocks; read in full, both languages. Role verified, not assumed
+  — see role_provenance. Nothing contradicts search/expectations or grounding/expectations for this subject;
+  the page census (100 pages, 48 Spanish, 22 job ads) reproduces exactly. ONE CLARIFICATION to the brief''s
+  premise: the site is bilingual but the Spanish is MIRRORED AT PAGE LEVEL, not interleaved sentence by
+  sentence, so sentence clipping is not itself degraded by the Spanish; what the Spanish does is (a) double
+  every occurrence into a non-grouping second string and (b) put English proper nouns inside Spanish sentences,
+  which is the hazard that actually reaches the location model. Non-breaking spaces are present but rare
+  (19).'
+provenance:
+- action: added
+  by: seed-agent-batch2
+  date: '2026-08-27'
+  source: harvested:search

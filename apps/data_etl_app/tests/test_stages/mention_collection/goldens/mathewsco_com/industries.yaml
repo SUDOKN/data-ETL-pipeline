@@ -1,0 +1,1171 @@
+subject: mathewsco.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+golden_set_version: 1
+anchored_on: search/expectations/mathewsco_com/industries.yaml
+labels:
+- id: mathewsco_com-industries-0001
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 55
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Aerospace (commercial)
+    approx_offset: 1126
+  - quote: Aerospace Tier II & III
+    approx_offset: 1344
+  - quote: Aerospace Tier II & III
+    approx_offset: 2752
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0002
+  form: Aerospace (commercial)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Aerospace (commercial)
+    approx_offset: 1126
+  - quote: Aerospace (commercial)
+    approx_offset: 3278
+  - quote: Aerospace (commercial)
+    approx_offset: 5112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0003
+  form: Aerospace Tier II & III
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Aerospace Tier II & III
+    approx_offset: 1344
+  - quote: Aerospace Tier II & III
+    approx_offset: 2752
+  - quote: Aerospace Tier II & III
+    approx_offset: 3496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0004
+  form: Agricultural Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Agricultural Equipment
+    approx_offset: 1239
+  - quote: Agricultural Equipment
+    approx_offset: 2647
+  - quote: Agricultural Equipment
+    approx_offset: 3391
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0005
+  form: Construction Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Construction Equipment
+    approx_offset: 1321
+  - quote: Construction Equipment
+    approx_offset: 2729
+  - quote: Construction Equipment
+    approx_offset: 3473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0006
+  form: Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Electronics
+    approx_offset: 1099
+  - quote: Electronics
+    approx_offset: 3251
+  - quote: Electronics
+    approx_offset: 5085
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0007
+  form: Energy and Material Handling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=99&Itemid=160
+  evidence:
+  - quote: Energy and Material Handling
+    approx_offset: 45943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0008
+  form: Industrial Style Market
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Industrial Style Market
+    approx_offset: 1149
+  - quote: Industrial Style Market
+    approx_offset: 3301
+  - quote: Industrial Style Market
+    approx_offset: 5135
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0009
+  form: Lawn and Garden
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Lawn and Garden
+    approx_offset: 1305
+  - quote: Lawn and Garden
+    approx_offset: 2713
+  - quote: Lawn and Garden
+    approx_offset: 3457
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0010
+  form: Material Handling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=99&Itemid=160
+  evidence:
+  - quote: Energy and Material Handling
+    approx_offset: 45954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0011
+  form: Medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Medical
+    approx_offset: 1091
+  - quote: Medical
+    approx_offset: 3243
+  - quote: Medical
+    approx_offset: 5077
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0012
+  form: Metal Stamping and Plastic Molding Industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4433
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0013
+  form: Military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Military
+    approx_offset: 1173
+  - quote: Military
+    approx_offset: 3325
+  - quote: Military
+    approx_offset: 5159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0014
+  form: OEM Industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Various OEM Industries
+    approx_offset: 1190
+  - quote: Various OEM Industries
+    approx_offset: 3342
+  - quote: Various OEM Industries
+    approx_offset: 5176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0015
+  form: OEM Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Clow Stamping Company, with over 300 employees, provides services to the OEM Industry in prototype
+      and short to medium volume metal stampings, using most of the materials available.
+    approx_offset: 51448
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0016
+  form: Pump and Valve Manufacturers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Pump and Valve Manufacturers
+    approx_offset: 1262
+  - quote: Pump and Valve Manufacturers
+    approx_offset: 2670
+  - quote: Pump and Valve Manufacturers
+    approx_offset: 3414
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0017
+  form: Semiconductors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=99&Itemid=160
+  evidence:
+  - quote: Semiconductors and Transportation
+    approx_offset: 45972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0018
+  form: Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 29
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Transportation
+    approx_offset: 1111
+  - quote: Transportation
+    approx_offset: 3263
+  - quote: Transportation
+    approx_offset: 5097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0019
+  form: Truck and Bus
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Truck and Bus
+    approx_offset: 1291
+  - quote: Truck and Bus
+    approx_offset: 2699
+  - quote: Truck and Bus
+    approx_offset: 3443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0020
+  form: Various OEM Industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://mathewsco.com/
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Various OEM Industries
+    approx_offset: 1182
+  - quote: Various OEM Industries
+    approx_offset: 3334
+  - quote: Various OEM Industries
+    approx_offset: 5168
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0021
+  form: aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8445
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34944
+  - quote: STADCO Precision is a precision machining company with extensive experience serving automotive,
+      aerospace and medical manufacturers throughout the US, and worldwide.
+    approx_offset: 53556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0022
+  form: appliances
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: We also manufacture parts for trucks and heavy equipment, food and beverage processing systems,
+      appliances, and the electrical and electronics industries.
+    approx_offset: 53722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0023
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8413
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34965
+  - quote: STADCO Precision is a precision machining company with extensive experience serving automotive,
+      aerospace and medical manufacturers throughout the US, and worldwide.
+    approx_offset: 53544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0024
+  form: aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0025
+  form: commercial and industrial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray is an ISO 9001:2008 registered company specializing in the supply of commercial and
+      industrial knobs and handles to markets that demand quality products, responsive service and customer-centric
+      business solutions.
+    approx_offset: 37336
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0026
+  form: commercial battery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34977
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0027
+  form: computer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 60047
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0028
+  form: consumer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 60095
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0029
+  form: consumer applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 60095
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0030
+  form: electrical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34997
+  - quote: We also manufacture parts for trucks and heavy equipment, food and beverage processing systems,
+      appliances, and the electrical and electronics industries.
+    approx_offset: 53742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0031
+  form: electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We also manufacture parts for trucks and heavy equipment, food and beverage processing systems,
+      appliances, and the electrical and electronics industries.
+    approx_offset: 53757
+  - quote: If you have an electronics application, chances are we have a part for it.
+    approx_offset: 55960
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 60057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0032
+  form: food and beverage processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: We also manufacture parts for trucks and heavy equipment, food and beverage processing systems,
+      appliances, and the electrical and electronics industries.
+    approx_offset: 53684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0033
+  form: furniture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36706
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0034
+  form: hardware
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=109&Itemid=173
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: It was one hundred years ago that Bill Hughson and Lou Merton started a company in San Francisco,
+      California, to represent hardware manufacturers in the rapidly expanding West.
+    approx_offset: 10565
+  - quote: Captive Panel Hardware
+    approx_offset: 56152
+  - quote: After being around as long as we've been around, we've learned a good deal about the hardware
+      business.
+    approx_offset: 59827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0035
+  form: hardware business
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: After being around as long as we've been around, we've learned a good deal about the hardware
+      business.
+    approx_offset: 59827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0036
+  form: hardware manufacturers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=109&Itemid=173
+  evidence:
+  - quote: It was one hundred years ago that Bill Hughson and Lou Merton started a company in San Francisco,
+      California, to represent hardware manufacturers in the rapidly expanding West.
+    approx_offset: 10565
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0037
+  form: heavy equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: We also manufacture parts for trucks and heavy equipment, food and beverage processing systems,
+      appliances, and the electrical and electronics industries.
+    approx_offset: 53667
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0038
+  form: industrial applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0039
+  form: infrastructure
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0040
+  form: irrigation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0041
+  form: machine shop
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8353
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0042
+  form: machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0043
+  form: medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35033
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36717
+  - quote: STADCO Precision is a precision machining company with extensive experience serving automotive,
+      aerospace and medical manufacturers throughout the US, and worldwide.
+    approx_offset: 53570
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0044
+  form: military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 60026
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0045
+  form: mining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8314
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0046
+  form: oil & gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0047
+  form: power generation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8367
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0048
+  form: power transmission
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0049
+  form: pulp & paper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0050
+  form: semi-conductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35076
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0051
+  form: shipbuilding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: As a result, we serve major customers in the oil & gas, mining, power transmission, machinery,
+      machine shop, power generation, shipbuilding, pulp & paper, automotive, infrastructure, and aerospace
+      industries.
+    approx_offset: 8385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0052
+  form: telecom
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 60070
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60805
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0053
+  form: trucks and heavy equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: We also manufacture parts for trucks and heavy equipment, food and beverage processing systems,
+      appliances, and the electrical and electronics industries.
+    approx_offset: 53656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-industries-0054
+  form: valve OEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36741
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

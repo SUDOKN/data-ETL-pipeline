@@ -76,6 +76,15 @@ apps/data_etl_app/src/data_etl_app/knowledge/prompts/final_texts/*
 !apps/data_etl_app/tests/test_stages/synthesis/**/*.json
 !apps/data_etl_app/tests/test_stages/synthesis/**/*.jsonl
 !apps/data_etl_app/tests/test_stages/synthesis/**/*.txt
+# Mention-stage evaluation (apps/data_etl_app/tests/test_stages/mention_collection):
+# same rationale. Its GOLDEN CORPUS (goldens/) is the instrument's ground truth,
+# derived from the pinned texts rather than from any run, so it is tracked like
+# the sibling eval sets. Per-run data under history/ stays ignored by the
+# blanket rules below; the golden labels quote the site text but never carry it
+# wholesale, which is what keeps them committable.
+!apps/data_etl_app/tests/test_stages/mention_collection/**/*.json
+!apps/data_etl_app/tests/test_stages/mention_collection/**/*.jsonl
+!apps/data_etl_app/tests/test_stages/mention_collection/**/*.txt
 
 # --- Stage-evaluation RUN DATA stays off GitHub (2026-08-27, user decision) ---
 # The per-stage blocks above re-include *.json/*.jsonl/*.txt so each stage's

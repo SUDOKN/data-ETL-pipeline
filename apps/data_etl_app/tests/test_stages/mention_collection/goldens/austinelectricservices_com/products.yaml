@@ -1,0 +1,460 @@
+subject: austinelectricservices.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: 26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118
+golden_set_version: 1
+anchored_on: search/expectations/austinelectricservices_com/products.yaml
+labels:
+- id: austinelectricservices_com-products-0001
+  form: 319MHz Smart Hub
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) 319MHz Smart Hub: The command center that connects and manages all your security devices
+      for smooth, reliable operation.'
+    approx_offset: 54735
+  - quote: '(1) 319MHz Smart Hub: The central unit that seamlessly integrates and manages all connected
+      devices, ensuring smooth operation.'
+    approx_offset: 55385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0002
+  form: All-in-One DIY Bundle
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: All-in-One DIY Bundle
+    approx_offset: 53618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0003
+  form: Compact Door & Window Sensors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(3) Compact Door & Window Sensors: Discreet yet powerful, these sensors monitor entry points
+      to help safeguard your property.'
+    approx_offset: 54980
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0004
+  form: DIY Bundle
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: All-in-One DIY Bundle
+    approx_offset: 53629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0005
+  form: Door/Window Sensors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(2) Slim Door/Window Sensors: Compact and discreet, these sensors guard your entry points
+      and instantly notify you of any unauthorized access.'
+    approx_offset: 54159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0006
+  form: Flex IO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: Flex IO Sensor – $5.00/month
+    approx_offset: 59579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0007
+  form: Flex IO Sensor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: Flex IO Sensor – $5.00/month
+    approx_offset: 59579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0008
+  form: Mini Wireless Door & Window Sensors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(3) Mini Wireless Door & Window Sensors: Compact sensors designed to monitor entry points,
+      alerting you to any unauthorized access.'
+    approx_offset: 55663
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0009
+  form: Motion Sensor (Wireless PIR)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) Motion Sensor (Wireless PIR): Detects movement instantly and triggers real-time alerts
+      to keep you informed wherever you are.'
+    approx_offset: 54024
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0010
+  form: PIR Motion Sensor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) Wireless PIR Motion Sensor: Utilizes passive infrared technology to detect movement, providing
+      real-time alerts and enhancing security.Alarm Grid'
+    approx_offset: 55522
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0011
+  form: PowerG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) PowerG + 319MHz Smart Panel: Our top-of-the line security panel that controls your entire
+      security system with advanced wireless technology.'
+    approx_offset: 56342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0012
+  form: PowerG + 319MHz Smart Panel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) PowerG + 319MHz Smart Panel: Our top-of-the line security panel that controls your entire
+      security system with advanced wireless technology.'
+    approx_offset: 56342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0013
+  form: Slim Door/Window Sensors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(2) Slim Door/Window Sensors: Compact and discreet, these sensors guard your entry points
+      and instantly notify you of any unauthorized access.'
+    approx_offset: 54154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0014
+  form: Smart Panel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) PowerG + 319MHz Smart Panel: Our top-of-the line security panel that controls your entire
+      security system with advanced wireless technology.'
+    approx_offset: 56358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0015
+  form: Smart Security Hub
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) Smart Security Hub (319MHz): The brain of your system—manages all connected devices and
+      keeps everything in sync for seamless control.'
+    approx_offset: 53885
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0016
+  form: Smart Security Hub (319MHz)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) Smart Security Hub (319MHz): The brain of your system—manages all connected devices and
+      keeps everything in sync for seamless control.'
+    approx_offset: 53885
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0017
+  form: V515
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) V515 1080P Indoor Camera: Features night vision, high dynamic range (HDR) imaging, and
+      two-way audio, allowing you to monitor and communicate within your space.'
+    approx_offset: 57327
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0018
+  form: V515 1080P Indoor Camera
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) V515 1080P Indoor Camera: Features night vision, high dynamic range (HDR) imaging, and
+      two-way audio, allowing you to monitor and communicate within your space.'
+    approx_offset: 57327
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0019
+  form: V723X
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) V723X 1080P Outdoor Camera with High Dynamic Range: Built to capture sharp, detailed footage
+      outside, even in challenging lighting conditions.'
+    approx_offset: 57180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0020
+  form: V723X 1080P Outdoor Camera with High Dynamic Range
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) V723X 1080P Outdoor Camera with High Dynamic Range: Built to capture sharp, detailed footage
+      outside, even in challenging lighting conditions.'
+    approx_offset: 57180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0021
+  form: VDB750
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) VDB750 HD Video Doorbell Camera: Lets you see and communicate with visitors in crisp,
+      clear detail right at your front door.'
+    approx_offset: 57051
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0022
+  form: VDB750 HD Video Doorbell Camera
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) VDB750 HD Video Doorbell Camera: Lets you see and communicate with visitors in crisp,
+      clear detail right at your front door.'
+    approx_offset: 57051
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0023
+  form: Wireless Door & Window Sensors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(3) Mini Wireless Door & Window Sensors: Compact sensors designed to monitor entry points,
+      alerting you to any unauthorized access.'
+    approx_offset: 55668
+  - quote: '(10) Wireless Door & Window Sensors: Compact and discreet, these sensors guard your entry
+      points and instantly notify you of any unauthorized access.'
+    approx_offset: 56902
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0024
+  form: Wireless Motion Sensor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) Wireless Motion Sensor (PIR): Detects movement promptly and sends instant alerts to keep
+      you informed at all times.'
+    approx_offset: 54860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-products-0025
+  form: Wireless PIR Motion Sensor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/security-systems/
+  evidence:
+  - quote: '(1) Wireless PIR Motion Sensor: Utilizes passive infrared technology to detect movement, providing
+      real-time alerts and enhancing security.Alarm Grid'
+    approx_offset: 55513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

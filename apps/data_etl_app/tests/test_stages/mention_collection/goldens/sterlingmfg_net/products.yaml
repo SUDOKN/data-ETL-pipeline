@@ -1,0 +1,2245 @@
+subject: sterlingmfg.net
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+golden_set_version: 1
+anchored_on: search/expectations/sterlingmfg_net/products.yaml
+labels:
+- id: sterlingmfg_net-products-0001
+  form: BioPharma equipment components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of Medical Devices, Minimally Invasive
+      Surgical solutions, BioPharma equipment components, Single-Use Medical Disposables and high-precision
+      components for Diversified Industrial customers.
+    approx_offset: 169084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0002
+  form: Bone Plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Bone Plates
+    approx_offset: 17833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0003
+  form: Bone Screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Bone Screws
+    approx_offset: 16880
+  - quote: Bone Screws
+    approx_offset: 17014
+  - quote: When manufacturing cervical pedicle screws, bone screws, micro screws, and other orthopedic
+      screws, our team use a variety of high-quality machines.
+    approx_offset: 17408
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0004
+  form: Bone, Cervical, Micro Screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Bone, Cervical, Micro Screws
+    approx_offset: 17026
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0005
+  form: Bushings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Bushings
+    approx_offset: 119150
+  - quote: Rotating and synchronized guide bushings.
+    approx_offset: 134006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0006
+  form: Cardiac Rhythm Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Cardiac Rhythm Devices
+    approx_offset: 48487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0007
+  form: Catheter Surgical Instruments (Occluder)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Catheter Surgical Instruments (Occluder)
+    approx_offset: 73002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0008
+  form: Cervical Implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Cervical Implants
+    approx_offset: 16754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0009
+  form: Clamping Rings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Clamping Rings
+    approx_offset: 119159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0010
+  form: Computers, Laptops, Tablets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Computers, Laptops, Tablets
+    approx_offset: 119174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0011
+  form: Custom Implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Custom Implants
+    approx_offset: 16902
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0012
+  form: Custom Molded Plastic & Silicone Parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Custom Molded Plastic & Silicone Parts
+    approx_offset: 115875
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0013
+  form: Diagnostic Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: James is responsible for leading the development of EPTAM’s Advanced Surgical business, which
+      includes robotic assisted surgical, minimally invasive surgical, biopharma, and molecular diagnostic
+      devices.
+    approx_offset: 25040
+  - quote: Diagnostic Devices
+    approx_offset: 48510
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical device components, implants,
+      single-use medical disposable, biopharma and diagnostic devices, as well as other high-precision
+      surgical device components.
+    approx_offset: 157144
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0014
+  form: Diagnostic Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Diagnostic Equipment
+    approx_offset: 7141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0015
+  form: Drug Delivery Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Drug Delivery Systems
+    approx_offset: 48529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0016
+  form: End Effectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: End Effectors
+    approx_offset: 72819
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0017
+  form: Exhaust Tubes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Exhaust Tubes
+    approx_offset: 119202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0018
+  form: Expandable Spacers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Expandable Spacers
+    approx_offset: 17514
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0019
+  form: Facet Screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Facet Screws
+    approx_offset: 16788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0020
+  form: Hip Stems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Hip Stems
+    approx_offset: 16892
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0021
+  form: Hip and knee joint replacements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Hip and knee joint replacements
+    approx_offset: 41756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0022
+  form: Humerus Plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Humerus Plates
+    approx_offset: 16918
+  - quote: Humerus Plates
+    approx_offset: 16986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0023
+  form: Implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Implants, Ortho
+    approx_offset: 1224
+  - quote: Medical Implants
+    approx_offset: 1248
+  - quote: Durable and biocompatible components for implants and surgical disposable instruments.
+    approx_offset: 7093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0024
+  form: Insulating Blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Insulating Blocks
+    approx_offset: 119216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0025
+  form: Intramedullary nails
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Intramedullary nails
+    approx_offset: 16859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0026
+  form: Lumbar Implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Lumbar Implants
+    approx_offset: 16772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0027
+  form: MIM components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: MIM components are easily joined or brazed into larger assemblies, providing seamless integration
+      and enhancing the structural integrity and functionality of the final product.
+    approx_offset: 6287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0028
+  form: MIM parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: The science behind density distribution in MIM parts.
+    approx_offset: 9491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0029
+  form: Medical Robot Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Medical Robot Systems
+    approx_offset: 72797
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0030
+  form: Micro delivery and implantable components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Micro delivery and implantable components
+    approx_offset: 31097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0031
+  form: Micro housings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Micro housings
+    approx_offset: 31020
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0032
+  form: Navigated Surgical Instrumentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Navigated Surgical Instrumentation
+    approx_offset: 72833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0033
+  form: Neuromodulation Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Neuromodulation Devices
+    approx_offset: 48551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0034
+  form: Neurovascular devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Neurovascular devices, orthopedic implants, and endoscopic tools.
+    approx_offset: 148934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0035
+  form: Occluder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Catheter Surgical Instruments (Occluder)
+    approx_offset: 73033
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0036
+  form: Ophthalmic Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Ophthalmic Devices
+    approx_offset: 48575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0037
+  form: Ortho-Implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Ortho-Implants
+    approx_offset: 115914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0038
+  form: Ortho-Trauma Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Ortho-Trauma Devices
+    approx_offset: 115820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0039
+  form: Orthopedic Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Orthopedic Devices
+    approx_offset: 7032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0040
+  form: Orthopedic Medical Devices & Products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Orthopedic Medical Devices & Products
+    approx_offset: 16716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0041
+  form: PEEK™ spacers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: PEEK™ spacers
+    approx_offset: 16823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0042
+  form: Pedicle screw systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Pedicle screw systems
+    approx_offset: 16801
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0043
+  form: Radius Plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Radius Plates
+    approx_offset: 16933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0044
+  form: Seal Rings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Seal Rings
+    approx_offset: 119234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0045
+  form: Single-Use Medical Disposables
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive & robotic assisted surgical
+      instruments, interventional and structural heart components, single-use medical disposables, biopharma
+      processing equipment components, and molecular diagnostic testing cartridges, as well as other high-p
+    approx_offset: 163010
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of Medical Devices, Minimally Invasive
+      Surgical solutions, BioPharma equipment components, Single-Use Medical Disposables and high-precision
+      components for Diversified Industrial customers.
+    approx_offset: 169116
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive surgical instruments, interventional
+      and structural heart components, single-use medical disposables, biopharma processing equipment
+      components and molecular diagnostic testing cartridges, as well as other high-precision surgical
+      de
+    approx_offset: 183925
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0046
+  form: Smart Phones
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Smart Phones
+    approx_offset: 119245
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0047
+  form: Spinal, osteosynthesis and soft tissue repair implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Spinal, osteosynthesis and soft tissue repair implants (and their instrumentation)
+    approx_offset: 41788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0048
+  form: Surgical Instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Surgical Instruments
+    approx_offset: 48594
+  - quote: Catheter Surgical Instruments (Occluder)
+    approx_offset: 73011
+  - quote: Perfect for catheters, stents, and surgical instruments.
+    approx_offset: 142845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0049
+  form: Surgical Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Surgical Tools
+    approx_offset: 6944
+  - quote: 'Applications: Ideal for vascular stents, catheter shafts, delivery systems, and other surgical
+      tools requiring intricate, high-tolerance designs.'
+    approx_offset: 143355
+  - quote: Laser cutting, welding, and marking for stents, catheters, implantable devices, and surgical
+      tools.
+    approx_offset: 148918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0050
+  form: Titanium fusion cages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Titanium fusion cages
+    approx_offset: 16837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0051
+  form: Trans catheter applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Trans catheter applications
+    approx_offset: 31069
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0052
+  form: Trauma Fixation Plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Trauma Fixation Plates
+    approx_offset: 16963
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0053
+  form: Valve Adapters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Valve Adapters
+    approx_offset: 119258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0054
+  form: Valve Housings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Valve Housings
+    approx_offset: 119273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0055
+  form: Various micro surgical components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Various micro surgical components
+    approx_offset: 31035
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0056
+  form: Vascular Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Vascular Devices
+    approx_offset: 48615
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0057
+  form: Wafer Carriers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Wafer Carriers
+    approx_offset: 119288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0058
+  form: Wafer Combs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Wafer Combs
+    approx_offset: 119303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0059
+  form: Water Manifolds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Water Manifolds
+    approx_offset: 119315
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0060
+  form: Wear Guides
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Wear Guides
+    approx_offset: 119331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0061
+  form: Windows
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Windows
+    approx_offset: 119370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0062
+  form: Wrist Plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Wrist Plates
+    approx_offset: 17001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0063
+  form: biopharma processing equipment components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive & robotic assisted surgical
+      instruments, interventional and structural heart components, single-use medical disposables, biopharma
+      processing equipment components, and molecular diagnostic testing cartridges, as well as other high-p
+    approx_offset: 163042
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive surgical instruments, interventional
+      and structural heart components, single-use medical disposables, biopharma processing equipment
+      components and molecular diagnostic testing cartridges, as well as other high-precision surgical
+      de
+    approx_offset: 183957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0064
+  form: catheter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Trans catheter applications
+    approx_offset: 31075
+  - quote: The experts at EPTAM have pushed innovation and combined our skills to produce leading single-use
+      advanced catheter systems.
+    approx_offset: 31369
+  - quote: Catheter Surgical Instruments (Occluder)
+    approx_offset: 73002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0065
+  form: catheter shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Applications: Ideal for vascular stents, catheter shafts, delivery systems, and other surgical
+      tools requiring intricate, high-tolerance designs.'
+    approx_offset: 143310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0066
+  form: catheters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Perfect for catheters, stents, and surgical instruments.
+    approx_offset: 142822
+  - quote: Laser cutting, welding, and marking for stents, catheters, implantable devices, and surgical
+      tools.
+    approx_offset: 148882
+  - quote: This is critical for manufacturing high-performance medical components like vascular stents,
+      catheters, and surgical instruments.
+    approx_offset: 150176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0067
+  form: cervical pedicle screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: When manufacturing cervical pedicle screws, bone screws, micro screws, and other orthopedic
+      screws, our team use a variety of high-quality machines.
+    approx_offset: 17383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0068
+  form: clinical diagnostic tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Complex parts for cutting-edge molecular and clinical diagnostic tools.
+    approx_offset: 7208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0069
+  form: complex system assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/frazier-healthcare-partners-announces-acquisition-of-eptam-precision-solutions/
+  evidence:
+  - quote: Founded in 1981, EPTAM is a diversified outsourced manufacturer of medical devices and other
+      high-precision components, medical implants, and complex system assemblies.
+    approx_offset: 197538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0070
+  form: consumables
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-molecular-diagnostics/
+  evidence:
+  - quote: Products ranging from permanent kit parts to consumables have grown exponentially in the last
+      few years.
+    approx_offset: 121480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0071
+  form: cutting devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Whether it’s providing tight-tolerance MIS devices and parts – including laparoscopic instrumentation
+      systems, cutting devices, and endoscopic / arthroscopic assemblies.
+    approx_offset: 72410
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0072
+  form: delivery systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Drug Delivery Systems
+    approx_offset: 48534
+  - quote: 'Applications: Ideal for vascular stents, catheter shafts, delivery systems, and other surgical
+      tools requiring intricate, high-tolerance designs.'
+    approx_offset: 143327
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0073
+  form: endoscopic / arthroscopic assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Whether it’s providing tight-tolerance MIS devices and parts – including laparoscopic instrumentation
+      systems, cutting devices, and endoscopic / arthroscopic assemblies.
+    approx_offset: 72431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0074
+  form: endoscopic tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Neurovascular devices, orthopedic implants, and endoscopic tools.
+    approx_offset: 148982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0075
+  form: external fixation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/heritage-portfolio-company-eptam-announces-add-on-acquisition-of-relius-medical/
+  evidence:
+  - quote: Operating out of a state-of-the-art, 70,000-square-foot, FDA-registered, ISO 13485:2016 facility
+      in Colorado Springs, EPTAM Precision Metals has specialized in medical implants, external fixation,
+      and instrumentation since its founding in 1982.
+    approx_offset: 131430
+  - quote: Relius is a leading provider of precision components to the medical device market with a deep
+      expertise in medical implants and external fixation clamps.
+    approx_offset: 204961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0076
+  form: external fixation clamps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/heritage-portfolio-company-eptam-announces-add-on-acquisition-of-relius-medical/
+  evidence:
+  - quote: Relius is a leading provider of precision components to the medical device market with a deep
+      expertise in medical implants and external fixation clamps.
+    approx_offset: 204961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0077
+  form: finished device assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+  evidence:
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical device components, single-use
+      disposables and finished device assemblies.
+    approx_offset: 162825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0078
+  form: finished devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Ingram is a development and short-run machining operation, specializing in components and finished
+      devices for medical, robotics and other high-tech industries.
+    approx_offset: 168411
+  - quote: Northfield, NH – EPTAM Precision Solutions (“EPTAM” or the “Company”), a leading outsourced
+      manufacturer of high-precision medical device components and finished devices, announces the appointment
+      of Steve Cardin as its new Chief Operations Officer (COO), effective March 31, 2025.
+    approx_offset: 173922
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical device components and finished
+      devices.
+    approx_offset: 183769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0079
+  form: gears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-biopharma/
+  evidence:
+  - quote: 'Precision components: EPTAM provides precision components that are essential in the Biopharmaceutical
+      industry, such as rollers, gears, and other parts that are needed for the production and packaging
+      of Biopharmaceutical products.'
+    approx_offset: 38684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0080
+  form: implantable devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/industries/medical-ortho-trauma/
+    - https://eptam.com/medical-device-regulatory-compliance-a-practical-guide-for-oems/
+  evidence:
+  - quote: The extreme attention to detail, medical device knowledge, and vast experience in CNC and micro-machining
+      makes us a world class manufacturer of implantable devices.
+    approx_offset: 17342
+  - quote: 'Hermetic Seals: Ideal for implantable devices, our welds ensure consistent, airtight seals
+      that enhance device longevity.'
+    approx_offset: 144336
+  - quote: 'Passivation-Compatible Marks: Highly resistant to fading, even after repeated sterilization,
+      ensuring long-lasting traceability for implantable devices.'
+    approx_offset: 145019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0081
+  form: implantable pacemaker
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Challenge: Develop a reliable hermetic seal for an implantable pacemaker.'
+    approx_offset: 151660
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0082
+  form: interventional and structural heart components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive & robotic assisted surgical
+      instruments, interventional and structural heart components, single-use medical disposables, biopharma
+      processing equipment components, and molecular diagnostic testing cartridges, as well as other high-p
+    approx_offset: 162962
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive surgical instruments, interventional
+      and structural heart components, single-use medical disposables, biopharma processing equipment
+      components and molecular diagnostic testing cartridges, as well as other high-precision surgical
+      de
+    approx_offset: 183877
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0083
+  form: laparoscopic instrumentation systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Whether it’s providing tight-tolerance MIS devices and parts – including laparoscopic instrumentation
+      systems, cutting devices, and endoscopic / arthroscopic assemblies.
+    approx_offset: 72372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0084
+  form: medical device components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+  evidence:
+  - quote: EPTAM Precision Micro-Machining is a world-class manufacturer specializing in precision manufacturing
+      of custom medical device components for original device manufacturers.
+    approx_offset: 66290
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical device components, implants,
+      single-use medical disposable, biopharma and diagnostic devices, as well as other high-precision
+      surgical device components.
+    approx_offset: 157062
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical device components, single-use
+      disposables and finished device assemblies.
+    approx_offset: 162771
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0085
+  form: medical devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 32
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/category/technical/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: Orthopedic Medical Devices & Products
+    approx_offset: 16727
+  - quote: The use of technologically advanced equipment ensures our manufacturing facilities create the
+      highest quality medical devices on the market.
+    approx_offset: 17166
+  - quote: Mark’s background in building teams that rapidly scale manufacturing services businesses in
+      both public and private sectors supports EPTAM’s mission to become the solutions-oriented market
+      leader in high-precision metal and plastic components for the medical devices, aerospace & defense
+      and diversif
+    approx_offset: 22638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0086
+  form: medical implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/frazier-healthcare-partners-announces-acquisition-of-eptam-precision-solutions/
+    - https://eptam.com/heritage-portfolio-company-eptam-announces-add-on-acquisition-of-relius-medical/
+  evidence:
+  - quote: Medical Implants
+    approx_offset: 1240
+  - quote: Medical Implants
+    approx_offset: 98498
+  - quote: Operating out of a state-of-the-art, 70,000-square-foot, FDA-registered, ISO 13485:2016 facility
+      in Colorado Springs, EPTAM Precision Metals has specialized in medical implants, external fixation,
+      and instrumentation since its founding in 1982.
+    approx_offset: 131412
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0087
+  form: micro screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Bone, Cervical, Micro Screws
+    approx_offset: 17042
+  - quote: When manufacturing cervical pedicle screws, bone screws, micro screws, and other orthopedic
+      screws, our team use a variety of high-quality machines.
+    approx_offset: 17421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0088
+  form: micro surgical components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Various micro surgical components
+    approx_offset: 31043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0089
+  form: micro-cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: For the cardiovascular and endovascular markets, Mendell manufactures products such as micro-cutters,
+      micro-housings, and other micro-surgical components.
+    approx_offset: 192485
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0090
+  form: micro-housings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: For the cardiovascular and endovascular markets, Mendell manufactures products such as micro-cutters,
+      micro-housings, and other micro-surgical components.
+    approx_offset: 192500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0091
+  form: micro-surgical components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: For the cardiovascular and endovascular markets, Mendell manufactures products such as micro-cutters,
+      micro-housings, and other micro-surgical components.
+    approx_offset: 192526
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0092
+  form: microfluidic components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Precision laser cutting and micromachining for microfluidic components and semiconductor tools.
+    approx_offset: 149215
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0093
+  form: minimally invasive surgical instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive surgical instruments, interventional
+      and structural heart components, single-use medical disposables, biopharma processing equipment
+      components and molecular diagnostic testing cartridges, as well as other high-precision surgical
+      de
+    approx_offset: 183836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0094
+  form: molecular diagnostic testing cartridges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive & robotic assisted surgical
+      instruments, interventional and structural heart components, single-use medical disposables, biopharma
+      processing equipment components, and molecular diagnostic testing cartridges, as well as other high-p
+    approx_offset: 163089
+  - quote: EPTAM’s services include manufacturing implants, minimally invasive surgical instruments, interventional
+      and structural heart components, single-use medical disposables, biopharma processing equipment
+      components and molecular diagnostic testing cartridges, as well as other high-precision surgical
+      de
+    approx_offset: 184003
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0095
+  form: multi-use surgical instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: For the medical device market, Ingram manufactures products such as highly complex multi-use
+      surgical instruments.
+    approx_offset: 171414
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0096
+  form: neurostimulators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Micro-Welding: Welds with spot sizes under 1mm, ideal for pacemakers, neurostimulators, and
+      other delicate medical components.'
+    approx_offset: 144121
+  - quote: Our laser welding systems ensure airtight, hermetic seals for implantable medical devices such
+      as pacemakers and neurostimulators.
+    approx_offset: 150341
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0097
+  form: neurovascular stent
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Neurovascular Stent Manufacturing
+    approx_offset: 151279
+  - quote: 'Challenge: Deliver a neurovascular stent with tight tolerances and rapid turnaround.'
+    approx_offset: 151334
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0098
+  form: orthopedic implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Neurovascular devices, orthopedic implants, and endoscopic tools.
+    approx_offset: 148957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0099
+  form: pacemakers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Micro-Welding: Welds with spot sizes under 1mm, ideal for pacemakers, neurostimulators, and
+      other delicate medical components.'
+    approx_offset: 144109
+  - quote: Our laser welding systems ensure airtight, hermetic seals for implantable medical devices such
+      as pacemakers and neurostimulators.
+    approx_offset: 150326
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0100
+  form: pedicle screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: When manufacturing cervical pedicle screws, bone screws, micro screws, and other orthopedic
+      screws, our team use a variety of high-quality machines.
+    approx_offset: 17392
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0101
+  form: permanent kit parts to consumables
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-molecular-diagnostics/
+  evidence:
+  - quote: Products ranging from permanent kit parts to consumables have grown exponentially in the last
+      few years.
+    approx_offset: 121457
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0102
+  form: plates, screws, cages, stems, and implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: Mendell supplies orthopedic OEMs with products such as plates, screws, cages, stems, and implants.
+    approx_offset: 192354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0103
+  form: polymer implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: 'To support our unique manufacturing capabilities, EPTAM is DS/EN ISO:13485:2016 Certified,
+      FDA #3005144609 Registered, has completed a customer 21 CFR audit, and has been customer surveyed
+      and certified to produce polymer implants.'
+    approx_offset: 44091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0104
+  form: robotic surgical drape systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+  evidence:
+  - quote: He previously served as VP & Chief Operating Officer at UFP Technologies, where he oversaw
+      the design and manufacture of medical devices, sterile packaging, and robotic surgical drape systems.
+    approx_offset: 174583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0105
+  form: robotic surgical instrumentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: Not only can we make the robotic systems components, we are vertically integrated to manufacture
+      robotic surgical instrumentation, as well.
+    approx_offset: 63116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0106
+  form: robotic systems components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: Not only can we make the robotic systems components, we are vertically integrated to manufacture
+      robotic surgical instrumentation, as well.
+    approx_offset: 63044
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0107
+  form: rollers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-biopharma/
+  evidence:
+  - quote: 'Precision components: EPTAM provides precision components that are essential in the Biopharmaceutical
+      industry, such as rollers, gears, and other parts that are needed for the production and packaging
+      of Biopharmaceutical products.'
+    approx_offset: 38675
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0108
+  form: single-use advanced catheter systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: The experts at EPTAM have pushed innovation and combined our skills to produce leading single-use
+      advanced catheter systems.
+    approx_offset: 31349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0109
+  form: single-use disposables
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+  evidence:
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical device components, single-use
+      disposables and finished device assemblies.
+    approx_offset: 162798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0110
+  form: single-use medical disposable
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical device components, implants,
+      single-use medical disposable, biopharma and diagnostic devices, as well as other high-precision
+      surgical device components.
+    approx_offset: 157099
+  - quote: Founded in 1981, EPTAM is an outsourced manufacturer of medical devices, implants, single-use
+      medical disposable devices and other high-precision components.
+    approx_offset: 189869
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0111
+  form: stent
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Neurovascular Stent Manufacturing
+    approx_offset: 151293
+  - quote: 'Challenge: Deliver a neurovascular stent with tight tolerances and rapid turnaround.'
+    approx_offset: 151348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0112
+  form: stents
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Perfect for catheters, stents, and surgical instruments.
+    approx_offset: 142833
+  - quote: 'Applications: Ideal for vascular stents, catheter shafts, delivery systems, and other surgical
+      tools requiring intricate, high-tolerance designs.'
+    approx_offset: 143302
+  - quote: Laser cutting, welding, and marking for stents, catheters, implantable devices, and surgical
+      tools.
+    approx_offset: 148874
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0113
+  form: sterile packaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+  evidence:
+  - quote: He previously served as VP & Chief Operating Officer at UFP Technologies, where he oversaw
+      the design and manufacture of medical devices, sterile packaging, and robotic surgical drape systems.
+    approx_offset: 174560
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0114
+  form: subassemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: EPTAM Precision Solutions proudly supports this advanced, evolving industry with the skilled
+      precision machining of components and subassemblies OEMs of robotic-assisted surgical devices and
+      surgical robotic systems count on.
+    approx_offset: 64163
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0115
+  form: surgical disposable instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Durable and biocompatible components for implants and surgical disposable instruments.
+    approx_offset: 7106
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0116
+  form: surgical instrumentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: Not only can we make the robotic systems components, we are vertically integrated to manufacture
+      robotic surgical instrumentation, as well.
+    approx_offset: 63124
+  - quote: Surgical instrumentation and implants continue to get smaller and more precise every day.
+    approx_offset: 72123
+  - quote: Navigated Surgical Instrumentation
+    approx_offset: 72843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0117
+  form: surgical robotic systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: EPTAM Precision Solutions proudly supports this advanced, evolving industry with the skilled
+      precision machining of components and subassemblies OEMs of robotic-assisted surgical devices and
+      surgical robotic systems count on.
+    approx_offset: 64223
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-products-0118
+  form: vascular stents
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Applications: Ideal for vascular stents, catheter shafts, delivery systems, and other surgical
+      tools requiring intricate, high-tolerance designs.'
+    approx_offset: 143293
+  - quote: This is critical for manufacturing high-performance medical components like vascular stents,
+      catheters, and surgical instruments.
+    approx_offset: 150159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

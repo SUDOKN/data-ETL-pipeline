@@ -1,0 +1,132 @@
+subject: agstech.net
+slug: agstech_net
+subject_name: AGS-TECH Inc.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/agstech.net.txt
+  sha256: 1bc0ba503cc3d838798442a2b98cd509bb20604d97c42c21dc206b850317fc2f
+role: attribution_negative
+role_source: 'kept verbatim from search/expectations/agstech_net/subject.yaml. NOTE a schema drift: this value is NOT in the five-value enum in mention_collection/GOLDEN_LABELS_SCHEMA.md, because search/EXPECTATIONS_SCHEMA.md added attribution_negative (plus genre_probe and empty_field_probe) on 2026-08-27 and the mention schema''s comment has not caught up. It is kept rather than downgraded because it names exactly this stage''s whose_words question. The nearest in-enum values, if one is ever required, are full_unit (the search schema says an attribution_negative subject is seeded exactly like a full_unit one) or scale_stress; the expansion doc explicitly retired the large-scale rationale for this subject, so full_unit is the better fallback. This subject would also qualify as genre_probe for its textbook-chapter prose.'
+business_type: sourcing and integration intermediary with partial equity in offshore plants, plus a distributor arm
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/agstech_net/subject.yaml
+- apps/data_etl_app/tests/test_stages/GOLDEN_CORPUS_EXPANSION_2026-08-27.md (entry 10)
+third_party_roster:
+- AGS-TECH's own supplier plants (unnamed)
+- SADT-SINOAGE
+- Hartip-SADT
+- JANZ TEC
+- ATOP
+- Fluke
+- Mitech
+- Wiggenhauser
+- Hewlet-Packard
+- Oxford Instruments
+- Olympus
+- SKF
+- BELKIN
+- HEWLETT PACKARD
+- KENDALL HOWARD
+- GREAT LAKES
+- APC
+- RITTAL
+- LIEBERT
+- RALOY
+- SHARK RACK
+- UPSITE TECHNOLOGIES
+- agsoutsourcing.com (sister site)
+shape:
+  pages: 165
+  total_lines: 30040
+  nonblank_lines: 14797
+  distinct_nonblank_lines: 4734
+  share_of_nonblank_lines_occurring_2x_or_more: 70.6%
+  share_of_nonblank_bytes_occurring_2x_or_more: 34.3%
+  share_of_nonblank_bytes_occurring_5x_or_more: 30.7%
+  median_nonblank_line_chars: 38
+  p99_nonblank_line_chars: 1460
+  longest_line_chars: 17397
+  lines_over_1000_chars: 301
+  share_of_nonblank_chars_on_lines_over_1000_chars: 31.0%
+  visually_blank_but_nonempty_lines: 3728
+  nbsp_count: 5124
+  zwsp_count: 2374
+  note: 'the 70.6%-of-lines vs 34.3%-of-bytes split is the whole shape of this subject: the boilerplate is many short lines, the content is few enormous ones'
+text_hazards:
+- hazard: wall_of_text_lines
+  note: the defining hazard for THIS stage. 301 lines exceed 1,000 characters and carry 31.0% of all non-blank characters; the longest is 17,397 characters (line 7903, an entire first-person essay on one line). Median non-blank line is 38 chars but p99 is 1,460. Clipping 'to the sentence or line holding it' means the LINE fallback here can return a 17 KB snippet, so on this subject sentence splitting is not an optimisation, it is the whole job. This quote is the first sentence of that 17,397-character line.
+  quote: Hello, Here, with a few paragraphs, I would like to give you some advice on how to identify, verify, vet and choose new offshore suppliers and manufacturers based on my many years of experience working with China and Low Cost Country manufacturers.
+- hazard: sentence_splitter_poison
+  note: 155 occurrences of U+2026 HORIZONTAL ELLIPSIS used as sentence punctuation, usually as the sequence ellipsis-then-'.etc', inside the same mega-lines that most need splitting. Together with 'AGS-TECH Inc.' and abbreviations like 'SAW', 'psi', 'No.' it is the reason a naive splitter mis-clips here.
+  quote: granular flux materials like lime, silica, calcium floride, manganese oxide….etc
+- hazard: invisible_nonempty_lines
+  note: '3,728 of 30,040 lines (12.4%) render blank but are NOT empty: they hold only U+200B ZERO WIDTH SPACE and/or U+00A0 NO-BREAK SPACE. There are 2,374 ZWSP and 5,124 NBSP in the file. Any code treating ''line.strip()'' as the emptiness test will see them as content and clip visually-empty snippets. The quote here is the ZWSP-terminated nav item at line 49 - the last character is U+200B and it is invisible in every viewer.'
+  quote: Engineering Integration​
+- hazard: nbsp_inside_a_phrase
+  note: the space between 'Manufacturing' and 'of' is U+00A0, not U+0020, on all 167 copies of this nav/services line. A form written with an ordinary space cannot match it, and this is the subject's most repeated single service designation. Same class at line 53, where 'Global Consolidation' is followed by U+200B before the comma.
+  quote: Custom Manufacturing of Parts, Components, Assemblies, Finished Products, Machines and Industrial Equipment
+- hazard: word_fusion
+  note: 'table-cell fusion runs a designation into the following word with no space, so the designation cannot match on a word boundary. Three confirmed instances: this one (line 16072), ''Filtration Systemremoves water vapor'' (line 15805), and ''TWO andFOUR POST RACKS'' inside an all-caps heading (line 29956). All three sit inside 1,000+ character lines, so the snippet is enormous AND the form is unmatchable.'
+  quote: Male Bottom Connection Valvesare designed
+- hazard: repeated_cta_line
+  note: 1,270 occurrences - roughly 7.7 per page, and six consecutive copies at the top of every page before any content. It is the single most repeated line in the file and it contains the in-field-looking words 'Product Finder-Locator Service'.
+  quote: CLICK Product Finder-Locator Service
+- hazard: nav_block_repeated_twice_per_page
+  note: the ten-item SERVICES list appears once in the page header and again in the page body on every page, so each of those service designations has ~332 occurrences (167 + 165) before any real claim is counted. About 30% of non-blank bytes are this boilerplate.
+  quote: Global Custom Manufacturer, Integrator, Consolidator, Outsourcing Partner for a Wide Variety of Products & Services.
+- hazard: detached_attribution
+  note: the highest-value snippet case in the corpus. On the Quality page (line 5605) this sentence says the certificates belong to the SUPPLIER PLANTS - and the certificates themselves follow as bare list items ('- ISO 9001', '- TS 16949', '- QS 9000', '- AS 9100'), each on its own line, separated by BLANK LINES, six or more lines below. A snippet clipped to the line holding 'ISO 9001' is the four characters '- ISO 9001' and cannot carry the attribution at all; the location label is the only place the ownership can survive.
+  quote: 'All plants manufacturing parts and products for AGS-TECH Inc are certified to one or several of the following QUALITY MANAGEMENT SYSTEM (QMS) standards:'
+- hazard: self_contradiction_across_pages
+  note: the Fasteners page claims the same standards in the first person, flatly contradicting the Quality page above. Both are in the site's own words, so whose_words is site on both and only belongs_to separates them - which is exactly what makes this subject a graded attribution case rather than a trivial one. approx line 23342
+  quote: We manufacture FASTENERS under TS16949, ISO9001 quality management system according to international standards such as ASTM, SAE, ISO, DIN, MIL.
+- hazard: foreign_domain_page
+  note: one of the 165 scraped pages is on a DIFFERENT domain (agsoutsourcing.com, the sister procurement site) and is the only page in the file with no nav/footer boilerplate at all - 28 non-blank lines, less than the ~40-line boilerplate header every other page carries. Anything anchored to the page-boundary marker will mis-attribute it. approx line 6633
+  quote: https://www.agsoutsourcing.com/online-supplier-application-platfor
+- hazard: content_free_stubs
+  note: several pages are pure boilerplate plus two or three lines. /optical-displays-screen-monitors and /ags-tech-inc-customer-references each hold 51 non-blank lines of which roughly 45 are the standard header and footer. The testimonials this page advertises are behind an external link and are NOT in the text - so despite the page title, the file contains no customer voice anywhere.
+  quote: PLEASE CLICK HERE TO READ TESTIMONIALS AND FEEDBACK FROM SOME OF OUR CUSTOMERS
+- hazard: non_english_letters
+  note: 'Turkish letters left in English words by a non-native writer: U+0131 LATIN SMALL LETTER DOTLESS I in ''artıficial'' (4 occurrences, this quote) and U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE in ''FULL SİZE'' (1, line 29956). Also present: “” curly quotes, U+2011 NON-BREAKING HYPHEN (1), U+00AD SOFT HYPHEN (3), U+2029 PARAGRAPH SEPARATOR (4) and U+FF06 FULLWIDTH AMPERSAND (1). 31 distinct non-ASCII codepoints in all. Copy quotes exactly; never correct them.'
+  quote: this powerful artıficial intelligence based manufacturing anal
+- hazard: allcaps_heading_only
+  note: product sections are ALL CAPS headings alone on a line, immediately followed by a 1,000+ character prose line. Some headings are a third party's brand ('SKF BEARINGS'), so a clip on the heading names a vendor with no sentence around it. 137 'PREVIOUS PAGE' navigation lines are the same shape.
+  quote: SKF BEARINGS
+- hazard: link_dump_line
+  note: the footer of all 165 pages ends in a single line of 13 social-media URLs separated by dash runs, plus a 'Chat with AI' widget label (163 occurrences). Nothing in it is in-field, but it is long enough to dominate a line-level clip if any form matches inside a URL.
+  quote: 'You can also visit us on social media - - - - - - FACEBOOK: https://www.facebook.com/agstechinc/'
+- hazard: no_country_dropdown
+  note: 'checked and absent: zero ''Afghanistan''/''Zimbabwe'' hits, so the ~240-country ISO list hazard that decimal.net, lucasmilhaupt.com and sterlingmfg.net carry does NOT apply here. The site''s only form-widget dump is a one-item language selector.'
+  quote: Choose your Language
+third_party_voice:
+- speaker: a manufacturing-engineering textbook, with 'we' injected - AGS-TECH's Knowledge Center
+  whose_words: site
+  note: the TEXTBOOK-AS-CAPABILITY trap named in the expansion doc, and the one that breaks the whose_words element rather than getting it wrong. Roughly 45 pages are fluent, technically correct encyclopedia chapters on manufacturing processes with first-person plural dropped in, so every generic process description reads as a capability claim. whose_words really is site - AGS-TECH wrote it - which means the whose_words element CANNOT catch this; kind_of_text is the element that has to ('an encyclopedia explanation of a process', not 'a capability statement'). Worth a label precisely because the obvious element is the wrong one. approx line 9862
+  quote: We use currents between 300 and 2000 Amperes.
+- speaker: AGS-TECH's unnamed supplier plants
+  whose_words: site
+  note: the certificates belong to plants that are never named. belongs_to is 'the plants manufacturing for AGS-TECH'; whose_words is site. This is the corpus's cleanest case of an in-field entity whose owner is stated in plain English and is not the subject - see the detached_attribution hazard for why the snippet cannot carry it.
+  quote: '- ISO 9001'
+- speaker: instrument makers whose catalogs AGS-TECH resells (SADT, JANZ TEC, ATOP, Fluke, Olympus)
+  whose_words: vendor
+  note: roughly 90 catalog pages describe other manufacturers' instruments in AGS-TECH's 'our' voice - 'Our vibration meters and non-contact tachometers from SADT are:' - so the possessive and the maker sit in the same clause. SADT occurs 66 times, ATOP 25, JANZ TEC 17. This is the axis on which agstech partly duplicates acimachine. approx line 475
+  quote: 'We sell several types of industrial equipment from top brands such as Hartip-SADT, Wiggenhauser, Fluke, Mitech, Hewlet-Packard, Oxford Instruments, Olympus...etc.:'
+- speaker: rack and enclosure brands held as stock
+  whose_words: vendor
+  note: a ten-brand stock list at the end of a 1,000+ character all-caps product line, so all ten brands clip to the same enormous snippet along with the fused heading 'TWO andFOUR POST RACKS'. approx line 29956
+  quote: Some of the brand names we have in stock are BELKIN, HEWLETT PACKARD, KENDALL HOWARD, GREAT LAKES, APC, RITTAL, LIEBERT, RALOY, SHARK RACK, UPSITE TECHNOLOGIES
+- speaker: the founder writing in the singular first person
+  whose_words: site
+  note: the 17,397-character line is 'I', not 'we' - a personal advisory essay about vetting offshore suppliers, sitting on the site search page. Different register and different speaker-number from the corporate 'we' everywhere else, and it is the single largest clipping target in the corpus.
+  quote: My advise here is m ostly for those who are trying to build LONG TERM relationships with CUSTOM MANUFACTURERS.
+- speaker: (absence) no customer testimonials in the text
+  whose_words: customer
+  note: 'the customer-references page names testimonials but links out to them; no customer voice exists anywhere in the 1.8 MB. So all three of this batch''s non-trivial subjects (agstech, acimachine, ableengineering) are negative controls for whose_words: customer.'
+  quote: AGS-TECH, Inc. has been serving domestic and international customers for almost two decades.
+coverage: full_text
+coverage_note: 'full_text per the user''s choice, but this pass SAMPLED the 1,805,368-byte file. What was actually done: (1) a whole-file streaming pass computing line/byte repetition, the line-length distribution, the per-page non-blank line counts for all 165 pages and a complete non-ASCII codepoint census, so every number in `shape` and every count quoted below is measured over 100% of the file; (2) full reads of the homepage, the Quality/certification block, the customer-references page, the agsoutsourcing.com page and the longest-line essay page; (3) targeted reads of the welding, filtration, valves, fasteners, SADT-instrument and rack pages; (4) whole-file greps for the fusions, the Turkish letters, country lists, testimonials, ''Coming Soon'', lorem ipsum and the all-caps heading inventory. Boilerplate is 34.3% of non-blank BYTES (70.6% of non-blank LINES) - lower in bytes than acimachine, so a larger share of this file is unread unique prose. Judgment labels should stay on the pages listed here, or on the eight page-aligned slices search/expectations/agstech_net/subject.yaml records, until a second pass widens them.'
+notes: 'Kept at role attribution_negative - see role_source for the schema drift. For THIS stage the subject is really two instruments at once. First, it is the corpus''s only test of snippet extent under adversarial line structure: 301 lines over 1,000 characters carrying 31% of the content, one of them 17 KB, against a median line of 38 characters. Second, it is the cleanest detached- attribution case on record - the sentence that assigns the certificates to supplier plants is six blank-line-separated lines away from the certificates themselves, so no snippet can carry it and the location label is the only surviving channel. The open question the search harness recorded (whether a process at a PARTIALLY-OWNED partner plant is the subject''s own capability) does not block this stage: it changes the actor downstream, not where a form occurs or what passage holds it.'
+provenance:
+- action: added
+  by: seed-agent-batch1
+  date: '2026-08-27'
+  source: harvested:search + harvested:expansion-doc + corpus-seed

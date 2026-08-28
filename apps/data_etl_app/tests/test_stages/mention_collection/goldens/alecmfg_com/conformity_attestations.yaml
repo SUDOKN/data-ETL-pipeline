@@ -1,0 +1,616 @@
+subject: alecmfg.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+golden_set_version: 1
+anchored_on: search/expectations/alecmfg_com/conformity_attestations.yaml
+labels:
+- id: alecmfg_com-conformity_attestations-0001
+  form: ASME
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Welded frames were fabricated by ASME-certified welders using proprietary jigs to control deformation.
+    approx_offset: 108329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0002
+  form: ASME-certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Welded frames were fabricated by ASME-certified welders using proprietary jigs to control deformation.
+    approx_offset: 108329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0003
+  form: ASTM A36
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106681
+  - quote: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill.
+    approx_offset: 108259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0004
+  form: ASTM B221
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: 'Material: 6061-T651 aluminum, with material certs per ASTM B221'
+    approx_offset: 72752
+  - quote: 6061-T6 aluminum (ASTM B221, extrusion stock)
+    approx_offset: 76944
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0005
+  form: CE and ISO9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+    - https://alecmfg.com/precision-manufacturing-case-study-high-precision-stainless-steel-valve-body-for-semiconductor-equipment/
+  evidence:
+  - quote: We’ve also helped the client set up batch traceability templates and inspection routines compatible
+      with their CE and ISO9001 requirements.
+    approx_offset: 62411
+  - quote: We’ve also helped the client set up batch traceability templates and inspection routines compatible
+      with their CE and ISO9001 requirements.
+    approx_offset: 103619
+  - quote: We’ve also helped the client set up batch traceability templates and inspection routines compatible
+      with their CE and ISO9001 requirements.
+    approx_offset: 109377
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0006
+  form: CE technical documentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: “Dimensional consistency across all 10 units significantly simplified our internal verification
+      and allowed us to proceed with CE technical documentation ahead of schedule.”
+    approx_offset: 52403
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0007
+  form: CE-MDR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: Suitable for supplier capability reviews, OEM RFQs, and CE-MDR documentation support.
+    approx_offset: 53523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0008
+  form: EN 10204
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: EN AW 7075-T6 (EN 10204 3.1)
+    approx_offset: 50775
+  - quote: Full material certification per EN 10204 3.1 was required.
+    approx_offset: 68779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0009
+  form: EN 10204 3.1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: EN AW 7075-T6 (EN 10204 3.1)
+    approx_offset: 50775
+  - quote: Full material certification per EN 10204 3.1 was required.
+    approx_offset: 68779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0010
+  form: IATF
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+    - https://alecmfg.com/news-articles/
+  evidence:
+  - quote: Alec Model Officially Achieves IATF 16949:2016 Certification Strengthening Our Commitment to
+      Automotive Quality Standards
+    approx_offset: 41777
+  - quote: Alec Model Officially Achieves IATF 16949:2016 CertificationStrengthening Our Commitment to
+      Automotive Quality Standards We’re proud to announce that Alec Manufacturing has officially obtained
+      the IATF 16949:2016 certification, the most rigorous
+    approx_offset: 41927
+  - quote: Alec Model Officially Achieves IATF 16949:2016 CertificationStrengthening Our Commitment to
+      Automotive Quality Standards We’re proud to announce that Alec Manufacturing has officially obtained
+      the IATF 16949:2016 certification, the most rigorous
+    approx_offset: 42093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0011
+  form: IATF 16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+    - https://alecmfg.com/news-articles/
+  evidence:
+  - quote: Alec Model Officially Achieves IATF 16949:2016 Certification Strengthening Our Commitment to
+      Automotive Quality Standards
+    approx_offset: 41777
+  - quote: Alec Model Officially Achieves IATF 16949:2016 CertificationStrengthening Our Commitment to
+      Automotive Quality Standards We’re proud to announce that Alec Manufacturing has officially obtained
+      the IATF 16949:2016 certification, the most rigorous
+    approx_offset: 41927
+  - quote: Alec Model Officially Achieves IATF 16949:2016 CertificationStrengthening Our Commitment to
+      Automotive Quality Standards We’re proud to announce that Alec Manufacturing has officially obtained
+      the IATF 16949:2016 certification, the most rigorous
+    approx_offset: 42093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0012
+  form: IATF 16949:2016
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+    - https://alecmfg.com/news-articles/
+  evidence:
+  - quote: Alec Model Officially Achieves IATF 16949:2016 Certification Strengthening Our Commitment to
+      Automotive Quality Standards
+    approx_offset: 41777
+  - quote: Alec Model Officially Achieves IATF 16949:2016 CertificationStrengthening Our Commitment to
+      Automotive Quality Standards We’re proud to announce that Alec Manufacturing has officially obtained
+      the IATF 16949:2016 certification, the most rigorous
+    approx_offset: 41927
+  - quote: Alec Model Officially Achieves IATF 16949:2016 CertificationStrengthening Our Commitment to
+      Automotive Quality Standards We’re proud to announce that Alec Manufacturing has officially obtained
+      the IATF 16949:2016 certification, the most rigorous
+    approx_offset: 42093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0013
+  form: ISO 10993
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: ISO 10993-5 + RoHS / REACH
+    approx_offset: 50848
+  - quote: '– Medical-grade finishing: RoHS, REACH, and ISO 10993-5 compliant'
+    approx_offset: 53022
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0014
+  form: ISO 10993-5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: ISO 10993-5 + RoHS / REACH
+    approx_offset: 50848
+  - quote: '– Medical-grade finishing: RoHS, REACH, and ISO 10993-5 compliant'
+    approx_offset: 53022
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0015
+  form: ISO 13485
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/alec-model-expands-production-capacity-with-new-cnc-factory/
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+    - https://alecmfg.com/alec-obtains-duns-number/
+    - https://alecmfg.com/author/alectina/
+  evidence:
+  - quote: ALEC Model Has Obtained ISO 13485 And ISO 14001 Certifications
+    approx_offset: 117931
+  - quote: This project demonstrated our expertise in machining difficult materials like titanium alloys,
+      our mastery of ISO 13485 medical quality standards, and our capability to efficiently coordinate
+      with international engineering teams.
+    approx_offset: 124662
+  - quote: ALEC Model Has Obtained ISO 13485 And ISO 14001 Certifications
+    approx_offset: 134888
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0016
+  form: ISO 13485:2016
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+    - https://alecmfg.com/author/alectina/
+  evidence:
+  - quote: 'We are pleased to announce that Alec Model has obtained two prestigious certifications: ISO
+      13485:2016 for quality management systems in the medical device industry and ISO 14001:2015 for
+      environmental management systems.'
+    approx_offset: 139038
+  - quote: ISO 13485:2016
+    approx_offset: 140524
+  - quote: 'ALEC Model has obtained ISO 13485 and ISO 14001 certifications   We are pleased to announce
+      that Alec Model has obtained two prestigious certifications: ISO 13485:2016 for quality management
+      systems in…'
+    approx_offset: 142766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0017
+  form: ISO 14001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://alecmfg.com/alec-model-expands-production-capacity-with-new-cnc-factory/
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+    - https://alecmfg.com/alec-obtains-duns-number/
+    - https://alecmfg.com/author/alectina/
+  evidence:
+  - quote: ALEC Model Has Obtained ISO 13485 And ISO 14001 Certifications
+    approx_offset: 117945
+  - quote: ALEC Model Has Obtained ISO 13485 And ISO 14001 Certifications
+    approx_offset: 134902
+  - quote: ALEC Model Has Obtained ISO 13485 And ISO 14001 Certifications
+    approx_offset: 138833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0018
+  form: ISO 14001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+  evidence:
+  - quote: 'We are pleased to announce that Alec Model has obtained two prestigious certifications: ISO
+      13485:2016 for quality management systems in the medical device industry and ISO 14001:2015 for
+      environmental management systems.'
+    approx_offset: 139119
+  - quote: ISO 14001:2015
+    approx_offset: 140556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0019
+  form: ISO 7 standard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+  evidence:
+  - quote: The client required particle residue ≤25μm in size, and total particle count to comply with
+      ISO 7 standard (≥0.5μm).
+    approx_offset: 121246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0020
+  form: ISO 7599
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: 15–20 μm (ISO 7599 AA10)
+    approx_offset: 50829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0021
+  form: ISO 7599 AA10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: 15–20 μm (ISO 7599 AA10)
+    approx_offset: 50829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0022
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+  evidence:
+  - quote: ISO 9001:2015
+    approx_offset: 140490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0023
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+  evidence:
+  - quote: ISO 9001:2015
+    approx_offset: 140490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0024
+  form: ISO9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+    - https://alecmfg.com/precision-manufacturing-case-study-high-precision-stainless-steel-valve-body-for-semiconductor-equipment/
+  evidence:
+  - quote: Inspection reports are aligned with their ISO9001 compliance protocols
+    approx_offset: 59379
+  - quote: We’ve also helped the client set up batch traceability templates and inspection routines compatible
+      with their CE and ISO9001 requirements.
+    approx_offset: 62418
+  - quote: We’ve also helped the client set up batch traceability templates and inspection routines compatible
+      with their CE and ISO9001 requirements.
+    approx_offset: 103626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0025
+  form: PQR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Weld map, WPS/PQR, dimensional inspection, material certs
+    approx_offset: 107117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0026
+  form: REACH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: ISO 10993-5 + RoHS / REACH
+    approx_offset: 50869
+  - quote: '– Medical-grade finishing: RoHS, REACH, and ISO 10993-5 compliant'
+    approx_offset: 53011
+  - quote: The customer required not only material certs and inspection reports, but also REACH/RoHS declarations,
+      a formal conformity statement, and a component cleanliness note.
+    approx_offset: 69100
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0027
+  form: RoHS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: ISO 10993-5 + RoHS / REACH
+    approx_offset: 50862
+  - quote: RoHS Only
+    approx_offset: 50949
+  - quote: '– Medical-grade finishing: RoHS, REACH, and ISO 10993-5 compliant'
+    approx_offset: 53005
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0028
+  form: WPS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Weld map, WPS/PQR, dimensional inspection, material certs
+    approx_offset: 107113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-conformity_attestations-0029
+  form: WPS/PQR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Weld map, WPS/PQR, dimensional inspection, material certs
+    approx_offset: 107113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

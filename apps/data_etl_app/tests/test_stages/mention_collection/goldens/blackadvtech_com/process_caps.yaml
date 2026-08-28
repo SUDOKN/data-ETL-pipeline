@@ -1,0 +1,6007 @@
+subject: blackadvtech.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+golden_set_version: 1
+anchored_on: search/expectations/blackadvtech_com/process_caps.yaml
+labels:
+- id: blackadvtech_com-process_caps-0001
+  form: 5-stage wash
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) 5-stage wash & phosphate powder coating system
+    approx_offset: 6296
+  - quote: (2) 5-stage wash & phosphate coating system
+    approx_offset: 90673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0002
+  form: Abrasive Blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Skat Blast 985 Abrasive Blasting Cabinet
+    approx_offset: 22551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0003
+  form: Air bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Air bending
+    approx_offset: 84511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0004
+  form: Arc welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/category/welding/
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Plasma Arc Welding
+    approx_offset: 9569
+  - quote: Non-Transferred Plasma Arc Welding
+    approx_offset: 104361
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141328
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0005
+  form: Baking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Baking ovens
+    approx_offset: 6377
+  - quote: (2) Baking ovens
+    approx_offset: 90812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0006
+  form: Baking ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Baking ovens
+    approx_offset: 6377
+  - quote: (2) Baking ovens
+    approx_offset: 90812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0007
+  form: Bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/things-to-consider-about-sheet-metal-bending-in-the-design-process/
+  evidence:
+  - quote: Bending length 127” / 3230 mm
+    approx_offset: 32574
+  - quote: Bending length 120” / 3060 mm
+    approx_offset: 33525
+  - quote: Sheet Metal Bending
+    approx_offset: 83568
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0008
+  form: Bevel Groove weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Bevel Groove weld
+    approx_offset: 210413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0009
+  form: Bonderiser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 5 Stage Iron Phosphate Bonderiser
+    approx_offset: 20273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0010
+  form: Bottoming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Bottoming
+    approx_offset: 84523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0011
+  form: Buffing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Buffing and polishing are the last procedures when preparing sheet metal for finishing.
+    approx_offset: 220560
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0012
+  form: CNC laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: We offer CNC laser cutting, punching, certified welding, forming and machining, and more.
+    approx_offset: 19628
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0013
+  form: CUSTOM METAL FABRICATION PROJECTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/custom-projects/
+  evidence:
+  - quote: CUSTOM METAL FABRICATION PROJECTS
+    approx_offset: 17594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0014
+  form: CUSTOM SHEET METAL FABRICATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+    - https://blackadvtech.com/rfq/
+  evidence:
+  - quote: CUSTOM SHEET METAL FABRICATION
+    approx_offset: 843
+  - quote: Request A Quote for Custom Sheet Metal Fabrication
+    approx_offset: 27294
+  - quote: Get Custom Sheet Metal Fabrication Finishing Services
+    approx_offset: 132789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0015
+  form: Capacitive discharge stud guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 3 – Capacitive discharge stud guns
+    approx_offset: 21120
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0016
+  form: Cold Rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: COLD ROLLING AND ITS POSSIBLE DEFECTS
+    approx_offset: 239496
+  - quote: What Is Cold Rolling?
+    approx_offset: 239811
+  - quote: What are the Possible Defects of Cold Rolling?
+    approx_offset: 241110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0017
+  form: Cold rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Cold rolling is ideal for the formation of sheet metal for precision applications.
+    approx_offset: 206061
+  - quote: Cold rolling is a metal forming process where a stock or sheet metal is compressed and squeezed
+      between rollers at temperatures below the recrystallization level.
+    approx_offset: 239829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0018
+  form: Curing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: 'Curing: Once the powder is applied, the coated object is transferred to an oven or a curing
+      chamber.'
+    approx_offset: 122326
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0019
+  form: Curled edges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Curled edges provide strength to the edge of the material for safer handling.
+    approx_offset: 192452
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0020
+  form: Curling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Curling is the process of adding a circular roll to the edge of the sheet metal.
+    approx_offset: 192371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0021
+  form: Curls
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Curls
+    approx_offset: 192364
+  - quote: The purpose of curls is to remove sharp, untreated edges.
+    approx_offset: 192545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0022
+  form: Custom fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+    - https://blackadvtech.com/capabilities/vmi-program/
+  evidence:
+  - quote: Custom fabrication
+    approx_offset: 6145
+  - quote: Custom fabrication
+    approx_offset: 11963
+  - quote: Custom fabrication
+    approx_offset: 55868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0023
+  form: Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 32
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/blog
+  evidence:
+  - quote: LASER CUTTING
+    approx_offset: 1490
+  - quote: LASER CUTTING
+    approx_offset: 1596
+  - quote: Cutting
+    approx_offset: 6129
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0024
+  form: DEBURRING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: GRAINING/DEBURRING/FINISHING
+    approx_offset: 21160
+  - quote: 'SANDING, DEBURRING & POLISHING:'
+    approx_offset: 90275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0025
+  form: Deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/timesaver/
+  evidence:
+  - quote: 'Uses: Metal Finishing and Deburring'
+    approx_offset: 63568
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0026
+  form: Decambering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Decambering
+    approx_offset: 228270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0027
+  form: Deep Drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Deep Drawing
+    approx_offset: 206867
+  - quote: Deep Drawing
+    approx_offset: 227926
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0028
+  form: Deep drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Deep drawing converts flat sheet metal into either hollow box-shaped or cylindrical or vessels.
+    approx_offset: 206993
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0029
+  form: Degreasing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Degreasing
+    approx_offset: 218200
+  - quote: Degreasing is a mandatory procedure before surface treatment.
+    approx_offset: 218215
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0030
+  form: Dry degreasing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Dry degreasing involves the BIP process that acts under the physisorption process.
+    approx_offset: 218859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0031
+  form: FCAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0032
+  form: FINISHING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: FINISHING
+    approx_offset: 1506
+  - quote: POWDER COATING & FINISHING SERVICES
+    approx_offset: 4597
+  - quote: SHEET METAL POWDER COATING & FINISHING SERVICES
+    approx_offset: 4646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0033
+  form: FORMING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: METAL FORMING
+    approx_offset: 1476
+  - quote: METAL FORMING
+    approx_offset: 1582
+  - quote: Forming
+    approx_offset: 6137
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0034
+  form: Fillet Weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Fillet Weld
+    approx_offset: 211523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0035
+  form: Fillet welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Fillet welds are often specified as intermittent welds.
+    approx_offset: 211872
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0036
+  form: Finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: Cell Manufacturing & Sheet Metal Finishing
+    approx_offset: 5914
+  - quote: Blackstone’s Sheet Metal Finishing Services
+    approx_offset: 6210
+  - quote: Finishing
+    approx_offset: 11937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0037
+  form: Flux-Cored Arc Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0038
+  form: Folding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Folding
+    approx_offset: 84496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0039
+  form: Forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Used for the Manufacture of Heavy Forgings
+    approx_offset: 197219
+  - quote: They have a great ability to withstand massive temperatures and thus the perfect metals to
+      manufacture forgings for severe weather and robust applications.
+    approx_offset: 197398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0040
+  form: Frame-straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Frame-straightening stations
+    approx_offset: 90920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0041
+  form: Frame-straightening stations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Frame-straightening stations
+    approx_offset: 90920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0042
+  form: GMAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141341
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0043
+  form: GRINDING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/jobboard/
+  evidence:
+  - quote: GRINDING
+    approx_offset: 80121
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0044
+  form: GTAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0045
+  form: Gas Metal Arc Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0046
+  form: Gas Tungsten Arc Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0047
+  form: Gas welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: Gas welding – this method uses a flame generated by burning a fuel gas, such as acetylene,
+      to melt and join the metal.
+    approx_offset: 161926
+  - quote: Gas welding involves heating the metal to be welded with a flame and then adding a filler material
+      to create a strong bond.
+    approx_offset: 162608
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0048
+  form: Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Grinding for all tool styles.
+    approx_offset: 24177
+  - quote: Grinding for all tool styles.
+    approx_offset: 93763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0049
+  form: Groove Welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Groove Welds
+    approx_offset: 210112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0050
+  form: Handheld Laser Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Handheld Laser Welding & Cleaning Systems
+    approx_offset: 31025
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0051
+  form: Heat Straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: Heat Straightening
+    approx_offset: 145782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0052
+  form: Heat straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: Heat straightening is a welding correction process whereby you apply heat to deformed part.
+    approx_offset: 145802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0053
+  form: Heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: Post-weld heat treatment also helps reduce the residual stress to prevent weld defects that
+      occur due to cold cracking.
+    approx_offset: 180499
+  - quote: Heat treatment
+    approx_offset: 196190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0054
+  form: Heavy Forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Used for the Manufacture of Heavy Forgings
+    approx_offset: 197213
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0055
+  form: Hems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Hems
+    approx_offset: 194526
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0056
+  form: Hot Mechanical Straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: Hot Mechanical Straightening
+    approx_offset: 147009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0057
+  form: Hot Working
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: Hot Working
+    approx_offset: 147980
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0058
+  form: Hot mechanical straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: Hot mechanical straightening allows you to correct severe metal distortions.
+    approx_offset: 147421
+  - quote: Hot mechanical straightening is highly unpredictable.
+    approx_offset: 147542
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0059
+  form: Hot rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Cold and Hot Rolling
+    approx_offset: 205386
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0060
+  form: INDUSTRIAL WELDING SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: INDUSTRIAL WELDING SERVICES
+    approx_offset: 9400
+  - quote: 'DROBDDDFOur AWS certified welders offer a wide variety of industrial welding services for
+      all of your needs:'
+    approx_offset: 9487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0061
+  form: Industrial Sheet Metal Painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: Industrial Sheet Metal Painting
+    approx_offset: 5045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0062
+  form: Inspectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/quality/
+  evidence:
+  - quote: AWS Certified WELD Inspectors
+    approx_offset: 38210
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0063
+  form: Iron Phosphate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 5 Stage Iron Phosphate Bonderiser
+    approx_offset: 20258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0064
+  form: Ironing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Ironing
+    approx_offset: 206348
+  - quote: Ironing is another metal thinning process used to reduce thickness in certain areas rather
+      than the whole sheet metal.
+    approx_offset: 206357
+  - quote: Ironing is another essential process in the manufacture of soda cans.
+    approx_offset: 206548
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0065
+  form: J and U Groove Weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: J and U Groove Weld
+    approx_offset: 211159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0066
+  form: LASER CUTTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: LASER CUTTING
+    approx_offset: 1484
+  - quote: LASER CUTTING
+    approx_offset: 1590
+  - quote: Laser cutting is perfect for small, complex sheet metal components.
+    approx_offset: 13851
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0067
+  form: Laser Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/blog
+    - https://blackadvtech.com/blog/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: Laser Cutting & Punching
+    approx_offset: 13825
+  - quote: Laser Cutting
+    approx_offset: 16827
+  - quote: Is Fiber Laser Cutting the proper Solution for Your Application?
+    approx_offset: 46437
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0068
+  form: Laser welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: Handheld Laser Welding & Cleaning Systems
+    approx_offset: 31034
+  - quote: Laser welding – this process uses a high-powered laser beam to melt and join the metal together.
+    approx_offset: 162182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0069
+  form: MACHINING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: MACHINING
+    approx_offset: 21460
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0070
+  form: METAL FORMING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: METAL FORMING
+    approx_offset: 1470
+  - quote: METAL FORMING
+    approx_offset: 1576
+  - quote: Sheet Metal Forming
+    approx_offset: 13510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0071
+  form: MIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: MIG Welding
+    approx_offset: 9538
+  - quote: MIG Welding
+    approx_offset: 10502
+  - quote: If you want a welding design with a smooth finish, opt for a metal inert gas (MIG) machine.
+    approx_offset: 10593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0072
+  form: MIG Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: MIG Welding
+    approx_offset: 9538
+  - quote: MIG Welding
+    approx_offset: 10502
+  - quote: Getting into MIG Welding?
+    approx_offset: 74409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0073
+  form: MIG welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: 'Included MIG welding processes:'
+    approx_offset: 33216
+  - quote: Robotic arms have become an integral part of car assembly lines, where they perform tasks such
+      as spot welding, seam welding, and MIG welding.
+    approx_offset: 137107
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0074
+  form: Marks all bending locations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Marks all bending locations, rotations, and degrees on the tube
+    approx_offset: 32189
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0075
+  form: Metal Finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/timesaver/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Cell Manufacturing & Sheet Metal Finishing
+    approx_offset: 5908
+  - quote: Blackstone’s Sheet Metal Finishing Services
+    approx_offset: 6204
+  - quote: Sheet Metal Finishing
+    approx_offset: 14497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0076
+  form: Metal Inert Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: These robots can be programmed to execute a wide range of welding processes, including MIG
+      (Metal Inert Gas), TIG (Tungsten Inert Gas), and spot welding.
+    approx_offset: 134426
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0077
+  form: NOTCHERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: NOTCHERS
+    approx_offset: 22450
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0078
+  form: Non-Transferred Plasma Arc Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/category/welding/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Non-Transferred Plasma Arc Welding
+    approx_offset: 104338
+  - quote: NON-TRANSFERRED PLASMA ARC WELDING
+    approx_offset: 186829
+  - quote: What is Non-Transferred Plasma Arc Welding?
+    approx_offset: 189496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0079
+  form: Notcher
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Comaca Notcher
+    approx_offset: 22472
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0080
+  form: PAINTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/jobboard/
+  evidence:
+  - quote: PAINTING
+    approx_offset: 80162
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0081
+  form: POLISHING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: 'SANDING, DEBURRING & POLISHING:'
+    approx_offset: 90287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0082
+  form: POWDER COATING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: POWDER COATING & FINISHING SERVICES
+    approx_offset: 4580
+  - quote: SHEET METAL POWDER COATING & FINISHING SERVICES
+    approx_offset: 4629
+  - quote: 'Powder coating sheet metal accomplishes the same aesthetic and protection goals as painting,
+      plus:'
+    approx_offset: 5452
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0083
+  form: PRESS BRAKING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Press braking
+    approx_offset: 83517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0084
+  form: PUNCHING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: Laser Cutting & Punching
+    approx_offset: 13841
+  - quote: PUNCHING
+    approx_offset: 19942
+  - quote: SHEET METAL LASER CUTTING & PUNCHING
+    approx_offset: 71283
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0085
+  form: Paint coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Paint coating sheet metal components is not only used for aesthetic purposes, but also to increase
+      the level of surface protection of the part while keeping costs down.
+    approx_offset: 5078
+  - quote: 'PAINT COATING AND FINISHING:'
+    approx_offset: 90467
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0086
+  form: Painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/site-map/
+  evidence:
+  - quote: Industrial Sheet Metal Painting
+    approx_offset: 5068
+  - quote: Painting sheet metal is less expensive up front.
+    approx_offset: 5248
+  - quote: Painting & Powder Coating
+    approx_offset: 16879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0087
+  form: Passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Weld Passivation Wand Systems
+    approx_offset: 21377
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0088
+  form: Perforating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Perforating
+    approx_offset: 228699
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0089
+  form: Pickling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Pickling
+    approx_offset: 219770
+  - quote: Pickling removes these impurities to prepare metal surfaces for both electrolysis and chemical
+      reactions.
+    approx_offset: 220069
+  - quote: Pickling involves the use of an acidic solution known as pickle liquor.
+    approx_offset: 220180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0090
+  form: Plasma Arc Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/category/welding/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Plasma Arc Welding
+    approx_offset: 9562
+  - quote: Non-Transferred Plasma Arc Welding
+    approx_offset: 104354
+  - quote: NON-TRANSFERRED PLASMA ARC WELDING
+    approx_offset: 186845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0091
+  form: Plasma Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Dragon A400 Plasma Cutting Machine
+    approx_offset: 22607
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0092
+  form: Plastma Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Dragon Tube and Pipe Plastma Cutting Machine
+    approx_offset: 31990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0093
+  form: Plug and Slot Welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Plug and Slot Welds
+    approx_offset: 211982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0094
+  form: Polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Polishing
+    approx_offset: 220546
+  - quote: Polishing is a rather simple process that involves the removal of imperfections through sanding.
+    approx_offset: 220648
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0095
+  form: Post-weld heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: Post-weld heat treatment also helps reduce the residual stress to prevent weld defects that
+      occur due to cold cracking.
+    approx_offset: 180489
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0096
+  form: Powder Coat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/blog
+  evidence:
+  - quote: • 2 – Nordson Encore LT Powder Coat Machine
+    approx_offset: 20131
+  - quote: • 5 – Gema MPSI-B Powder Coat Machine
+    approx_offset: 20169
+  - quote: Powder Coat or Wet Paint?
+    approx_offset: 46138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0097
+  form: Powder Coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/blog
+    - https://blackadvtech.com/blog/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/category/material/
+  evidence:
+  - quote: Sheet Metal Powder Coating Services
+    approx_offset: 5427
+  - quote: Painting & Powder Coating
+    approx_offset: 16890
+  - quote: Everything You Should Know About Powder Coating Finishes
+    approx_offset: 46387
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0098
+  form: Precision sharpening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Precision sharpening.
+    approx_offset: 24444
+  - quote: Precision sharpening.
+    approx_offset: 94030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0099
+  form: Press Braking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Press Braking
+    approx_offset: 84157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0100
+  form: Pressure washing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Pressure washing is the most effective method for industrial metals.
+    approx_offset: 219596
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0101
+  form: Prior heating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: Prior heating reduces rapid cooling and helps maintain a more ductile structure in the welded
+      zone.
+    approx_offset: 180385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0102
+  form: Projection weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Projection weld stud welders
+    approx_offset: 90112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0103
+  form: Projection weld stud welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Projection weld stud welders
+    approx_offset: 90112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0104
+  form: QUALITY CONTROL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: QUALITY CONTROL
+    approx_offset: 22090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0105
+  form: ROBOT WELDER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: ROBOT WELDER
+    approx_offset: 40167
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0106
+  form: ROLLING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: ROLLING
+    approx_offset: 22042
+  - quote: Sheet Metal Rolling
+    approx_offset: 84902
+  - quote: Cold and Hot Rolling
+    approx_offset: 205390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0107
+  form: Resistance seam welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Resistance seam welding works perfectly for liquid and gaseous joints.
+    approx_offset: 183946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0108
+  form: Resistance welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: Resistance welding – this technique uses electrical resistance to heat and melt the metal,
+      which is then joined together under pressure.
+    approx_offset: 162045
+  - quote: Resistance welding involves using an electrical current to heat the metal, causing it to melt
+      and fuse together.
+    approx_offset: 162837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0109
+  form: Robotic Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/news/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Robotic Welding
+    approx_offset: 11534
+  - quote: Blackstone Advanced Technologies (Spring 2022) invested in a new state of the art Robotic Welding
+      System.
+    approx_offset: 40264
+  - quote: Key Advantages of Robotic Welding
+    approx_offset: 134648
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0110
+  form: Robotic Welding System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Blackstone Advanced Technologies (Spring 2022) invested in a new state of the art Robotic Welding
+      System.
+    approx_offset: 40264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0111
+  form: Roll Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Roll Forming
+    approx_offset: 228421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0112
+  form: SAND BLASTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: SAND BLASTING
+    approx_offset: 1444
+  - quote: SAND BLASTING
+    approx_offset: 1550
+  - quote: SAND BLASTING
+    approx_offset: 51764
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0113
+  form: SANDING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: 'SANDING, DEBURRING & POLISHING:'
+    approx_offset: 90266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0114
+  form: SAWS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: SAWS
+    approx_offset: 22216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0115
+  form: SHEARING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: SHEARING
+    approx_offset: 22379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0116
+  form: SHEET METAL LASER CUTTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: SHEET METAL LASER CUTTING
+    approx_offset: 66079
+  - quote: SHEET METAL LASER CUTTING & PUNCHING
+    approx_offset: 71255
+  - quote: Sheet Metal Laser Cutting
+    approx_offset: 72644
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0117
+  form: SPOT WELDING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: Spot welding is ideal for stamping, assemblies, and sheet metal fabrications.
+    approx_offset: 11037
+  - quote: SPOT WELDING
+    approx_offset: 21022
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0118
+  form: STAMPING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 13
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0119
+  form: Sand Blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/site-map/
+  evidence:
+  - quote: Sand Blasting
+    approx_offset: 15638
+  - quote: Sand Blasting
+    approx_offset: 16917
+  - quote: Sand Blasting
+    approx_offset: 165739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0120
+  form: Sanding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 3
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0121
+  form: Seam Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/category/welding/
+  evidence:
+  - quote: Seam Welding
+    approx_offset: 9594
+  - quote: Seam Welding
+    approx_offset: 11330
+  - quote: Advantages of Seam Welding
+    approx_offset: 104402
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0122
+  form: Seam welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: Seam welding, a continuous weld along a joint, is a variation of resistance spot welding.
+    approx_offset: 11344
+  - quote: Seam welding is among the most popular welding processes for joining metals in a continuous
+      weld.
+    approx_offset: 182317
+  - quote: Seam welding is one of the processes with no gas formation.
+    approx_offset: 184736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0123
+  form: Shear grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Shear grinding.
+    approx_offset: 24958
+  - quote: Shear grinding.
+    approx_offset: 94544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0124
+  form: Sheet Metal Finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Cell Manufacturing & Sheet Metal Finishing
+    approx_offset: 5902
+  - quote: Blackstone’s Sheet Metal Finishing Services
+    approx_offset: 6198
+  - quote: Sheet Metal Finishing
+    approx_offset: 14491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0125
+  form: Sheet Metal Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Sheet Metal Forming
+    approx_offset: 13504
+  - quote: CUSTOM SHEET METAL FORMING SERVICES
+    approx_offset: 83041
+  - quote: SHEET METAL FORMING SERVICES
+    approx_offset: 83071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0126
+  form: Sheet Metal Punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: Sheet Metal Punching
+    approx_offset: 73172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0127
+  form: Sheet Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Sheet metal stamping
+    approx_offset: 83531
+  - quote: Sheet Metal Stamping
+    approx_offset: 84973
+  - quote: Sheet metal stamping describes a process in which sheet metal is cut and then subsequently
+      formed.
+    approx_offset: 84995
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0128
+  form: Sheet Metal Thinning Processes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Sheet Metal Thinning Processes
+    approx_offset: 204938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0129
+  form: Sheet metal bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/things-to-consider-about-sheet-metal-bending-in-the-design-process/
+  evidence:
+  - quote: Sheet metal bending
+    approx_offset: 83477
+  - quote: Sheet Metal Bending
+    approx_offset: 83556
+  - quote: Sheet metal bending describes the process, usually involving a punch die setup, that enacts
+      both compression and tension in order to alter the part’s shape without changing the volume.
+    approx_offset: 83577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0130
+  form: Sheet metal nibbler
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Sheet metal nibbler
+    approx_offset: 91039
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0131
+  form: Sheet metal rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Sheet metal rolling
+    approx_offset: 83497
+  - quote: Sheet Metal Rolling
+    approx_offset: 84890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0132
+  form: Source Inspector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/quality/
+  evidence:
+  - quote: Former General Dynamics Source Inspector
+    approx_offset: 38245
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0133
+  form: Spot Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: Spot Welding
+    approx_offset: 9581
+  - quote: Spot Welding
+    approx_offset: 11023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0134
+  form: Square Groove Weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Square Groove Weld
+    approx_offset: 210918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0135
+  form: Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/site-map/
+  evidence:
+  - quote: Stamping & Press Forming
+    approx_offset: 16951
+  - quote: Sheet Metal Stamping
+    approx_offset: 84985
+  - quote: Stamping & Press Forming
+    approx_offset: 165773
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0136
+  form: Stamping & Press Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/site-map/
+  evidence:
+  - quote: Stamping & Press Forming
+    approx_offset: 16951
+  - quote: Stamping & Press Forming
+    approx_offset: 165773
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0137
+  form: Surface Preparation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: 'Surface Preparation: The surface to be coated is cleaned and prepared to remove any dirt,
+      grease, or contaminants.'
+    approx_offset: 121893
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0138
+  form: TIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: TIG Welding
+    approx_offset: 9550
+  - quote: TIG Welding
+    approx_offset: 10744
+  - quote: When you need a design that can handle joining two different metals, tungsten inert gas (TIG)
+      welding is there for you.
+    approx_offset: 10846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0139
+  form: TIG Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: TIG Welding
+    approx_offset: 9550
+  - quote: TIG Welding
+    approx_offset: 10744
+  - quote: Getting into TIG Welding?
+    approx_offset: 74584
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0140
+  form: TIG welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+    - https://blackadvtech.com/jobs/welding-fabricator/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: In TIG welding, the heat from the electrical currents helps your metal pieces hold together
+      permanently, allowing for a long-lasting product.
+    approx_offset: 10880
+  - quote: Struggling with proper TIG welding techniques or is in need of help in achieving certification
+      in TIG welding, then you’ve come to the right place because in this video we are going to tackle
+      basic welding tips for beginners and hone your skills in producing high purity welds.
+    approx_offset: 74620
+  - quote: Struggling with proper TIG welding techniques or is in need of help in achieving certification
+      in TIG welding, then you’ve come to the right place because in this video we are going to tackle
+      basic welding tips for beginners and hone your skills in producing high purity welds.
+    approx_offset: 74695
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0141
+  form: TOOL SHARPENING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: TOOL SHARPENING
+    approx_offset: 1428
+  - quote: TOOL SHARPENING
+    approx_offset: 1534
+  - quote: Tool Sharpening
+    approx_offset: 15400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0142
+  form: Thinning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Sheet Metal Thinning Processes
+    approx_offset: 204950
+  - quote: Thinning is the process of reducing sheet metal to get the desired size.
+    approx_offset: 204970
+  - quote: Thinning helps transform sheet metal to the eventual size needed for use.
+    approx_offset: 205043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0143
+  form: Tig welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Skilled operators combine several engineering capabilities such as press breaking, bending,
+      Tig welding, and plasma cutting.
+    approx_offset: 174671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0144
+  form: Tool sharpening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Tool sharpening is fast, simple and precise with Wilson Tool International’s XSharp grinder.
+    approx_offset: 15416
+  - quote: Tool sharpening is fast, simple and precise with Wilson Tool International’s XSharp grinder.
+    approx_offset: 23270
+  - quote: Tool sharpening is fast, simple and precise with Wilson Tool International’s XSharp grinder.
+    approx_offset: 92856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0145
+  form: Transferred Plasma Arc Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://blackadvtech.com/category/welding/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Non-Transferred Plasma Arc Welding
+    approx_offset: 104342
+  - quote: NON-TRANSFERRED PLASMA ARC WELDING
+    approx_offset: 186833
+  - quote: What is Transferred Plasma Arc Welding?
+    approx_offset: 187348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0146
+  form: V-Groove Weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: V-Groove Weld
+    approx_offset: 210716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0147
+  form: WELDING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: WELDING
+    approx_offset: 1498
+  - quote: INDUSTRIAL WELDING SERVICES
+    approx_offset: 9411
+  - quote: WELDING
+    approx_offset: 17154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0148
+  form: Wash Booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Large Bay Wash Booth
+    approx_offset: 20233
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0149
+  form: Weld Passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Weld Passivation Wand Systems
+    approx_offset: 21372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0150
+  form: Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 115
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/blog
+  evidence:
+  - quote: Welding
+    approx_offset: 6121
+  - quote: MIG Welding
+    approx_offset: 9542
+  - quote: TIG Welding
+    approx_offset: 9554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0151
+  form: Wet degreasing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Wet degreasing can include immersion baths, spray rinsing, or by use of steam.
+    approx_offset: 218942
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0152
+  form: Wiping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Wiping
+    approx_offset: 84504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0153
+  form: aluminum anodization
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: The presence of oil can hinder aluminum anodization and other joining processes.
+    approx_offset: 218584
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0154
+  form: anodization
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: The presence of oil can hinder aluminum anodization and other joining processes.
+    approx_offset: 218593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0155
+  form: anticorrosive phosphate solution
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Blackstone Advanced Technologies (early 2022) invested in a new state of the art technology
+      bonderizer to coat (steel) with an anticorrosive phosphate solution, in preparation for the application
+      of paint, enamel, or lacquer.
+    approx_offset: 40608
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0156
+  form: arc welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: This form of arc welding produces a slag-free metal, making it great for stainless steel and
+      aluminum projects (i.e.
+    approx_offset: 10620
+  - quote: The process of welding can be achieved through various methods, including gas welding, laser
+      welding, arc welding, and resistance welding.
+    approx_offset: 161648
+  - quote: Compared to spot and plasma arc welding processes, the welder can do it without any complications.
+    approx_offset: 183249
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0157
+  form: assembled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: They are assembled and can come complete with a laminated writing desk, wiring and light fixtures.
+    approx_offset: 29024
+  - quote: They are assembled and can come complete with a laminated writing desk, wiring and light fixtures.
+    approx_offset: 115696
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0158
+  form: assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/cell-manufacturing/
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Spot welding is ideal for stamping, assemblies, and sheet metal fabrications.
+    approx_offset: 11073
+  - quote: Cellular manufacturing is a way to produce sheet metal components all at once, in one line,
+      including any secondary fabrications and assemblies.
+    approx_offset: 49378
+  - quote: We can fabricate any order, whether it includes prototypes, components, or final assemblies.
+    approx_offset: 120517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0159
+  form: assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/cell-manufacturing/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 343
+  - quote: 'Our metal fabrication specialties include but are not limited to: design assistance, welding,
+      laser cutting, finishing, assembly, and storage.'
+    approx_offset: 1143
+  - quote: The layout ensures fabrication cells, assembly areas, and checkpoints are centrally located,
+      reducing transportation delays and supporting quick production.
+    approx_offset: 51014
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0160
+  form: bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 45
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Our engineers can help identify the most cost-effective metal bending option for your project.
+    approx_offset: 13791
+  - quote: The Flex Cell bending automation transforms your manual TruBend 7050 into the fastest bending
+      cell from TRUMPF.
+    approx_offset: 30085
+  - quote: The Flex Cell bending automation transforms your manual TruBend 7050 into the fastest bending
+      cell from TRUMPF.
+    approx_offset: 30157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0161
+  form: bonderizer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Bonderizer
+    approx_offset: 40468
+  - quote: Blackstone Advanced Technologies (early 2022) invested in a new state of the art technology
+      bonderizer to coat (steel) with an anticorrosive phosphate solution, in preparation for the application
+      of paint, enamel, or lacquer.
+    approx_offset: 40573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0162
+  form: buffing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: After polishing, a loose abrasive is used in a process known as buffing.
+    approx_offset: 220970
+  - quote: The primary purpose of buffing is to create a defect-free and a reflective surface.
+    approx_offset: 221002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0163
+  form: certified welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We offer CNC laser cutting, punching, certified welding, forming and machining, and more.
+    approx_offset: 19657
+  - quote: AWS CERTIFIED WELDING INSPECTOR ON SITE
+    approx_offset: 65915
+  - quote: Rather than hiring fly-by-night amateurs, consider AWS-certified welding experts and engineers.
+    approx_offset: 191032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0164
+  form: cold forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Most commonly, sheet metal stamping is done through cold forming operations.
+    approx_offset: 85146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0165
+  form: cold forming operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Most commonly, sheet metal stamping is done through cold forming operations.
+    approx_offset: 85146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0166
+  form: cold metal rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: Are you looking for a defect-free cold metal rolling?
+    approx_offset: 243272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0167
+  form: cold rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: Sheet metal can either be formed through hot or cold rolling.
+    approx_offset: 223883
+  - quote: When done under a temperature below the recrystallization level, it’s known as cold rolling
+      and hot rolling when done above the recrystallization temperature.
+    approx_offset: 228615
+  - quote: Metal stock can either pass through hot or cold rolling to gain a usable form.
+    approx_offset: 239763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0168
+  form: cold-rolled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: The majority of metalworkers prefer using cold-rolled steels because it’s easy to control over
+      the final dimensions.
+    approx_offset: 206186
+  - quote: Generally, the majority of steel that you will come across is always cold-rolled.
+    approx_offset: 224157
+  - quote: Rods, bars, strips, and sheets are most commonly cold-rolled products.
+    approx_offset: 240446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0169
+  form: curing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: 'Curing: Once the powder is applied, the coated object is transferred to an oven or a curing
+      chamber.'
+    approx_offset: 122411
+  - quote: The curing process also helps in cross-linking the resin molecules, resulting in a durable
+      and resilient coating.
+    approx_offset: 122514
+  - quote: 'Cooling and Finishing: After the curing process is complete, the coated object is allowed
+      to cool down.'
+    approx_offset: 122657
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0170
+  form: curing process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: The curing process also helps in cross-linking the resin molecules, resulting in a durable
+      and resilient coating.
+    approx_offset: 122514
+  - quote: 'Cooling and Finishing: After the curing process is complete, the coated object is allowed
+      to cool down.'
+    approx_offset: 122657
+  - quote: 'Heat Sensitivity: The curing process of powder coating requires heat to melt and fuse the
+      powder.'
+    approx_offset: 123924
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0171
+  form: curl
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Blackstone’s curl guidelines are such that;
+    approx_offset: 192601
+  - quote: The outside curl radius should not be lesser than twice the thickness of the material
+    approx_offset: 192645
+  - quote: A curl’s distance from an internal bend should be at least 6x the thickness of the material
+      plus the curl radius
+    approx_offset: 192721
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0172
+  form: custom metal fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/custom-projects/
+  evidence:
+  - quote: CUSTOM METAL FABRICATION PROJECTS
+    approx_offset: 17594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0173
+  form: custom sheet metal fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/gallery/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: Our team is continuously developing and improving custom sheet metal fabrication processes
+      to exceed customer expectations.
+    approx_offset: 925
+  - quote: Blackstone Advanced Technologies specializes in custom sheet metal fabrication for complex,
+      low-volume components.
+    approx_offset: 70448
+  - quote: We’re the custom sheet metal fabrication you can count on delivering you exceptional results.
+    approx_offset: 133015
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0174
+  form: custom sheet metal manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: CUSTOM SHEET METAL MANUFACTURING
+    approx_offset: 106
+  - quote: CUSTOM SHEET METAL MANUFACTURING IN JAMESTOWN, NY
+    approx_offset: 12459
+  - quote: Blackstone offers full-service custom sheet metal manufacturing & fabrication services, specializing
+      in small-to-medium volume complex parts.
+    approx_offset: 12576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0175
+  form: cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 43
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 298
+  - quote: 'Our metal fabrication specialties include but are not limited to: design assistance, welding,
+      laser cutting, finishing, assembly, and storage.'
+    approx_offset: 1123
+  - quote: Laser cutting is perfect for small, complex sheet metal components.
+    approx_offset: 13857
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0176
+  form: deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/timesaver/
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Blackstone also offers various methods of smoothing finishes, including sheet metal deburring
+      and polishing.
+    approx_offset: 6513
+  - quote: (1) Falls metal edge deburring machine
+    approx_offset: 6674
+  - quote: (2) Sweco 4′ vibratory deburring machine
+    approx_offset: 6715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0177
+  form: deep drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: This process may be undertaken in combination with deep drawing.
+    approx_offset: 206852
+  - quote: These techniques include forming and bending sheet metal along multi-axis points in processes
+      such as stamping, hydroforming, spinning, and deep drawing.
+    approx_offset: 216900
+  - quote: Specially rolled material is used in the deep drawing process.
+    approx_offset: 228123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0178
+  form: degreasing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Effective degreasing involves the use of special solvents known as degreasing agents.
+    approx_offset: 218708
+  - quote: Effective degreasing involves the use of special solvents known as degreasing agents.
+    approx_offset: 218765
+  - quote: You can carry out degreasing using the liquid solvents or in the dry form.
+    approx_offset: 218802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0179
+  form: dimensional inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/jobs/welding-fabricator/
+  evidence:
+  - quote: Performs visual inspection of all components handled and some dimensional inspections using
+      simple measurement devices
+    approx_offset: 108310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0180
+  form: electroplate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Whether you are planning to powder-coat or electroplate the sheet metal, removing all elements
+      is penultimate.
+    approx_offset: 219370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0181
+  form: fillet welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/overlap-welding-what-is-it/
+  evidence:
+  - quote: Mostly, overlap occurs in butt and fillet welds.
+    approx_offset: 231489
+  - quote: The gravity on the molten material causes overlapping in fillet welds.
+    approx_offset: 232454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0182
+  form: finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: We’ve installed an extensive paint and powder coating system to handle the most complex finishing
+      requirements for today’s market.
+    approx_offset: 468
+  - quote: 'Our metal fabrication specialties include but are not limited to: design assistance, welding,
+      laser cutting, finishing, assembly, and storage.'
+    approx_offset: 1132
+  - quote: Our extensive sheet metal paint and powder coating system can handle the most complex finishing
+      requirements for your project.
+    approx_offset: 4884
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0183
+  form: folds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Blackstone uses hems to create folds in sheet metal.
+    approx_offset: 194563
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0184
+  form: forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: forging matrix dies
+    approx_offset: 188264
+  - quote: forging industrial blades and knives
+    approx_offset: 188383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0185
+  form: forging industrial blades
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: forging industrial blades and knives
+    approx_offset: 188383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0186
+  form: forging matrix dies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: forging matrix dies
+    approx_offset: 188264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0187
+  form: forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/about-us/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 307
+  - quote: Blackstone offers multiple metal forming services including press braking, roll forming, punching,
+      and stamping.
+    approx_offset: 13558
+  - quote: Blackstone offers multiple metal forming services including press braking, roll forming, punching,
+      and stamping.
+    approx_offset: 13605
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0188
+  form: gas tungsten arc process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Plasma arc welding is almost similar to the gas tungsten arc process.
+    approx_offset: 187190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0189
+  form: gas welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: The process of welding can be achieved through various methods, including gas welding, laser
+      welding, arc welding, and resistance welding.
+    approx_offset: 161620
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0190
+  form: grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+    - https://blackadvtech.com/overlap-welding-what-is-it/
+  evidence:
+  - quote: The XSharp uses an automated height detection feature to locate the top of the tool before
+      grinding.
+    approx_offset: 23585
+  - quote: Other key features include a powerful closed coolant system, automatic grinding wheel wear
+      compensation and an interlocking safety guard.
+    approx_offset: 23740
+  - quote: A fully-automated grinding process.
+    approx_offset: 24159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0191
+  form: grinding process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: A fully-automated grinding process.
+    approx_offset: 24159
+  - quote: A powerful closed coolant system, ensuring the tool is constantly flooded with coolant during
+      the grinding process.
+    approx_offset: 24826
+  - quote: A fully-automated grinding process.
+    approx_offset: 93745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0192
+  form: groove welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: You will likely come across groove welds more than any other welding symbol.
+    approx_offset: 210157
+  - quote: The edge shape of material pieces to be joined differentiates groove welds.
+    approx_offset: 210345
+  - quote: There are different types of groove welds;
+    approx_offset: 210392
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0193
+  form: heat straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: To complete heat straightening, the welder should apply measured heat to the metal steadily
+      and allow it to enlarge and contract.
+    approx_offset: 146123
+  - quote: This procedure of correcting deformation is almost similar to heat straightening.
+    approx_offset: 147101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0194
+  form: hem
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Our hem guidelines are such that;
+    approx_offset: 194635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0195
+  form: hems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Blackstone uses hems to create folds in sheet metal.
+    approx_offset: 194548
+  - quote: The thickness of the material should be equal to the inside diameter for teardrop hems
+    approx_offset: 194748
+  - quote: The inside diameter should always be less than the thickness of the material for open hems
+    approx_offset: 194839
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0196
+  form: hot mechanical straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: Also, in hot mechanical straightening, buckles, and wrinkles, alongside other distortions may
+      occur as cooling takes place.
+    approx_offset: 147752
+  - quote: This process is an extended hot mechanical straightening that surpasses the yield stress point.
+    approx_offset: 148021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0197
+  form: hot rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Shafts and gears are formed in the process of hot rolling.
+    approx_offset: 197531
+  - quote: In hot rolling, a temperature of about 1400F is used for steel.
+    approx_offset: 205644
+  - quote: In hot rolling, the steel shrinks slightly after cooling, and its shape might change.
+    approx_offset: 206264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0198
+  form: hot working
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: Both the weld and the metal may develop cracks after hot working.
+    approx_offset: 148571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0199
+  form: hydroforming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+  evidence:
+  - quote: These techniques include forming and bending sheet metal along multi-axis points in processes
+      such as stamping, hydroforming, spinning, and deep drawing.
+    approx_offset: 216872
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0200
+  form: industrial welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/site-map/
+  evidence:
+  - quote: INDUSTRIAL WELDING SERVICES
+    approx_offset: 9400
+  - quote: 'DROBDDDFOur AWS certified welders offer a wide variety of industrial welding services for
+      all of your needs:'
+    approx_offset: 9487
+  - quote: Industrial Welding Options
+    approx_offset: 10365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0201
+  form: inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/jobs/qc-inspector/
+    - https://blackadvtech.com/jobs/welding-fabricator/
+  evidence:
+  - quote: Applicants should have experience in previous inspection activity, corrective action follow-up,
+      first article documentation and previous training in inspection techniques (including calipers,
+      CMM and micrometers).
+    approx_offset: 100799
+  - quote: Applicants should have experience in previous inspection activity, corrective action follow-up,
+      first article documentation and previous training in inspection techniques (including calipers,
+      CMM and micrometers).
+    approx_offset: 100902
+  - quote: 'Minimum Qualifications: High School Diploma or GED is required, strong blueprint reading skills,
+      basic inspection skills, ability to pay attention to detail, good shop math and reading comprehension
+      skills, be quality conscious and a self-starter.'
+    approx_offset: 101071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0202
+  form: inspection activity
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/jobs/qc-inspector/
+  evidence:
+  - quote: Applicants should have experience in previous inspection activity, corrective action follow-up,
+      first article documentation and previous training in inspection techniques (including calipers,
+      CMM and micrometers).
+    approx_offset: 100799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0203
+  form: inspection techniques
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/jobs/qc-inspector/
+  evidence:
+  - quote: Applicants should have experience in previous inspection activity, corrective action follow-up,
+      first article documentation and previous training in inspection techniques (including calipers,
+      CMM and micrometers).
+    approx_offset: 100902
+  - quote: We can teach the advanced inspection techniques – we are looking for someone with a solid foundation
+      we can build upon.
+    approx_offset: 101550
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0204
+  form: ironing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Usually, ironing occurs in 2 or 3 processes, whereby different dies are used to form the preferred
+      thickness of soda cans.
+    approx_offset: 206687
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0205
+  form: laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 292
+  - quote: 'Our metal fabrication specialties include but are not limited to: design assistance, welding,
+      laser cutting, finishing, assembly, and storage.'
+    approx_offset: 1117
+  - quote: Our laser cutting services are efficient, cost-effective, and precise.
+    approx_offset: 13924
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0206
+  form: laser welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: The process of welding can be achieved through various methods, including gas welding, laser
+      welding, arc welding, and resistance welding.
+    approx_offset: 161633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0207
+  form: machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: We offer CNC laser cutting, punching, certified welding, forming and machining, and more.
+    approx_offset: 19688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0208
+  form: marks and engraves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: The Dragon A400 CNC tube and pipe plasma cutter easily marks and engraves on tube and pipe
+      to make CAD/CAM designs a reality.
+    approx_offset: 32071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0209
+  form: metal bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/things-to-consider-about-sheet-metal-bending-in-the-design-process/
+  evidence:
+  - quote: Our engineers can help identify the most cost-effective metal bending option for your project.
+    approx_offset: 13785
+  - quote: Sheet metal bending
+    approx_offset: 83483
+  - quote: Sheet Metal Bending
+    approx_offset: 83562
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0210
+  form: metal edge deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Falls metal edge deburring machine
+    approx_offset: 6663
+  - quote: (1) Falls metal edge deburring machine
+    approx_offset: 90397
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0211
+  form: metal finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/timesaver/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: View previous sheet metal finishing projects in our gallery.
+    approx_offset: 5838
+  - quote: This machine can be used for metal finishing and deburring.
+    approx_offset: 63118
+  - quote: Sheet metal finishing is the process of placing some type of coating on the metal surface.
+    approx_offset: 217874
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0212
+  form: metal forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Blackstone offers multiple metal forming services including press braking, roll forming, punching,
+      and stamping.
+    approx_offset: 13552
+  - quote: All metal forming services are available as part of our cellular manufacturing services.
+    approx_offset: 13643
+  - quote: If you’re looking for a sheet metal forming company that offers a variety of forming services,
+      expert engineering consultations, and up-to-date machinery to accommodate any and all of your projects
+      — Blackstone is the company for you.
+    approx_offset: 83131
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0213
+  form: metal inert gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: If you want a welding design with a smooth finish, opt for a metal inert gas (MIG) machine.
+    approx_offset: 10576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0214
+  form: metal thinning process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Ironing is another metal thinning process used to reduce thickness in certain areas rather
+      than the whole sheet metal.
+    approx_offset: 206376
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0215
+  form: nibbler
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Sheet metal nibbler
+    approx_offset: 91051
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0216
+  form: non-destructive testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/customer-relationship-management-in-sheet-metal-manufacturing/
+  evidence:
+  - quote: Use visual inspections, non-destructive testing, and other quality control methods to ensure
+      that the finished product meets customer requirements.
+    approx_offset: 154681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0217
+  form: open hems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: The inside diameter should always be less than the thickness of the material for open hems
+    approx_offset: 194834
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0218
+  form: paint coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0219
+  form: painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: Do you need sheet metal powder coating or painting services for an especially large project?
+    approx_offset: 4708
+  - quote: If only a section of your part needs to be protected, painting is one of the most flexible
+      options for your project.
+    approx_offset: 5351
+  - quote: 'Powder coating sheet metal accomplishes the same aesthetic and protection goals as painting,
+      plus:'
+    approx_offset: 5535
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0220
+  form: phosphate coating system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) 5-stage wash & phosphate coating system
+    approx_offset: 90688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0221
+  form: phosphate powder coating system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: (2) 5-stage wash & phosphate powder coating system
+    approx_offset: 6311
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0222
+  form: pickle and oiled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: pickle and oiled
+    approx_offset: 229135
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0223
+  form: pickle liquor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Pickling involves the use of an acidic solution known as pickle liquor.
+    approx_offset: 220237
+  - quote: When preparing low-carbon steel, the pickle liquor might contain sulphuric and hydrochloric
+      acids.
+    approx_offset: 220289
+  - quote: On the other end, pickle liquor might contain nitric or phosphoric acid.
+    approx_offset: 220369
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0224
+  form: pickling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: While not every type of metal has impurities, pickling might reduce other substances that might
+      hinder finishing.
+    approx_offset: 220474
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0225
+  form: plasma arc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/category/welding/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Plasma Arc Welding
+    approx_offset: 9562
+  - quote: Welding capabilities include MIG, TIG, plasma arc, seam, and spot welding.
+    approx_offset: 14340
+  - quote: Non-Transferred Plasma Arc Welding
+    approx_offset: 104354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0226
+  form: plasma arc welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Compared to spot and plasma arc welding processes, the welder can do it without any complications.
+    approx_offset: 183242
+  - quote: Transferred plasma arc welding is applied in the following processes;
+    approx_offset: 188205
+  - quote: Welders and engineers have a high preference for plasma arc welding.
+    approx_offset: 188531
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0227
+  form: plasma cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: The Dragon A400 CNC tube and pipe plasma cutter easily marks and engraves on tube and pipe
+      to make CAD/CAM designs a reality.
+    approx_offset: 32050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0228
+  form: plasma cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Skilled operators combine several engineering capabilities such as press breaking, bending,
+      Tig welding, and plasma cutting.
+    approx_offset: 174688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0229
+  form: plasma spraying
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: This process is suitable for large surface areas due to plasma spraying.
+    approx_offset: 190174
+  - quote: The primary purpose of this process its plasma spraying.
+    approx_offset: 190649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0230
+  form: plug weld symbols
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: For plug weld symbols, the diameter size of the hole is listed on the left side while spacing
+      or pitch specifications are listed to the right.
+    approx_offset: 212342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0231
+  form: plug welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Material pieces have round holes for plug welds and long and narrow holes for slot welds.
+    approx_offset: 212110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0232
+  form: polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Blackstone also offers various methods of smoothing finishes, including sheet metal deburring
+      and polishing.
+    approx_offset: 6527
+  - quote: We also offer various methods of smoothing finishes, including sheet metal deburring and polishing.
+    approx_offset: 14791
+  - quote: Buffing and polishing are the last procedures when preparing sheet metal for finishing.
+    approx_offset: 220572
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0233
+  form: post-weld heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0234
+  form: powder coat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: • 2 – 12X30X8.5 Rohner Paint/powder coat ovens
+    approx_offset: 20348
+  - quote: With knowing that powder coating is a strong method of painting, the longevity of the powder
+      coat depends on a handful of factors.
+    approx_offset: 152260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0235
+  form: powder coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We’ve installed an extensive paint and powder coating system to handle the most complex finishing
+      requirements for today’s market.
+    approx_offset: 419
+  - quote: Do you need sheet metal powder coating or painting services for an especially large project?
+    approx_offset: 4690
+  - quote: Our extensive sheet metal paint and powder coating system can handle the most complex finishing
+      requirements for your project.
+    approx_offset: 4834
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0236
+  form: preheat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: To avoid stressing the base material, its essential to preheat such materials in the appropriate
+      temperature and time recommendations as per the underlying weld procedure.
+    approx_offset: 180268
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0237
+  form: prep work
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: Powder coating anything requires good prep work to assure a flawless finish.
+    approx_offset: 75072
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0238
+  form: press braking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: Blackstone offers multiple metal forming services including press braking, roll forming, punching,
+      and stamping.
+    approx_offset: 13585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0239
+  form: press breaking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Skilled operators combine several engineering capabilities such as press breaking, bending,
+      Tig welding, and plasma cutting.
+    approx_offset: 174646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0240
+  form: press-brake bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Press-brake bending is a process that involves modifying the shape of the sheet metal part.
+    approx_offset: 84172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0241
+  form: pressure test
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Conduct a pressure test to ensure that it will not leak any fuel.
+    approx_offset: 177161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0242
+  form: projection and spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: It produces less overlap than projection and spot welding.
+    approx_offset: 183043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0243
+  form: projection welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: With the whole process automated, seam welding seam faster than both spot and projection welding.
+    approx_offset: 184466
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0244
+  form: punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/about-us/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 282
+  - quote: Blackstone offers multiple metal forming services including press braking, roll forming, punching,
+      and stamping.
+    approx_offset: 13614
+  - quote: We offer CNC laser cutting, punching, certified welding, forming and machining, and more.
+    approx_offset: 19647
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0245
+  form: quality control
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/customer-relationship-management-in-sheet-metal-manufacturing/
+  evidence:
+  - quote: Ensure that you have a robust quality control process in place to ensure that your products
+      meet or exceed your customers’ expectations.
+    approx_offset: 154550
+  - quote: Use visual inspections, non-destructive testing, and other quality control methods to ensure
+      that the finished product meets customer requirements.
+    approx_offset: 154716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0246
+  form: quality control methods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/customer-relationship-management-in-sheet-metal-manufacturing/
+  evidence:
+  - quote: Use visual inspections, non-destructive testing, and other quality control methods to ensure
+      that the finished product meets customer requirements.
+    approx_offset: 154716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0247
+  form: quality control process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/customer-relationship-management-in-sheet-metal-manufacturing/
+  evidence:
+  - quote: Ensure that you have a robust quality control process in place to ensure that your products
+      meet or exceed your customers’ expectations.
+    approx_offset: 154550
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0248
+  form: regrind
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Why regrind?
+    approx_offset: 23884
+  - quote: Why regrind?
+    approx_offset: 93470
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0249
+  form: resistance spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: Seam welding, a continuous weld along a joint, is a variation of resistance spot welding.
+    approx_offset: 11409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0250
+  form: resistance welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: The process of welding can be achieved through various methods, including gas welding, laser
+      welding, arc welding, and resistance welding.
+    approx_offset: 161665
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0251
+  form: riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Bracker riveting machines
+    approx_offset: 91017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0252
+  form: riveting machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Bracker riveting machines
+    approx_offset: 91017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0253
+  form: robotic welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: At its core, robotic welding involves the use of robotic arms equipped with welding equipment
+      to perform tasks traditionally done by human welders.
+    approx_offset: 134199
+  - quote: The precision of robotic welding is also significantly higher than that of human welders, ensuring
+      stronger and more uniform welds.
+    approx_offset: 135318
+  - quote: Additionally, robotic welding systems require less maintenance compared to manual welding,
+      further reducing operational expenses.
+    approx_offset: 136286
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0254
+  form: roll forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: Blackstone offers multiple metal forming services including press braking, roll forming, punching,
+      and stamping.
+    approx_offset: 13600
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0255
+  form: rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Sheet metal rolling
+    approx_offset: 83509
+  - quote: 4′ roll machine capable of rolling up to 1/4″ thick material
+    approx_offset: 84938
+  - quote: Shafts and gears are formed in the process of hot rolling.
+    approx_offset: 197535
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0256
+  form: rough hot rolls
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: rough hot rolls
+    approx_offset: 229200
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0257
+  form: sand blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: 'We offer sand blasting services with our newest edition of the:'
+    approx_offset: 51788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0258
+  form: sanding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/timesaver/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: 'We offer sanding services with our newest edition of the:'
+    approx_offset: 62780
+  - quote: Polishing is a rather simple process that involves the removal of imperfections through sanding.
+    approx_offset: 220736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0259
+  form: sanding services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/timesaver/
+  evidence:
+  - quote: 'We offer sanding services with our newest edition of the:'
+    approx_offset: 62780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0260
+  form: sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 274
+  - quote: 5.9” Maximum Sawing Height
+    approx_offset: 31926
+  - quote: 11″ Maximum Sawing Width
+    approx_offset: 31952
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0261
+  form: seam welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Robotic arms have become an integral part of car assembly lines, where they perform tasks such
+      as spot welding, seam welding, and MIG welding.
+    approx_offset: 137089
+  - quote: Highly preferred by welders, seam welding is practical for use on metals such as stainless
+      steel, titanium, aluminum, and tungsten.
+    approx_offset: 182444
+  - quote: Mostly, seam welding is used to fabricate sheet metal containers and automobile mufflers.
+    approx_offset: 182738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0262
+  form: semi-automatic stretch machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Muller semi-automatic stretch machine
+    approx_offset: 91070
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0263
+  form: sharpen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: With a flexible range of chucks and adapters, the XSharp can be used to sharpen all punch press
+      tooling styles.
+    approx_offset: 24279
+  - quote: With a flexible range of chucks and adapters, the XSharp can be used to sharpen all punch press
+      tooling styles.
+    approx_offset: 93865
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0264
+  form: sharpened
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: This ensures a high level of precision and an excellent surface finish on sharpened tools.
+    approx_offset: 24685
+  - quote: Punches with shears can be sharpened using the XSharp shear grinding chuck.
+    approx_offset: 25001
+  - quote: With the automation features of the XSharp, the operator can continue to use the press while
+      a tool is being sharpened.
+    approx_offset: 25455
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0265
+  form: sharpening tool services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: We offer sharpening tool services.
+    approx_offset: 41871
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0266
+  form: shear grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Punches with shears can be sharpened using the XSharp shear grinding chuck.
+    approx_offset: 25028
+  - quote: Punches with shears can be sharpened using the XSharp shear grinding chuck.
+    approx_offset: 94614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0267
+  form: shearing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 264
+  - quote: Blackstone’s experienced team can handle your shearing, sawing, punching, laser cutting, forming,
+      welding, spot welding, and assembly needs.
+    approx_offset: 68045
+  - quote: Blackstone’s experienced team can handle your shearing, sawing, punching, laser cutting, forming,
+      welding, spot welding, and assembly needs.
+    approx_offset: 78593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0268
+  form: sheet metal bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/things-to-consider-about-sheet-metal-bending-in-the-design-process/
+  evidence:
+  - quote: Working with a sheet metal expert who can talk you through the ins-and-outs of sheet metal
+      bending is integral to ensuring you end up with the perfect part every time.
+    approx_offset: 84064
+  - quote: Below are the things to consider about sheet metal bending;
+    approx_offset: 235755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0269
+  form: sheet metal deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We also offer various methods of smoothing finishes, including sheet metal deburring and polishing.
+    approx_offset: 14765
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0270
+  form: sheet metal finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: View previous sheet metal finishing projects in our gallery.
+    approx_offset: 5832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0271
+  form: sheet metal forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: If you’re looking for a sheet metal forming company that offers a variety of forming services,
+      expert engineering consultations, and up-to-date machinery to accommodate any and all of your projects
+      — Blackstone is the company for you.
+    approx_offset: 83125
+  - quote: 'facility features a wide variety of sheet metal forming equipment, including:'
+    approx_offset: 85705
+  - quote: Various hot and cold sheet metal forming techniques might affect your choice of materials.
+    approx_offset: 216690
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0272
+  form: sheet metal laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We offer both our sheet metal laser cutting and sheet metal weld cutting, whichever will work
+      best for your product.
+    approx_offset: 14084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0273
+  form: sheet metal punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We offer custom metal laser cutting  and sheet metal punching at our 275,000-sq.-ft.
+    approx_offset: 64180
+  - quote: With our sheet metal lasers cutting, and sheet metal punching capabilities, we’re able to achieve
+      that precision in our 275,000 sq foot facility.
+    approx_offset: 71479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0274
+  form: sheet metal rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0275
+  form: sheet metal stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Most commonly, sheet metal stamping is done through cold forming operations.
+    approx_offset: 85109
+  - quote: 'There are two types of sheet metal stamping presses: hydraulic and mechanic.'
+    approx_offset: 85195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0276
+  form: sheet metal weld cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We offer both our sheet metal laser cutting and sheet metal weld cutting, whichever will work
+      best for your product.
+    approx_offset: 14114
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0277
+  form: slot welds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/common-welding-symbols-what-engineers-want-you-to-understand/
+  evidence:
+  - quote: Plug and Slot Welds
+    approx_offset: 211991
+  - quote: Material pieces have round holes for plug welds and long and narrow holes for slot welds.
+    approx_offset: 212151
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0278
+  form: smoothing finishes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: Blackstone also offers various methods of smoothing finishes, including sheet metal deburring
+      and polishing.
+    approx_offset: 6471
+  - quote: We also offer various methods of smoothing finishes, including sheet metal deburring and polishing.
+    approx_offset: 14735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0279
+  form: spinning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+  evidence:
+  - quote: These techniques include forming and bending sheet metal along multi-axis points in processes
+      such as stamping, hydroforming, spinning, and deep drawing.
+    approx_offset: 216886
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0280
+  form: spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 325
+  - quote: Seam welding, a continuous weld along a joint, is a variation of resistance spot welding.
+    approx_offset: 11420
+  - quote: Welding capabilities include MIG, TIG, plasma arc, seam, and spot welding.
+    approx_offset: 14362
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0281
+  form: spray painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: Wet paint can be applied using various methods, such as brush painting, roller application,
+      or spray painting.
+    approx_offset: 125974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0282
+  form: stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: Spot welding is ideal for stamping, assemblies, and sheet metal fabrications.
+    approx_offset: 11063
+  - quote: Blackstone offers multiple metal forming services including press braking, roll forming, punching,
+      and stamping.
+    approx_offset: 13628
+  - quote: Forming (including stamping)
+    approx_offset: 73686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0283
+  form: stretch machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Muller semi-automatic stretch machine
+    approx_offset: 91085
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0284
+  form: stud guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 3 – Capacitive discharge stud guns
+    approx_offset: 21141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0285
+  form: stud welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Projection weld stud welders
+    approx_offset: 90128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0286
+  form: surface preparation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: With the appropriate surface preparation and primer, it can create a strong bond and provide
+      long-lasting protection.
+    approx_offset: 128776
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0287
+  form: surface treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Degreasing is a mandatory procedure before surface treatment.
+    approx_offset: 218258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0288
+  form: teardrop hems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: The thickness of the material should be equal to the inside diameter for teardrop hems
+    approx_offset: 194739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0289
+  form: thermal coating process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: This is a thermal coating process whereby heat-softened particles that form a coating are applied
+      onto a substrate.
+    approx_offset: 190676
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0290
+  form: thinning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: This article takes you through the process of sheet metal thinning, how it happens, and what
+      determines the thickness of sheet metal.
+    approx_offset: 204852
+  - quote: Ironing is another metal thinning process used to reduce thickness in certain areas rather
+      than the whole sheet metal.
+    approx_offset: 206382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0291
+  form: tool sharpening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: 'We offer tool sharpening services with our newest edition of the:'
+    approx_offset: 23196
+  - quote: Contact us as we offer tool sharpening services.
+    approx_offset: 36750
+  - quote: 'We offer tool sharpening services with our newest edition of the:'
+    approx_offset: 92782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0292
+  form: tungsten inert gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: When you need a design that can handle joining two different metals, tungsten inert gas (TIG)
+      welding is there for you.
+    approx_offset: 10826
+  - quote: These robots can be programmed to execute a wide range of welding processes, including MIG
+      (Metal Inert Gas), TIG (Tungsten Inert Gas), and spot welding.
+    approx_offset: 134449
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0293
+  form: various methods of smoothing finishes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: Blackstone also offers various methods of smoothing finishes, including sheet metal deburring
+      and polishing.
+    approx_offset: 6452
+  - quote: We also offer various methods of smoothing finishes, including sheet metal deburring and polishing.
+    approx_offset: 14716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0294
+  form: visual inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/jobs/welding-fabricator/
+  evidence:
+  - quote: Performs visual inspection of all components handled and some dimensional inspections using
+      simple measurement devices
+    approx_offset: 108257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0295
+  form: visual inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/customer-relationship-management-in-sheet-metal-manufacturing/
+  evidence:
+  - quote: Use visual inspections, non-destructive testing, and other quality control methods to ensure
+      that the finished product meets customer requirements.
+    approx_offset: 154661
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0296
+  form: wash booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Large weldment wash booth
+    approx_offset: 6244
+  - quote: Large weldment wash booth
+    approx_offset: 90511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0297
+  form: weld cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: We offer both our sheet metal laser cutting and sheet metal weld cutting, whichever will work
+      best for your product.
+    approx_offset: 14126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0298
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 222
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+  evidence:
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 316
+  - quote: Blackstone Advanced Technologies experienced team can handle your shearing, sawing, punching,
+      laser cutting, forming, welding, spot welding, and assembly needs.
+    approx_offset: 330
+  - quote: 'Our metal fabrication specialties include but are not limited to: design assistance, welding,
+      laser cutting, finishing, assembly, and storage.'
+    approx_offset: 1108
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0299
+  form: welding robot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: THG Automation Fronius Welding Robot
+    approx_offset: 32722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0300
+  form: welding robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: We also have added welding robots added to Blackstone Advanced Technologies.
+    approx_offset: 11573
+  - quote: With welding robots taking over the most hazardous parts of the job, workers can focus on supervising
+      the process or handling more complex tasks, improving overall workplace safety.
+    approx_offset: 135816
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-process_caps-0301
+  form: wire drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: This alloy is also highly resistant to heat and thus ideal for wire drawing.
+    approx_offset: 198881
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

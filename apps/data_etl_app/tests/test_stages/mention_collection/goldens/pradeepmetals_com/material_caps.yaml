@@ -1,0 +1,2772 @@
+subject: pradeepmetals.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+golden_set_version: 1
+anchored_on: search/expectations/pradeepmetals_com/material_caps.yaml
+labels:
+- id: pradeepmetals_com-material_caps-0001
+  form: '1.0436'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 17060
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 88339
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0002
+  form: '1.0460'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: C22.8 / 1.0460
+    approx_offset: 17003
+  - quote: C22.8 / 1.0460
+    approx_offset: 88282
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0003
+  form: '1.0481'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: A105 / 1.0481
+    approx_offset: 17047
+  - quote: A105 / 1.0481
+    approx_offset: 88326
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0004
+  form: '1.4301'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0005
+  form: '1.4307'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1.4307'
+    approx_offset: 16741
+  - quote: '1.4307'
+    approx_offset: 88020
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0006
+  form: '1.4404'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1.4404'
+    approx_offset: 16762
+  - quote: '1.4404'
+    approx_offset: 88041
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0007
+  form: '1.4435'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1.4435'
+    approx_offset: 16748
+  - quote: '1.4435'
+    approx_offset: 88027
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0008
+  form: '1.4436'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1.4436'
+    approx_offset: 16755
+  - quote: '1.4436'
+    approx_offset: 88034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0009
+  form: '1.4462'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 16864
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 88143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0010
+  form: '1.4541'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1.4541'
+    approx_offset: 16769
+  - quote: '1.4541'
+    approx_offset: 88048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0011
+  form: '1.4571'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "1.4571\tSAE – 4130"
+    approx_offset: 16776
+  - quote: "1.4571\tSAE – 4130"
+    approx_offset: 88055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0012
+  form: '1010'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1010'
+    approx_offset: 16942
+  - quote: '1010'
+    approx_offset: 88221
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0013
+  form: '1018'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1018'
+    approx_offset: 16947
+  - quote: '1018'
+    approx_offset: 88226
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0014
+  form: '1030'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1030'
+    approx_offset: 16952
+  - quote: '1030'
+    approx_offset: 88231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0015
+  form: '1040'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1040'
+    approx_offset: 16957
+  - quote: '1040'
+    approx_offset: 88236
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0016
+  form: '1045'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1045'
+    approx_offset: 16962
+  - quote: '1045'
+    approx_offset: 88241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0017
+  form: 1140 En3A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: 1140 En3A
+    approx_offset: 16972
+  - quote: 1140 En3A
+    approx_offset: 88251
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0018
+  form: '1141'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '1141'
+    approx_offset: 16967
+  - quote: '1141'
+    approx_offset: 88246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0019
+  form: 18NiCrMo4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: 18NiCrMo4
+    approx_offset: 16812
+  - quote: 18NiCrMo4
+    approx_offset: 88091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0020
+  form: 20MnCr5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0021
+  form: '2205'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 16871
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 88150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0022
+  form: '4140'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0023
+  form: 414020MnCr5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: 414020MnCr5
+    approx_offset: 16800
+  - quote: 414020MnCr5
+    approx_offset: 88079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0024
+  form: 42CrMo4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0025
+  form: 42CrMo4F5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: 42CrMo4F5
+    approx_offset: 16827
+  - quote: 42CrMo4F5
+    approx_offset: 88106
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0026
+  form: 8% H2 + 92% N2 atmosphere
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0027
+  form: '825'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: '825'
+    approx_offset: 16888
+  - quote: '825'
+    approx_offset: 88167
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0028
+  form: 8620H
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: 8620H
+    approx_offset: 16794
+  - quote: 8620H
+    approx_offset: 88073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0029
+  form: A105
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: A105 / 1.0481
+    approx_offset: 17040
+  - quote: A105 / 1.0481
+    approx_offset: 88319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0030
+  form: A105 / 1.0481
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: A105 / 1.0481
+    approx_offset: 17040
+  - quote: A105 / 1.0481
+    approx_offset: 88319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0031
+  form: A668
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: A668 CLF
+    approx_offset: 17031
+  - quote: A668 CLF
+    approx_offset: 88310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0032
+  form: A668 CLF
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: A668 CLF
+    approx_offset: 17031
+  - quote: A668 CLF
+    approx_offset: 88310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0033
+  form: Activated carbon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Activated carbon from coconut shells (2006-07): This process was developed for converting
+      agricultural waste into high-cost industrial material.'
+    approx_offset: 136554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0034
+  form: Activated carbon from coconut shells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Activated carbon from coconut shells (2006-07): This process was developed for converting
+      agricultural waste into high-cost industrial material.'
+    approx_offset: 136554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0035
+  form: AlON
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Under this activity, sintering of AlON (Al-Oxy Nitride) and Spinels (Al-Mg Oxides) was done
+      using microwaves.
+    approx_offset: 136820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0036
+  form: AlON (Al-Oxy Nitride)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Under this activity, sintering of AlON (Al-Oxy Nitride) and Spinels (Al-Mg Oxides) was done
+      using microwaves.
+    approx_offset: 136820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0037
+  form: Alloy 20
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "Alloy 20\tSAE – 1008"
+    approx_offset: 16922
+  - quote: "Alloy 20\tSAE – 1008"
+    approx_offset: 88201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0038
+  form: Alloy Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+    - https://www.pradeepmetals.com/imrc/projects/
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 16647
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 87926
+  - quote: Improving circular economy by converting Industrial metallic waste like forging scales to low
+      alloy steel
+    approx_offset: 136174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0039
+  form: C22.8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: C22.8 / 1.0460
+    approx_offset: 16995
+  - quote: C22.8 / 1.0460
+    approx_offset: 88274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0040
+  form: C22.8 / 1.0460
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: C22.8 / 1.0460
+    approx_offset: 16995
+  - quote: C22.8 / 1.0460
+    approx_offset: 88274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0041
+  form: C45
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: CK45 / C45 Gr55
+    approx_offset: 17017
+  - quote: CK45 / C45 Gr55
+    approx_offset: 88296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0042
+  form: CK45
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: CK45 / C45 Gr55
+    approx_offset: 17010
+  - quote: CK45 / C45 Gr55
+    approx_offset: 88289
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0043
+  form: CK45 / C45 Gr55
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: CK45 / C45 Gr55
+    approx_offset: 17010
+  - quote: CK45 / C45 Gr55
+    approx_offset: 88289
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0044
+  form: Carbon Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 16666
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 87945
+  - quote: With an installed capacity of around 3.76 million MT in fiscal 2016, Indian forging industry
+      has a capability to forge the variety of raw materials like carbon steel, alloy steel, stainless
+      steel, super alloy, titanium, copper, brass and aluminium.
+    approx_offset: 223645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0045
+  form: Ceramic plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Sintering of Ceramic plates for solid oxide fuel cell electrode materials
+    approx_offset: 135779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0046
+  form: Ceramics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 12 Applications of Microwave Technology in Processing of Ceramics, and Hard Materials
+    approx_offset: 99133
+  - quote: Workshop on Ceramics, Carbides & Diamonds – Technologies & Applications 2013,CCD-13  by  Powder
+      Metallurgy Association of India & Indian Ceramics
+    approx_offset: 99175
+  - quote: Workshop on Ceramics, Carbides & Diamonds – Technologies & Applications 2013,CCD-13  by  Powder
+      Metallurgy Association of India & Indian Ceramics
+    approx_offset: 99300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0047
+  form: Copper alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+  evidence:
+  - quote: Copper alloys – Ensuring high electrical and thermal conductivity
+    approx_offset: 220727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0048
+  form: Cu+Cr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: components made from SS, refractory metals (tungsten), composites of Cu+Cr etc
+    approx_offset: 135956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0049
+  form: DIN1.2713
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: DIN1.2713
+    approx_offset: 17082
+  - quote: DIN1.2713
+    approx_offset: 88361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0050
+  form: DIN1.2714
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: DIN1.2714
+    approx_offset: 17072
+  - quote: DIN1.2714
+    approx_offset: 88351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0051
+  form: Die Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 16679
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 87958
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0052
+  form: Duplex
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 16659
+  - quote: Pradeep Metals > Super Duplex Forgings
+    approx_offset: 56617
+  - quote: SUPER DUPLEX FORGINGS
+    approx_offset: 56641
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0053
+  form: En19
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: En19
+    approx_offset: 16822
+  - quote: En19
+    approx_offset: 88101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0054
+  form: En24
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 17067
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 88346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0055
+  form: En3A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: 1140 En3A
+    approx_offset: 16977
+  - quote: 1140 En3A
+    approx_offset: 88256
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0056
+  form: En8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: En8
+    approx_offset: 16982
+  - quote: En8
+    approx_offset: 88261
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0057
+  form: En8D
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: En8D
+    approx_offset: 16986
+  - quote: En8D
+    approx_offset: 88265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0058
+  form: En9
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: En9
+    approx_offset: 16991
+  - quote: En9
+    approx_offset: 88270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0059
+  form: F11
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F11
+    approx_offset: 16840
+  - quote: F11
+    approx_offset: 88119
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0060
+  form: F20
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F20
+    approx_offset: 16844
+  - quote: F20
+    approx_offset: 88123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0061
+  form: F22
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F22
+    approx_offset: 16848
+  - quote: F22
+    approx_offset: 88127
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0062
+  form: F303
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F303
+    approx_offset: 16689
+  - quote: F303
+    approx_offset: 87968
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0063
+  form: F304
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F304/F304L
+    approx_offset: 16694
+  - quote: F304/F304L
+    approx_offset: 87973
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0064
+  form: F304/F304L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F304/F304L
+    approx_offset: 16694
+  - quote: F304/F304L
+    approx_offset: 87973
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0065
+  form: F316
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F316 Ti
+    approx_offset: 16705
+  - quote: F316/F316L
+    approx_offset: 16713
+  - quote: F316 Ti
+    approx_offset: 87984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0066
+  form: F316 Ti
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F316 Ti
+    approx_offset: 16705
+  - quote: F316 Ti
+    approx_offset: 87984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0067
+  form: F316/F316L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F316/F316L
+    approx_offset: 16713
+  - quote: F316/F316L
+    approx_offset: 87992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0068
+  form: F321
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F321
+    approx_offset: 16724
+  - quote: F321
+    approx_offset: 88003
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0069
+  form: F347H
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0070
+  form: F347H1.4301
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F347H1.4301
+    approx_offset: 16729
+  - quote: F347H1.4301
+    approx_offset: 88008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0071
+  form: F51/1.4462/2205
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 16860
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 88139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0072
+  form: F9
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F9
+    approx_offset: 16837
+  - quote: F9
+    approx_offset: 88116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0073
+  form: F91
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: F91
+    approx_offset: 16852
+  - quote: F91
+    approx_offset: 88131
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0074
+  form: F92
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 16856
+  - quote: "F92\tF51/1.4462/2205"
+    approx_offset: 88135
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0075
+  form: Goethite ore
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Processing of Goethite ore using microwave
+    approx_offset: 96618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0076
+  form: Gr70
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: Gr70
+    approx_offset: 17026
+  - quote: Gr70
+    approx_offset: 88305
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0077
+  form: Gum Ghatti/Karaya
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Decontamination of food additives (2024- ongoing): This is an exploratory project to reduce
+      microbial contamination of food additive “Gum Ghatti/Karaya”, which is a natural product obtained
+      from trees.'
+    approx_offset: 137413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0078
+  form: H11
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: H11
+    approx_offset: 17092
+  - quote: H11
+    approx_offset: 88371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0079
+  form: H2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136416
+  - quote: Conventionally sintering is done at 1100-1200ºC under pure H2, for longer duration.
+    approx_offset: 136529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0080
+  form: Hastelloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: Hastelloy C-276
+    approx_offset: 16906
+  - quote: Hastelloy C-276
+    approx_offset: 88185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0081
+  form: Hastelloy C-276
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: Hastelloy C-276
+    approx_offset: 16906
+  - quote: Hastelloy C-276
+    approx_offset: 88185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0082
+  form: Inconel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: Inconel 625
+    approx_offset: 16876
+  - quote: Inconel 625
+    approx_offset: 88155
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0083
+  form: Inconel 625
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: Inconel 625
+    approx_offset: 16876
+  - quote: Inconel 625
+    approx_offset: 88155
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0084
+  form: Industrial metallic waste
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Improving circular economy by converting Industrial metallic waste like forging scales to low
+      alloy steel
+    approx_offset: 136121
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0085
+  form: LF2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 17054
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 88333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0086
+  form: LF2 / 1.0436
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 17054
+  - quote: "LF2 / 1.0436\tEn24"
+    approx_offset: 88333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0087
+  form: Monel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: Monel 400
+    approx_offset: 16892
+  - quote: Monel 400
+    approx_offset: 88171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0088
+  form: Monel 400
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: Monel 400
+    approx_offset: 16892
+  - quote: Monel 400
+    approx_offset: 88171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0089
+  form: N2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0090
+  form: SAE – 1008
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "Alloy 20\tSAE – 1008"
+    approx_offset: 16931
+  - quote: "Alloy 20\tSAE – 1008"
+    approx_offset: 88210
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0091
+  form: SAE – 4130
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/material-grades
+    - https://www.pradeepmetals.com/material-grades/
+  evidence:
+  - quote: "1.4571\tSAE – 4130"
+    approx_offset: 16783
+  - quote: "1.4571\tSAE – 4130"
+    approx_offset: 88062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0092
+  form: SS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: components made from SS, refractory metals (tungsten), composites of Cu+Cr etc
+    approx_offset: 135908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0093
+  form: STAINLESS STEEL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - http://www.pradeepmetals.com/stainless-steel-forgings/
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel"
+    approx_offset: 16631
+  - quote: Industrial forging is done on various metals; from stainless steel to aluminium, there are
+      several processes of forging used in the manufacturing industry but the most commonly forged metal
+      in the manufacturing sector is the stainless steel.
+    approx_offset: 56709
+  - quote: Industrial forging is done on various metals; from stainless steel to aluminium, there are
+      several processes of forging used in the manufacturing industry but the most commonly forged metal
+      in the manufacturing sector is the stainless steel.
+    approx_offset: 56883
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0094
+  form: Spinels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Under this activity, sintering of AlON (Al-Oxy Nitride) and Spinels (Al-Mg Oxides) was done
+      using microwaves.
+    approx_offset: 136846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0095
+  form: Spinels (Al-Mg Oxides)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Under this activity, sintering of AlON (Al-Oxy Nitride) and Spinels (Al-Mg Oxides) was done
+      using microwaves.
+    approx_offset: 136846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0096
+  form: Transparent Ceramics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of Transparent Ceramics (2008-09): – This project was conducted for defense.'
+    approx_offset: 136712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0097
+  form: aluminium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/aluminium-forging/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+  evidence:
+  - quote: From aluminium forging, steel to brass, most of the metals or alloys can be used in forging
+      process.
+    approx_offset: 6010
+  - quote: Pradeep Metals > Aluminium Forging
+    approx_offset: 49370
+  - quote: ALUMINIUM FORGING
+    approx_offset: 49390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0098
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Many kinds of forging material can be utilized in this process, including brass, steel, and
+      aluminum, as well as alloys.
+    approx_offset: 231549
+  - quote: Some of the common forged metals are aluminum, alloy, stainless steel, brass, carbon, titanium,
+      copper, brass, etc.
+    approx_offset: 249745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0099
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/forging
+  evidence:
+  - quote: From aluminium forging, steel to brass, most of the metals or alloys can be used in forging
+      process.
+    approx_offset: 6038
+  - quote: Suitable for all kinds of materials like steel, brass and aluminium
+    approx_offset: 72526
+  - quote: This type of casting is absolutely suitable for all kinds of materials like steel, brass and
+      aluminium.
+    approx_offset: 73413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0100
+  form: castable ingots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: The wide variety of sizes of castable ingots make open die forged metals weigh anything from
+      a single pound to over 400,000 pounds.
+    approx_offset: 240532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0101
+  form: ceramic composites
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136267
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0102
+  form: chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: Be it a super duplex steel or duplex steel, the main difference between these metal alloys
+      is in their carbon content, grain size, austenitic-ferric phases and the percentage of other compositions
+      used like chromium.
+    approx_offset: 58047
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0103
+  form: coal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Pre-treatment of coal with microwaves
+    approx_offset: 135558
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0104
+  form: cobalt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+  evidence:
+  - quote: In industries that require high temperature, alloys that contain cobalt, molybdenum or nickel
+      can be used.
+    approx_offset: 249889
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0105
+  form: cobalt, molybdenum or nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+  evidence:
+  - quote: In industries that require high temperature, alloys that contain cobalt, molybdenum or nickel
+      can be used.
+    approx_offset: 249889
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0106
+  form: coconut shells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Activated carbon from coconut shells (2006-07): This process was developed for converting
+      agricultural waste into high-cost industrial material.'
+    approx_offset: 136576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0107
+  form: concrete
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136912
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0108
+  form: concrete paver blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0109
+  form: concrete pre-cast paver blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0110
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+    - https://www.pradeepmetals.com/imrc/projects/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136334
+  - quote: Copper alloys – Ensuring high electrical and thermal conductivity
+    approx_offset: 220727
+  - quote: With an installed capacity of around 3.76 million MT in fiscal 2016, Indian forging industry
+      has a capability to forge the variety of raw materials like carbon steel, alloy steel, stainless
+      steel, super alloy, titanium, copper, brass and aluminium.
+    approx_offset: 223712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0111
+  form: duplex steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: The duplex steel has the best qualities of the austenitic as well as the ferric phases and
+      they provide several advantages like high yield strength and corrosion resistance whereas the super
+      duplex steel is more complex in its composition and they offer even higher value of ductility as
+      well as corr
+    approx_offset: 56939
+  - quote: The duplex steel has the best qualities of the austenitic as well as the ferric phases and
+      they provide several advantages like high yield strength and corrosion resistance whereas the super
+      duplex steel is more complex in its composition and they offer even higher value of ductility as
+      well as corr
+    approx_offset: 57126
+  - quote: Thus, the forging process carried on the duplex steel is dubbed as duplex forging and similarly
+      the process carried out on the super duplex one is called the super duplex forging.
+    approx_offset: 57357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0112
+  form: elastomers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: 'Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve.'
+    approx_offset: 102138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0113
+  form: food grains (rice, wheat)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Disinfestation of food grains (rice, wheat)
+    approx_offset: 135713
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0114
+  form: forging scales
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Improving circular economy by converting Industrial metallic waste like forging scales to low
+      alloy steel
+    approx_offset: 136152
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0115
+  form: high quality steel forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+  evidence:
+  - quote: Goyal built a business to supply high quality steel forgings around the world.
+    approx_offset: 12308
+  - quote: Goyal built a business to supply high quality steel forgings around the world.
+    approx_offset: 35225
+  - quote: Goyal built a business to supply high quality steel forgings around the world.
+    approx_offset: 113410
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0116
+  form: high-strength steel forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: Pradeep Metals makes high-strength steel forgings that are utilized across the globe.
+    approx_offset: 205479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0117
+  form: industrial gases
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+    - https://www.pradeepmetals.com/our-team
+    - https://www.pradeepmetals.com/our-team/
+  evidence:
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 22970
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 129761
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 153324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0118
+  form: ingot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: Forging also involves pre-work, which serves to refine the ingot’s dendritic structure in addition
+      to getting it rid of porosity and other defects.
+    approx_offset: 239198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0119
+  form: iron ore
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Microwave assisted reduction of iron ore fines to manufacture sponge iron
+    approx_offset: 96120
+  - quote: Smelting-reduction of iron ore (Microwave Composite Heating Furnace)
+    approx_offset: 136008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0120
+  form: iron ore fines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Microwave assisted reduction of iron ore fines to manufacture sponge iron
+    approx_offset: 96120
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0121
+  form: low alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Improving circular economy by converting Industrial metallic waste like forging scales to low
+      alloy steel
+    approx_offset: 136170
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0122
+  form: low grade iron ores
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 11 Microwave assisted steel making from low grade iron ores for  local industries in India
+    approx_offset: 98893
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0123
+  form: metal billet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+  evidence:
+  - quote: Open die forging is a process in which a metal billet or piece is deformed until the desired
+      shape is achieved.
+    approx_offset: 200642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0124
+  form: metal billets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+  evidence:
+  - quote: Also referred to as impression forging, this forging process involves the application of high-value
+      pressure over metal billets or pieces placed on an enclosed die to create its impression with stark
+      precision.
+    approx_offset: 200482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0125
+  form: micro-alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+  evidence:
+  - quote: Carbon, micro-alloy and alloy steel – Used in a wide range of industrial applications.
+    approx_offset: 220801
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0126
+  form: molybdenum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+  evidence:
+  - quote: In industries that require high temperature, alloys that contain cobalt, molybdenum or nickel
+      can be used.
+    approx_offset: 249897
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0127
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+  evidence:
+  - quote: In industries that require high temperature, alloys that contain cobalt, molybdenum or nickel
+      can be used.
+    approx_offset: 249911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0128
+  form: polymers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: 'Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve.'
+    approx_offset: 102126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0129
+  form: polymers or elastomers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: 'Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve.'
+    approx_offset: 102126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0130
+  form: refractory metals (tungsten)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: components made from SS, refractory metals (tungsten), composites of Cu+Cr etc
+    approx_offset: 135912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0131
+  form: resin bonded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 96243
+  - quote: 08 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 98302
+  - quote: 13 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 99329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0132
+  form: rice, wheat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Disinfestation of food grains (rice, wheat)
+    approx_offset: 135726
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0133
+  form: sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Precision metal manufacturing, more commonly known as Sheet Metal Fabrication employs a set
+      of ways in which sheet metal can be manufactured.
+    approx_offset: 213918
+  - quote: Precision metal manufacturing, more commonly known as Sheet Metal Fabrication employs a set
+      of ways in which sheet metal can be manufactured.
+    approx_offset: 213973
+  - quote: Like the manufacturing of any other material, sheet metal fabrication follows a predetermined
+      set of rules.
+    approx_offset: 214159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0134
+  form: sponge iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Microwave assisted reduction of iron ore fines to manufacture sponge iron
+    approx_offset: 96150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0135
+  form: steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 116
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forging/
+    - http://www.pradeepmetals.com/stainless-steel-forgings/
+    - http://www.pradeepmetals.com/valves/
+    - https://www.pradeepmetals.com/about-us
+  evidence:
+  - quote: From aluminium forging, steel to brass, most of the metals or alloys can be used in forging
+      process.
+    approx_offset: 6029
+  - quote: Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience in the steel and
+      heavy engineering industries.
+    approx_offset: 12076
+  - quote: Goyal built a business to supply high quality steel forgings around the world.
+    approx_offset: 12321
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0136
+  form: super alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: With an installed capacity of around 3.76 million MT in fiscal 2016, Indian forging industry
+      has a capability to forge the variety of raw materials like carbon steel, alloy steel, stainless
+      steel, super alloy, titanium, copper, brass and aluminium.
+    approx_offset: 223689
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0137
+  form: super duplex stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: But stainless steel has several variations too and duplex or super duplex stainless steel is
+      some of the best quality steel that is used in the forging industry.
+    approx_offset: 57739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0138
+  form: super duplex steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: The duplex steel has the best qualities of the austenitic as well as the ferric phases and
+      they provide several advantages like high yield strength and corrosion resistance whereas the super
+      duplex steel is more complex in its composition and they offer even higher value of ductility as
+      well as corr
+    approx_offset: 57120
+  - quote: Be it a super duplex steel or duplex steel, the main difference between these metal alloys
+      is in their carbon content, grain size, austenitic-ferric phases and the percentage of other compositions
+      used like chromium.
+    approx_offset: 57848
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0139
+  form: titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: With an installed capacity of around 3.76 million MT in fiscal 2016, Indian forging industry
+      has a capability to forge the variety of raw materials like carbon steel, alloy steel, stainless
+      steel, super alloy, titanium, copper, brass and aluminium.
+    approx_offset: 223702
+  - quote: Some of the common forged metals are aluminum, alloy, stainless steel, brass, carbon, titanium,
+      copper, brass, etc.
+    approx_offset: 249794
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-material_caps-0140
+  form: tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: components made from SS, refractory metals (tungsten), composites of Cu+Cr etc
+    approx_offset: 135931
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

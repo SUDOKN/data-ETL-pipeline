@@ -1,0 +1,708 @@
+subject: ableengineering.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+golden_set_version: 1
+anchored_on: search/expectations/ableengineering_com/products.yaml
+labels:
+- id: ableengineering_com-products-0001
+  form: ACTUATOR HOUSING ASSEMBLY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=rotor%20wing
+    - https://www.ableaerospace.com/parts/?type_search=rotor%20wing&make_search=Bell
+  evidence:
+  - quote: ACTUATOR HOUSING ASSEMBLY
+    approx_offset: 8031
+  - quote: ACTUATOR HOUSING ASSEMBLY
+    approx_offset: 59499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0002
+  form: Carriages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimble Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 48102
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimble Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 48141
+  - quote: Sequencing Carriages
+    approx_offset: 48186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0003
+  form: Engine Mounting Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: Engine Mounting Systems
+    approx_offset: 48047
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0004
+  form: FUEL NOZZLE AIR SHROUD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+  evidence:
+  - quote: FUEL NOZZLE AIR SHROUD
+    approx_offset: 22337
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0005
+  form: FUEL NOZZLE SHROUD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+  evidence:
+  - quote: FUEL NOZZLE SHROUD
+    approx_offset: 22606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0006
+  form: Flap Tracks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimble Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 48089
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0007
+  form: Flap Transmissions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimble Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 48155
+  - quote: Flap Transmissions
+    approx_offset: 48197
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0008
+  form: Freewheeling Units
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Freewheeling Units
+    approx_offset: 37479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0009
+  form: GALLEY BEAM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+  evidence:
+  - quote: GALLEY BEAM
+    approx_offset: 22866
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0010
+  form: GALLEY CAPPING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+  evidence:
+  - quote: GALLEY CAPPING
+    approx_offset: 23051
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0011
+  form: Geared Rotary Actuators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: Geared Rotary Actuators
+    approx_offset: 48217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0012
+  form: Gimble Fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimble Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 48113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0013
+  form: Line Replaceable Units
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: Landing Gear & Supporting Line Replaceable Units
+    approx_offset: 48023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0014
+  form: MAIN ROTOR MAST
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.ableaerospace.com/mro/?type_search=rotor%20wing
+  evidence:
+  - quote: 350 MAIN ROTOR MAST SLEEVE
+    approx_offset: 30869
+  - quote: 350 MAIN ROTOR MAST SLEEVE
+    approx_offset: 31028
+  - quote: 350 MAIN ROTOR MAST SLEEVE
+    approx_offset: 31201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0015
+  form: Main Rotor Hub Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Main Rotor Hub Assembly
+    approx_offset: 37429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0016
+  form: Mast Assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Mast Assemblies
+    approx_offset: 37499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0017
+  form: PRINTED CIRCUIT ASSEMBLY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=rotor%20wing&make_search=Airbus%20Helicopters
+  evidence:
+  - quote: PRINTED CIRCUIT ASSEMBLY
+    approx_offset: 74995
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0018
+  form: Sequencing Carriages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimble Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 48130
+  - quote: Sequencing Carriages
+    approx_offset: 48175
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0019
+  form: Tail Rotor Gear Box Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Tail Rotor Gear Box Assembly
+    approx_offset: 37551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0020
+  form: Tail Rotor Hub and Blade Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Tail Rotor Hub and Blade Assembly
+    approx_offset: 37516
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0021
+  form: Transmission Assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Transmission Assemblies
+    approx_offset: 37454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0022
+  form: WASTE CONTAINER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+  evidence:
+  - quote: WASTE CONTAINER
+    approx_offset: 24276
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0023
+  form: approved replacement parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Boeing
+    - https://www.ableaerospace.com/parts/?type_search=rotor%20wing
+  evidence:
+  - quote: A full-service operation, Able also provides a parts exchange program and approved replacement
+      parts for some of the biggest names in aviation.
+    approx_offset: 448
+  - quote: Find the components you’re looking for from our deep inventory of quality, FAA-approved replacement
+      parts.
+    approx_offset: 3187
+  - quote: Find the components you’re looking for from our deep inventory of quality, FAA-approved replacement
+      parts.
+    approx_offset: 7357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0024
+  form: engine mount
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: Our exchange program supports your AOG with Pratt & Whitney 2000 and 4000, IAE V2500, and CFM
+      engine mount MRO programs.
+    approx_offset: 47354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0025
+  form: engine mounts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/fixed-wing/
+  evidence:
+  - quote: From component maintenance to landing gear and engine mounts, we complete thousands of repairs
+      every year.
+    approx_offset: 47199
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0026
+  form: landing gear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 37
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: LANDING GEAR
+    approx_offset: 130
+  - quote: LANDING GEAR
+    approx_offset: 3022
+  - quote: LANDING GEAR
+    approx_offset: 4495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0027
+  form: line replacement units
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Combining more than 40 years of engineering expertise with our state-of-the-art facility, our
+      capabilities range from complete gear overhaul and repairs to life-limited components and line replacement
+      units alike.
+    approx_offset: 41434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0028
+  form: main rotor hub
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Able’s exchanges include dynamic rotor wing components – main rotor hub, main transmission,
+      mast, swashplate, tail rotor gearbox – to name a few for Bell 407 and Bell 412 aircraft.
+    approx_offset: 36955
+  - quote: Main Rotor Hub Assembly
+    approx_offset: 37429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0029
+  form: main transmission
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Able’s exchanges include dynamic rotor wing components – main rotor hub, main transmission,
+      mast, swashplate, tail rotor gearbox – to name a few for Bell 407 and Bell 412 aircraft.
+    approx_offset: 36971
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0030
+  form: mast
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.ableaerospace.com/mro/?type_search=rotor%20wing
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: 350 MAIN ROTOR MAST SLEEVE
+    approx_offset: 30880
+  - quote: 350 MAIN ROTOR MAST SLEEVE
+    approx_offset: 31039
+  - quote: 350 MAIN ROTOR MAST SLEEVE
+    approx_offset: 31212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0031
+  form: replacement parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Boeing
+    - https://www.ableaerospace.com/parts/?type_search=rotor%20wing
+  evidence:
+  - quote: A full-service operation, Able also provides a parts exchange program and approved replacement
+      parts for some of the biggest names in aviation.
+    approx_offset: 457
+  - quote: REPLACEMENT PARTS
+    approx_offset: 3089
+  - quote: Find the components you’re looking for from our deep inventory of quality, FAA-approved replacement
+      parts.
+    approx_offset: 3196
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0032
+  form: rotable
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-for-airbus-helicopters-with-contract-renewal/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/press/able-aerospace-earns-faa-acceptance-for-safety-management-system-in-aircraft-and-component-maintenance/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: We have one of the largest rotable inventories in the world, which means we’re ready to make
+      immediate exchanges whenever you need.
+    approx_offset: 27059
+  - quote: Operating from a 250,000 square foot, state-of-the-art facility headquartered in Mesa, Arizona,
+      Able Aerospace offers more than 10,000 FAA-approved repairs and overhauls and has one of the world’s
+      largest rotable exchange inventories.
+    approx_offset: 78408
+  - quote: Operating from a 250,000-square-foot, state-of-the-art headquarters in Mesa, Arizona, Able
+      offers more than 10,000 FAA-approved repairs and overhauls, some of the world’s largest rotable
+      exchange inventories and in-house specialized services ranging from electroplating, chemical processing,
+      machinin
+    approx_offset: 81162
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0033
+  form: rotable exchange inventories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-for-airbus-helicopters-with-contract-renewal/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/press/able-aerospace-earns-faa-acceptance-for-safety-management-system-in-aircraft-and-component-maintenance/
+  evidence:
+  - quote: Operating from a 250,000 square foot, state-of-the-art facility headquartered in Mesa, Arizona,
+      Able Aerospace offers more than 10,000 FAA-approved repairs and overhauls and has one of the world’s
+      largest rotable exchange inventories.
+    approx_offset: 78408
+  - quote: Operating from a 250,000-square-foot, state-of-the-art headquarters in Mesa, Arizona, Able
+      offers more than 10,000 FAA-approved repairs and overhauls, some of the world’s largest rotable
+      exchange inventories and in-house specialized services ranging from electroplating, chemical processing,
+      machinin
+    approx_offset: 81162
+  - quote: Operating from a 250,000 square foot, state-of-the-art facility headquartered in Mesa, Arizona,
+      Able Aerospace offers more than 10,000 FAA-approved repairs and overhauls and has one of the world’s
+      largest rotable exchange inventories.
+    approx_offset: 84429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0034
+  form: rotable inventories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: We have one of the largest rotable inventories in the world, which means we’re ready to make
+      immediate exchanges whenever you need.
+    approx_offset: 27059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0035
+  form: swashplate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Able’s exchanges include dynamic rotor wing components – main rotor hub, main transmission,
+      mast, swashplate, tail rotor gearbox – to name a few for Bell 407 and Bell 412 aircraft.
+    approx_offset: 36996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-products-0036
+  form: tail rotor gearbox
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/rotor-wing/
+  evidence:
+  - quote: Able’s exchanges include dynamic rotor wing components – main rotor hub, main transmission,
+      mast, swashplate, tail rotor gearbox – to name a few for Bell 407 and Bell 412 aircraft.
+    approx_offset: 37008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

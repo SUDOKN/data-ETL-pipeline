@@ -1,0 +1,4096 @@
+subject: agstech.net
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/agstech.net.txt
+  sha256: 1bc0ba503cc3d838798442a2b98cd509bb20604d97c42c21dc206b850317fc2f
+golden_set_version: 1
+anchored_on: search/expectations/agstech_net/equipments.yaml
+labels:
+- id: agstech_net-equipments-0001
+  form: Automated welding equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+  evidence:
+  - quote: Automated welding equipment is being used.
+    approx_offset: 554342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0002
+  form: Brazing Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+    - https://www.agstech.net/joining-assembly-fastening-process
+    - https://www.agstech.net/private-white-label-product-catalogs
+  evidence:
+  - quote: Brazing Machines (We private label these with your brand name and logo if you wish)
+    approx_offset: 225991
+  - quote: '- Brazing Machines'
+    approx_offset: 347646
+  - quote: Brazing Machines (We private label these with your brand name and logo if you wish.
+    approx_offset: 546850
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0003
+  form: CAD-driven workcells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/micro-assembly-and-packaging
+  evidence:
+  - quote: • Fully automated CAD-driven workcells for micro assembly
+    approx_offset: 1189899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0004
+  form: CNC controlled waterjet machining equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/abrasive-waterjet-machining-cutting
+  evidence:
+  - quote: Even complicated shapes such as automotive dashboard coverings made of vinyl and foam can be
+      cut using multiple-axis, CNC controlled waterjet machining equipment.
+    approx_offset: 600065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0005
+  form: CNC grinder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132387
+  - quote: As an example, a work order may require the use of a CNC lathe, CNC grinder and an automated
+      inspection station to organize them into a production holon.
+    approx_offset: 132638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0006
+  form: CNC lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132413
+  - quote: As an example, a work order may require the use of a CNC lathe, CNC grinder and an automated
+      inspection station to organize them into a production holon.
+    approx_offset: 132627
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0007
+  form: CNC machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+    - https://www.agstech.net/glass-cutting-shaping-tools
+  evidence:
+  - quote: As the base metal erodes, and the spark gap subsequently increases, the electrode is lowered
+      automatically by our CNC machine so that the process can continue uninterrupted.
+    approx_offset: 482224
+  - quote: Diamond Wheel for CNC Machine
+    approx_offset: 1506511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0008
+  form: CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+    - https://www.agstech.net/low-high-volume-manufacturing
+    - https://www.agstech.net/non-conventional-fabrication-edm
+  evidence:
+  - quote: For almost all fabrication techniques, whether it be conventional or non-conventional, we do
+      use CAD/CAM and automated CNC machines as well as manual machines.
+    approx_offset: 22039
+  - quote: Our machine operators program these CNC machines.
+    approx_offset: 102285
+  - quote: We also deploy computer integrated flexible manufacturing cells with CNC machines, machining
+      centers and industrial robots.
+    approx_offset: 128901
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0009
+  form: CNC milling machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132353
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0010
+  form: CNC plasma equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: Our modern CNC plasma equipment is capable of multi-axis cutting of thick materials and allowing
+      opportunities for complex welding seams that are not possible otherwise.
+    approx_offset: 538652
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0011
+  form: CNC wire formers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/wire-spring-forming
+  evidence:
+  - quote: Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide.
+    approx_offset: 964842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0012
+  form: CO2 LASER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: The pulsed or continuous wave CO2 LASER is suited for cutting, boring, and engraving.
+    approx_offset: 495642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0013
+  form: CO2 laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 4
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0014
+  form: CO2 lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: 'CARBONDIOXIDE (CO2) LASER CUTTING and MACHINING: The DC-excited CO2 lasers get pumped by passing
+      a current through the gas mix whereas the RF-excited CO2 lasers use radio frequency energy for excitation.'
+    approx_offset: 496831
+  - quote: 'CARBONDIOXIDE (CO2) LASER CUTTING and MACHINING: The DC-excited CO2 lasers get pumped by passing
+      a current through the gas mix whereas the RF-excited CO2 lasers use radio frequency energy for excitation.'
+    approx_offset: 496917
+  - quote: We use CO2 lasers in industrial cutting of many materials such as mild steel, aluminum, stainless
+      steel, titanium and plastics.
+    approx_offset: 497291
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0015
+  form: CUSTOM AUTOMATION SYSTEMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/embedded-systems-industrial-compute
+  evidence:
+  - quote: We also build CUSTOM AUTOMATION SYSTEMS, MONITORING and PROCESS CONTROL SYSTEMS by integrating
+      computers, translation stages, rotary stages, motorized components, arms, data acquisition cards,
+      process control cards, sensors, actuators and other hardware and software components of need.
+    approx_offset: 1405904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0016
+  form: Cable and wire winding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Cable and wire winding machines, coil processing'
+    approx_offset: 224608
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0017
+  form: Chopping Machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Chopping Machinery'
+    approx_offset: 224953
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0018
+  form: Collaborative Robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: Collaborative Robots
+    approx_offset: 226243
+  - quote: '- Collaborative Robots'
+    approx_offset: 1431331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0019
+  form: Commercial electrochemical machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+  evidence:
+  - quote: Commercial electrochemical machines with current capacities between 5A and 40,000A are available.
+    approx_offset: 514812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0020
+  form: Continuous Process Machines and Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Continuous Process Machines and Equipment'
+    approx_offset: 223616
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0021
+  form: DOUBLE PULSE LASERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: We use DOUBLE PULSE LASERS emitting a series of pulse pairs to improve material removal rate
+      and hole quality.
+    approx_offset: 501684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0022
+  form: Drill presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+  evidence:
+  - quote: Drill presses, lathes or mills are generally used.
+    approx_offset: 844786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0023
+  form: EBM equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: EBM equipment is built similarly to electron beam welding machines.
+    approx_offset: 439969
+  - quote: The interaction of the electron beam with the work piece produces X-rays which pose health
+      hazard, and therefore well trained personnel should operate EBM equipment.
+    approx_offset: 441678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0024
+  form: EBM machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: The electron beam guns in our EBM machines are also provided with illumination systems and
+      telescopes for alignment of the beam with the workpiece.
+    approx_offset: 439241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0025
+  form: EBM-Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: The aperture and the magnetic lenses in EBM-Machines thus improve the quality of the electron
+      beam.
+    approx_offset: 440748
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0026
+  form: EBM-Machining equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: The electron beams in EBM-Machining equipment are generated in an electron beam gun.
+    approx_offset: 438833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0027
+  form: EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 99
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+    - https://www.agstech.net/edm-electrical-discharge-machining
+    - https://www.agstech.net/jigs-fixtures-workholding-tools-manufacturing
+    - https://www.agstech.net/machined-components-milling-turning
+  evidence:
+  - quote: EDM Machining, Electrical-Discharge Milling and Grinding
+    approx_offset: 17428
+  - quote: 'Among the major NON-CONVENTIONAL FABRICATION techniques we offer are Electrochemical Fabrication
+      (also called Electrochemical Machining or ECM), Electrical Discharge Machining or EDM, Water Jet
+      Cutting, Abrasive Water Jet Cutting (WJ, AWJ), Laser Beam Machining (LBM), Electron Beam Machining
+      (EBM), '
+    approx_offset: 18144
+  - quote: EDM Tooling - Workholding Catalog
+    approx_offset: 62057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0028
+  form: EDM machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: On our wire-cut EDM machines, we use small hole drilling EDM to make a through hole in a workpiece
+      through which to thread the wire for the wire-cut EDM operation.
+    approx_offset: 488742
+  - quote: Besides the integrated EDM heads, we deploy stand-alone small hole drilling EDM machines with
+      x–y axes to machine blind or through holes.
+    approx_offset: 489672
+  - quote: We also have special EDM machines for the specific purpose of removing broken tools (drill
+      bits or taps) from work pieces.
+    approx_offset: 490198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0029
+  form: EDM wire-cutting machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Along with tighter tolerances, our modern multi axis EDM wire-cutting machining centers have
+      added features such as multi heads for cutting two parts at the same time, controls for preventing
+      wire breakage, automatic self-threading features in case of wire breakage, and programmed machining
+      strategi
+    approx_offset: 485834
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0030
+  form: EXCIMER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: Other lasers we use in manufacturing include Nd:GLASS, RUBY and EXCIMER.
+    approx_offset: 496149
+  - quote: 'EXCIMER LASER CUTTING and MACHINING: An excimer laser is a kind of laser with wavelengths
+      in the ultraviolet region.'
+    approx_offset: 497748
+  - quote: 'EXCIMER LASER CUTTING and MACHINING: An excimer laser is a kind of laser with wavelengths
+      in the ultraviolet region.'
+    approx_offset: 497788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0031
+  form: Elecron beam guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+  evidence:
+  - quote: Elecron beam guns have 100 kW capacities.
+    approx_offset: 560550
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0032
+  form: Electron-beam machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: Electron-beam machines usually utilize voltages in the range of 50 to 200 kV to accelerate
+      electrons to about 50 to 80% of the speed of light (200,000 km/s).
+    approx_offset: 440037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0033
+  form: FIB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: Mesomanufacturing processes that are currently available to us include, focused ion beam (FIB)
+      sputtering, micro-milling, micro-turning, excimer laser ablation, femto-second laser ablation, and
+      micro electro-discharge (EDM) machining.
+    approx_offset: 1200200
+  - quote: 'MESOSCALE MACHINING PROCESSES: Our major mesomanufacturing techniques are Focused Ion Beam
+      (FIB), Micro-milling, & Micro-turning, laser meso-machining, Micro-EDM (electro-discharge machining)'
+    approx_offset: 1201946
+  - quote: 'Mesomanufacturing using focused Ion Beam (FIB), Micro-milling, & Micro-turning: The FIB sputters
+      material from a workpiece by Gallium ion beam bombardment.'
+    approx_offset: 1202098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0034
+  form: FLOWLINES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: At the other extreme, for an order that requires minimum flexibility but maximum productivity,
+      we assign the production to our FLOWLINES and TRANSFER LINES.
+    approx_offset: 99234
+  - quote: Manual small-batch production operations with conventional machine tools does not compete with
+      our automation flowlines, it offers us additional extraordinary capabilities and strength that manufacturers
+      with purely automated production lines do not have.
+    approx_offset: 100564
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0035
+  form: FUSION SPLICER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fiber-optic-test-instruments
+  evidence:
+  - quote: '- OPTICAL FIBER SPLICER & FUSION SPLICER & FIBER CLEAVER'
+    approx_offset: 695845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0036
+  form: Food processing machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Food processing machines'
+    approx_offset: 225002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0037
+  form: Fusion splicing machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fiber-optic-test-instruments
+  evidence:
+  - quote: Fusion splicing machines can splice a single fiber or a ribbon of multiple fibers at one time.
+    approx_offset: 698519
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0038
+  form: GS 600 LASER DRILLING SYSTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/active-optical-components-manufactu
+  evidence:
+  - quote: • Among the many achievements of our optical engineers is the concept design, optical and opto-mechanical
+      design of optical scan head for GS 600 LASER DRILLING SYSTEM with dual galvo scanners and self compensating
+      alignment.
+    approx_offset: 1355754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0039
+  form: GS600
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/active-optical-components-manufactu
+  evidence:
+  - quote: Since its introduction, the GS600 family has become the system of choice for many leading high
+      volume manufacturers around the World.
+    approx_offset: 1355869
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0040
+  form: Grinding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Grinding machines'
+    approx_offset: 224932
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0041
+  form: Hose Crimping Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+    - https://www.agstech.net/jigs-fixtures-workholding-tools-manufacturing
+    - https://www.agstech.net/private-labeling-white-labeling-label
+    - https://www.agstech.net/private-white-label-product-catalogs
+  evidence:
+  - quote: Hose Crimping Machines and Tools
+    approx_offset: 62299
+  - quote: Hose Crimping Machines  (We private label these with your brand name and logo if you wish)
+    approx_offset: 226707
+  - quote: '- Hose Crimping Machines'
+    approx_offset: 348057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0042
+  form: Hose Endforming Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+    - https://www.agstech.net/jigs-fixtures-workholding-tools-manufacturing
+    - https://www.agstech.net/private-white-label-product-catalogs
+  evidence:
+  - quote: Hose Endforming Machines and Tools
+    approx_offset: 62524
+  - quote: Hose Endforming Machines  (We private label these with your brand name and logo if you wish)
+    approx_offset: 226895
+  - quote: '- Hose Endforming Machines'
+    approx_offset: 348113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0043
+  form: Hose-Cut-Off-Skive-Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+    - https://www.agstech.net/private-white-label-product-catalogs
+  evidence:
+  - quote: Hose-Cut-Off-Skive-Machine  (We private label these with your brand name and logo if you wish)
+    approx_offset: 226799
+  - quote: '- Hose-Cut-Off-Skive-Machine'
+    approx_offset: 348083
+  - quote: - Hose-Cut-Off-Skive-Machine  (We private label these with your brand name and logo if you
+      wish)
+    approx_offset: 1559053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0044
+  form: INDUSTRIAL ROBOTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: Vital components in our automation lines are INDUSTRIAL ROBOTS.
+    approx_offset: 104570
+  - quote: Industrial robots are not limited to our automated mass production lines, whenever needed we
+      deploy them, small-batch production processes inclusively.
+    approx_offset: 105799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0045
+  form: Industrial Robot Platforms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: Selection Guide of Industrial Robot Platforms
+    approx_offset: 227846
+  - quote: '- Selection Guide of Industrial Robot Platforms'
+    approx_offset: 1431932
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0046
+  form: Industrial Sewing Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-leather-products
+  evidence:
+  - quote: Applications of industrial leather includes Flat Leather Belting for power transmission and
+      Round Leather Belting for Industrial Sewing Machines.
+    approx_offset: 1694575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0047
+  form: Industrial filling machine solutions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Industrial filling machine solutions'
+    approx_offset: 225064
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0048
+  form: LASER-BEAM TORCH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: This is done using a LASER-BEAM TORCH.
+    approx_offset: 498583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0049
+  form: Labeling, printing, packaging machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Labeling, printing, packaging machines'
+    approx_offset: 224746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0050
+  form: Metal forming machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Metal forming machinery'
+    approx_offset: 224788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0051
+  form: Mini Hobbing Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Hobbing Machine'
+    approx_offset: 1559198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0052
+  form: Mini Laser Cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Laser Cutter'
+    approx_offset: 1559251
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0053
+  form: Mini Lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Lathe'
+    approx_offset: 1559154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0054
+  form: Mini Milling Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Milling Machine'
+    approx_offset: 1559171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0055
+  form: Mini Plasma Cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Plasma Cutter'
+    approx_offset: 1559302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0056
+  form: Mini Stamping Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Stamping Press'
+    approx_offset: 1559225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0057
+  form: Mini Waterjet Cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Waterjet Cutter'
+    approx_offset: 1559275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0058
+  form: Miniature lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/nanoscale-microscale-mesoscale-mfg
+  evidence:
+  - quote: Miniature lathes, with 1.5 Watt motor and dimensions of 32 x 25 x 30.5 mm and weights of 100
+      grams have been fabricated using mesoscale manufacturing methods.
+    approx_offset: 154781
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0059
+  form: Modern CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+  evidence:
+  - quote: Modern CNC machines are used
+    approx_offset: 518852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0060
+  form: NEODYMIUM (Nd)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: The NEODYMIUM (Nd) and neodymium yttrium-aluminum-garnet (Nd-YAG) LASERS are identical in style
+      and differ only in application.
+    approx_offset: 495702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0061
+  form: Nd-YAG laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: The Nd-YAG laser on the other hand is used where very high power is required and for boring
+      and engraving.
+    approx_offset: 495920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0062
+  form: Nd-YAG) LASERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: The NEODYMIUM (Nd) and neodymium yttrium-aluminum-garnet (Nd-YAG) LASERS are identical in style
+      and differ only in application.
+    approx_offset: 495756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0063
+  form: Oiling, finishing, painting, coating machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Oiling, finishing, painting, coating machines'
+    approx_offset: 225151
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0064
+  form: One-Off Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- One-Off Machines'
+    approx_offset: 224091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0065
+  form: Ovens, dryers, roasters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Ovens, dryers, roasters'
+    approx_offset: 224975
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0066
+  form: Oxyacetylene torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+  evidence:
+  - quote: Oxyacetylene torch with oxidizing flame is used to deposit the filler metal in braze welding.
+    approx_offset: 572837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0067
+  form: PULSED LASERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: PULSED LASERS provide us a high-power burst of energy for a short period and are very effective
+      in some laser cutting processes, such as piercing, or when very small holes or very low cutting
+      speeds are required.
+    approx_offset: 501235
+  - quote: Pulsed lasers can drill extremely small, deep holes through very hard materials.
+    approx_offset: 506004
+  - quote: Laser energy can be selectively absorbed by coatings, therefore CO2 and Nd:YAG pulsed lasers
+      can be used to clean surfaces, remove paint and coating, or prepare surfaces for painting without
+      damaging the underlying surface.
+    approx_offset: 506349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0068
+  form: Pipe bending machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Pipe bending machines'
+    approx_offset: 224510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0069
+  form: Plasma cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: Plasma cutters produce a very hot and localized cone to cut with, and are therefore very suitable
+      for cutting metal sheets in curved and angled shapes.
+    approx_offset: 535249
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0070
+  form: Press room equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Press room equipment such as sheet metal bending and forming machines'
+    approx_offset: 224535
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0071
+  form: Robotic Laser Welding Workstation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: Robotic Laser Welding Workstation
+    approx_offset: 227742
+  - quote: '- Robotic Laser Welding Workstation'
+    approx_offset: 1431734
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0072
+  form: Robotic Machines, Robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Robotic Machines, Robots'
+    approx_offset: 223462
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0073
+  form: SINKER EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: The machines for this operation are called SINKER EDM.
+    approx_offset: 479642
+  - quote: 'SINKER EDM :'
+    approx_offset: 481331
+  - quote: '- The additional time and cost used for creating electrodes for ram/sinker EDM.'
+    approx_offset: 491136
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0074
+  form: Servo C-Frame Utility Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+    - https://www.agstech.net/private-white-label-product-catalogs
+  evidence:
+  - quote: Servo C-Frame Utility Press (We private label these with your brand name and logo if you wish)
+    approx_offset: 227874
+  - quote: - Servo C-Frame Utility Press
+    approx_offset: 349487
+  - quote: '- Servo C-Frame Utility Press (We private label these with your brand name and logo if you
+      wish)'
+    approx_offset: 1559432
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0075
+  form: Shape correction and leveling machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Shape correction and leveling machinery'
+    approx_offset: 224889
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0076
+  form: Single and double leg crushers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Single and double leg crushers'
+    approx_offset: 224712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0077
+  form: Sinker EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Sinker EDM, also referred to as CAVITY TYPE EDM or VOLUME EDM, consists of an electrode and
+      workpiece submerged in an insulating liquid.
+    approx_offset: 481348
+  - quote: In Sinker EDM, a graphite, copper tungsten or pure copper electrode is machined into the desired
+      (negative) shape and fed into the workpiece on the end of a vertical ram.
+    approx_offset: 487727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0078
+  form: Sizing and separation machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Sizing and separation machines'
+    approx_offset: 225030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0079
+  form: Slitting, trimming, cutting machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Slitting, trimming, cutting machines'
+    approx_offset: 224849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0080
+  form: Special Purpose Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Special Purpose Machines Automation'
+    approx_offset: 224052
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0081
+  form: Special Purpose Machines Automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Special Purpose Machines Automation'
+    approx_offset: 224052
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0082
+  form: Surface treatment equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Surface treatment equipment'
+    approx_offset: 225200
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0083
+  form: Swiss-type equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+  evidence:
+  - quote: The Y-axis of the Swiss-type equipment provides full milling capabilities and saves great amount
+      of time in manufacturing.
+    approx_offset: 846118
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0084
+  form: Swiss-type lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+  evidence:
+  - quote: Using Swiss-type lathe we turn small, complex, precision parts inexpensively.
+    approx_offset: 845505
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0085
+  form: Swiss-type turning centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+  evidence:
+  - quote: Unlike conventional lathes where the workpiece is kept stationary and tool moving, in Swiss-type
+      turning centers, the workpiece is allowed to move in the Z-axis and the tool is stationary.
+    approx_offset: 845663
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0086
+  form: TRANSFER LINES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: At the other extreme, for an order that requires minimum flexibility but maximum productivity,
+      we assign the production to our FLOWLINES and TRANSFER LINES.
+    approx_offset: 99248
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0087
+  form: Thermal Processing Machines and Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Thermal Processing Machines and Equipment'
+    approx_offset: 223571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0088
+  form: Ti-sapphire femtosecond laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: A cleaner laser meso-machining approach is to use a Ti-sapphire femtosecond laser.
+    approx_offset: 1204847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0089
+  form: Tube Bending Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+    - https://www.agstech.net/private-labeling-white-labeling-label
+    - https://www.agstech.net/private-white-label-product-catalogs
+  evidence:
+  - quote: Tube Bending Machines  (We private label these with your brand name and logo if you wish)
+    approx_offset: 227970
+  - quote: '- Tube Bending Machines'
+    approx_offset: 349573
+  - quote: Tube Bending Machines
+    approx_offset: 374129
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0090
+  form: Tube Endforming Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/private-labeling-white-labeling-label
+  evidence:
+  - quote: Tube Endforming Machine
+    approx_offset: 374152
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0091
+  form: Ultrasonic Drill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Ultrasonic Drill'
+    approx_offset: 1559534
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0092
+  form: Welding Robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: Welding Robots Brochure
+    approx_offset: 228061
+  - quote: '- Welding Robots Brochure'
+    approx_offset: 1432040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0093
+  form: Westlake machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/glass-ceramic-forming-shaping
+  evidence:
+  - quote: Using Westlake machines tens of thousands of pieces of drinking glasses are being produced
+      per day.
+    approx_offset: 973573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0094
+  form: YAG lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: Both CO2 and Nd/ Nd-YAG lasers can be used for LASER WELDING.
+    approx_offset: 496043
+  - quote: 'YAG LASER CUTTING and MACHINING: We use YAG lasers for cutting and scribing metals and ceramics.'
+    approx_offset: 497462
+  - quote: Our excimer and YAG lasers can be used to machine polymers, ceramics, glass and metals having
+      feature sizes as small as 12 microns.
+    approx_offset: 1204533
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0095
+  form: advanced lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/microelectronics-semiconductor-mfg
+  evidence:
+  - quote: Marking speeds over 1000 characters/second and material penetration depths less than 25 microns
+      are common in semiconductor microelectronics industry using advanced lasers.
+    approx_offset: 1175983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0096
+  form: air plasma torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: The advantage of an air plasma torch is that it uses air instead of expensive gases, thus potentially
+      reducing overall cost of machining .
+    approx_offset: 535857
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0097
+  form: annealing oven
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/glass-ceramic-forming-shaping
+  evidence:
+  - quote: Finally, the manufactured glass container is transfered into an annealing oven for subsequent
+      reheating and removal of stresses produced during the molding and is cooled in a controlled fashion.
+    approx_offset: 971786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0098
+  form: articulated variable-sequence robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: Our articulated variable-sequence robots enable human-like complex movements in multiple operation
+      sequences, any of which they can execute given the proper cue like a specific bar code or a specific
+      signal from an inspection station in the automation line.
+    approx_offset: 105232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0099
+  form: automated CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/non-conventional-fabrication-edm
+  evidence:
+  - quote: For almost all fabrication techniques, whether it be conventional or non-conventional, we do
+      use CAD/CAM and automated CNC machines as well as manual machines.
+    approx_offset: 22029
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0100
+  form: automated CNCs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/non-conventional-fabrication-edm
+  evidence:
+  - quote: Sometimes manual machinery is more suitable and practical while for high volume orders automated
+      CNCs are deployed exclusively.
+    approx_offset: 22167
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0101
+  form: automated assembly machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/microelectronics-semiconductor-mfg
+  evidence:
+  - quote: 'Lead frames are produced in long strips, which allows them to be quickly processed on automated
+      assembly machines, and generally two manufacturing processes are used: photo etching of some sort
+      and stamping.'
+    approx_offset: 1177103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0102
+  form: automation flowlines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: Manual small-batch production operations with conventional machine tools does not compete with
+      our automation flowlines, it offers us additional extraordinary capabilities and strength that manufacturers
+      with purely automated production lines do not have.
+    approx_offset: 100553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0103
+  form: band saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: In this process which resembles to contour cutting with a band saw, the wire, which is constantly
+      fed from a spool, is held between upper and lower diamond guides.
+    approx_offset: 483365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0104
+  form: barrel of the extrusion machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: In the process small plastic beads / resin is gravity fed from hopper into barrel of the extrusion
+      machine.
+    approx_offset: 918046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0105
+  form: batch and continuous furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/metal-forging-powder-metallurgy-cnc
+  evidence:
+  - quote: We do have batch and continuous furnaces for sintering.
+    approx_offset: 955831
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0106
+  form: coiler
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/wire-spring-forming
+  evidence:
+  - quote: Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide.
+    approx_offset: 964860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0107
+  form: computer-controlled torches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: Our hand-held torches can usually cut up to 2 inches thick steel plate, and our stronger computer-controlled
+      torches can cut steel up to 6 inches thick.
+    approx_offset: 535185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0108
+  form: continuous wave laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: In laser ablation we remove material with a pulsed laser or with a continuous wave laser beam
+      if the laser intensity is high enough.
+    approx_offset: 505938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0109
+  form: conventional machine tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: Manual small-batch production operations with conventional machine tools does not compete with
+      our automation flowlines, it offers us additional extraordinary capabilities and strength that manufacturers
+      with purely automated production lines do not have.
+    approx_offset: 100500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0110
+  form: crushers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Single and double leg crushers'
+    approx_offset: 224734
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0111
+  form: custom automation systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+  evidence:
+  - quote: • Motion control and positioning assemblies, motors, motion controller, servo amplifier, motorized
+      stage, lift stage, goniometers, drives, actuators, grippers, direct drive air bearing spindles,
+      hardware-software interface cards and software, custom built pick and place systems, custom built
+      automat
+    approx_offset: 1429103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0112
+  form: dedicated special-purpose machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: Our mass production facilities are equipped with automation equipment which are dedicated special-purpose
+      machinery.
+    approx_offset: 99767
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0113
+  form: die casting machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+  evidence:
+  - quote: 2.) Mold installed on die casting machine
+    approx_offset: 839505
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0114
+  form: double action presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/metal-forging-powder-metallurgy-cnc
+  evidence:
+  - quote: Also we have double action presses with opposing top & bottom punches as well as multiple action
+      presses for highly complex part geometries.
+    approx_offset: 954757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0115
+  form: drawing machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/glass-ceramic-forming-shaping
+  evidence:
+  - quote: Thereafter it travels over rollers to a drawing machine and is cooled.
+    approx_offset: 975325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0116
+  form: drills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+    - https://www.agstech.net/compressors-pumps-motors-pneumatic
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/edm-electrical-discharge-machining
+    - https://www.agstech.net/masonry-cutting-shaping-tools
+  evidence:
+  - quote: Examples are air hammers, screwdrivers, drills, bevellers, air die grinders….etc.
+    approx_offset: 94547
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills,
+      grinders, machining centers, EDM, injection molding machines…etc.
+    approx_offset: 128167
+  - quote: EDM drills bore holes with a long brass or copper tube electrode that rotates in a chuck with
+      a constant flow of distilled or deionized water flowing through the electrode as a flushing agent
+      and dielectric.
+    approx_offset: 489738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0117
+  form: drop hammer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: The resultant negative die is then hardened and used in a drop hammer to produce stamped flats
+      from cutout sheet blanks of bronze, silver, or low proof gold alloy.
+    approx_offset: 488228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0118
+  form: electrical discharge machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Our modern electrical discharge machines (EDM) offer numerically controlled movements and are
+      equipped with pumps and filtering systems for the dielectric fluids.
+    approx_offset: 474441
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0119
+  form: electrical discharge machines (EDM)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Our modern electrical discharge machines (EDM) offer numerically controlled movements and are
+      equipped with pumps and filtering systems for the dielectric fluids.
+    approx_offset: 474441
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0120
+  form: electrochemical machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+  evidence:
+  - quote: Commercial electrochemical machines with current capacities between 5A and 40,000A are available.
+    approx_offset: 514823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0121
+  form: electron beam gun
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: The electron beams in EBM-Machining equipment are generated in an electron beam gun.
+    approx_offset: 438877
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0122
+  form: electron beam guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: The electron beam guns in our EBM machines are also provided with illumination systems and
+      telescopes for alignment of the beam with the workpiece.
+    approx_offset: 439215
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0123
+  form: electron beam welding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ebm-machining-electron-beam-machini
+  evidence:
+  - quote: EBM equipment is built similarly to electron beam welding machines.
+    approx_offset: 440005
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0124
+  form: etching lines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-photochemical-machining
+  evidence:
+  - quote: Our etching lines have driven-wheel conveyors to move the plates and arrays of spray nozzles
+      above and below the plates.
+    approx_offset: 528509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0125
+  form: excimer laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: 'EXCIMER LASER CUTTING and MACHINING: An excimer laser is a kind of laser with wavelengths
+      in the ultraviolet region.'
+    approx_offset: 497748
+  - quote: 'EXCIMER LASER CUTTING and MACHINING: An excimer laser is a kind of laser with wavelengths
+      in the ultraviolet region.'
+    approx_offset: 497788
+  - quote: Mesomanufacturing processes that are currently available to us include, focused ion beam (FIB)
+      sputtering, micro-milling, micro-turning, excimer laser ablation, femto-second laser ablation, and
+      micro electro-discharge (EDM) machining.
+    approx_offset: 1200247
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0126
+  form: excimer lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: Some excimer lasers are tunable.
+    approx_offset: 498073
+  - quote: Excimer lasers have the attractive property that they can remove very fine layers of surface
+      material with almost no heating or change to the remainder of the material.
+    approx_offset: 498101
+  - quote: Therefore excimer lasers are well suited to precision micromachining of organic materials such
+      as some polymers and plastics.
+    approx_offset: 498280
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0127
+  form: extruders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: The multiple layers are delivered by multiple extruders.
+    approx_offset: 919557
+  - quote: Our twin-screw extruders produce compounding extrusions.
+    approx_offset: 919942
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0128
+  form: extrusion machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: In the process small plastic beads / resin is gravity fed from hopper into barrel of the extrusion
+      machine.
+    approx_offset: 918060
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0129
+  form: extrusion press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0130
+  form: factory machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/automation-intelligent-systems-iot
+  evidence:
+  - quote: AUTOMATION also referred to as AUTOMATIC CONTROL, is the use of various CONTROL SYSTEMS for
+      operating equipment such as factory machines, heat treating and curing ovens, telecommunication
+      equipment, …etc.
+    approx_offset: 1760739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0131
+  form: femtosecond laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: A cleaner laser meso-machining approach is to use a Ti-sapphire femtosecond laser.
+    approx_offset: 1204859
+  - quote: Deep one micron-size features can be microfabricated using the femtosecond laser.
+    approx_offset: 1205027
+  - quote: The femtosecond laser ablation process is unique in that it breaks atomic bonds instead of
+      thermally ablating material.
+    approx_offset: 1205050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0132
+  form: filling machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Industrial filling machine solutions'
+    approx_offset: 225075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0133
+  form: fourslide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/wire-spring-forming
+  evidence:
+  - quote: Our processes are wire and spring forming, wire drawing, shaping, bending, welding, brazing,
+      soldering, piercing, swaging, drilling, chamfering, grinding, threading, coating, fourslide, slide
+      forming, winding, coiling, upsetting.
+    approx_offset: 963898
+  - quote: Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide.
+    approx_offset: 964883
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0134
+  form: furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+    - https://www.agstech.net/filters-filtration-membranes
+    - https://www.agstech.net/glass-ceramic-forming-shaping
+    - https://www.agstech.net/joining-assembly-fastening-process
+    - https://www.agstech.net/metal-forging-powder-metallurgy-cnc
+  evidence:
+  - quote: Heat and pressure are required in diffusion bonding and are supplied by electrical resistance
+      or furnace and dead weights, press or else.
+    approx_offset: 571170
+  - quote: '- Furnace Brazing'
+    approx_offset: 573932
+  - quote: -Furnace Soldering
+    approx_offset: 575237
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0135
+  form: furnace of vacuum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/joining-assembly-fastening-process
+  evidence:
+  - quote: VACUUM BRAZING takes place in a furnace of vacuum.
+    approx_offset: 898112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0136
+  form: fusion splicer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fiber-optic-test-instruments
+  evidence:
+  - quote: Fusion splicing requires higher capital expenses as compared to mechanical splicing because
+      it requires a fusion splicer.
+    approx_offset: 698876
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0137
+  form: grinder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132391
+  - quote: As an example, a work order may require the use of a CNC lathe, CNC grinder and an automated
+      inspection station to organize them into a production holon.
+    approx_offset: 132642
+  - quote: The ECG technique is well suited for carbides and high-strength alloys, but not so much of
+      a fit for die-sinking or mould making because the grinder may not easily access deep cavities.
+    approx_offset: 517850
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0138
+  form: grinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.agstech.net/compressors-pumps-motors-pneumatic
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/filters-treatment-components-vacuum
+    - https://www.agstech.net/pneumatics-hydraulics-vacuum
+    - https://www.agstech.net/tools-hydraulics-pneumatics-vacuum
+  evidence:
+  - quote: Examples are air hammers, screwdrivers, drills, bevellers, air die grinders….etc.
+    approx_offset: 94574
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills,
+      grinders, machining centers, EDM, injection molding machines…etc.
+    approx_offset: 128175
+  - quote: Pneumatic motors have found widespread use in the hand-held tool industry for impact wrenches,
+      pulse tools, screwdrivers, nut runners, drills, grinders, sanders, …etc, dentistry, medicine and
+      a wide range of industrial applications.
+    approx_offset: 1043682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0139
+  form: hand-held torches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: Our hand-held torches can usually cut up to 2 inches thick steel plate, and our stronger computer-controlled
+      torches can cut steel up to 6 inches thick.
+    approx_offset: 535100
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0140
+  form: heat treating and curing ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/automation-intelligent-systems-iot
+  evidence:
+  - quote: AUTOMATION also referred to as AUTOMATIC CONTROL, is the use of various CONTROL SYSTEMS for
+      operating equipment such as factory machines, heat treating and curing ovens, telecommunication
+      equipment, …etc.
+    approx_offset: 1760757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0141
+  form: heat treatment furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/functional-coatings-thick-thin-film
+  evidence:
+  - quote: In heat treatment furnaces, the diffused elements usually originate from gases reacting at
+      high temperatures with the metal surfaces.
+    approx_offset: 1219494
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0142
+  form: heated in an oven
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+  evidence:
+  - quote: 2.) Next, the shell and pattern are heated in an oven so that the shell hardens.
+    approx_offset: 831783
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0143
+  form: high precision milling machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: We mount micro-milling tools on high precision milling machines to machine channels in aluminum.
+    approx_offset: 1202994
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0144
+  form: hot press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/micromanufacturing-micromachining
+  evidence:
+  - quote: Next, the wafers are aligned face to face with guide pins and press fit together in a hot press.
+    approx_offset: 1256303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0145
+  form: hydraulic press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/joining-assembly-fastening-process
+  evidence:
+  - quote: When a press fitting is established by applying a force, we either use a hydraulic press or
+      a hand operated press.
+    approx_offset: 910589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0146
+  form: hydraulic press or a hand operated press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/joining-assembly-fastening-process
+  evidence:
+  - quote: When a press fitting is established by applying a force, we either use a hydraulic press or
+      a hand operated press.
+    approx_offset: 910589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0147
+  form: hydraulic presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/metal-forging-powder-metallurgy-cnc
+    - https://www.agstech.net/tools-hydraulics-pneumatics-vacuum
+  evidence:
+  - quote: We are capable of powder press forming using hydraulic presses with several thousand tons of
+      capacity.
+    approx_offset: 954686
+  - quote: HYDRAULIC PRESSES
+    approx_offset: 1050296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0148
+  form: in a furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+    - https://www.agstech.net/joining-assembly-fastening-process
+    - https://www.agstech.net/surface-treatments-and-modification
+    - https://www.agstech.net/thermal-ir-test-equipment
+  evidence:
+  - quote: After placing the components, we heat the assembly in a furnace so the reflow soldering takes
+      place.
+    approx_offset: 576174
+  - quote: That pan resides in a furnace and is heated or cooled during the test.
+    approx_offset: 588050
+  - quote: VACUUM BRAZING takes place in a furnace of vacuum.
+    approx_offset: 898107
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0149
+  form: industrial laser cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: Our industrial laser cutters are suitable for cutting flat-sheet material as well as structural
+      and piping materials, metallic and nonmetallic workpieces.
+    approx_offset: 495303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0150
+  form: industrial robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+  evidence:
+  - quote: We also deploy computer integrated flexible manufacturing cells with CNC machines, machining
+      centers and industrial robots.
+    approx_offset: 128937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0151
+  form: injection molding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills,
+      grinders, machining centers, EDM, injection molding machines…etc.
+    approx_offset: 128209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0152
+  form: intelligent sensory robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: For demanding automation applications, our intelligent sensory robots carry out functions similar
+      to humans in complexity.
+    approx_offset: 105529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0153
+  form: kiln
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/filters-filtration-membranes
+  evidence:
+  - quote: Open-cell polymer foams are internally impregnated with ceramic slurry and then fired in a kiln,
+      leaving only ceramic material.
+    approx_offset: 1641480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0154
+  form: laser cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: For thinner materials, we prefer laser cutting to plasma cutting, mostly because of our laser
+      cutter's superior hole-cutting abilities.
+    approx_offset: 538985
+  - quote: '- Mini Laser Cutter'
+    approx_offset: 1559256
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0155
+  form: laser cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: Our industrial laser cutters are suitable for cutting flat-sheet material as well as structural
+      and piping materials, metallic and nonmetallic workpieces.
+    approx_offset: 495314
+  - quote: Our modern laser cutters have positioning accuracies in the neighborhood of 10 micrometers
+      and repeatabilities of 5 micrometers.
+    approx_offset: 502036
+  - quote: Our simplest and most standard laser cutters will cut carbon steel metal from 0.020–0.5 inch
+      (0.51–13 mm) in thickness and can easily be up to thirty times faster than standard sawing.
+    approx_offset: 502799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0156
+  form: laser marking and engraving equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: 'Although laser marking and engraving equipment is relatively more expensive compared to alternatives
+      such as punches, pins, styli, etching stamps….etc., they have become more popular due to their accuracy,
+      reproducibility, flexibility, ease of automation and on-line application in a wide variety of '
+    approx_offset: 506949
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0157
+  form: lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+    - https://www.agstech.net/low-high-volume-manufacturing
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: As an example, in a turning operation on a lathe, our adaptive control system does sense in
+      real time the cutting forces, torque, temperature, tool-wear, tool damage and surface finish of
+      the workpiece.
+    approx_offset: 102664
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132417
+  - quote: As an example, a work order may require the use of a CNC lathe, CNC grinder and an automated
+      inspection station to organize them into a production holon.
+    approx_offset: 132631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0158
+  form: lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/nanoscale-microscale-mesoscale-mfg
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills,
+      grinders, machining centers, EDM, injection molding machines…etc.
+    approx_offset: 128141
+  - quote: Miniature lathes, with 1.5 Watt motor and dimensions of 32 x 25 x 30.5 mm and weights of 100
+      grams have been fabricated using mesoscale manufacturing methods.
+    approx_offset: 154791
+  - quote: Using such lathes, brass has been machined to a diameter as small as 60 microns and surface
+      roughnesses in the order of a micron or two.
+    approx_offset: 154951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0159
+  form: machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills,
+      grinders, machining centers, EDM, injection molding machines…etc.
+    approx_offset: 128185
+  - quote: We also deploy computer integrated flexible manufacturing cells with CNC machines, machining
+      centers and industrial robots.
+    approx_offset: 128915
+  - quote: Along with tighter tolerances, our modern multi axis EDM wire-cutting machining centers have
+      added features such as multi heads for cutting two parts at the same time, controls for preventing
+      wire breakage, automatic self-threading features in case of wire breakage, and programmed machining
+      strategi
+    approx_offset: 485851
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0160
+  form: manual machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/non-conventional-fabrication-edm
+  evidence:
+  - quote: Sometimes manual machinery is more suitable and practical while for high volume orders automated
+      CNCs are deployed exclusively.
+    approx_offset: 22090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0161
+  form: manual machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/non-conventional-fabrication-edm
+  evidence:
+  - quote: For almost all fabrication techniques, whether it be conventional or non-conventional, we do
+      use CAD/CAM and automated CNC machines as well as manual machines.
+    approx_offset: 22063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0162
+  form: mechanical press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/metal-forging-powder-metallurgy-cnc
+  evidence:
+  - quote: '• COINING : Another popular process carried out by mechanical press, exerting large forces
+      over a short distance.'
+    approx_offset: 950729
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0163
+  form: micro-EDM machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: For the sinker and the wire micro-EDM machine, the two major considerations for determining
+      feature size are the electrode size and the over-bum gap.
+    approx_offset: 1205590
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0164
+  form: micro-EDM machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: Our micro-EDM machines can produce features as small as 25 microns.
+    approx_offset: 1205498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0165
+  form: microscale capable machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: Some FIBs available to us have beam diameters as small as 5 nanometers, making the FIB a mesoscale
+      and even microscale capable machine.
+    approx_offset: 1202934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0166
+  form: milling machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/cams-linkages-ratchet-manufacturing
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: Examples are CNC milling machine and operator, CNC grinder and operator, CNC lathe and operator.
+    approx_offset: 132357
+  - quote: In MILLING, a machine called milling machine has a rotating tool to bring cutting edges to
+      bear against a workpiece.
+    approx_offset: 844576
+  - quote: '- Mini Milling Machine'
+    approx_offset: 1559176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0167
+  form: milling machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/computer-integrated-manufacturing
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+    - https://www.agstech.net/nanoscale-microscale-mesoscale-mfg
+  evidence:
+  - quote: Machine tools used in our manufacturing cells are generally lathes, milling machines, drills,
+      grinders, machining centers, EDM, injection molding machines…etc.
+    approx_offset: 128149
+  - quote: Other such miniature machine tools such as milling machines and presses have also been manufactured
+      using mesomanufacturing.
+    approx_offset: 155120
+  - quote: We mount micro-milling tools on high precision milling machines to machine channels in aluminum.
+    approx_offset: 1203009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0168
+  form: miniature machine tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/nanoscale-microscale-mesoscale-mfg
+  evidence:
+  - quote: Other such miniature machine tools such as milling machines and presses have also been manufactured
+      using mesomanufacturing.
+    approx_offset: 155088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0169
+  form: multi axis EDM wire-cutting machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Along with tighter tolerances, our modern multi axis EDM wire-cutting machining centers have
+      added features such as multi heads for cutting two parts at the same time, controls for preventing
+      wire breakage, automatic self-threading features in case of wire breakage, and programmed machining
+      strategi
+    approx_offset: 485823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0170
+  form: multi-slide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/wire-spring-forming
+  evidence:
+  - quote: Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide.
+    approx_offset: 964894
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0171
+  form: multiple action presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/metal-forging-powder-metallurgy-cnc
+  evidence:
+  - quote: Also we have double action presses with opposing top & bottom punches as well as multiple action
+      presses for highly complex part geometries.
+    approx_offset: 954825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0172
+  form: multiple extruders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: The multiple layers are delivered by multiple extruders.
+    approx_offset: 919548
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0173
+  form: multiple-axis robotic control machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/abrasive-waterjet-machining-cutting
+  evidence:
+  - quote: Using our multiple-axis robotic control machines we can machine complex three-dimensional parts
+      to finish dimensions without the need for a second process.
+    approx_offset: 601386
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0174
+  form: multiple-axis, CNC controlled waterjet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/abrasive-waterjet-machining-cutting
+  evidence:
+  - quote: Even complicated shapes such as automotive dashboard coverings made of vinyl and foam can be
+      cut using multiple-axis, CNC controlled waterjet machining equipment.
+    approx_offset: 600050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0175
+  form: nano manipulator
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/micro-assembly-and-packaging
+  evidence:
+  - quote: • 12 degrees of freedom nano manipulator
+    approx_offset: 1190583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0176
+  form: numerically controlled machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/ecm-machining-electrochemical-grind
+  evidence:
+  - quote: Electrochemical-machining systems we use for production are numerically controlled machining
+      centers with high production rates, flexibility, perfect control of dimensional tolerances.
+    approx_offset: 511671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0177
+  form: oxyacetylene gas torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+  evidence:
+  - quote: A variation of the oxyfuel gas welding is the PRESSURE GAS WELDING, where the two components
+      are heated at their interface using oxyacetylene gas torch and once the interface starts to melt,
+      the torch is withdrawn and an axial force is applied to press the two parts together until the interface
+      is s
+    approx_offset: 549804
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0178
+  form: pick and place systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+  evidence:
+  - quote: • Motion control and positioning assemblies, motors, motion controller, servo amplifier, motorized
+      stage, lift stage, goniometers, drives, actuators, grippers, direct drive air bearing spindles,
+      hardware-software interface cards and software, custom built pick and place systems, custom built
+      automat
+    approx_offset: 1428962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0179
+  form: plasma cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: Our HF plasma cutters do not require the torch to be in contact with the workpiece material
+      at the start, and are suitable for applications involving COMPUTER NUMERICAL CONTROL (CNC) cutting.
+    approx_offset: 536130
+  - quote: These more primitive plasma cutters are more susceptible to contact tip and shield damage at
+      starting.
+    approx_offset: 536477
+  - quote: Some of our plasma cutters are built in to the CNC table.
+    approx_offset: 538513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0180
+  form: plasma cutting machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: However the capital cost of these 6000 Watt laser cutters is much higher than that of plasma
+      cutting machines capable of cutting thick materials like steel plate.
+    approx_offset: 504648
+  - quote: We also deploy vertical CNC plasma cutting machines, offering us a smaller footprint, increased
+      flexibility, better safety and faster operation.
+    approx_offset: 539061
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0181
+  form: plasma machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: Lasers operating at higher powers such as 6000 Watts are approaching plasma machines in their
+      ability to cut through thick materials.
+    approx_offset: 504497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0182
+  form: plasma torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: We use the PLASMA CUTTING and PLASMA MACHINING processes to cut and machine steel, aluminum,
+      metals and other materials of different thicknesses using a plasma torch.
+    approx_offset: 534004
+  - quote: The temperatures generated in plasma-arc cutting are very high and around 9673 Kelvin in the
+      oxygen plasma torch.
+    approx_offset: 535501
+  - quote: The advantage of an air plasma torch is that it uses air instead of expensive gases, thus potentially
+      reducing overall cost of machining .
+    approx_offset: 535861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0183
+  form: plasma torches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: We use new models of plasma torches with a smaller nozzle and a thinner plasma arc to improve
+      arc constriction to produce more uniform heating at the top and bottom of the cut.
+    approx_offset: 539520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0184
+  form: plasma-arc cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: Our plasma-arc cutters are highly automated through the use of programmable controls.
+    approx_offset: 538815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0185
+  form: portable fiber optic polishing machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fiber-optic-test-instruments
+  evidence:
+  - quote: 'FTTH – FIBER TO THE HOME TOOLS : Among the tools we offer are single and multihole fiber strippers,
+      fiber tubing cutter, wire stripper, Kevlar cutter, fiber cable slitter, single fiber protection
+      sleeve, fiber microscope, fiber connector cleaner, connector heating oven, crimping tool, pen type
+      fiber'
+    approx_offset: 713587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0186
+  form: power presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/wire-spring-forming
+  evidence:
+  - quote: Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide.
+    approx_offset: 964868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0187
+  form: press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 35
+    pages:
+    - https://www.agstech.net/adhesive-bonding-sealing-fastening
+    - https://www.agstech.net/brazing-soldering-welding-joining
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+    - https://www.agstech.net/extrusions-extruded-products-dies
+    - https://www.agstech.net/glass-ceramic-forming-shaping
+  evidence:
+  - quote: '- Press tools and dies, shears'
+    approx_offset: 61738
+  - quote: '- Press room equipment such as sheet metal bending and forming machines'
+    approx_offset: 224535
+  - quote: Servo C-Frame Utility Press (We private label these with your brand name and logo if you wish)
+    approx_offset: 227896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0188
+  form: pulsed laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/laser-machining-cutting-lbm
+  evidence:
+  - quote: In a LASER MICROJET CUTTING we have a water-jet guided laser in which a pulsed laser beam is
+      coupled into a low-pressure water jet.
+    approx_offset: 498931
+  - quote: In laser ablation we remove material with a pulsed laser or with a continuous wave laser beam
+      if the laser intensity is high enough.
+    approx_offset: 505915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0189
+  form: reflow oven
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/joining-assembly-fastening-process
+  evidence:
+  - quote: Then the boards are put through a reflow oven with temperature control.
+    approx_offset: 902709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0190
+  form: robotic control machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/abrasive-waterjet-machining-cutting
+  evidence:
+  - quote: Using our multiple-axis robotic control machines we can machine complex three-dimensional parts
+      to finish dimensions without the need for a second process.
+    approx_offset: 601400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0191
+  form: robotic systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/low-high-volume-manufacturing
+    - https://www.agstech.net/micro-assembly-and-packaging
+  evidence:
+  - quote: Positioning repeatabilities of 0.05 mm are common in our robotic systems.
+    approx_offset: 105211
+  - quote: Automation & Robotic Systems Manufacturing and Assembly
+    approx_offset: 186060
+  - quote: We can micro-assemble devices and components in the microns level dimensions using robotic
+      systems.
+    approx_offset: 1189662
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0192
+  form: robotic workcell
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/micro-assembly-and-packaging
+  evidence:
+  - quote: • Top notch motion control equipment including a robotic workcell with nanometric position
+      resolution
+    approx_offset: 1189824
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0193
+  form: rolling mill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+    - https://www.agstech.net/couplings-bearings-manufacturing
+  evidence:
+  - quote: Continuous casting process can be integrated with ROLLING PROCESS, where the continuously cast
+      metal can be fed directly into a rolling mill to produce I-Beams, T-Beams….etc.
+    approx_offset: 842855
+  - quote: '- Rolling Mill Bearings'
+    approx_offset: 1600413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0194
+  form: rolling mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/thickness-and-flaw-gauges-detectors
+  evidence:
+  - quote: Eddy current techniques are also used to measure the thickness of hot sheet, strip and foil
+      in rolling mills.
+    approx_offset: 771385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0195
+  form: sheet metal bending and forming machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-processing-machines-equipment-manufacturing
+  evidence:
+  - quote: '- Press room equipment such as sheet metal bending and forming machines'
+    approx_offset: 224564
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0196
+  form: sintering furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/metal-forging-powder-metallurgy-cnc
+  evidence:
+  - quote: The sheet is carried into a sintering furnace.
+    approx_offset: 958820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0197
+  form: small hole drilling EDM machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Besides the integrated EDM heads, we deploy stand-alone small hole drilling EDM machines with
+      x–y axes to machine blind or through holes.
+    approx_offset: 489652
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0198
+  form: small-hole drilling EDMs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Some small-hole drilling EDMs are able to drill through 100 mm of soft or even hardened steel
+      in less than 10 seconds.
+    approx_offset: 489947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0199
+  form: spot welding equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/brazing-soldering-welding-joining
+  evidence:
+  - quote: Our spot welding equipment is CNC controlled and has multiple electrodes that can be used simultaneously.
+    approx_offset: 567287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0200
+  form: stamping press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/equipment-to-cut-drill-polish
+  evidence:
+  - quote: '- Mini Stamping Press'
+    approx_offset: 1559230
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0201
+  form: stand-alone small hole drilling EDM machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Besides the integrated EDM heads, we deploy stand-alone small hole drilling EDM machines with
+      x–y axes to machine blind or through holes.
+    approx_offset: 489640
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0202
+  form: stereolithography equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/additive-and-rapid-manufacturing
+  evidence:
+  - quote: Of course the maximum dimensions of the produced part are determined by the stereolithography
+      equipment.
+    approx_offset: 993039
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0203
+  form: test and cutting station
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/passive-optical-components-manufact
+  evidence:
+  - quote: '- A test and cutting station for polarized attenuators.'
+    approx_offset: 1323357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0204
+  form: transfer lines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: Our transfer lines for mass production are also equipped with automatic gaging and inspection
+      systems that assure parts produced in one station is within specifications before being transferred
+      to the next station in the automation line.
+    approx_offset: 101198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0205
+  form: transfer machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/low-high-volume-manufacturing
+  evidence:
+  - quote: These are high value modern automation equipment called transfer machines that produce components
+      very fast for pennies a piece in most cases.
+    approx_offset: 101107
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0206
+  form: twin-screw extruders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: Our twin-screw extruders produce compounding extrusions.
+    approx_offset: 919931
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0207
+  form: vacuum furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0208
+  form: vertical CNC plasma cutting machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plasma-machining-cutting-welding
+  evidence:
+  - quote: We also deploy vertical CNC plasma cutting machines, offering us a smaller footprint, increased
+      flexibility, better safety and faster operation.
+    approx_offset: 539048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0209
+  form: waterjet cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/abrasive-waterjet-machining-cutting
+  evidence:
+  - quote: We cut a variety of nonmetallic materials such as fabrics, plastics, rubber, leather, insulating
+      materials, paper, composite materials using the waterjet cutters.
+    approx_offset: 599929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0210
+  form: waterjet cutting machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/abrasive-waterjet-machining-cutting
+  evidence:
+  - quote: Our waterjet cutting machines can handle large flat stock material with many feet of dimensions
+      with no limit to the type of material.
+    approx_offset: 598574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0211
+  form: waterjet machining equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/abrasive-waterjet-machining-cutting
+  evidence:
+  - quote: Even complicated shapes such as automotive dashboard coverings made of vinyl and foam can be
+      cut using multiple-axis, CNC controlled waterjet machining equipment.
+    approx_offset: 600080
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0212
+  form: wire formers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/wire-spring-forming
+  evidence:
+  - quote: Equipment we use for wire forming are manual and CNC wire formers, coiler, power presses, fourslide,
+      multi-slide.
+    approx_offset: 964846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0213
+  form: wire micro-EDM machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mesoscale-manufacturing-mesomanufac
+  evidence:
+  - quote: For the sinker and the wire micro-EDM machine, the two major considerations for determining
+      feature size are the electrode size and the over-bum gap.
+    approx_offset: 1205585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0214
+  form: wire-cut EDM machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: On our wire-cut EDM machines, we use small hole drilling EDM to make a through hole in a workpiece
+      through which to thread the wire for the wire-cut EDM operation.
+    approx_offset: 488733
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-equipments-0215
+  form: wire-cut machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/edm-electrical-discharge-machining
+  evidence:
+  - quote: Separate EDM heads specifically for small hole drilling are mounted on our wire-cut machines
+      which allow large hardened plates to have finished parts eroded from them as needed and without
+      pre-drilling.
+    approx_offset: 488965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

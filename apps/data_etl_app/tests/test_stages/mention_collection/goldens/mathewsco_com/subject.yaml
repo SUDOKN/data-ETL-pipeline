@@ -1,0 +1,265 @@
+subject: mathewsco.com
+subject_name: Mathews & Company
+business_type: manufacturers' representative / commissioned sales agency (Kansas office est. 1962, California predecessor
+  Hughson & Merton est. 1892). Owns no plant, no equipment and performs no process; it sells the output of the factories
+  ('principals') that pay it commission.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+role: attribution_negative
+role_note: >-
+  Seeded as `out_of_domain_negative` before this corpus adopted the search harness's
+  vocabulary wholesale. Normalized to search's `attribution_negative` on 2026-08-27:
+  it is the same roster, and a second vocabulary would fork the corpus
+  silently. The earlier value is kept here because the reasoning behind
+  it describes what THIS stage sees, which search's word may not.
+role_source: 'the search harness assigned role: attribution_negative (search/expectations/mathewsco_com/subject.yaml),
+  which is not a value in this instrument''s vocabulary. Re-keyed to the nearest mention-stage role: the correct
+  capability answer for six of seven fields is the empty set because the subject performs nothing, so every capability
+  snippet on this domain is somebody else''s words. The attribution_negative rationale is what the voices block
+  records, and it is the reason this subject is in the corpus.'
+coverage: full_text
+snapshot_shape: 61,791 bytes / 2,044 lines / 25 page fetches / 25 distinct URLs but only 23 distinct page bodies.
+  1,196 of 1,563 non-blank lines - 76.5%, the highest boilerplate share of this batch - belong to a line that repeats
+  10 or more times.
+third_party_roster:
+- Sun Microstamping Technologies
+- Ellwood City Forge
+- Hudson Technologies
+- DimcoGray
+- Rowley Spring & Stamping Corp
+- DuPont
+- Missouri Pressed Metals
+- Mo-Press
+- Johnson Centrifugal
+- ociw.com
+- MANA
+- Society of Manufacturing Engineers
+- American Foundrymen's Society
+- Agency Sales magazine
+- Erikson-Howard, Inc.
+- eight unnamed Kansas principals
+third_party_roster_source: no prior roster existed for this subject. Built this pass by enumerating all 25 page
+  blocks and their page titles, plus the California Line Card rows; every name verified in the snapshot. The last
+  entry is deliberately not a name - see the anonymous_third_party_voice hazard.
+voices:
+- whose_words: site
+  note: 'ONLY three page bodies are genuinely first-party: the two "Markets Covered" lists and the Kansas Office
+    Services page. Everything else on this domain is somebody else''s words under Mathews'' copyright footer.'
+  quote: Erikson - Howard INC., DBA Mathews & Company of California was established in 1978 as a sales representative's
+    organization by Bob Mathews. We specialize in selling related products to the OEM's and Distributors for California,
+    Arizona, Nevada, Washington and Oregon.
+- whose_words: third_party
+  note: PRINCIPALS' FIRST-PERSON MARKETING COPY PASTED ONTO THE AGENCY'S DOMAIN. Roughly 12 of the 25 pages are
+    this. Seven principals get a named page each (Sun Microstamping, Ellwood City Forge, Hudson Technologies, DimcoGray,
+    Rowley Spring & Stamping, DuPont, Missouri Pressed Metals) and each page is that firm's own "we" copy. The name
+    appears once, in a heading two or three lines above; a snippet clipped to the sentence loses it entirely and
+    the page closes with "(c) Mathews & Company".
+  quote: Operating from 2 forging manufacturing facilities, ELLWOOD City Forge Group is known worldwide as a leader
+    in the open-die forging industry. We manufacture concentric and eccentric contoured forgings and single cross-section
+    products from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+    lengths to 57 feet, and diameters to 135 inches.
+- whose_words: third_party
+  note: 'the SAME construction with the attribution even further away: on the Missouri Pressed Metals page a first-person
+    EQUIPMENT CENSUS names no company at all. Clip this sentence and there is nothing in it, or in the two lines
+    either side, that is not Mathews.'
+  quote: Presently, we operate 70 compacting (molding to 100t in 2) and 40 coining (sizing to 60T in 2) presses.
+    For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified, petroleum-based
+    lubricants, food grade oils and Gulf Plastic Petroleum E. Seven controlled atmosphere sintering furnaces heat
+    up the situation as we operate our plant 24 hours a day, five days a week.
+- whose_words: third_party
+  note: 'A THIRD SPEAKER the corpus has nowhere else: the 58-line 1992 trade-magazine profile of the founder is
+    written in a JOURNALIST''S first person plural ("When we talked with Bob", "we suspect") and quotes Bob Mathews
+    in HIS first person ("We have the greatest portfolio of quality suppliers"). Three distinct "we"s on one page:
+    the magazine, the founder, and (in the footer) the agency.'
+  quote: 'Someone once said that getting there is half the fun. This has to be the case with Bob Mathews, because
+    we suspect that he''s got the next hundred years very carefully planned. But planning and good business sense
+    are only two of the characteristics of this man that stand out. The other is that he is a man who cares about
+    others. For example, Bob has developed two seminars: "Transition From Direct Sales To Manufacturers'' Representatives,"
+    and "How To Start As A Manufacturers'' Representative." When fees are charged for the presentation of either
+    of these seminars, he donates the proceeds to the Salvation Army at the Camp Pendleton (California) Marine base.
+    His goal is to help the dependents of the Marines stationed there. He also does seminars for college students
+    to help them find jobs, and to help them quit jobs with dignity for the employer and employee.'
+- whose_words: vendor
+  note: the agency's only literal equipment is business software and a printed directory - Act Contact Manager and
+    Harris Industrial Guides, named on the Kansas Office Services page. Neither is a production machine.
+text_hazards:
+- hazard: anonymous_third_party_voice
+  note: 'THE HARDEST whose_words CASE IN THE CORPUS. The Kansas Product Line page (lines 586-614) describes EIGHT
+    principals in the first person with NO COMPANY NAME ANYWHERE TO KEY ON - each is a bare "Capability - description"
+    paragraph, and nothing on the page, before it or after it, ties any of them to a firm. Worse, the pronouns are
+    incoherent WITHIN a single paragraph: the Cold Heading entry says "Our cold header offers..." and then "They
+    are licensed..." and "They product fasteners..."; the Investment Castings entry says "They also offer rapid
+    prototype..." then "We can supply your rapid prototype machined"; the Rubber entry says "They offer Die Cutting..."
+    then "We can apply Pressure Sensitive Adhesives". The only honest whose_words here is third_party-unnamed, and
+    no evidence in the text supports naming anyone. Any location that answers "site" is a major S4 fail and any
+    that names a company is a fabrication.'
+  quote: Cold Heading - Our cold header offers external thread parts from 3/4" diameter parts by 1/16" to 5 1/2"
+    in length. They are licensed to produce a number of different products for optimum fastening solution. They
+    product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous metals. They offer
+    a wide variety of sorting so you receive what you ordered. ISO 9001 and ISO 14001
+  context_quote: 'Investment Castings - Investment castings offer a near net shape casting eliminating costly machining
+    and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials. They also offer
+    rapid prototype in a cast metal in a couple of weeks from your CAD drawings. We can supply your rapid prototype
+    machined. ISO 9001
+
+
+
+
+    Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself to compete against
+    off shore manufacturer by offering quick turnaround lead times, medium to high volume runs, competitive tooling
+    pricing and producing high quality parts. We look forward to working with you on any new or existing projects.
+    ISO 9001:2000 certified.
+
+
+
+
+    Stampings - For short to medium run stampings or laser cutting up to 1/2 thick . A large range of materials;
+    Stainless Steel, Aluminum, CRS and HRPO . Equipment- presses from 20 to 400 tons. Laser cutters including 2-D
+    and 5 axis 3-D. Secondary operations included deburring, tapping, reaming, welding and assembly. They have in
+    house engineering and tooling. ISO 9001
+
+
+
+
+    Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber, silicone materials,
+    FDA approved Buna, Cellular foam material. They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer,
+    Injection and Compression Molding. We can apply Pressure Sensitive Adhesives on most materials. ISO 9001'
+  approx_offset: 26373
+- hazard: own_name_in_subject_position
+  note: THE SMOKING GUN, line 602. Ungrammatical agency shorthand puts THE AGENCY'S OWN NAME in the subject position
+    of a foundry's capability sentence. Read literally, the page says Mathews & Company casts aluminium and iron
+    - which it does not do and has never done. This is the single sentence in the corpus where the text itself asserts
+    the wrong party, so the correct location must say third_party while the grammar says site. It sits in the middle
+    of the eight anonymous principals, so there is no neighbouring name to recover from either.
+  quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full range of
+    ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings. Size ranges from 1lbs to 10,000lbs in a variety
+    of processes floor molding, cope & drag, semi-automatic and permanent mold. ISO 9001
+  approx_offset: 25513
+- hazard: third_party_first_person_pasted
+  note: 'the flagship instance of the pasted-copy construction: ''We manufacture concentric and eccentric contoured
+    forgings'' is ELLWOOD CITY FORGE speaking, not Mathews. This one sentence is recoverable because the firm is
+    named in the same sentence - but the two sentences immediately after it are not: "We specialize in a variety
+    of custom forgings including shafts, blocks, eccentrics..." and "Our metallurgical expertise allows us to..."
+    carry no company name at all, and the page footer says "(c) Mathews & Company". The Sun Microstamping page repeats
+    the pattern exactly at line 168.'
+  quote: Operating from 2 forging manufacturing facilities, ELLWOOD City Forge Group is known worldwide as a leader
+    in the open-die forging industry. We manufacture concentric and eccentric contoured forgings and single cross-section
+    products from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+    lengths to 57 feet, and diameters to 135 inches.
+  context_quote: 'Operating from 2 forging manufacturing facilities, ELLWOOD City Forge Group is known worldwide
+    as a leader in the open-die forging industry. We manufacture concentric and eccentric contoured forgings and
+    single cross-section products from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights
+    up to 70,000 pounds, lengths to 57 feet, and diameters to 135 inches.
+
+
+    We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow sleeves, rings, spindles,
+    couplings, and discs, as well as smooth forged billet and rough turned bar.
+
+
+    Our metallurgical expertise allows us to possess an overall understanding of the microstructure of heavy metallic
+    sections over a large range of chemistries, sizes and geometries. As a result, we serve major customers in the
+    oil & gas, mining, power transmission, machinery, machine shop, power generation, shipbuilding, pulp & paper,
+    automotive, infrastructure, and aerospace industries.'
+  approx_offset: 7638
+- hazard: repeated_markets_list
+  note: 'the two "Markets Covered" lists arrive as bare one-to-three-word lines under the headings "California Markets"
+    and "Kansas Markets", and the whole block is repeated in the footer of ALL 25 pages. Measured per form in this
+    snapshot, each occurs 27 times as a bare standalone line: Medical, Electronics, Transportation, "Aerospace (commercial)",
+    "Industrial Style Market", Military, "Various OEM Industries", Diversified, "Agricultural Equipment", "Pump
+    and Valve Manufacturers", "Truck and Bus", "Lawn and Garden", "Construction Equipment". 27 byte-identical snippets,
+    one location, zero sentence context. Two of them ("Agricultural Equipment", "Construction Equipment") are MARKET
+    names that read as machines.'
+  quote: 'California Markets
+
+    Medical
+
+    Electronics
+
+    Transportation
+
+    Aerospace (commercial)
+
+    Industrial Style Market
+
+    Military
+
+    Various OEM Industries
+
+    Diversified
+
+
+    MORE
+
+
+    Kansas Markets
+
+    Agricultural Equipment
+
+    Pump and Valve Manufacturers
+
+    Truck and Bus
+
+    Lawn and Garden
+
+    Construction Equipment
+
+    Aerospace Tier II & III'
+  approx_offset: 1072
+- hazard: line_card_row_split
+  note: the California Line Card is a two-column table flattened so the capability is on one line and the principal's
+    domain is on the NEXT line, six of them with a trailing tab. A snippet clipped to the line holding "Deep Draw
+    Stampings" is the bare category label; "hudson-technologies.com", the only thing that says whose capability
+    it is, is outside the clip. Six rows are built this way.
+  quote: "Micro Stampings\nsunmicrostamping.com\t\nDuPontâ€“Vespel Parts & Shapes\ndupont.com\t\nMetal Stampings\n\
+    rowleyspring.com\n\nDeep Draw Stampings\nhudson-technologies.com\t\nEllwood City Forge\nellwoodcityforge.com\t\
+    \nPlastic Molding\ndimcogray.com\n\nCustom Springs\nrowleyspring.com\t\nCentrifugal Castings\njohnsoncentrifugal.com\t\
+    \nDuctile Gray Castings\nociw.com"
+  approx_offset: 22821
+- hazard: nbsp_splits_form
+  note: 'MEASURED THIS PASS: 23 NO-BREAK SPACE characters on 14 lines, of which 8 sit between two word characters.
+    THE SHARPEST OCCURRENCE TRAP IN THIS BATCH: on line 168 EVERY space inside the form "Plastic Injection and Insert
+    Molding" is an NBSP. Counted three ways against the snapshot - byte-exact with ASCII spaces: 0 matches; byte-exact
+    with all NBSP: 0 matches (the internal spaces of "Insert Molding" and "Plastic Injection" are still ASCII);
+    space-elastic ([ASCII space or NBSP]+): 1 match. The true occurrence count is 1 and only an elastic matcher
+    finds it. NOTE: search/expectations/mathewsco_com/subject.yaml carries this exact string as a hazard quote,
+    and that quote does not byte-match the file. The Hudson Technologies page has the same construction ("for custom
+    enclosures and diaphragms").'
+  quote: We specialize in custom Plastic Injection and Insert Molding that feature a high degree of difficulty on
+    both product design and high performance molding resins.
+- hazard: mojibake
+  note: the line card renders an en dash as the three-character sequence a-circumflex / euro / left-double-quote
+    inside the DuPont entry, so the company name and the product name are separated by garbage bytes and neither
+    "DuPont" nor "Vespel" has a clean word boundary. It is the only mojibake in the file (1 occurrence each of U+00E2,
+    U+20AC and U+201C).
+  quote: DuPontâ€“Vespel Parts & Shapes
+- hazard: duplicate_page
+  note: 'MEASURED THIS PASS: 25 fetches, 25 distinct URLs, 23 distinct bodies. Two pairs are byte-identical under
+    different Itemid values - the Kansas Office overview (Itemid=168 and Itemid=167) and the company-history page
+    (Itemid=171 and Itemid=174). Every string on those two pages therefore occurs exactly twice, and no URL-keyed
+    de-duplicator will see it.'
+  quote: http://mathewsco.com/index.php?option=com_content&view=article&id=110&Itemid=174
+- hazard: content_empty_page
+  note: the "Brochure from 1952" page has a title and then nothing but the Site Navigation block - a page whose
+    entire body is chrome. Its only contribution to the corpus is one more copy of every nav and footer occurrence.
+  quote: Brochure from 1952
+  approx_offset: 6532
+- hazard: copyright_footer_misattributes
+  note: 'the string ''(c) Mathews & Company'' closes ALL 25 pages, including the seven pages that are entirely a
+    principal''s own first-person copy and the page that is a trade magazine''s article. It is the strongest and
+    most misleading provenance signal in the file: on 12 of 25 pages the copyright line names a party that did not
+    write a word on it.'
+  quote: © Mathews & Company
+notes: 'This subject exists in the corpus to test attribution, and for THIS stage that means it is almost entirely
+  a whose_words instrument: the mechanical half (occurrences, spans) is easy on 61 KB, and the judgment half is
+  the hardest in the corpus. The three constructions to grade, in increasing difficulty: (1) a principal named in
+  the same sentence as its own "we" (recoverable); (2) a principal named only in a page heading several lines above
+  the sentence (recoverable only if the clip or the model reaches the heading); (3) EIGHT principals with no name
+  anywhere, one of which puts the agency''s own name in the subject position of the capability sentence (not recoverable
+  - the only correct answer is third_party-unnamed). Search-stage note carried forward: no field is expected_empty
+  here, because search is recall-first and scores what the TEXT NAMES.'
+provenance:
+- action: added
+  by: seed-agent-batch4
+  date: '2026-08-27'
+  source: harvested:expansion-doc

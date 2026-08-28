@@ -1,0 +1,123 @@
+subject: ableengineering.com
+slug: ableengineering_com
+subject_name: Able Aerospace Services Inc.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+role: inventory_subject
+role_source: kept verbatim from search/expectations/ableengineering_com/subject.yaml; not re-derived by this pass
+business_type: FAA/EASA-approved MRO and FAA-PMA parts maker, Mesa AZ; subsidiary of Textron Aviation
+identity_mismatch: 'the filename says ableengineering.com but every scraped URL is https://www.ableaerospace.com/ - harvested verbatim from the search harness. For this stage it matters twice: the string ''ableengineering'' occurs zero times in the text, and 27 of the 43 non-word-boundary hits on the form ''Able'' are the substring inside ''ableaerospace'' in a URL line.'
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/ableengineering_com/subject.yaml
+- apps/data_etl_app/tests/test_stages/grounding/expectations/ableengineering_com/subject.yaml
+- apps/data_etl_app/tests/test_stages/synthesis/expectations/ableengineering_com/subject.yaml
+third_party_roster:
+- Textron
+- Textron Aviation
+- Boeing
+- Airbus
+- Airbus Helicopters
+- Bell
+- Agusta
+- Leonardo
+- Sikorsky
+- Pratt & Whitney
+- Honeywell
+- Northrop Grumman
+- Goodrich
+- Vertex Aerospace
+- FAA
+- EASA
+- NADCAP
+- NATA
+- U.S. Navy
+- Widely Interactive
+shape:
+  pages: 27
+  total_lines: 6428
+  nonblank_lines: 4000
+  distinct_nonblank_lines: 1055
+  share_of_nonblank_lines_occurring_5x_or_more: 59.6%
+  share_of_nonblank_lines_occurring_2x_or_more: 86.5%
+  lines_repeated_exactly_27x: 30
+  median_nonblank_line_chars: 12
+  p99_nonblank_line_chars: 184
+  longest_line_chars: 676
+  nonascii_lines: 109
+  nbsp_count: 16
+text_hazards:
+- hazard: repeated_boilerplate
+  note: 59.6% of non-blank lines occur five or more times; 86.5% occur at least twice. A 30-line nav+footer block repeats on all 27 pages, including this copyright line. Any per-page or per-window count on this subject is inflated by ~27 boilerplate hits per boilerplate form.
+  quote: ©2025 Able Aerospace Services Inc. A Textron Company. Website by Widely Interactive.
+- hazard: certification_footer_line
+  note: five designations packed onto one hyphen-delimited footer line repeated on all 27 pages. AS9100, AS9110, ISO9001 and EASA 145 all clip to this same line for 27 of their occurrences, so the snippet is identical across four different forms and carries no claim, only a footer stamp.
+  quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+- hazard: cert_wall_bare_lines
+  note: the 17-item certification wall (lines 70-100, repeated at 2117) is bare one-per-line entries separated by blank lines - no sentence anywhere in it. This entry uses U+2013 EN DASH, not a hyphen; and the sibling line 'ISO9001/AS9100 / AS9110' packs three forms onto one slash-delimited line with inconsistent spacing around the slashes.
+  quote: NADCAP – SURFACE ENHANCEMENT
+- hazard: allcaps_heading_only
+  note: on the processes page every capability is an ALL CAPS heading on its own line with its explanatory sentence on a separate line below. A line-level clip on the heading gets the heading alone; the sentence that makes it a claim is a different line. approx line 256
+  quote: NON-DESTRUCTIVE TESTING (NDT)
+- hazard: catalog_key_value_lines
+  note: 'the PMA parts catalog and MRO catalog are key:value single lines repeated hundreds of times - ''Make: Bell'' alone occurs 80 times and ''Make: Boeing'' 77. The Model line packs six aircraft models onto one line. ''Part Amount'' and '' ADD TO REQUEST'' occur 192 times each.'
+  quote: 'Model: 206A, 206B, 206L, 206L1, 206L3, 206L4'
+- hazard: leading_space_line
+  note: this catalog line has a LEADING SPACE and occurs 192 times; it is one character different from the same string without it, so any span or identity check that trims must say so
+  quote: ' ADD TO REQUEST'
+- hazard: facet_list_dump
+  note: the /parts/ and /mro/ pages dump their MAKE and MODEL search facets as bare one-per-line lists - roughly 100 OEM names and aircraft model designations with no prose at all. These are web-form dropdown options, the nearest thing this subject has to the country-dropdown hazard other corpus subjects carry. approx line 345
+  quote: Pratt & Whitney Canada
+- hazard: own_name_substring_trap
+  note: the company name is the ordinary English word 'Able'. Word-bounded it occurs 436 times; as a bare substring 479 times. The 43-hit gap is ableaerospace (27, in URL lines), rotable (5), reliable (3), available (3), applicable (2), sustainable, replaceable, recognizable. Same bug class as the measured superiortech PET/ITAR traps and a ready must_not_occur label.
+  quote: one of the world’s largest rotable exchange inventories
+- hazard: within_page_carousel_repeat
+  note: the why-able page repeats a 7-line slideshow caption block three times in a row (lines 2053-2073), so 'MACHINE SHOP' occurs three times on one page as a bare caption with no sentence anywhere near it
+  quote: MACHINE SHOP
+- hazard: cookie_banner
+  note: present on only 3 of 27 pages, not all of them - worth recording because the sibling subjects carry it on every page and a cross-subject boilerplate rule tuned on them will be wrong here
+  quote: By clicking “Accept All Cookies”, you agree to the storing of cookies on your device to enhance site navigation, analyze site usage, and assist in our marketing efforts. Cookie Policy
+- hazard: pagination_truncated_catalog
+  note: catalogue pages stop at a LOAD MORE control, so listed part counts are a sample of the real catalogue and any occurrence count on a part designation is a floor, not a total
+  quote: LOAD MORE BACK TO TOP
+third_party_voice:
+- speaker: Able Aerospace's own VP/GM, in quoted speech
+  whose_words: site
+  note: quoted first-person speech inside a press release. It LOOKS like third-party voice - curly quotes, an attributed speaker, a 'said X' tag - but the speaker is the subject's own executive, so whose_words is site. The hardest whose_words case on this subject is telling this apart from the next entry. approx line 6110
+  quote: said Travis Tyler, vice president and general manager, Able Aerospace Services Inc.
+- speaker: Brad White, SVP of Global Parts and Programs (a Textron Aviation group role)
+  whose_words: parent
+  note: same construction as the entry above, but the title is a parent-company group role, not an Able role, and the quote is about Able in the third person ('the team at Able Aerospace'). The two differ only in the speaker's title. approx line 6038
+  quote: said Brad White, senior vice president of Global Parts and Programs
+- speaker: Textron Inc. (corporate parent)
+  whose_words: parent
+  note: the parent-company designation appears 5 times, always appended to the subject's own name in press-release datelines
+  quote: a Textron Inc. (NYSE:TXT) company
+- speaker: NATA (National Air Transportation Association), a standards body
+  whose_words: site
+  note: the site describing a standards body's own scheme. belongs_to is the NATA Sustainability Standard; whose_words is still site because it is Able's marketing department paraphrasing, not NATA's text. This is the split the schema warns about - right section, wrong speaker. approx line 6178
+  quote: NATA’s Sustainability Standard is designed to reduce greenhouse gas (GHG) emissions, increase use of more environmentally friendly energy sources, reduce waste and encourage sustainability across the business.
+- speaker: Bell Helicopter and Airbus Helicopters, as grantors of an authorization
+  whose_words: site
+  note: 'two entries in the cert wall are authorizations GRANTED BY an OEM, stated in the site''s voice. The certification belongs to Able; the authority belongs to Bell. A location label that reads these as vendor or third_party words is wrong, but one that says belongs_to: Able''s own certification list without naming the grantor loses the attribution downstream. approx line 100'
+  quote: AUTHORIZED BELL HELICOPTER SERVICE CENTER
+- speaker: Able Aerospace marketing department (named byline)
+  whose_words: site
+  note: all 5 press releases close with this byline, and each carries an identical 'Operating from a 250,000...' boilerplate paragraph (4 occurrences). kind_of_text is press release, not capability page. The dash is U+2013 and the line ENDS IN U+00A0, not a space - one of only 16 NBSPs in the file, and enough to defeat an exact line match.
+  quote: Written by Caroline Havekost, Marketing Manager – Able Aerospace 
+- speaker: aircraft OEMs, as the owners of the part numbers in the MRO catalog
+  whose_words: site
+  note: the MRO catalog rows describe components the CUSTOMER owns, identified only by the OEM's part number - so the same row names a third party's designation, a customer's property and Able's service at once. The PMA catalog next to it uses Able's own part number instead. Distinguishing the two is the subject's central attribution question and both clip to the same shape of line.
+  quote: 'OEM P/N: 41009491-101'
+- speaker: (absence) no customer testimonials anywhere
+  whose_words: customer
+  note: 'checked and none exist: zero testimonial blocks, zero customer quotes, zero review copy in 6,428 lines. Any location label on this subject that returns whose_words: customer is wrong by construction, which makes ableengineering a clean negative control for that element.'
+  quote: Since 1982, we have helped some of the most recognizable and respected aircraft operators and fleet owners safely reduce their operating costs through quality repair, overhaul, exchange and approved replacement part services.
+coverage: full_text
+coverage_note: all 6,428 lines / 27 pages / 90,697 bytes; the search harness read it exhaustively and this pass re-read every substantive page (home, processes, why-able, rotor-wing, fixed-wing, landing-gear, military, contact, all 5 press releases) plus sampled catalog and facet regions, and measured the repetition and non-ASCII figures over the whole file
+notes: 'Contributes two things this stage cannot get elsewhere: a whose_words case where site and parent voice are one job title apart (Travis Tyler vs Brad White, identical ''said X'' construction), and a 43-hit substring trap on the subject''s OWN name because that name is an ordinary English word.'
+provenance:
+- action: added
+  by: seed-agent-batch1
+  date: '2026-08-27'
+  source: harvested:search + corpus-seed

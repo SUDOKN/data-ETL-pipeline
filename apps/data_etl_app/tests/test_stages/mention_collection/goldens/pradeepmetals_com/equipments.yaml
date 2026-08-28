@@ -1,0 +1,1156 @@
+subject: pradeepmetals.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+golden_set_version: 1
+anchored_on: search/expectations/pradeepmetals_com/equipments.yaml
+labels:
+- id: pradeepmetals_com-equipments-0001
+  form: 125mm dia. Hi-speed Circular Saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 125mm dia. Hi-speed Circular Saw
+    approx_offset: 172570
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0002
+  form: 1600T Shear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 1600T Shear
+    approx_offset: 172558
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0003
+  form: 2500T, 1250T, 700T Mechanical Presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 2500T, 1250T, 700T Mechanical Presses
+    approx_offset: 172648
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0004
+  form: 250mm Band Saws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 250mm Band Saws
+    approx_offset: 172603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0005
+  form: 3 KW MICROWAVE SYSTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: SYNOTHERM’S 3 KW MICROWAVE SYSTEM
+    approx_offset: 19505
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0006
+  form: 3T Hammer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: With the acquisition of the new 3T Hammer, the forging capacity of Pradeep Metals has increased
+      from 8000 MTPA to 9200 MTPA, which helps us to cater to the needs of many industries and providing
+      a diverse range of manufactured products.
+    approx_offset: 197945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0007
+  form: 6T & 1T Die Hammers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 6T & 1T Die Hammers
+    approx_offset: 172628
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0008
+  form: Austentizing furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Austentizing furnaces
+    approx_offset: 172750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0009
+  form: BALL MILL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: BALL MILL, MIXER, CRUSHER, NODULIZER, ETC
+    approx_offset: 21361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0010
+  form: Band Saws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 250mm Band Saws
+    approx_offset: 172609
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0011
+  form: CNC Turning Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0012
+  form: CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-social-responsibility
+    - https://www.pradeepmetals.com/corporate-social-responsibility/
+  evidence:
+  - quote: Mist collectors installed on CNC machines
+    approx_offset: 65950
+  - quote: Mist collectors installed on CNC machines
+    approx_offset: 68438
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0013
+  form: CONTINUOUS MICROWAVE PROCESSING SYSTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: CONTINUOUS MICROWAVE PROCESSING SYSTEM
+    approx_offset: 20324
+  - quote: CONTINUOUS MICROWAVE PROCESSING SYSTEM
+    approx_offset: 20687
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0014
+  form: CRUSHER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: BALL MILL, MIXER, CRUSHER, NODULIZER, ETC
+    approx_offset: 21379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0015
+  form: Circular Saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Hi-speed Circular Saw
+    approx_offset: 172590
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0016
+  form: Cyclone separator
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: Installed with Vibro-mixer, Vibro-feeder, Aspirator and Cyclone separator
+    approx_offset: 21053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0017
+  form: Die Hammers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 6T & 1T Die Hammers
+    approx_offset: 172636
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0018
+  form: Electric Tempering furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Electric Tempering furnace
+    approx_offset: 172772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0019
+  form: GRT- S5 MICROWAVE SYSTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: GRT- S5 MICROWAVE SYSTEM
+    approx_offset: 20105
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0020
+  form: Gas-fired furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Induction & Gas-fired furnaces
+    approx_offset: 172715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0021
+  form: HAAS SL-10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS SL-10\t210mm\t4"
+    approx_offset: 52684
+  - quote: "HAAS SL-10\t210mm\t4"
+    approx_offset: 144252
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0022
+  form: HAAS SL-30
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS SL-30\t475mm\t2"
+    approx_offset: 52741
+  - quote: "HAAS SL-30\t475mm\t2"
+    approx_offset: 144309
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0023
+  form: HAAS ST-10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS ST-10\t210mm\t6"
+    approx_offset: 52703
+  - quote: "HAAS ST-10\t210mm\t6"
+    approx_offset: 144271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0024
+  form: HAAS ST-20
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS ST-20\t250mm\t2"
+    approx_offset: 52722
+  - quote: "HAAS ST-20\t250mm\t2"
+    approx_offset: 144290
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0025
+  form: HAAS ST-30
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS ST-30\t530mm\t2"
+    approx_offset: 52760
+  - quote: "HAAS ST-30\t530mm\t2"
+    approx_offset: 144328
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0026
+  form: HAAS TL-15
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS TL-15\t250mm\t1"
+    approx_offset: 52779
+  - quote: "HAAS TL-15\t250mm\t1"
+    approx_offset: 144347
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0027
+  form: HAAS VF-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS VF-1\tw/through coolant\t5"
+    approx_offset: 52798
+  - quote: "HAAS VF-1\tw/through coolant\t5"
+    approx_offset: 144366
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0028
+  form: HAAS VF-3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/machining
+    - https://www.pradeepmetals.com/machining/
+  evidence:
+  - quote: "HAAS VF-3\tw/through coolant\t1"
+    approx_offset: 52828
+  - quote: "HAAS VF-3\tw/through coolant\t1"
+    approx_offset: 144396
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0029
+  form: Hi-speed Circular Saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Hi-speed Circular Saw
+    approx_offset: 172581
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0030
+  form: Induction & Gas-fired furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Induction & Gas-fired furnaces
+    approx_offset: 172703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0031
+  form: MAGNETIZERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: MAGNETIZERS
+    approx_offset: 21403
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0032
+  form: MINERAL COMMINUTION SYSTEMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: MINERAL COMMINUTION SYSTEMS
+    approx_offset: 21333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0033
+  form: MIXER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: Installed with Vibro-mixer, Vibro-feeder, Aspirator and Cyclone separator
+    approx_offset: 21018
+  - quote: BALL MILL, MIXER, CRUSHER, NODULIZER, ETC
+    approx_offset: 21372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0034
+  form: Mechanical Presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 2500T, 1250T, 700T Mechanical Presses
+    approx_offset: 172667
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0035
+  form: Microwave Composite Heating Furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Microwave Composite Heating Furnace (Jointly with Chubu University, Japan)
+    approx_offset: 96712
+  - quote: Smelting-reduction of iron ore (Microwave Composite Heating Furnace)
+    approx_offset: 136018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0036
+  form: NODULIZER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: BALL MILL, MIXER, CRUSHER, NODULIZER, ETC
+    approx_offset: 21388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0037
+  form: PANASONIC NE-1756
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: PANASONIC NE-1756
+    approx_offset: 19349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0038
+  form: PANASONIC XJ-03MK100DN MICROWAVE SYSTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: PANASONIC XJ-03MK100DN MICROWAVE SYSTEM
+    approx_offset: 19845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0039
+  form: PROTOTYPE MICROWAVE-ASSISTED PLANT FOR DIRECT REDUCTION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: PROTOTYPE MICROWAVE-ASSISTED PLANT FOR DIRECT REDUCTION
+    approx_offset: 21071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0040
+  form: SCIENTIFIC LAB-MICROWAVE SYSTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: SCIENTIFIC LAB-MICROWAVE SYSTEM
+    approx_offset: 19096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0041
+  form: SYNOTHERM’S 3 KW MICROWAVE SYSTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: SYNOTHERM’S 3 KW MICROWAVE SYSTEM
+    approx_offset: 19493
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0042
+  form: Tempering furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Electric Tempering furnace
+    approx_offset: 172781
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0043
+  form: Trimming Presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Trimming Presses
+    approx_offset: 172686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0044
+  form: VMC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0045
+  form: Vertical Machining Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255345
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0046
+  form: Vertical Machining Centers (VMC)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255345
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0047
+  form: Vibro-mixer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: Installed with Vibro-mixer, Vibro-feeder, Aspirator and Cyclone separator
+    approx_offset: 21012
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0048
+  form: XJ-03MK100DN
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: PANASONIC XJ-03MK100DN MICROWAVE SYSTEM
+    approx_offset: 19855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0049
+  form: finest machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: We use the finest machinery and best-grade raw materials in our manufacturing process; hence
+      our clients are supplied with excellent quality products.
+    approx_offset: 31181
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0050
+  form: forging machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: In the manufacturing industry, the forging is done with proper precision by using a forging
+      machine to provide the material with a proper finish, to provide it with the best qualities and
+      to reduce the time consumed in the process by mostly automating it.
+    approx_offset: 4151
+  - quote: But back in those times forging was more or less a work of the blacksmiths but in the world
+      today forging machine is used to ensure the precision forging and to speed up the process.
+    approx_offset: 4668
+  - quote: In the manufacturing industry, the forging is done with proper precision by using a forging
+      machine to provide the material with a proper finish, to provide it with the best qualities and
+      to reduce the time consumed in the process by mostly automating it.
+    approx_offset: 181974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0051
+  form: high-end machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: With the market capitalization of Pradeep Metals growing rapidly year by year, we aim to adapt
+      to the rising demand for machined components, and have taken up the initiative to set up a new machine
+      shop within the existing plant by importing some of the high-end machinery from our step-down subsidia
+    approx_offset: 196498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0052
+  form: industrial hammer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: The force is delivered basically by using an industrial hammer or a die cast.
+    approx_offset: 4929
+  - quote: The force is delivered basically by using an industrial hammer or a die cast.
+    approx_offset: 182752
+  - quote: The force is delivered basically by using an industrial hammer or a die cast.
+    approx_offset: 188941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0053
+  form: machining center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+  evidence:
+  - quote: 2012 – Added new machining center
+    approx_offset: 35912
+  - quote: 2012 – Added new machining center
+    approx_offset: 117443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0054
+  form: machining centre
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: 2012 – Opened new machining centre
+    approx_offset: 207209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0055
+  form: most modern machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+  evidence:
+  - quote: Pradeep Metals Limited, one among the most reputed forging companies in India, adopts a well-organized
+      manufacturing process comprising of finest quality raw materials and most modern machinery to make
+      high-precision metal forge.
+    approx_offset: 221266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0056
+  form: new machining center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+  evidence:
+  - quote: 2012 – Added new machining center
+    approx_offset: 35908
+  - quote: 2012 – Added new machining center
+    approx_offset: 117439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0057
+  form: new machining centre
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: 2012 – Opened new machining centre
+    approx_offset: 207205
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0058
+  form: press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: For this, tools like press brakes are used to bend the metal.
+    approx_offset: 216048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0059
+  form: presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: 1994 – New state- of-the-art facility with presses commissioned at Rabale,
+    approx_offset: 36331
+  - quote: 1994 – New state- of-the-art facility with presses commissioned at Rabale,
+    approx_offset: 117862
+  - quote: 2500T, 1250T, 700T Mechanical Presses
+    approx_offset: 172678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0060
+  form: rolling mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: In the first step of the process, metals are put into a forge before being rolled in rolling
+      mills.
+    approx_offset: 238548
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0061
+  form: state-of-the-art machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: With enhanced high sealing performance and less hand wheel effort in the manufacturing process,
+      Pradeep Metals uses state-of-the-art machinery with sophisticated tool-room equipment to manufacture
+      its forged steel globe valves.
+    approx_offset: 197289
+  - quote: Pradeep Metals’ objective is to use state-of-the-art machinery in the manufacturing process
+      and produce products unparalleled in quality, as well as quantity.
+    approx_offset: 202672
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-equipments-0062
+  form: the new 3T Hammer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: With the acquisition of the new 3T Hammer, the forging capacity of Pradeep Metals has increased
+      from 8000 MTPA to 9200 MTPA, which helps us to cater to the needs of many industries and providing
+      a diverse range of manufactured products.
+    approx_offset: 197937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

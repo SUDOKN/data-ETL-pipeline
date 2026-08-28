@@ -1,0 +1,1214 @@
+subject: med-tekinc.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+golden_set_version: 1
+anchored_on: search/expectations/med-tekinc_com/process_caps.yaml
+labels:
+- id: med-tekinc_com-process_caps-0001
+  form: Aging Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum — Furnaces Operate
+      At Temperatures Of Up To 1,250 Degrees Fahrenheit and Have a 30" x 48" x 30" Capacity.
+    approx_offset: 4606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0002
+  form: Annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum — Furnaces Operate
+      At Temperatures Of Up To 1,250 Degrees Fahrenheit and Have a 30" x 48" x 30" Capacity.
+    approx_offset: 4571
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum — Furnaces Operate
+      At Temperatures Of Up To 1,250 Degrees Fahrenheit and Have a 30" x 48" x 30" Capacity.
+    approx_offset: 4591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0003
+  form: Austemper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4257
+  - quote: The Austemper and Marquench Baths Operate At Temperatures Of 350 To 800 Degrees Fahrenheit
+      and Have a 48" x 72" x 38" Capacity.
+    approx_offset: 4425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0004
+  form: Austemper Bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0005
+  form: Austempering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Austempering
+    approx_offset: 2719
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0006
+  form: Brinell
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Rockwell & Brinell Testing
+    approx_offset: 2876
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0007
+  form: Carbonitriding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Carbonitriding
+    approx_offset: 2732
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0008
+  form: Carburizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Carburizing
+    approx_offset: 2747
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0009
+  form: Controlled Atmosphere
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0010
+  form: Controlled Atmospheres
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Controlled Atmospheres
+    approx_offset: 2759
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0011
+  form: HEAT TREATING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://med-tekinc.com/
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: A LEADING PLAYER IN HEAT TREATING TECHNOLOGY
+    approx_offset: 138
+  - quote: Heat Treating Metal
+    approx_offset: 1577
+  - quote: Heat Treating Services
+    approx_offset: 2496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0012
+  form: Heat Treating Metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: Heat Treating Metal
+    approx_offset: 1577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0013
+  form: Heat Treating Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Heat Treating Services
+    approx_offset: 2496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0014
+  form: Induction Hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Low and High-Frequency Induction Hardening Equipment — Power Levels Range From 50 KW To 200
+      KW.
+    approx_offset: 4091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0015
+  form: Laboratory Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Laboratory Services
+    approx_offset: 2782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0016
+  form: Marquench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4277
+  - quote: The Austemper and Marquench Baths Operate At Temperatures Of 350 To 800 Degrees Fahrenheit
+      and Have a 48" x 72" x 38" Capacity.
+    approx_offset: 4439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0017
+  form: Marquench Bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4277
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0018
+  form: Marquench Baths
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: The Austemper and Marquench Baths Operate At Temperatures Of 350 To 800 Degrees Fahrenheit
+      and Have a 48" x 72" x 38" Capacity.
+    approx_offset: 4439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0019
+  form: Martempering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Martempering
+    approx_offset: 2802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0020
+  form: Neutral Hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Neutral Hardening
+    approx_offset: 2815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0021
+  form: Neutral Salt Bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4238
+  - quote: The Neutral Salt Bath Has a 24" x 28" capacity and Can Operate At Temperatures Of 1,300 To
+      1,650 Degrees Fahrenheit.
+    approx_offset: 4308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0022
+  form: Nitriding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Nitriding
+    approx_offset: 2833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0023
+  form: Normalizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Normalizing
+    approx_offset: 2843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0024
+  form: Oil Quench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Super 30 Gas Fired All Case Furnaces with Warm Oil Quench — With Endothermic
+      Atmospheres and Normal Operating Temperatures Between 1,400 and 1,700 Degrees Fahrenheit.
+    approx_offset: 3678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0025
+  form: Polymer Quench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Polymer Quench for Distortion Minimization.
+    approx_offset: 4761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0026
+  form: Pressure Quench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench — With
+      Vacuum or Nitrogen Atmospheres and Normal Operating Temperatures Between 600 and 2,300 Degrees Fahrenheit.
+    approx_offset: 3409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0027
+  form: Quench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench — With
+      Vacuum or Nitrogen Atmospheres and Normal Operating Temperatures Between 600 and 2,300 Degrees Fahrenheit.
+    approx_offset: 3418
+  - quote: Surface Combustion Super 30 Gas Fired All Case Furnaces with Warm Oil Quench — With Endothermic
+      Atmospheres and Normal Operating Temperatures Between 1,400 and 1,700 Degrees Fahrenheit.
+    approx_offset: 3682
+  - quote: Polymer Quench for Distortion Minimization.
+    approx_offset: 4769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0028
+  form: Quenching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Quenching
+    approx_offset: 2855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0029
+  form: Rockwell
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Our Rockwell Hardness Machines are certified every six months and accuracy-verified against
+      the standard block at the start of every shift to help make your metals more durable.
+    approx_offset: 1602
+  - quote: Rockwell & Brinell Testing
+    approx_offset: 2865
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0030
+  form: Rockwell & Brinell Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Rockwell & Brinell Testing
+    approx_offset: 2865
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0031
+  form: Rockwell Hardness
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: Our Rockwell Hardness Machines are certified every six months and accuracy-verified against
+      the standard block at the start of every shift to help make your metals more durable.
+    approx_offset: 1602
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0032
+  form: Salt Bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Hardening
+    approx_offset: 2892
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4193
+  - quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench
+      Bath Processing.
+    approx_offset: 4246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0033
+  form: Salt Bath Hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Salt Bath Hardening
+    approx_offset: 2892
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0034
+  form: Solution Annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum — Furnaces Operate
+      At Temperatures Of Up To 1,250 Degrees Fahrenheit and Have a 30" x 48" x 30" Capacity.
+    approx_offset: 4582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0035
+  form: Spheroidizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Spheroidizing
+    approx_offset: 2912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0036
+  form: Spin Hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Spin Hardening
+    approx_offset: 2926
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0037
+  form: Straightening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Straightening
+    approx_offset: 2941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0038
+  form: Stress Relieving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Stress Relieving
+    approx_offset: 2955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0039
+  form: Sub Zero
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Sub Zero Stabilizing
+    approx_offset: 2972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0040
+  form: Sub Zero Stabilizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Sub Zero Stabilizing
+    approx_offset: 2972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0041
+  form: Tampering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Tampering Steel
+    approx_offset: 2993
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0042
+  form: Tampering Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Tampering Steel
+    approx_offset: 2993
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0043
+  form: Tool Hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Tool Hardening
+    approx_offset: 3009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0044
+  form: Two Bar Pressure Quench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench — With
+      Vacuum or Nitrogen Atmospheres and Normal Operating Temperatures Between 600 and 2,300 Degrees Fahrenheit.
+    approx_offset: 3401
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0045
+  form: Vacuum Heat Treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Vacuum Heat Treating
+    approx_offset: 3024
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0046
+  form: Warm Oil Quench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Surface Combustion Super 30 Gas Fired All Case Furnaces with Warm Oil Quench — With Endothermic
+      Atmospheres and Normal Operating Temperatures Between 1,400 and 1,700 Degrees Fahrenheit.
+    approx_offset: 3673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0047
+  form: aging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Whether you need aging, annealing, or batch hardening, we can take care of you.
+    approx_offset: 2619
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum — Furnaces Operate
+      At Temperatures Of Up To 1,250 Degrees Fahrenheit and Have a 30" x 48" x 30" Capacity.
+    approx_offset: 4606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0048
+  form: annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Whether you need aging, annealing, or batch hardening, we can take care of you.
+    approx_offset: 2626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0049
+  form: batch hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Whether you need aging, annealing, or batch hardening, we can take care of you.
+    approx_offset: 2640
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0050
+  form: brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: Learn more about the services we can provide, like brazing and induction, with our state-of-the-art equipment.
+    approx_offset: 1929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0051
+  form: carbonitriding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: In addition to tempering steel, our equipment can perform subzero stabilizing, carbonitriding,
+      and spheroidizing.
+    approx_offset: 3257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0052
+  form: heat treated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: Whether you have one piece or a thousand pieces you need heat treated, our experienced team
+      can help.
+    approx_offset: 1833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0053
+  form: heat treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: We provide a wide range of services to meet all of your heat treating needs.
+    approx_offset: 1035
+  - quote: There is no heat treating job too large or small for our facilities, and our proximity to an
+      auxiliary metal treating facilities results in lower shipping costs and faster processing for clients
+      in Minnesota, the surrounding states, and Central Canada.
+    approx_offset: 1312
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0054
+  form: heat-treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: MED-TEK, INC., in Minneapolis, Minnesota, specializes in heat-treating metal for commercial
+      purposes.
+    approx_offset: 381
+  - quote: For more than 50 years, our 48,000-square-foot facility containing state-of-the-art equipment
+      has been at the forefront of inspection and testing procedures for heat-treating.
+    approx_offset: 726
+  - quote: Our artisans average more than 50 years of experience in heat-treating, and they are committed
+      to getting the job done right the first time around.
+    approx_offset: 1209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0055
+  form: heat‑treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: We offer a wide range of services that are sure to meet your heat‑treating needs.
+    approx_offset: 2581
+  - quote: Our complete metallurgical laboratory facilities allow us to take on huge heat‑treating jobs
+      for commercial clients.
+    approx_offset: 3134
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0056
+  form: induction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://med-tekinc.com/
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Learn more about the services we can provide, like brazing and induction, with our state-of-the-art equipment.
+    approx_offset: 1941
+  - quote: Low and High-Frequency Induction Hardening Equipment — Power Levels Range From 50 KW To 200
+      KW.
+    approx_offset: 4091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0057
+  form: inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: For more than 50 years, our 48,000-square-foot facility containing state-of-the-art equipment
+      has been at the forefront of inspection and testing procedures for heat-treating.
+    approx_offset: 688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0058
+  form: inspection and testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: For more than 50 years, our 48,000-square-foot facility containing state-of-the-art equipment
+      has been at the forefront of inspection and testing procedures for heat-treating.
+    approx_offset: 688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0059
+  form: inspection and testing procedures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: For more than 50 years, our 48,000-square-foot facility containing state-of-the-art equipment
+      has been at the forefront of inspection and testing procedures for heat-treating.
+    approx_offset: 688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0060
+  form: laboratory
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://med-tekinc.com/
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: An on-staff metallurgist can deliver laboratory and specification certifications if requested.
+    approx_offset: 1093
+  - quote: Laboratory Services
+    approx_offset: 2782
+  - quote: Our complete metallurgical laboratory facilities allow us to take on huge heat‑treating jobs
+      for commercial clients.
+    approx_offset: 3087
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0061
+  form: metallurgical laboratory
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: Our complete metallurgical laboratory facilities allow us to take on huge heat‑treating jobs
+      for commercial clients.
+    approx_offset: 3073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0062
+  form: spheroidizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: In addition to tempering steel, our equipment can perform subzero stabilizing, carbonitriding,
+      and spheroidizing.
+    approx_offset: 3277
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0063
+  form: subzero
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: In addition to tempering steel, our equipment can perform subzero stabilizing, carbonitriding,
+      and spheroidizing.
+    approx_offset: 3236
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0064
+  form: subzero stabilizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: In addition to tempering steel, our equipment can perform subzero stabilizing, carbonitriding,
+      and spheroidizing.
+    approx_offset: 3236
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0065
+  form: tempering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: In addition to tempering steel, our equipment can perform subzero stabilizing, carbonitriding,
+      and spheroidizing.
+    approx_offset: 3193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-process_caps-0066
+  form: tempering steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/services/
+  evidence:
+  - quote: In addition to tempering steel, our equipment can perform subzero stabilizing, carbonitriding,
+      and spheroidizing.
+    approx_offset: 3193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

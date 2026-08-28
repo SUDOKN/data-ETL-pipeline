@@ -1,0 +1,260 @@
+subject: tanfel.com
+slug: tanfel_com
+subject_name: 'Tanfel (footer: Tanfel Metal; warranty page: Tanfel Inc.)'
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+role: attribution_negative
+role_source: 'kept verbatim from search/expectations/tanfel_com/subject.yaml. SCHEMA DRIFT, handled the
+  same way goldens/agstech_net/subject.yaml handles it: this value is NOT in the five-value enum printed
+  in mention_collection/GOLDEN_LABELS_SCHEMA.md, because search/EXPECTATIONS_SCHEMA.md added attribution_negative
+  (plus genre_probe and empty_field_probe) on 2026-08-27 and the mention schema''s comment has not caught
+  up. It is kept rather than downgraded because it names precisely this stage''s whose_words question.
+  The in-enum fallback, if one is ever required, is full_unit -- search/EXPECTATIONS_SCHEMA.md line 99
+  says an attribution_negative subject is seeded exactly like a full_unit one.'
+business_type: 'US sourcing intermediary (broker), Scottsdale AZ, that brokers custom metal parts made
+  by partner factories in China, Vietnam, India, Mexico and the US, and writes those factories'' capabilities,
+  machine fleets, alloy lists and ISO registrations IN THE FIRST PERSON. Two things are unambiguously
+  its own: an ISO 9001:2015 certificate, and Tanfel Metrology, a division selling its own branded GO/NO-GO
+  thread plug gages.'
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/tanfel_com/subject.yaml
+- 'apps/data_etl_app/tests/test_stages/GOLDEN_CORPUS_EXPANSION_2026-08-27.md (section ''6th: tanfel.com'')'
+third_party_roster:
+- unnamed offshore partner factories in China, Vietnam, India, Mexico and the US
+- Dr. Rod (customer, testimonial)
+- Zane Forier (customer, testimonial)
+- John Marcin, President, Rojo Sport, Inc. (customer, testimonial)
+- the CEO of Endura Flap Pet Doors (customer, testimonial)
+- Greg Lange (blog byline)
+- ISO
+- IATF
+- AS 9100
+- ISO 2768
+- ISO 13485
+- ISO 14001
+- ISO/TS 16949
+third_party_roster_note: the roster is unusual in what it does NOT contain. There is not ONE machine-tool
+  brand anywhere in the file -- no Haas, Mazak, Okuma, Amada, Trumpf, Fanuc, Zeiss, Mitutoyo, Arburg or
+  Engel -- so `vendor` is close to an empty whose_words class here, the opposite of superiortech. What
+  there IS instead is a set of unnamed partner factories whose work is narrated in the first person, and
+  four named customers who speak in their own voice. On this subject the interesting distinction is between
+  `site` and `customer`, and between the site SPEAKING and the site's PARTNERS acting.
+shape:
+  page_blocks: 61
+  distinct_urls: 61
+  distinct_url_paths_after_slash_normalise: 54
+  distinct_page_bodies: 47
+  total_lines: 5192
+  bytes: 182322
+  characters: 181488
+  nonblank_lines: 3724
+  distinct_nonblank_lines: 1160
+  share_of_nonblank_lines_occurring_2x_or_more: 81.9%
+  share_of_nonblank_chars_occurring_2x_or_more: 71.6%
+  nonascii_chars: 588
+  distinct_nonascii_codepoints: 14
+  nbsp_count: 263
+  nbsp_leading: 38
+  nbsp_mid_line: 158
+  nbsp_trailing: 67
+  zwsp_count: 0
+  note: 'correction to search/expectations, which reports 52 page URLs: this file has 61 page blocks and
+    61 distinct URL strings, covering 54 distinct paths once a trailing slash is normalised. 71.6% of
+    the characters on non-blank lines are exact repeats of another line, the highest duplication in this
+    batch after taylordunn. Non-ASCII census: U+00A0 263, U+2013 116, U+2019 85, U+00A9 61, U+2026 13,
+    U+201D 12, U+201C 9, U+00BA 8, U+00B1 6, U+2014 5, U+00B0 4, U+2265 4, U+2033 1, U+2264 1. No zero-width
+    spaces.'
+coverage: full_text
+coverage_note: all 5,192 lines / 181,488 characters accounted for. The 47 distinct page bodies were read;
+  the 14 duplicate bodies were matched by sha256 rather than re-read. Every count in this file was computed
+  over the whole text.
+text_hazards:
+- hazard: first_person_for_someone_elses_shop
+  note: 'THE hazard on this subject and the reason it is in the corpus. Tanfel owns no plant, and the
+    quoted sentence -- occurring twice, on the two URLs of the CNC machining page -- says ''Our facility
+    maintains a fleet''. There is no hedge, no partner attribution and no brand name anywhere near it.
+    A location label reading grammar alone gets whose_words: site right and the actor completely wrong,
+    and NOTHING in the sentence, the line or the paragraph disconfirms it. The disconfirming evidence
+    is 2,000 lines away in a customer testimonial.'
+  quote: Our facility maintains a fleet of 3-axis, 4-axis, and 5-axis machines
+  approx_offset: 80097
+- hazard: bare_list_lines
+  note: the owned-fleet claim is followed immediately by six machine types, one per line, each indented
+    with THREE NBSP-plus-space pairs and nothing else -- no verb, no subject, no sentence. A clip on any
+    of them returns the bare machine name preceded by invisible whitespace, and the only thing asserting
+    that Tanfel uses them is the 'We use the following types of CNC lathes' line above. This is the single
+    place in the file where equipment forms are genuinely non-empty, so getting it wrong manufactures
+    a false empty-field verdict.
+  quote:       Swiss style
+  approx_offset: 81453
+- hazard: form_dropdown
+  note: the RFQ and Contact forms print their entire Industry dropdown -- 19 options -- as plain text,
+    and they do it THREE times. This is where Aerospace, Energy / Utility, Government / Military, Maquiladora,
+    Wireless and Oil / Gas come from; none is a statement that Tanfel serves that market. Worse, the label
+    'Industry *' occurs exactly ONCE in the file while '-Select-' occurs four times, so on two of the
+    three copies the 19 industry names are bare lines with no label above them at all. The separate 'Product
+    Interest' dropdown adds 16 more options, printed once, and is where PCB comes from -- 'PCB' occurs
+    exactly once in the whole file, as a dropdown option.
+  quote: Maquiladora
+  measured:
+    industry_options: 19
+    industry_dropdown_printed: 3
+    product_interest_options: 16
+    product_interest_printed: 1
+    label_Industry_star_occurrences: 1
+    PCB_occurrences: 1
+  approx_offset: 60943
+- hazard: supplier_attestations_on_one_line
+  note: 'FOUR standards on ONE line, inside a metal-injection-molding supplier''s specification block
+    (tool steels, weight limits, wall thickness, tolerances), and the line occurs exactly ONCE. Every
+    one of those four attestations therefore shares a single snippet that is a bare comma list in a supplier
+    spec sheet -- no sentence, no holder named, no verb. Contrast the site''s OWN certificate, which appears
+    three times as a document title, ''ISO 9001:2015 CERTIFICATE''. The count asymmetry is inverted from
+    what matters: the four certificates Tanfel does not hold occur once, the one it does holds occurs
+    three times.'
+  quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev. C
+  approx_offset: 28763
+- hazard: network_scoped_attestation
+  note: 'twice the site states plainly that the certifications belong to the NETWORK, not to itself. This
+    is the rare in-text sentence that resolves the attribution question, and it is the correct `belongs_to`
+    for most conformity mentions on this subject. A sibling sentence, ''With our worldwide network of
+    quality ISO & TS certified facilities'' (3 occurrences), says the same thing. Note that ''IATF'' appears
+    here as a BARE token and never as a standard number: ''IATF 16949'' and ''ISO 16949'' both have ZERO
+    occurrences in this file, while ''ISO/TS 16949:2009'' has one, ''TS 16949'' two and ''TS16949'' one.'
+  quote: Our global network of quality ISO & IATF certified facilities can support your prototype to large
+    production requirements.
+  approx_offset: 92204
+- hazard: testimonial_block
+  note: four customer testimonials, and the block is printed TWICE within the same page and on three pages,
+    so each testimonial has 6 occurrences. The speakers are named on the FOLLOWING line, in ALL CAPS with
+    a leading hyphen -- the attribution is never inside the quoted sentence, so a sentence-level clip
+    loses the speaker entirely. The dog-door testimonial is the one the expansion doc flags, and the industry
+    it implies (pet products) is imported into Tanfel's profile from a customer's product line.
+  quote: There are a variety of manufacturing challenges with our line of energy efficient dog doors,
+    but great suppliers like Tanfel makes our job much easier.
+  approx_offset: 7075
+- hazard: textbook_prose
+  note: 'the materials list is a run of DICTIONARY DEFINITIONS, one per line, with no Tanfel subject and
+    no capability claim -- ''Aluminum is a lightweight, non-magnetic metal...''. Ten materials in ten
+    consecutive lines, each clipping to a definition that asserts nothing about who processes it. Three
+    whole pages are the same genre at length: the aluminium-extrusion walkthrough, the metal-casting explainer
+    and the metrology explainer. Machines and processes named in those pages belong to nobody.'
+  quote: Aluminum is a lightweight, non-magnetic metal that can be easily formed or drawn.
+  approx_offset: 81873
+- hazard: hard_wrapped_duplicate
+  note: 'the metal-stamping blog post exists in the file TWICE in two different LINE LAYOUTS: once as
+    single long lines (line 3158, 364 characters) and once hard-wrapped to a median of 93 characters per
+    line (lines 4838-4894). The consequence is exact and measurable -- ''metal stamping machine'' has
+    ZERO occurrences in the whole file, because in the wrapped copy ''metal'' ends line 4869 and ''stamping
+    machine,'' begins line 4870, and in the long copy the phrase happens not to occur. A form can be genuinely
+    present in the document and unmatchable by a line-scoped matcher. The quoted line is the second half
+    of that split.'
+  quote: stamping machine, different stations will form punches and bends to achieve the desired shape.
+  approx_offset: 167129
+- hazard: duplicate_page
+  note: 61 page blocks, 47 distinct bodies. Whole pages are served under two and sometimes three URLs
+    -- /about, /about-tanfel and /about-tanfel/ are one body; /quotes/, /quotes and /quote are another;
+    and eleven more pairs. So the baseline occurrence count on this subject is 2, not 1, and for the About
+    page it is 3. The home page additionally repeats its own hero and testimonial blocks twice WITHIN
+    one page, which is why the testimonial count is 6 rather than 3.
+  quote: https://www.tanfel.com/about-tanfel/
+  approx_offset: 169977
+- hazard: repeated_banner
+  note: the thread-plug-gage banner is an ALL-CAPS standalone line on 42 of the pages, and it is the ONLY
+    product Tanfel unambiguously makes under its own name. So the site's one genuine own-product claim
+    is also its most-repeated boilerplate line -- occurrence frequency and attribution confidence point
+    the same way here and the opposite way everywhere else on this subject.
+  quote: TANFEL NOW MAKES HIGH-QUALITY THREAD PLUG GAGES.
+  approx_offset: 2613
+- hazard: heading_style_all_caps
+  note: headings are bare ALL-CAPS lines throughout, and the file splits a single heading across TWO consecutive
+    lines ('CUSTOMER' then 'TESTIMONIALS', 'WHAT' then 'CUSTOMERS SAY'). A clip that takes one line takes
+    half a heading; the quoted line is the second half of one of them, and its partner 'WHAT' is a five-occurrence
+    string on its own. The nav line is also ALL-CAPS with four trailing spaces on some items ('CAPABILITIES
+    ', 'INDUSTRIES '), the same trailing-space trap taylordunn has.
+  quote: CUSTOMERS SAY
+  approx_offset: 5816
+- hazard: off_topic_page
+  note: one entire page is a 2019 trade-policy explainer with no manufacturing content at all. It is a
+    genre the rest of the corpus does not carry, and every country, industry and product word inside it
+    is policy vocabulary rather than capability vocabulary.
+  quote: SECTION 301 TARIFFS ON CHINA
+  approx_offset: 96893
+- hazard: nbsp_mid_sentence
+  note: '263 NO-BREAK SPACEs, and unlike sterlingmfg most of them are MID-LINE: 158 mid-line, 67 trailing,
+    38 leading. They sit after full stops, after commas, and between ordinary words inside sentences,
+    so a phrase retyped with ordinary spaces silently fails to match. The quoted fragment carries two
+    of them, one after each full stop.'
+  quote: since 2008.  We focus on stamping, extrusion, casting as well as CNC machining.  Our competitive
+    e
+  approx_offset: 43314
+third_party_voice:
+- speaker: unnamed offshore partner factories, narrated by Tanfel in the first person
+  whose_words: site
+  note: THE case this subject exists to test, and note that whose_words is `site` throughout -- Tanfel
+    really is the speaker. What is wrong is never the speaker, it is the ACTOR, and the two come apart
+    with no grammatical signal at all. This is the inverse of the taylordunn failure (where the speaker
+    is wrong and the actor is nobody) and a sibling of superiortech's trusted-vendors tier (where the
+    site flags the hand-off explicitly). Tanfel never flags it in the capability prose. The one place
+    the model is stated is in a CUSTOMER's testimonial, quoted here, which is the only sentence in the
+    file that says outright that an offshore company does the work.
+  quote: The great thing is that Tanfel not only vets these companies fully, but my business dealing is
+    with Tanfel, not the offshore company.
+- speaker: four named customers (Dr. Rod; Zane Forier; John Marcin of Rojo Sport, Inc.; the CEO of Endura
+    Flap Pet Doors)
+  whose_words: customer
+  note: the corpus's cleanest `customer` voice, and the attribution line always sits on the line AFTER
+    the quote, never inside it. Their products -- dog doors, sporting goods, custom fabrications -- are
+    the customers' catalogue items, not Tanfel's, and the industries they imply are imported into Tanfel's
+    profile by exactly this route.
+  quote: '- JOHN MARCIN – PRESIDENT, ROJO SPORT, INC.'
+- speaker: Tanfel itself, on the two things it genuinely owns
+  whose_words: site
+  note: the true positives, and there are only two. Tanfel Metrology is a named division selling its own
+    branded GO/NO-GO thread plug gauges, described once in an explicitly self-referential sentence, and
+    the ISO 9001:2015 certificate is offered as a downloadable document title three times. Anything else
+    attributed to Tanfel on this site is either a partner's capability or a customer's product.
+  quote: Tanfel Metrology was created as a division of Tanfel, Inc., to provide affordable, high-quality
+    metrology solutions online.
+- speaker: nobody -- generic textbook prose with no subject
+  whose_words: third_party
+  note: three long pages are manufacturing-engineering explainer text in which the actor is a generic
+    'you' or the passive voice. The quoted sentence names a piece of extrusion equipment that belongs
+    to no one -- it is describing how extrusion works, not what Tanfel has. This is the `third_party`
+    bucket in the sense that the words are encyclopedia copy rather than anyone's claim, and it is worth
+    a location label precisely because no other value fits.
+  quote: An extrusion puller guides the extrusion to the runout table
+- speaker: ISO, IATF, AS 9100 and the standards regime
+  whose_words: standards_body
+  note: 'nine distinct standard designations occur in the file and the search-stage count is NOT inflated
+    -- what is wrong is the holder. The trap the old pipeline fell into is an echo defect, not an attribution
+    one: ''ISO 16949'' and ''IATF 16949'' have ZERO occurrences here. What exists is ''ISO/TS 16949:2009''
+    (1), ''TS 16949'' (2), ''TS16949'' (1) and a bare ''IATF'' (2). Three spellings of one standard plus
+    one bare acronym -- a grouping case as much as an attribution one.'
+  quote: Tolerances per ISO 2768 (m)
+notes: 'The batch''s `whose_words` subject, and its lesson is that the failure is not in the speaker element.
+  Tanfel is the speaker of almost every sentence in this file and the location model will say so correctly;
+  what it cannot see is that the shop being described is somebody else''s. The disconfirming evidence
+  exists but is never adjacent -- it is in a customer testimonial and in two ''our global network of certified
+  facilities'' sentences, both far from the capability prose they qualify. That makes this the corpus''s
+  argument for grading `belongs_to` separately from `whose_words`, which GOLDEN_LABELS_SCHEMA.md already
+  requires. Three prior-profile corrections came out of this pass: the file has 61 page blocks and 54
+  distinct paths, not 52 URLs; ''ISO & IATF certified facilities'' occurs twice, not once; and ''metal
+  stamping machine'' has ZERO occurrences not because of a single line break but because the blog post
+  exists in the file twice in two different line layouts, hard-wrapped in one of them. Equipment is genuinely
+  NON-empty here -- six lathe types in a first-person owned-fleet claim -- and seeding it empty would
+  manufacture a false junk-minting verdict on correct output.'
+provenance:
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: harvested:search
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: harvested:expansion-doc
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: corpus-seed

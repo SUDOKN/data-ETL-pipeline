@@ -1,0 +1,649 @@
+subject: 101machine.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/101machine.com.txt
+  sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+golden_set_version: 1
+anchored_on: search/expectations/101machine_com/process_caps.yaml
+labels:
+- id: 101machine_com-process_caps-0001
+  form: Angular Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Angular Milling
+    approx_offset: 2856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0002
+  form: Boring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Boring
+    approx_offset: 1782
+  - quote: Counter Boring
+    approx_offset: 1797
+  - quote: Boring
+    approx_offset: 2738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0003
+  form: Broaching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Broaching – Hexs and Square
+    approx_offset: 1804
+  - quote: Broaching – Hexes and Square
+    approx_offset: 2760
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0004
+  form: Broaching – Hexes and Square
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Broaching – Hexes and Square
+    approx_offset: 2760
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0005
+  form: Broaching – Hexs and Square
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Broaching – Hexs and Square
+    approx_offset: 1804
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0006
+  form: CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://101machine.com/machining.html
+  evidence:
+  - quote: CNC Machining / Milling / Turning
+    approx_offset: 6399
+  - quote: CNC Machining
+    approx_offset: 6433
+  - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
+      engineering prototypes, piece parts and injection molds.
+    approx_offset: 6452
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0007
+  form: CNC milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: CNC milling
+    approx_offset: 2162
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2179
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2291
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0008
+  form: CNC turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: CNC turning
+    approx_offset: 1305
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0009
+  form: CNC turning services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0010
+  form: Chamfering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Chamfering
+    approx_offset: 1863
+  - quote: Chamfering
+    approx_offset: 2832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0011
+  form: Counter Boring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Counter Boring
+    approx_offset: 1789
+  - quote: Counter Boring
+    approx_offset: 2745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0012
+  form: Countersinking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Countersinking
+    approx_offset: 1839
+  - quote: Countersinking
+    approx_offset: 2796
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0013
+  form: Drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Drilling
+    approx_offset: 1757
+  - quote: Drilling
+    approx_offset: 2651
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0014
+  form: Engraving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Engraving
+    approx_offset: 2728
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0015
+  form: Facing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Facing
+    approx_offset: 1832
+  - quote: Facing
+    approx_offset: 2789
+  - quote: Spot Facing
+    approx_offset: 2825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0016
+  form: Form Tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Form Tapping
+    approx_offset: 1874
+  - quote: Form Tapping
+    approx_offset: 2843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0017
+  form: ID Thread Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: ID Thread Milling
+    approx_offset: 2692
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0018
+  form: Manual Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Manual Machining / Milling / Turning
+    approx_offset: 2125
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0019
+  form: Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://101machine.com/New.html
+    - https://101machine.com/machining.html
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Precision Machining / Milling / Turning
+    approx_offset: 1287
+  - quote: Manual Machining / Milling / Turning
+    approx_offset: 2144
+  - quote: CNC milling
+    approx_offset: 2166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0020
+  form: Milling Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Milling Services
+    approx_offset: 2634
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0021
+  form: OD Thread Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: OD Thread Milling
+    approx_offset: 2710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0022
+  form: Precision Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Precision Machining / Milling / Turning
+    approx_offset: 1265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0023
+  form: Profiling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Profiling
+    approx_offset: 1887
+  - quote: Profiling
+    approx_offset: 2872
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0024
+  form: Reaming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Reaming
+    approx_offset: 1774
+  - quote: Reaming
+    approx_offset: 2684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0025
+  form: Single Point Threading
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Single Point Threading
+    approx_offset: 1897
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0026
+  form: Solid Surfacing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Solid Surfacing
+    approx_offset: 2668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0027
+  form: Spot Facing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Spot Facing
+    approx_offset: 2820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0028
+  form: Spotting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Spotting
+    approx_offset: 1854
+  - quote: Spotting
+    approx_offset: 2811
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0029
+  form: Tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Tapping
+    approx_offset: 1766
+  - quote: Form Tapping
+    approx_offset: 1879
+  - quote: Tapping
+    approx_offset: 2660
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0030
+  form: Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://101machine.com/machining.html
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: Precision Machining / Milling / Turning
+    approx_offset: 1297
+  - quote: CNC turning
+    approx_offset: 1309
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0031
+  form: Turning Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1425
+  - quote: Turning Services
+    approx_offset: 1740
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-process_caps-0032
+  form: machining services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://101machine.com/
+    - https://101machine.com/index.html
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: We would like to extend an invitation for you to contact us to learn more about the quality
+      of our work as well as a better understanding of the machining services we provide.
+    approx_offset: 922
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1327
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

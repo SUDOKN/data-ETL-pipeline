@@ -1,0 +1,262 @@
+subject: howcogroup.com
+subject_name: Howco Group plc
+slug: howcogroup_com
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+role: attribution_negative
+role_note: >-
+  Seeded as `inventory_subject` before this corpus adopted the search harness's
+  vocabulary wholesale. Normalized to search's `attribution_negative` on 2026-08-27:
+  it is the same roster, and a second vocabulary would fork the corpus
+  silently. The earlier value is kept here because the reasoning behind
+  it describes what THIS stage sees, which search's word may not.
+role_source: 'search/expectations/howcogroup_com/subject.yaml assigns `attribution_negative`, a
+  word the mention role vocabulary does not have. `inventory_subject` chosen here on structural
+  grounds: ~half the site is a stock catalogue (30 alloy datasheet pages selling metal Howco did
+  not make), and ~2,300 of the file''s 7,573 lines are chemical-composition tables rendered as bare
+  element symbols. That is an inventory, and it is what this stage will spend its occurrences on.
+  The attribution finding that earned the search role is not lost - it is the third-party-voice
+  block below, and it is the highest-value thing in this file.'
+
+# THE POINT OF THIS SUBJECT. Howco is a metal STOCKHOLDER/DISTRIBUTOR, vertically integrated
+# forward into processing, and a Sumitomo subsidiary. More voices speak here than on any other
+# subject in my batch, and several of them speak in Howco's own first person.
+third_party_roster:
+- Sumitomo Corporation        # parent since 2006; `whose_words: parent`
+- LRQA                        # certification body naming itself in every accreditation heading
+- Drummond                    # PHANTOM ENTITY - see the phantom_entity hazard; 3 occurrences, all
+                              #   on one page, one of them a bare single-word line
+- G-M                         # vacuum-furnace vendor whose brochure copy is pasted verbatim
+- 'unnamed "established supply chain partners"'   # welding, cladding, fabrication, HIP, coating
+- Henry Whitham & Sons        # acquired 2001 Sheffield business, named in the site's own history
+- UKAS                        # accreditation body
+- PCN / CSWIP / ICorr / ASNT  # NDT personnel-certification schemes
+- API / ASME / ASTM / EN / ISO / NORSOK / NACE    # standards bodies
+- Made in Sheffield           # regional mark, awarded by a third party, 9 occurrences
+
+coverage: full_text
+# Advisory for the page-trim leniency: /terms-and-conditions/ (63 lines, 7,195 chars of
+# purchase-order boilerplate) matches the pipeline's exclusion rule and is dropped before
+# chunking. That page is also where most of this file's mid-prose non-breaking spaces live.
+page_trim:
+  excluded_pages: ['https://www.howcogroup.com/terms-and-conditions/']
+  note: '63 lines / 7,195 chars of purchase-order T&Cs dropped by the privacy|cookie|terms|legal rule'
+
+text_hazards:
+
+# ---- third-party voice: THE reason this subject is here --------------------------
+- hazard: scope_severed_from_certificate
+  note: 'THE highest-value mention-stage case in my batch, and it is a pure clipping failure.
+    On /about/accreditations/ every certificate is an ALL-CAPS standalone heading line, and the
+    single site that holds it is a separate bare line TWO LINES BELOW - with a private-use
+    glyph line and a lone-tab line wedged between them. Clip to the sentence or line and the
+    certificate and its scope land in DIFFERENT snippets. Facts at different geographic scope
+    are stated in one identical voice: AS9100D is Houston-only, ISO 17025 Sheffield-only,
+    API 5B and API-7-2 Dubai-only, ISO 50001 UK-sites-only, ISO 9001 group-global. Nothing in
+    any individual snippet says which. A location label that reports `belongs_to: accreditations
+    page` and stops has thrown away the only thing that made the fact true.'
+  quote: "LRQA AS9100D: QUALITY ASSURANCE"
+
+- hazard: scope_severed_from_certificate
+  note: 'the severed scope line for the heading above - a bare 3-word line, two lines down.
+    Its own snippet contains no certificate at all.'
+  quote: "Howco Houston, USA"
+
+- hazard: scope_severed_from_certificate
+  note: 'second exemplar, different site, identical shape and identical voice: this one is
+    Sheffield-only.'
+  quote: "ISO 17025: TEST LABORATORY MECHANICAL TESTING"
+
+- hazard: scope_severed_from_certificate
+  note: 'third exemplar. "API 5B" is a bare 6-character line - the entire snippet is the
+    standard number - and its Dubai-only scope is four lines below. "Howco, Dubai, UAE" itself
+    occurs 4 times on this page under four different certificates, so the scope line cannot be
+    matched back to a certificate by proximity alone.'
+  quote: "API 5B"
+
+- hazard: phantom_entity
+  note: 'PHANTOM ENTITY. "Drummond" is named as a certificate-holding site 3 times, ALL on the
+    accreditations page (lines 3538, 3543, 3555), and appears NOWHERE else in 7,573 lines - not
+    in the careers town list, not in the contact page WORLD LOCATIONS, not in any prose. Two of
+    the three occurrences are inside a pipe-delimited site list; the third is a BARE
+    SINGLE-WORD LINE whose entire snippet is the word "Drummond". This is the stage''s worst
+    case: an occurrence with literally no context to describe, of an entity the rest of the
+    corpus cannot corroborate.'
+  quote: "Bredbury | Cumbernauld | Drummond | Irvine | Sheffield | Norway"
+
+- hazard: vendor_brochure_copy
+  note: 'THE cleanest `whose_words: vendor` case in the corpus. The additive heat-treatment
+    page reproduces the furnace maker''s marketing verbatim, second person and all ("you can be
+    confident that your parts will be heat-treated to the highest standards"), under a Howco
+    heading with a Howco breadcrumb. The aerospace / automotive / medical-device industries in
+    this sentence are what the FURNACE can handle, not who Howco serves. Voice is `vendor`;
+    every visual cue says `site`.'
+  quote: "The HVF 101-xb is also incredibly versatile, able to handle a wide range of materials and applications, from aerospace and automotive components to medical devices and industrial parts."
+
+- hazard: supply_chain_partner_ambiguity
+  note: 'welding, cladding, fabrication and HIP are described in Howco''s first person and
+    attributed to unnamed partners IN THE SAME SENTENCE. Genuinely undecidable from the text -
+    the honest location label is `site` for the voice, with the snippet required to carry the
+    "via our established supply chain partners" clause. Clip shorter and the capability
+    silently becomes Howco''s.'
+  quote: "Integral to Howco’s operations is its fabrication and welding capabilities – providing fabrication services via our established supply chain partners to our customers worldwide."
+
+- hazard: parent_company_voice
+  note: 'the Sumitomo parentage arrives TWICE as a news-index teaser truncated mid-sentence
+    with a literal ellipsis. The clip is a sentence-shaped fragment that stops before the fact
+    completes; the full sentence exists elsewhere in the file (line 2620) with different
+    wording. whose_words: `parent` for the fact, `site` for the words.'
+  quote: "Founded in Scotland in 1982 and part of the Sumitomo..."
+
+- hazard: distributor_not_maker
+  note: 'the ontology has no slot for DISTRIBUTOR (expansion doc, schema-level finding). Roughly
+    half this site sells metal Howco did not make, and the 30 alloy datasheets describe generic
+    grade metallurgy in the third person - the properties of the ALLOY, not of Howco''s work.
+    Voice on a datasheet page is closer to `standards_body` than `site`; only the inventory
+    sentence below is genuinely first-party.'
+  quote: "Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless, duplex"
+
+# ---- repeated lines -------------------------------------------------------------
+- hazard: repeated_footer
+  note: 'a 17-line legal/registration footer closes 97 of 97 pages, and it CARRIES A
+    CERTIFICATION. "Certified: ISO 9001: 2015" occurs 100 times, essentially all of them in
+    that footer, so nearly every ISO 9001 snippet in this file is the same furniture line - and
+    every window in the document contains one. An occurrence label on ISO 9001 that does not
+    separate footer hits from the accreditations page is measuring the footer.'
+  quote: "Certified: ISO 9001: 2015"
+
+- hazard: repeated_nav
+  note: 'a two-space-separated ALL-CAPS breadcrumb opens 90 pages. It names the page''s section
+    path and nothing else, but it is the ONLY line on a datasheet page that says what the page
+    is about - the composition table below it has no header row. A location label can legitimately
+    lean on this line; a snippet clipped to a bare element symbol cannot see it.'
+  quote: "HOME  MATERIALS  MECHANICAL TUBING & OCTG  ALLOY 825 & ALLOY 28 TUBE"
+
+- hazard: country_dropdown
+  note: 'an 86-entry Region selector is dumped into the contact page body (lines 2925 onward),
+    one country per bare line, immediately after the enquiry-type list. Smaller than decimal''s
+    or lucasmilhaupt''s ISO dumps, but the same shape: bare geography lines that clip to a
+    one-word snippet. Each country here occurs exactly once, so these are cheap to enumerate.'
+  quote: "Albania"
+
+# ---- table-like structures ------------------------------------------------------
+- hazard: bare_token_lines
+  note: 'THE volume hazard on this subject. 30 alloy datasheets each carry a CHEMICAL
+    COMPOSITION table rendered as ~50 lines of BARE ELEMENT SYMBOLS alternating with lone-tab
+    lines, and with NO header row - roughly 2,300 of the file''s 7,573 lines. "C" occurs 68
+    times, "Si" 68, "Mn" 68, "Cr" 68, "Mo" 68 and so on, each as a one-or-two-character line
+    whose entire snippet is that symbol. 689 lines in this file are a single alnum token of 3
+    characters or less. Any short-form rule and any grouping rule is exercised hardest here,
+    and a `location` for these can honestly say only "composition table, no header". The
+    exemplar quoted is the least ambiguous of them - a FOUR-ELEMENT header fused into one
+    token with no separators, alone on its own line, 10 times.'
+  quote: "NbCbTa"
+
+- hazard: table_row
+  note: 'the datasheet''s standard-designation row is a run-on that FUSES a spec number to the
+    next heading, so a correct "ASTM B668" extraction can never word-boundary match the text.
+    The same line also carries a source typo, "N080287" where UNS N08028 is meant. The clip
+    yields one line that is simultaneously a table row and a heading.'
+  quote: "UNS N08825 : ASTM B423 UNS N080287 : ASTM B668GENERAL SCOPE"
+
+- hazard: table_row
+  note: 'the WORLDWIDE ASNT NDE LEVEL II certificate lists SEVEN sites as seven consecutive
+    bare lines under one heading - a different shape from the pipe-delimited lists two headings
+    above. Same page, same table, two incompatible renderings of "which sites".'
+  quote: "Howco, Cumbernauld, UK"
+
+# ---- heading styles -------------------------------------------------------------
+- hazard: heading_all_caps
+  note: '702 ALL-CAPS lines - by far the most in my batch, and the highest share of any corpus
+    subject I read. ALL CAPS is this site''s ONLY heading marker: page titles, section
+    headings, breadcrumbs, certificate names and news headlines all use it, and none carries
+    terminal punctuation. The location model cannot use casing to tell a certificate heading
+    from a news headline from a breadcrumb.'
+  quote: "ACCREDITATIONS"
+
+- hazard: heading_names_party
+  note: 'the ISO 50001 heading states its own scope INSIDE the heading line - the only
+    certificate on the page that does. So the same page has both shapes: scope-in-heading and
+    scope-severed-two-lines-below. A rule learned from one is wrong on the other.'
+  quote: "LRQA ISO 50001 ENERGY STANDARD – HELD BY ALL UNITED KINGDOM MANUFACTURING SITES"
+
+# ---- degeneracy -----------------------------------------------------------------
+- hazard: error_page
+  note: 'a wp-admin URL was crawled and returned a 404 body, which is now 8 lines of the
+    corpus. Any form matching inside it is matching an error page. This is the corpus''s
+    cleanest degenerate-input probe.'
+  quote: "So Sorry!"
+
+- hazard: mis_mapped_page
+  note: 'SCRAPE ARTIFACT, and a nasty one for provenance: the URL
+    .../new-horizontal-and-vertical-cnc-turning-centres-now-in-operation-at-bredbury/ returns
+    the body of the UNRELATED "Celebrating Our Team in Dubai" post. The page header says
+    Bredbury and turning centres; the body is a Dubai social event. Any location that reports
+    `belongs_to` from the URL will be wrong, and the Bredbury article body is never scraped at
+    all.'
+  quote: "HOME  NEWS  CELEBRATING OUR TEAM IN DUBAI"
+
+- hazard: duplicate_pages
+  note: 'the news index is scraped 4 times (/news/, /news/?et_blog, /news/page/2/,
+    /news/page/3/), so headline text and teaser paragraphs recur verbatim in unrelated windows.
+    ~20 of the news posts are CSR content - cricket, golf, coffee mornings, Chinese New Year -
+    with no manufacturing content at all.'
+  quote: "New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore"
+
+# ---- character-level ------------------------------------------------------------
+- hazard: private_use_glyph
+  note: '28 U+F1C1 PRIVATE-USE characters (a PDF-file icon from an icon font) each sit ALONE on
+    a line. They are the thing that severs every accreditation heading from its site scope, and
+    they will render as a replacement box or vanish in any snippet shown to a human or a model.
+    A snippet that is one private-use glyph is a delivered answer about nothing.'
+  quote: ""
+
+- hazard: nbsp_mid_phrase
+  note: '117 non-breaking spaces on 46 lines; most of the mid-prose ones are on the
+    purchase-order T&C page, which the page-trim drops. The survivor worth knowing about is on
+    the Made-in-Sheffield news post, where TWO consecutive NBSPs sit between "accreditations"
+    and the standard number, so a form crossing that gap needs elastic whitespace.'
+  quote: "ISO accreditations\xA0\xA0ISO 9001:2015, ISO 14001: 2015"
+
+- hazard: digit_for_roman_numeral
+  note: '"ASME 1X" is printed with the DIGIT ONE, not the Roman numeral I. A retyped "ASME IX"
+    never matches, and the mention that DOES match is a form no downstream reader will
+    recognise.'
+  quote: "Welder qualifications to ASME 1X, EN ISO 9606-1."
+
+- hazard: non_ascii
+  note: '23 distinct non-ASCII code points - the widest spread in my batch: U+2019 (251),
+    U+00A0 (117), U+00A9 (100), U+2013 (84), U+00B0 (41), U+201D (36), U+201C (34), U+2018 (34),
+    U+F1C1 private-use (28), U+2082 subscript two (11, in chemical formulae).'
+  quote: "the site’s long standing"
+
+notes: 'Why howcogroup.com is the mention stage''s most important subject in my batch: this is
+  where `whose_words` can be wrong in five different ways on the same page, and where the
+  stage''s own clipping rule CAUSES the failure rather than merely failing to prevent it. The
+  accreditations page proves it - certificate and scope are two lines apart with a private-use
+  glyph between them, so "clip to the sentence or line" is guaranteed to separate the fact from
+  its scope no matter how good the model is. That is a snippet-extent finding, and it is
+  actionable: it argues for a min_span_quote on every certificate label on this subject.
+
+
+  Five distinct non-site voices share the file in indistinguishable typography: a parent
+  (Sumitomo), a certification body (LRQA), a furnace vendor whose second-person brochure copy is
+  pasted verbatim under a Howco heading, unnamed supply-chain partners credited in the middle of
+  first-person sentences, and 30 alloy datasheets that describe grade metallurgy rather than
+  Howco''s work because Howco DISTRIBUTES the metal. Plus one entity, Drummond, that holds three
+  certificates and exists nowhere else in the text.
+
+
+  The volume story is separate and simpler: ~2,300 of 7,573 lines are bare element symbols from
+  30 headerless composition tables, and 689 lines are a single token of <=3 characters. 78% of
+  non-blank lines end without terminal punctuation.
+
+
+  All quotes were extracted from the snapshot by line offset and verified byte-exact, including
+  the U+F1C1 glyph and the digit-one in "ASME 1X"; none was retyped.'
+
+provenance:
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: corpus-seed}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:search'}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:expansion-doc'}

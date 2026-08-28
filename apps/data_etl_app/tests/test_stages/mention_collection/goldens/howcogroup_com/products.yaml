@@ -1,0 +1,3075 @@
+subject: howcogroup.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+golden_set_version: 1
+anchored_on: search/expectations/howcogroup_com/products.yaml
+labels:
+- id: howcogroup_com-products-0001
+  form: Artificial Lift Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Artificial Lift Systems
+    approx_offset: 61075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0002
+  form: Auxiliary and Down Hole Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0003
+  form: BOP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: BOP’s
+    approx_offset: 61911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0004
+  form: BOP’s
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: BOP’s
+    approx_offset: 61911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0005
+  form: Blanks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Blanks
+    approx_offset: 34823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0006
+  form: Blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Production/Annulus Blocks
+    approx_offset: 34588
+  - quote: Blocks
+    approx_offset: 34788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0007
+  form: Boiler nozzles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Boiler nozzles, clamps and shields in coal fired boilers
+    approx_offset: 115073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0008
+  form: Boiler nozzles, clamps and shields
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Boiler nozzles, clamps and shields in coal fired boilers
+    approx_offset: 115073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0009
+  form: Bonnets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Bonnets
+    approx_offset: 34595
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0010
+  form: Bored / Honed Bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Bored / Honed Bar
+    approx_offset: 34603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0011
+  form: Catalytic Grids and Supports
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Crackers and Towers, including Catalytic Grids and Supports
+    approx_offset: 53423
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0012
+  form: Chemical Injection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Instrumentation & Chemical Injection
+    approx_offset: 61117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0013
+  form: Coal and ash bins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Coal and ash bins
+    approx_offset: 115311
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0014
+  form: Components for land-based gas turbines and their exhaust streams
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Components for land-based gas turbines and their exhaust streams
+    approx_offset: 115130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0015
+  form: Compressors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Pumps/Compressors/Separators
+    approx_offset: 61840
+  - quote: Our clients include a number of leading gas turbine, compressors and power generation equipment
+      OEMs.
+    approx_offset: 114758
+  - quote: Compressors
+    approx_offset: 115061
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0016
+  form: Coupling Stock
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34082
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0017
+  form: Crackers and Towers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Crackers and Towers, including Catalytic Grids and Supports
+    approx_offset: 53392
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0018
+  form: DUPLEX CONNECTOR BODY FLOWLOOP WELDMENTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: DUPLEX CONNECTOR BODY FLOWLOOP WELDMENTS
+    approx_offset: 72795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0019
+  form: Discharge Pipe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Discharge Pipe
+    approx_offset: 62630
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0020
+  form: Distillation Tower Packings / Distillation Trays
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Distillation Tower Packings / Distillation Trays
+    approx_offset: 53271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0021
+  form: Distillation Trays
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Distillation Tower Packings / Distillation Trays
+    approx_offset: 53301
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0022
+  form: Down Hole Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84959
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0023
+  form: Drill Collars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Drill collars and stabilisers
+    approx_offset: 60851
+  - quote: Drill Collars
+    approx_offset: 83565
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0024
+  form: Drill bit components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Drill bit components
+    approx_offset: 60830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0025
+  form: Drill collars and stabilisers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Drill collars and stabilisers
+    approx_offset: 60851
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0026
+  form: Dry Tree Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Dry Tree Systems
+    approx_offset: 62814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0027
+  form: Expansion joints
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Expansion joints
+    approx_offset: 115329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0028
+  form: Extensions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+  evidence:
+  - quote: High-Performance PBR Extensions – Geothermal Energy Market
+    approx_offset: 24549
+  - quote: For over two decades, Howco Norway has been a trusted name in the manufacture and supply of
+      polished bore receptacle (PBR) extensions, providing critical components to the oil and gas sector
+      across Europe, Asia, Africa, Oceania, and the Americas.
+    approx_offset: 24725
+  - quote: Extensions
+    approx_offset: 34722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0029
+  form: FLOWLOOP WELDMENTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: DUPLEX CONNECTOR BODY FLOWLOOP WELDMENTS
+    approx_offset: 72817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0030
+  form: Finished Machined Components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/contact/
+  evidence:
+  - quote: Finished Machined Components
+    approx_offset: 77043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0031
+  form: Flanges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: The weldability and corrosion resistance of F6NM are also excellent, being extensively used
+      in the manufacture of Valve Bodies, Flanges, Seats, Gates, and Tubulars.
+    approx_offset: 46486
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0032
+  form: Flow Control Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Flow Control Equipment
+    approx_offset: 53233
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0033
+  form: Flow Couplings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Flow Couplings
+    approx_offset: 34733
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0034
+  form: Flowlines & Connectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Flowlines & Connectors
+    approx_offset: 61791
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0035
+  form: Forged Flat Bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Forged Flat Bar
+    approx_offset: 34035
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0036
+  form: Forged and Rolled Round Bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Forged and Rolled Round Bar
+    approx_offset: 34007
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0037
+  form: Frac Valve Blocs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Frac Valve Blocs
+    approx_offset: 62645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0038
+  form: GENERAL FABRICATIONS / WELDMENTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: GENERAL FABRICATIONS / WELDMENTS
+    approx_offset: 72836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0039
+  form: Gas Compression & Power
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Gas Compression & Power
+    approx_offset: 62790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0040
+  form: Geothermal drilling and power generation equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Geothermal drilling and power generation equipment
+    approx_offset: 116395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0041
+  form: Heat Exchangers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Heat Exchangers
+    approx_offset: 53180
+  - quote: Heat exchangers and condensing equipment
+    approx_offset: 115270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0042
+  form: Heat exchangers and condensing equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Heat exchangers and condensing equipment
+    approx_offset: 115270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0043
+  form: Hollow Bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0044
+  form: Hydroelectric turbine components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Hydroelectric turbine components
+    approx_offset: 116446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0045
+  form: Ingot / Billet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Ingot / Billet
+    approx_offset: 33992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0046
+  form: Instrumentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Instrumentation
+    approx_offset: 53217
+  - quote: Instrumentation & Chemical Injection
+    approx_offset: 61099
+  - quote: Howco Scientific currently manufactures instrumentation units for a semi-conductor manufacturer,
+      which includes sourcing the components, manufacture, assembly and testing the products to our customer’s
+      exacting specifications.
+    approx_offset: 102630
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0047
+  form: Instrumentation & Chemical Injection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Instrumentation & Chemical Injection
+    approx_offset: 61099
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0048
+  form: JUMPERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: JUMPERS
+    approx_offset: 61783
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0049
+  form: MWD/LWD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: MWD/LWD Tools
+    approx_offset: 60959
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0050
+  form: MWD/LWD Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: MWD/LWD Tools
+    approx_offset: 60959
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0051
+  form: Mandrels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: Mandrels
+    approx_offset: 34713
+  - quote: Offset gauge mandrels
+    approx_offset: 83627
+  - quote: Due to outstanding corrosion resistance and high strength, applications for this alloy are
+      used for hangers, side pocket mandrels, springs and polished bore receptacles for sour gas service.
+    approx_offset: 90999
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0052
+  form: Manifolds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Manifolds
+    approx_offset: 53207
+  - quote: Manifolds
+    approx_offset: 61917
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0053
+  form: Mechanical Tube
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0054
+  form: Meters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Meters
+    approx_offset: 61927
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0055
+  form: Mud Motors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Mud Motors
+    approx_offset: 60948
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0056
+  form: OCTG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+  evidence:
+  - quote: Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
+    approx_offset: 34110
+  - quote: MECHANICAL TUBING & OCTG
+    approx_offset: 41020
+  - quote: HOME  MATERIALS  MECHANICAL TUBING & OCTG  9 CR/1 MO
+    approx_offset: 41063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0057
+  form: Offset gauge mandrels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: Offset gauge mandrels
+    approx_offset: 83614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0058
+  form: PBR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+  evidence:
+  - quote: High-Performance PBR Extensions – Geothermal Energy Market
+    approx_offset: 24545
+  - quote: For over two decades, Howco Norway has been a trusted name in the manufacture and supply of
+      polished bore receptacle (PBR) extensions, providing critical components to the oil and gas sector
+      across Europe, Asia, Africa, Oceania, and the Americas.
+    approx_offset: 24720
+  - quote: PBR
+    approx_offset: 83561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0059
+  form: Packers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Packers
+    approx_offset: 61006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0060
+  form: Polished Bore Receptacles (PBRs)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Polished Bore Receptacles (PBRs)
+    approx_offset: 34680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0061
+  form: Pressure Vessels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Pressure Vessels
+    approx_offset: 53163
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0062
+  form: Production/Annulus Blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Production/Annulus Blocks
+    approx_offset: 34569
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0063
+  form: Pump Shaft Bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Pump Shaft Bar (PSQ)
+    approx_offset: 34621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0064
+  form: Pump Shaft Bar (PSQ)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Pump Shaft Bar (PSQ)
+    approx_offset: 34621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0065
+  form: Pumps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Pumps
+    approx_offset: 53149
+  - quote: Pumps/Compressors/Separators
+    approx_offset: 61834
+  - quote: Pumps
+    approx_offset: 115055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0066
+  form: Pumps/Compressors/Separators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Pumps/Compressors/Separators
+    approx_offset: 61834
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0067
+  form: Pup Jts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Pup Jts
+    approx_offset: 34748
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0068
+  form: RISERS & FLOWLINE UMBILICALS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: RISERS & FLOWLINE UMBILICALS
+    approx_offset: 61753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0069
+  form: ROV AUV SYSTEMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: ROV AUV SYSTEMS
+    approx_offset: 61864
+  - quote: ROV AUV SYSTEMS
+    approx_offset: 62614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0070
+  form: Rolled Ring Forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Rolled Ring Forgings
+    approx_offset: 34802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0071
+  form: Rotary Steerables
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Rotary Steerables
+    approx_offset: 60930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0072
+  form: STORAGE/SEPARATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: STORAGE/SEPARATION SYSTEM
+    approx_offset: 62663
+  - quote: STORAGE/SEPARATION
+    approx_offset: 62832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0073
+  form: Safety Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Safety Systems
+    approx_offset: 53256
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0074
+  form: Safety Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Safety Valves
+    approx_offset: 61014
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0075
+  form: Sand Screens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Sand Screens
+    approx_offset: 60993
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0076
+  form: Scrubbers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Scrubbers, dampers, duct work in flue gas processing for pollution control
+    approx_offset: 115195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0077
+  form: Scrubbers, dampers, duct work
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Scrubbers, dampers, duct work in flue gas processing for pollution control
+    approx_offset: 115195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0078
+  form: Seal Bore Extensions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: Seal Bore Extensions
+    approx_offset: 83593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0079
+  form: Seats, Gates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: The weldability and corrosion resistance of F6NM are also excellent, being extensively used
+      in the manufacture of Valve Bodies, Flanges, Seats, Gates, and Tubulars.
+    approx_offset: 46495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0080
+  form: Sensors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Sensors
+    approx_offset: 53155
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0081
+  form: Separators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Separators
+    approx_offset: 53196
+  - quote: Pumps/Compressors/Separators
+    approx_offset: 61852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0082
+  form: Shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: In the solution treated and doubled aged condition it has become the preferred alloy for Stems
+      and Shafts and is used extensively in valve internals.
+    approx_offset: 4275
+  - quote: Shafts
+    approx_offset: 34795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0083
+  form: Shaped Forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Shaped Forgings
+    approx_offset: 34772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0084
+  form: Stems and Shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: In the solution treated and doubled aged condition it has become the preferred alloy for Stems
+      and Shafts and is used extensively in valve internals.
+    approx_offset: 4265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0085
+  form: Sub-Surface Safety Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84980
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0086
+  form: Tree Caps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Tree Caps
+    approx_offset: 34546
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0087
+  form: Trees
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Trees
+    approx_offset: 61905
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0088
+  form: Tubing Hangers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Tubing Hangers
+    approx_offset: 34531
+  - quote: Tubing Hangers
+    approx_offset: 61028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0089
+  form: Tubing Heads
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Tubing Heads
+    approx_offset: 34556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0090
+  form: Tubulars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Tubulars i.e.
+    approx_offset: 34051
+  - quote: The weldability and corrosion resistance of F6NM are also excellent, being extensively used
+      in the manufacture of Valve Bodies, Flanges, Seats, Gates, and Tubulars.
+    approx_offset: 46513
+  - quote: Valves & Tubulars
+    approx_offset: 61145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0091
+  form: Valve Bodies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: The weldability and corrosion resistance of F6NM are also excellent, being extensively used
+      in the manufacture of Valve Bodies, Flanges, Seats, Gates, and Tubulars.
+    approx_offset: 46472
+  - quote: UNS S41000 is a Martensitic Stainless Steel often utilised in valve bodies, bonnets, end and
+      outlet connections and valve seat facings.
+    approx_offset: 113308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0092
+  form: Valve Internals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Valve Internals / Actuator Components
+    approx_offset: 34642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0093
+  form: Valve Internals / Actuator Components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+  evidence:
+  - quote: Valve Internals / Actuator Components
+    approx_offset: 34642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0094
+  form: Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Valves
+    approx_offset: 53142
+  - quote: Safety Valves
+    approx_offset: 61021
+  - quote: Valves & Tubulars
+    approx_offset: 61136
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0095
+  form: Valves & Tubulars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Valves & Tubulars
+    approx_offset: 61136
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0096
+  form: WELDMENTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: DUPLEX CONNECTOR BODY FLOWLOOP WELDMENTS
+    approx_offset: 72826
+  - quote: GENERAL FABRICATIONS / WELDMENTS
+    approx_offset: 72859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0097
+  form: Well Construction Components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Well Construction Components
+    approx_offset: 60881
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0098
+  form: Wellhead Components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84924
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0099
+  form: Wind turbine components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Wind turbine components
+    approx_offset: 116371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0100
+  form: additively manufactured metal components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-am-components-went-to-the-moon/
+  evidence:
+  - quote: The Howco team takes pride in being a supplier of additively manufactured metal components
+      for the Intuitive Machines IM-1 mission Nova-C class lunar lander.
+    approx_offset: 205168
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0101
+  form: bonnets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+  evidence:
+  - quote: UNS S41000 is a Martensitic Stainless Steel often utilised in valve bodies, bonnets, end and
+      outlet connections and valve seat facings.
+    approx_offset: 113322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0102
+  form: casing hangers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+  evidence:
+  - quote: The material characteristics lends itself to a wide variety of surface and subsea applications
+      such as flanges, casing hangers, riser spools and hose connectors.
+    approx_offset: 27537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0103
+  form: complete turnkey assembled packages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: And even complete turnkey assembled packages.
+    approx_offset: 60671
+  - quote: Even complete turnkey assembled packages.
+    approx_offset: 61697
+  - quote: Even complete turnkey assembled packages.
+    approx_offset: 62479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0104
+  form: condensing equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Heat exchangers and condensing equipment
+    approx_offset: 115290
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0105
+  form: connectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-8630/
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: The material characteristics lends itself to a wide variety of surface and subsea applications
+      such as flanges, casing hangers, riser spools and hose connectors.
+    approx_offset: 27575
+  - quote: Flowlines & Connectors
+    approx_offset: 61803
+  - quote: The alloy is widely used in oil patch applications for components such as connectors, hangers
+      and block valves.
+    approx_offset: 125416
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0106
+  form: cylinder monobloc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-steaming-into-the-future/
+  evidence:
+  - quote: An order was placed with the Howco Group to manufacture a fabricated cylinder monobloc for
+      the locomotive.
+    approx_offset: 216523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0107
+  form: downhole tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+  evidence:
+  - quote: It is extensively used in tubular form for downhole tools.
+    approx_offset: 37634
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0108
+  form: drill collars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+  evidence:
+  - quote: This grade is used extensively for drill collars.
+    approx_offset: 73936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0109
+  form: drilling jars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+  evidence:
+  - quote: This grade is widely used in downhole applications such as drilling jars.
+    approx_offset: 15505
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0110
+  form: electromechanical assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: We provide turnkey electromechanical assemblies and sub-assemblies to customer drawings/designs/specifications.
+    approx_offset: 110990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0111
+  form: exhaust ducts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0112
+  form: fabricated cylinder monobloc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-steaming-into-the-future/
+  evidence:
+  - quote: An order was placed with the Howco Group to manufacture a fabricated cylinder monobloc for
+      the locomotive.
+    approx_offset: 216512
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0113
+  form: fasteners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: It can also be used for fasteners, and for pump shafts operating within marine environments.
+    approx_offset: 67803
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75673
+  - quote: A725 is also used for high-strength fasteners in marine applications to resist corrosion, pitting
+      and crevice attack in sea water.
+    approx_offset: 91185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0114
+  form: finished machined components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Howco manufactures, supplies and manages high value alloys and finished machined components
+      for the mid and downstream sector.
+    approx_offset: 52807
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing,
+      assembly and fabrication services.
+    approx_offset: 53544
+  - quote: Howco manufactures, supplies and manages high value alloys and finished machined components
+      for the energy sector.
+    approx_offset: 114653
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0115
+  form: flanges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+  evidence:
+  - quote: The material characteristics lends itself to a wide variety of surface and subsea applications
+      such as flanges, casing hangers, riser spools and hose connectors.
+    approx_offset: 27528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0116
+  form: forged and rolled round and flat bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: We have significant experience of providing ingot/billet, forged and rolled round and flat
+      bar, semi and finish machined components.
+    approx_offset: 60587
+  - quote: Howco has significant experience and capability providing ingot/billet, forged and rolled round
+      and flat bar, semi and finish machined components.
+    approx_offset: 61617
+  - quote: Howco has significant experience and capability providing ingot/billet, forged and rolled round
+      and flat bar, semi and finish machined components.
+    approx_offset: 62399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0117
+  form: heat exchangers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0118
+  form: heat-exchangers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: The alloy cannot be hardened by heat-treatment, but enhanced mechanical properties can be obtained
+      by cold working, especially in sour well tubing strings, and for heat-exchangers, and in chemical
+      processing plants.
+    approx_offset: 17347
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0119
+  form: high strength piping systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: The alloy can also be used for fasteners, pump shafting and high strength piping systems.
+    approx_offset: 120696
+  - quote: A945 can also be used for fasteners, pump shafting and high strength piping systems.
+    approx_offset: 129698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0120
+  form: high-integrity seals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-group-acquires-cheshire-seals-and-components/
+  evidence:
+  - quote: Cheshire Seals and Components brings a wealth of expertise in the design and manufacture of
+      high-integrity seals and complex machined components.
+    approx_offset: 208248
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0121
+  form: high-strength fasteners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: A725 is also used for high-strength fasteners in marine applications to resist corrosion, pitting
+      and crevice attack in sea water.
+    approx_offset: 91171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0122
+  form: hose connectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+  evidence:
+  - quote: The material characteristics lends itself to a wide variety of surface and subsea applications
+      such as flanges, casing hangers, riser spools and hose connectors.
+    approx_offset: 27570
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0123
+  form: ingot/billet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: We have significant experience of providing ingot/billet, forged and rolled round and flat
+      bar, semi and finish machined components.
+    approx_offset: 60573
+  - quote: Howco has significant experience and capability providing ingot/billet, forged and rolled round
+      and flat bar, semi and finish machined components.
+    approx_offset: 61603
+  - quote: Howco has significant experience and capability providing ingot/billet, forged and rolled round
+      and flat bar, semi and finish machined components.
+    approx_offset: 62385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0124
+  form: instrumentation units
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco Scientific currently manufactures instrumentation units for a semi-conductor manufacturer,
+      which includes sourcing the components, manufacture, assembly and testing the products to our customer’s
+      exacting specifications.
+    approx_offset: 102630
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0125
+  form: jig and tool trolleys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: From simple jig and tool trolleys to complex wellhead structures and assemblies.
+    approx_offset: 101784
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0126
+  form: land-based gas turbines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Components for land-based gas turbines and their exhaust streams
+    approx_offset: 115145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0127
+  form: landing nipples
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: These applications include tubular products, valves, hangers, landing nipples, tool joints
+      and packers.
+    approx_offset: 120594
+  - quote: These applications include tubular products, valves, hangers, landing nipples, tool joints
+      and packers.
+    approx_offset: 129601
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0128
+  form: landing nipples, tool joints
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: These applications include tubular products, valves, hangers, landing nipples, tool joints
+      and packers.
+    approx_offset: 120594
+  - quote: These applications include tubular products, valves, hangers, landing nipples, tool joints
+      and packers.
+    approx_offset: 129601
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0129
+  form: mechanical tube
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-4130-4140-4145-tube/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+  evidence:
+  - quote: Available in tubular form either as mechanical tube or casing tube The manufacturing standards
+      of ASTM A519 are used for mechanical tube supply.
+    approx_offset: 42547
+  - quote: Available in tubular form either as mechanical tube or casing tube The manufacturing standards
+      of ASTM A519 are used for mechanical tube supply.
+    approx_offset: 42632
+  - quote: Stocked through a wide range of sizes, in either mechanical tube per ASTM A519 or casing product
+      forms, these grades of low alloy steel containing chromium and molybdenum are the most widely used
+      alloy for oil patch applications.
+    approx_offset: 94198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0130
+  form: monobloc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/howco-steaming-into-the-future/
+  evidence:
+  - quote: An order was placed with the Howco Group to manufacture a fabricated cylinder monobloc for
+      the locomotive.
+    approx_offset: 216532
+  - quote: As revealed by Chairman, Steve Davies MBE, Commercial Director, Graeme Bunker-James and Engineering
+      Director Ben McDonald, supporters of the charity were able to appreciate the sheer scale of this
+      behemoth and see up close the skilled work that has gone into the monobloc so far.
+    approx_offset: 216954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0131
+  form: near net shape component
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/first-stage-machining/
+  evidence:
+  - quote: 'Supplying a near net shape component provides :'
+    approx_offset: 22498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0132
+  form: near net shape components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/forging/
+  evidence:
+  - quote: By ensuring that the optimum characteristics are achieved during forging, we are able to supply
+      the highest quality products in Nickel Alloys, Stainless Steel and Low Alloy from raw ingot through
+      to fully heat treated near net shape components.
+    approx_offset: 134970
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0133
+  form: packers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: The grade is approved by NACE MR0175 supplied to 22 HRC for packers and other sub-surface equipment.
+    approx_offset: 43170
+  - quote: A combination of high strength and corrosion resistance make it suitable in applications such
+      as valves, hangers, packers, and tubular, in sour gas environments.
+    approx_offset: 67731
+  - quote: A combination of high strength and corrosion resistance make it suitable in applications such
+      as valves, hangers, packers, and tubulars, in sour gas environments.
+    approx_offset: 103904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0134
+  form: piping systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: The alloy can also be used for fasteners, pump shafting and high strength piping systems.
+    approx_offset: 120710
+  - quote: A945 can also be used for fasteners, pump shafting and high strength piping systems.
+    approx_offset: 129712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0135
+  form: polished bore receptacle (PBR) extensions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+  evidence:
+  - quote: For over two decades, Howco Norway has been a trusted name in the manufacture and supply of
+      polished bore receptacle (PBR) extensions, providing critical components to the oil and gas sector
+      across Europe, Asia, Africa, Oceania, and the Americas.
+    approx_offset: 24694
+  - quote: For over two decades, Howco Norway has been a trusted name in the manufacture and supply of
+      polished bore receptacle (PBR) extensions, providing critical components to the oil and gas sector
+      across Europe, Asia, Africa, Oceania, and the Americas.
+    approx_offset: 157781
+  - quote: For over two decades, Howco Norway has been a trusted name in the manufacture and supply of
+      polished bore receptacle (PBR) extensions, providing critical components to the oil and gas sector
+      across Europe, Asia, Africa, Oceania, and the Americas.
+    approx_offset: 199754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0136
+  form: polished bore receptacles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: Polished Bore Receptacles (PBRs)
+    approx_offset: 34680
+  - quote: Due to outstanding corrosion resistance and high strength, applications for this alloy are
+      used for hangers, side pocket mandrels, springs and polished bore receptacles for sour gas service.
+    approx_offset: 91021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0137
+  form: precision machined components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/careers/
+  evidence:
+  - quote: With several decades of proven technical and engineering expertise, Howco is a market-leading
+      manufacturer, processor and distributor of high-performance alloys and precision machined components
+      for all energy sectors worldwide.
+    approx_offset: 18466
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0138
+  form: precision-engineered components crafted by Howco Additive Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: We are humbled to have had the opportunity to contribute to this remarkable achievement with
+      the precision-engineered components crafted by Howco Additive Manufacturing.
+    approx_offset: 170812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0139
+  form: pump shafting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: The alloy can also be used for fasteners, pump shafting and high strength piping systems.
+    approx_offset: 120678
+  - quote: A945 can also be used for fasteners, pump shafting and high strength piping systems.
+    approx_offset: 129680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0140
+  form: pump shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: It can also be used for fasteners, and for pump shafts operating within marine environments.
+    approx_offset: 67822
+  - quote: It can also be used for fasteners, and for pump shafts in marine environments.
+    approx_offset: 103996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0141
+  form: raw ingot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/forging/
+  evidence:
+  - quote: By ensuring that the optimum characteristics are achieved during forging, we are able to supply
+      the highest quality products in Nickel Alloys, Stainless Steel and Low Alloy from raw ingot through
+      to fully heat treated near net shape components.
+    approx_offset: 134930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0142
+  form: riser spools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+  evidence:
+  - quote: The material characteristics lends itself to a wide variety of surface and subsea applications
+      such as flanges, casing hangers, riser spools and hose connectors.
+    approx_offset: 27553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0143
+  form: running tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+  evidence:
+  - quote: Generally, the material is used in applications for subsea components such as running tools,
+      seals and hangers.
+    approx_offset: 51430
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0144
+  form: seals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/quality-control-inspection/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/news/howco-group-acquires-cheshire-seals-and-components/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+  evidence:
+  - quote: Generally, the material is used in applications for subsea components such as running tools,
+      seals and hangers.
+    approx_offset: 51445
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75666
+  - quote: Gage Maker measuring equipment for API thread measurement and taper seals
+    approx_offset: 82361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0145
+  form: semi and finished machined components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing,
+      assembly and fabrication services.
+    approx_offset: 53535
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing,
+      assembly and fabrication services.
+    approx_offset: 115363
+  - quote: We also provide semi and finished machined components and can provide cladding, pressure testing,
+      assembly and fabrication services.
+    approx_offset: 116579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0146
+  form: shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: It can also be used for fasteners, and for pump shafts operating within marine environments.
+    approx_offset: 67827
+  - quote: It can also be used for fasteners, and for pump shafts in marine environments.
+    approx_offset: 104001
+  - quote: The higher strength capability of A625 Plus may also be useful for fasteners, shafts and hangers.
+    approx_offset: 117998
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0147
+  form: side pocket mandrels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: Due to outstanding corrosion resistance and high strength, applications for this alloy are
+      used for hangers, side pocket mandrels, springs and polished bore receptacles for sour gas service.
+    approx_offset: 90987
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0148
+  form: simple jigs and tooling skids
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: From simple jigs and tooling skids to complex oil & gas wellhead structures and assemblies,
+      these components can be fabricated in a variety of materials to our customers’ exacting requirements
+      and technical needs, Howco offers a one stop solution across a variety of industry sectors.
+    approx_offset: 71802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0149
+  form: springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: Due to outstanding corrosion resistance and high strength, applications for this alloy are
+      used for hangers, side pocket mandrels, springs and polished bore receptacles for sour gas service.
+    approx_offset: 91009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0150
+  form: steam lines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0151
+  form: steam lines, exhaust ducts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0152
+  form: the machining of complex components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-supports-a-winning-formula/
+  evidence:
+  - quote: Howco has been supporting the University for over 8 years with technical support and the machining
+      of complex components.
+    approx_offset: 220898
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0153
+  form: tool joints
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: These applications include tubular products, valves, hangers, landing nipples, tool joints
+      and packers.
+    approx_offset: 120611
+  - quote: These applications include tubular products, valves, hangers, landing nipples, tool joints
+      and packers.
+    approx_offset: 129618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0154
+  form: tooling skids
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: From simple jigs and tooling skids to complex oil & gas wellhead structures and assemblies,
+      these components can be fabricated in a variety of materials to our customers’ exacting requirements
+      and technical needs, Howco offers a one stop solution across a variety of industry sectors.
+    approx_offset: 71818
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0155
+  form: tubulars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: Used extensively as tubulars, structural and pressure containing members.
+    approx_offset: 41391
+  - quote: They are used extensively within chemical processing plants and down hole tubulars in deep,
+      sour gas wells.
+    approx_offset: 80253
+  - quote: A combination of high strength and corrosion resistance make it suitable in applications such
+      as valves, hangers, packers, and tubulars, in sour gas environments.
+    approx_offset: 103917
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0156
+  form: turnkey components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/turnkey-manufacturing/
+  evidence:
+  - quote: With our supply chain partners we can to provide you with turnkey components, including HIP
+      and post machining.
+    approx_offset: 29040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0157
+  form: turnkey electromechanical assemblies and sub-assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: We provide turnkey electromechanical assemblies and sub-assemblies to customer drawings/designs/specifications.
+    approx_offset: 110982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0158
+  form: turnkey packages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: This enables us to provide full turnkey packages for a range of equipment and assemblies.
+    approx_offset: 72432
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0159
+  form: valve internals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: In the solution treated and doubled aged condition it has become the preferred alloy for Stems
+      and Shafts and is used extensively in valve internals.
+    approx_offset: 4309
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0160
+  form: valve seat facings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+  evidence:
+  - quote: UNS S41000 is a Martensitic Stainless Steel often utilised in valve bodies, bonnets, end and
+      outlet connections and valve seat facings.
+    approx_offset: 113362
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0161
+  form: valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-8630/
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: A combination of high strength and corrosion resistance make it suitable in applications such
+      as valves, hangers, packers, and tubular, in sour gas environments.
+    approx_offset: 67714
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75701
+  - quote: A combination of high strength and corrosion resistance make it suitable in applications such
+      as valves, hangers, packers, and tubulars, in sour gas environments.
+    approx_offset: 103887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-products-0162
+  form: wellhead structures and assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: From simple jigs and tooling skids to complex oil & gas wellhead structures and assemblies,
+      these components can be fabricated in a variety of materials to our customers’ exacting requirements
+      and technical needs, Howco offers a one stop solution across a variety of industry sectors.
+    approx_offset: 71853
+  - quote: From simple jig and tool trolleys to complex wellhead structures and assemblies.
+    approx_offset: 101817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

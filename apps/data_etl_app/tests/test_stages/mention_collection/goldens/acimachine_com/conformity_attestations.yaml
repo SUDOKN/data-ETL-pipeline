@@ -1,0 +1,68 @@
+subject: acimachine.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/acimachine.com.txt
+  sha256: 05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b
+golden_set_version: 1
+anchored_on: search/expectations/acimachine_com/conformity_attestations.yaml
+labels:
+- id: acimachine_com-conformity_attestations-0001
+  form: CSA/CUS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://acimachine.com/equipment/7190951-jet-jdp-20vs-1-heavy-duty-and-sensitive-single-spindle-drills
+    - https://acimachine.com/equipment/7191336-jet-etm-949evs-vertical-mills
+    - https://acimachine.com/equipment/7191343-jet-evbs-20-vertical-band-saws
+    - https://acimachine.com/equipment/7191344-jet-evbs-26-vertical-band-saws
+  evidence:
+  - quote: Featuring variable speed drivetrains with precision balanced cast-iron blade wheels with a
+      bonded rubber blade track, precision ground articulating table, 4.2 KVA Bi-Metal Blade stations,
+      and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of
+      ferrous and non-
+    approx_offset: 746548
+  - quote: For operator safety all Elite Mills have CSA/CUS approved electrics and all come with a spindle
+      safety guard.
+    approx_offset: 1047278
+  - quote: Featuring variable speed drivetrains with precision balanced cast-iron blade wheels with a
+      bonded rubber blade track, precision ground articulating table, 4.2 KVA Bi-Metal Blade stations,
+      and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of
+      ferrous and non-
+    approx_offset: 2291503
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-conformity_attestations-0002
+  form: CSA/CUS Certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://acimachine.com/equipment/7190951-jet-jdp-20vs-1-heavy-duty-and-sensitive-single-spindle-drills
+    - https://acimachine.com/equipment/7191343-jet-evbs-20-vertical-band-saws
+    - https://acimachine.com/equipment/7191344-jet-evbs-26-vertical-band-saws
+  evidence:
+  - quote: Featuring variable speed drivetrains with precision balanced cast-iron blade wheels with a
+      bonded rubber blade track, precision ground articulating table, 4.2 KVA Bi-Metal Blade stations,
+      and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of
+      ferrous and non-
+    approx_offset: 746548
+  - quote: Featuring variable speed drivetrains with precision balanced cast-iron blade wheels with a
+      bonded rubber blade track, precision ground articulating table, 4.2 KVA Bi-Metal Blade stations,
+      and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of
+      ferrous and non-
+    approx_offset: 2291503
+  - quote: '- CSA/CUS Certified'
+    approx_offset: 3879757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

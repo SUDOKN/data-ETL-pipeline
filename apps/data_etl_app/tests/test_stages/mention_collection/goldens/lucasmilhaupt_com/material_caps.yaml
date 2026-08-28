@@ -1,0 +1,5047 @@
+subject: lucasmilhaupt.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+golden_set_version: 1
+anchored_on: search/expectations/lucasmilhaupt_com/material_caps.yaml
+labels:
+- id: lucasmilhaupt_com-material_caps-0001
+  form: 12-009 Commercial Grade Fine Silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 12-009 Commercial Grade Fine Silver TDS
+    approx_offset: 145700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0002
+  form: 280 Magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 280 Magnesium TDS
+    approx_offset: 145740
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0003
+  form: 300-series, non-magnetic stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Construct fixtures from 300-series, non-magnetic stainless steel for better corrosion resistance
+      and dimensional stability (other ideas include Inconel and some ceramics).
+    approx_offset: 78723
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0004
+  form: 35AU/62CU/3NI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 35AU/62CU/3NI VTG SDS
+    approx_offset: 145758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0005
+  form: 35AU/62CU/3NI VTG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 35AU/62CU/3NI VTG SDS
+    approx_offset: 145758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0006
+  form: 35AU/65CU
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 35AU/65CU VTG SDS
+    approx_offset: 145780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0007
+  form: 35AU/65CU VTG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 35AU/65CU VTG SDS
+    approx_offset: 145780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0008
+  form: 40/60 Tin-Lead Soft Solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 40/60 Tin-Lead Soft Solder SDS
+    approx_offset: 145798
+  - quote: 40/60 Tin-Lead Soft Solder TDS
+    approx_offset: 145829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0009
+  form: 400 custom alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About
+  evidence:
+  - quote: With more than 400 custom alloys and decades of applications expertise, we help customers bring
+      innovations to market quickly, through an accelerated R&D process.
+    approx_offset: 147659
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0010
+  form: 40AG/60CU
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 40AG/60CU SDS
+    approx_offset: 145860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0011
+  form: 460 Stop-Off
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 460 Stop-Off TDS
+    approx_offset: 145874
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0012
+  form: 470 Stop-Off
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 470 Stop-Off TDS
+    approx_offset: 145891
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0013
+  form: 50/50
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 50/50 SDS
+    approx_offset: 145908
+  - quote: 50/50 TDS
+    approx_offset: 145918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0014
+  form: 500 alloy formulations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: With over 500 alloy formulations available, Lucas can supply the optimal material for virtually
+      any microelectronic joining application.
+    approx_offset: 17967
+  - quote: With over 500 alloy formulations available, Lucas can supply the optimal material for virtually
+      any microelectronic joining application.
+    approx_offset: 229231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0015
+  form: 500 custom alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: With more than 500 custom alloys, and decades of materials science expertise, Lucas Milhaupt
+      develops custom joining solutions that improve process efficiency and extend the life of products.
+    approx_offset: 487
+  - quote: Lucas Milhaupt is a leading provider of brazing and soldering solutions, drawing on decades
+      of materials science expertise and a portfolio of over 500 custom alloys to improve process efficiency
+      and extend product life.
+    approx_offset: 15954
+  - quote: With more than 500 custom alloys, and decades of materials science expertise, Lucas Milhaupt
+      develops custom joining solutions that improve process efficiency and extend the life of products.
+    approx_offset: 116997
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0016
+  form: 500+ custom brazing alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: 'Materials Science Expertise: Decades of materials science know-how and a portfolio of 500+
+      custom brazing alloys enable optimal, biocompatible material selection for high-strength, corrosion-resistant
+      joints.'
+    approx_offset: 25185
+  - quote: 'Materials Science Expertise: Decades of materials science know-how and a portfolio of 500+
+      custom brazing alloys enable optimal, biocompatible material selection for high-strength, corrosion-resistant
+      joints.'
+    approx_offset: 238168
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0017
+  form: 502 SSK Copper Paste
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 502 SSK Copper Paste TDS
+    approx_offset: 145928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0018
+  form: 60-112 (99.4 Min Copper)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 60-112 (99.4 Min Copper) SDS
+    approx_offset: 146015
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0019
+  form: 60/40 Tin-Lead Soft Solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 60/40 Tin-Lead Soft Solder SDS
+    approx_offset: 145953
+  - quote: 60/40 Tin-Lead Soft Solder TDS
+    approx_offset: 145984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0020
+  form: 60AU/20CU/20AG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 60AU/20CU/20AG VTG SDS
+    approx_offset: 146044
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0021
+  form: 60AU/20CU/20AG VTG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 60AU/20CU/20AG VTG SDS
+    approx_offset: 146044
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0022
+  form: 62/36/2 Silver-Tin-Lead Soft Solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 62/36/2 Silver-Tin-Lead Soft Solder TDS
+    approx_offset: 146067
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0023
+  form: 63/37 Tin-Lead Soft Solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 63/37 Tin-Lead Soft Solder SDS
+    approx_offset: 146107
+  - quote: 63/37 Tin-Lead Soft Solder TDS
+    approx_offset: 146138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0024
+  form: 69-285
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 69-285 VTG TDS
+    approx_offset: 146180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0025
+  form: 69-285 VTG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 69-285 VTG TDS
+    approx_offset: 146180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0026
+  form: 75AU/20CU/5AG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 75AU/20CU/5AG VTG SDS
+    approx_offset: 146195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0027
+  form: 75AU/20CU/5AG VTG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 75AU/20CU/5AG VTG SDS
+    approx_offset: 146195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0028
+  form: 78ZN/22AL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 78ZN/22AL SDS
+    approx_offset: 146228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0029
+  form: 81.5AU/16.5CU/2NI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 81.5AU/16.5CU/2NI VTG SDS
+    approx_offset: 146242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0030
+  form: 81.5AU/16.5CU/2NI VTG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 81.5AU/16.5CU/2NI VTG SDS
+    approx_offset: 146242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0031
+  form: 88AL/12SI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 88AL/12SI TDS
+    approx_offset: 146268
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0032
+  form: 97.5PB/1.5AG/1SN
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 97.5PB/1.5AG/1SN SDS
+    approx_offset: 146282
+  - quote: 97.5PB/1.5AG/1SN TDS
+    approx_offset: 146303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0033
+  form: 97.5PB/2.5AG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 97.5PB/2.5AG SDS
+    approx_offset: 146324
+  - quote: 97.5PB/2.5AG TDS
+    approx_offset: 146341
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0034
+  form: 99.4 Min Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 60-112 (99.4 Min Copper) SDS
+    approx_offset: 146023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0035
+  form: AL 718
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718 Al-Si
+      filler for aluminum-to-aluminum joints, help cut through oxide layers, improve capillary flow, and
+      reduce flux residue that can mask leaks.
+    approx_offset: 168564
+  - quote: AL 718
+    approx_offset: 171834
+  - quote: AL 718 is a general purpose brazing filler metal to join aluminum and aluminum alloys.
+    approx_offset: 212393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0036
+  form: AL 822
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+  evidence:
+  - quote: AL 822
+    approx_offset: 183306
+  - quote: AL 822 is a low temperature alloy ideal for brazing or soldering aluminum to aluminum or aluminum
+      to copper.
+    approx_offset: 183330
+  - quote: AL 822
+    approx_offset: 183922
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0037
+  form: AL CC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718 Al-Si
+      filler for aluminum-to-aluminum joints, help cut through oxide layers, improve capillary flow, and
+      reduce flux residue that can mask leaks.
+    approx_offset: 168527
+  - quote: Flux-cored, application-specific products (AL CC, Cone Cored) are designed to deliver clean,
+      reliable, leak-tight brazed joints in automotive fluid systems.
+    approx_offset: 170725
+  - quote: AL CC™ (Aluminum Corrosive Cored Wire)
+    approx_offset: 171124
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0038
+  form: AL718
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0039
+  form: AL822
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 9499
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 217845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0040
+  form: Active Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Active Filler Metals(4)
+    approx_offset: 105429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0041
+  form: Al-Si
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718 Al-Si
+      filler for aluminum-to-aluminum joints, help cut through oxide layers, improve capillary flow, and
+      reduce flux residue that can mask leaks.
+    approx_offset: 168571
+  - quote: Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718 Al-Si
+      filler for aluminum-to-aluminum joints, help cut through oxide layers, improve capillary flow, and
+      reduce flux residue that can mask leaks.
+    approx_offset: 222631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0042
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/How-to-Braze-Aluminum
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+  evidence:
+  - quote: Brazing with Aluminum for HVAC/R
+    approx_offset: 10981
+  - quote: Browse Aluminum Brazing Solutions
+    approx_offset: 11365
+  - quote: How to Braze Aluminum
+    approx_offset: 49050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0043
+  form: Aluminum 22.00, Zinc 78.00
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+  evidence:
+  - quote: Aluminum 22.00, Zinc 78.00
+    approx_offset: 183951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0044
+  form: Aluminum 88.00, Silicon 12.00
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 212754
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 213929
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 215449
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0045
+  form: Aluminum Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Aluminum Filler Metals(1)
+    approx_offset: 105453
+  - quote: Whether you need flux-cored wire, custom preform washers for tapered valves, or highly fluid
+      aluminum filler metals for high-throughput brazing, we’re ready to support your next program.
+    approx_offset: 167141
+  - quote: Most fluid of the aluminum filler metals.
+    approx_offset: 212498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0046
+  form: AuGe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16192
+  - quote: It is free flowing, high strength and high purity and often used in conjuction with AuSn and
+      AuGe applications as it has high thermal and electrical conductivity.
+    approx_offset: 23428
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 227456
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0047
+  form: AuSn
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16171
+  - quote: It is free flowing, high strength and high purity and often used in conjuction with AuSn and
+      AuGe applications as it has high thermal and electrical conductivity.
+    approx_offset: 23419
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 227435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0048
+  form: Base Material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Note that quenching can affect base material mechanical properties.
+    approx_offset: 91718
+  - quote: Base Material
+    approx_offset: 105736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0049
+  form: Boron-modified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Boron-modified black flux can help ensure a successful braze joint when brazing large parts
+      over an extended period of heating time, or with base materials that require extra care to reduce
+      tenacious oxides.
+    approx_offset: 71407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0050
+  form: Brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Brass expands, when heated, more than steel.
+    approx_offset: 58418
+  - quote: Brass(4)
+    approx_offset: 105768
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0051
+  form: Bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Bronze(4)
+    approx_offset: 105777
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0052
+  form: Cadmium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Cadmium-Bearing Silver Filler Metals(1)
+    approx_offset: 105479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0053
+  form: Cadmium-Bearing Silver Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Cadmium-Bearing Silver Filler Metals(1)
+    approx_offset: 105479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0054
+  form: Carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Carbide(6)
+    approx_offset: 105787
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0055
+  form: Ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Ceramic(2)
+    approx_offset: 105798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0056
+  form: Chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0057
+  form: Commercial Grade Fine Silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 12-009 Commercial Grade Fine Silver TDS
+    approx_offset: 145707
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0058
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Products/Pastes
+    - https://www.lucasmilhaupt.com/Resources-Library/Demo-Videos
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: Copper Filler Metals(3)
+    approx_offset: 105519
+  - quote: Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105543
+  - quote: Silver-Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0059
+  form: Copper Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: The phos-copper and silver-bearing phos-copper filler metals are different, and then only when
+      used on copper without flux.
+    approx_offset: 95909
+  - quote: Copper Filler Metals(3)
+    approx_offset: 105519
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0060
+  form: Copper-Phosphorous Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105543
+  - quote: Silver-Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0061
+  form: Easy-Flo
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The following chart is based on brazing butt joints of stainless steel, using Easy-Flo® filler
+      metal.
+    approx_offset: 56453
+  - quote: Sil-Fos, Easy-Flo and other brazing alloys were used innumerable braze joints of planes, ships,
+      and ammunition.
+    approx_offset: 126746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0062
+  form: Easy-Flo®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The following chart is based on brazing butt joints of stainless steel, using Easy-Flo® filler
+      metal.
+    approx_offset: 56453
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0063
+  form: Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Products
+    - https://www.lucasmilhaupt.com/Products/Pastes
+    - https://www.lucasmilhaupt.com/Resources-Library/Demo-Videos
+  evidence:
+  - quote: Depositing Filler Metals
+    approx_offset: 85467
+  - quote: Active Filler Metals(4)
+    approx_offset: 105436
+  - quote: Aluminum Filler Metals(1)
+    approx_offset: 105462
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0064
+  form: Fluxes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+    - https://www.lucasmilhaupt.com/Resources-Library/Demo-Videos
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: To complement those alloys, we formulate Fluxes that provide optimal wetting and oxide removal
+      over a full temperature spectrum, from low-temp aluminum assemblies to high-temp nickel applications
+      helping you achieve bright, void-free joints while reducing post-braze cleanup.
+    approx_offset: 113412
+  - quote: Fluxes
+    approx_offset: 114457
+  - quote: Fluxes(16)
+    approx_offset: 144571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0065
+  form: Fos-Flo
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: You can join copper to copper without flux, by using a brazing filler metal specially formulated
+      for the job, such as Handy & Harman's Sil-Fos or Fos-Flo 7.
+    approx_offset: 73733
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0066
+  form: Fos-Flo 7
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: You can join copper to copper without flux, by using a brazing filler metal specially formulated
+      for the job, such as Handy & Harman's Sil-Fos or Fos-Flo 7.
+    approx_offset: 73733
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0067
+  form: Ge
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Our Premabraze® 880 (an 88% Au / 12% Ge eutectic alloy) is used for die attachment in many
+      high-reliability chips, offering a robust bond with very low vapor pressure to maintain vacuum integrity
+      during device operation.
+    approx_offset: 19058
+  - quote: Our Premabraze® 880 (an 88% Au / 12% Ge eutectic alloy) is used for die attachment in many
+      high-reliability chips, offering a robust bond with very low vapor pressure to maintain vacuum integrity
+      during device operation.
+    approx_offset: 230322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0068
+  form: Germanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-880.htm
+  evidence:
+  - quote: Gold 88.00, Germanium 12.00
+    approx_offset: 197972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0069
+  form: Gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-880.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Broad Alloy Portfolio & Forms – Gold, silver, palladium, nickel-bearing and specialty aerospace
+      brazing alloys available as wire, paste, strip, rings, and custom preforms to fit your joining process
+      and design envelope.
+    approx_offset: 30458
+  - quote: Engine Components & High Temperature Applications – Gold-nickel and other high-purity filler
+      metals for assemblies exposed to sustained temps approaching or exceeding ~900°F, such as turbine
+      speed/torque sensors and hot-zone hardware.
+    approx_offset: 30741
+  - quote: Gold and/or Palladium Filler Metals(4)
+    approx_offset: 105579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0070
+  form: Gold 80.00, Tin 20.00
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: Gold 80.00, Tin 20.00
+    approx_offset: 199206
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0071
+  form: Gold 88.00, Germanium 12.00
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-880.htm
+  evidence:
+  - quote: Gold 88.00, Germanium 12.00
+    approx_offset: 197960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0072
+  form: Gold and/or Palladium Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Gold and/or Palladium Filler Metals(4)
+    approx_offset: 105579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0073
+  form: Gold-nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: Engine Components & High Temperature Applications – Gold-nickel and other high-purity filler
+      metals for assemblies exposed to sustained temps approaching or exceeding ~900°F, such as turbine
+      speed/torque sensors and hot-zone hardware.
+    approx_offset: 30741
+  - quote: Engine Components & High Temperature Applications – Gold-nickel and other high-purity filler
+      metals for assemblies exposed to sustained temps approaching or exceeding ~900°F, such as turbine
+      speed/torque sensors and hot-zone hardware.
+    approx_offset: 243731
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0074
+  form: HANDY ONE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: HANDY ONE AL CORROSIVE CORED
+    approx_offset: 212347
+  - quote: HANDY ONE AL CORROSIVE CORED
+    approx_offset: 212703
+  - quote: HANDY ONE AL CONE CORED
+    approx_offset: 215090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0075
+  form: Handy & Harman's Handy Flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Fortunately for your inventory, general-purpose fluxes, such as Handy & Harman's Handy Flux,
+      are suitable for most typical brazing jobs.
+    approx_offset: 71788
+  - quote: Handy & Harman's Handy Flux, for example, becomes completely clear and active at 1100°F/593°C.
+    approx_offset: 72648
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0076
+  form: Handy Flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Fortunately for your inventory, general-purpose fluxes, such as Handy & Harman's Handy Flux,
+      are suitable for most typical brazing jobs.
+    approx_offset: 71805
+  - quote: Handy & Harman's Handy Flux, for example, becomes completely clear and active at 1100°F/593°C.
+    approx_offset: 72665
+  - quote: Handy Flux temperature indicator chart
+    approx_offset: 73008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0077
+  form: Handy Flux™
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120247
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 254889
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0078
+  form: Handy One
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+    - https://www.lucasmilhaupt.com/Resources-Library/FAQ
+  evidence:
+  - quote: What is Handy One®?
+    approx_offset: 12720
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 171988
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 226048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0079
+  form: Handy One®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+    - https://www.lucasmilhaupt.com/Resources-Library/FAQ
+  evidence:
+  - quote: What is Handy One®?
+    approx_offset: 12720
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 171988
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 226048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0080
+  form: Handy Paste
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120259
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 254901
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0081
+  form: Handy Paste™
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120259
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 254901
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0082
+  form: Handy® Flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In this video, we'll show you how Handy® Flux appears during the brazing process.
+    approx_offset: 72959
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0083
+  form: Inconel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Try to use materials in your fixture that are poor heat conductors, such as stainless steel,
+      Inconel or ceramics.
+    approx_offset: 75235
+  - quote: Construct fixtures from 300-series, non-magnetic stainless steel for better corrosion resistance
+      and dimensional stability (other ideas include Inconel and some ceramics).
+    approx_offset: 78843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0084
+  form: Magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 280 Magnesium TDS
+    approx_offset: 145744
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0085
+  form: Monel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: "More diluted acid can be used (10-25%) at higher temperatures (140-160°F/60-70°C.)\tA mixture\
+      \ of 1 part hydrochloric acid to 2 parts water can be used for Monel and other high nickel alloys."
+    approx_offset: 95038
+  - quote: What length of lap do you need to join .050" annealed Monel sheet to a metal of equal or greater
+      strength?
+    approx_offset: 137912
+  - quote: T = 70,000 psi (annealed Monel sheet)
+    approx_offset: 138009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0086
+  form: Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Nickel Filler Metals(3)
+    approx_offset: 105618
+  - quote: Nickel(5)
+    approx_offset: 105827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0087
+  form: Nickel Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Nickel Filler Metals(3)
+    approx_offset: 105618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0088
+  form: Non corrosive flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+  evidence:
+  - quote: Non corrosive flux does not require removal after brazing.
+    approx_offset: 183439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0089
+  form: PREMABRAZE 800
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: PREMABRAZE 800
+    approx_offset: 198604
+  - quote: PREMABRAZE 800
+    approx_offset: 199169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0090
+  form: PREMABRAZE 880
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-880.htm
+  evidence:
+  - quote: PREMABRAZE 880
+    approx_offset: 197743
+  - quote: PREMABRAZE 880
+    approx_offset: 197923
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0091
+  form: Palladium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Gold and/or Palladium Filler Metals(4)
+    approx_offset: 105591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0092
+  form: Precious metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: Precious metals are ideal for joining applications in medical devices.
+    approx_offset: 28480
+  - quote: Precious metals are ideal for joining applications in medical devices.
+    approx_offset: 241463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0093
+  form: Premabraze 800
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16176
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800
+      is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+    approx_offset: 22800
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder that can be used on ferrous and non-ferrous
+      base metals and sees most use in the electronics packaging industry or applications where lead or
+      silver are not permissible.
+    approx_offset: 198636
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0094
+  form: Premabraze 880
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16197
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 227461
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0095
+  form: Premabraze® 800
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Our Premabraze® 800 and 880 series, provides high bond strength, excellent corrosion/oxidation
+      resistance, and superior thermal conductivity, ideal for high-power and high-reliability electronics.
+    approx_offset: 17610
+  - quote: Premabraze® 800
+    approx_offset: 22706
+  - quote: Our Premabraze® 800 and 880 series, provides high bond strength, excellent corrosion/oxidation
+      resistance, and superior thermal conductivity, ideal for high-power and high-reliability electronics.
+    approx_offset: 228874
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0096
+  form: Premabraze® 880
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Our Premabraze® 880 (an 88% Au / 12% Ge eutectic alloy) is used for die attachment in many
+      high-reliability chips, offering a robust bond with very low vapor pressure to maintain vacuum integrity
+      during device operation.
+    approx_offset: 19025
+  - quote: Premabraze® 880
+    approx_offset: 23499
+  - quote: Our Premabraze® 880 (an 88% Au / 12% Ge eutectic alloy) is used for die attachment in many
+      high-reliability chips, offering a robust bond with very low vapor pressure to maintain vacuum integrity
+      during device operation.
+    approx_offset: 230289
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0097
+  form: SILVALOY 721 VTG Gr1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: SILVALOY 721 VTG Gr1
+    approx_offset: 195702
+  - quote: SILVALOY 721 VTG Gr1
+    approx_offset: 196186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0098
+  form: Sil-Fos
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 33
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+  evidence:
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9044
+  - quote: Lucas Milhaupt has been the trusted brazing alloy and joining solutions of HVAC/R Service Technicians
+      since our Sil-Fos patent was released for WWII.
+    approx_offset: 10683
+  - quote: Refresh your brazing knowledge, join a NATE certified training course, or learn where to buy
+      Sil-Fos today.
+    approx_offset: 10924
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0099
+  form: Sil-Fos alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: Sil-Fos alloys combine silver (Ag), copper (Cu), and phosphorous (P) to produce consistent,
+      quality joints while saving on materials plus reducing time and process costs.
+    approx_offset: 124750
+  - quote: No flux is necessary with Sil-Fos alloys; the phosphorous in the Sil-Fos family of products
+      reacts with the copper oxides to form phosphorous pentoxide and cleans the surface.
+    approx_offset: 125084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0100
+  form: Sil-Fos®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9044
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120182
+  - quote: Sil-Fos®
+    approx_offset: 124599
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0101
+  form: SilFos
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: When designed and brazed correctly, joints brazed with SilFos will exhibit strength higher
+      than that of the parent materials, often leading to failure in the base metal before the joint itself.
+    approx_offset: 126270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0102
+  form: Silicon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 212770
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 213945
+  - quote: Aluminum 88.00, Silicon 12.00
+    approx_offset: 215465
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0103
+  form: SilvaCut
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Collaborative joint design, preform sizing (SilvaCut), and process tuning to improve wetting,
+      control filler volume, reduce rework, and boost throughput.
+    approx_offset: 122077
+  - quote: Collaborative joint design, preform sizing (SilvaCut), and process tuning to improve wetting,
+      control filler volume, reduce rework, and boost throughput.
+    approx_offset: 256719
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0104
+  form: Silvacut
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120087
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 254729
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0105
+  form: Silvacut®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120087
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 254729
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0106
+  form: Silvaloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16217
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 17803
+  - quote: Silvaloy® 721
+    approx_offset: 23084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0107
+  form: Silvaloy 721
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16217
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 17803
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 23099
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0108
+  form: Silvaloy®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Silvaloy® 721
+    approx_offset: 23084
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120101
+  - quote: Lucas Milhaupt supports these builds with preforms (Silvaloy® rings) and copper or silver alloys
+      used to braze stainless fuel lines, injector rails, and related hardware in engine bays.
+    approx_offset: 169572
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0109
+  form: Silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Sensors & Instrumentation (Pitot Probes, Thermal, Pressure) – Silver-based alloys with nickel
+      additions promote wetting on stainless steels, resist interface corrosion, and produce smooth, accurate,
+      airflow-friendly joints.
+    approx_offset: 30988
+  - quote: Silver brazing is a cost-effective method for joining metals, especially when joints are designed
+      for maximum brazing efficiency and fixtures are designed as described.
+    approx_offset: 78227
+  - quote: Cadmium-Bearing Silver Filler Metals(1)
+    approx_offset: 105495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0110
+  form: Silver 72.00, Copper 28.00
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: Silver 72.00, Copper 28.00
+    approx_offset: 196229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0111
+  form: Silver Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: 'Note: The pickles recommended above will work with any of the standard silver filler metals,
+      and no specific instructions are required for the individual filler metals.'
+    approx_offset: 95771
+  - quote: Cadmium-Bearing Silver Filler Metals(1)
+    approx_offset: 105495
+  - quote: Silver Filler Metals(4)
+    approx_offset: 105642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0112
+  form: Silver-Copper-Phosphorous Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Silver-Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105666
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0113
+  form: Silver-Tin-Lead Soft Solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 62/36/2 Silver-Tin-Lead Soft Solder TDS
+    approx_offset: 146075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0114
+  form: Soldering Filler Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Soldering Filler Metals(1)
+    approx_offset: 105709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0115
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Stainless Steel(6)
+    approx_offset: 105837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0116
+  form: Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.lucasmilhaupt.com/About/Careers
+    - https://www.lucasmilhaupt.com/About/Culture
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Stainless Steel(6)
+    approx_offset: 105847
+  - quote: Steel(6)
+    approx_offset: 105856
+  - quote: We are proud to be a part of the Steel Partners family of companies with a shared commitment
+      to core values of Teamwork, Integrity, Respect, and Commitment.
+    approx_offset: 109978
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0117
+  form: Stop-Off
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 460 Stop-Off TDS
+    approx_offset: 145878
+  - quote: 470 Stop-Off TDS
+    approx_offset: 145895
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0118
+  form: Tin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 40/60 Tin-Lead Soft Solder SDS
+    approx_offset: 145804
+  - quote: 40/60 Tin-Lead Soft Solder TDS
+    approx_offset: 145835
+  - quote: 60/40 Tin-Lead Soft Solder SDS
+    approx_offset: 145959
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0119
+  form: Tin-Lead
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 40/60 Tin-Lead Soft Solder SDS
+    approx_offset: 145804
+  - quote: 40/60 Tin-Lead Soft Solder TDS
+    approx_offset: 145835
+  - quote: 60/40 Tin-Lead Soft Solder SDS
+    approx_offset: 145959
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0120
+  form: Zinc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+  evidence:
+  - quote: Zinc coatings (galvanized) will also fume when heated.
+    approx_offset: 88256
+  - quote: Aluminum 22.00, Zinc 78.00
+    approx_offset: 183967
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0121
+  form: Zinc coatings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Zinc coatings (galvanized) will also fume when heated.
+    approx_offset: 88256
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0122
+  form: Zinc coatings (galvanized)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Zinc coatings (galvanized) will also fume when heated.
+    approx_offset: 88256
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0123
+  form: alloy powders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113730
+  - quote: Handy Flo 300 Series are clean burning, flux-free binders that are mixed with high purity braze
+      alloy powders to form a paste for controlled atmosphere and vacuum brazing operations.
+    approx_offset: 200430
+  - quote: Handy Flo 100 Series are general purpose flux binders that are mixed with most common silver
+      alloy powders to form a paste to be used in torch, induction, and resistance brazing operations.
+    approx_offset: 201899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0124
+  form: alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0125
+  form: alloy steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120163
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 254805
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0126
+  form: alumina
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Brazing offers a significant advantage in applications that require joining of dissimilar base
+      metals, including copper and steel as well as non-metals such as tungsten carbide, alumina, graphite
+      and diamond.
+    approx_offset: 158112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0127
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 69
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/How-to-Braze-Aluminum
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3693
+  - quote: Today, as HVAC/R systems evolve with trends like a transition from copper to aluminum components
+      and the adoption of new refrigerants under stricter efficiency standards , Lucas Milhaupt continues
+      to innovate with next-generation products.
+    approx_offset: 9291
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 9509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0128
+  form: aluminum-silicon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 171874
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy meant for joining of aluminum base materials.
+    approx_offset: 213487
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 225934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0129
+  form: aluminum-silicon brazing alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 171874
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy meant for joining of aluminum base materials.
+    approx_offset: 213487
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 225934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0130
+  form: atomized filler metal powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Maintain tight control on your material usage and yield consistent high quality joints with
+      paste products consisting of an atomized filler metal powder, a flux (when necessary) and a binder
+      to hold the components together.
+    approx_offset: 154839
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0131
+  form: base materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+  evidence:
+  - quote: Boron-modified black flux can help ensure a successful braze joint when brazing large parts
+      over an extended period of heating time, or with base materials that require extra care to reduce
+      tenacious oxides.
+    approx_offset: 71548
+  - quote: Do not quench materials with large differences in coefficients of thermal expansion to avoid
+      cracks in the base materials and tears within the braze alloy.
+    approx_offset: 91862
+  - quote: Chemical cleaning - You can use an acidic or basic solution, generally with short soak times
+      to avoid deteriorating the base materials.
+    approx_offset: 92329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0132
+  form: base metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: If they remain, they will form a barrier between the base metal surfaces and the brazing materials.
+    approx_offset: 67292
+  - quote: An oily base metal, for example, will repel the flux, leaving bare spots that oxidize under
+      heat and result in voids.
+    approx_offset: 67347
+  - quote: At this temperature, it looks like water and reveals the bright metal surface underneath -
+      telling you that the base metal is just about hot enough to melt the brazing filler metal.
+    approx_offset: 72855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0133
+  form: base metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 38
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: Fluid & Thermal Management Systems – Reliable joints that hold pressure and resist corrosion
+      across altitude-driven thermal cycling; material choices tuned to base metals and service media.
+    approx_offset: 31311
+  - quote: In both cases the filler metal has a lower melting point than the base metals being joined.
+    approx_offset: 51184
+  - quote: The American Welding Society (AWS) defines brazing as a group of joining processes that produce
+      coalescence of materials by heating them to the brazing temperature and by using a filler metal
+      (solder) having a liquidus above 840°F (450°C) and below the solidus of the base metals.
+    approx_offset: 51760
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0134
+  form: binder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-600-Series.htm
+  evidence:
+  - quote: Maintain tight control on your material usage and yield consistent high quality joints with
+      paste products consisting of an atomized filler metal powder, a flux (when necessary) and a binder
+      to hold the components together.
+    approx_offset: 154899
+  - quote: Contact the Lucas Milhaupt Technical Support staff to discuss which Handy Flo 300 Series binder
+      is best for your application.
+    approx_offset: 200606
+  - quote: Reach out to the Lucas Milhaupt Technical Support staff to discuss which binder in the Handy
+      Flo 100 Series would work best for your application.
+    approx_offset: 202069
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0135
+  form: binders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+  evidence:
+  - quote: Paste products are a custom blend of braze filler metal and specially formulated binders, suited
+      to unique customer applications where precision and braze joint consistency is a must.
+    approx_offset: 105182
+  - quote: Handy Flo 300 Series are clean burning, flux-free binders that are mixed with high purity braze
+      alloy powders to form a paste for controlled atmosphere and vacuum brazing operations.
+    approx_offset: 200384
+  - quote: Handy Flo 100 Series are general purpose flux binders that are mixed with most common silver
+      alloy powders to form a paste to be used in torch, induction, and resistance brazing operations.
+    approx_offset: 201852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0136
+  form: biocompatible
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3838
+  - quote: Our engineering-focused approach supports the design and manufacture of high-tech medical devices
+      by ensuring reliable, precision joints with biocompatible materials.
+    approx_offset: 24664
+  - quote: 'Materials Science Expertise: Decades of materials science know-how and a portfolio of 500+
+      custom brazing alloys enable optimal, biocompatible material selection for high-strength, corrosion-resistant
+      joints.'
+    approx_offset: 25228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0137
+  form: biocompatible materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: Our engineering-focused approach supports the design and manufacture of high-tech medical devices
+      by ensuring reliable, precision joints with biocompatible materials.
+    approx_offset: 24664
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances)
+      that require precise, durable joints and biocompatible materials to ensure safe, long-lasting performance
+      in patient care.'
+    approx_offset: 26436
+  - quote: Our engineering-focused approach supports the design and manufacture of high-tech medical devices
+      by ensuring reliable, precision joints with biocompatible materials.
+    approx_offset: 237647
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0138
+  form: black flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Black flux is beneficial for fast induction heating, may provide better protection in a high-temperature
+      brazing operation, and can be helpful with high-liquidus filler metals.
+    approx_offset: 71227
+  - quote: Boron-modified black flux can help ensure a successful braze joint when brazing large parts
+      over an extended period of heating time, or with base materials that require extra care to reduce
+      tenacious oxides.
+    approx_offset: 71422
+  - quote: Lucas Milhaupt's technical staff demonstrates the difference between white versus black flux
+      in this video.
+    approx_offset: 71697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0139
+  form: boron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The addition of metallic boron changes white flux to black.
+    approx_offset: 71192
+  - quote: Boron-modified black flux can help ensure a successful braze joint when brazing large parts
+      over an extended period of heating time, or with base materials that require extra care to reduce
+      tenacious oxides.
+    approx_offset: 71407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0140
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: As an example, let’s say you’re brazing a brass bushing into a steel sleeve.
+    approx_offset: 58383
+  - quote: If the outer part is brass and the inner part steel, you can start with virtually a light force
+      fit at room temperature.
+    approx_offset: 58860
+  - quote: By the time you reach brazing temperature, the more rapid expansion of the brass creates a
+      suitable clearance.
+    approx_offset: 59035
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0141
+  form: braze alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: Do not quench materials with large differences in coefficients of thermal expansion to avoid
+      cracks in the base materials and tears within the braze alloy.
+    approx_offset: 91898
+  - quote: 'Sil-Fos Today: The Best Braze Alloy in HVAC/R'
+    approx_offset: 125409
+  - quote: Sil-Fos is still the premier braze alloy solution for HVAC/R Contractors, and continues to
+      be the best solution for strong, flux-free brazed joints on the market.
+    approx_offset: 125757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0142
+  form: braze alloy powders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: Handy Flo 300 Series are clean burning, flux-free binders that are mixed with high purity braze
+      alloy powders to form a paste for controlled atmosphere and vacuum brazing operations.
+    approx_offset: 200424
+  - quote: Handy Flo 200 Series are general purpose flux binders that are mixed with high temperature
+      braze alloy powders to form a paste to be used in torch, induction, and resistance brazing operations.
+    approx_offset: 207666
+  - quote: Handy Flo 400 Series are flux-free binders that are mixed with braze alloy powders such as
+      copper, nickel, and bronze.
+    approx_offset: 209435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0143
+  form: braze alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120118
+  - quote: High purity furnace braze alloys
+    approx_offset: 200695
+  - quote: High temperature braze alloys (1500F-2100F)
+    approx_offset: 207964
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0144
+  form: brazing alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+  evidence:
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9082
+  - quote: Lucas Milhaupt has been the trusted brazing alloy and joining solutions of HVAC/R Service Technicians
+      since our Sil-Fos patent was released for WWII.
+    approx_offset: 10607
+  - quote: The company is North America’s largest brazing alloy producer, and its vertically integrated
+      manufacturing ensures complete quality and chemistry control at every step.
+    approx_offset: 16735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0145
+  form: brazing alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 39
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+  evidence:
+  - quote: From custom brazing alloys to fluxes to precision metal joining components.
+    approx_offset: 2115
+  - quote: For more than 80 years, Lucas Milhaupt has been the name behind high-performance brazing alloys,
+      fluxes, and custom pre-forms that keep critical assemblies functioning in the world’s toughest environments.
+    approx_offset: 2945
+  - quote: Lucas Milhaupt has been a trusted partner to the HVAC/R industry for decades, providing specialized
+      brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air conditioning
+      equipment .
+    approx_offset: 8888
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0146
+  form: brazing filler metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+  evidence:
+  - quote: Wettability of the substrate by either the solder or brazing filler metal is another key consideration
+      in selecting the appropriate process.
+    approx_offset: 52811
+  - quote: A longer lap may waste brazing filler metal without a corresponding increase in joint strength.
+    approx_offset: 61843
+  - quote: You can create a stress-distribution fillet, simply by using a little more brazing filler metal
+      than you normally would, or by using a more "sluggish" alloy.
+    approx_offset: 64154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0147
+  form: bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: Oxide removal from copper, brass, bronze, nickel silver and other copper alloys containing
+      high percentages of copper.
+    approx_offset: 94257
+  - quote: Handy Flo 400 Series are flux-free binders that are mixed with braze alloy powders such as
+      copper, nickel, and bronze.
+    approx_offset: 209483
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0148
+  form: cadmium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: We provide vacuum-grade brazing alloys free of elements like zinc or cadmium that could outgas
+      and contaminate the vacuum.
+    approx_offset: 43935
+  - quote: In brazing, there is always the possibility of dangerous fumes and gases rising from base metal
+      coatings, zinc and cadmium-bearing filler metals, and from fluorides in fluxes.
+    approx_offset: 87154
+  - quote: A cadmium coating on a base metal will volatilize and produce toxic fume during heating.
+    approx_offset: 88169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0149
+  form: cadmium coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: A cadmium coating on a base metal will volatilize and produce toxic fume during heating.
+    approx_offset: 88169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0150
+  form: cadmium-bearing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: In brazing, there is always the possibility of dangerous fumes and gases rising from base metal
+      coatings, zinc and cadmium-bearing filler metals, and from fluorides in fluxes.
+    approx_offset: 87154
+  - quote: Cadmium-Bearing Silver Filler Metals(1)
+    approx_offset: 105479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0151
+  form: carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120030
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120152
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts and wear protection
+      features for PDC and roller-cone designs to withstand impact, abrasion and high temperatures.'
+    approx_offset: 120857
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0152
+  form: carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0153
+  form: carbon steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Will work on carbon steels, but if pickle is contaminated with copper, the copper will plate
+      out on the steel and will have to be removed mechanically, This sulphuric pickle will remove copper
+      or cuprous oxide stains from copper alloys.
+    approx_offset: 94476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0154
+  form: ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: It can be used for joining metallized ceramic to metals in vacuum.
+    approx_offset: 17928
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector
+      feedthroughs for sensors, medical implants, and aerospace electronics.
+    approx_offset: 19564
+  - quote: It can be used for joining metallized ceramic to metals in vacuum.
+    approx_offset: 23224
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0155
+  form: ceramics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: Try to use materials in your fixture that are poor heat conductors, such as stainless steel,
+      Inconel or ceramics.
+    approx_offset: 75246
+  - quote: Construct fixtures from 300-series, non-magnetic stainless steel for better corrosion resistance
+      and dimensional stability (other ideas include Inconel and some ceramics).
+    approx_offset: 78860
+  - quote: Vacuum tube components, metallized ceramics, applications where AS9100 certification is required
+    approx_offset: 196082
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0156
+  form: chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Oxide removal from stainless steels and alloys containing chromium.
+    approx_offset: 95305
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0157
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 69
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3686
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9064
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9149
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0158
+  form: corrosive flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718 Al-Si
+      filler for aluminum-to-aluminum joints, help cut through oxide layers, improve capillary flow, and
+      reduce flux residue that can mask leaks.
+    approx_offset: 168534
+  - quote: Non corrosive flux does not require removal after brazing.
+    approx_offset: 183443
+  - quote: This corrosive flux containing preform solution is a great replacement for manual operations
+      that require corrosive flux and post cleaning.
+    approx_offset: 212527
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0159
+  form: diamond
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Our carbide and diamond dies produce wire diameters from .187” to .005” (4.75mm to .127mm).
+    approx_offset: 154282
+  - quote: Brazing offers a significant advantage in applications that require joining of dissimilar base
+      metals, including copper and steel as well as non-metals such as tungsten carbide, alumina, graphite
+      and diamond.
+    approx_offset: 158134
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0160
+  form: dissociated ammonia
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: The atmosphere (such as hydrogen, nitrogen or dissociated ammonia) completely envelops the
+      assemblies and, by excluding oxygen, prevents oxidation.
+    approx_offset: 74013
+  - quote: These binders are best suited for high temperature furnace brazing application in exothermic,
+      dissociated ammonia, or vacuum atmosphere.
+    approx_offset: 209585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0161
+  form: eutectic aluminum-silicon brazing alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+  evidence:
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy meant for joining of aluminum base materials.
+    approx_offset: 213478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0162
+  form: exothermic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: These binders are best suited for high temperature furnace brazing application in exothermic,
+      dissociated ammonia, or vacuum atmosphere.
+    approx_offset: 209573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0163
+  form: filler metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 114
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: Brazing and soldering join materials, usually metals, together by flowing a filler metal into
+      the joint.
+    approx_offset: 51089
+  - quote: In both cases the filler metal has a lower melting point than the base metals being joined.
+    approx_offset: 51136
+  - quote: The American Welding Society (AWS) defines brazing as a group of joining processes that produce
+      coalescence of materials by heating them to the brazing temperature and by using a filler metal
+      (solder) having a liquidus above 840°F (450°C) and below the solidus of the base metals.
+    approx_offset: 51671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0164
+  form: filler metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 36
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+  evidence:
+  - quote: What filler metals should I use?
+    approx_offset: 13033
+  - quote: 'High-Performance Alloys & Portfolio: As a one-stop shop for filler metals, Lucas Milhaupt
+      offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys.'
+    approx_offset: 17486
+  - quote: 'Implants & Implantable Devices: Use of high-purity, biocompatible brazing alloys (gold-based
+      filler metals) to assemble implants like pacemakers, prosthetics, and sensor housings with hermetic
+      seals and precision joints that meet strict medical standards.'
+    approx_offset: 26836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0165
+  form: fine silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: 12-009 Commercial Grade Fine Silver TDS
+    approx_offset: 145724
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0166
+  form: flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 177
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9128
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 9472
+  - quote: Learn more about our innovative, patent pending triangular brazing ring and flux cored brazing
+      rings for return bends, or U-bends.
+    approx_offset: 11302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0167
+  form: flux binders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-700-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-800-Series.htm
+  evidence:
+  - quote: Handy Flo 100 Series are general purpose flux binders that are mixed with most common silver
+      alloy powders to form a paste to be used in torch, induction, and resistance brazing operations.
+    approx_offset: 201847
+  - quote: Handy Flo 800 Series are low temperature flux binders to be mixed with solder alloy powder
+      to form a paste for open air or furnace (non-vacuum) solder operations.
+    approx_offset: 206325
+  - quote: Handy Flo 200 Series are general purpose flux binders that are mixed with high temperature
+      braze alloy powders to form a paste to be used in torch, induction, and resistance brazing operations.
+    approx_offset: 207616
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0168
+  form: flux-free binders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-600-Series.htm
+  evidence:
+  - quote: Handy Flo 300 Series are clean burning, flux-free binders that are mixed with high purity braze
+      alloy powders to form a paste for controlled atmosphere and vacuum brazing operations.
+    approx_offset: 200374
+  - quote: Handy Flo 600 Series are flux-free binders that are mixed with braze alloy powder to form a
+      paste that can be stenciled or sprayed.
+    approx_offset: 203814
+  - quote: Handy Flo 500 Series are a variety of flux and flux-free binders that are primarily mixed with
+      karat gold braze powders to form a paste for use in jewelry brazing.
+    approx_offset: 205287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0169
+  form: fluxes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 23
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+  evidence:
+  - quote: From custom brazing alloys to fluxes to precision metal joining components.
+    approx_offset: 2133
+  - quote: For more than 80 years, Lucas Milhaupt has been the name behind high-performance brazing alloys,
+      fluxes, and custom pre-forms that keep critical assemblies functioning in the world’s toughest environments.
+    approx_offset: 2961
+  - quote: There are fluxes formulated for practically every need; for example - fluxes for brazing at
+      very high temperatures (in the 2000°F/1093°C area), fluxes for metals with refractory oxides, fluxes
+      for long heating cycles, and fluxes for dispensing by automated machines.
+    approx_offset: 70909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0170
+  form: galvanized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Zinc coatings (galvanized) will also fume when heated.
+    approx_offset: 88271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0171
+  form: germanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0172
+  form: gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+  evidence:
+  - quote: 'High-Performance Alloys & Portfolio: As a one-stop shop for filler metals, Lucas Milhaupt
+      offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys.'
+    approx_offset: 17566
+  - quote: As electronic designs shrink in size, our gold-based solders deliver the quality and consistency
+      needed for these delicate components.
+    approx_offset: 20904
+  - quote: 'Implants & Implantable Devices: Use of high-purity, biocompatible brazing alloys (gold-based
+      filler metals) to assemble implants like pacemakers, prosthetics, and sensor housings with hermetic
+      seals and precision joints that meet strict medical standards.'
+    approx_offset: 26825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0173
+  form: gold-nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0174
+  form: gold-tin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder that can be used on ferrous and non-ferrous
+      base metals and sees most use in the electronics packaging industry or applications where lead or
+      silver are not permissible.
+    approx_offset: 198668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0175
+  form: gold-tin eutectic solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder that can be used on ferrous and non-ferrous
+      base metals and sees most use in the electronics packaging industry or applications where lead or
+      silver are not permissible.
+    approx_offset: 198668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0176
+  form: graphite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Brazing offers a significant advantage in applications that require joining of dissimilar base
+      metals, including copper and steel as well as non-metals such as tungsten carbide, alumina, graphite
+      and diamond.
+    approx_offset: 158121
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0177
+  form: helium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Vacuum testing is useful for refrigeration equipment and detection of minute leaks, employing
+      a mass spectrometer and a helium atmosphere.
+    approx_offset: 99133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0178
+  form: high purity
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-800-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: It is free flowing, high strength and high purity and often used in conjuction with AuSn and
+      AuGe applications as it has high thermal and electrical conductivity.
+    approx_offset: 23373
+  - quote: High purity
+    approx_offset: 196003
+  - quote: Lucas Milhaupt provides quality, high purity alloys to ensure brazed joints in power management
+      components will last for years to come.
+    approx_offset: 196835
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0179
+  form: high-purity alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: In the competitive microelectronics sector, manufacturers demand partners they can trust –
+      those who provide high-purity alloys, precision fabrication for micro components, and fast turnaround
+      to meet aggressive development timelines.
+    approx_offset: 15681
+  - quote: Lucas Milhaupt’s high-purity alloys enable mission-critical hermetic seals that protect sensitive
+      components from moisture and atmosphere, ensuring long-term reliability.
+    approx_offset: 19717
+  - quote: We supply a wide selection of high-purity alloys and offer world-class engineering support
+      to fine-tune your joints.
+    approx_offset: 42370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0180
+  form: high-temperature brazing alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Many diesel builders specify nickel-based / high-temperature brazing alloys for these assemblies
+      because they maintain joint integrity where lower-melting fillers would soften.
+    approx_offset: 169210
+  - quote: Many diesel builders specify nickel-based / high-temperature brazing alloys for these assemblies
+      because they maintain joint integrity where lower-melting fillers would soften.
+    approx_offset: 223270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0181
+  form: hydrochloric acid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: A 25% hydrochloric acid bath (heated to 140-160°F/60-70°C) will usually dissolve the most stubborn
+      flux residues.
+    approx_offset: 93254
+  - quote: A 50% hydrochloric acid solution, used cold or warm.
+    approx_offset: 94837
+  - quote: "More diluted acid can be used (10-25%) at higher temperatures (140-160°F/60-70°C.)\tA mixture\
+      \ of 1 part hydrochloric acid to 2 parts water can be used for Monel and other high nickel alloys."
+    approx_offset: 94987
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0182
+  form: hydrogen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The atmosphere (such as hydrogen, nitrogen or dissociated ammonia) completely envelops the
+      assemblies and, by excluding oxygen, prevents oxidation.
+    approx_offset: 73991
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0183
+  form: iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 16
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0184
+  form: irons
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Oxide removal from irons and steels.
+    approx_offset: 94813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0185
+  form: karat gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+  evidence:
+  - quote: Handy Flo 500 Series are a variety of flux and flux-free binders that are primarily mixed with
+      karat gold braze powders to form a paste for use in jewelry brazing.
+    approx_offset: 205335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0186
+  form: karat gold braze powders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+  evidence:
+  - quote: Handy Flo 500 Series are a variety of flux and flux-free binders that are primarily mixed with
+      karat gold braze powders to form a paste for use in jewelry brazing.
+    approx_offset: 205335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0187
+  form: lead and silver-free
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800
+      is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+    approx_offset: 22818
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800
+      is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+    approx_offset: 234082
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0188
+  form: lead or silver are not permissible
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder that can be used on ferrous and non-ferrous
+      base metals and sees most use in the electronics packaging industry or applications where lead or
+      silver are not permissible.
+    approx_offset: 198827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0189
+  form: lead-free
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'High-Performance Alloys & Portfolio: As a one-stop shop for filler metals, Lucas Milhaupt
+      offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys.'
+    approx_offset: 17588
+  - quote: 'High-Performance Alloys & Portfolio: As a one-stop shop for filler metals, Lucas Milhaupt
+      offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys.'
+    approx_offset: 228852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0190
+  form: magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0191
+  form: metallic boron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The addition of metallic boron changes white flux to black.
+    approx_offset: 71183
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0192
+  form: metallized ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: It can be used for joining metallized ceramic to metals in vacuum.
+    approx_offset: 17917
+  - quote: It can be used for joining metallized ceramic to metals in vacuum.
+    approx_offset: 23213
+  - quote: It can be used for joining metallized ceramic to metals in vacuum.
+    approx_offset: 195854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0193
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: Excellent wetting on nickel-plated substrates enables leak-tight micro-packages and RF lid
+      seals.
+    approx_offset: 23698
+  - quote: Broad Alloy Portfolio & Forms – Gold, silver, palladium, nickel-bearing and specialty aerospace
+      brazing alloys available as wire, paste, strip, rings, and custom preforms to fit your joining process
+      and design envelope.
+    approx_offset: 30483
+  - quote: Engine Components & High Temperature Applications – Gold-nickel and other high-purity filler
+      metals for assemblies exposed to sustained temps approaching or exceeding ~900°F, such as turbine
+      speed/torque sensors and hot-zone hardware.
+    approx_offset: 30746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0194
+  form: nickel silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Oxide removal from copper, brass, bronze, nickel silver and other copper alloys containing
+      high percentages of copper.
+    approx_offset: 94265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0195
+  form: nickel-based
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Many diesel builders specify nickel-based / high-temperature brazing alloys for these assemblies
+      because they maintain joint integrity where lower-melting fillers would soften.
+    approx_offset: 169195
+  - quote: Many diesel builders specify nickel-based / high-temperature brazing alloys for these assemblies
+      because they maintain joint integrity where lower-melting fillers would soften.
+    approx_offset: 223255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0196
+  form: nickel-based / high-temperature brazing alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Many diesel builders specify nickel-based / high-temperature brazing alloys for these assemblies
+      because they maintain joint integrity where lower-melting fillers would soften.
+    approx_offset: 169195
+  - quote: Many diesel builders specify nickel-based / high-temperature brazing alloys for these assemblies
+      because they maintain joint integrity where lower-melting fillers would soften.
+    approx_offset: 223255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0197
+  form: nickel-plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Excellent wetting on nickel-plated substrates enables leak-tight micro-packages and RF lid
+      seals.
+    approx_offset: 23698
+  - quote: Excellent wetting on nickel-plated substrates enables leak-tight micro-packages and RF lid
+      seals.
+    approx_offset: 234962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0198
+  form: nickel-plated substrates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Excellent wetting on nickel-plated substrates enables leak-tight micro-packages and RF lid
+      seals.
+    approx_offset: 23698
+  - quote: Excellent wetting on nickel-plated substrates enables leak-tight micro-packages and RF lid
+      seals.
+    approx_offset: 234962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0199
+  form: nitric acid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Highly oxidizing pickling solutions, such as bright dips containing nitric acid, should be
+      avoided if possible, as they attack the silver filler metal.
+    approx_offset: 93959
+  - quote: "20% hydrochloric acid, 10% nitric acid, 70% water, used at about 150°F (65°C.)\tThis pickle\
+      \ is more aggressive than the sulphuric-hydrochloric mixture listed above, and will etch both the\
+      \ steel and the filler metal."
+    approx_offset: 95511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0200
+  form: nitric dip
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: "20% sulphuric acid, 20% hydrochloric acid, 60% water, used at 170-180°F (75-80°C.)\tThis pickle\
+      \ is followed directly by a 10% nitric dip, and then a clean water rinse."
+    approx_offset: 95440
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0201
+  form: nitrogen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The atmosphere (such as hydrogen, nitrogen or dissociated ammonia) completely envelops the
+      assemblies and, by excluding oxygen, prevents oxidation.
+    approx_offset: 74001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0202
+  form: palladium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: Broad Alloy Portfolio & Forms – Gold, silver, palladium, nickel-bearing and specialty aerospace
+      brazing alloys available as wire, paste, strip, rings, and custom preforms to fit your joining process
+      and design envelope.
+    approx_offset: 30472
+  - quote: Electrical-power parts often rely on silver or palladium alloys that drive up cost.
+    approx_offset: 46121
+  - quote: To maximize corrosion-resistance of a joint, select a brazing filler metal containing such
+      elements as silver, gold or palladium, which are inherently corrosion-resistant.
+    approx_offset: 66493
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0203
+  form: phos-copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The phos-copper and silver-bearing phos-copper filler metals are different, and then only when
+      used on copper without flux.
+    approx_offset: 95873
+  - quote: The phos-copper and silver-bearing phos-copper filler metals are different, and then only when
+      used on copper without flux.
+    approx_offset: 95904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0204
+  form: phosphorous
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105550
+  - quote: Silver-Copper-Phosphorous Filler Metals(2)
+    approx_offset: 105680
+  - quote: Sil-Fos alloys combine silver (Ag), copper (Cu), and phosphorous (P) to produce consistent,
+      quality joints while saving on materials plus reducing time and process costs.
+    approx_offset: 124803
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0205
+  form: phosphorus
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9071
+  - quote: (The phosphorus in these alloys acts as a fluxing agent on copper.) You can also omit fluxing
+      if brazing occurs in a controlled atmosphere (i.e.
+    approx_offset: 73749
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 217417
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0206
+  form: potassium dichromate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 10 to 25% hot sulphuric acid with 5-10% potassium dichromate added.
+    approx_offset: 94384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0207
+  form: powders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+  evidence:
+  - quote: 'At the core are our Filler Metals: a comprehensive line of silver, aluminum, copper, nickel,
+      precious-metal, and specialized alloy forms (wire, strip, rings, preforms, and powders) engineered
+      to deliver consistent braze strength and metallurgical integrity across demanding thermal cycles.'
+    approx_offset: 113253
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113736
+  - quote: Handy Flo 300 Series are clean burning, flux-free binders that are mixed with high purity braze
+      alloy powders to form a paste for controlled atmosphere and vacuum brazing operations.
+    approx_offset: 200436
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0208
+  form: precious metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: Reliable Solutions that Protect Your Brand – Lucas Milhaupt helps optimize your brazing process
+      to reduce precious metal usage without sacrificing performance.
+    approx_offset: 42286
+  - quote: Founded more than a century ago in 1867, Handy & Harman (HNH) had long been recognized as a
+      leading company in precious metal fabrication, processing and refining.
+    approx_offset: 126105
+  - quote: Reliable Solutions that Protect Your Brand – Lucas Milhaupt helps optimize your brazing process
+      to reduce precious metal usage without sacrificing performance.
+    approx_offset: 248742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0209
+  form: precious metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0210
+  form: precious-metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: Precious-Metal Optimization Programs
+    approx_offset: 46036
+  - quote: Lucas Milhaupt’s engineers work with customers to redesign joints and select alternative chemistries,
+      trimming precious-metal content without sacrificing conductivity or reliability.
+    approx_offset: 46269
+  - quote: 'At the core are our Filler Metals: a comprehensive line of silver, aluminum, copper, nickel,
+      precious-metal, and specialized alloy forms (wire, strip, rings, preforms, and powders) engineered
+      to deliver consistent braze strength and metallurgical integrity across demanding thermal cycles.'
+    approx_offset: 113174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0211
+  form: rheology modifiers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0212
+  form: silicon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 171883
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy meant for joining of aluminum base materials.
+    approx_offset: 213496
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 225943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0213
+  form: silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 48
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9057
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 17821
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800
+      is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+    approx_offset: 22827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0214
+  form: silver-copper eutectic alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 17821
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 23117
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+    approx_offset: 195758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0215
+  form: silver-copper-phosphorus
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 9057
+  - quote: Our legacy began with the invention of Sil-Fos® – a silver-copper-phosphorus brazing alloy
+      patented in 1931 – which allows flux-free brazing of copper connections and remains a staple for
+      HVAC/R contractors .
+    approx_offset: 217403
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0216
+  form: soft solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/Resources-Library/Technical-and-Safety-Data-Sheets
+  evidence:
+  - quote: Over the next twenty years, Lucas Milhaupt began to offer copper, brass and aluminum brazing
+      preforms and soft solder forms to keep up with the demand of the electronic age.
+    approx_offset: 111016
+  - quote: 40/60 Tin-Lead Soft Solder SDS
+    approx_offset: 145813
+  - quote: 40/60 Tin-Lead Soft Solder TDS
+    approx_offset: 145844
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0217
+  form: solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16064
+  - quote: Whether for power transistors, LEDs, or integrated circuits, these solder alloys ensure a strong,
+      void-free die attach that endures thermal cycling.
+    approx_offset: 19309
+  - quote: Lucas Milhaupt alloys fulfill these needs by providing excellent thermal and electrical transfer
+      at the solder joint.
+    approx_offset: 20292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0218
+  form: solder alloy powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-800-Series.htm
+  evidence:
+  - quote: Handy Flo 800 Series are low temperature flux binders to be mixed with solder alloy powder
+      to form a paste for open air or furnace (non-vacuum) solder operations.
+    approx_offset: 206355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0219
+  form: solders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'High-Performance Alloys & Portfolio: As a one-stop shop for filler metals, Lucas Milhaupt
+      offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys.'
+    approx_offset: 17577
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 18944
+  - quote: As electronic designs shrink in size, our gold-based solders deliver the quality and consistency
+      needed for these delicate components.
+    approx_offset: 20915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0220
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The following chart is based on brazing butt joints of stainless steel, using Easy-Flo® filler
+      metal.
+    approx_offset: 56430
+  - quote: Try to use materials in your fixture that are poor heat conductors, such as stainless steel,
+      Inconel or ceramics.
+    approx_offset: 75218
+  - quote: Construct fixtures from 300-series, non-magnetic stainless steel for better corrosion resistance
+      and dimensional stability (other ideas include Inconel and some ceramics).
+    approx_offset: 78748
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0221
+  form: stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: Sensors & Instrumentation (Pitot Probes, Thermal, Pressure) – Silver-based alloys with nickel
+      additions promote wetting on stainless steels, resist interface corrosion, and produce smooth, accurate,
+      airflow-friendly joints.
+    approx_offset: 31049
+  - quote: Oxide removal from stainless steels and alloys containing chromium.
+    approx_offset: 95266
+  - quote: On stainless steels, it is possible to develop a joint whose tensile strength is 130,000 pounds
+      per square inch.
+    approx_offset: 130042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0222
+  form: steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: The following chart is based on brazing butt joints of stainless steel, using Easy-Flo® filler
+      metal.
+    approx_offset: 56440
+  - quote: As an example, let’s say you’re brazing a brass bushing into a steel sleeve.
+    approx_offset: 58404
+  - quote: Brass expands, when heated, more than steel.
+    approx_offset: 58456
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0223
+  form: steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: Sensors & Instrumentation (Pitot Probes, Thermal, Pressure) – Silver-based alloys with nickel
+      additions promote wetting on stainless steels, resist interface corrosion, and produce smooth, accurate,
+      airflow-friendly joints.
+    approx_offset: 31059
+  - quote: Will work on carbon steels, but if pickle is contaminated with copper, the copper will plate
+      out on the steel and will have to be removed mechanically, This sulphuric pickle will remove copper
+      or cuprous oxide stains from copper alloys.
+    approx_offset: 94483
+  - quote: Oxide removal from irons and steels.
+    approx_offset: 94823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0224
+  form: sulphuric
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 10 to 25% hot sulphuric acid with 5-10% potassium dichromate added.
+    approx_offset: 94358
+  - quote: Will work on carbon steels, but if pickle is contaminated with copper, the copper will plate
+      out on the steel and will have to be removed mechanically, This sulphuric pickle will remove copper
+      or cuprous oxide stains from copper alloys.
+    approx_offset: 94620
+  - quote: "20% sulphuric acid, 20% hydrochloric acid, 60% water, used at 170-180°F (75-80°C.)\tThis pickle\
+      \ is followed directly by a 10% nitric dip, and then a clean water rinse."
+    approx_offset: 95319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0225
+  form: sulphuric acid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 10 to 25% hot sulphuric acid with 5-10% potassium dichromate added.
+    approx_offset: 94358
+  - quote: "20% sulphuric acid, 20% hydrochloric acid, 60% water, used at 170-180°F (75-80°C.)\tThis pickle\
+      \ is followed directly by a 10% nitric dip, and then a clean water rinse."
+    approx_offset: 95319
+  - quote: Prolonged pickling in sulphuric acid will remove this slag, but a short pickle in 50% hydrochloric
+      acid for a few minutes is more effective.
+    approx_offset: 96104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0226
+  form: tin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: (Mechanical fastening, for example, or soft soldering or adhesive bonding.) If you are selecting
+      a method to seal the seams of tin cans, there is nothing to stop you from brazing.
+    approx_offset: 132884
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder that can be used on ferrous and non-ferrous
+      base metals and sees most use in the electronics packaging industry or applications where lead or
+      silver are not permissible.
+    approx_offset: 198673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0227
+  form: tungsten carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and
+      Silvaloy® silver-braze alloys for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper
+      and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.'
+    approx_offset: 120143
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts and wear protection
+      features for PDC and roller-cone designs to withstand impact, abrasion and high temperatures.'
+    approx_offset: 120848
+  - quote: Brazing offers a significant advantage in applications that require joining of dissimilar base
+      metals, including copper and steel as well as non-metals such as tungsten carbide, alumina, graphite
+      and diamond.
+    approx_offset: 158094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0228
+  form: vacuum tube grade filler metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: High-purity, vacuum tube grade filler metals from Lucas Milhaupt give you brazed assemblies
+      with reliability you can count on.
+    approx_offset: 41628
+  - quote: High-purity, vacuum tube grade filler metals from Lucas Milhaupt give you brazed assemblies
+      with reliability you can count on.
+    approx_offset: 248084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0229
+  form: vacuum-grade alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: This end-to-end oversight ensures the high-purity, vacuum-grade alloys and precision fabrications
+      needed for critical electrical applications.
+    approx_offset: 40944
+  - quote: This end-to-end oversight ensures the high-purity, vacuum-grade alloys and precision fabrications
+      needed for critical electrical applications.
+    approx_offset: 247400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0230
+  form: white flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The addition of metallic boron changes white flux to black.
+    approx_offset: 71206
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0231
+  form: white versus black flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Lucas Milhaupt's technical staff demonstrates the difference between white versus black flux
+      in this video.
+    approx_offset: 71684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-material_caps-0232
+  form: zinc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: We provide vacuum-grade brazing alloys free of elements like zinc or cadmium that could outgas
+      and contaminate the vacuum.
+    approx_offset: 43927
+  - quote: In brazing, there is always the possibility of dangerous fumes and gases rising from base metal
+      coatings, zinc and cadmium-bearing filler metals, and from fluorides in fluxes.
+    approx_offset: 87145
+  - quote: We provide vacuum-grade brazing alloys free of elements like zinc or cadmium that could outgas
+      and contaminate the vacuum.
+    approx_offset: 250383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

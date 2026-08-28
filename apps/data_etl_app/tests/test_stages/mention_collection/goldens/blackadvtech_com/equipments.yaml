@@ -1,0 +1,3684 @@
+subject: blackadvtech.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+golden_set_version: 1
+anchored_on: search/expectations/blackadvtech_com/equipments.yaml
+labels:
+- id: blackadvtech_com-equipments-0001
+  form: (16) TIG welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (16) TIG welders
+    approx_offset: 90040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0002
+  form: (30) MIG welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (30) MIG welders
+    approx_offset: 90023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0003
+  form: 10ft Cincinnati
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 10ft Cincinnati
+    approx_offset: 22394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0004
+  form: 10ft Niagara
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 10ft Niagara
+    approx_offset: 22416
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0005
+  form: 10′ shear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (2) 10′ shear
+    approx_offset: 72083
+  - quote: (2) 10′ shear
+    approx_offset: 89075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0006
+  form: 10′ shears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: 10′ shears
+    approx_offset: 85924
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0007
+  form: 12X30X8.5 Rohner Paint/powder coat ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – 12X30X8.5 Rohner Paint/powder coat ovens
+    approx_offset: 20325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0008
+  form: 15x10x15 Paint Booths
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 5 – 15x10x15 Paint Booths
+    approx_offset: 20195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0009
+  form: 19″ Timesavers belt sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) 19″ Timesavers belt sander
+    approx_offset: 6599
+  - quote: (1) 19″ Timesavers belt sander
+    approx_offset: 90333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0010
+  form: 2000 watt C02 6×12 laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (1) 2000 watt C02 6×12 laser
+    approx_offset: 71886
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0011
+  form: 2000-watt CO2 lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (5) 2000-watt CO2 lasers
+    approx_offset: 88723
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0012
+  form: 30″ Timesavers belt sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) 30″ Timesavers belt sander
+    approx_offset: 6568
+  - quote: (1) 30″ Timesavers belt sander
+    approx_offset: 90302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0013
+  form: 320-ton machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Lift assist arms on 320-ton machine
+    approx_offset: 86089
+  - quote: Lift assist arms on 320-ton machine
+    approx_offset: 89240
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0014
+  form: 35”x15’ 2100 Series Timesaver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 35”x15’ 2100 Series Timesaver
+    approx_offset: 21311
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0015
+  form: 38 KVA Portable/hanging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: • 4 – 38 KVA Portable/hanging
+    approx_offset: 21090
+  - quote: (4) 38 KVA portable/hanging spot welders
+    approx_offset: 90199
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0016
+  form: 4000 watt C02 5×10 laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (1) 4000 watt C02 5×10 laser
+    approx_offset: 71915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0017
+  form: 4000 watt Fiber 6×12 laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (1) 4000 watt Fiber 6×12 laser
+    approx_offset: 71944
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0018
+  form: 44-station turret
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: 44-station turret with 2 auto index stations
+    approx_offset: 85878
+  - quote: 44-station turret with 2 auto index stations
+    approx_offset: 89026
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0019
+  form: 4ft Niagara
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 4ft Niagara
+    approx_offset: 22056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0020
+  form: 4′ bending roll
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: 4′ bending roll
+    approx_offset: 86509
+  - quote: (1) 4′ bending roll
+    approx_offset: 89670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0021
+  form: 4′ roll machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: 4′ roll machine capable of rolling up to 1/4″ thick material
+    approx_offset: 84911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0022
+  form: 5 Stage Iron Phosphate Bonderiser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 5 Stage Iron Phosphate Bonderiser
+    approx_offset: 20250
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0023
+  form: 5-stage wash & phosphate coating system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) 5-stage wash & phosphate coating system
+    approx_offset: 90673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0024
+  form: 5-stage wash & phosphate powder coating system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: (2) 5-stage wash & phosphate powder coating system
+    approx_offset: 6296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0025
+  form: 6ft Cincinnati
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 6ft Cincinnati
+    approx_offset: 22435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0026
+  form: 9 SST welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: 9 SST welders
+    approx_offset: 90057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0027
+  form: 985 SKAT BLAST Cabinet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: '985 SKAT BLAST Cabinet Includes:'
+    approx_offset: 52172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0028
+  form: Aluminum up-cut
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Aluminum up-cut
+    approx_offset: 22363
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0029
+  form: Amada Coma-567 44 station 50 ton 60” X 72”
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Amada Coma-567 44 station 50 ton 60” X 72”
+    approx_offset: 19957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0030
+  form: Autosert AS-7.5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 3 – Autosert AS-7.5
+    approx_offset: 21426
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0031
+  form: Baking ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Baking ovens
+    approx_offset: 6377
+  - quote: (2) Baking ovens
+    approx_offset: 90812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0032
+  form: Batch paint/powder booths
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (5) Batch paint/powder booths
+    approx_offset: 6347
+  - quote: (5) Batch paint/powder booths
+    approx_offset: 90773
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0033
+  form: Belt sanders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Belt sanders to 14′ 0″
+    approx_offset: 6630
+  - quote: (2) Belt sanders to 14′ 0″
+    approx_offset: 90364
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0034
+  form: Belt sanders to 14′ 0″
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Belt sanders to 14′ 0″
+    approx_offset: 6630
+  - quote: (2) Belt sanders to 14′ 0″
+    approx_offset: 90364
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0035
+  form: Bonderizer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Bonderizer
+    approx_offset: 40468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0036
+  form: Bracker riveting machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Bracker riveting machines
+    approx_offset: 91009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0037
+  form: Bridgeport’s
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Bridgeport’s
+    approx_offset: 21502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0038
+  form: Buffalo Channel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Buffalo Channel
+    approx_offset: 22074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0039
+  form: C-35 Foot-Pedal-Operated Power Gun
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: C-35 Foot-Pedal-Operated Power Gun
+    approx_offset: 52261
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0040
+  form: C-35-M Power Gun
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Dual glove stations and one center-mounted C-35-M Power Gun keeps those long parts always within
+      reach.
+    approx_offset: 15895
+  - quote: Dual glove stations and one center-mounted C-35-M Power Gun keeps those long parts always within
+      reach.
+    approx_offset: 34308
+  - quote: Dual glove stations and one center-mounted C-35-M Power Gun keeps those long parts always within
+      reach.
+    approx_offset: 52110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0041
+  form: CINCINNATI CL-940
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: CINCINNATI CL-940
+    approx_offset: 35370
+  - quote: CINCINNATI CL-940
+    approx_offset: 41164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0042
+  form: CL-900
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: • 2 – Cincinnati CL-900 4000watt Fiber 6×12
+    approx_offset: 19876
+  - quote: The CL-900 Series Fiber Laser System offers high speed cutting on thinner materials and lower
+      operating costs.
+    approx_offset: 35393
+  - quote: The CL-900 control excels in this area.
+    approx_offset: 35752
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0043
+  form: CL-900 Series Fiber Laser System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: The CL-900 Series Fiber Laser System offers high speed cutting on thinner materials and lower
+      operating costs.
+    approx_offset: 35393
+  - quote: The CL-900 Series Fiber Laser System offers high speed cutting on thinner materials and lower
+      operating costs.
+    approx_offset: 41188
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0044
+  form: CNC electric press brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (1) CNC electric press brake
+    approx_offset: 72128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0045
+  form: CNC hydraulic press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (5) CNC hydraulic press brakes
+    approx_offset: 72097
+  - quote: CNC hydraulic press brakes
+    approx_offset: 85987
+  - quote: (5) CNC hydraulic press brakes
+    approx_offset: 89139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0046
+  form: CNC turret punch press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (1) CNC turret punch press 44 station 60×72 with 2 auto index stations
+    approx_offset: 72012
+  - quote: CNC turret punch press
+    approx_offset: 85748
+  - quote: (1) CNC turret punch press
+    approx_offset: 88897
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0047
+  form: Capacitive discharge stud guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 3 – Capacitive discharge stud guns
+    approx_offset: 21120
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0048
+  form: Cincinnati 230 Autoform +8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Cincinnati 230 Autoform +8
+    approx_offset: 21892
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0049
+  form: Cincinnati CL-707 2000watt C02 6×12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+  evidence:
+  - quote: Our technicians operate the Cincinnati CL-900 4000watt Fiber 6×12 with an automated March system,
+      the Cincinnati CL-707 2000watt C02 6×12, and the Mazak Optiplex 3015 4000watt C02 5×10 laser cutting
+      machine, offering the fastest cutting speeds on the market!
+    approx_offset: 120758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0050
+  form: Cincinnati CL-900 4000watt Fiber 6×12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+  evidence:
+  - quote: • 2 – Cincinnati CL-900 4000watt Fiber 6×12
+    approx_offset: 19865
+  - quote: Our technicians operate the Cincinnati CL-900 4000watt Fiber 6×12 with an automated March system,
+      the Cincinnati CL-707 2000watt C02 6×12, and the Mazak Optiplex 3015 4000watt C02 5×10 laser cutting
+      machine, offering the fastest cutting speeds on the market!
+    approx_offset: 120684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0051
+  form: Cincinnati Hydraulic Brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Cincinnati Hydraulic Brake
+    approx_offset: 21955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0052
+  form: Cincinnati Mechanical Brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 3 – Cincinnati Mechanical Brake
+    approx_offset: 21858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0053
+  form: Comaca Notcher
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Comaca Notcher
+    approx_offset: 22465
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0054
+  form: Conventional hydraulic press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (2) Conventional hydraulic press brakes
+    approx_offset: 72157
+  - quote: Conventional hydraulic press brakes
+    approx_offset: 86220
+  - quote: (2) Conventional hydraulic press brakes
+    approx_offset: 89374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0055
+  form: Darley 110 31/25
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Darley 110 31/25
+    approx_offset: 21835
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0056
+  form: Devin Arbor Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Devin Arbor Press
+    approx_offset: 21988
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0057
+  form: Doucet Stroke Sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Doucet Stroke Sander
+    approx_offset: 21284
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0058
+  form: Dragon A400 CNC tube and pipe plasma cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: The Dragon A400 CNC tube and pipe plasma cutter easily marks and engraves on tube and pipe
+      to make CAD/CAM designs a reality.
+    approx_offset: 32020
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0059
+  form: Dragon A400 Plasma Cutting Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Dragon A400 Plasma Cutting Machine
+    approx_offset: 22595
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0060
+  form: Dragon Tube and Pipe Plastma Cutting Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Dragon Tube and Pipe Plastma Cutting Machine
+    approx_offset: 31969
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0061
+  form: Fadel CNC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Fadel CNC
+    approx_offset: 21544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0062
+  form: Falls metal edge deburring machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Falls metal edge deburring machine
+    approx_offset: 6657
+  - quote: (1) Falls metal edge deburring machine
+    approx_offset: 90391
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0063
+  form: Ferracute P23 40 Ton
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Ferracute P23 40 Ton
+    approx_offset: 20006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0064
+  form: Flex Cell
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Trumpf Flex Cell 7050
+    approx_offset: 30055
+  - quote: The Flex Cell bending automation transforms your manual TruBend 7050 into the fastest bending
+      cell from TRUMPF.
+    approx_offset: 30075
+  - quote: When urgent orders are due, you can use Flex Cell to scale your production capacity for simple
+      parts in no time at all.
+    approx_offset: 30223
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0065
+  form: Frame-straightening stations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Frame-straightening stations
+    approx_offset: 90920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0066
+  form: Gema MPSI-B Powder Coat Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 5 – Gema MPSI-B Powder Coat Machine
+    approx_offset: 20157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0067
+  form: Gema Volstatic powder applicators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (8) Gema Volstatic powder applicators
+    approx_offset: 6394
+  - quote: (8) Gema Volstatic powder applicators
+    approx_offset: 90845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0068
+  form: HEM CNC vertical Band Saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – HEM CNC vertical Band Saw
+    approx_offset: 22293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0069
+  form: HEM Saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: • 1 – HEM Saw Auto Feed Programmable Jobs
+    approx_offset: 22251
+  - quote: HEM Saw VT100HLA-60 CTS
+    approx_offset: 34594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0070
+  form: HEM Saw Auto Feed Programmable Jobs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – HEM Saw Auto Feed Programmable Jobs
+    approx_offset: 22251
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0071
+  form: HEM Saw VT100HLA-60 CTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: HEM Saw VT100HLA-60 CTS
+    approx_offset: 34594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0072
+  form: HVLP Finex & Devilbliss Guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 5 – HVLP Finex & Devilbliss Guns
+    approx_offset: 20290
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0073
+  form: HVLP gun
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: This is true for painting with an HVLP gun, powder coating, and even spray paint.
+    approx_offset: 75145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0074
+  form: HVLP spray gun
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/tutorials/
+  evidence:
+  - quote: Want to know how to clean an HVLP spray gun easily?
+    approx_offset: 75384
+  - quote: You may be wondering how to clean an HVLP spray gun after you’ve gotten it all covered in paint.
+    approx_offset: 75467
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0075
+  form: Handheld Laser Welding & Cleaning Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Handheld Laser Welding & Cleaning Systems
+    approx_offset: 31025
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0076
+  form: Hobart 140
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Hobart 140
+    approx_offset: 20654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0077
+  form: IPG LightWeld 2000XR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: HANDHELD WELDER • 1 – IPG LightWeld 2000XR
+    approx_offset: 21001
+  - quote: IPG LightWeld 2000XR
+    approx_offset: 31002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0078
+  form: K.R. Wilson 3750V Arbor Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – K.R. Wilson 3750V Arbor Press
+    approx_offset: 22012
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0079
+  form: Large Bay Wash Booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Large Bay Wash Booth
+    approx_offset: 20223
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0080
+  form: Large weldment wash booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Large weldment wash booth
+    approx_offset: 6229
+  - quote: Large weldment wash booth
+    approx_offset: 90496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0081
+  form: Large weldment wet spray booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Large weldment wet spray booth
+    approx_offset: 90538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0082
+  form: Large weldment wet spray paint booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: Large weldment wet spray paint booth
+    approx_offset: 6255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0083
+  form: Large wet spray paint booth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Large wet spray paint booth can comfortably accommodate weldment
+    approx_offset: 90585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0084
+  form: LightWELD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: HANDHELD WELDER • 1 – IPG LightWeld 2000XR
+    approx_offset: 21005
+  - quote: IPG LightWeld 2000XR
+    approx_offset: 31006
+  - quote: LightWELD enables dramatically faster welding, is easier to learn and operate, and provides
+      higher-quality, consistent results across a wider range of materials and thicknesses than MIG or
+      TIG with minimal distortion, deformation, undercut or burn-through.
+    approx_offset: 31068
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0085
+  form: Lincoln Electric
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 4 – Lincoln Electric Power Wave
+    approx_offset: 20560
+  - quote: • 1 – Lincoln Electric
+    approx_offset: 20867
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0086
+  form: Lincoln Electric Power Wave
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 4 – Lincoln Electric Power Wave
+    approx_offset: 20560
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0087
+  form: Lincoln STT II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 13 – Lincoln STT II
+    approx_offset: 20522
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0088
+  form: Lincoln Square Wave
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Lincoln Square Wave
+    approx_offset: 20813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0089
+  form: MIG welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: MIG WELDERS
+    approx_offset: 20366
+  - quote: (30) MIG welders
+    approx_offset: 90028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0090
+  form: Marvel 8 Series 8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Marvel 8 Series 8
+    approx_offset: 22227
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0091
+  form: Mattison 124 Belt Sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Mattison 124 Belt Sander
+    approx_offset: 21217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0092
+  form: Mattison 138 Belt Sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Mattison 138 Belt Sander
+    approx_offset: 21186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0093
+  form: Mazak Optiplex 3015 4000watt C02 5×10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+  evidence:
+  - quote: • 1 – Mazak Optiplex 3015 4000watt C02 5×10
+    approx_offset: 19770
+  - quote: Our technicians operate the Cincinnati CL-900 4000watt Fiber 6×12 with an automated March system,
+      the Cincinnati CL-707 2000watt C02 6×12, and the Mazak Optiplex 3015 4000watt C02 5×10 laser cutting
+      machine, offering the fastest cutting speeds on the market!
+    approx_offset: 120803
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0094
+  form: Mechanical press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (3) Mechanical press brakes
+    approx_offset: 72197
+  - quote: Mechanical press brakes
+    approx_offset: 86294
+  - quote: Mechanical press brakes
+    approx_offset: 89446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0095
+  form: Mechanical punch presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Mechanical punch presses
+    approx_offset: 86457
+  - quote: (3) Mechanical punch presses
+    approx_offset: 89614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0096
+  form: Metal-Cutting Production Band Saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: A vertical, Metal-Cutting Production Band Saw
+    approx_offset: 34631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0097
+  form: Miller 252
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Miller 252
+    approx_offset: 20543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0098
+  form: Miller 351
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 7 – Miller 351
+    approx_offset: 20796
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0099
+  form: Miller 450
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Miller 450
+    approx_offset: 20594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0100
+  form: Miller Axcess 300
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Miller Axcess 300
+    approx_offset: 20611
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0101
+  form: Miller Axcess 450
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 4 – Miller Axcess 450
+    approx_offset: 20671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0102
+  form: Miller CP-302
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 5 – Miller CP-302
+    approx_offset: 20440
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0103
+  form: Miller Continuum 350
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Miller Continuum 350
+    approx_offset: 20695
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0104
+  form: Miller Deltaweld 350
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 7 – Miller Deltaweld 350
+    approx_offset: 20722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0105
+  form: Miller Dimension 400
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Miller Dimension 400
+    approx_offset: 20460
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0106
+  form: Miller Dimension 452
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 4 – Miller Dimension 452
+    approx_offset: 20413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0107
+  form: Miller Dynasty 280 DX
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 8 – Miller Dynasty 280 DX
+    approx_offset: 20921
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0108
+  form: Miller Invision 456MP Pulse
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Miller Invision 456MP Pulse
+    approx_offset: 20487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0109
+  form: Miller Millermatic 250
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Miller Millermatic 250
+    approx_offset: 20384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0110
+  form: Miller Syncrowave 350 LX
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 6 – Miller Syncrowave 350 LX
+    approx_offset: 20890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0111
+  form: Miller syncrowave 350
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 3 – Miller syncrowave 350
+    approx_offset: 20839
+  - quote: • 6 – Miller Syncrowave 350 LX
+    approx_offset: 20890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0112
+  form: Muller semi-automatic stretch machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Muller semi-automatic stretch machine
+    approx_offset: 91063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0113
+  form: Multiple laser cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: Multiple laser cutters help us reduce lead times and maximize efficiency.
+    approx_offset: 13991
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0114
+  form: Nordson Encore LT Powder Coat Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Nordson Encore LT Powder Coat Machine
+    approx_offset: 20113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0115
+  form: PMI-20 CNC Auto Miter Upcut Saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: • 1 – PMI-20 CNC Auto Miter Upcut Saw
+    approx_offset: 22325
+  - quote: PMI-20 CNC Auto Miter Upcut Saw
+    approx_offset: 31329
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31367
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0116
+  form: Pacific Hydraulic Brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Pacific Hydraulic Brake
+    approx_offset: 21925
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0117
+  form: Pandjiris 8′ bed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: SEAM WELDERS • 1 – Pandjiris 8′ bed
+    approx_offset: 20962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0118
+  form: Plasma welder-cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Plasma welder-cutters
+    approx_offset: 90173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0119
+  form: Push/pull arc weld guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (3) Push/pull arc weld guns
+    approx_offset: 90145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0120
+  form: Radial Arm Drill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Radial Arm Drill
+    approx_offset: 21521
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0121
+  form: Rousselle 300 Ton
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Rousselle 300 Ton
+    approx_offset: 20074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0122
+  form: SST welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: 9 SST welders
+    approx_offset: 90059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0123
+  form: Sciaki Spot welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Sciaki Spot welders
+    approx_offset: 21041
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0124
+  form: Sciaki spot welder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Sciaki spot welder
+    approx_offset: 89843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0125
+  form: Seam welder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Seam welder
+    approx_offset: 89759
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0126
+  form: Sebastion A-6 Lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Sebastion A-6 Lathe
+    approx_offset: 21476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0127
+  form: Series 2000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Series 2000
+    approx_offset: 21448
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0128
+  form: Sheet metal nibbler
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Sheet metal nibbler
+    approx_offset: 91039
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0129
+  form: Sheet seam-welder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Sheet seam-welder for making oversize sheets
+    approx_offset: 89701
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0130
+  form: Skat Blast 985 Abrasive Blasting Cabinet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Skat Blast 985 Abrasive Blasting Cabinet
+    approx_offset: 22536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0131
+  form: Skat Blast 985 Cabinet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: The Skat Blast 985 Cabinet is manufactured to blast long items.
+    approx_offset: 15656
+  - quote: Skat Blast 985 Cabinet
+    approx_offset: 34040
+  - quote: The Skat Blast 985 Cabinet is manufactured to blast long items.
+    approx_offset: 34068
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0132
+  form: Straight-sided mechanical presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Straight-sided mechanical presses
+    approx_offset: 86413
+  - quote: (2) Straight-sided mechanical presses
+    approx_offset: 89567
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0133
+  form: Sweco 4′ vibratory deburring machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (2) Sweco 4′ vibratory deburring machine
+    approx_offset: 6696
+  - quote: (2) Sweco 4′ vibratory deburring machine
+    approx_offset: 90430
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0134
+  form: Sweco Deburrer Mil
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Sweco Deburrer Mil
+    approx_offset: 21347
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0135
+  form: THG Automation Fronius
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: • 3 – THG Automation Fronius Robot
+    approx_offset: 20749
+  - quote: THG Automation Fronius Welding Robot
+    approx_offset: 32699
+  - quote: The THG Automation Fronius.
+    approx_offset: 40292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0136
+  form: THG Automation Fronius Robot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 3 – THG Automation Fronius Robot
+    approx_offset: 20749
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0137
+  form: THG Automation Fronius Welding Robot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: THG Automation Fronius Welding Robot
+    approx_offset: 32699
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0138
+  form: TIG welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: TIG WELDERS
+    approx_offset: 20778
+  - quote: (16) TIG welders
+    approx_offset: 90045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0139
+  form: TIMESAVERS 2100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/timesaver/
+  evidence:
+  - quote: TIMESAVERS 2100
+    approx_offset: 62829
+  - quote: Timesavers 2100 Series uses a single wide belt head in 37″ width.
+    approx_offset: 62849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0140
+  form: TPS 400i Power Source
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: TPS 400i Power Source with 1000 jobs, Teach Mode, Job Editor, and more
+    approx_offset: 32908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0141
+  form: Taylor Winfield
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: • 17 – Taylor Winfield
+    approx_offset: 21068
+  - quote: (17) Taylor Winfield spot welders ram and press types
+    approx_offset: 89940
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0142
+  form: Taylor Winfield spot welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (17) Taylor Winfield spot welders ram and press types
+    approx_offset: 89940
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0143
+  form: Taylor Winfield spot welders ram and press types
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (17) Taylor Winfield spot welders ram and press types
+    approx_offset: 89940
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0144
+  form: Timesavers 2100 Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/timesaver/
+  evidence:
+  - quote: Timesavers 2100 Series uses a single wide belt head in 37″ width.
+    approx_offset: 62849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0145
+  form: Timesavers belt sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) 30″ Timesavers belt sander
+    approx_offset: 6572
+  - quote: (1) 19″ Timesavers belt sander
+    approx_offset: 6603
+  - quote: (1) 30″ Timesavers belt sander
+    approx_offset: 90306
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0146
+  form: Toledo 40 Ton
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Toledo 40 Ton
+    approx_offset: 20054
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0147
+  form: Trmpf TruBend 2100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Trmpf TruBend 2100
+    approx_offset: 33307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0148
+  form: Trmpf TruBend 5130
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Trmpf TruBend 5130
+    approx_offset: 32356
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0149
+  form: TruBend 2100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Trmpf TruBend 2100
+    approx_offset: 33313
+  - quote: The TruBend 2100 delivers 110 US tons of pressing force and 120”
+    approx_offset: 33331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0150
+  form: TruBend 5130
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Trmpf TruBend 5130
+    approx_offset: 32362
+  - quote: The TruBend 5130 delivers 110 US tons of pressing force and 127”
+    approx_offset: 32380
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0151
+  form: TruDisk solid-state laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: The TruDisk solid-state laser enables the processing of non-ferrous metals and provides you
+      with a productivity benefit in thick and thin sheet.
+    approx_offset: 30692
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0152
+  form: Trumpf 6×12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf 6×12
+    approx_offset: 19847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0153
+  form: Trumpf Flex Cell 7050
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Trumpf Flex Cell 7050
+    approx_offset: 30048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0154
+  form: Trumpf TruBend 7036
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Trumpf TruBend 7036
+    approx_offset: 34965
+  - quote: Introducing the Trumpf TruBend 7036
+    approx_offset: 41933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0155
+  form: Trumpf TruBend 7050
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf TruBend 7050
+    approx_offset: 21809
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0156
+  form: Trumpf TruBend v130
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf TruBend v130
+    approx_offset: 21568
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0157
+  form: Trumpf TruBend v170
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Trumpf TruBend v170
+    approx_offset: 21594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0158
+  form: Trumpf TruBend v2100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf TruBend v2100
+    approx_offset: 21673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0159
+  form: Trumpf TruBend v3170
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf TruBend v3170
+    approx_offset: 21782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0160
+  form: Trumpf TruBend v320
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf TruBend v320
+    approx_offset: 21620
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0161
+  form: Trumpf TruBend v5130
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf TruBend v5130
+    approx_offset: 21727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0162
+  form: Trumpf TruBend v5320
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Trumpf TruBend v5320
+    approx_offset: 21700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0163
+  form: Trumpf TruBend v7036
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Trumpf TruBend v7036
+    approx_offset: 21646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0164
+  form: Trumpf TruLaser 3040 Fiber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: • 1 – Trumpf TruLaser 3040 Fiber
+    approx_offset: 19814
+  - quote: Trumpf TruLaser 3040 Fiber
+    approx_offset: 30614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0165
+  form: Trumpf Trubend 7036
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: New to the family the Trumpf Trubend 7036.
+    approx_offset: 35008
+  - quote: New to the family the Trumpf Trubend 7036.
+    approx_offset: 41976
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0166
+  form: Trumpf TrueBend V5100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Trumpf TrueBend V5100
+    approx_offset: 21754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0167
+  form: UR10e
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Each system includes the Universal Robots UR10e 12.5 kg payload robot with the THG Automation
+      interface software, which includes all the features listed above.
+    approx_offset: 33088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0168
+  form: Universal Robots UR10e
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Each system includes the Universal Robots UR10e 12.5 kg payload robot with the THG Automation
+      interface software, which includes all the features listed above.
+    approx_offset: 33071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0169
+  form: Verson 300 Ton
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Verson 300 Ton
+    approx_offset: 20033
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0170
+  form: Weld Passivation Wand Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 2 – Weld Passivation Wand Systems
+    approx_offset: 21372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0171
+  form: Weldmark 140
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Weldmark 140
+    approx_offset: 20635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0172
+  form: XSHARP™ GRINDER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: XSHARP™ GRINDER
+    approx_offset: 23253
+  - quote: XSHARP™ GRINDER
+    approx_offset: 92839
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0173
+  form: XSharp
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Tool sharpening is fast, simple and precise with Wilson Tool International’s XSharp grinder.
+    approx_offset: 15493
+  - quote: The operator simply enters the tool style, size and grind amount into the touchscreen interface
+      and XSharp™ takes it from there.
+    approx_offset: 15609
+  - quote: • 1 – Xsharp Grinder
+    approx_offset: 22502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0174
+  form: XSharp Grinder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: XSHARP GRINDER
+    approx_offset: 36211
+  - quote: The XSharp Grinder is a tool sharpener that is fast, simple and precise.
+    approx_offset: 36231
+  - quote: Tool Sharpening with the XSharp Grinder
+    approx_offset: 41702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0175
+  form: XSharp Tool Grinder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Recently acquired the XSharp Tool Grinder makes it possible for us to keep our tools in the
+      best condition possible.
+    approx_offset: 41740
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0176
+  form: XSharp grinder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Tool sharpening is fast, simple and precise with Wilson Tool International’s XSharp grinder.
+    approx_offset: 15493
+  - quote: Tool sharpening is fast, simple and precise with Wilson Tool International’s XSharp grinder.
+    approx_offset: 23347
+  - quote: Tool sharpening is fast, simple and precise with Wilson Tool International’s XSharp grinder.
+    approx_offset: 92933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0177
+  form: Xsharp Grinder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – Xsharp Grinder
+    approx_offset: 22502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0178
+  form: bonderizer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Blackstone Advanced Technologies (early 2022) invested in a new state of the art technology
+      bonderizer to coat (steel) with an anticorrosive phosphate solution, in preparation for the application
+      of paint, enamel, or lacquer.
+    approx_offset: 40573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0179
+  form: cobots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Additionally, collaborative robots (cobots) are becoming more prevalent in welding applications.
+    approx_offset: 139640
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0180
+  form: collaborative robots (cobots)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Additionally, collaborative robots (cobots) are becoming more prevalent in welding applications.
+    approx_offset: 139618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0181
+  form: electrostatic spray guns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: 'High Initial Investment: Setting up a powder coating operation requires specialized equipment,
+      such as spray booths, curing ovens, and electrostatic spray guns.'
+    approx_offset: 124817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0182
+  form: electrostatic spray system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: 'Powder Application: The powder is applied to the surface using a specialized spray gun or
+      an electrostatic spray system.'
+    approx_offset: 122165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0183
+  form: laser cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: Multiple laser cutters help us reduce lead times and maximize efficiency.
+    approx_offset: 14000
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0184
+  form: laser machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Our laser machines use CNC to laser cut a programmed pattern into your material.
+    approx_offset: 64692
+  - quote: Our laser machines guarantee a high-quality surface finish.
+    approx_offset: 64848
+  - quote: Our laser machines use CNC to laser cut a programmed pattern into your material.
+    approx_offset: 66110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0185
+  form: metal inert gas (MIG) machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: If you want a welding design with a smooth finish, opt for a metal inert gas (MIG) machine.
+    approx_offset: 10576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0186
+  form: mobile robot cell
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: Simply connect the mobile robot cell to your bending machine.
+    approx_offset: 30445
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0187
+  form: oxyacetylene torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: This process is performed using an oxyacetylene torch.
+    approx_offset: 146382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0188
+  form: plasma arc torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: In this process, the plasma arc torch has two electrodes, a rear and a front one.
+    approx_offset: 189557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0189
+  form: powered shears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: You can cut sheet metal in different ways while using tools such as snips or even powered shears.
+    approx_offset: 227906
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0190
+  form: punch press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: Sharp tools also assist in minimizing tonnage to save on punch press wear and tear.
+    approx_offset: 24096
+  - quote: With a flexible range of chucks and adapters, the XSharp can be used to sharpen all punch press
+      tooling styles.
+    approx_offset: 24291
+  - quote: A small footprint is placed next to the our punch press.
+    approx_offset: 25333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0191
+  form: punch presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+  evidence:
+  - quote: Mechanical punch presses
+    approx_offset: 86468
+  - quote: (3) Mechanical punch presses
+    approx_offset: 89625
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0192
+  form: robotic arm
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Smooth welding precision automated by a robotic arm.
+    approx_offset: 40409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0193
+  form: robotic arms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: At its core, robotic welding involves the use of robotic arms equipped with welding equipment
+      to perform tasks traditionally done by human welders.
+    approx_offset: 134235
+  - quote: Robotic arms have become an integral part of car assembly lines, where they perform tasks such
+      as spot welding, seam welding, and MIG welding.
+    approx_offset: 136977
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0194
+  form: rollers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: 'Easy Application: Wet paint can be easily applied using various methods, such as brushes,
+      rollers, or spray guns.'
+    approx_offset: 127242
+  - quote: In the mills, rollers are used to reduce the metal thickness while at the same time, extending
+      its overall length, to achieve roughly the final thickness.
+    approx_offset: 205794
+  - quote: Cold rolling is a metal forming process where a stock or sheet metal is compressed and squeezed
+      between rollers at temperatures below the recrystallization level.
+    approx_offset: 239933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0195
+  form: seam-welder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: (1) Sheet seam-welder for making oversize sheets
+    approx_offset: 89707
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0196
+  form: specialized spray gun
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: 'Powder Application: The powder is applied to the surface using a specialized spray gun or
+      an electrostatic spray system.'
+    approx_offset: 122137
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0197
+  form: top-of-the-line robotic equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+  evidence:
+  - quote: High repeatability — our top-of-the-line robotic equipment makes the process a breeze
+    approx_offset: 5645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0198
+  form: turret punch press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: (1) CNC turret punch press 44 station 60×72 with 2 auto index stations
+    approx_offset: 72016
+  - quote: CNC turret punch press
+    approx_offset: 85752
+  - quote: (1) CNC turret punch press
+    approx_offset: 88901
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0199
+  form: upcut miter saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0200
+  form: welding robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: We also have added welding robots added to Blackstone Advanced Technologies.
+    approx_offset: 11573
+  - quote: With welding robots taking over the most hazardous parts of the job, workers can focus on supervising
+      the process or handling more complex tasks, improving overall workplace safety.
+    approx_offset: 135816
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-equipments-0201
+  form: work rolls
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: Quarter buckling occurs due to stress in the metal sheet caused by non-parabolic bending of
+      the work rolls.
+    approx_offset: 242109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

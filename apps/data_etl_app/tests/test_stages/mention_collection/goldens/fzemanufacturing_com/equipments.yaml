@@ -1,0 +1,2296 @@
+subject: fzemanufacturing.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+golden_set_version: 1
+anchored_on: search/expectations/fzemanufacturing_com/equipments.yaml
+labels:
+- id: fzemanufacturing_com-equipments-0001
+  form: 820V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -OKK 820V
+    approx_offset: 110945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0002
+  form: Abrasive Polishing Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Abrasive Polishing Equipment
+    approx_offset: 112028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0003
+  form: Autosaws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) CNC 12” Autosaws
+    approx_offset: 111854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0004
+  form: BEAMER FIBER LASER ETCHER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: BEAMER FIBER LASER ETCHER
+    approx_offset: 112696
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0005
+  form: Bar Feed Lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Bar Feed Lathes & Swiss T/C
+    approx_offset: 109529
+  - quote: Using CNC Bar Feed Lathes, Swiss Bar Feed Turning Centers, CAM programming services, and reverse
+      engineering capabilities, the professional staff at FZE can manufacture custom shaft machining components
+      for numerous applications.
+    approx_offset: 165457
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0006
+  form: Beamer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Beamer Fiber Marking Laser
+    approx_offset: 111735
+  - quote: BEAMER FIBER LASER ETCHER
+    approx_offset: 112696
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0007
+  form: Beamer Fiber Marking Laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Beamer Fiber Marking Laser
+    approx_offset: 111735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0008
+  form: CNC 12” Autosaws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) CNC 12” Autosaws
+    approx_offset: 111846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0009
+  form: CNC Bar Feed Lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Using CNC Bar Feed Lathes, Swiss Bar Feed Turning Centers, CAM programming services, and reverse
+      engineering capabilities, the professional staff at FZE can manufacture custom shaft machining components
+      for numerous applications.
+    approx_offset: 165453
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0010
+  form: CNC HMC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: CNC HMC & VMC Machining
+    approx_offset: 331
+  - quote: CNC HMC & VMC Machining
+    approx_offset: 355
+  - quote: FZE’s precision equipment consists of CNC HMC’s, VMC’s, Lathes and Swiss machines enabling
+      us to perform a diverse range of machining processes including turning, milling, drilling, boring,
+      tapping, reaming, thread milling, cylindrical grinding, burnishing and polishing.
+    approx_offset: 6408
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0011
+  form: CNC Turning Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: FZE Manufacturing Solutions harnesses barfed CNC Turning Centers as well as CNC Swiss Machining
+      to achieve unparalleled accuracy in creating custom and/or specialized fasteners and fittings.
+    approx_offset: 19632
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0012
+  form: CNC lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: CNC Lathes
+    approx_offset: 111475
+  - quote: Lathes: CNC lathes rotate the workpiece against stationary drills or lateral stationary cutting
+      tools, which progressively remove material from the workpiece to shape it into the desired finished
+      geometry.
+    approx_offset: 217509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0013
+  form: CNC milling machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+  evidence:
+  - quote: Milling Machines: CNC milling machines use rotary cutting tools mounted on multiple axes to
+      remove or drill and mill material from the workpiece to sculpt and shape raw material into the desired
+      finished geometry.
+    approx_offset: 217725
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0014
+  form: CNC press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: CNC press brakes are simple and quick to program with offline software.
+    approx_offset: 136275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0015
+  form: Cylindrical Grinder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Cylindrical Grinder 12” Dia x 40”CC
+    approx_offset: 111863
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0016
+  form: DOOSAN NHP5000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -DOOSAN NHP5000
+    approx_offset: 109439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0017
+  form: DOOSAN TT18000SY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: DOOSAN TT18000SY
+    approx_offset: 112293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0018
+  form: DVC500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Daewoo DVC500
+    approx_offset: 111010
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0019
+  form: Daewoo DVC500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Daewoo DVC500
+    approx_offset: 111003
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0020
+  form: Daewoo Lynx 200
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Daewoo Lynx 200
+    approx_offset: 111574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0021
+  form: Daewoo Puma 12S
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Daewoo Puma 12S
+    approx_offset: 111530
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0022
+  form: Daewoo Puma 230 MSB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Daewoo Puma 230 MSB
+    approx_offset: 109650
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0023
+  form: Daewoo Puma 300 MSB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Daewoo Puma 300 MSB
+    approx_offset: 109559
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0024
+  form: Doosan Puma2600SY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/videos/
+  evidence:
+  - quote: FZE – Doosan M1013 Cobot tending Doosan Puma2600SY
+    approx_offset: 117929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0025
+  form: Doosan Puma2600YB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Doosan Puma2600YB
+    approx_offset: 109741
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0026
+  form: Doosan Puma400
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Doosan Puma400
+    approx_offset: 111487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0027
+  form: Doosan TT1800SY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Doosan TT1800SY
+    approx_offset: 109849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0028
+  form: Drill Presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Knee Mills, Drill Presses
+    approx_offset: 112013
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0029
+  form: Drill presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: 'Drill presses: Drill presses are utilized to create holes in materials like or metal to insert
+      fasteners into them.'
+    approx_offset: 121167
+  - quote: 'Drill presses: Drill presses are utilized to create holes in materials like or metal to insert
+      fasteners into them.'
+    approx_offset: 121182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0030
+  form: Electric Stress Relieving Oven
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Electric Stress Relieving Oven
+    approx_offset: 111969
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0031
+  form: Electropolish Tank
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Electropolish Tank
+    approx_offset: 112676
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0032
+  form: Fiber lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Click To Enlarge Among several major applications of lasers in today’s modern world, the use
+      of fiber lasers is one of the most popular and reliable.
+    approx_offset: 61183
+  - quote: Fiber lasers (1070 nm wavelength) are very similar to solid-state systems, but they utilize
+      rare earth elements as their light amplification medium.
+    approx_offset: 176594
+  - quote: Erbium and Ytterbium are the most commonly used elements for fiber lasers.
+    approx_offset: 176804
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0033
+  form: Gas lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Gas lasers (10600 nm wavelength) utilize gas as a medium to amplify light.
+    approx_offset: 175616
+  - quote: Manufacturers commonly use CO2 gas lasers for a range of processes because they are generally
+      affordable and work well with organic materials.
+    approx_offset: 175722
+  - quote: Gas lasers.
+    approx_offset: 232983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0034
+  form: HANHWA XD32/38II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: HANHWA XD32/38II
+    approx_offset: 112471
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0035
+  form: HI-EC031
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Hwacheon HI-EC031
+    approx_offset: 111675
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0036
+  form: HM600
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -OKK HM600
+    approx_offset: 109273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0037
+  form: HM80
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -OKK HM80
+    approx_offset: 109359
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0038
+  form: Haas MDC-500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Haas MDC-500
+    approx_offset: 111166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0039
+  form: Haas SL30
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: (3) Haas SL30 & SL20
+    approx_offset: 111621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0040
+  form: Haas SL30 & SL20
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: (3) Haas SL30 & SL20
+    approx_offset: 111621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0041
+  form: Haas VF3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(6) Haas VF3
+    approx_offset: 111096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0042
+  form: Haas VF5/40
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Haas VF5/40
+    approx_offset: 111402
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0043
+  form: Haas VM3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Haas VM3
+    approx_offset: 111248
+  - quote: Haas VM3
+    approx_offset: 112207
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0044
+  form: Haas VM4SS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Haas VM4SS
+    approx_offset: 111324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0045
+  form: Hanwa ML20HP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwa ML20HP
+    approx_offset: 110361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0046
+  form: Hanwa ML26HP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Hanwa ML26HP
+    approx_offset: 110322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0047
+  form: Hanwa ML32HP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwa ML32HP
+    approx_offset: 110279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0048
+  form: Hanwha XD26II-V(B)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwha XD26II-V(B)
+    approx_offset: 110126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0049
+  form: Hanwha XD32/38II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwha XD32/38II
+    approx_offset: 109974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0050
+  form: Horizontal Broach
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0051
+  form: Horizontal Broaches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(3) Horizontal Broaches
+    approx_offset: 111925
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0052
+  form: Horizontal Machining Center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Horizontal Machining Center
+    approx_offset: 109239
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0053
+  form: Hwacheon HI-EC031
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Hwacheon HI-EC031
+    approx_offset: 111666
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0054
+  form: Knee Mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Knee Mills, Drill Presses
+    approx_offset: 112001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0055
+  form: Laser marking machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Laser marking machines commonly utilize gas, solid-state, and/or fiber technology.
+    approx_offset: 174366
+  - quote: Compared to other forms of laser marking, fiber laser marking machines are both smaller and
+      lighter, making them easier to integrate into existing production lines and facilities.
+    approx_offset: 255136
+  - quote: Fiber laser marking machines can work with a huge range of fiber laser materials, including
+      plastic, metal, ceramic, polymers, silicon, gemstones and many others.
+    approx_offset: 255400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0056
+  form: Lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: FZE’s precision equipment consists of CNC HMC’s, VMC’s, Lathes and Swiss machines enabling
+      us to perform a diverse range of machining processes including turning, milling, drilling, boring,
+      tapping, reaming, thread milling, cylindrical grinding, burnishing and polishing.
+    approx_offset: 6426
+  - quote: Bar Feed Lathes & Swiss T/C
+    approx_offset: 109538
+  - quote: CNC Lathes
+    approx_offset: 111479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0057
+  form: Lynx 200
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Daewoo Lynx 200
+    approx_offset: 111581
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0058
+  form: MDC-500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Haas MDC-500
+    approx_offset: 111171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0059
+  form: MIG welding machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: A dedicated MIG welding machine typically supplies the feed wire, shielding gas, and power
+      to expedite the process.
+    approx_offset: 146883
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0060
+  form: ML20HP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwa ML20HP
+    approx_offset: 110367
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0061
+  form: ML26HP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Hanwa ML26HP
+    approx_offset: 110328
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0062
+  form: ML32HP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwa ML32HP
+    approx_offset: 110285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0063
+  form: Machining Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/equipment/
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+  evidence:
+  - quote: Machining Centers – Horizontal & Vertical
+    approx_offset: 8310
+  - quote: Vertical Machining Centers
+    approx_offset: 110921
+  - quote: Our advanced CNC HMC & VMC Machining centers are where precision begins.
+    approx_offset: 123190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0064
+  form: Miller Welding Cobot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/videos/
+  evidence:
+  - quote: Miller Welding Cobot
+    approx_offset: 117645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0065
+  form: Milling machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: 'Milling machines: Milling machines shape metals by removing excess material from the surface.'
+    approx_offset: 121072
+  - quote: 'Milling machines: Milling machines shape metals by removing excess material from the surface.'
+    approx_offset: 121090
+  - quote: Milling Machines: CNC milling machines use rotary cutting tools mounted on multiple axes to
+      remove or drill and mill material from the workpiece to sculpt and shape raw material into the desired
+      finished geometry.
+    approx_offset: 217707
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0066
+  form: NHP5000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -DOOSAN NHP5000
+    approx_offset: 109446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0067
+  form: NN32YB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Nomura NN32YB
+    approx_offset: 110540
+  - quote: NOMURA NN32YB
+    approx_offset: 112390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0068
+  form: NOMURA NN32YB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: NOMURA NN32YB
+    approx_offset: 112383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0069
+  form: Nakamura WT-150
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Nakamura WT-150
+    approx_offset: 110600
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0070
+  form: Nomura NN32YB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Nomura NN32YB
+    approx_offset: 110533
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0071
+  form: OKK 820V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -OKK 820V
+    approx_offset: 110941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0072
+  form: OKK HM600
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -OKK HM600
+    approx_offset: 109269
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0073
+  form: OKK HM80
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -OKK HM80
+    approx_offset: 109355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0074
+  form: Passivation Tank
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Passivation Tank
+    approx_offset: 112659
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0075
+  form: Press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: 'Bending: Press brakes and similar devices are used to weld or air-bend metal sheets in modern
+      metal manufacturing.'
+    approx_offset: 136050
+  - quote: CNC press brakes are simple and quick to program with offline software.
+    approx_offset: 136279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0076
+  form: Puma 12S
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Daewoo Puma 12S
+    approx_offset: 111537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0077
+  form: Puma 230 MSB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Daewoo Puma 230 MSB
+    approx_offset: 109657
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0078
+  form: Puma 300 MSB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Daewoo Puma 300 MSB
+    approx_offset: 109566
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0079
+  form: Puma2600YB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Doosan Puma2600YB
+    approx_offset: 109748
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0080
+  form: Puma400
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Doosan Puma400
+    approx_offset: 111494
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0081
+  form: SL20
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: (3) Haas SL30 & SL20
+    approx_offset: 111633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0082
+  form: SL30
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: (3) Haas SL30 & SL20
+    approx_offset: 111626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0083
+  form: SST Electro-Polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -SST Electro-Polishing
+    approx_offset: 111785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0084
+  form: SST Finishing Lines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: SST Finishing Lines
+    approx_offset: 111763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0085
+  form: SST Passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -SST Passivation
+    approx_offset: 111809
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0086
+  form: Solid-state lasers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Solid-state lasers (1060 nm wavelength) utilize crystal as an amplification channel, in association
+      with a laser diode or discharge lamp.
+    approx_offset: 176100
+  - quote: Nd:YAG and Vanadate are two of the most common crystal types used for solid-state lasers.
+    approx_offset: 176308
+  - quote: However, solid-state lasers typically incur higher costs in the form of maintenance and replacement
+      for mirrors and pumps.
+    approx_offset: 176438
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0087
+  form: Stress Relieving Oven
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Electric Stress Relieving Oven
+    approx_offset: 111978
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0088
+  form: Swiss Bar Feed Turning Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Using CNC Bar Feed Lathes, Swiss Bar Feed Turning Centers, CAM programming services, and reverse
+      engineering capabilities, the professional staff at FZE can manufacture custom shaft machining components
+      for numerous applications.
+    approx_offset: 165474
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0089
+  form: Swiss CNC machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+  evidence:
+  - quote: What is a Swiss CNC Machine?
+    approx_offset: 102123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0090
+  form: Swiss Lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Swiss Lathe – Engine/CNC
+    approx_offset: 105059
+  - quote: 32 mm Swiss Lathe
+    approx_offset: 110555
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0091
+  form: Swiss Turning Center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: 7 Axis Swiss Turning Center
+    approx_offset: 110023
+  - quote: 8 Axis Swiss Turning Center
+    approx_offset: 110176
+  - quote: 6 Axis Swiss Turning Center
+    approx_offset: 110427
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0092
+  form: Swiss automatic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+  evidence:
+  - quote: It’s also known as a Swiss automatic or Swiss-type lathe, and it can machine fabricate small
+      parts accurately and at high speed.
+    approx_offset: 102253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0093
+  form: Swiss machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/industries-served/pneumatics-industry/
+  evidence:
+  - quote: FZE’s precision equipment consists of CNC HMC’s, VMC’s, Lathes and Swiss machines enabling
+      us to perform a diverse range of machining processes including turning, milling, drilling, boring,
+      tapping, reaming, thread milling, cylindrical grinding, burnishing and polishing.
+    approx_offset: 6437
+  - quote: But since the workpiece is firmly supported throughout the operation, swiss machines can effectively
+      machine intricate details on complex parts.
+    approx_offset: 103966
+  - quote: Our CNC Swiss machines can handle materials like stainless steel, carbon steel, aluminum, and
+      plastic, allowing for the efficient production of both simple and intricate components used in pneumatic
+      systems.
+    approx_offset: 157182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0094
+  form: Swiss screw machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+  evidence:
+  - quote: Since the majority of Swiss screw machines are run by CNC automation, providers must demonstrate
+      expertise in fabrication through computer-model designs and prototypes, offer design assistance,
+      and provide supplemental services that assist the customer in choosing the best material and the
+      proper ma
+    approx_offset: 207219
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0095
+  form: Swiss-type lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+  evidence:
+  - quote: It’s also known as a Swiss automatic or Swiss-type lathe, and it can machine fabricate small
+      parts accurately and at high speed.
+    approx_offset: 102272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0096
+  form: TT18000SY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: DOOSAN TT18000SY
+    approx_offset: 112300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0097
+  form: TT1800SY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(2) Doosan TT1800SY
+    approx_offset: 109856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0098
+  form: VF3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(6) Haas VF3
+    approx_offset: 111101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0099
+  form: VF5/40
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Haas VF5/40
+    approx_offset: 111407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0100
+  form: VM3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Haas VM3
+    approx_offset: 111253
+  - quote: Haas VM3
+    approx_offset: 112212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0101
+  form: VM4SS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Haas VM4SS
+    approx_offset: 111329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0102
+  form: VMCs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+  evidence:
+  - quote: VMC machining refers to machining operations that utilize vertical machining centers (VMCs),
+      which, as the name suggests, have vertically oriented cutting tools.
+    approx_offset: 226506
+  - quote: VMCs are particularly suited for manufacturing complex parts with detailed features and are
+      widely used in industries such as automotive and aerospace.
+    approx_offset: 228086
+  - quote: The simple structure of VMCs makes it easy to clamp the workpiece in the necessary flat position.
+    approx_offset: 228576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0103
+  form: Vertical Broach
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -(1) Vertical Broach
+    approx_offset: 111904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0104
+  form: Vertical Machining Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Vertical Machining Centers
+    approx_offset: 110912
+  - quote: Able to make parts faster than vertical machining centers
+    approx_offset: 129981
+  - quote: VMC machining refers to machining operations that utilize vertical machining centers (VMCs),
+      which, as the name suggests, have vertically oriented cutting tools.
+    approx_offset: 226478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0105
+  form: WT-150
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: Nakamura WT-150
+    approx_offset: 110609
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0106
+  form: XD26II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwha XD26II-V(B)
+    approx_offset: 110133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0107
+  form: XD26II-V(B)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwha XD26II-V(B)
+    approx_offset: 110133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0108
+  form: XD32/38II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Hanwha XD32/38II
+    approx_offset: 109981
+  - quote: HANHWA XD32/38II
+    approx_offset: 112478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0109
+  form: computer-controlled cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: 'Cutting: There are several types of cutting methods, including sawing, laser cutting, punching,
+      chiseling and torching, as well as computer-controlled cutters.'
+    approx_offset: 136012
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0110
+  form: drill presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 3
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0111
+  form: fiber laser marking machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Compared to other forms of laser marking, fiber laser marking machines are both smaller and
+      lighter, making them easier to integrate into existing production lines and facilities.
+    approx_offset: 255130
+  - quote: Fiber laser marking machines can work with a huge range of fiber laser materials, including
+      plastic, metal, ceramic, polymers, silicon, gemstones and many others.
+    approx_offset: 255394
+  - quote: Due to their lower heat output, smaller design and limited maintenance needs, fiber laser marking
+      machines are more cost-efficient compared to other types of lasers.
+    approx_offset: 255782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0112
+  form: horizontal machining center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+  evidence:
+  - quote: A CNC horizontal machining center has a
+    approx_offset: 129059
+  - quote: Furthermore, the horizontal machining center design saves time since you don’t need to adjust
+      the angles and orientations.
+    approx_offset: 129312
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0113
+  form: laser machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: For those just learning about this process, fiber laser marking involves an impression left
+      on items using a laser machine that extracts concentrated energy from light, converting it into
+      a laser beam.
+    approx_offset: 254177
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0114
+  form: laser marking systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: 'There are multiple benefits that come from using laser marking systems, including:'
+    approx_offset: 174499
+  - quote: Types of Laser Marking Systems
+    approx_offset: 175395
+  - quote: These laser marking systems are well-suited for small surface areas and fast, repetitive operations.
+    approx_offset: 176334
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0115
+  form: milling machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+  evidence:
+  - quote: A vertical machining center offers CNC vertical milling machines that are equipped with vertical
+      spindles.
+    approx_offset: 128459
+  - quote: Milling Machines: CNC milling machines use rotary cutting tools mounted on multiple axes to
+      remove or drill and mill material from the workpiece to sculpt and shape raw material into the desired
+      finished geometry.
+    approx_offset: 217729
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0116
+  form: mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/equipment/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: During stainless steel production, mills add sulfur to the stainless steel to make it easier
+      to form and machine.
+    approx_offset: 87004
+  - quote: -Knee Mills, Drill Presses
+    approx_offset: 112006
+  - quote: In metalworking applications, drills, mills, and taps create holes in materials such as steel
+      and aluminum.
+    approx_offset: 119814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0117
+  form: press brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0118
+  form: routers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+  evidence:
+  - quote: It includes various types of machines, including lathes, mills, routers, and grinders, each
+      capable of performing different tasks such as cutting, drilling, and face milling.
+    approx_offset: 227465
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0119
+  form: swiss CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+  evidence:
+  - quote: Our swiss CNC machines can produce your most desired components and parts.
+    approx_offset: 101788
+  - quote: 'Quick turnaround: Swiss CNC machines are known for their quick turnarounds due to their fast-paced
+      nature.'
+    approx_offset: 103604
+  - quote: FZE Manufacturing offers exceptional manufacturing services with our excellent swiss CNC machines.
+    approx_offset: 104384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0120
+  form: turning machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: 'This type of CNC machining uses specially designed turning machines equipped with CNC technology
+      and up to 8-axis capabilities to create intricate parts and components from many different raw materials,
+      including:'
+    approx_offset: 76517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0121
+  form: vertical machining center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+  evidence:
+  - quote: A vertical machining center offers CNC vertical milling machines that are equipped with vertical
+      spindles.
+    approx_offset: 128413
+  - quote: Our CNC vertical machining center can handle different operations, such as drilling, boring,
+      milling, and many other processes, to achieve your desired results.
+    approx_offset: 128527
+  - quote: CNC (Computer Numerical Control) and VMC (Vertical Machining Center) represent different aspects
+      of machining technology.
+    approx_offset: 227214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0122
+  form: vertical machining centers (VMCs)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+  evidence:
+  - quote: VMC machining refers to machining operations that utilize vertical machining centers (VMCs),
+      which, as the name suggests, have vertically oriented cutting tools.
+    approx_offset: 226478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0123
+  form: vertical milling machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+  evidence:
+  - quote: A vertical machining center offers CNC vertical milling machines that are equipped with vertical
+      spindles.
+    approx_offset: 128450
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-equipments-0124
+  form: welding equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: In FCA welding, the electrode is continuously fed from a continuous power source of constant
+      voltage and the welding equipment.
+    approx_offset: 35708
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

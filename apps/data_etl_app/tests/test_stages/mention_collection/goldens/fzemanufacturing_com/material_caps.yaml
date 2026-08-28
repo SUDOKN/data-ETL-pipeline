@@ -1,0 +1,3534 @@
+subject: fzemanufacturing.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+golden_set_version: 1
+anchored_on: search/expectations/fzemanufacturing_com/material_caps.yaml
+labels:
+- id: fzemanufacturing_com-material_caps-0001
+  form: ABS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 9369
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 106142
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 132212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0002
+  form: ABS (Acrylonitrile Butadiene Styrene)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 9369
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 106142
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 132212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0003
+  form: Acetal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Acetal
+    approx_offset: 9407
+  - quote: Acetal
+    approx_offset: 106180
+  - quote: Acetal
+    approx_offset: 132250
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0004
+  form: Acrylic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Acrylic
+    approx_offset: 9414
+  - quote: Acrylic
+    approx_offset: 106187
+  - quote: Acrylic
+    approx_offset: 132257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0005
+  form: Acrylonitrile Butadiene Styrene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 9374
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 106147
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 132217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0006
+  form: Alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Alloy steel
+    approx_offset: 151936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0007
+  form: Alloy, Plain Carbon & Tool Steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Alloy, Plain Carbon & Tool Steels
+    approx_offset: 9037
+  - quote: Alloy, Plain Carbon & Tool Steels
+    approx_offset: 105800
+  - quote: Alloy, Plain Carbon & Tool Steels
+    approx_offset: 131880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0008
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Aluminum
+    approx_offset: 9071
+  - quote: Aluminum
+    approx_offset: 38781
+  - quote: Mild Steel and/or Aluminum frames used in professional turf care
+    approx_offset: 49222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0009
+  form: Aluminum alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: A range of Aluminum alloys
+    approx_offset: 178138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0010
+  form: Beryllium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Beryllium
+    approx_offset: 151840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0011
+  form: Brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Brass
+    approx_offset: 9080
+  - quote: Brass & Bronze
+    approx_offset: 76731
+  - quote: Brass
+    approx_offset: 105843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0012
+  form: Bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Bronze Alloys
+    approx_offset: 9086
+  - quote: Brass & Bronze
+    approx_offset: 76739
+  - quote: Bronze Alloys
+    approx_offset: 105849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0013
+  form: Bronze Alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Bronze Alloys
+    approx_offset: 9086
+  - quote: Bronze Alloys
+    approx_offset: 105849
+  - quote: Bronze Alloys
+    approx_offset: 131929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0014
+  form: Carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Carbide
+    approx_offset: 9100
+  - quote: Carbide
+    approx_offset: 105863
+  - quote: Carbide
+    approx_offset: 131943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0015
+  form: Carbon and Alloy Steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Carbon and Alloy Steels
+    approx_offset: 76698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0016
+  form: Ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Ceramic
+    approx_offset: 9746
+  - quote: Ceramic
+    approx_offset: 106519
+  - quote: Ceramic
+    approx_offset: 132589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0017
+  form: Citric Acid Bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: Citric Acid Bath
+    approx_offset: 250656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0018
+  form: Cobalt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Cobalt
+    approx_offset: 151856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0019
+  form: Composite Materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Composite Materials
+    approx_offset: 9754
+  - quote: Composite Materials
+    approx_offset: 106527
+  - quote: Composite Materials
+    approx_offset: 132597
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0020
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Copper
+    approx_offset: 9108
+  - quote: Copper
+    approx_offset: 105871
+  - quote: Copper
+    approx_offset: 131951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0021
+  form: Fiberglass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 9422
+  - quote: Fiberglass
+    approx_offset: 9775
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 106195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0022
+  form: Fiberglass Reinforced Plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 9422
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 106195
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 132265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0023
+  form: Gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Gold
+    approx_offset: 151984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0024
+  form: Graphite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Graphite
+    approx_offset: 9786
+  - quote: Graphite
+    approx_offset: 106559
+  - quote: Graphite
+    approx_offset: 132629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0025
+  form: Hardfacing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Stellite (Hardfacing)
+    approx_offset: 9173
+  - quote: Stellite (Hardfacing)
+    approx_offset: 105936
+  - quote: Stellite (Hardfacing)
+    approx_offset: 132016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0026
+  form: Heat-resistant metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Heat-resistant metals
+    approx_offset: 178176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0027
+  form: Inconel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Inconel
+    approx_offset: 9252
+  - quote: Inconel
+    approx_offset: 106015
+  - quote: Inconel
+    approx_offset: 132095
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0028
+  form: Inconel®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Inconel®
+    approx_offset: 151975
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0029
+  form: Invar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Invar
+    approx_offset: 9260
+  - quote: Invar
+    approx_offset: 106023
+  - quote: Invar
+    approx_offset: 132103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0030
+  form: Iridium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Iridium
+    approx_offset: 9266
+  - quote: Iridium
+    approx_offset: 106029
+  - quote: Iridium
+    approx_offset: 132109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0031
+  form: Iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Iron
+    approx_offset: 9115
+  - quote: Iron molecules can also gather on parts throughout their service life, possibly requiring repeat
+      stainless steel passivation to restore a part’s anti-corrosive properties.
+    approx_offset: 85341
+  - quote: Iron contamination in the air from various industrial processes
+    approx_offset: 86295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0032
+  form: Kovar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 4
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0033
+  form: Kovars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Kovars
+    approx_offset: 9274
+  - quote: Kovars
+    approx_offset: 106037
+  - quote: Kovars
+    approx_offset: 132117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0034
+  form: Lead
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+  evidence:
+  - quote: We don’t just provide fabrication services, we help our partners optimize their supply chains
+      and implement just-in-time manufacturing practices, resulting in reduced inventory levels and storage
+      costs, shorter lead times, and a demonstrated positive impact on the customer’s bottom line.
+    approx_offset: 1680
+  - quote: Our machining services enable us to produce high-quality and precise parts for our customers,
+      thus helping them reduce costs and lead times, improve quality, and increase productivity.
+    approx_offset: 6161
+  - quote: Lead
+    approx_offset: 9120
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0035
+  form: Light metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Light metal, Perforated metal
+    approx_offset: 178226
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0036
+  form: Magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Magnesium
+    approx_offset: 9126
+  - quote: Magnesium
+    approx_offset: 105889
+  - quote: Magnesium
+    approx_offset: 131969
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0037
+  form: Mild Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Mild Steel and/or Aluminum frames used in professional turf care
+    approx_offset: 49204
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0038
+  form: Molybdenum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Molybdenum
+    approx_offset: 9136
+  - quote: Molybdenum
+    approx_offset: 9281
+  - quote: Molybdenum
+    approx_offset: 105899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0039
+  form: Monel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Monel
+    approx_offset: 9293
+  - quote: Monel
+    approx_offset: 106055
+  - quote: Monel
+    approx_offset: 132136
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0040
+  form: Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Nickel
+    approx_offset: 151886
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0041
+  form: Niobium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Niobium
+    approx_offset: 9299
+  - quote: Niobium
+    approx_offset: 106062
+  - quote: Niobium
+    approx_offset: 132142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0042
+  form: Nitric Acid Bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: Nitric Acid Bath
+    approx_offset: 249985
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0043
+  form: Nitric acid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: As a bonus, FZE uses a citric acid process which is eco-friendly and relatively safe to use
+      as compared to nitric acid.
+    approx_offset: 88741
+  - quote: Nitric Acid Bath
+    approx_offset: 249985
+  - quote: Nitric acid is the traditional approach to passivation, producing the most effective molecular
+      redistribution of the molecular structure of the metal’s surface.
+    approx_offset: 250003
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0044
+  form: Nylon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Nylon
+    approx_offset: 9453
+  - quote: Nylon
+    approx_offset: 106226
+  - quote: Nylon
+    approx_offset: 132296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0045
+  form: PEEK
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 9459
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 106232
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 132302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0046
+  form: PEEK (Polyetheretherketone)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 9459
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 106232
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 132302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0047
+  form: PTFE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 9616
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 106389
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 132459
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0048
+  form: PTFE (PolyTetraFluoroEthylene)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 9616
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 106389
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 132459
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0049
+  form: PVC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 9647
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 106420
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 132490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0050
+  form: PVC (Polyvinyl Chloride)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 9647
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 106420
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 132490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0051
+  form: PVDF
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 9672
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 106445
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 132515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0052
+  form: PVDF (Polyvinylidene Fluoride)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 9672
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 106445
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 132515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0053
+  form: Palladium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Palladium
+    approx_offset: 106070
+  - quote: Palladium
+    approx_offset: 172730
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0054
+  form: Perforated metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Light metal, Perforated metal
+    approx_offset: 178239
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0055
+  form: Phenolic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Phenolic
+    approx_offset: 9487
+  - quote: Phenolic
+    approx_offset: 106260
+  - quote: Phenolic
+    approx_offset: 132330
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0056
+  form: Plastic compounds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Plastic compounds
+    approx_offset: 76746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0057
+  form: Platinum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Platinum
+    approx_offset: 9307
+  - quote: Platinum
+    approx_offset: 106080
+  - quote: Platinum
+    approx_offset: 132150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0058
+  form: PolyTetraFluoroEthylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 9622
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 106395
+  - quote: PTFE (PolyTetraFluoroEthylene)
+    approx_offset: 132465
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0059
+  form: Polyamide-Imide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Polyamide-Imide
+    approx_offset: 9496
+  - quote: Polyamide-Imide
+    approx_offset: 106269
+  - quote: Polyamide-Imide
+    approx_offset: 132339
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0060
+  form: Polycarbonate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Polycarbonate
+    approx_offset: 9512
+  - quote: Polycarbonate
+    approx_offset: 106285
+  - quote: Polycarbonate
+    approx_offset: 132355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0061
+  form: Polyetheretherketone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 9465
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 106238
+  - quote: PEEK (Polyetheretherketone)
+    approx_offset: 132308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0062
+  form: Polyetherimide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Polyetherimide
+    approx_offset: 9526
+  - quote: Polyetherimide
+    approx_offset: 106299
+  - quote: Polyetherimide
+    approx_offset: 132369
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0063
+  form: Polyethylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Polyethylene
+    approx_offset: 9542
+  - quote: Polyethylene
+    approx_offset: 106315
+  - quote: Polyethylene
+    approx_offset: 132385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0064
+  form: Polyphenylene Sulfide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Polyphenylene Sulfide
+    approx_offset: 9555
+  - quote: Polyphenylene Sulfide
+    approx_offset: 106328
+  - quote: Polyphenylene Sulfide
+    approx_offset: 132398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0065
+  form: Polypropylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Polypropylene
+    approx_offset: 9577
+  - quote: Polypropylene
+    approx_offset: 106350
+  - quote: Polypropylene
+    approx_offset: 132420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0066
+  form: Polystyrene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Polystyrene
+    approx_offset: 9591
+  - quote: Polystyrene
+    approx_offset: 106364
+  - quote: Polystyrene
+    approx_offset: 132434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0067
+  form: Polysulphone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Polysulphone
+    approx_offset: 9603
+  - quote: Polysulphone
+    approx_offset: 106376
+  - quote: Polysulphone
+    approx_offset: 132446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0068
+  form: Polyvinyl Chloride
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 9652
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 106425
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 132495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0069
+  form: Polyvinylidene Fluoride
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 9678
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 106451
+  - quote: PVDF (Polyvinylidene Fluoride)
+    approx_offset: 132521
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0070
+  form: Sodium Dichromate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: Nitric Acid with Sodium Dichromate Bath
+    approx_offset: 250411
+  - quote: Sodium dichromate intensifies the hazards of nitric acid bathing, so it is a less common option.
+    approx_offset: 250558
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0071
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 47
+    pages:
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/page/2/
+  evidence:
+  - quote: Stainless Steel
+    approx_offset: 9147
+  - quote: Stainless Steel Electropolishing Services
+    approx_offset: 28418
+  - quote: Stainless Steel Passivation Services
+    approx_offset: 28460
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0072
+  form: Stainless Steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Stainless Steels
+    approx_offset: 76681
+  - quote: Stainless Steels
+    approx_offset: 178209
+  - quote: 'Ferrous metals: standard alloy & carbon steels, stainless steels, Inconel and titanium'
+    approx_offset: 201235
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0073
+  form: Stellite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Stellite (Hardfacing)
+    approx_offset: 9163
+  - quote: Stellite (Hardfacing)
+    approx_offset: 105926
+  - quote: Stellite (Hardfacing)
+    approx_offset: 132006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0074
+  form: Stellite (Hardfacing)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Stellite (Hardfacing)
+    approx_offset: 9163
+  - quote: Stellite (Hardfacing)
+    approx_offset: 105926
+  - quote: Stellite (Hardfacing)
+    approx_offset: 132006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0075
+  form: Superalloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Superalloys
+    approx_offset: 9316
+  - quote: Superalloys
+    approx_offset: 106089
+  - quote: Superalloys
+    approx_offset: 132159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0076
+  form: Tantalum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Tantalum
+    approx_offset: 9328
+  - quote: Tantalum
+    approx_offset: 106101
+  - quote: Tantalum
+    approx_offset: 132171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0077
+  form: Teflon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Teflon
+    approx_offset: 9703
+  - quote: Teflon
+    approx_offset: 106476
+  - quote: Teflon
+    approx_offset: 132546
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0078
+  form: Tin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Tin
+    approx_offset: 9185
+  - quote: Tin
+    approx_offset: 105948
+  - quote: Tin
+    approx_offset: 132028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0079
+  form: Titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Titanium
+    approx_offset: 9189
+  - quote: Titanium
+    approx_offset: 105952
+  - quote: Titanium
+    approx_offset: 132032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0080
+  form: Tool Steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Alloy, Plain Carbon & Tool Steels
+    approx_offset: 9059
+  - quote: Alloy, Plain Carbon & Tool Steels
+    approx_offset: 105822
+  - quote: Alloy, Plain Carbon & Tool Steels
+    approx_offset: 131902
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0081
+  form: Tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Tungsten
+    approx_offset: 9198
+  - quote: The Tungsten Inert Gas (TIG) welding process, also known as Gas Tungsten Arc Welding (GTAW),
+      produces welds using non-consumable tungsten electrodes, replacing gas and manual metal arc welding
+      with inert gas shields instead of slags.
+    approx_offset: 36693
+  - quote: The Tungsten Inert Gas (TIG) welding process, also known as Gas Tungsten Arc Welding (GTAW),
+      produces welds using non-consumable tungsten electrodes, replacing gas and manual metal arc welding
+      with inert gas shields instead of slags.
+    approx_offset: 36753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0082
+  form: UHMW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: UHMW
+    approx_offset: 9710
+  - quote: UHMW
+    approx_offset: 106483
+  - quote: UHMW
+    approx_offset: 132553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0083
+  form: Wood
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Wood
+    approx_offset: 152056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0084
+  form: Zinc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Zinc
+    approx_offset: 9207
+  - quote: Zinc
+    approx_offset: 105970
+  - quote: Zinc
+    approx_offset: 132050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0085
+  form: alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: This versatility allows us to work with various materials, such as alloy steel, carbon steel,
+      stainless steel, aluminum, brass, and specialized plastics, to create components that meet rigorous
+      industry standards.
+    approx_offset: 11967
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0086
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: This versatility allows us to work with various materials, such as alloy steel, carbon steel,
+      stainless steel, aluminum, brass, and specialized plastics, to create components that meet rigorous
+      industry standards.
+    approx_offset: 12011
+  - quote: Our welders have extensive expertise in numerous metal welding processes for mild carbon steel,
+      stainless-steel or aluminum welding projects, including metal inert gas (MIG) welding.
+    approx_offset: 46852
+  - quote: MIG welding offers compatibility with a wide variety of metals and alloys, such as stainless
+      steel, aluminum, mild steel, copper, magnesium, nickel, and many other types of alloys, including
+      iron alloys.
+    approx_offset: 48234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0087
+  form: anodized aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Marking anodized aluminum by selectively removing its coating
+    approx_offset: 195003
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0088
+  form: argon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: The tip of the electrode is enveloped in an inert shielded gas barrier, such as helium or argon,
+      to prevent contamination of the weld pool or puddle.
+    approx_offset: 114155
+  - quote: A gas nozzle pumps a combination of argon and oxygen into the workspace, forming the arc plasma
+      and shielding the entire process from the surrounding air.
+    approx_offset: 147181
+  - quote: As in MIG welding, the electrical arc forms between the tip of the electrode and the workpiece,
+      creating a weld pool that is shielded with an inert gas (typically 100% argon, in the case of TIG).
+    approx_offset: 149385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0089
+  form: bar material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: As one of the many machined products and services provided by FZE Manufacturing Solutions,
+      LLC, CNC shaft machining includes such processes as shaft turning, shaft milling, drilling, keyways
+      and threading of bar material to detailed specifications.
+    approx_offset: 165406
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0090
+  form: bar stock
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 135288
+  - quote: Large volume Shaft machining projects often qualify for mill-runs of bar stock raw material.
+    approx_offset: 168552
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 182032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0091
+  form: bars of materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+  evidence:
+  - quote: Using this technique, workers or automated processes affix or chuck bars of materials in chucks
+      or collets and rotate them.
+    approx_offset: 200409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0092
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: This versatility allows us to work with various materials, such as alloy steel, carbon steel,
+      stainless steel, aluminum, brass, and specialized plastics, to create components that meet rigorous
+      industry standards.
+    approx_offset: 12021
+  - quote: In addition to stainless steel, companies use the process to finish aluminum, brass, copper,
+      nickel, titanium, and many other metals and alloys.
+    approx_offset: 66425
+  - quote: Drills have rotating bits that create round holes in hard materials; mills feature rotating
+      cutters with multiple blades that can cut grooves into soft metals such as brass, while taps are
+      used to thread screws into surfaces.
+    approx_offset: 120051
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0093
+  form: bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: 'Non-Ferrous metals: aluminum, brass, bronze and other exotic or precious metals'
+    approx_offset: 201311
+  - quote: Metals such as aluminum, brass, bronze, copper, steel, and stainless steel
+    approx_offset: 240301
+  - quote: We handle all industrial metal types, including aluminum, bronze, copper, iron, steel and various
+      heat resistant metals like titanium.
+    approx_offset: 257886
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0094
+  form: carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: This versatility allows us to work with various materials, such as alloy steel, carbon steel,
+      stainless steel, aluminum, brass, and specialized plastics, to create components that meet rigorous
+      industry standards.
+    approx_offset: 11980
+  - quote: Our welders have extensive expertise in numerous metal welding processes for mild carbon steel,
+      stainless-steel or aluminum welding projects, including metal inert gas (MIG) welding.
+    approx_offset: 46819
+  - quote: Carbon steel
+    approx_offset: 151923
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0095
+  form: ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: FZE can work with more than three dozen types of raw materials, including standard, exotic,
+      and precious metals, plastic polymers, and others such as graphite and ceramic.
+    approx_offset: 166770
+  - quote: Fiber laser marking machines can work with a huge range of fiber laser materials, including
+      plastic, metal, ceramic, polymers, silicon, gemstones and many others.
+    approx_offset: 255502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0096
+  form: ceramics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Hydraulic component machining utilizes advanced technology and engineering principles to offer
+      precise tolerances and cuts to metals, plastics, polymers, and ceramics, making it an ideal solution
+      for many industries.
+    approx_offset: 78362
+  - quote: Its high precision and speed make it an ideal option for marking on a variety of materials,
+      including metals, plastics, ceramics and more.
+    approx_offset: 257616
+  - quote: We can also provide markings for perforated materials, plastics, leather, ceramics and more.
+    approx_offset: 258037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0097
+  form: chemical electrolyte solution
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: The electropolishing stainless steel process involves passing an electric current between positive
+      (anode) and negative (cathode) terminals immersed in a chemical electrolyte solution.
+    approx_offset: 63345
+  - quote: Loading the parts onto a rack (usually made from copper) and lowering them into the chemical
+      electrolyte solution
+    approx_offset: 63532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0098
+  form: chromating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: Secondary services such as anodizing, plating, etching, heat treating, passivating, painting
+      and chromating are available.
+    approx_offset: 152915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0099
+  form: chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: As a strong material with a protective layer of oxidized chromium, stainless steel loses its
+      corrosion resistance when the protective surface is abraded.
+    approx_offset: 57677
+  - quote: While stainless steel has chromium and nickel to protect it, the chromium and nickel itself
+      is made of about 60–70% iron.
+    approx_offset: 86788
+  - quote: While stainless steel has chromium and nickel to protect it, the chromium and nickel itself
+      is made of about 60–70% iron.
+    approx_offset: 86827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0100
+  form: citric acid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Next, the part is rinsed with deionized (DI) water and then placed in an acid bath to dissolve
+      the iron—typically nitric or citric acid.
+    approx_offset: 87736
+  - quote: FZE uses a citric acid bath and this is when the protective passive layer forms on the part.
+    approx_offset: 87760
+  - quote: As a bonus, FZE uses a citric acid process which is eco-friendly and relatively safe to use
+      as compared to nitric acid.
+    approx_offset: 88657
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0101
+  form: citric acid bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: FZE uses a citric acid bath and this is when the protective passive layer forms on the part.
+    approx_offset: 87760
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0102
+  form: composites
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Our machining services utilize the latest in robotic automation and 3-axis, 4-axis, and 5-axis
+      CNCs to deliver precision components and assemblies from various metals, plastics, and composites.
+    approx_offset: 75510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0103
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Likewise, our copper fittings are essential components in plumbing and HVAC systems, prized
+      for their excellent conductivity, antimicrobial properties, and resistance to corrosion.
+    approx_offset: 18336
+  - quote: Widely used in residential, commercial, and industrial settings, copper fittings ensure efficient
+      fluid flow and maintain high-quality performance in various piping applications.
+    approx_offset: 18568
+  - quote: Materials like stainless steel offer a bastion against corrosion, while copper and its alloys
+      promise superior conductivity and flexibility.
+    approx_offset: 20689
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0104
+  form: copper sulfate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: A final testing stage tests the material’s resistance to salt sprays and other corrosive materials
+      such as copper sulfate.
+    approx_offset: 88019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0105
+  form: electrode wire
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: To perform MIG welding, technicians use a welding gun with a wire feed unit and an electrode
+      wire.
+    approx_offset: 146855
+  - quote: MIG welding is semi-automated, with a machine continuously feeding the electrode wire into
+      the weld pool.
+    approx_offset: 148142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0106
+  form: electrolyte bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: With electropolishing, the metal is soaked in a temperature-controlled electrolyte bath while
+      an electric current is applied.
+    approx_offset: 210910
+  - quote: Once all components are assembled, they submerge the unit into a temperature-controlled electrolyte
+      bath—typically containing a high-viscosity mixture of sulfuric and phosphoric acid—and apply an
+      electric current.
+    approx_offset: 213680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0107
+  form: electrolyte solution
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: The electropolishing stainless steel process involves passing an electric current between positive
+      (anode) and negative (cathode) terminals immersed in a chemical electrolyte solution.
+    approx_offset: 63354
+  - quote: Loading the parts onto a rack (usually made from copper) and lowering them into the chemical
+      electrolyte solution
+    approx_offset: 63541
+  - quote: Applying current from the power supply and allowing it to travel from the anode to the cathode
+      and dissolve the top surface layers of the metal within the electrolyte solution
+    approx_offset: 63887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0108
+  form: fabrics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: Additionally, the process can be used on a variety of substrates, ranging from metals and alloys
+      to plastics, fabrics, and paper, for marking many different designs.
+    approx_offset: 235695
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0109
+  form: fiberglass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: In automotive facilities, fiberglass and metal parts need to be uniquely identifiable.
+    approx_offset: 237320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0110
+  form: filler metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: As the welder moves the welding gun along a joint, the arc melts the adjacent surfaces together
+      into a weld pool, with the consumable electrode providing filler metal.
+    approx_offset: 147455
+  - quote: When working with a low current, the welder often dips the wire directly into the weld pool
+      to transfer the filler metal.
+    approx_offset: 147663
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0111
+  form: filler rod
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: Typically, TIG welding requires a filler rod, but it can join almost any metal.
+    approx_offset: 114250
+  - quote: Its intense heat delivers high-quality welds for a wide range of substrates in combination
+      with a filler rod.
+    approx_offset: 114870
+  - quote: The primary difference is that TIG welding uses a non-consumable tungsten electrode, which
+      may be combined with a consumable filler rod to create a larger weld bead.
+    approx_offset: 149176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0112
+  form: foam
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+  evidence:
+  - quote: Versatility: CNC machinery can work with a diverse array of materials, including many types
+      of foam, metals, plastics, polymers, organic materials, etc.
+    approx_offset: 218670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0113
+  form: free iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: However, the surface of the metal can still end up developing a coating of rust or corrosion
+      due to free iron molecules on the material’s surface.
+    approx_offset: 84716
+  - quote: Stainless steel should undergo passivation of stainless steel—a process that dissolves free
+      iron molecules.
+    approx_offset: 85051
+  - quote: The passivation of stainless steel involves removing free iron from the surface to make it
+      more resistant to corrosion by creating a protective microscopic oxide layer with enhanced resistances
+      to the many environmental factors that can initiate the corrosion process.
+    approx_offset: 85125
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0114
+  form: gemstones
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Inorganics such as glass, gemstones, and stone
+    approx_offset: 240413
+  - quote: Fiber laser marking machines can work with a huge range of fiber laser materials, including
+      plastic, metal, ceramic, polymers, silicon, gemstones and many others.
+    approx_offset: 255530
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0115
+  form: glass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: Inorganics such as glass, gemstones, and stone
+    approx_offset: 240406
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0116
+  form: graphite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: FZE can work with more than three dozen types of raw materials, including standard, exotic,
+      and precious metals, plastic polymers, and others such as graphite and ceramic.
+    approx_offset: 166757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0117
+  form: heat resistant metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: We handle all industrial metal types, including aluminum, bronze, copper, iron, steel and various
+      heat resistant metals like titanium.
+    approx_offset: 257926
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0118
+  form: helium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+  evidence:
+  - quote: The tip of the electrode is enveloped in an inert shielded gas barrier, such as helium or argon,
+      to prevent contamination of the weld pool or puddle.
+    approx_offset: 114145
+  - quote: These lasers use a gas mixture—typically CO2 or a helium-neon compound—as their medium for
+      emitting light.
+    approx_offset: 233045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0119
+  form: helium-neon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: These lasers use a gas mixture—typically CO2 or a helium-neon compound—as their medium for
+      emitting light.
+    approx_offset: 233045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0120
+  form: inert gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 23
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+  evidence:
+  - quote: With Metal Inert Gas or MIG welding, a continuous wire electrode feeds into the weld pool through
+      a welding gun.
+    approx_offset: 36022
+  - quote: The Tungsten Inert Gas (TIG) welding process, also known as Gas Tungsten Arc Welding (GTAW),
+      produces welds using non-consumable tungsten electrodes, replacing gas and manual metal arc welding
+      with inert gas shields instead of slags.
+    approx_offset: 36702
+  - quote: The Tungsten Inert Gas (TIG) welding process, also known as Gas Tungsten Arc Welding (GTAW),
+      produces welds using non-consumable tungsten electrodes, replacing gas and manual metal arc welding
+      with inert gas shields instead of slags.
+    approx_offset: 36887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0121
+  form: inert shielding gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: An inert shielding gas prevents the melted metal from reacting to atmospheric contaminants
+      or elements.
+    approx_offset: 47363
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0122
+  form: iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: MIG welding offers compatibility with a wide variety of metals and alloys, such as stainless
+      steel, aluminum, mild steel, copper, magnesium, nickel, and many other types of alloys, including
+      iron alloys.
+    approx_offset: 48325
+  - quote: However, the surface of the metal can still end up developing a coating of rust or corrosion
+      due to free iron molecules on the material’s surface.
+    approx_offset: 84721
+  - quote: This is a common problem in manufacturing as iron residue from fabrication, water, or any other
+      number of sources present in industrial facilities can contaminate passivated stainless steel surfaces.
+    approx_offset: 84808
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0123
+  form: leather
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Organics such as leather, paper, and
+    approx_offset: 240451
+  - quote: We can also provide markings for perforated materials, plastics, leather, ceramics and more.
+    approx_offset: 258028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0124
+  form: magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: MIG welding offers compatibility with a wide variety of metals and alloys, such as stainless
+      steel, aluminum, mild steel, copper, magnesium, nickel, and many other types of alloys, including
+      iron alloys.
+    approx_offset: 48264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0125
+  form: metal plate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 135310
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 182054
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0126
+  form: metal sheets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: 'Bending: Press brakes and similar devices are used to weld or air-bend metal sheets in modern
+      metal manufacturing.'
+    approx_offset: 136112
+  - quote: Spot welding is form of resistance welding used to join overlapping metal sheets.
+    approx_offset: 139494
+  - quote: Spot welding is form of resistance welding used to join overlapping metal sheets.
+    approx_offset: 183514
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0127
+  form: mild carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Our welders have extensive expertise in numerous metal welding processes for mild carbon steel,
+      stainless-steel or aluminum welding projects, including metal inert gas (MIG) welding.
+    approx_offset: 46814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0128
+  form: mild steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: MIG welding offers compatibility with a wide variety of metals and alloys, such as stainless
+      steel, aluminum, mild steel, copper, magnesium, nickel, and many other types of alloys, including
+      iron alloys.
+    approx_offset: 48244
+  - quote: MIG welding is compatible with almost any metal, and it is a common choice for mild steel and
+      aluminum fabrication.
+    approx_offset: 147998
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0129
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: MIG welding offers compatibility with a wide variety of metals and alloys, such as stainless
+      steel, aluminum, mild steel, copper, magnesium, nickel, and many other types of alloys, including
+      iron alloys.
+    approx_offset: 48275
+  - quote: In addition to stainless steel, companies use the process to finish aluminum, brass, copper,
+      nickel, titanium, and many other metals and alloys.
+    approx_offset: 66440
+  - quote: While stainless steel has chromium and nickel to protect it, the chromium and nickel itself
+      is made of about 60–70% iron.
+    approx_offset: 86801
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0130
+  form: nitric acid passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: A safer alternative to nitric acid passivation uses citric acid.
+    approx_offset: 250697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0131
+  form: oxidized chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: As a strong material with a protective layer of oxidized chromium, stainless steel loses its
+      corrosion resistance when the protective surface is abraded.
+    approx_offset: 57668
+  - quote: As a strong material with a protective layer of oxidized chromium, stainless steel loses its
+      corrosion resistance when the protective surface is abraded.
+    approx_offset: 242838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0132
+  form: oxygen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: A gas nozzle pumps a combination of argon and oxygen into the workspace, forming the arc plasma
+      and shielding the entire process from the surrounding air.
+    approx_offset: 147191
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0133
+  form: paper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Paper & Pulp
+    approx_offset: 39799
+  - quote: Gas laser systems are a good match for plastics, paper materials, and other organic materials.
+    approx_offset: 176054
+  - quote: Additionally, the process can be used on a variety of substrates, ranging from metals and alloys
+      to plastics, fabrics, and paper, for marking many different designs.
+    approx_offset: 235708
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0134
+  form: paper materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Gas laser systems are a good match for plastics, paper materials, and other organic materials.
+    approx_offset: 176054
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0135
+  form: phosphoric acid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Once all components are assembled, they submerge the unit into a temperature-controlled electrolyte
+      bath—typically containing a high-viscosity mixture of sulfuric and phosphoric acid—and apply an
+      electric current.
+    approx_offset: 213759
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0136
+  form: plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Materials (Plastic Polymers)
+    approx_offset: 9349
+  - quote: Inserting Plastic Molding Milling
+    approx_offset: 9933
+  - quote: This means that facilities that use CNC machining can accurately produce highly complex metal,
+      plastic, and…
+    approx_offset: 60589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0137
+  form: plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Fiberglass Reinforced Plastics
+    approx_offset: 9444
+  - quote: This versatility allows us to work with various materials, such as alloy steel, carbon steel,
+      stainless steel, aluminum, brass, and specialized plastics, to create components that meet rigorous
+      industry standards.
+    approx_offset: 12044
+  - quote: Laser engraving can be used on various materials, including metals, plastics, and .
+    approx_offset: 44217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0138
+  form: plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71654
+  - quote: Hinges, latches and plates
+    approx_offset: 163130
+  - quote: FZE’s trained metal fabrication staff can bend, shape, and cut a long list of metals to create
+      products such as angles, casting replacements, plates, panels, tubes, and more.
+    approx_offset: 181949
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0139
+  form: polymers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+  evidence:
+  - quote: Materials (Plastic Polymers)
+    approx_offset: 9357
+  - quote: Hydraulic component machining utilizes advanced technology and engineering principles to offer
+      precise tolerances and cuts to metals, plastics, polymers, and ceramics, making it an ideal solution
+      for many industries.
+    approx_offset: 78348
+  - quote: Materials (Plastic Polymers)
+    approx_offset: 106130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0140
+  form: polystyrene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: Plastics such as ABS, polystyrene, and PVC
+    approx_offset: 240366
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0141
+  form: sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 135275
+  - quote: Materials used for fabrication typically include structural steel and sheet metal, welding
+      wire, and fasteners to join pieces.
+    approx_offset: 136531
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 182019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0142
+  form: shielding gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: With the help of the gun, a shielding gas is fed alongside the electrode to prevent contaminants
+      from entering the weld pool.
+    approx_offset: 36213
+  - quote: An inert shielding gas prevents the melted metal from reacting to atmospheric contaminants
+      or elements.
+    approx_offset: 47369
+  - quote: A dedicated MIG welding machine typically supplies the feed wire, shielding gas, and power
+      to expedite the process.
+    approx_offset: 146937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0143
+  form: silicon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Fiber laser marking machines can work with a huge range of fiber laser materials, including
+      plastic, metal, ceramic, polymers, silicon, gemstones and many others.
+    approx_offset: 255521
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0144
+  form: sodium dichromate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: With some specific alloys, the addition of sodium dichromate to nitric acid enhances or speeds
+      up the passivation process.
+    approx_offset: 250478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0145
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 84
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+  evidence:
+  - quote: This versatility allows us to work with various materials, such as alloy steel, carbon steel,
+      stainless steel, aluminum, brass, and specialized plastics, to create components that meet rigorous
+      industry standards.
+    approx_offset: 11994
+  - quote: We also offer value-added services like laser marking, stainless steel passivation, and electropolishing.
+    approx_offset: 14344
+  - quote: Our stainless steel fasteners find widespread use across industries due to their exceptional
+      corrosion resistance and durability.
+    approx_offset: 18037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0146
+  form: stone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: Inorganics such as glass, gemstones, and stone
+    approx_offset: 240428
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0147
+  form: structural steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Materials used for fabrication typically include structural steel and sheet metal, welding
+      wire, and fasteners to join pieces.
+    approx_offset: 136510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0148
+  form: sulfur
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: During stainless steel production, mills add sulfur to the stainless steel to make it easier
+      to form and machine.
+    approx_offset: 87014
+  - quote: This sulfur, along with the iron residue that can form during fabrication, actually eats into
+      the passive layer of chromium and leaves the material vulnerable to corrosion.
+    approx_offset: 87088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0149
+  form: sulfuric
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Once all components are assembled, they submerge the unit into a temperature-controlled electrolyte
+      bath—typically containing a high-viscosity mixture of sulfuric and phosphoric acid—and apply an
+      electric current.
+    approx_offset: 213746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0150
+  form: sulfuric and phosphoric acid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Once all components are assembled, they submerge the unit into a temperature-controlled electrolyte
+      bath—typically containing a high-viscosity mixture of sulfuric and phosphoric acid—and apply an
+      electric current.
+    approx_offset: 213746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0151
+  form: titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: In addition to stainless steel, companies use the process to finish aluminum, brass, copper,
+      nickel, titanium, and many other metals and alloys.
+    approx_offset: 66448
+  - quote: 'Ferrous metals: standard alloy & carbon steels, stainless steels, Inconel and titanium'
+    approx_offset: 201265
+  - quote: We handle all industrial metal types, including aluminum, bronze, copper, iron, steel and various
+      heat resistant metals like titanium.
+    approx_offset: 257953
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0152
+  form: tubes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: Shaft machining is a specialized process in which metal parts, such as rods, tubes, and steel
+      blocks, are shaped into various sizes to meet the customer’s needs.
+    approx_offset: 43395
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71667
+  - quote: FZE’s trained metal fabrication staff can bend, shape, and cut a long list of metals to create
+      products such as angles, casting replacements, plates, panels, tubes, and more.
+    approx_offset: 181965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0153
+  form: tubing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 135299
+  - quote: 'Starting with raw materials such as sheet metal, bar stock, tubing, or metal plate, FZE can
+      provide custom metal fabrication within these parameters:'
+    approx_offset: 182043
+  - quote: Piping and tubing
+    approx_offset: 214154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0154
+  form: tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: The Tungsten Inert Gas (TIG) welding process, also known as Gas Tungsten Arc Welding (GTAW),
+      produces welds using non-consumable tungsten electrodes, replacing gas and manual metal arc welding
+      with inert gas shields instead of slags.
+    approx_offset: 36818
+  - quote: Our welding techniques use a variety of safety standards and procedures, including gas metal
+      arc welding (GMAW) (MIG), flux-cored arc welding (FCAW), and tungsten inert gas (TIG) welding.
+    approx_offset: 78768
+  - quote: This welding method uses a non-consumable tungsten electrode to create an electrical arc that
+      heats the material of the workpieces so that they melt and join together.
+    approx_offset: 113939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0155
+  form: tungsten electrode
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+  evidence:
+  - quote: This welding method uses a non-consumable tungsten electrode to create an electrical arc that
+      heats the material of the workpieces so that they melt and join together.
+    approx_offset: 113939
+  - quote: The arc created by the tungsten electrode is small and has a high level of precision.
+    approx_offset: 114709
+  - quote: This process uses a nonconsumable tungsten electrode, an inert gas and a separate filler material.
+    approx_offset: 139215
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0156
+  form: welding wire
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Materials used for fabrication typically include structural steel and sheet metal, welding
+      wire, and fasteners to join pieces.
+    approx_offset: 136544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-material_caps-0157
+  form: wire electrode
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/resources/mig-welding-guide/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: With Metal Inert Gas or MIG welding, a continuous wire electrode feeds into the weld pool through
+      a welding gun.
+    approx_offset: 36061
+  - quote: An electrical arc between the wire electrode and the workpiece serves as the heat source, melting
+      both the electrode and the metal surface into a weld pool.
+    approx_offset: 147018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,2705 @@
+subject: blackadvtech.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+golden_set_version: 1
+anchored_on: search/expectations/blackadvtech_com/material_caps.yaml
+labels:
+- id: blackadvtech_com-material_caps-0001
+  form: .05 aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: Fabricated with .05 aluminum or steel and finished with a smooth semi-gloss solvent based paint.
+    approx_offset: 28934
+  - quote: Fabricated with .05 aluminum or steel and finished with a smooth semi-gloss solvent based paint.
+    approx_offset: 115606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0002
+  form: 0.001-inch zinc coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: However, galvanized sheet metal has a 0.001-inch zinc coating.
+    approx_offset: 224265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0003
+  form: 11 gauge
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 34440
+  - quote: TWO full-size 11 gauge steel side-loading doors with welded angle-iron framework
+    approx_offset: 52563
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 52972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0004
+  form: 11 gauge steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 34440
+  - quote: TWO full-size 11 gauge steel side-loading doors with welded angle-iron framework
+    approx_offset: 52563
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 52972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0005
+  form: 11-18 gauge USA steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Strong 11-18 gauge USA steel construction
+    approx_offset: 52637
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0006
+  form: 18 ga steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 34495
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 53027
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0007
+  form: 2 ceramic nozzles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: 1 steel and 2 ceramic nozzles
+    approx_offset: 52338
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0008
+  form: '5052'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Tanks made with 5052-grade aluminum alloy meet the set standards.
+    approx_offset: 174292
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 174800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0009
+  form: 5052-grade aluminum alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Tanks made with 5052-grade aluminum alloy meet the set standards.
+    approx_offset: 174292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0010
+  form: '5083'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 174792
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0011
+  form: '5086'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 174786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0012
+  form: ALUMINUM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+  evidence:
+  - quote: GOOD TO KNOW TIPS WHEN WELDING ALUMINUM
+    approx_offset: 157885
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0013
+  form: ATSM 81011
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+    approx_offset: 64670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0014
+  form: ATSM 81011 steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+    approx_offset: 64670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0015
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/blog
+    - https://blackadvtech.com/blog/
+    - https://blackadvtech.com/category/welding/
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+  evidence:
+  - quote: • 1 – Aluminum up-cut
+    approx_offset: 22363
+  - quote: Good To Know Tips When Welding Aluminum
+    approx_offset: 46543
+  - quote: Good To Know Tips When Welding Aluminum
+    approx_offset: 47683
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0016
+  form: Brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Brass
+    approx_offset: 227349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0017
+  form: Carbon Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Carbon Steel vs Stainless Steel
+    approx_offset: 202800
+  - quote: Carbon steel more robust and more durable and might not wear easily but can corrode and rust
+      when exposed to moisture.
+    approx_offset: 203831
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0018
+  form: Chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Properties of Nickel-Chromium Steels
+    approx_offset: 198102
+  - quote: Chromium is an essential element that reacts creates a protective layer to cushion steel from
+      corrosion.
+    approx_offset: 201923
+  - quote: Chromium is the more significant player in stainless steel.
+    approx_offset: 202259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0019
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Copper
+    approx_offset: 227333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0020
+  form: Expanded metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Expanded metal screen holds objects up to 200 lbs
+    approx_offset: 52672
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0021
+  form: Expanded metal screen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Expanded metal screen holds objects up to 200 lbs
+    approx_offset: 52672
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0022
+  form: Grade 5086, 5083 or 5052
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 174780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0023
+  form: High-carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: High-carbon steel is always used for the manufacture of sturdy kitchen knives for high-end
+      application.
+    approx_offset: 202833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0024
+  form: Iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: • 1 – 5 Stage Iron Phosphate Bonderiser
+    approx_offset: 20258
+  - quote: Both the SAE and the American Iron and Steel Institute (AISI) took part to standardize a numbering
+      system for steels.
+    approx_offset: 195929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0025
+  form: Iron Phosphate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: • 1 – 5 Stage Iron Phosphate Bonderiser
+    approx_offset: 20258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0026
+  form: Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Nickel steels are classified as number 2 metals.
+    approx_offset: 196524
+  - quote: Nickel steel contains 8% of nickel and 0.35% of carbon added to steel.
+    approx_offset: 196573
+  - quote: Nickel adds strength to steel to make a durable alloy.
+    approx_offset: 196730
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0027
+  form: Nickel steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Nickel steel contains 8% of nickel and 0.35% of carbon added to steel.
+    approx_offset: 196573
+  - quote: Uses of Nickel Steel
+    approx_offset: 196794
+  - quote: Nickel steel alloys are used for the following purposes;
+    approx_offset: 196808
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0028
+  form: Nickel steel alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Nickel steel alloys are used for the following purposes;
+    approx_offset: 196808
+  - quote: Nickel steel alloys have excellent corrosion and wear resistance.
+    approx_offset: 197229
+  - quote: The universal numbering system identifies number 2 metals as all nickel steel alloys while
+      number 3 are alloys of steel with nickel and chromium.
+    approx_offset: 199292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0029
+  form: Nickel steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Nickel steels are classified as number 2 metals.
+    approx_offset: 196524
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0030
+  form: Nickel-Chromium Steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Properties of Nickel-Chromium Steels
+    approx_offset: 198095
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0031
+  form: Plate Metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: PLATE METAL
+    approx_offset: 226290
+  - quote: What is Plate Metal?
+    approx_offset: 228891
+  - quote: Plate Metal
+    approx_offset: 229983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0032
+  form: SHEET METAL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 121
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: CUSTOM SHEET METAL MANUFACTURING
+    approx_offset: 113
+  - quote: Sheet Metal Fabricators Trusted by the Best
+    approx_offset: 140
+  - quote: A LEADER IN FULL-SERVICE SHEET METAL FABRICATION
+    approx_offset: 677
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0033
+  form: STEEL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: 'STEEL OR STAINLESS STEEL: WHAT IS THE MOST DURABLE SHEET METAL?'
+    approx_offset: 199939
+  - quote: 'STEEL OR STAINLESS STEEL: WHAT IS THE MOST DURABLE SHEET METAL?'
+    approx_offset: 199958
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0034
+  form: Sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/press-braking-stamping/
+    - https://blackadvtech.com/customer-relationship-management-in-sheet-metal-manufacturing/
+    - https://blackadvtech.com/news/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Sheet metal manufacturing brought them back.
+    approx_offset: 45462
+  - quote: Sheet metal bending
+    approx_offset: 83477
+  - quote: Sheet metal rolling
+    approx_offset: 83497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0035
+  form: Skat Magic Abrasive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: 50 lbs fast-cutting Skat Magic Abrasive
+    approx_offset: 52493
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0036
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/category/sheet-metal/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+    approx_offset: 64654
+  - quote: 'Steel or Stainless Steel: What is the Most Durable Sheet Metal?'
+    approx_offset: 106962
+  - quote: 'STEEL OR STAINLESS STEEL: WHAT IS THE MOST DURABLE SHEET METAL?'
+    approx_offset: 199948
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0037
+  form: Stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Stainless steel HVAC weldments
+    approx_offset: 87955
+  - quote: Stainless steel HVAC covers
+    approx_offset: 87986
+  - quote: Stainless steel HVAC weldments
+    approx_offset: 114435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0038
+  form: Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/category/sheet-metal/
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+    approx_offset: 64664
+  - quote: 'Steel or Stainless Steel: What is the Most Durable Sheet Metal?'
+    approx_offset: 106953
+  - quote: 'Steel or Stainless Steel: What is the Most Durable Sheet Metal?'
+    approx_offset: 106972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0039
+  form: Thermoplastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: Thermoplastics powder coating is a finish that becomes a liquid and is very soft when its heated.
+    approx_offset: 150049
+  - quote: This making it impossible to recycle the product in comparison with Thermoplastics.
+    approx_offset: 150429
+  - quote: Between both Thermoplastics and Thermoset, Thermoset coating process is cheaper of the two.
+    approx_offset: 150577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0040
+  form: Thermoset coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: Between both Thermoplastics and Thermoset, Thermoset coating process is cheaper of the two.
+    approx_offset: 150607
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0041
+  form: Thermoset powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: Thermoset powder however is quite different because it forms chemical bonds once its cured.
+    approx_offset: 150269
+  - quote: Thermoset powder coatings are ideal for high heat areas.
+    approx_offset: 150445
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0042
+  form: Tin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Tin
+    approx_offset: 227329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0043
+  form: Titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Titanium
+    approx_offset: 227340
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0044
+  form: Tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: These robots can be programmed to execute a wide range of welding processes, including MIG
+      (Metal Inert Gas), TIG (Tungsten Inert Gas), and spot welding.
+    approx_offset: 134449
+  - quote: Metal Inert Gas (MIG), Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored
+      Arc Welding (FCAW) are some common types of welding used today.
+    approx_offset: 141352
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0045
+  form: Vitallium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: The most common materials for manufacturing metal plates are steel, titanium, and Vitallium.
+    approx_offset: 229299
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0046
+  form: abrasive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+    - https://blackadvtech.com/capabilities/timesaver/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: • 1 – Skat Blast 985 Abrasive Blasting Cabinet
+    approx_offset: 22551
+  - quote: 50 lbs fast-cutting Skat Magic Abrasive
+    approx_offset: 52504
+  - quote: Automatic abrasive recycling system
+    approx_offset: 52523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0047
+  form: acetone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+  evidence:
+  - quote: By using an acetone or an alcohol, even if they are new, its best to clean your filler rods.
+    approx_offset: 159507
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0048
+  form: acetylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: Gas welding – this method uses a flame generated by burning a fuel gas, such as acetylene,
+      to melt and join the metal.
+    approx_offset: 162006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0049
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 40
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: This form of arc welding produces a slag-free metal, making it great for stainless steel and
+      aluminum projects (i.e.
+    approx_offset: 10700
+  - quote: Fabricated with .05 aluminum or steel and finished with a smooth semi-gloss solvent based paint.
+    approx_offset: 28938
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31470
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0050
+  form: aluminum alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Tanks made with 5052-grade aluminum alloy meet the set standards.
+    approx_offset: 174303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0051
+  form: aluminum alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: This process is, however, slightly different for metal, such as aluminum, brass, copper, zinc,
+      lead, and aluminum alloys.
+    approx_offset: 225202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0052
+  form: aluminum extrusions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31470
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0053
+  form: angle-iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 34473
+  - quote: TWO full-size 11 gauge steel side-loading doors with welded angle-iron framework
+    approx_offset: 52609
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 53005
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0054
+  form: anticorrosive phosphate solution
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Blackstone Advanced Technologies (early 2022) invested in a new state of the art technology
+      bonderizer to coat (steel) with an anticorrosive phosphate solution, in preparation for the application
+      of paint, enamel, or lacquer.
+    approx_offset: 40608
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0055
+  form: argon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: This process features a high-density plasma arc that conducts through the ionization of argon
+      gas that’s passed through the electric arc.
+    approx_offset: 187859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0056
+  form: argon gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: This process features a high-density plasma arc that conducts through the ionization of argon
+      gas that’s passed through the electric arc.
+    approx_offset: 187859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0057
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+    - https://blackadvtech.com/things-to-consider-about-sheet-metal-bending-in-the-design-process/
+  evidence:
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31542
+  - quote: The use of there’s a no cut degradation thanks to the misalignment or maybe contamination of
+      mirrors leading to higher cutting speeds, the power to cut reflective metals such as copper and
+      brass, the freedom from maintaining, and lower cost of ownership.
+    approx_offset: 118875
+  - quote: Using a copper or brass brush will give you best results.
+    approx_offset: 159047
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0058
+  form: carbon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: The push system is an air-cooled system that is great for welding carbon steel, stainless steel
+      and can push aluminum.
+    approx_offset: 32804
+  - quote: Do not attempt to weld materials that are incompatible, such as welding stainless steel to
+      carbon steel without proper preparation and technique.
+    approx_offset: 164325
+  - quote: Materials that have high alloy or high carbon levels are likely to depict weld failures due
+      to cracking.
+    approx_offset: 180031
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0059
+  form: carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: The push system is an air-cooled system that is great for welding carbon steel, stainless steel
+      and can push aluminum.
+    approx_offset: 32804
+  - quote: Do not attempt to weld materials that are incompatible, such as welding stainless steel to
+      carbon steel without proper preparation and technique.
+    approx_offset: 164325
+  - quote: Both steel (carbon steel) and stainless steel are the essential metal materials used in the
+      majority of metal industries.
+    approx_offset: 200030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0060
+  form: carbon steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Carbon steels do withstand substantial force before distorting or losing shape.
+    approx_offset: 200844
+  - quote: 'When compared with their high carbon counterparts, low carbon steels are more popular due
+      to the following reasons:'
+    approx_offset: 201199
+  - quote: It’s cheaper to produce low carbon steels
+    approx_offset: 201317
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0061
+  form: cast-iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: A heavy-duty cast-iron frame.
+    approx_offset: 25181
+  - quote: A heavy-duty cast-iron frame.
+    approx_offset: 94767
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0062
+  form: ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: 1 steel and 2 ceramic nozzles
+    approx_offset: 52340
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0063
+  form: chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: Number 3 metals consist of all nickel-chromium alloys.
+    approx_offset: 197815
+  - quote: At room temperature, chromium has a soluble rate of 30% and a 47% rate at the eutectic temperature.
+    approx_offset: 197853
+  - quote: The majority of nickel-chromium alloys are based on this solution.
+    approx_offset: 197955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0064
+  form: cobalt-chrome alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: These alloys are a better alternative to weld-deposited cobalt-chrome alloys.
+    approx_offset: 199042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0065
+  form: concrete
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: It can be used on different surfaces, including concrete, metal, steel, and plastic.
+    approx_offset: 149861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0066
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31534
+  - quote: The use of there’s a no cut degradation thanks to the misalignment or maybe contamination of
+      mirrors leading to higher cutting speeds, the power to cut reflective metals such as copper and
+      brass, the freedom from maintaining, and lower cost of ownership.
+    approx_offset: 118864
+  - quote: Using a copper or brass brush will give you best results.
+    approx_offset: 159037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0067
+  form: diffusible hydrogen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: While not all products are standard, it’s advisable to look for stick electrodes and flux-cored
+      wires that produce low levels of diffusible hydrogen.
+    approx_offset: 178857
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0068
+  form: dry powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: An Electrostatic process is involved with the dry powder that gets cured when heat is applied.
+    approx_offset: 149627
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0069
+  form: fast-cutting Skat Magic Abrasive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: 50 lbs fast-cutting Skat Magic Abrasive
+    approx_offset: 52480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0070
+  form: filler
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: By using an acetone or an alcohol, even if they are new, its best to clean your filler rods.
+    approx_offset: 159575
+  - quote: You will come to find out that if you do not have the correct angle of your torch set when
+      welding, your filler rod would want to ball up before you can dip.
+    approx_offset: 160159
+  - quote: Good note is to feed your filler rod fast.
+    approx_offset: 160238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0071
+  form: filler material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+  evidence:
+  - quote: Gas welding involves heating the metal to be welded with a flame and then adding a filler material
+      to create a strong bond.
+    approx_offset: 162691
+  - quote: Arc welding uses an electric arc to heat the metal and melt the filler material, creating a
+      strong bond.
+    approx_offset: 162796
+  - quote: Filler material, which causes pollution, is not utilized in seam welding.
+    approx_offset: 184840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0072
+  form: filler metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: Proper Matching of Filler Metal and Base Material Strength
+    approx_offset: 179368
+  - quote: Choosing the right filler metal strength can largely reduce weld defects.
+    approx_offset: 179431
+  - quote: To achieve this, you have to match the filler metal yield strength to that of the base material.
+    approx_offset: 179525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0073
+  form: filler metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: Use of Low Hydrogen Filler Metals
+    approx_offset: 178634
+  - quote: When welding thicker materials, use filler metals with the least amounts of hydrogen.
+    approx_offset: 179193
+  - quote: Storing the filler metals in their original packaging before use will protect them from all
+      these contaminants.
+    approx_offset: 180957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0074
+  form: filler rods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+  evidence:
+  - quote: By using an acetone or an alcohol, even if they are new, its best to clean your filler rods.
+    approx_offset: 159575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0075
+  form: fine powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: It involves applying a fine powder made of a combination of resin, pigment, and other additives
+      onto a surface.
+    approx_offset: 121649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0076
+  form: foil
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: While the lower end of sheet metal thickness is 0.5 mm, it can still be reduced further to
+      form metal foil.
+    approx_offset: 205219
+  - quote: Metal foil is the thinnest level that sheet metal can get.
+    approx_offset: 205232
+  - quote: Any piece exceeding 6mm is known as plate metal, while that with a thickness of less than 0.5mm
+      is known as foil metal.
+    approx_offset: 222407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0077
+  form: foil metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: Any piece exceeding 6mm is known as plate metal, while that with a thickness of less than 0.5mm
+      is known as foil metal.
+    approx_offset: 222407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0078
+  form: galvanized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: For example, a 6mm aluminum sheet has a different gauge compared to a similar-sized sheet galvanized
+      steel.
+    approx_offset: 222692
+  - quote: However, galvanized sheet metal has a 0.001-inch zinc coating.
+    approx_offset: 224236
+  - quote: Whether you are working with galvanized steel, standard steel, or non-ferrous metals such as
+      aluminum, brass and copper, sheet metal thickness is a mandatory parameter in any metal fabrication
+      process.
+    approx_offset: 225399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0079
+  form: galvanized sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: However, galvanized sheet metal has a 0.001-inch zinc coating.
+    approx_offset: 224236
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0080
+  form: galvanized steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: For example, a 6mm aluminum sheet has a different gauge compared to a similar-sized sheet galvanized
+      steel.
+    approx_offset: 222692
+  - quote: Whether you are working with galvanized steel, standard steel, or non-ferrous metals such as
+      aluminum, brass and copper, sheet metal thickness is a mandatory parameter in any metal fabrication
+      process.
+    approx_offset: 225399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0081
+  form: gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Other metals such as platinum, gold, and silver can be made into sheets for decorative purposes.
+    approx_offset: 227394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0082
+  form: heavy-duty cast-iron frame
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+  evidence:
+  - quote: A heavy-duty cast-iron frame.
+    approx_offset: 25170
+  - quote: A heavy-duty cast-iron frame.
+    approx_offset: 94756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0083
+  form: high carbon industrial steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: The usual talk of carbon steel is mostly referenced to the high carbon industrial steel used
+      in making various tools and knives.
+    approx_offset: 200680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0084
+  form: hydrogen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: Porosity is cause by the absorption of nitrogen, hydrogen, and oxygen in the molten weld pool
+      which is then released on solidification that would become trapped in the weld of the metal.
+    approx_offset: 141730
+  - quote: Use of Low Hydrogen Filler Metals
+    approx_offset: 178625
+  - quote: While not all products are standard, it’s advisable to look for stick electrodes and flux-cored
+      wires that produce low levels of diffusible hydrogen.
+    approx_offset: 178868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0085
+  form: iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+    - https://blackadvtech.com/capabilities/tool-sharpening
+    - https://blackadvtech.com/capabilities/tool-sharpening/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: A heavy-duty cast-iron frame.
+    approx_offset: 25186
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 34479
+  - quote: TWO full-size 11 gauge steel side-loading doors with welded angle-iron framework
+    approx_offset: 52615
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0086
+  form: lead, and aluminum alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: This process is, however, slightly different for metal, such as aluminum, brass, copper, zinc,
+      lead, and aluminum alloys.
+    approx_offset: 225192
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0087
+  form: low carbon steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: 'When compared with their high carbon counterparts, low carbon steels are more popular due
+      to the following reasons:'
+    approx_offset: 201195
+  - quote: It’s cheaper to produce low carbon steels
+    approx_offset: 201313
+  - quote: Low carbon steels usual deform or bend when subjected to stress rather than breaking.
+    approx_offset: 201383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0088
+  form: metal foil
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: While the lower end of sheet metal thickness is 0.5 mm, it can still be reduced further to
+      form metal foil.
+    approx_offset: 205213
+  - quote: Metal foil is the thinnest level that sheet metal can get.
+    approx_offset: 205226
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0089
+  form: metal plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Also, the majority of sheet metal products are maintenance-free, unlike metal plates that demand
+      extra maintenance through welding.
+    approx_offset: 207747
+  - quote: Metal plates come in large stock, flat, and wide forms.
+    approx_offset: 228985
+  - quote: The most common materials for manufacturing metal plates are steel, titanium, and Vitallium.
+    approx_offset: 229261
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0090
+  form: metal sheet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/things-to-consider-about-sheet-metal-bending-in-the-design-process/
+  evidence:
+  - quote: A metal sheet material that requires a lot of advanced welding might be unsuitable due to the
+      increase in costs.
+    approx_offset: 216197
+  - quote: The thinner the metal sheet, the higher the gauge.
+    approx_offset: 227538
+  - quote: Metal Sheet Making Processes
+    approx_offset: 227637
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0091
+  form: mild steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: 'Maximum sheet thickness: With our lasers, we generally will cut aluminum up to 3/8″, mild
+      steel up to 1″, and stainless steel up to 1/2″.'
+    approx_offset: 71763
+  - quote: We generally cut aluminum up to 3/8″, mild steel up to 1″ and stainless steel up to 1/2″ thick
+    approx_offset: 88836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0092
+  form: molybdenum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Metalworkers can use allow elements such as silicon, nickel, molybdenum, and chromium to increase
+      steel’s corrosion resistance as well as achieve a balance between toughness and strength.
+    approx_offset: 203413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0093
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Nickel steel contains 8% of nickel and 0.35% of carbon added to steel.
+    approx_offset: 196601
+  - quote: While this is the standard combination, a larger composition of nickel might be used.
+    approx_offset: 196708
+  - quote: The use of slightly higher nickel contents adds pressure resistance and high-temperature strength
+      to steel, an essential requirement in the manufacture of gas cylinders.
+    approx_offset: 197041
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0094
+  form: nickel steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: The universal numbering system identifies number 2 metals as all nickel steel alloys while
+      number 3 are alloys of steel with nickel and chromium.
+    approx_offset: 199292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0095
+  form: nickel-chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Number 3 metals consist of all nickel-chromium alloys.
+    approx_offset: 197808
+  - quote: The majority of nickel-chromium alloys are based on this solution.
+    approx_offset: 197948
+  - quote: Properties of Nickel-Chromium Steels
+    approx_offset: 198095
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0096
+  form: nickel-chromium alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Number 3 metals consist of all nickel-chromium alloys.
+    approx_offset: 197808
+  - quote: The majority of nickel-chromium alloys are based on this solution.
+    approx_offset: 197948
+  - quote: The high hardness of nickel-chromium alloys adds a good wear resistance.
+    approx_offset: 198934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0097
+  form: non-ferrous
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: The TruDisk solid-state laser enables the processing of non-ferrous metals and provides you
+      with a productivity benefit in thick and thin sheet.
+    approx_offset: 30744
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31511
+  - quote: Ferrous and non-ferrous metals of the same thickness have a different gauge.
+    approx_offset: 223051
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0098
+  form: non-ferrous materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0099
+  form: non-ferrous metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: The TruDisk solid-state laser enables the processing of non-ferrous metals and provides you
+      with a productivity benefit in thick and thin sheet.
+    approx_offset: 30744
+  - quote: Ferrous and non-ferrous metals of the same thickness have a different gauge.
+    approx_offset: 223051
+  - quote: Whether you are working with galvanized steel, standard steel, or non-ferrous metals such as
+      aluminum, brass and copper, sheet metal thickness is a mandatory parameter in any metal fabrication
+      process.
+    approx_offset: 225436
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0100
+  form: oxyacetylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: This process is performed using an oxyacetylene torch.
+    approx_offset: 146382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0101
+  form: phosphate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: (2) 5-stage wash & phosphate powder coating system
+    approx_offset: 6311
+  - quote: • 1 – 5 Stage Iron Phosphate Bonderiser
+    approx_offset: 20263
+  - quote: Blackstone Advanced Technologies (early 2022) invested in a new state of the art technology
+      bonderizer to coat (steel) with an anticorrosive phosphate solution, in preparation for the application
+      of paint, enamel, or lacquer.
+    approx_offset: 40622
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0102
+  form: pickle liquor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: Pickling involves the use of an acidic solution known as pickle liquor.
+    approx_offset: 220237
+  - quote: When preparing low-carbon steel, the pickle liquor might contain sulphuric and hydrochloric
+      acids.
+    approx_offset: 220289
+  - quote: On the other end, pickle liquor might contain nitric or phosphoric acid.
+    approx_offset: 220369
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0103
+  form: plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: It can be used on different surfaces, including concrete, metal, steel, and plastic.
+    approx_offset: 149889
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0104
+  form: plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: The PMI-20 CNC Auto Miter Upcut Saw is a fully automatic upcut miter saw that is built and
+      designed to cut aluminum extrusions, profiles, and other non-ferrous materials (copper, brass, plastics).
+    approx_offset: 31549
+  - quote: This can be a limitation for heat-sensitive materials, such as certain plastics or heat-sensitive
+      electronic components, as they may get damaged or deformed during the curing process.
+    approx_offset: 124071
+  - quote: This lack of flexibility may result in cracking or peeling when applied to materials that undergo
+      frequent bending or flexing, such as certain types of plastics.
+    approx_offset: 125229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0105
+  form: plate metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: Any piece exceeding 6mm is known as plate metal, while that with a thickness of less than 0.5mm
+      is known as foil metal.
+    approx_offset: 222335
+  - quote: plate metal comparison has proved problematic to many.
+    approx_offset: 226415
+  - quote: The main difference between sheet and plate metal is thickness or gauge.
+    approx_offset: 226703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0106
+  form: platinum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Other metals such as platinum, gold, and silver can be made into sheets for decorative purposes.
+    approx_offset: 227384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0107
+  form: platinum, gold, and silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Other metals such as platinum, gold, and silver can be made into sheets for decorative purposes.
+    approx_offset: 227384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0108
+  form: polymer resin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: Combined with pigments, flow modifiers, leveling agents, and several other additives, it’s
+      a polymer resin.
+    approx_offset: 151153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0109
+  form: powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 121
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - http://blackadvtech.com/site-map
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/3-ways-to-correct-distortion-after-welding/
+  evidence:
+  - quote: We’ve installed an extensive paint and powder coating system to handle the most complex finishing
+      requirements for today’s market.
+    approx_offset: 419
+  - quote: POWDER COATING & FINISHING SERVICES
+    approx_offset: 4580
+  - quote: SHEET METAL POWDER COATING & FINISHING SERVICES
+    approx_offset: 4629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0110
+  form: resin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+  evidence:
+  - quote: It involves applying a fine powder made of a combination of resin, pigment, and other additives
+      onto a surface.
+    approx_offset: 121686
+  - quote: The curing process also helps in cross-linking the resin molecules, resulting in a durable
+      and resilient coating.
+    approx_offset: 122561
+  - quote: Combined with pigments, flow modifiers, leveling agents, and several other additives, it’s
+      a polymer resin.
+    approx_offset: 151161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0111
+  form: sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 158
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - http://blackadvtech.com/contact-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+  evidence:
+  - quote: Our team is continuously developing and improving custom sheet metal fabrication processes
+      to exceed customer expectations.
+    approx_offset: 932
+  - quote: Ability to fabricate a variety of large sheet metal components for the transportation industry.
+    approx_offset: 2365
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0112
+  form: sheet metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+    - https://blackadvtech.com/things-to-consider-about-sheet-metal-bending-in-the-design-process/
+  evidence:
+  - quote: Fiber laser cutting machines has been recently dominating the use of cutting sheet metals.
+    approx_offset: 118672
+  - quote: Sheet metals are thinner than plate metals.
+    approx_offset: 226738
+  - quote: Engineers can turn sheet metals to highly functional pieces through the bending process.
+    approx_offset: 235491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0113
+  form: shielding gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Be sure to double check your flow rates, the shielding gas type, and having a clean gas nozzle.
+    approx_offset: 142241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0114
+  form: shielding gas type
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+  evidence:
+  - quote: Be sure to double check your flow rates, the shielding gas type, and having a clean gas nozzle.
+    approx_offset: 142241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0115
+  form: silicon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Metalworkers can use allow elements such as silicon, nickel, molybdenum, and chromium to increase
+      steel’s corrosion resistance as well as achieve a balance between toughness and strength.
+    approx_offset: 203396
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0116
+  form: silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Other metals such as platinum, gold, and silver can be made into sheets for decorative purposes.
+    approx_offset: 227404
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0117
+  form: stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 35
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: This form of arc welding produces a slag-free metal, making it great for stainless steel and
+      aluminum projects (i.e.
+    approx_offset: 10680
+  - quote: The push system is an air-cooled system that is great for welding carbon steel, stainless steel
+      and can push aluminum.
+    approx_offset: 32818
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+    approx_offset: 64654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0118
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sheet-metal-laser-cutting/
+  evidence:
+  - quote: This form of arc welding produces a slag-free metal, making it great for stainless steel and
+      aluminum projects (i.e.
+    approx_offset: 10680
+  - quote: The push system is an air-cooled system that is great for welding carbon steel, stainless steel
+      and can push aluminum.
+    approx_offset: 32818
+  - quote: 'Maximum sheet thickness: With our lasers, we generally will cut aluminum up to 3/8″, mild
+      steel up to 1″, and stainless steel up to 1/2″.'
+    approx_offset: 71788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0119
+  form: steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 95
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/capabilities/machinery/
+    - https://blackadvtech.com/capabilities/newequipment/
+  evidence:
+  - quote: This form of arc welding produces a slag-free metal, making it great for stainless steel and
+      aluminum projects (i.e.
+    approx_offset: 10690
+  - quote: Fabricated with .05 aluminum or steel and finished with a smooth semi-gloss solvent based paint.
+    approx_offset: 28950
+  - quote: The push system is an air-cooled system that is great for welding carbon steel, stainless steel
+      and can push aluminum.
+    approx_offset: 32811
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0120
+  form: steel plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: These steels are often used in to make bolts, steel plates, fixtures, and automobile body panels.
+    approx_offset: 201598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0121
+  form: stick electrodes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/what-are-welding-defects-how-can-you-avoid-them/
+  evidence:
+  - quote: While not all products are standard, it’s advisable to look for stick electrodes and flux-cored
+      wires that produce low levels of diffusible hydrogen.
+    approx_offset: 178792
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0122
+  form: tempered glass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: TWO tempered glass lenses, 12″ x 33″ with peel-off inner lens protectors
+    approx_offset: 52360
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0123
+  form: thermoplastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/common-welding-issues-and-how-to-correct-them/
+    - https://blackadvtech.com/dos-and-donts-to-welding/
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: Welding is a process where there are two or more pieces of metal or thermoplastics that are
+      fastened together using heat and pressure.
+    approx_offset: 141060
+  - quote: There are two main types of powder coating, thermoplastics, and thermosets.
+    approx_offset: 150016
+  - quote: The bond makes them unlikely to melt as thermoplastics would.
+    approx_offset: 150542
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0124
+  form: thermosets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+  evidence:
+  - quote: There are two main types of powder coating, thermoplastics, and thermosets.
+    approx_offset: 150036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0125
+  form: tin cans
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Steel drums, radiators, and tin cans are produced through this process.
+    approx_offset: 184045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0126
+  form: titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Highly preferred by welders, seam welding is practical for use on metals such as stainless
+      steel, titanium, aluminum, and tungsten.
+    approx_offset: 182513
+  - quote: The most common materials for manufacturing metal plates are steel, titanium, and Vitallium.
+    approx_offset: 229285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0127
+  form: tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+    - https://blackadvtech.com/good-to-know-tips-when-welding-aluminum/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: When you need a design that can handle joining two different metals, tungsten inert gas (TIG)
+      welding is there for you.
+    approx_offset: 10826
+  - quote: A good note to remember is to watch the puddle and not your tungsten.
+    approx_offset: 160727
+  - quote: Highly preferred by welders, seam welding is practical for use on metals such as stainless
+      steel, titanium, aluminum, and tungsten.
+    approx_offset: 182537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0128
+  form: weld-deposited cobalt-chrome alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: These alloys are a better alternative to weld-deposited cobalt-chrome alloys.
+    approx_offset: 199027
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0129
+  form: welded angle-iron framework
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 34466
+  - quote: TWO full-size 11 gauge steel side-loading doors with welded angle-iron framework
+    approx_offset: 52602
+  - quote: Two 11 gauge steel doors with welded angle-iron framework, 18 ga steel body.
+    approx_offset: 52998
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0130
+  form: wood
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/powder-coat-or-wet-paint/
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: This flexibility makes it suitable for materials that experience bending or flexing, such as
+      certain types of plastics or wood.
+    approx_offset: 128617
+  - quote: 'Compatibility with Different Surfaces: Wet paint can adhere to a wide range of surfaces, including
+      metal, wood, plastics, and more.'
+    approx_offset: 128729
+  - quote: Metal nail plate– in this form, nails are used as a wood fastener.
+    approx_offset: 229485
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0131
+  form: zinc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: However, galvanized sheet metal has a 0.001-inch zinc coating.
+    approx_offset: 224276
+  - quote: This process is, however, slightly different for metal, such as aluminum, brass, copper, zinc,
+      lead, and aluminum alloys.
+    approx_offset: 225186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-material_caps-0132
+  form: zinc, lead
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: This process is, however, slightly different for metal, such as aluminum, brass, copper, zinc,
+      lead, and aluminum alloys.
+    approx_offset: 225186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

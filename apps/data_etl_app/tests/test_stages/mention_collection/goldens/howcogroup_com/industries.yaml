@@ -1,0 +1,1665 @@
+subject: howcogroup.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+golden_set_version: 1
+anchored_on: search/expectations/howcogroup_com/industries.yaml
+labels:
+- id: howcogroup_com-industries-0001
+  form: Biomass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Biomass
+    approx_offset: 116537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0002
+  form: CCUS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: CCUS
+    approx_offset: 116557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0003
+  form: DOWNHOLE SYSTEMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: DOWNHOLE SYSTEMS
+    approx_offset: 60303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0004
+  form: Flow Control Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Flow Control Equipment
+    approx_offset: 53233
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0005
+  form: Formula Student
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.howcogroup.com/news/howco-supporting-the-reigning-formula-studentchampions/
+    - https://www.howcogroup.com/news/howco-supports-a-winning-formula/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+    - https://www.howcogroup.com/news/page/3/?et_blog
+  evidence:
+  - quote: Howco Supporting the Reigning Formula Student Champions
+    approx_offset: 165599
+  - quote: Howco is delighted to confirm that it will lend its considerable engineering and manufacturing
+      know-how to support the reigning Formula Student champions for a tenth successive year.
+    approx_offset: 165768
+  - quote: The Howco Group is proud to support the team of young engineers from the University of Glasgow
+      who were crowned FORMULA STUDENT CHAMPIONS at the Silverstone racing circuit one of the largest
+      student motorsport competitions in Europe.
+    approx_offset: 197561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0006
+  form: Geothermal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: High-Performance PBR Extensions – Geothermal Energy Market
+    approx_offset: 24562
+  - quote: We are also working with operators and OEMs in the geothermal energy sector, who need alloys
+      and finished components that enable long distance drilling at elevated temperatures and pressures
+      in extreme, abrasive conditions.
+    approx_offset: 115964
+  - quote: Geothermal drilling and power generation equipment
+    approx_offset: 116395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0007
+  form: Hydroelectric turbine components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Hydroelectric turbine components
+    approx_offset: 116446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0008
+  form: Hydrogen/ammonia
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Hydrogen/ammonia
+    approx_offset: 116490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0009
+  form: LIQUEFIED NATURAL GAS (LNG)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: LIQUEFIED NATURAL GAS (LNG)
+    approx_offset: 53653
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0010
+  form: LNG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: LIQUEFIED NATURAL GAS (LNG)
+    approx_offset: 53676
+  - quote: LNG is non-corrosive and non-toxic when maintained in liquid form but the materials used to
+      contain it during transportation need to be carefully sourced.
+    approx_offset: 53681
+  - quote: If it vaporises, LNG can become explosive or emit thermal radiation.
+    approx_offset: 53853
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0011
+  form: London North Eastern Railway
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/howco-steaming-into-the-future/
+    - https://www.howcogroup.com/news/page/3/?et_blog
+  evidence:
+  - quote: In 1934 Sir Nigel Gresley and the London North Eastern Railway unveiled a new powerful express
+      passenger locomotive for use in Scotland.
+    approx_offset: 197165
+  - quote: In 1934 Sir Nigel Gresley and the London North Eastern Railway unveiled a new powerful express
+      passenger locomotive for use in Scotland.
+    approx_offset: 215468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0012
+  form: MID & DOWNSTREAM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: HOME  SECTORS  MID & DOWNSTREAM
+    approx_offset: 52727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0013
+  form: Nuclear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Nuclear
+    approx_offset: 116549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0014
+  form: Oilfield
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Howco Scientific is involved in a number of sectors including Oilfield, Semi-Conductor and
+      Scientific Instrument Industries and our vision is to become a one-source supplier for all our customers’
+      turnkey manufacturing requirements.
+    approx_offset: 110800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0015
+  form: POWER SECTOR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: POWER SECTOR
+    approx_offset: 114807
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0016
+  form: RENEWABLES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: RENEWABLES
+    approx_offset: 115481
+  - quote: This aligns perfectly with Howco’s own commitment to delivering outstanding solutions to metals
+      and components supply to clients in sectors such as oil and gas, power generation and renewables
+      industries.
+    approx_offset: 191021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0017
+  form: SUBSEA SYSTEMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: SUBSEA SYSTEMS
+    approx_offset: 61154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0018
+  form: Scientific Instrument
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Howco Scientific is involved in a number of sectors including Oilfield, Semi-Conductor and
+      Scientific Instrument Industries and our vision is to become a one-source supplier for all our customers’
+      turnkey manufacturing requirements.
+    approx_offset: 110829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0019
+  form: Scientific Instrument Industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Howco Scientific is involved in a number of sectors including Oilfield, Semi-Conductor and
+      Scientific Instrument Industries and our vision is to become a one-source supplier for all our customers’
+      turnkey manufacturing requirements.
+    approx_offset: 110829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0020
+  form: Semi-Conductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/capabilities/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Howco Scientific currently manufactures instrumentation units for a semi-conductor manufacturer,
+      which includes sourcing the components, manufacture, assembly and testing the products to our customer’s
+      exacting specifications.
+    approx_offset: 102658
+  - quote: Howco Scientific is involved in a number of sectors including Oilfield, Semi-Conductor and
+      Scientific Instrument Industries and our vision is to become a one-source supplier for all our customers’
+      turnkey manufacturing requirements.
+    approx_offset: 110810
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0021
+  form: Solar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/news/howco-am-components-went-to-the-moon/
+    - https://www.howcogroup.com/news/huge-investment-in-sustainability-this-year/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Solar
+    approx_offset: 116520
+  - quote: In the Spring, we took a giant stride towards achieving our carbon neutral goals with a £750,000
+      investment in a cutting edge Solar Photovoltaic Energy System which has now be installed at our
+      locations in...
+    approx_offset: 164788
+  - quote: In the Spring, we took a giant stride towards achieving our carbon neutral goals with a £750,000
+      investment in a cutting edge Solar Photovoltaic Energy System which has now be installed at our
+      locations in Sheffield (South Yorkshire) and Cumbernauld (North Lanarkshire).
+    approx_offset: 183870
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0022
+  form: Steam Locomotive Trust
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/howco-steaming-into-the-future/
+  evidence:
+  - quote: The Steam Locomotive Trust has launched it project to build a Gresley Class P2 based on the
+      original 1934 design.
+    approx_offset: 216181
+  - quote: The ‘bloc took a small break recently from machining to wow supporters at the recent A1 Steam
+      Locomotive Trust Annual Convention.
+    approx_offset: 216649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0023
+  form: Steel Production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/esg-policies/
+  evidence:
+  - quote: Statement on Conflict Minerals during Steel Production
+    approx_offset: 35858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0024
+  form: Wave/tidal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Wave/tidal
+    approx_offset: 116526
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0025
+  form: Wind turbine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Wind turbine components
+    approx_offset: 116371
+  - quote: Wind turbine
+    approx_offset: 116507
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0026
+  form: aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: A build envelope 280 x 280 x 365mm is perfect for aerospace components or similar applications.
+    approx_offset: 14337
+  - quote: From aerospace to oil and gas, our metal 3D printing services are trusted by industries across
+      the board, across the world.
+    approx_offset: 48273
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0027
+  form: aerospace applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: Whether it’s delivering precision-engineered components for aerospace applications or pioneering
+      new techniques in additive manufacturing, we are committed to staying at the cutting edge of innovation
+      and, to quote a show you may have heard about, to boldly go where no man has gone before.
+    approx_offset: 172891
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0028
+  form: aerospace components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: A build envelope 280 x 280 x 365mm is perfect for aerospace components or similar applications.
+    approx_offset: 14337
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0029
+  form: all energy sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/careers/
+  evidence:
+  - quote: With several decades of proven technical and engineering expertise, Howco is a market-leading
+      manufacturer, processor and distributor of high-performance alloys and precision machined components
+      for all energy sectors worldwide.
+    approx_offset: 18500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0030
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: The HVF 101-xb is also incredibly versatile, able to handle a wide range of materials and applications,
+      from aerospace and automotive components to medical devices and industrial parts.
+    approx_offset: 124343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0031
+  form: automotive components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: The HVF 101-xb is also incredibly versatile, able to handle a wide range of materials and applications,
+      from aerospace and automotive components to medical devices and industrial parts.
+    approx_offset: 124343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0032
+  form: aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Located in West Central Scotland and with excellent road, rail & air transport links, the Howco
+      Irvine site comprises of a modern coating facility offering services to the oil & gas, petrochemical,
+      aviation and heavy engineering sectors.
+    approx_offset: 39451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0033
+  form: chemical process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: CHEMICAL PROCESS
+    approx_offset: 52967
+  - quote: Applications could be considered where severe corrosive environments are of concern, such as
+      deep sour gas wells and a variety of refining and chemical process applications.
+    approx_offset: 117801
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0034
+  form: chemical processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Our clients are typically in the oil, gas, chemical processing and energy sectors.
+    approx_offset: 294
+  - quote: The alloy cannot be hardened by heat-treatment, but enhanced mechanical properties can be obtained
+      by cold working, especially in sour well tubing strings, and for heat-exchangers, and in chemical
+      processing plants.
+    approx_offset: 17371
+  - quote: Howco provides corrosion resistant and high temperature alloys for the chemical processing
+      sector.
+    approx_offset: 53056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0035
+  form: chemical processing sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Howco provides corrosion resistant and high temperature alloys for the chemical processing
+      sector.
+    approx_offset: 53056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0036
+  form: coal fired boilers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Boiler nozzles, clamps and shields in coal fired boilers
+    approx_offset: 115111
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0037
+  form: down hole
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945x/
+  evidence:
+  - quote: They are used extensively within chemical processing plants and down hole tubulars in deep,
+      sour gas wells.
+    approx_offset: 80243
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84959
+  - quote: As Alloy 945X is resistant to sulphide stress-corrosion cracking and stress cracking in H₂S
+      environments, it is suitable for down hole and surface gas well components.
+    approx_offset: 120488
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0038
+  form: downhole
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Howco has a reputation for supplying critical infrastructure for Downhole, Subsea and Surface
+      systems.
+    approx_offset: 2046
+  - quote: This grade is widely used in downhole applications such as drilling jars.
+    approx_offset: 15475
+  - quote: It is extensively used in tubular form for downhole tools.
+    approx_offset: 37634
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0039
+  form: energy sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless,
+      duplex and super duplex materials and is a global provider of these products to a range of industries
+      including upstream, mid and downstream and the energy sector.
+    approx_offset: 33963
+  - quote: The energy sector is still in the midst of a period of unprecedented change.
+    approx_offset: 65595
+  - quote: Howco manufactures, supplies and manages high value alloys and finished machined components
+      for the energy sector.
+    approx_offset: 114690
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0040
+  form: energy sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/careers/
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: Our clients are typically in the oil, gas, chemical processing and energy sectors.
+    approx_offset: 318
+  - quote: FIRST CHOICE FOR OIL, GAS, CHEMICAL AND ENERGY SECTORS
+    approx_offset: 1891
+  - quote: With several decades of proven technical and engineering expertise, Howco is a market-leading
+      manufacturer, processor and distributor of high-performance alloys and precision machined components
+      for all energy sectors worldwide.
+    approx_offset: 18504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0041
+  form: flow control and processing equipment OEMs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: We provide product solutions to a number of leading flow control and processing equipment OEMs.
+    approx_offset: 52923
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0042
+  form: flue gas processing for pollution control
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Scrubbers, dampers, duct work in flue gas processing for pollution control
+    approx_offset: 115228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0043
+  form: gas turbine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace
+      and gas turbine applications, has become the preferred material for the manufacture of Wellhead
+      Components, Auxiliary and Down Hole Tools, and Sub-Surface Safety Valves.
+    approx_offset: 84841
+  - quote: Our clients include a number of leading gas turbine, compressors and power generation equipment
+      OEMs.
+    approx_offset: 114745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0044
+  form: gas turbines creating hydrogen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Land based gas turbines creating hydrogen
+    approx_offset: 116340
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0045
+  form: geothermal energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: High-Performance PBR Extensions – Geothermal Energy Market
+    approx_offset: 24562
+  - quote: We are also working with operators and OEMs in the geothermal energy sector, who need alloys
+      and finished components that enable long distance drilling at elevated temperatures and pressures
+      in extreme, abrasive conditions.
+    approx_offset: 115964
+  - quote: HOME  NEWS  HIGH-PERFORMANCE PBR EXTENSIONS – GEOTHERMAL ENERGY MARKET
+    approx_offset: 157587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0046
+  form: geothermal energy sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: We are also working with operators and OEMs in the geothermal energy sector, who need alloys
+      and finished components that enable long distance drilling at elevated temperatures and pressures
+      in extreme, abrasive conditions.
+    approx_offset: 115964
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0047
+  form: geothermal market
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+  evidence:
+  - quote: With a heritage rooted in engineering excellence, Howco is now expanding its reach into the
+      geothermal market.
+    approx_offset: 158029
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0048
+  form: heavy engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Located in West Central Scotland and with excellent road, rail & air transport links, the Howco
+      Irvine site comprises of a modern coating facility offering services to the oil & gas, petrochemical,
+      aviation and heavy engineering sectors.
+    approx_offset: 39464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0049
+  form: hydroelectric installations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Meanwhile, many hydroelectric installations use turbines that contain our nickel alloys to
+      prevent erosion and corrosion.
+    approx_offset: 116154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0050
+  form: leading gas turbine, compressors and power generation equipment OEMs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Our clients include a number of leading gas turbine, compressors and power generation equipment
+      OEMs.
+    approx_offset: 114737
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0051
+  form: liquified natural gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/
+  evidence:
+  - quote: Howco provides specialist components for the leading processors of chemicals and liquified
+      natural gas.
+    approx_offset: 2186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0052
+  form: locomotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.howcogroup.com/news/howco-steaming-into-the-future/
+    - https://www.howcogroup.com/news/page/3/?et_blog
+  evidence:
+  - quote: In 1934 Sir Nigel Gresley and the London North Eastern Railway unveiled a new powerful express
+      passenger locomotive for use in Scotland.
+    approx_offset: 197236
+  - quote: This massive locomotive was named Cock o' the North and was extensively trialled in the UK
+      before further testing in France.
+    approx_offset: 197281
+  - quote: In 1934 Sir Nigel Gresley and the London North Eastern Railway unveiled a new powerful express
+      passenger locomotive for use in Scotland.
+    approx_offset: 215539
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0053
+  form: lunar lander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+    - https://www.howcogroup.com/news/howco-am-components-went-to-the-moon/
+  evidence:
+  - quote: February 2024 marked a historic milestone in space exploration as the Intuitive Machines IM-1
+      mission Nova-C class lunar lander touched down on the Moon’s surface, marking the first human-made
+      landing in over half a century.
+    approx_offset: 170604
+  - quote: The Howco team takes pride in being a supplier of additively manufactured metal components
+      for the Intuitive Machines IM-1 mission Nova-C class lunar lander.
+    approx_offset: 205262
+  - quote: The IM-1 mission Nova-C class lunar lander launched on SpaceX’s Falcon 9 rocket and successfully
+      commissioned in space by establishing a stable attitude, solar charging, and radio communications
+      contact with the Company’s mission operations centre in Houston.
+    approx_offset: 205551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0054
+  form: marine and chemical processing environments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: It has widely used applications in marine and chemical processing environments, in forms such
+      as seals, fasteners, heat exchangers, valves, steam lines, exhaust ducts, etc.
+    approx_offset: 75604
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0055
+  form: marine applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: A725 is also used for high-strength fasteners in marine applications to resist corrosion, pitting
+      and crevice attack in sea water.
+    approx_offset: 91198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0056
+  form: marine environments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-925-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+  evidence:
+  - quote: It can also be used for fasteners, and for pump shafts operating within marine environments.
+    approx_offset: 67851
+  - quote: It can also be used for fasteners, and for pump shafts in marine environments.
+    approx_offset: 104011
+  - quote: Marine environments could be considered a candidate where A625 Plus has proven success.
+    approx_offset: 117832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0057
+  form: medical devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: The HVF 101-xb is also incredibly versatile, able to handle a wide range of materials and applications,
+      from aerospace and automotive components to medical devices and industrial parts.
+    approx_offset: 124368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0058
+  form: mid and downstream
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: MID AND DOWNSTREAM
+    approx_offset: 2085
+  - quote: Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless,
+      duplex and super duplex materials and is a global provider of these products to a range of industries
+      including upstream, mid and downstream and the energy sector.
+    approx_offset: 33936
+  - quote: MID AND DOWNSTREAM
+    approx_offset: 52693
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0059
+  form: mid and downstream sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/mid-downstream/
+  evidence:
+  - quote: Howco manufactures, supplies and manages high value alloys and finished machined components
+      for the mid and downstream sector.
+    approx_offset: 52844
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0060
+  form: motorsport contest
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-supporting-the-reigning-formula-studentchampions/
+  evidence:
+  - quote: dominated the grassroots motorsport contest for the last couple of seasons.
+    approx_offset: 202571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0061
+  form: offshore wind farms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: On offshore wind farms, our nickel alloys are used in gearing and generator components.
+    approx_offset: 115672
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0062
+  form: oil & gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Located in West Central Scotland and with excellent road, rail & air transport links, the Howco
+      Irvine site comprises of a modern coating facility offering services to the oil & gas, petrochemical,
+      aviation and heavy engineering sectors.
+    approx_offset: 39425
+  - quote: The Cladding Systems of our established supply chain partners are designed to perform fully-automated
+      GTAW build-up of corrosion-resistant alloy welding on engineered components for the oil & gas, petrochemical
+      and engineering sectors.
+    approx_offset: 44705
+  - quote: From simple jigs and tooling skids to complex oil & gas wellhead structures and assemblies,
+      these components can be fabricated in a variety of materials to our customers’ exacting requirements
+      and technical needs, Howco offers a one stop solution across a variety of industry sectors.
+    approx_offset: 71843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0063
+  form: oil and gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/high-performance-pbr-extensions-geothermal-energy-market/
+  evidence:
+  - quote: For over two decades, Howco Norway has been a trusted name in the manufacture and supply of
+      polished bore receptacle (PBR) extensions, providing critical components to the oil and gas sector
+      across Europe, Asia, Africa, Oceania, and the Americas.
+    approx_offset: 24774
+  - quote: From aerospace to oil and gas, our metal 3D printing services are trusted by industries across
+      the board, across the world.
+    approx_offset: 48286
+  - quote: Howco is the market leader in the manufacture, supply and management of bespoke metal products
+      for the oil and gas upstream industry.
+    approx_offset: 59995
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0064
+  form: oil and gas upstream industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Howco is the market leader in the manufacture, supply and management of bespoke metal products
+      for the oil and gas upstream industry.
+    approx_offset: 59995
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0065
+  form: oil, gas, chemical processing and energy sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/
+  evidence:
+  - quote: Our clients are typically in the oil, gas, chemical processing and energy sectors.
+    approx_offset: 284
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0066
+  form: petrochemical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: Located in West Central Scotland and with excellent road, rail & air transport links, the Howco
+      Irvine site comprises of a modern coating facility offering services to the oil & gas, petrochemical,
+      aviation and heavy engineering sectors.
+    approx_offset: 39436
+  - quote: The Cladding Systems of our established supply chain partners are designed to perform fully-automated
+      GTAW build-up of corrosion-resistant alloy welding on engineered components for the oil & gas, petrochemical
+      and engineering sectors.
+    approx_offset: 44716
+  - quote: The petrochemical and processing industries are good candidates for this alloy.
+    approx_offset: 91073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0067
+  form: pollution control
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Scrubbers, dampers, duct work in flue gas processing for pollution control
+    approx_offset: 115252
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0068
+  form: power generation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Howco components are integral to many businesses in the power generation and renewable energy
+      industries.
+    approx_offset: 2274
+  - quote: Our clients include a number of leading gas turbine, compressors and power generation equipment
+      OEMs.
+    approx_offset: 114774
+  - quote: The components at the heart of power generation facilities need to be made from mechanically
+      strong materials that can withstand high temperatures and resist corrosion.
+    approx_offset: 114852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0069
+  form: refining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: Normally supplied using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting,
+      followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro slag
+      refining), though an air melt and double VAR melting practice is also permitted by many material
+      specif
+    approx_offset: 85378
+  - quote: Applications could be considered where severe corrosive environments are of concern, such as
+      deep sour gas wells and a variety of refining and chemical process applications.
+    approx_offset: 117788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0070
+  form: refining and chemical process applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: Applications could be considered where severe corrosive environments are of concern, such as
+      deep sour gas wells and a variety of refining and chemical process applications.
+    approx_offset: 117788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0071
+  form: renewable energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/news/huge-investment-in-sustainability-this-year/
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: Howco components are integral to many businesses in the power generation and renewable energy
+      industries.
+    approx_offset: 2295
+  - quote: And Howco is deeply involved in the growing renewable energy sector.
+    approx_offset: 115643
+  - quote: In addition to driving down our carbon footprint and reducing our reliance on traditional energy
+      sources, the use of renewable energy means that we’ll also be able to offset some of the recent
+      energy price increases.
+    approx_offset: 184930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0072
+  form: renewable energy sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: And Howco is deeply involved in the growing renewable energy sector.
+    approx_offset: 115643
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0073
+  form: semi-conductor manufacturer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/capabilities/
+  evidence:
+  - quote: Howco Scientific currently manufactures instrumentation units for a semi-conductor manufacturer,
+      which includes sourcing the components, manufacture, assembly and testing the products to our customer’s
+      exacting specifications.
+    approx_offset: 102658
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0074
+  form: sent to space
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+  evidence:
+  - quote: Components from our Additive Manufacturing division have been sent to space and landed on the
+      moon, which is an extremely reassuring endorsement of the dependability of our high-quality parts.
+    approx_offset: 48760
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0075
+  form: space exploration
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+    - https://www.howcogroup.com/news/howco-am-components-went-to-the-moon/
+  evidence:
+  - quote: February 2024 marked a historic milestone in space exploration as the Intuitive Machines IM-1
+      mission Nova-C class lunar lander touched down on the Moon’s surface, marking the first human-made
+      landing in over half a century.
+    approx_offset: 170534
+  - quote: Not only is it proof of Howco’s commitment to excellence, but it marks a pivotal step for the
+      role that additive manufacturing plays, and will continue to play, in pushing the boundaries of
+      space exploration.
+    approx_offset: 171285
+  - quote: Intuitive Machines is a diversified space company focused on space exploration.
+    approx_offset: 205869
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0076
+  form: student motorsport competitions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/howco-supports-a-winning-formula/
+    - https://www.howcogroup.com/news/page/3/?et_blog
+  evidence:
+  - quote: The Howco Group is proud to support the team of young engineers from the University of Glasgow
+      who were crowned FORMULA STUDENT CHAMPIONS at the Silverstone racing circuit one of the largest
+      student motorsport competitions in Europe.
+    approx_offset: 197640
+  - quote: The Howco Group is proud to support the team of young engineers from the University of Glasgow
+      who were crowned FORMULA STUDENT CHAMPIONS at the Silverstone racing circuit one of the largest
+      student motorsport competitions in Europe.
+    approx_offset: 220769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0077
+  form: subsea
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: Howco has a reputation for supplying critical infrastructure for Downhole, Subsea and Surface
+      systems.
+    approx_offset: 2056
+  - quote: The material characteristics lends itself to a wide variety of surface and subsea applications
+      such as flanges, casing hangers, riser spools and hose connectors.
+    approx_offset: 27500
+  - quote: Generally, the material is used in applications for subsea components such as running tools,
+      seals and hangers.
+    approx_offset: 51404
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0078
+  form: tidal and wave power generation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/sectors/energy/
+  evidence:
+  - quote: And our stainless steel is proving invaluable in tidal and wave power generation thanks to
+      its ability to perform in spite of marine corrosion and fouling.
+    approx_offset: 115806
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0079
+  form: upstream
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/materials/materials-overview/
+    - https://www.howcogroup.com/sectors/upstream/
+  evidence:
+  - quote: UPSTREAM
+    approx_offset: 1971
+  - quote: Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless,
+      duplex and super duplex materials and is a global provider of these products to a range of industries
+      including upstream, mid and downstream and the energy sector.
+    approx_offset: 33926
+  - quote: UPSTREAM
+    approx_offset: 59858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-industries-0080
+  form: wind farm
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/
+  evidence:
+  - quote: Whether it is supplying an oil drilling platform in the North Sea, a gas installation in the
+      Arctic Circle or a wind farm in Norway, our clients expect – and get – world class products, underpinned
+      by world class relentless support.
+    approx_offset: 64895
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,926 @@
+subject: alecmfg.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+golden_set_version: 1
+anchored_on: search/expectations/alecmfg_com/material_caps.yaml
+labels:
+- id: alecmfg_com-material_caps-0001
+  form: 316L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-high-precision-stainless-steel-valve-body-for-semiconductor-equipment/
+  evidence:
+  - quote: Existing suppliers’ 316L stainless steel components showed microscopic burrs and inconsistent
+      surface finishes, resulting in vacuum seal failures and particle contamination risks—an unacceptable
+      threat in semiconductor manufacturing.
+    approx_offset: 61039
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0002
+  form: '4140'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0003
+  form: 4140 alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0004
+  form: '6061'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: 6061-T6
+    approx_offset: 50898
+  - quote: 'Material: 6061-T651 aluminum, with material certs per ASTM B221'
+    approx_offset: 72708
+  - quote: 6061-T6 aluminum (ASTM B221, extrusion stock)
+    approx_offset: 76926
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0005
+  form: 6061-T6
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: 6061-T6
+    approx_offset: 50898
+  - quote: 6061-T6 aluminum (ASTM B221, extrusion stock)
+    approx_offset: 76926
+  - quote: Used U.S.-sourced 6061-T6 extrusion plates (material cert included)
+    approx_offset: 77998
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0006
+  form: 6061-T651
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+  evidence:
+  - quote: 'Material: 6061-T651 aluminum, with material certs per ASTM B221'
+    approx_offset: 72708
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0007
+  form: '6082'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+  evidence:
+  - quote: Aluminum alloy EN AW-6082 T6 (optimized for strength-to-weight ratio)
+    approx_offset: 127285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0008
+  form: '7075'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: EN AW 7075-T6 (EN 10204 3.1)
+    approx_offset: 50766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0009
+  form: '7475'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: The customer specified EN AW-7475-T7351 aerospace aluminum sourced from a France-approved vendor,
+      which is rare in the local Chinese market.
+    approx_offset: 68635
+  - quote: On the day of RFQ, we contacted the French brand’s official distributor in China and secured
+      a qualified batch of EN AW-7475-T7351 bar stock.
+    approx_offset: 69576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0010
+  form: A36
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106686
+  - quote: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill.
+    approx_offset: 108264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0011
+  form: ABS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 10052
+  - quote: CNC machines exhibit remarkable versatility in the range of materials they can work with, including
+      metals like aluminum and steel, plastics such as ABS and polycarbonate, and even composites.
+    approx_offset: 13642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0012
+  form: AL7075
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: AL7075 aluminum
+    approx_offset: 96528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0013
+  form: ASTM A36
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: ASTM A36 plate + 4140 alloy inserts
+    approx_offset: 106681
+  - quote: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill.
+    approx_offset: 108259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0014
+  form: Acetal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: POM (Polyoxymethylene or Acetal)
+    approx_offset: 10135
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0015
+  form: Acrylonitrile Butadiene Styrene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: ABS (Acrylonitrile Butadiene Styrene)
+    approx_offset: 10057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0016
+  form: C1100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+  evidence:
+  - quote: C1100 Oxygen-Free Copper (Thermal conductivity > 390 W/m·K)
+    approx_offset: 101022
+  - quote: C1100 oxygen-free copper is extremely ductile and sticky during cutting, which increases the
+      risk of tool marks, burrs, and built-up edges.
+    approx_offset: 101597
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0017
+  form: EN AW 7075-T6
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: EN AW 7075-T6 (EN 10204 3.1)
+    approx_offset: 50760
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0018
+  form: EN AW-6082 T6
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+  evidence:
+  - quote: Aluminum alloy EN AW-6082 T6 (optimized for strength-to-weight ratio)
+    approx_offset: 127279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0019
+  form: EN AW-7475-T7351
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: The customer specified EN AW-7475-T7351 aerospace aluminum sourced from a France-approved vendor,
+      which is rare in the local Chinese market.
+    approx_offset: 68629
+  - quote: On the day of RFQ, we contacted the French brand’s official distributor in China and secured
+      a qualified batch of EN AW-7475-T7351 bar stock.
+    approx_offset: 69570
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0020
+  form: HDPE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: HDPE (High-Density Polyethylene)
+    approx_offset: 10239
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0021
+  form: High-Density Polyethylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: HDPE (High-Density Polyethylene)
+    approx_offset: 10245
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0022
+  form: Inconel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Inconel
+    approx_offset: 10035
+  - quote: 'Inconel:'
+    approx_offset: 15203
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0023
+  form: Nylon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Nylon
+    approx_offset: 10090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0024
+  form: PEEK
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: PEEK (Polyether Ether Ketone)
+    approx_offset: 10184
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0025
+  form: POM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: POM (Polyoxymethylene or Acetal)
+    approx_offset: 10110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0026
+  form: PTFE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: PTFE (Polytetrafluoroethylene or Teflon)
+    approx_offset: 10143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0027
+  form: PVC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 10214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0028
+  form: Polyether Ether Ketone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: PEEK (Polyether Ether Ketone)
+    approx_offset: 10190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0029
+  form: Polyoxymethylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: POM (Polyoxymethylene or Acetal)
+    approx_offset: 10115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0030
+  form: Polytetrafluoroethylene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: PTFE (Polytetrafluoroethylene or Teflon)
+    approx_offset: 10149
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0031
+  form: Polyvinyl Chloride
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: PVC (Polyvinyl Chloride)
+    approx_offset: 10219
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0032
+  form: Teflon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: PTFE (Polytetrafluoroethylene or Teflon)
+    approx_offset: 10176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0033
+  form: Ti6Al4V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+  evidence:
+  - quote: Ti6Al4V titanium alloy
+    approx_offset: 119912
+  - quote: Ti6Al4V is an α-β titanium alloy with high hardness and poor thermal conductivity, making heat
+      dissipation during cutting difficult.
+    approx_offset: 120255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0034
+  form: alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Alloy Steel
+    approx_offset: 10012
+  - quote: 'Alloy Steel:'
+    approx_offset: 14899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0035
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 70
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+  evidence:
+  - quote: Aluminum
+    approx_offset: 9932
+  - quote: CNC machines exhibit remarkable versatility in the range of materials they can work with, including
+      metals like aluminum and steel, plastics such as ABS and polycarbonate, and even composites.
+    approx_offset: 13605
+  - quote: 'Aluminum:'
+    approx_offset: 13984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0036
+  form: aluminum alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+  evidence:
+  - quote: 'Precision Manufacturing Case Study: Aluminum Alloy Sheet Metal Structural Housing for French
+      UAV Client'
+    approx_offset: 24591
+  - quote: 'Precision Manufacturing Case Study: Aluminum Alloy Sheet Metal Structural Housing For French
+      UAV Client'
+    approx_offset: 45126
+  - quote: 'Precision Manufacturing Case Study: Aluminum Alloy Sheet Metal Structural Housing For French
+      UAV Client'
+    approx_offset: 48743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0037
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Brass
+    approx_offset: 9957
+  - quote: 'Brass:'
+    approx_offset: 14184
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0038
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Copper
+    approx_offset: 9963
+  - quote: 'Copper:'
+    approx_offset: 14276
+  - quote: 🇬🇧 UK Electronics Client | Precision 5-Axis CNC Copper Heat Sink Machining For Industrial Power
+      Modules
+    approx_offset: 67399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0039
+  form: magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Magnesium
+    approx_offset: 9979
+  - quote: 'Magnesium:'
+    approx_offset: 14449
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0040
+  form: mild steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Mild Steel
+    approx_offset: 10001
+  - quote: 'Mild Steel:'
+    approx_offset: 14770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0041
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Nickel
+    approx_offset: 9994
+  - quote: 'Nickel:'
+    approx_offset: 14661
+  - quote: Enhanced with elements like chromium and nickel for better strength and heat resistance, used
+      in high-stress applications like gears and axles.
+    approx_offset: 14954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0042
+  form: oxygen-free copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+  evidence:
+  - quote: Our experience in thermal component prototyping, especially in oxygen-free copper machining,
+      gave them the confidence to proceed with a trial order.
+    approx_offset: 100703
+  - quote: C1100 Oxygen-Free Copper (Thermal conductivity > 390 W/m·K)
+    approx_offset: 101028
+  - quote: C1100 oxygen-free copper is extremely ductile and sticky during cutting, which increases the
+      risk of tool marks, burrs, and built-up edges.
+    approx_offset: 101603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0043
+  form: polycarbonate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Polycarbonate
+    approx_offset: 10096
+  - quote: CNC machines exhibit remarkable versatility in the range of materials they can work with, including
+      metals like aluminum and steel, plastics such as ABS and polycarbonate, and even composites.
+    approx_offset: 13650
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0044
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: Stainless Steel
+    approx_offset: 9941
+  - quote: 'Stainless Steel:'
+    approx_offset: 14075
+  - quote: 'Precision Manufacturing Case Study: High-Precision Stainless Steel Valve Body for Semiconductor
+      Equipment'
+    approx_offset: 24206
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0045
+  form: titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/author/alecdev/page/2/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: Titanium
+    approx_offset: 9970
+  - quote: 'Titanium:'
+    approx_offset: 14368
+  - quote: CNC machined parts in titanium and high-temperature alloys, for engine and structural use
+    approx_offset: 43915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0046
+  form: tool steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Tool Steel
+    approx_offset: 10024
+  - quote: 'Tool Steel:'
+    approx_offset: 15058
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-material_caps-0047
+  form: zinc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Zinc
+    approx_offset: 9989
+  - quote: 'Zinc:'
+    approx_offset: 14561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

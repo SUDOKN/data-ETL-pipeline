@@ -1,0 +1,147 @@
+subject: 101machine.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/101machine.com.txt
+  sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+golden_set_version: 1
+anchored_on: search/expectations/101machine_com/industries.yaml
+labels:
+- id: 101machine_com-industries-0001
+  form: agricultural
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/milling.html
+  evidence:
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-industries-0002
+  form: chemical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1486
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-industries-0003
+  form: lighting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1476
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-industries-0004
+  form: medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1500
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2396
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-industries-0005
+  form: nuclear power
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1446
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2328
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-industries-0006
+  form: semiconductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/milling.html
+    - https://101machine.com/turning.html
+  evidence:
+  - quote: 'We offer machining services with consistently high-quality results for precision components
+      including: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical
+      industries.'
+    approx_offset: 1461
+  - quote: Our CNC Milling offers machining services with consistently high-quality results for precision
+      components including CNC milling and turning services for nuclear power, semiconductor, lighting,
+      chemical, agricultural, and medical industries.
+    approx_offset: 2343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

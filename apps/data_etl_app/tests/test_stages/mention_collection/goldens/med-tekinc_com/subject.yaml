@@ -1,0 +1,169 @@
+subject: med-tekinc.com
+subject_name: MED-TEK, INC.
+business_type: commercial heat-treating TOLL PROCESSOR, Minneapolis MN. Sells furnace and bath time on other companies'
+  parts and designs; makes and sells nothing of its own.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+role: empty_field_probe
+role_note: >-
+  Seeded as `inventory_subject` before this corpus adopted the search harness's
+  vocabulary wholesale. Normalized to search's `empty_field_probe` on 2026-08-27:
+  it is the same roster, and a second vocabulary would fork the corpus
+  silently. The earlier value is kept here because the reasoning behind
+  it describes what THIS stage sees, which search's word may not.
+role_source: 'the search harness assigned role: empty_field_probe (search/expectations/med-tekinc_com/subject.yaml),
+  which is not a value in this instrument''s vocabulary. Re-keyed to the nearest mention-stage role: what this stage
+  sees is a 20-item BARE KEYWORD LIST plus a six-family equipment block in 7 KB - a dense inventory with no marketing
+  padding, and the cheapest subject in the corpus to label exhaustively. The empty-field rationale is a search-stage
+  property and does not change what this stage is asked to do.'
+coverage: full_text
+snapshot_shape: 7,093 bytes / 267 lines / 4 page fetches, of which one is a byte-identical duplicate - 3 unique
+  pages, ~1,000 words. The smallest healthy in-domain site in the corpus.
+third_party_roster:
+- Surface Combustion
+third_party_roster_source: 'built this pass. The roster is deliberately one name long: this is the corpus''s SINGLE-VOICE
+  CONTROL for whose_words. Reading all 267 lines, the only non-subject organisation named anywhere in the file is
+  the furnace vendor Surface Combustion, and it is named inside the site''s own owned-equipment prose. There is
+  no parent, no customer testimonial, no standards body (grep for ISO/ASTM/ANSI/AS9100/NADCAP/UL/CE/ITAR/RoHS/MIL-
+  returns nothing but "REACH" inside "Reach Out to Us"), and no third-party quote. Any whose_words other than site
+  - except on the Surface Combustion lines - is a false positive, which makes this subject the cleanest available
+  baseline for the S4 boilerplate "in the site''s own copy".'
+voices:
+- whose_words: site
+  note: effectively the entire file. First person plural throughout, one company, one location, one capability.
+- whose_words: vendor
+  note: 'the only exception, and a mild one: the equipment block names the furnace manufacturer Surface Combustion
+    twice as the brand of machines MED-TEK owns. The sentence is the site''s; the name is a vendor''s.'
+  quote: Surface Combustion Single Chamber Vacuum Furnaces With Up To Two Bar Pressure Quench — With Vacuum or Nitrogen
+    Atmospheres and Normal Operating Temperatures Between 600 and 2,300 Degrees Fahrenheit. Working Area Is 36"
+    x 48" x 30" With a Load Capacity Of Up To 2,000 lbs.
+text_hazards:
+- hazard: duplicate_page
+  note: 'VERIFIED THIS PASS by hashing the bodies: https://med-tekinc.com/contact and https://med-tekinc.com/contact/
+    are fetched separately and their bodies are BYTE-IDENTICAL (lines 134-199 == lines 202-267, sha256 of both bodies
+    ce1fb7f2708cf2de...). Only the trailing slash in the URL differs. Every string on the contact page - the whole
+    nine-state Service Area list included - therefore occurs exactly twice, and a form found there has an occurrence
+    count that is a fact about the scrape, not about the site. One of four pages, so 25% of the file.'
+  quote: https://med-tekinc.com/contact/
+- hazard: bare_keyword_list
+  note: 'lines 78-97 are a 20-item list of process names with NO SENTENCE CONTEXT AT ALL - each item is one or two
+    words alone on a line, under the introducing line "Other services we provide include:". This is the purest S1/S3
+    test in the corpus: the snippet for `Austempering` is the single word "Austempering", and the only thing a location
+    model can honestly say is that it is a list item on the Services page under that lead-in. Anything richer is
+    invented. Contrast the equipment block immediately below it, where the same kind of form arrives with atmospheres,
+    temperature ranges and work envelopes.'
+  quote: 'Other services we provide include:
+
+
+    Austempering
+
+    Carbonitriding
+
+    Carburizing
+
+    Controlled Atmospheres
+
+    Laboratory Services'
+  approx_offset: 2719
+- hazard: run_together_nav
+  note: 'MEASURED THIS PASS: the footer nav is rendered as one fused token, "HomeServicesContact", 4 times (once
+    per page). The word-boundary consequence, counted against the snapshot: `Contact` has 21 raw substring hits
+    but only 17 word-boundary hits; `Services` 15 raw / 11 word-boundary; `Home` 12 raw / 8 word-boundary. The 4-hit
+    gap in each case is exactly the fused nav line. A matcher that treats a lower-to-upper case transition as a
+    word boundary will over-count each of these three by four.'
+  quote: HomeServicesContact
+- hazard: nbsp_splits_form
+  note: 'MEASURED THIS PASS AND IT CORRECTS THE SEARCH PROFILE. There are 12 NO-BREAK SPACE (U+00A0) characters,
+    on 12 lines: 10, 11, 14, 19, 21, 23, 25, 27, 32, 36, 74 and 76. search/expectations/med-tekinc_com/subject.yaml
+    lists ten of them and misses lines 74 and 76 (both on the /services/ page). ALL TWELVE sit between two word
+    characters. The same profile says "All sit before the final word of a sentence, so no seeded form spans one"
+    - that is REFUTED by line 11, where the NBSP sits INSIDE the subject''s core capability: the phrase is HEAT<NBSP>TREATING.
+    Counted against the snapshot, `HEAT TREATING` has 1 ASCII-space copy (line 10) and 1 NBSP copy (line 11); a
+    byte-exact matcher finds half of them.'
+  quote: 'A LEADING PLAYER IN HEAT TREATING TECHNOLOGY
+
+    OVER 50 YEARS OF EXPERIENCE IN HEAT TREATING'
+- hazard: non_breaking_hyphen
+  note: U+2011 NON-BREAKING HYPHEN inside 'heat-treating' on lines 74 and 100, while lines 19/21/27 spell the same
+    word with an ASCII hyphen and lines 10/11/25/30/72 use a space. THREE distinct surface spellings of the single
+    core capability of the business. Unlike the NBSP this one is not a space, so a matcher that normalizes unicode
+    spaces still misses it - it needs its own rule.
+  quote: We offer a wide range of services that are sure to meet your heat‑treating needs. Whether you need aging,
+    annealing, or batch hardening, we can take care of you.
+- hazard: typo_form
+  note: the bare keyword list says "Tampering Steel" (line 95) where the equipment paragraph says "tempering steel"
+    (line 102). Both spellings occur exactly once. A model that silently corrects the typo returns a form that is
+    not in the text, and the two are one thing for grouping purposes and two different strings for matching purposes.
+  quote: 'Tampering Steel
+
+    Tool Hardening'
+- hazard: parameter_prose_looks_like_heading
+  note: the six equipment families (lines 104-109) are each ONE LONG LINE that Title-Cases Every Word And Reads
+    Like A Heading, with an em dash separating the machine name from its parameters, several forms per line, and
+    inch marks and degree words mixed in. They are body prose, not headings; a location that calls them headings
+    is an S2 fail, and a clip that stops at the em dash loses every parameter.
+  quote: Salt Bath Line Incorporating Equipment — For neutral Salt Bath, Austemper Bath, and Marquench Bath Processing.
+    The Neutral Salt Bath Has a 24" x 28" capacity and Can Operate At Temperatures Of 1,300 To 1,650 Degrees Fahrenheit.
+    The Austemper and Marquench Baths Operate At Temperatures Of 350 To 800 Degrees Fahrenheit and Have a 48" x
+    72" x 38" Capacity.
+  approx_offset: 3340
+- hazard: repeated_footer
+  note: the address / hours / copyright block closes all four pages (4 copies each of "2639 2nd Street, NE", "(612)
+    789-3527", the four Office/Contact Hours lines and the copyright), and each page ends with a stray "x" close-button
+    artifact followed by the nav repeated a third time. On a 267-line file this chrome is a large fraction of the
+    lines, so a form appearing in it outnumbers the real content easily.
+  quote: '© 2025, MED-TEK, INC. All Rights Reserved.
+
+
+    ×
+
+    Home
+
+    Services
+
+    Contact'
+- hazard: bare_geo_list
+  note: the Service Area is nine bare state and region names, one per line, with no verb - and because the contact
+    page is duplicated, each occurs exactly twice. "Central Canada" also appears once in prose on the home page,
+    so it has three occurrences in two different kinds of text.
+  quote: 'Service Area:
+
+
+    Minnesota
+
+    Wisconsin
+
+    North Dakota
+
+    South Dakota
+
+    Nebraska
+
+    Illinois
+
+    Iowa
+
+    Montana
+
+    Central Canada'
+- hazard: corrupt_zip
+  note: all four page footers carry "Minneapolis, MN 5541818" (eight digits) against the correct "55418" in the
+    two contact-page bodies. A digit-bearing form that occurs 4 times wrong and 2 times right, from one scrape.
+  quote: Minneapolis, MN 5541818
+  approx_offset: 2079
+- hazard: domain_name_bait
+  note: '"MED-TEK" reads as MEDical TEKnology and the string occurs on 15 lines, but the word "medical" occurs ZERO
+    times in the file (verified by grep -i). Recorded here because it is the reason any medical-industry mention
+    on this subject is a fabrication, and this stage must find none.'
+  quote: Learn About MED-TEK, INC.
+notes: 'Two things make this subject worth its small size for THIS stage. First, it is the single-voice control:
+  with one company, one location and one non-subject name in the whole file, the S4 boilerplate "in the site''s
+  own copy" is CORRECT almost everywhere here - which is exactly what a corpus full of steelcraft and mathewsco
+  needs to keep the S4 rate honest. Second, the whole file can be read end to end in one pass, so every occurrence
+  label on it can be verified by a reader rather than sampled.'
+provenance:
+- action: added
+  by: seed-agent-batch4
+  date: '2026-08-27'
+  source: harvested:expansion-doc

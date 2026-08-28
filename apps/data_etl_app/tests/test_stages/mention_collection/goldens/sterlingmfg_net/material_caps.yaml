@@ -1,0 +1,2969 @@
+subject: sterlingmfg.net
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+golden_set_version: 1
+anchored_on: search/expectations/sterlingmfg_net/material_caps.yaml
+labels:
+- id: sterlingmfg_net-material_caps-0001
+  form: 17-4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 17-4
+    approx_offset: 9100
+  - quote: 17-4 stainless steel
+    approx_offset: 68279
+  - quote: SS 17-4
+    approx_offset: 104132
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0002
+  form: 17-4 stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: 17-4 stainless steel
+    approx_offset: 68279
+  - quote: This includes small, highly complex parts in 17-4 stainless steel to tight tolerances.
+    approx_offset: 107404
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0003
+  form: 300 series stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Various 300 series stainless steels
+    approx_offset: 31225
+  - quote: 300 series stainless steels
+    approx_offset: 68306
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0004
+  form: '303'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 303
+    approx_offset: 9108
+  - quote: SS 303
+    approx_offset: 104141
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132077
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0005
+  form: '304'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 304
+    approx_offset: 9115
+  - quote: SS 304
+    approx_offset: 104149
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132082
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0006
+  form: 304L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 304L
+    approx_offset: 143726
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0007
+  form: '316'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 316
+    approx_offset: 9122
+  - quote: SS 316
+    approx_offset: 104157
+  - quote: 'Binder Jet: 17-4, 316 Stainless Steel.'
+    approx_offset: 109398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0008
+  form: 316 Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: 'Binder Jet: 17-4, 316 Stainless Steel.'
+    approx_offset: 109398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0009
+  form: 316L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 316L
+    approx_offset: 143735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0010
+  form: '321'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: '321'
+    approx_offset: 143740
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0011
+  form: 400 series stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: 400 series stainless steels
+    approx_offset: 68340
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0012
+  form: '455'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132092
+  - quote: '455'
+    approx_offset: 132965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0013
+  form: '465'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132097
+  - quote: '465'
+    approx_offset: 132970
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0014
+  form: 60% Woven CF PEEK
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: 60% Woven CF PEEK
+    approx_offset: 88570
+  - quote: 60% Woven CF PEEK
+    approx_offset: 104249
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0015
+  form: ABS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: ABS
+    approx_offset: 88423
+  - quote: 'Filaments usable: PEEK / ABS / PEKK / NYLON / PC / PPSU / ULTEM'
+    approx_offset: 88724
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89092
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0016
+  form: ASA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: ASA
+    approx_offset: 88461
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89137
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0017
+  form: Acetal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Acetal
+    approx_offset: 68368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0018
+  form: Acetals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Acetals
+    approx_offset: 104043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0019
+  form: Acetron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Acetron® GP
+    approx_offset: 118104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0020
+  form: Acetron® GP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Acetron® GP
+    approx_offset: 118104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0021
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Aluminum
+    approx_offset: 104052
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132032
+  - quote: We work with a wide range of materials, including metals like stainless steel, titanium, and
+      aluminum, as well as plastics and composites, ensuring optimal results across industries such as
+      medical devices, aerospace, and semiconductor manufacturing.
+    approx_offset: 143529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0022
+  form: BioDur
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS Biodur
+    approx_offset: 104191
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132126
+  - quote: Biodur
+    approx_offset: 132995
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0023
+  form: Carbon Fiber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89183
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89562
+  - quote: Carbon Fiber PEEK
+    approx_offset: 104062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0024
+  form: Carbon Fiber Infused
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89183
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89562
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0025
+  form: Carbon Fiber PEEK
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Carbon Fiber PEEK
+    approx_offset: 104062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0026
+  form: Cobalt chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Cobalt chrome
+    approx_offset: 68258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0027
+  form: Delrin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Polymers such as HDPE, Delrin, ECTFE, VESPEL, PVDF, and PEEK are key solutions.
+    approx_offset: 117130
+  - quote: Including the use of polymers such as HDPE, Delrin, Teflon, Techtron, Ultem PEEK and VESPEL.
+    approx_offset: 119026
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0028
+  form: ECTFE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Polymers such as HDPE, Delrin, ECTFE, VESPEL, PVDF, and PEEK are key solutions.
+    approx_offset: 117138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0029
+  form: Glass Fiber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Glass Fiber Infused
+    approx_offset: 88492
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89161
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89540
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0030
+  form: Glass Fiber Infused
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Glass Fiber Infused
+    approx_offset: 88492
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89161
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89540
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0031
+  form: Glass or Carbon Fiber reinforced
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: 'SLS: Nylon 11/Nylon12 Glass or Carbon Fiber reinforced.'
+    approx_offset: 109287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0032
+  form: HDPE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Polymers such as HDPE, Delrin, ECTFE, VESPEL, PVDF, and PEEK are key solutions.
+    approx_offset: 117124
+  - quote: HDPE - Polyproplene
+    approx_offset: 118213
+  - quote: Including the use of polymers such as HDPE, Delrin, Teflon, Techtron, Ultem PEEK and VESPEL.
+    approx_offset: 119020
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0033
+  form: HDPE - Polyproplene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: HDPE - Polyproplene
+    approx_offset: 118213
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0034
+  form: HIPS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: HIPS
+    approx_offset: 88428
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89098
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89484
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0035
+  form: HPHT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: EPTAM is experienced in all engineering aspects of plastic semiconductor materials, including
+      thermo-sets, thermo-plastics, and high-altitude / high-temperature (HPHT) materials.
+    approx_offset: 117783
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0036
+  form: LSR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Liquid Silicone Rubber (LSR)
+    approx_offset: 45420
+  - quote: 'Industry Leadership: As leaders in LSR molding, we provide unmatched precision and flexibility
+      for complex medical applications.'
+    approx_offset: 46582
+  - quote: 'Custom Automation: Our fully automated LSR systems enhance production efficiency, reduce errors,
+      and improve scalability.'
+    approx_offset: 46715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0037
+  form: Liquid Silicone Rubber (LSR)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Liquid Silicone Rubber (LSR)
+    approx_offset: 45396
+  - quote: Our facility in Leominster, Massachusetts specializes in plastic injection molding and Liquid
+      Silicone Rubber (LSR) molding serving the Medical Device, Molecular Diagnostics, BioPharma, Consumer
+      Electronics and Aerospace & Defense markets.
+    approx_offset: 57225
+  - quote: Liquid silicone rubber (LSR)
+    approx_offset: 77629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0038
+  form: MP35N
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS MP35N
+    approx_offset: 9129
+  - quote: SS MP35N
+    approx_offset: 104165
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132102
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0039
+  form: Metal Fill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Metal Fill
+    approx_offset: 88513
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89206
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0040
+  form: NYLON
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: NYLON
+    approx_offset: 88448
+  - quote: Nylon 11/ Nylond 12 powder
+    approx_offset: 88536
+  - quote: 'Filaments usable: PEEK / ABS / PEKK / NYLON / PC / PPSU / ULTEM'
+    approx_offset: 88737
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0041
+  form: Nitinol
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Nitinol
+    approx_offset: 31253
+  - quote: Our ability to machine the thousands of different miniature components in plastic, titanium,
+      stainless steel, nickel, and Nitinol continues to change each day with new scientific developments.
+    approx_offset: 73638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0042
+  form: Nitronic 60
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS Nitronic 60
+    approx_offset: 104175
+  - quote: The center’s materials selection list includes titanium, aluminum, and stainless steels such
+      as 17-4, 303, 304, 316, 455, 465, MP35N, Nitronic 60, and BioDur.
+    approx_offset: 132109
+  - quote: Nitronic 60
+    approx_offset: 132982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0043
+  form: Noryl
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Noryl®
+    approx_offset: 118116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0044
+  form: Noryl®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Noryl®
+    approx_offset: 118116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0045
+  form: Nylon 11
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Nylon 11/ Nylond 12 powder
+    approx_offset: 88536
+  - quote: Uses Nylon 11 / Nylon 12 powder
+    approx_offset: 88957
+  - quote: 'SLS: Nylon 11/Nylon12 Glass or Carbon Fiber reinforced.'
+    approx_offset: 109270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0046
+  form: Nylon 11/ Nylond 12 powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Nylon 11/ Nylond 12 powder
+    approx_offset: 88536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0047
+  form: Nylon 11/Nylon12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: 'SLS: Nylon 11/Nylon12 Glass or Carbon Fiber reinforced.'
+    approx_offset: 109270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0048
+  form: Nylon 12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Uses Nylon 11 / Nylon 12 powder
+    approx_offset: 88968
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0049
+  form: PA12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: 'FDM: PLA, ABS, PC, PET, PETG, ASA, PVA, PA12.'
+    approx_offset: 109204
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0050
+  form: PC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 48079
+  - quote: 'Wide range of thermoplastic engineering grade resins such as: PC, PS, and TPE .'
+    approx_offset: 77120
+  - quote: PC
+    approx_offset: 88434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0051
+  form: PEEK
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: PEEK™ spacers
+    approx_offset: 16823
+  - quote: PEEK™
+    approx_offset: 31202
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42054
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0052
+  form: PEEK OPTIMA™
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: PEEK™ and PEEK OPTIMA™
+    approx_offset: 68245
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0053
+  form: PEEK™
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: PEEK™ spacers
+    approx_offset: 16823
+  - quote: PEEK™
+    approx_offset: 31202
+  - quote: PEEK™ and PEEK OPTIMA™
+    approx_offset: 68235
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0054
+  form: PEEK™ and PEEK OPTIMA™
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: PEEK™ and PEEK OPTIMA™
+    approx_offset: 68235
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0055
+  form: PEKK
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: 'Filaments usable: PEEK / ABS / PEKK / NYLON / PC / PPSU / ULTEM'
+    approx_offset: 88730
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0056
+  form: PET
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: 'FDM: PLA, ABS, PC, PET, PETG, ASA, PVA, PA12.'
+    approx_offset: 109183
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0057
+  form: PETG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: PETG
+    approx_offset: 88455
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89130
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89516
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0058
+  form: PLA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: PLA
+    approx_offset: 88418
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89086
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89472
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0059
+  form: PLLA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0060
+  form: PMMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 48151
+  - quote: High-performance materials such as PEEK and PMMA.
+    approx_offset: 77182
+  - quote: High-performance materials such as PEEK and PMMA.
+    approx_offset: 77316
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0061
+  form: PP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: PP
+    approx_offset: 88466
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89142
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0062
+  form: PPSU
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: 'Filaments usable: PEEK / ABS / PEKK / NYLON / PC / PPSU / ULTEM'
+    approx_offset: 88750
+  - quote: PPSU
+    approx_offset: 104109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0063
+  form: PS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 48083
+  - quote: 'Wide range of thermoplastic engineering grade resins such as: PC, PS, and TPE .'
+    approx_offset: 77124
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0064
+  form: PVA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: PVA
+    approx_offset: 88470
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89147
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89534
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0065
+  form: PVDF
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Polymers such as HDPE, Delrin, ECTFE, VESPEL, PVDF, and PEEK are key solutions.
+    approx_offset: 117153
+  - quote: PVDF
+    approx_offset: 118278
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0066
+  form: Polycarbonate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Polycarbonate
+    approx_offset: 68384
+  - quote: Polycarbonate
+    approx_offset: 118128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0067
+  form: Polyproplene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: HDPE - Polyproplene
+    approx_offset: 118220
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0068
+  form: Polysulfone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Polysulfone
+    approx_offset: 104081
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0069
+  form: Propylux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Propylux® HS2
+    approx_offset: 104094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0070
+  form: Propylux® HS2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Propylux® HS2
+    approx_offset: 104094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0071
+  form: Radel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Radel
+    approx_offset: 68334
+  - quote: Radel® R5500
+    approx_offset: 104115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0072
+  form: Radel® R5500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Radel® R5500
+    approx_offset: 104115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0073
+  form: SS 17-4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 17-4
+    approx_offset: 9097
+  - quote: SS 17-4
+    approx_offset: 104129
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0074
+  form: SS 303
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 303
+    approx_offset: 9105
+  - quote: SS 303
+    approx_offset: 104138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0075
+  form: SS 304
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 304
+    approx_offset: 9112
+  - quote: SS 304
+    approx_offset: 104146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0076
+  form: SS 316
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS 316
+    approx_offset: 9119
+  - quote: SS 316
+    approx_offset: 104154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0077
+  form: SS Biodur
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS Biodur
+    approx_offset: 104188
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0078
+  form: SS MP35N
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS MP35N
+    approx_offset: 9126
+  - quote: SS MP35N
+    approx_offset: 104162
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0079
+  form: SS Nitronic 60
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: SS Nitronic 60
+    approx_offset: 104172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0080
+  form: Semitron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Semitron® MP370
+    approx_offset: 118157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0081
+  form: SemitronTM ESD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: SemitronTM ESD
+    approx_offset: 118142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0082
+  form: Semitron® MP370
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Semitron® MP370
+    approx_offset: 118157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0083
+  form: T17-7
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: T17-7
+    approx_offset: 143716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0084
+  form: TCP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0085
+  form: TPE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 48091
+  - quote: 'Wide range of thermoplastic engineering grade resins such as: PC, PS, and TPE .'
+    approx_offset: 77132
+  - quote: TPE
+    approx_offset: 88443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0086
+  form: TPU
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: TPU
+    approx_offset: 88438
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89110
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0087
+  form: Tantalum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Tantalum
+    approx_offset: 68375
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0088
+  form: Techtron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Techtron® PPS
+    approx_offset: 118173
+  - quote: Including the use of polymers such as HDPE, Delrin, Teflon, Techtron, Ultem PEEK and VESPEL.
+    approx_offset: 119042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0089
+  form: Techtron® PPS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Techtron® PPS
+    approx_offset: 118173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0090
+  form: Teflon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Including the use of polymers such as HDPE, Delrin, Teflon, Techtron, Ultem PEEK and VESPEL.
+    approx_offset: 119034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0091
+  form: Titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Utilize a wide range of metals, including stainless steel, titanium, and cobalt-chrome.
+    approx_offset: 6139
+  - quote: Titanium fusion cages
+    approx_offset: 16837
+  - quote: The implants used for internal fixation are made from stainless steel and Titanium, which are
+      durable and strong.
+    approx_offset: 17919
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0092
+  form: Torlon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://eptam.com/category/news/
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+    - https://eptam.com/industries/semi-conductor/
+    - https://eptam.com/resources
+    - https://eptam.com/resources/
+  evidence:
+  - quote: EPTAM specializes in Vespel and Torlon.
+    approx_offset: 54636
+  - quote: EPTAM specializes in Vespel and Torlon.
+    approx_offset: 85801
+  - quote: EPTAM specializes in Vespel and Torlon.
+    approx_offset: 112123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0093
+  form: Torlon®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Torlon® 4203
+    approx_offset: 118187
+  - quote: Torlon® 4301
+    approx_offset: 118200
+  - quote: Torlon®
+    approx_offset: 177929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0094
+  form: Torlon® 4203
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Torlon® 4203
+    approx_offset: 118187
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0095
+  form: Torlon® 4301
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Torlon® 4301
+    approx_offset: 118200
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0096
+  form: UHMW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/medical-implants/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: UHMW-PE® Machining for Medical Applications
+    approx_offset: 42115
+  - quote: UHMW-PE® devices need to meet the growing trend toward minimally invasive surgery.
+    approx_offset: 42159
+  - quote: Medical devices manufactured with UHMW-PE® allow freedom of design to meet challenges with
+      low profiles, superior abrasion resistance, and flexibility.
+    approx_offset: 42276
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0097
+  form: UHMW-PE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: UHMW-PE® Machining for Medical Applications
+    approx_offset: 42115
+  - quote: UHMW-PE® devices need to meet the growing trend toward minimally invasive surgery.
+    approx_offset: 42159
+  - quote: Medical devices manufactured with UHMW-PE® allow freedom of design to meet challenges with
+      low profiles, superior abrasion resistance, and flexibility.
+    approx_offset: 42276
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0098
+  form: UHMW-PE – Implantable
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: UHMW-PE – Implantable
+    approx_offset: 104209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0099
+  form: UHMW-PE®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: UHMW-PE® Machining for Medical Applications
+    approx_offset: 42115
+  - quote: UHMW-PE® devices need to meet the growing trend toward minimally invasive surgery.
+    approx_offset: 42159
+  - quote: Medical devices manufactured with UHMW-PE® allow freedom of design to meet challenges with
+      low profiles, superior abrasion resistance, and flexibility.
+    approx_offset: 42276
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0100
+  form: UHMWPE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: UHMWPE
+    approx_offset: 68272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0101
+  form: ULTEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Ultem
+    approx_offset: 68300
+  - quote: Ultem (Colored)
+    approx_offset: 88475
+  - quote: 'Filaments usable: PEEK / ABS / PEKK / NYLON / PC / PPSU / ULTEM'
+    approx_offset: 88757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0102
+  form: Ultem (Colored)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Ultem (Colored)
+    approx_offset: 88475
+  - quote: Ultem (Colored)
+    approx_offset: 104232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0103
+  form: Ultem® 1000 PEI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Ultem® 1000 PEI
+    approx_offset: 118238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0104
+  form: Ultem® 2300 PEI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Ultem® 2300 PEI
+    approx_offset: 118254
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0105
+  form: VESPEL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://eptam.com/category/news/
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+    - https://eptam.com/industries/semi-conductor/
+    - https://eptam.com/resources
+    - https://eptam.com/resources/
+  evidence:
+  - quote: EPTAM specializes in Vespel and Torlon.
+    approx_offset: 54625
+  - quote: EPTAM specializes in Vespel and Torlon.
+    approx_offset: 85790
+  - quote: EPTAM specializes in Vespel and Torlon.
+    approx_offset: 112112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0106
+  form: Variety of resins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Variety of resins depending on needs
+    approx_offset: 88838
+  - quote: 'SLA: Large variety of resins, including bio-compatibles.'
+    approx_offset: 109333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0107
+  form: Various 300 series stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Various 300 series stainless steels
+    approx_offset: 31217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0108
+  form: Vespel®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Vespel®
+    approx_offset: 118270
+  - quote: Vespel® vs.
+    approx_offset: 177917
+  - quote: Vespel® is a polyimide plastic that is often used in high-heat environments that cause thermoplastic
+      materials to lose their mechanical properties.
+    approx_offset: 177938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0109
+  form: Wood FIll
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Wood FIll
+    approx_offset: 88525
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA/ PP / PVA / Ultem
+      / Glass Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89218
+  - quote: 'Filaments usable: PLA / ABS / HIPS / PC / TPU / TPE / NYLON / PETG / ASA / PP / PVA / Glass
+      Fiber Infused / Carbon Fiber Infused / Metal Fill/ Wood Fill'
+    approx_offset: 89597
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0110
+  form: binder material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Metal injection molding (MIM) is a metalworking process in which finely-powdered metal is mixed
+      with binder material to create a “feedstock” that is then shaped and solidified using injection
+      molding.
+    approx_offset: 8259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0111
+  form: ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0112
+  form: ceramics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Our state-of-the-art equipment and highly skilled technicians allow us to work with a variety
+      of materials, including plastics, metals, and ceramics.
+    approx_offset: 87686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0113
+  form: cobalt and chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: If a joint is to be replaced, rather than fixed, these implants can also be made of cobalt
+      and chrome.
+    approx_offset: 18043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0114
+  form: cobalt-chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Utilize a wide range of metals, including stainless steel, titanium, and cobalt-chrome.
+    approx_offset: 6153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0115
+  form: cobalt-chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 41994
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0116
+  form: composites
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: We work with a wide range of materials, including metals like stainless steel, titanium, and
+      aluminum, as well as plastics and composites, ensuring optimal results across industries such as
+      medical devices, aerospace, and semiconductor manufacturing.
+    approx_offset: 143563
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0117
+  form: engineering-grade resins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 48049
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0118
+  form: finely-powdered metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Metal injection molding (MIM) is a metalworking process in which finely-powdered metal is mixed
+      with binder material to create a “feedstock” that is then shaped and solidified using injection
+      molding.
+    approx_offset: 8223
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0119
+  form: high-altitude / high-temperature (HPHT) materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: EPTAM is experienced in all engineering aspects of plastic semiconductor materials, including
+      thermo-sets, thermo-plastics, and high-altitude / high-temperature (HPHT) materials.
+    approx_offset: 117749
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0120
+  form: highly linked PE polymers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0121
+  form: liquid silicone rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: We offer complex metals and plastic machining solutions, precision thermoplastic injection
+      molding, and liquid silicone rubber molding serving the medical device markets.
+    approx_offset: 34663
+  - quote: Liquid Silicone Rubber (LSR)
+    approx_offset: 45396
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 48011
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0122
+  form: metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 58
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: METAL INJECTION MOLDING
+    approx_offset: 5088
+  - quote: EPTAM Is Your Metal Injection Molding Expert
+    approx_offset: 5145
+  - quote: EPTAM Precision is your trusted partner for Metal Injection Molding (MIM), a revolutionary
+      technology that bridges the gap between the design flexibility of plastic injection molding and
+      the strength of metal.
+    approx_offset: 5222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0123
+  form: metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 84
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics along with processes for injection
+      molding, machining, and 3D printing are where we live, every day.
+    approx_offset: 1850
+  - quote: Metals
+    approx_offset: 2972
+  - quote: Metals
+    approx_offset: 3508
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0124
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Our ability to machine the thousands of different miniature components in plastic, titanium,
+      stainless steel, nickel, and Nitinol continues to change each day with new scientific developments.
+    approx_offset: 73626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0125
+  form: plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 49
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: EPTAM Precision is your trusted partner for Metal Injection Molding (MIM), a revolutionary
+      technology that bridges the gap between the design flexibility of plastic injection molding and
+      the strength of metal.
+    approx_offset: 5335
+  - quote: Metal Injection Molding (MIM) combines the design freedom of plastic injection molding with
+      the strength and durability of metals.
+    approx_offset: 5606
+  - quote: This team has assembled the brightest minds across the spectrum of plastic, metal, silicone
+      and thermoplastic.
+    approx_offset: 21914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0126
+  form: plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 147
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics along with processes for injection
+      molding, machining, and 3D printing are where we live, every day.
+    approx_offset: 1840
+  - quote: Plastics
+    approx_offset: 2963
+  - quote: 'EPTAM Plastics, LTD Registration Number: 3005144609'
+    approx_offset: 3187
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0127
+  form: polyamide-imide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: This polyamide-imide plastic offers exceptional toughness, even when operating in continuous
+      temperatures of 500ºF.
+    approx_offset: 179208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0128
+  form: polyamide-imide plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: This polyamide-imide plastic offers exceptional toughness, even when operating in continuous
+      temperatures of 500ºF.
+    approx_offset: 179208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0129
+  form: polyimide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: Vespel® is a polyimide plastic that is often used in high-heat environments that cause thermoplastic
+      materials to lose their mechanical properties.
+    approx_offset: 177951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0130
+  form: polyimide plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: Vespel® is a polyimide plastic that is often used in high-heat environments that cause thermoplastic
+      materials to lose their mechanical properties.
+    approx_offset: 177951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0131
+  form: polymer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: EPTAM provides advanced precision manufacturing solutions with expertise in polymer machining,
+      precision metal component machining & micro-machining, laser cutting & welding and plastic injection
+      molding.
+    approx_offset: 33931
+  - quote: 'To support our unique manufacturing capabilities, EPTAM is DS/EN ISO:13485:2016 Certified,
+      FDA #3005144609 Registered, has completed a customer 21 CFR audit, and has been customer surveyed
+      and certified to produce polymer implants.'
+    approx_offset: 44091
+  - quote: Dedicated Medical Manufacturing Center AND dedicated enclosed area for medical manufacturing
+      only that is segregated from other manufacturing exclusively for machining of polymer instruments
+      and implantables.
+    approx_offset: 44280
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0132
+  form: polymers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/medical-implants/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42080
+  - quote: Dry-Machining Technology - no coolants on polymers
+    approx_offset: 44360
+  - quote: Machining experience with 500+ unique polymers from rods, sheet and near net blanks.
+    approx_offset: 103117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0133
+  form: resins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 48067
+  - quote: 'Wide range of thermoplastic engineering grade resins such as: PC, PS, and TPE .'
+    approx_offset: 77104
+  - quote: Variety of resins depending on needs
+    approx_offset: 88849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0134
+  form: silicone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 30
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: ALBRIGHT SILICONE | DIVISION OF EPTAM PRECISION
+    approx_offset: 20252
+  - quote: This team has assembled the brightest minds across the spectrum of plastic, metal, silicone
+      and thermoplastic.
+    approx_offset: 21930
+  - quote: We offer complex metals and plastic machining solutions, precision thermoplastic injection
+      molding, and liquid silicone rubber molding serving the medical device markets.
+    approx_offset: 34670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0135
+  form: silicone rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: We offer complex metals and plastic machining solutions, precision thermoplastic injection
+      molding, and liquid silicone rubber molding serving the medical device markets.
+    approx_offset: 34670
+  - quote: Liquid Silicone Rubber (LSR)
+    approx_offset: 45403
+  - quote: EPTAM offers a collaborative approach to servicing our silicone rubber and thermoplastic customers
+      by combining our capabilities and expertise with understanding your specific design, engineering,
+      and manufacturing needs.
+    approx_offset: 46104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0136
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Utilize a wide range of metals, including stainless steel, titanium, and cobalt-chrome.
+    approx_offset: 6122
+  - quote: The implants used for internal fixation are made from stainless steel and Titanium, which are
+      durable and strong.
+    approx_offset: 17899
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0137
+  form: stainless steel alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Diverse manufacturing capabilities provide a range of available implant grade materials including
+      exotic materials such as cobalt-chromium, titanium, stainless steel alloys, ceramic, PEEK and highly
+      linked PE polymers, as well as PLLA and TCP.
+    approx_offset: 42021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0138
+  form: stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Various 300 series stainless steels
+    approx_offset: 31236
+  - quote: 300 series stainless steels
+    approx_offset: 68317
+  - quote: 400 series stainless steels
+    approx_offset: 68351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0139
+  form: thermo-plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: EPTAM is experienced in all engineering aspects of plastic semiconductor materials, including
+      thermo-sets, thermo-plastics, and high-altitude / high-temperature (HPHT) materials.
+    approx_offset: 117728
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0140
+  form: thermo-sets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: EPTAM is experienced in all engineering aspects of plastic semiconductor materials, including
+      thermo-sets, thermo-plastics, and high-altitude / high-temperature (HPHT) materials.
+    approx_offset: 117715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0141
+  form: thermoplastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: This team has assembled the brightest minds across the spectrum of plastic, metal, silicone
+      and thermoplastic.
+    approx_offset: 21943
+  - quote: We offer complex metals and plastic machining solutions, precision thermoplastic injection
+      molding, and liquid silicone rubber molding serving the medical device markets.
+    approx_offset: 34626
+  - quote: Our team consists of experienced engineers, technicians, operators, and quality managers that
+      have experience with materials, tooling, molding, and assembly of silicone and thermoplastic, assembly
+      material, and molding.
+    approx_offset: 46001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0142
+  form: thermoplastic engineering grade resins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: 'Wide range of thermoplastic engineering grade resins such as: PC, PS, and TPE .'
+    approx_offset: 77072
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0143
+  form: thermoplastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics along with processes for injection
+      molding, machining, and 3D printing are where we live, every day.
+    approx_offset: 1862
+  - quote: This facility houses two certified ISO Class 8 clean rooms dedicated to thermoplastic and silicone
+      applications, with a diverse range of injection machines from 14 to 120 tons for LSR and up to over
+      200 tons for thermoplastics.
+    approx_offset: 50999
+  - quote: Overmolding to metals, thermoplastics, other silicones, etc.
+    approx_offset: 77520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-material_caps-0144
+  form: uni-glaze paints
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Enhanced Marking Capability includes uni-glaze paints, machining and laser.
+    approx_offset: 43838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

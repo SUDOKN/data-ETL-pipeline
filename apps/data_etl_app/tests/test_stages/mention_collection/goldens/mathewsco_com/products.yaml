@@ -1,0 +1,1777 @@
+subject: mathewsco.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+golden_set_version: 1
+anchored_on: search/expectations/mathewsco_com/products.yaml
+labels:
+- id: mathewsco_com-products-0001
+  form: Air Conditioning units
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Heaters & Air Conditioning units for commercial vehicles and buses—Manufacturer of custom heater,
+      a/c units and defroster from 11,000 to 82,500 BTUs.
+    approx_offset: 26157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0002
+  form: Bushings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Panel Bushings
+    approx_offset: 56207
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0003
+  form: Captive Panel Hardware
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Captive Panel Hardware
+    approx_offset: 56138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0004
+  form: Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Centrifugal Castings
+    approx_offset: 22983
+  - quote: Ductile Gray Castings
+    approx_offset: 23029
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24102
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0005
+  form: Catalog Products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Catalog Products
+    approx_offset: 35441
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0006
+  form: Catches & Heavy Duty Handles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Catches & Heavy Duty Handles
+    approx_offset: 56216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0007
+  form: Centrifugal Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Centrifugal Castings
+    approx_offset: 22971
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0008
+  form: Compression Springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Compression Springs
+    approx_offset: 58554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0009
+  form: Custom Components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Custom Components
+    approx_offset: 35458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0010
+  form: Custom Made Spring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Custom Made Spring
+    approx_offset: 58642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0011
+  form: Custom Spring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: 10 piece minimum for a Custom Spring or Wire Form.
+    approx_offset: 57425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0012
+  form: Custom Springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Custom Springs
+    approx_offset: 22938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0013
+  form: Deep Draw Stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Deep Draw Stampings
+    approx_offset: 22821
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0014
+  form: Die Springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Die Springs
+    approx_offset: 58619
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0015
+  form: Ductile Gray Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Ductile Gray Castings
+    approx_offset: 23016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0016
+  form: Electronic parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Electronic parts for your Industry
+    approx_offset: 55338
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0017
+  form: Extension Springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Extension Springs
+    approx_offset: 58574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0018
+  form: Ferrules
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Handles and Ferrules
+    approx_offset: 56173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0019
+  form: Gaskets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25192
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0020
+  form: Handles and Ferrules
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Handles and Ferrules
+    approx_offset: 56161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0021
+  form: Heaters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Heaters & Air Conditioning units for commercial vehicles and buses—Manufacturer of custom heater,
+      a/c units and defroster from 11,000 to 82,500 BTUs.
+    approx_offset: 26147
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0022
+  form: Heavy Duty Handles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Catches & Heavy Duty Handles
+    approx_offset: 56226
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0023
+  form: Insulating Washers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Insulating Washers
+    approx_offset: 56182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0024
+  form: Investment Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0025
+  form: Investment castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0026
+  form: Metal Stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Metal Stampings
+    approx_offset: 22787
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0027
+  form: Metric Standoffs and Spacers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Metric Standoffs and Spacers
+    approx_offset: 56109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0028
+  form: Micro Stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Micro Stampings
+    approx_offset: 22706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0029
+  form: Panel Bushings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Panel Bushings
+    approx_offset: 56201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0030
+  form: Parts and Shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=99&Itemid=160
+  evidence:
+  - quote: DuPont™ Vespel® Parts and Shapes
+    approx_offset: 45261
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0031
+  form: Precision components and assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Precision components and assemblies - If you are looking for a company that does precision
+      machine that is AS9100c:2009/ISO9001:2008 Registered.
+    approx_offset: 25819
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0032
+  form: Spacers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Standoffs and Spacers
+    approx_offset: 56101
+  - quote: Metric Standoffs and Spacers
+    approx_offset: 56130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0033
+  form: Standoffs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Standoffs and Spacers
+    approx_offset: 56087
+  - quote: Metric Standoffs and Spacers
+    approx_offset: 56116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0034
+  form: Standoffs and Spacers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Standoffs and Spacers
+    approx_offset: 56087
+  - quote: Metric Standoffs and Spacers
+    approx_offset: 56116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0035
+  form: Torsion Springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Torsion Springs
+    approx_offset: 58592
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0036
+  form: Vespel Parts & Shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: DuPontâ€“Vespel Parts & Shapes
+    approx_offset: 22753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0037
+  form: Washers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: Insulating Washers
+    approx_offset: 56193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0038
+  form: Wire Form
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: 10 piece minimum for a Custom Spring or Wire Form.
+    approx_offset: 57442
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0039
+  form: Wire Forms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Wire Forms
+    approx_offset: 58608
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0040
+  form: a/c units
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Heaters & Air Conditioning units for commercial vehicles and buses—Manufacturer of custom heater,
+      a/c units and defroster from 11,000 to 82,500 BTUs.
+    approx_offset: 26245
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0041
+  form: bearings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Oil Impregnation - makes bearings self-lubricate and is ideal for applications where lubrecation
+      is difficult, needed frequently, or impossible.
+    approx_offset: 50060
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0042
+  form: bellows
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0043
+  form: blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7948
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0044
+  form: cans
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34888
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0045
+  form: catches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: Catches & Heavy Duty Handles
+    approx_offset: 56216
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 59992
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0046
+  form: catches, latches, and handles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 59992
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0047
+  form: concentric and eccentric contoured forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7653
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0048
+  form: containers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34902
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0049
+  form: contoured forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0050
+  form: couplings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 8001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0051
+  form: covers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=109&Itemid=173
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: The agency covers California, Hawaii, Nevada, Arizona, New Mexico, Kansas, Missouri, Oklahoma,
+      Arkansas, Nebraska, Iowa, and overseas it does business in Ireland and Germany.
+    approx_offset: 14060
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34894
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0052
+  form: custom enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0053
+  form: custom forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0054
+  form: custom heater
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Heaters & Air Conditioning units for commercial vehicles and buses—Manufacturer of custom heater,
+      a/c units and defroster from 11,000 to 82,500 BTUs.
+    approx_offset: 26230
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0055
+  form: custom springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: A customer service company that happens to make custom springs and wire forms.
+    approx_offset: 57370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0056
+  form: deep drawn metal enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: green manufacturer of deep drawn metal enclosures, or cases, and stampings, including metal
+      diaphragms.
+    approx_offset: 33947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0057
+  form: deep drawn shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: No tooling charges on over 15,000 standard deep drawn shapes and sizes available in the catalog,
+      including round, square, rectangular, MIL-T-27 spec and relay cases.
+    approx_offset: 34490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0058
+  form: defroster
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Heaters & Air Conditioning units for commercial vehicles and buses—Manufacturer of custom heater,
+      a/c units and defroster from 11,000 to 82,500 BTUs.
+    approx_offset: 26259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0059
+  form: diaphragms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: green manufacturer of deep drawn metal enclosures, or cases, and stampings, including metal
+      diaphragms.
+    approx_offset: 34017
+  - quote: Design engineers turn to Hudson Technologies for custom enclosures and diaphragms for their
+      technology whether they need a prototype or high-volume production.
+    approx_offset: 34357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0060
+  form: discs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 8016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0061
+  form: eccentrics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0062
+  form: edge welded bellows
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0063
+  form: enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: green manufacturer of deep drawn metal enclosures, or cases, and stampings, including metal
+      diaphragms.
+    approx_offset: 33964
+  - quote: Design engineers turn to Hudson Technologies for custom enclosures and diaphragms for their
+      technology whether they need a prototype or high-volume production.
+    approx_offset: 34342
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0064
+  form: equipment knobs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: Competitive purchase costs for equipment knobs and handles
+    approx_offset: 37176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0065
+  form: external thread parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Cold Heading - Our cold header offers external thread parts from 3/4" diameter parts by 1/16"
+      to 5 1/2" in length.
+    approx_offset: 26411
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0066
+  form: fasteners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They product fasteners in carbon steel, Alloy Steel, Stainless Steel and a number of non-ferrous
+      metals.
+    approx_offset: 26593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0067
+  form: flow meters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0068
+  form: food and beverage processing systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: We also manufacture parts for trucks and heavy equipment, food and beverage processing systems,
+      appliances, and the electrical and electronics industries.
+    approx_offset: 53684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0069
+  form: furniture knobs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0070
+  form: handles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36690
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36804
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36841
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0071
+  form: hollow sleeves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7968
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0072
+  form: implantable medical devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0073
+  form: knobs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36680
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36823
+  - quote: Competitive purchase costs for equipment knobs and handles
+    approx_offset: 37186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0074
+  form: latches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We've been supplying a wide inventory of catches, latches, and handles for military, aerospace,
+      computer, electronics, telecom, automotive, and consumer applications since 1981.
+    approx_offset: 60001
+  - quote: We supply catches, latches, and handles for military, aerospace, computer, electronics, telecom,
+      automotive, and consumer applications.
+    approx_offset: 60736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0075
+  form: mechanical seals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35092
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0076
+  form: metal diaphragms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: green manufacturer of deep drawn metal enclosures, or cases, and stampings, including metal
+      diaphragms.
+    approx_offset: 34011
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0077
+  form: metal enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: green manufacturer of deep drawn metal enclosures, or cases, and stampings, including metal
+      diaphragms.
+    approx_offset: 33958
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0078
+  form: metal stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Clow Stamping Company, with over 300 employees, provides services to the OEM Industry in prototype
+      and short to medium volume metal stampings, using most of the materials available.
+    approx_offset: 51501
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0079
+  form: parts and shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=99&Itemid=160
+  evidence:
+  - quote: When you think DuPont™ Vespel® parts and shapes early in the design process, getting started
+      becomes an opportunity for progress, rather than a hurdle.
+    approx_offset: 45310
+  - quote: 'DuPont™ Vespel® parts and shapes has proven to be a cost-effective solution in a wide array
+      of applications satisfying the most stringent requirements for weight reduction, long service life,
+      chemical exposure, extreme temperatures, or custom-made quality parts combined with professional
+      assistance '
+    approx_offset: 45614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0080
+  form: plastic handles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0081
+  form: plastic knobs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray - plastic knobs and handles for the furniture, medical, mechanical and valve OEM
+    approx_offset: 36672
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0082
+  form: precision spring component
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: When you trust Fox Valley Spring to deliver your precision spring component, you receive worry-free
+      value added supply.
+    approx_offset: 57559
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0083
+  form: relay cases
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: No tooling charges on over 15,000 standard deep drawn shapes and sizes available in the catalog,
+      including round, square, rectangular, MIL-T-27 spec and relay cases.
+    approx_offset: 34600
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0084
+  form: rings, spindles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0085
+  form: rough turned bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 8059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0086
+  form: seamless enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0087
+  form: shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7940
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0088
+  form: single cross-section products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7701
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0089
+  form: sleeves, rings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7975
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0090
+  form: smooth forged billet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 8034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0091
+  form: spindles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7991
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0092
+  form: springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=98&Itemid=165
+  evidence:
+  - quote: Custom Springs
+    approx_offset: 22945
+  - quote: Our springs and stamping products are used in hundreds of applications and are shipped all
+      over the world.
+    approx_offset: 43568
+  - quote: 632 Yellow Springs-Fairfield Road
+    approx_offset: 54288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0093
+  form: stamping products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=98&Itemid=165
+  evidence:
+  - quote: Our springs and stamping products are used in hundreds of applications and are shipped all
+      over the world.
+    approx_offset: 43580
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0094
+  form: valve handles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: DimcoGray is widely recognized for delivering valve handles, furniture knobs and plastic handles
+      that exceed exacting OEM requirements.
+    approx_offset: 36798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-products-0095
+  form: wire forms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: A customer service company that happens to make custom springs and wire forms.
+    approx_offset: 57389
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

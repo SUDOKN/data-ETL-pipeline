@@ -1,0 +1,288 @@
+subject: pradeepmetals.com
+subject_name: Pradeep Metals Limited
+business_type: BSE-listed Indian closed-die steel forging house, Navi Mumbai; the corpus's only Indian and only
+  investor-relations-heavy subject.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+role: genre_probe
+role_note: >-
+  Seeded as `degenerate_input_probe` before this corpus adopted the search harness's
+  vocabulary wholesale. Normalized to search's `genre_probe` on 2026-08-27:
+  it is the same roster, and a second vocabulary would fork the corpus
+  silently. The earlier value is kept here because the reasoning behind
+  it describes what THIS stage sees, which search's word may not.
+role_source: 'the search harness assigned role: genre_probe (search/expectations/pradeepmetals_com/subject.yaml),
+  which is not a value in this instrument''s vocabulary. Re-keyed to the nearest mention-stage role: measured against
+  THIS stage''s contract the subject is the corpus''s degeneracy case - 46.0% of its lines are one repeated footer,
+  37.7% of its page fetches carry a byte-identical body, 15 pages are Coming Soon stubs and two carry CMS placeholder
+  text. The genre_probe rationale still holds and is preserved in the voices block.'
+coverage: full_text
+snapshot_shape: 279,879 bytes / 10,412 lines / 114 page fetches / 114 DISTINCT URLs but only 91 distinct page bodies.
+  4,789 of 10,413 lines (46.0% of all lines, 64.5% of non-blank) belong to a line that repeats 50 or more times.
+third_party_roster:
+- Dimensional Machine Works
+- MUFG Intime India Pvt. Ltd.
+- Khaitan & Co
+- BSE
+- SEBI
+- AIFI
+- Forgexel Enterprises Private Limited
+- Munak Engineers Pvt. Ltd.
+- NRB Bearings Limited
+- Orient Cement Limited
+- Dhanlabh Engineering Works Private Limited
+- Maini Materials Movement Private Limited
+- Triton EV Technologies Private Limited
+- Nami Capital Private Limited
+- Jolly Board Limited
+- Grow Talent Company Limited
+- Coreel Technologies (India) Private Limited
+- Odyssey India Advisors Private Limited
+- XTZ India Private Limited
+- MJIC Consultancy Private Limited
+- Eagan Holdco India Private Limited
+- Hubspot India Private Limited
+- IITB Research Park Foundation
+- Shubh Buildtech LLP
+- Shubh Industrial Park Private Limited
+- Lockheed Martin
+- Boeing
+- CISCO Systems
+- CSC Consulting
+- DXC Technology
+- Chubu University
+third_party_roster_source: no prior roster existed for this subject (it is not profiled in grounding/ or synthesis/).
+  Built this pass by reading the directorship register (lines 1042-1075), the director CVs and the IR pages, and
+  verified in the snapshot.
+voices:
+- whose_words: site
+  note: 'the ~12 real capability pages (manufacturing, machining, quality, material grades, design & engineering,
+    products, IMRC) plus 15 first-person-plural SEO blog posts signed ''Author: Pradeepmetals'''
+- whose_words: third_party
+  note: the DIRECTORSHIP REGISTER - a 28-row tab-separated table of OTHER companies the directors sit on. Several
+    have manufacturing-sounding names. None is a capability, a client or a product of this subject, and the flattening
+    dropped the rowspan so most rows carry no director name at all.
+  quote: "Forgexel Enterprises Private Limited\tDirector\t23.09.2024"
+- whose_words: third_party
+  note: DIRECTORS' EMPLOYMENT HISTORIES read as capability bait - Lockheed Martin, Boeing, CISCO Systems, CSC Consulting.
+    The sentence is the company secretary writing about a person, not about the company.
+  quote: Prior to this assignment, Mr. Abhinav Goyal was working as Vice President (Business Development and Technology)
+    in the Company from 1st September, 2012 until he shifted to USA. From 2006 to 2010, he worked with CSC Consulting
+    (now DXC Technology) in San Francisco, California as a technology consultant, where he was involved in implementing
+    a technology merger for a JV between Lockheed Martin and Boeing. During the same time, he managed a multi-year
+    software implementation for a Fortune 20 North American Bank. In 2011, he worked as an MBA Intern with CISCO
+    Systems in San Jose, California.
+- whose_words: third_party
+  note: the US step-down subsidiary Dimensional Machine Works speaking in ITS OWN first person ("Our experienced
+    machinists") on a Pradeep Metals page - and on the /imrc/ page its company name is the CMS placeholder "test
+    Machine Works", under an "INDIA FACILITIES" heading. Wrong entity, wrong continent, wrong name, first person.
+    Every element of the location contract fails at once here.
+  quote: test Machine Works stands on its reputation of machining difficult parts to .0005 tolerance. Our experienced
+    machinists tackle some of the toughest jobs on the market and consistently produce parts that meet our customers
+    exacting standards.No job is too big or too small. If you’ve got a job that no one else can do, call us.You’ll
+    get your job done right. Dimensional Machine Work’s is committed to providing consistent quality products and
+    services, which exceed Customer expectations and requirements in areas of Quality, Competitive pricing, Customer
+    Service, and On-Time delivery.
+- whose_words: third_party
+  note: the Association of Indian Forging Industry - national installed-capacity and turnover statistics quoted
+    inside first-person-plural blog prose
+  quote: China and Europe are the top two forgings manufacturers in the globe and India occupy the third place.
+    As per figures released by the AIFI (Association of Indian Forging Industry), the installed forging capacity
+    in the nation was 39.4 lakh tonnes in 2017-18. Forgings production in the country was 25.24 lakh tonnes in the
+    same year. This industry’s national turnover totaled 35,000 crore INR in 2017-18. The forging industry in India
+    is expanding rapidly thanks to government backing in developing the sector with schemes like the ‘Make in India’
+    plan.
+- whose_words: standards_body
+  note: SEBI / Companies Act / BSE regulatory vocabulary massed across ~24 investor-relations pages, phrased exactly
+    like standards designations
+  quote: APPROVED SUPPLIER
+- whose_words: vendor
+  note: MUFG Intime India Pvt. Ltd. is the share registrar and transfer agent and Khaitan & Co is a law firm a director
+    is a partner of - service providers, not suppliers or partners of the plant
+text_hazards:
+- hazard: repeated_footer
+  note: 'VERIFIED THIS PASS. A 42-line footer block (lines 48-89: "ABOUT US" through "Powered by") repeats 112 times.
+    4,789 of the file''s 10,413 lines - 46.0% - belong to a line repeating 50+ times; the expansion doc said 44%
+    and the search profile 45%, both are right within rounding of a differently-drawn line. THE PURE MENTION-STAGE
+    HAZARD: the footer nav labels ARE capability forms, so one bare two-word snippet carries hundreds of occurrences.
+    Measured per form in this snapshot: `Forged Flanges` 123 total occurrences of which 114 (93%) are the bare footer
+    line; `Manifolds` 118 / 114 (97%); `Material Grades` 114 / 112 (98%); `Industries We Serve` 113 / 112 (99%);
+    `Quality Policy` 112 / 112 (100%); `Valves` 146 / 114 (78%). Every one of those hundreds of snippets is byte-identical
+    and belongs to the site footer, not to product prose.'
+  quote: © 2016 Pradeep Metals Limited. All rights reserved | XML Sitemap | Powered by
+  context_quote: 'PRODUCTS
+
+    Forged Flanges
+
+    Valves
+
+    General Engineering
+
+    Manifolds
+
+    Material Grades'
+- hazard: duplicate_page_fetches
+  note: 'MEASURED THIS PASS: 114 page fetches carrying 114 DISTINCT URLs but only 91 distinct bodies; 43 of the
+    114 fetches (37.7%) have a body byte-identical to another fetch. The duplicates are http:// vs https:// and
+    with vs without a trailing slash. /forging/, /general-engineering/ and /india-facilities are each fetched three
+    times. This is invisible to a URL-keyed de-duplicator because no URL repeats, so occurrence counts are inflated
+    2-3x on exactly the capability pages that matter.'
+  quote: http://www.pradeepmetals.com/quality/
+- hazard: financial_table_beside_capacity
+  note: 'rupee money figures and metric-tonne capacity figures are interleaved in one voice on one page. In the
+    quoted blog post, three number regimes sit within four paragraphs: the WHOLE INDIAN INDUSTRY''s tonnage (39.4
+    lakh Metric Tonnes), the COMPANY''s money (175 crores in annual sales) and the COMPANY''s own capacity (8000
+    MTPA to 9200 MTPA). Only the last is capacity. The homepage announcement ticker does the same at line level:
+    "Rs 4,602.62 lakhs" sits two lines above the capability paragraph.'
+  quote: With constantly increasing demand in the area of specialization Pradeep Metal indulges in- Metal Forging,
+    we aim to develop new forging products and expand our clientele in the upcoming years. In the upcoming years,
+    Pradeep Metals will particularly focus on the development of machined forgings for the Oil and Gas industry
+    for increased turnover and ultimately, better profitability. With the acquisition of the new 3T Hammer, the
+    forging capacity of Pradeep Metals has increased from 8000 MTPA to 9200 MTPA, which helps us to cater to the
+    needs of many industries and providing a diverse range of manufactured products.
+  context_quote: 'Original equipment manufacturers prefer forged products over other types for durability and reliability.
+    India has become the 3rd largest manufacturers for forging in the world over the past decade, closely trailing
+    Germany and China. Forging industry has become the most prominent contributor to the Indian manufacturing industry
+    overall. The installed capacity for forging in India has grown from approximately 25 lakh Metric Tonnes to 39.4
+    lakh Metric Tonnes in just the span of a decade. Moreover, the overall production of forgings in India was over
+    25 lakh Metric Tonnes in 2018.
+
+
+    Pradeep Metals generated over 175 crores in annual sales in the year 2018. With the market capitalization of
+    Pradeep Metals growing rapidly year by year, we aim to adapt to the rising demand for machined components, and
+    have taken up the initiative to set up a new machine shop within the existing plant by importing some of the
+    high-end machinery from our step-down subsidiary- Dimensional Machine Works, LLC,Houston, USA. We continue to
+    upgrade our plants, equipment, and infrastructure regularly by creating a lean process layout for assessing
+    the needs of our inventory and reorganizing it effectively.'
+- hazard: spec_table_flattened
+  note: 'the MATERIAL GRADES USED table is a 5-column table (STAINLESS STEEL / Alloy Steel / Duplex / Carbon Steel
+    / Die Steel) flattened to ONE CELL PER LINE. The column header that says which family a grade belongs to survives
+    only on the first row; every other grade is a bare token on its own line with zero context. Three lines carry
+    two columns'' cells jammed together by the flattening ("F92\tF51/1.4462/2205" at line 759, "Alloy 20\tSAE -
+    1008" at 765, "LF2 / 1.0436\tEn24" at 781) and three cells are run together with NO separator at all: F347H1.4301
+    = F347H + 1.4301, 414020MnCr5 = 4140 + 20MnCr5, 42CrMo4F5 = 42CrMo4 + F5. A snippet clipped to line 744 is the
+    four characters "1.4435".'
+  quote: "STAINLESS STEEL\tAlloy Steel\tDuplex\tCarbon Steel\tDie Steel\nF303\nF304/F304L\nF316 Ti\nF316/F316L\n\
+    F321\nF347H1.4301\n1.4307\n1.4435"
+  approx_offset: 16729
+- hazard: directorship_table_rowspan_lost
+  note: a 28-row tab-separated register of the directors' OTHER directorships, headed "Name of the Director / Name
+    of the Company / LLP / Designation / Date of Appointment". The flattening dropped the rowspan, so a continuation
+    row carries no director name in its first column - a mention of "Munak Engineers" clipped to its own line has
+    nothing tying it to a person, let alone to this subject.
+  quote: "Name of the Director\tName of the Company / LLP\tDesignation\tDate of Appointment\nPradeep Vedprakash\
+    \ Goyal (DIN: 00008370)\tTriton EV Technologies Private Limited\tDirector\t17.11.2021\nNami Capital Private\
+    \ Limited\tDirector\t01.08.2019\nMunak Engineers Pvt. Ltd.\tDirector\t16.04.1984\nIITB Research Park Foundation\t\
+    Director\t21.11.2016"
+- hazard: cms_placeholder
+  note: two live CMS defects. (1) the Clientele page prints the literal keyboard-mash placeholder "hdsjkfhsjkd"
+    (2 occurrences) directly under the heading "GLOBAL CLIENTS" - the heading names a party and the content is noise.
+    (2) the /imrc/ page runs the DMW marketing paragraph with the company name replaced by "test Machine Works".
+    Both verified by grep this pass.
+  quote: 'GLOBAL CLIENTS
+
+    hdsjkfhsjkd'
+  approx_offset: 134076
+- hazard: coming_soon_stub
+  note: '15 "Coming Soon" stubs (grep -ci "coming soon" = 15, in four spellings: "Coming Soon", "Coming soon", "Coming
+    Soon....", "Coming Soon!.."), and they are exactly the pages whose names promise the densest in-field content
+    - /tool-die-development, /aluminium-forging, /industries-we-serve, /stainless-steel-forgings, /testing-validation,
+    /gears-automative, /us-facilities, /investors. A stub page is a page of footer plus two words, so every one
+    of them contributes another full copy of the nav and footer occurrences and no content.'
+  quote: Coming Soon….
+- hazard: heading_all_caps
+  note: 'MEASURED THIS PASS: 1,666 standalone ALL-CAPS lines. The most frequent are not headings at all but footer
+    nav labels - QUALITY 115x, INVESTORS 113x, ABOUT US 112x, PRODUCTS 112x, FACILITIES 112x, AGM/EOGM 112x, STRENGTHS
+    112x, CLIENTELE 112x, BSE SHARE PRICE 114x. A location model keying on casing will call every one of them a
+    section heading.'
+  quote: QUALITY
+- hazard: heading_severed_from_row
+  note: 'on the Quality page the qualifier that turns a name into a conformity attestation is on the NEXT line:
+    "INDIAN RAILWAYS" then "APPROVED SUPPLIER". A snippet clipped to the line holding the form is the bare party
+    name; the evidence is outside the clip. "APPROVED SUPPLIER" occurs 9 times as its own line. The same page also
+    puts a governance policy block (POLICY / IMS POLICY) immediately below the real certificates, with nothing but
+    a blank line between them.'
+  quote: 'APPROVALS
+
+
+    INDIAN DEFENSE
+
+    APPROVED SUPPLIER
+
+
+    INDIAN RAILWAYS
+
+    APPROVED SUPPLIER
+
+
+    CANADIAN REGISTRATION
+
+    APPROVED SUPPLIER
+
+
+     
+
+
+    POLICY
+
+
+    IMS POLICY'
+  approx_offset: 9153
+- hazard: document_title_listing
+  note: 'the Policies and investor-relations pages are download listings: an ALL-CAPS document title on one line,
+    the link label "(DOWNLOAD ENGLISH)" on the next (42 occurrences). Elsewhere the label is a bare "Download" (195
+    occurrences, the single most repeated line in the file). Every title line is a document_title, never prose,
+    and never the site describing itself.'
+  quote: 'NOMINATION AND REMUNERATION POLICY
+
+
+    (DOWNLOAD ENGLISH)
+
+
+    CSR-POLICY
+
+
+    (DOWNLOAD ENGLISH)'
+- hazard: timeline_table_flattened
+  note: the Our History decade table is flattened so each decade label appears three times in a row ("2000 / 2000
+    / 2000'S") and each event is a subject-less fragment on its own line. "Added Capacity of 8000 tons" has no year,
+    no subject and no verb in its own clip; the year that owns it is three lines up.
+  quote: '1990
+
+    1990
+
+    1990’S
+
+    1993 – IPO (public limited company)
+
+    1994 – New state- of-the-art facility with presses commissioned at Rabale,
+
+    Navi Mumbai
+
+    1995 – ISO certification
+
+    Added Capacity of 8000 tons
+
+    Range: 50g to 60kg'
+- hazard: non_ascii
+  note: 'CENSUSED THIS PASS: 787 non-ASCII characters - 244 EN DASH (the timeline and certificate-year separator),
+    211 NO-BREAK SPACE, 114 COPYRIGHT SIGN, 73 RIGHT SINGLE QUOTATION MARK, 35 EM DASH, 40 curly double quotes,
+    28 arrows, 13 ellipses, 9 MASCULINE ORDINAL INDICATOR (used where a degree sign was meant), 6 TRADE MARK SIGN.
+    The NBSP count of 211 matches the search profile exactly. Unlike steelcraft, only 8 of the 211 sit between two
+    word characters, so NBSP is a LOW occurrence risk here; the en dash is the higher one, because it separates
+    a year from its event on 244 lines and a matcher that normalizes it to a hyphen changes the line. Separately,
+    three in-text typos change a designation and are the only spelling the file has: "ISO 45001- 2018" (stray space),
+    "ISO 140001-2015" (five digits, twice) and "Austentizing furnaces".'
+  quote: ISO 45001- 2018
+notes: The subject's own capability content is ~12 pages of the 114 fetches; the rest is investor relations (~24
+  pages), blog explainers (15 posts), duplicates and stubs. For THIS stage the consequence is that most occurrences
+  of most forms are footer nav labels and most snippets are byte-identical, so the interesting judgments are concentrated
+  in a small minority of occurrences - the grouping and inheritance kinds will carry more signal here than occurrence
+  counts. The IMRC (Industrial Microwave Research Center) pages carry a lab parameter table (lines 894-955) of microwave
+  power ratings and zone dimensions that is concluded research, not production.
+provenance:
+- action: added
+  by: seed-agent-batch4
+  date: '2026-08-27'
+  source: harvested:expansion-doc

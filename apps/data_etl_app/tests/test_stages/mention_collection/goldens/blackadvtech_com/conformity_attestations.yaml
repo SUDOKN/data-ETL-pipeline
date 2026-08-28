@@ -1,0 +1,667 @@
+subject: blackadvtech.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+golden_set_version: 1
+anchored_on: search/expectations/blackadvtech_com/conformity_attestations.yaml
+labels:
+- id: blackadvtech_com-conformity_attestations-0001
+  form: 71XE8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 47
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 3681
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 4445
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 7520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0002
+  form: ABYC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: The American Boat and Yacht Council (ABYC) have a set of recommendations;
+    approx_offset: 174742
+  - quote: Ensure that your aluminum sheet meets the standards of the American Boat and Yacht Council
+      (ABYC).
+    approx_offset: 176451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0003
+  form: AISI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Both the SAE and the American Iron and Steel Institute (AISI) took part to standardize a numbering
+      system for steels.
+    approx_offset: 195955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0004
+  form: AMTEC Registries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We are ISO 9001:2015 certified by AMTEC Registries, and we have a comprehensive Quality Management
+      System.
+    approx_offset: 65678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0005
+  form: ASQC-CQE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/quality/
+  evidence:
+  - quote: ASQC-CQE
+    approx_offset: 38262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0006
+  form: ATSM 81011
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+    approx_offset: 64670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0007
+  form: ATSM 81011 steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+    approx_offset: 64670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0008
+  form: AWS CERTIFIED WELDING INSPECTOR ON SITE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: AWS CERTIFIED WELDING INSPECTOR ON SITE
+    approx_offset: 65911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0009
+  form: AWS Certified & Qualified Welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/quality/
+  evidence:
+  - quote: AWS Certified & Qualified Welders
+    approx_offset: 38157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0010
+  form: AWS Certified WELD Inspectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/quality/
+  evidence:
+  - quote: AWS Certified WELD Inspectors
+    approx_offset: 38191
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0011
+  form: AWS certified welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: 'DROBDDDFOur AWS certified welders offer a wide variety of industrial welding services for
+      all of your needs:'
+    approx_offset: 9441
+  - quote: Blackstone employs AWS certified welders who ensure your sheet metal parts are welded strongly
+      and evenly.
+    approx_offset: 14212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0012
+  form: AWS-certified welding experts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: Rather than hiring fly-by-night amateurs, consider AWS-certified welding experts and engineers.
+    approx_offset: 191028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0013
+  form: American Boat and Yacht Council (ABYC)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: The American Boat and Yacht Council (ABYC) have a set of recommendations;
+    approx_offset: 174709
+  - quote: Ensure that your aluminum sheet meets the standards of the American Boat and Yacht Council
+      (ABYC).
+    approx_offset: 176418
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0014
+  form: American Iron and Steel Institute (AISI)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Both the SAE and the American Iron and Steel Institute (AISI) took part to standardize a numbering
+      system for steels.
+    approx_offset: 195920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0015
+  form: 'CAGE CODE: 71XE8'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://blackadvtech.com/blog
+    - https://blackadvtech.com/blog/
+    - https://blackadvtech.com/category/design/
+    - https://blackadvtech.com/category/material/
+    - https://blackadvtech.com/category/military/
+  evidence:
+  - quote: 'CAGE CODE: 71XE8'
+    approx_offset: 46798
+  - quote: 'CAGE CODE: 71XE8'
+    approx_offset: 47938
+  - quote: 'CAGE CODE: 71XE8'
+    approx_offset: 100366
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0016
+  form: CAGE Code
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 47
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 3670
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 4434
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 7509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0017
+  form: 'CAGE Code: 71XE8'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 39
+    pages:
+    - http://blackadvtech.com/
+    - http://blackadvtech.com/about-us/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/about-us/
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 3670
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 4434
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 7509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0018
+  form: CERTIFIED WOMAN-OWNED BUSINESS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: CERTIFIED WOMAN-OWNED BUSINESS
+    approx_offset: 1782
+  - quote: CERTIFIED WOMAN-OWNED BUSINESS
+    approx_offset: 65752
+  - quote: CERTIFIED WOMAN-OWNED BUSINESS
+    approx_offset: 171703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0019
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/customer-relationship-management-in-sheet-metal-manufacturing/
+    - https://blackadvtech.com/quality/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: ISO 9001:2015
+    approx_offset: 1604
+  - quote: We are ISO 9001:2015 certified by Preferred Registrar Group, Inc., and we have a comprehensive
+      Quality Management System.
+    approx_offset: 1666
+  - quote: Blackstone Advanced Technologies is ISO 9001:2015 certified by Preferred Registrar Group.
+    approx_offset: 37853
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0020
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/quality/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: ISO 9001:2015
+    approx_offset: 1604
+  - quote: We are ISO 9001:2015 certified by Preferred Registrar Group, Inc., and we have a comprehensive
+      Quality Management System.
+    approx_offset: 1666
+  - quote: Blackstone Advanced Technologies is ISO 9001:2015 certified by Preferred Registrar Group.
+    approx_offset: 37853
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0021
+  form: Manufacturer’s Standard Gauge for Sheet Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: The Manufacturer’s Standard Gauge for Sheet Steel is 41.82 pounds per square foot.
+    approx_offset: 224746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0022
+  form: OSHA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/jobs/welding-supervisor/
+  evidence:
+  - quote: Ensure all welding operations comply with OSHA, company, and industry safety standards.
+    approx_offset: 97515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0023
+  form: Preferred Registrar Group
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/quality/
+  evidence:
+  - quote: We are ISO 9001:2015 certified by Preferred Registrar Group, Inc., and we have a comprehensive
+      Quality Management System.
+    approx_offset: 1693
+  - quote: Blackstone Advanced Technologies is ISO 9001:2015 certified by Preferred Registrar Group.
+    approx_offset: 37880
+  - quote: We are ISO 9001:2015 certified by Preferred Registrar Group, Inc., and we have a comprehensive
+      Quality Management System.
+    approx_offset: 171614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0024
+  form: Preferred Registrar Group, Inc.
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+  evidence:
+  - quote: We are ISO 9001:2015 certified by Preferred Registrar Group, Inc., and we have a comprehensive
+      Quality Management System.
+    approx_offset: 1693
+  - quote: We are ISO 9001:2015 certified by Preferred Registrar Group, Inc., and we have a comprehensive
+      Quality Management System.
+    approx_offset: 171614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0025
+  form: SAE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: All metals fall under a unified standard alloy numbering system (SAE).
+    approx_offset: 195893
+  - quote: Both the SAE and the American Iron and Steel Institute (AISI) took part to standardize a numbering
+      system for steels.
+    approx_offset: 195908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0026
+  form: The Manufacturer’s Standard Gauge for Sheet Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: The Manufacturer’s Standard Gauge for Sheet Steel is 41.82 pounds per square foot.
+    approx_offset: 224742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0027
+  form: U.S Standard gauge for sheet steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/ultimate-guide-to-sheet-metal-thickness-what-you-need-to-know/
+  evidence:
+  - quote: While referring to the U.S Standard gauge for sheet steel, you will establish the accurate
+      metal gauge of the above steel metal.
+    approx_offset: 224987
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0028
+  form: UNS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Modern-day steel quotes are referenced to the unified numbering system (UNS).
+    approx_offset: 196090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0029
+  form: certified woman-owned business
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We’re proud to be a certified woman-owned business … and you can be proud to be working with
+      one based right here in the USA!
+    approx_offset: 65804
+  - quote: We’re proud to be a certified woman-owned business … and you can be proud to be working with
+      one based right here in the USA!
+    approx_offset: 65972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0030
+  form: unified numbering system (UNS)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Modern-day steel quotes are referenced to the unified numbering system (UNS).
+    approx_offset: 196064
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0031
+  form: unified standard alloy numbering system (SAE)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: All metals fall under a unified standard alloy numbering system (SAE).
+    approx_offset: 195852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0032
+  form: universal numbering system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: The universal numbering system identifies number 2 metals as all nickel steel alloys while
+      number 3 are alloys of steel with nickel and chromium.
+    approx_offset: 199231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-conformity_attestations-0033
+  form: woman-owned business
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: CERTIFIED WOMAN-OWNED BUSINESS
+    approx_offset: 1792
+  - quote: We’re proud to be a woman-owned business … and you can be proud to be working with one based
+      right here in the USA!
+    approx_offset: 1834
+  - quote: CERTIFIED WOMAN-OWNED BUSINESS
+    approx_offset: 65762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

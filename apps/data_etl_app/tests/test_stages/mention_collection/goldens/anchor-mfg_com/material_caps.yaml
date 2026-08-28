@@ -1,0 +1,222 @@
+subject: anchor-mfg.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+golden_set_version: 1
+anchored_on: search/expectations/anchor-mfg_com/material_caps.yaml
+labels:
+- id: anchor-mfg_com-material_caps-0001
+  form: Advanced High Strength Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Advanced High Strength Steel
+    approx_offset: 6650
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0002
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Steel & Aluminum
+    approx_offset: 6572
+  - quote: High Strength Aluminum
+    approx_offset: 6595
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0003
+  form: Galvanized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Galvanized and Organic Coated Steel
+    approx_offset: 6679
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0004
+  form: Galvanized and Organic Coated Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Galvanized and Organic Coated Steel
+    approx_offset: 6679
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0005
+  form: High Strength Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: High Strength Aluminum
+    approx_offset: 6581
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0006
+  form: High Strength Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: High Strength Steel
+    approx_offset: 6604
+  - quote: Ultra High Strength Steel
+    approx_offset: 6630
+  - quote: Advanced High Strength Steel
+    approx_offset: 6659
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0007
+  form: Iron Phosphate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Seven Stage Iron Phosphate Wash
+    approx_offset: 7644
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0008
+  form: Organic Coated Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Galvanized and Organic Coated Steel
+    approx_offset: 6694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0009
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Stainless Steel (Inc.
+    approx_offset: 6715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0010
+  form: Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Steel & Aluminum
+    approx_offset: 6564
+  - quote: High Strength Steel
+    approx_offset: 6618
+  - quote: Ultra High Strength Steel
+    approx_offset: 6644
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0011
+  form: Ultra High Strength Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Ultra High Strength Steel
+    approx_offset: 6624
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-material_caps-0012
+  form: organic coated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Galvanized and Organic Coated Steel
+    approx_offset: 6694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

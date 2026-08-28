@@ -1,0 +1,5433 @@
+subject: tanfel.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+golden_set_version: 1
+anchored_on: search/expectations/tanfel_com/process_caps.yaml
+labels:
+- id: tanfel_com-process_caps-0001
+  form: 100% inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: We offer tensile testing and torsion testing with the capability to do 100% inspection with
+      high volume.
+    approx_offset: 143393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0002
+  form: ALUMINUM EXTRUSION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: ALUMINUM EXTRUSION
+    approx_offset: 719
+  - quote: ALUMINUM EXTRUSION
+    approx_offset: 1397
+  - quote: HOME CAPABILITIES ALUMINUM EXTRUSION
+    approx_offset: 51806
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0003
+  form: Abrasive blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Abrasive blasting using materials like sand and glass beads produces smooth finish at a lower
+      cost for clients.
+    approx_offset: 24652
+  - quote: Abrasive blasting elevates good finishes to an even higher quality.
+    approx_offset: 24764
+  - quote: Abrasive blasting using materials like sand and glass beads produces smooth finish at a lower
+      cost for clients.
+    approx_offset: 158101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0004
+  form: Aluminum Extrusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 32
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+  evidence:
+  - quote: Aluminum Extrusion
+    approx_offset: 2735
+  - quote: Aluminum Extrusion
+    approx_offset: 19683
+  - quote: Aluminum Extrusion
+    approx_offset: 26381
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0005
+  form: Aluminum Extrusion Black Paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Aluminum Extrusion Black Paint
+    approx_offset: 121727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0006
+  form: Anodizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Anodizing
+    approx_offset: 56961
+  - quote: Finish:  Anodizing, Electroplating, Painting, Powder coating, Printing / Labeling
+    approx_offset: 57572
+  - quote: Anodizing
+    approx_offset: 77479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0007
+  form: Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Assembly
+    approx_offset: 123249
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0008
+  form: Blanking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Piercing / Blanking
+    approx_offset: 123305
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123533
+  - quote: "Blanking & Piercing\t±0.0004 in"
+    approx_offset: 123950
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0009
+  form: Blanking / Piercing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123533
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0010
+  form: Brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Brazing and Welding
+    approx_offset: 123190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0011
+  form: Brazing and Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Brazing and Welding
+    approx_offset: 123190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0012
+  form: Broaching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Broaching, Honing, Laser machining, Screw machining
+    approx_offset: 19304
+  - quote: Broaching
+    approx_offset: 80461
+  - quote: Broaching
+    approx_offset: 138306
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0013
+  form: CASTING FINISHES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: HOME CAPABILITIES CASTING FINISHES
+    approx_offset: 20417
+  - quote: CASTING FINISHES
+    approx_offset: 20434
+  - quote: CASTING FINISHES AT TANFEL
+    approx_offset: 24489
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0014
+  form: CNC MACHINING SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: CNC Machining Services
+    approx_offset: 19646
+  - quote: CNC Machining Services
+    approx_offset: 31087
+  - quote: CNC Machining Services
+    approx_offset: 32561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0015
+  form: CNC MILLING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: HOME CAPABILITIES CNC MILLING
+    approx_offset: 17941
+  - quote: CNC MILLING
+    approx_offset: 17953
+  - quote: CNC MILLING SERVICES
+    approx_offset: 17965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0016
+  form: CNC Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+  evidence:
+  - quote: CNC Machining Services
+    approx_offset: 19646
+  - quote: CNC Machining Services
+    approx_offset: 31087
+  - quote: CNC Machining Services
+    approx_offset: 32561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0017
+  form: CNC Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+  evidence:
+  - quote: CNC Milling
+    approx_offset: 2723
+  - quote: CNC Milling - Turning
+    approx_offset: 26507
+  - quote: CNC Milling
+    approx_offset: 31143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0018
+  form: CNC TURNING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: CNC TURNING
+    approx_offset: 80839
+  - quote: CNC TURNING
+    approx_offset: 138684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0019
+  form: CNC Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+  evidence:
+  - quote: CNC Turning
+    approx_offset: 59459
+  - quote: CNC Turning
+    approx_offset: 159971
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0020
+  form: CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: We focus on stamping, extrusion, casting and CNC machining.
+    approx_offset: 1766
+  - quote: We focus on stamping, extrusion, casting as well as CNC machining.
+    approx_offset: 43379
+  - quote: We focus on stamping, extrusion, casting as well as CNC machining.
+    approx_offset: 45897
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0021
+  form: CNC milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: We offer CNC milling services as a primary operation or secondary operations for prototype
+      or production parts.
+    approx_offset: 18823
+  - quote: We offer CNC milling services for both prototyping and full production runs.
+    approx_offset: 80029
+  - quote: 'Tanfel’s CNC milling capabilities include the following:'
+    approx_offset: 80412
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0022
+  form: CNC turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: CNC turning is a machining process used to create cylindrical objects.
+    approx_offset: 80852
+  - quote: Tanfel offers CNC turning services for parts with diameters up to 15 inches and lengths up
+      to 120 inches.
+    approx_offset: 81209
+  - quote: 'We use the following types of CNC lathes and CNC turning machines:'
+    approx_offset: 81346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0023
+  form: CNC-milled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: CNC-milled parts are used in every industry from aerospace, military, firearms to consumer
+      goods.
+    approx_offset: 17987
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0024
+  form: Casting Finishes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/design-parameters/
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Casting Finishes
+    approx_offset: 95928
+  - quote: Casting Finishes
+    approx_offset: 108849
+  - quote: Casting Finishes
+    approx_offset: 110145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0025
+  form: Casting machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Specialty machining: Rotary transfer machine, Jig / Fixture manufacturing, Casting machining,
+      Tool & die manufacturing'
+    approx_offset: 19184
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0026
+  form: Ceramic coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69470
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0027
+  form: Chemical etching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+  evidence:
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 19799
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 31222
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 32710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0028
+  form: Chemical milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: Chemical milling corrosively machines away selected sheet metal material to produce a complex
+      part with fine detail.
+    approx_offset: 144801
+  - quote: This process is also called Photo chemical machining – PCM, Chemical etching, Chemical milling.
+    approx_offset: 145166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0029
+  form: Chrome-free passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0030
+  form: Cold forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/forging/
+  evidence:
+  - quote: Cold forging, warm forging or hot forging.
+    approx_offset: 132685
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0031
+  form: Computer numerical control (CNC) machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Advances in technology have led to the development of Computer Numerical Control (CNC) machining.
+    approx_offset: 18737
+  - quote: Computer numerical control (CNC) machining is a broad term encompassing an expansive range
+      of automated machining processes.
+    approx_offset: 79830
+  - quote: Computer numerical control (CNC) machining is a broad term encompassing an expansive range
+      of automated machining processes.
+    approx_offset: 137675
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0032
+  form: Contract Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Contract Inspection\tLayout Inspection\tNon-contact Inspection"
+    approx_offset: 93364
+  - quote: "Contract Inspection\tLayout Inspection\tNon-contact Inspection"
+    approx_offset: 150593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0033
+  form: Cosmetic Finishes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/music/
+  evidence:
+  - quote: Cosmetic Finishes
+    approx_offset: 59429
+  - quote: Cosmetic Finishes
+    approx_offset: 115804
+  - quote: Cosmetic Finishes
+    approx_offset: 118732
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0034
+  form: DEEP DRAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: DEEP DRAW
+    approx_offset: 533
+  - quote: DEEP DRAW
+    approx_offset: 1211
+  - quote: 'Stamping: Progressive & Single die, Deep draw'
+    approx_offset: 121532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0035
+  form: DIE CASTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: DIE CASTING,
+    approx_offset: 207
+  - quote: DIE CASTING,
+    approx_offset: 885
+  - quote: DIE CASTING
+    approx_offset: 22464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0036
+  form: Deep Draw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: Deep Draw Stamping
+    approx_offset: 59483
+  - quote: Deep Draw Stamping
+    approx_offset: 63810
+  - quote: Deep Draw
+    approx_offset: 113379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0037
+  form: Deep Draw Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/music/
+  evidence:
+  - quote: Deep Draw Stamping
+    approx_offset: 59483
+  - quote: Deep Draw Stamping
+    approx_offset: 63810
+  - quote: Deep Draw Stamping
+    approx_offset: 115882
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0038
+  form: Deep Drawn Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Deep Drawn Stamping
+    approx_offset: 123121
+  - quote: the deep drawn stamping method, the progressive die stamping method, and the transfer press
+    approx_offset: 166064
+  - quote: DEEP DRAWN STAMPING
+    approx_offset: 166443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0039
+  form: Deep drawn stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: Deep drawn stamping is when sheet metal is pulled into the die by way of a punch, and the depth
+    approx_offset: 166464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0040
+  form: Die Casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 35
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+  evidence:
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 254
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 932
+  - quote: Die Casting
+    approx_offset: 2754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0041
+  form: Diecasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Diecasting and squeeze casting both can reach 20 RMS in extreme cases.
+    approx_offset: 22968
+  - quote: Diecasting and squeeze casting both can reach 20 RMS in extreme cases.
+    approx_offset: 156417
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0042
+  form: Dimension Inspection Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 93121
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 150350
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0043
+  form: Drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/lathe-turning/
+  evidence:
+  - quote: 'Capabilities: Drilling, Milling, Turning, Jig boring, Electrode & Wire EDM,'
+    approx_offset: 19242
+  - quote: A lathe machine rotates raw material around an axis to perform operations such as cutting,
+      sanding, knurling, drilling or turning.
+    approx_offset: 32003
+  - quote: Drilling
+    approx_offset: 80471
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0044
+  form: Drilling and tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123609
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0045
+  form: EDM cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: EDM cutting
+    approx_offset: 56776
+  - quote: 'Secondary operations: Machining, Grinding, EDM cutting, Heat treating / Stress relieving,
+      Welding,'
+    approx_offset: 57507
+  - quote: EDM cutting
+    approx_offset: 77294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0046
+  form: ELECTRIC INJECTION MOLDING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 9461
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 131129
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0047
+  form: EMI shielding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: EMI shielding ability
+    approx_offset: 70319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0048
+  form: EMI, RFI and ESD shielding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: EMI, RFI and ESD shielding
+    approx_offset: 111175
+  - quote: EMI, RFI and ESD shielding
+    approx_offset: 127117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0049
+  form: Electrode & Wire EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Capabilities: Drilling, Milling, Turning, Jig boring, Electrode & Wire EDM,'
+    approx_offset: 19282
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0050
+  form: Electrode and wire EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Electrode and wire EDM
+    approx_offset: 80480
+  - quote: Electrode and wire EDM
+    approx_offset: 138325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0051
+  form: Electroplating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Electroplating
+    approx_offset: 56971
+  - quote: Finish:  Anodizing, Electroplating, Painting, Powder coating, Printing / Labeling
+    approx_offset: 57583
+  - quote: Electroplating
+    approx_offset: 77489
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0052
+  form: Extrusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 86
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: ALUMINUM EXTRUSION
+    approx_offset: 728
+  - quote: ALUMINUM EXTRUSION
+    approx_offset: 1406
+  - quote: We focus on stamping, extrusion, casting and CNC machining.
+    approx_offset: 1743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0053
+  form: FAI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 93202
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 150431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0054
+  form: FORGING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/forging/
+  evidence:
+  - quote: HOME CAPABILITIES FORGING
+    approx_offset: 132607
+  - quote: FORGING
+    approx_offset: 132615
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0055
+  form: First Article Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 93176
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 150405
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0056
+  form: First Article Inspection (FAI) Testing & Documentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 93176
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 150405
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0057
+  form: Forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/medical-life-science/
+    - https://www.tanfel.com/industries/medical/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Forging
+    approx_offset: 19870
+  - quote: Forging
+    approx_offset: 26475
+  - quote: Forging
+    approx_offset: 31293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0058
+  form: Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Grinding
+    approx_offset: 56767
+  - quote: 'Secondary operations: Machining, Grinding, EDM cutting, Heat treating / Stress relieving,
+      Welding,'
+    approx_offset: 57497
+  - quote: Grinding
+    approx_offset: 77285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0059
+  form: HIGH SPEED MACHINING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 9439
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 131107
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0060
+  form: HOLLOW,
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: HOLLOW,
+    approx_offset: 738
+  - quote: HOLLOW,
+    approx_offset: 1416
+  - quote: They must also create a core if the item will be hollow, such as a cup or a product casing.
+    approx_offset: 34126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0061
+  form: Hardware insertion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134329
+  - quote: Punching, Turret punch, 7 axis Press brake, Welding, Hardware insertion
+    approx_offset: 134553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0062
+  form: Heat treating / Stress relieving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: 'Secondary operations: Machining, Grinding, EDM cutting, Heat treating / Stress relieving,
+      Welding,'
+    approx_offset: 57520
+  - quote: 'Secondary operations: Machining, Grinding, EDM cutting, Heat treating / Stress relieving,
+      Welding,'
+    approx_offset: 78038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0063
+  form: Hollow Extrusion Shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: Hollow Extrusion Shapes
+    approx_offset: 113331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0064
+  form: Hollow Extrusions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/music/
+  evidence:
+  - quote: Hollow Extrusions
+    approx_offset: 118817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0065
+  form: Honing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Broaching, Honing, Laser machining, Screw machining
+    approx_offset: 19315
+  - quote: Honing
+    approx_offset: 80503
+  - quote: Honing
+    approx_offset: 138348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0066
+  form: Hot forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/forging/
+  evidence:
+  - quote: Cold forging, warm forging or hot forging.
+    approx_offset: 132715
+  - quote: Hot forging.
+    approx_offset: 132951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0067
+  form: INVESTMENT CASTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: INVESTMENT CASTING
+    approx_offset: 220
+  - quote: INVESTMENT CASTING
+    approx_offset: 898
+  - quote: Investment casting, sand casting, and die casting are the three most common metal casting processes.
+    approx_offset: 36463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0068
+  form: In house tool making
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: In house tool making
+    approx_offset: 123830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0069
+  form: Injection Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 34
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/medical-life-science/
+  evidence:
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 2778
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 9470
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 19742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0070
+  form: Investment Casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+  evidence:
+  - quote: 'Investment Casting: Perfect for high melting point metal parts'
+    approx_offset: 293
+  - quote: 'Investment Casting: Perfect for high melting point metal parts'
+    approx_offset: 971
+  - quote: Investment Casting & Sand Casting
+    approx_offset: 2796
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0071
+  form: Jig / Fixture manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Specialty machining: Rotary transfer machine, Jig / Fixture manufacturing, Casting machining,
+      Tool & die manufacturing'
+    approx_offset: 19155
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0072
+  form: Jig boring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Capabilities: Drilling, Milling, Turning, Jig boring, Electrode & Wire EDM,'
+    approx_offset: 19270
+  - quote: Jig boring
+    approx_offset: 80510
+  - quote: Jig boring
+    approx_offset: 138355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0073
+  form: LASER MARKING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 9512
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 131180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0074
+  form: Labeling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Labeling
+    approx_offset: 57019
+  - quote: Finish:  Anodizing, Electroplating, Painting, Powder coating, Printing / Labeling
+    approx_offset: 57636
+  - quote: Labeling
+    approx_offset: 77537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0075
+  form: Laser etching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: 'Finishes include: Printing, Laser etching, Painting, Plating, and rubber grip surface'
+    approx_offset: 9951
+  - quote: 'Special Effects: Laser etching (backlight), Phosphorescent (Glow-in-the-dark), Flourescent'
+    approx_offset: 16880
+  - quote: 'Special Effects: Laser etching (backlight), Phosphorescent (Glow-in-the-dark), Flourescent'
+    approx_offset: 129880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0076
+  form: Laser etching (backlight)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: 'Special Effects: Laser etching (backlight), Phosphorescent (Glow-in-the-dark), Flourescent'
+    approx_offset: 16880
+  - quote: 'Special Effects: Laser etching (backlight), Phosphorescent (Glow-in-the-dark), Flourescent'
+    approx_offset: 129880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0077
+  form: Laser machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Broaching, Honing, Laser machining, Screw machining
+    approx_offset: 19323
+  - quote: Laser machining
+    approx_offset: 80521
+  - quote: Laser machining
+    approx_offset: 138366
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0078
+  form: Laser marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0079
+  form: Layout Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Contract Inspection\tLayout Inspection\tNon-contact Inspection"
+    approx_offset: 93384
+  - quote: "Contract Inspection\tLayout Inspection\tNon-contact Inspection"
+    approx_offset: 150613
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0080
+  form: METAL CASTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Metal Casting
+    approx_offset: 19669
+  - quote: Metal Casting
+    approx_offset: 31110
+  - quote: Metal Casting
+    approx_offset: 32584
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0081
+  form: METAL STAMPING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/video-gallery/
+  evidence:
+  - quote: 'METAL STAMPING:'
+    approx_offset: 67595
+  - quote: 'METAL STAMPING PROCESSES: GETTING THE SHAPE YOU NEED WITH TANFEL'
+    approx_offset: 117027
+  - quote: 'METAL STAMPING PROCESSES: GETTING THE SHAPE YOU NEED WITH TANFEL'
+    approx_offset: 162853
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0082
+  form: MIM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 33
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 2766
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 19730
+  - quote: HOME CAPABILITIES MIM – METAL INJECTION MOLDING
+    approx_offset: 27689
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0083
+  form: MIM / PIM / CIM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: MIM / PIM / CIM
+    approx_offset: 61108
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0084
+  form: MIM – Metal Injection Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/products
+  evidence:
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 2766
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 19730
+  - quote: HOME CAPABILITIES MIM – METAL INJECTION MOLDING
+    approx_offset: 27689
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0085
+  form: Metal CNC/Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Metal CNC/Machining
+    approx_offset: 61060
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0086
+  form: Metal Finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Metal Finishing
+    approx_offset: 123258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0087
+  form: Metal Injection Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 33
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/medical-life-science/
+  evidence:
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 2772
+  - quote: MIM – Metal Injection Molding
+    approx_offset: 19736
+  - quote: Metal Injection Molding
+    approx_offset: 26451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0088
+  form: Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Metal Stamping
+    approx_offset: 61045
+  - quote: 'February 25, 2019 3:09 pm Comments Off on Metal Stamping Processes: Getting the Shape You
+      Need With Tanfel'
+    approx_offset: 117134
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 117200
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0089
+  form: Metal casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Metal casting creates high-quality, reliable parts.
+    approx_offset: 33354
+  - quote: Metal casting is a metal forming process that creates precise metal shapes by pouring molten
+      metal into a mold.
+    approx_offset: 33703
+  - quote: Metal casting allows for the production of seamless metal parts for consistent strength and
+      product integrity
+    approx_offset: 35211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0090
+  form: Metrology Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Metrology Services\tValidation Services\tVerification Services"
+    approx_offset: 93303
+  - quote: "Metrology Services\tValidation Services\tVerification Services"
+    approx_offset: 150532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0091
+  form: Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 53
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+  evidence:
+  - quote: MILLING & TURNING
+    approx_offset: 445
+  - quote: MILLING & TURNING
+    approx_offset: 1123
+  - quote: CNC Milling
+    approx_offset: 2727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0092
+  form: Multi-color and reverse side printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Multi-color and reverse side printing
+    approx_offset: 111318
+  - quote: Multi-color and reverse side printing
+    approx_offset: 127260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0093
+  form: NDT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 93298
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 150527
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0094
+  form: NOBAKE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: NOBAKE
+    approx_offset: 21513
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 21521
+  - quote: Nobake casting production is ideal for low- to medium-volume runs and tends to be a little
+      more costly than other casting options.
+    approx_offset: 21702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0095
+  form: Nobake casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 21521
+  - quote: Nobake casting production is ideal for low- to medium-volume runs and tends to be a little
+      more costly than other casting options.
+    approx_offset: 21702
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 154970
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0096
+  form: Non-contact Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Contract Inspection\tLayout Inspection\tNon-contact Inspection"
+    approx_offset: 93402
+  - quote: "Contract Inspection\tLayout Inspection\tNon-contact Inspection"
+    approx_offset: 150631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0097
+  form: Nondestructive Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 93274
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 150503
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0098
+  form: Nondestructive Testing (NDT)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 93274
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 150503
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0099
+  form: Nylon Extrusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Nylon Extrusion
+    approx_offset: 122222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0100
+  form: PHOTO ETCHING / CHEMICAL ETCHING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+  evidence:
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 19783
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 31206
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 32694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0101
+  form: PRECISION CNC –
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+  evidence:
+  - quote: PRECISION CNC –
+    approx_offset: 429
+  - quote: PRECISION CNC –
+    approx_offset: 1107
+  - quote: PRECISION CNC –
+    approx_offset: 172880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0102
+  form: PROGRESSIVE DIE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: PROGRESSIVE DIE,
+    approx_offset: 516
+  - quote: PROGRESSIVE DIE,
+    approx_offset: 1194
+  - quote: 5 ton to 600 ton single and progressive die presses
+    approx_offset: 123469
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0103
+  form: PROTECTIVE COATING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 9489
+  - quote: OUR FACILITIES ARE EQUIPPED WITH THE LATEST MANUFACTURING TECHNOLOGIES IN THE INDUSTRY, SUCH
+      AS CAD/CAM/CAE DESIGN TECHNOLOGY, HIGH SPEED MACHINING, ELECTRIC INJECTION MOLDING, PROTECTIVE COATING
+      AND LASER MARKING.
+    approx_offset: 131157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0104
+  form: Pad printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0105
+  form: Painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Finishes include: Printing, Laser etching, Painting, Plating, and rubber grip surface'
+    approx_offset: 9966
+  - quote: Painting
+    approx_offset: 56986
+  - quote: Finish:  Anodizing, Electroplating, Painting, Powder coating, Printing / Labeling
+    approx_offset: 57599
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0106
+  form: Part Validation Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 93151
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 150380
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0107
+  form: Parts Inspection Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 93231
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 150460
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0108
+  form: Photo Etching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+  evidence:
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 19783
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 31206
+  - quote: Photo Etching / Chemical Etching
+    approx_offset: 32694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0109
+  form: Photo chemical machining – PCM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: This process is also called Photo chemical machining – PCM, Chemical etching, Chemical milling.
+    approx_offset: 145116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0110
+  form: Photo etching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: Photo etching can be used as an alternative to stamping, punching, water jet cutting or EDM
+      for very thin gauge parts.
+    approx_offset: 144919
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0111
+  form: Piercing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Piercing / Blanking
+    approx_offset: 123294
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123544
+  - quote: "Blanking & Piercing\t±0.0004 in"
+    approx_offset: 123961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0112
+  form: Plastic extrusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Plastic extrusion
+    approx_offset: 61150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0113
+  form: Plastic injection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Metal Injection Molding (MIM) gives the strength and integrity of a machined metal part while
+      giving the versatility of plastic injection molding.
+    approx_offset: 28999
+  - quote: This allows the metal to be injected into a mold using similar equipment as standard plastic
+      injection.
+    approx_offset: 29216
+  - quote: Plastic injection
+    approx_offset: 61132
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0114
+  form: Plastic machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Plastic machining
+    approx_offset: 61168
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0115
+  form: Plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Finishes include: Printing, Laser etching, Painting, Plating, and rubber grip surface'
+    approx_offset: 9976
+  - quote: 'Finishes include: Printing, Laser etching, Painting, Plating, and rubber grip surface'
+    approx_offset: 131644
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0116
+  form: Powder coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Powder coating
+    approx_offset: 56995
+  - quote: Finish:  Anodizing, Electroplating, Painting, Powder coating, Printing / Labeling
+    approx_offset: 57609
+  - quote: Powder coating
+    approx_offset: 77513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0117
+  form: Precision CNC-Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/industries/medical-life-science/
+    - https://www.tanfel.com/industries/medical/
+  evidence:
+  - quote: Precision CNC-Machining
+    approx_offset: 26483
+  - quote: Precision CNC-Machining
+    approx_offset: 161627
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0118
+  form: Precision Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Precision Machining
+    approx_offset: 121960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0119
+  form: Precision Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Precision Metal Stamping
+    approx_offset: 123081
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0120
+  form: Printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: 'Finishes include: Printing, Laser etching, Painting, Plating, and rubber grip surface'
+    approx_offset: 9941
+  - quote: Key size and location and a variety of key-top styles with printing options are all available.
+    approx_offset: 16503
+  - quote: Printing
+    approx_offset: 57010
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0121
+  form: Printing / Labeling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Finish:  Anodizing, Electroplating, Painting, Powder coating, Printing / Labeling
+    approx_offset: 57625
+  - quote: Finish:  Anodizing, Electroplating, Painting, Powder coating, Printing / Labeling
+    approx_offset: 78143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0122
+  form: Progressive Die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Progressive Die Stamping
+    approx_offset: 113403
+  - quote: Progressive Die Stamping
+    approx_offset: 123141
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123493
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0123
+  form: Progressive Die Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Progressive Die Stamping
+    approx_offset: 113403
+  - quote: Progressive Die Stamping
+    approx_offset: 123141
+  - quote: the deep drawn stamping method, the progressive die stamping method, and the transfer press
+    approx_offset: 166096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0124
+  form: Progressive die stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: Progressive die stamping follows an assembly line process; the initial material goes through
+      a
+    approx_offset: 166931
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0125
+  form: Protective Coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: 'Protective Coating: Glossy / Matte / EM / PU / Metallic'
+    approx_offset: 16807
+  - quote: 'Protective Coating: Glossy / Matte / EM / PU / Metallic'
+    approx_offset: 129807
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0126
+  form: Punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Punching, Turret punch, 7 axis Press brake, Welding, Hardware insertion
+    approx_offset: 134500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0127
+  form: QUALITY CONTROL AND INSPECTION SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+  evidence:
+  - quote: QUALITY CONTROL AND INSPECTION SERVICES
+    approx_offset: 2904
+  - quote: QUALITY CONTROL AND INSPECTION SERVICES
+    approx_offset: 3600
+  - quote: QUALITY CONTROL AND INSPECTION SERVICES
+    approx_offset: 4296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0128
+  form: Quality Control & Inspection Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 42
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/cnc-machining-service/
+  evidence:
+  - quote: Quality Control & Inspection Services
+    approx_offset: 10223
+  - quote: Quality Control & Inspection Services
+    approx_offset: 17229
+  - quote: Quality Control & Inspection Services
+    approx_offset: 19494
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0129
+  form: Rotary transfer machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Specialty machining: Rotary transfer machine, Jig / Fixture manufacturing, Casting machining,
+      Tool & die manufacturing'
+    approx_offset: 19130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0130
+  form: SAND CASTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: '& SAND CASTING'
+    approx_offset: 241
+  - quote: '& SAND CASTING'
+    approx_offset: 919
+  - quote: SAND CASTING
+    approx_offset: 21163
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0131
+  form: SEAMLESS TUBE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/industries/lighting/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: SEAMLESS TUBE
+    approx_offset: 746
+  - quote: SEAMLESS TUBE
+    approx_offset: 1424
+  - quote: Seamless Tube, Rod, Bar, Plate, and Custom parts
+    approx_offset: 57415
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0132
+  form: SHEET METAL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/music/
+  evidence:
+  - quote: Sheet Metal
+    approx_offset: 19858
+  - quote: Sheet Metal
+    approx_offset: 31281
+  - quote: Sheet Metal
+    approx_offset: 32769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0133
+  form: SHELL MOLD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: SHELL MOLD
+    approx_offset: 21837
+  - quote: Shell mold casting is similar to sand casting, but benefits from the use of reusable patterns.
+    approx_offset: 21849
+  - quote: SHELL MOLD
+    approx_offset: 155286
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0134
+  form: SINGLE DIE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+  evidence:
+  - quote: SINGLE DIE,
+    approx_offset: 504
+  - quote: SINGLE DIE,
+    approx_offset: 1182
+  - quote: SINGLE DIE,
+    approx_offset: 172955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0135
+  form: Sand Casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+  evidence:
+  - quote: 'Sand Casting: Great for smaller volume and larger size parts.'
+    approx_offset: 356
+  - quote: 'Sand Casting: Great for smaller volume and larger size parts.'
+    approx_offset: 1034
+  - quote: Investment Casting & Sand Casting
+    approx_offset: 2817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0136
+  form: Sand blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0137
+  form: Screw machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Broaching, Honing, Laser machining, Screw machining
+    approx_offset: 19340
+  - quote: Screw machining
+    approx_offset: 80545
+  - quote: Screw machining
+    approx_offset: 138390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0138
+  form: Seamless Tube Extrusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: Seamless Tube Extrusion
+    approx_offset: 113355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0139
+  form: Sheet Metal Fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Sheet Metal Fabrication
+    approx_offset: 133993
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0140
+  form: Shell mold casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Shell mold casting is similar to sand casting, but benefits from the use of reusable patterns.
+    approx_offset: 21849
+  - quote: Shell mold casting is similar to sand casting, but benefits from the use of reusable patterns.
+    approx_offset: 155298
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0141
+  form: Shell sand
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Shell sand can produce a range finish on average RMS values of 75-150, vacuum casting 150-200
+      RMS.
+    approx_offset: 22869
+  - quote: Shell sand can produce a range finish on average RMS values of 75-150, vacuum casting 150-200
+      RMS.
+    approx_offset: 156318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0142
+  form: Silkscreen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0143
+  form: Single die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Stamping: Progressive & Single die, Deep draw'
+    approx_offset: 121520
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0144
+  form: Sorting Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 93257
+  - quote: "Parts Inspection Services\tSorting Services\tNondestructive Testing (NDT)"
+    approx_offset: 150486
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0145
+  form: Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 103
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+  evidence:
+  - quote: STAMPING
+    approx_offset: 495
+  - quote: STAMPING
+    approx_offset: 1173
+  - quote: We focus on stamping, extrusion, casting and CNC machining.
+    approx_offset: 1733
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0146
+  form: TRANSFER PRESS STAMPING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: TRANSFER PRESS STAMPING
+    approx_offset: 167517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0147
+  form: Teflon coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0148
+  form: Tempering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Tempering
+    approx_offset: 56788
+  - quote: Tempering
+    approx_offset: 77306
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0149
+  form: Tool & die manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Specialty machining: Rotary transfer machine, Jig / Fixture manufacturing, Casting machining,
+      Tool & die manufacturing'
+    approx_offset: 19203
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0150
+  form: Tool and Die Design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Tool and Die Design
+    approx_offset: 123274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0151
+  form: Transfer Press Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Transfer Press Stamping
+    approx_offset: 123166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0152
+  form: Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 54
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+  evidence:
+  - quote: MILLING & TURNING
+    approx_offset: 455
+  - quote: MILLING & TURNING
+    approx_offset: 1133
+  - quote: 'Capabilities: Drilling, Milling, Turning, Jig boring, Electrode & Wire EDM,'
+    approx_offset: 19261
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0153
+  form: Turret punch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Turret punch
+    approx_offset: 123236
+  - quote: Punching, Turret punch, 7 axis Press brake, Welding, Hardware insertion
+    approx_offset: 134510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0154
+  form: UV hard coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: UV hard coating
+    approx_offset: 111159
+  - quote: UV hard coating
+    approx_offset: 127101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0155
+  form: VACUUM CASTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: VACUUM CASTING
+    approx_offset: 22165
+  - quote: VACUUM CASTING
+    approx_offset: 155614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0156
+  form: Vacuum casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Vacuum casting relies on vacuums to draw moisture from sand molds during production.
+    approx_offset: 22181
+  - quote: Vacuum casting is an ideal production method for applications where trapped air is problematic.
+    approx_offset: 22266
+  - quote: Vacuum casting relies on vacuums to draw moisture from sand molds during production.
+    approx_offset: 155630
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0157
+  form: Vacuum heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Vacuum heat treatment, passivation, high pressure washing,
+    approx_offset: 49029
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0158
+  form: Validation Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: Prototyping & validation services
+    approx_offset: 91718
+  - quote: "Dimension Inspection Services\tPart Validation Services\tFirst Article Inspection (FAI) Testing\
+      \ & Documentation"
+    approx_offset: 93156
+  - quote: "Metrology Services\tValidation Services\tVerification Services"
+    approx_offset: 93322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0159
+  form: Verification Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: "Metrology Services\tValidation Services\tVerification Services"
+    approx_offset: 93342
+  - quote: "Metrology Services\tValidation Services\tVerification Services"
+    approx_offset: 150571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0160
+  form: WIRE FORMING / SPRINGS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Wire Forming / Springs
+    approx_offset: 19760
+  - quote: Wire Forming / Springs
+    approx_offset: 31183
+  - quote: Wire Forming / Springs
+    approx_offset: 32671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0161
+  form: Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/sheet-metal/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Welding
+    approx_offset: 56798
+  - quote: 'Secondary operations: Machining, Grinding, EDM cutting, Heat treating / Stress relieving,
+      Welding,'
+    approx_offset: 57554
+  - quote: Welding
+    approx_offset: 77316
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0162
+  form: Wire EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Capabilities: Drilling, Milling, Turning, Jig boring, Electrode & Wire EDM,'
+    approx_offset: 19294
+  - quote: Electrode and wire EDM
+    approx_offset: 80494
+  - quote: Electrode and wire EDM
+    approx_offset: 138339
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0163
+  form: Wire Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+  evidence:
+  - quote: Wire Forming / Springs
+    approx_offset: 19760
+  - quote: Wire Forming / Springs
+    approx_offset: 31183
+  - quote: Wire Forming / Springs
+    approx_offset: 32671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0164
+  form: Wire forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Wire forming – Springs
+    approx_offset: 142979
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0165
+  form: abrasive blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: We can use abrasive blasting to smooth a rough surface.
+    approx_offset: 24607
+  - quote: We can use abrasive blasting to smooth a rough surface.
+    approx_offset: 158056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0166
+  form: aluminum extrusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Contact us today to discuss all your aluminum extrusion requirements.
+    approx_offset: 52213
+  - quote: In aluminum extrusion manufacturing, heated aluminum is pushed through a die and cooled back
+      to room temperature.
+    approx_offset: 52282
+  - quote: Because of aluminum’s unique ability to withstand high and low temperatures and resist corrosion
+      without weighing too much, many products built via aluminum extrusion tend to be lighter and more
+      durable than similar objects made from other materials.
+    approx_offset: 52951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0167
+  form: anodized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: This alloy can also be easily anodized, which lets manufacturers pair it with different finishes.
+    approx_offset: 55740
+  - quote: This alloy can also be easily anodized, which lets manufacturers pair it with different finishes.
+    approx_offset: 76258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0168
+  form: anodizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Some post-processing is required for deburring, anodizing, and cutting the extrusion into individual
+      parts, which we describe below.
+    approx_offset: 52545
+  - quote: The parts go through secondary finishing operations like deburring, polishing, and anodizing.
+    approx_offset: 54359
+  - quote: Some post-processing is required for deburring, anodizing, and cutting the extrusion into individual
+      parts, which we describe below.
+    approx_offset: 73063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0169
+  form: argon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123718
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0170
+  form: assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: 'We help you from product design, prototype validation, production, assembly, quality control,
+      global logistics and inventory management.Tanfel parts are used by leading OEM’s in North America
+      in a number of industries including:'
+    approx_offset: 1986
+  - quote: Plastic keycap-to-rubber keypad assembly
+    approx_offset: 17005
+  - quote: MIM is typically used for small size complex parts that would otherwise require a great deal
+      of machining or assembly.
+    approx_offset: 28083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0171
+  form: baking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 117377
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 163231
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 164439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0172
+  form: bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 117385
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123568
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134187
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0173
+  form: blanking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: We will help with blanking (the process in which a punched out
+    approx_offset: 168723
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0174
+  form: buffing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Secondary Operations:  Trim press, drill and tap, CNC, polishing, buffing, vibratory finish,
+      shot blasting
+    approx_offset: 69379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0175
+  form: casting machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 80640
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 138485
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0176
+  form: co-molded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16638
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 129638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0177
+  form: custom fabrications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/quality
+  evidence:
+  - quote: We have been using Tanfel as a supplier of custom fabrications for 7 years.
+    approx_offset: 6216
+  - quote: We have been using Tanfel as a supplier of custom fabrications for 7 years.
+    approx_offset: 7671
+  - quote: We have been using Tanfel as a supplier of custom fabrications for 7 years.
+    approx_offset: 86754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0178
+  form: deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Some post-processing is required for deburring, anodizing, and cutting the extrusion into individual
+      parts, which we describe below.
+    approx_offset: 52534
+  - quote: The parts go through secondary finishing operations like deburring, polishing, and anodizing.
+    approx_offset: 54333
+  - quote: Some post-processing is required for deburring, anodizing, and cutting the extrusion into individual
+      parts, which we describe below.
+    approx_offset: 73052
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0179
+  form: die cast
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Parts produced using a die cast process are typically thinner-walled and smoother than those
+      produced by the sand casting process.
+    approx_offset: 22585
+  - quote: 'DIE CAST METALS: ALUMINUM, ZINC, AND MAGNESIUM'
+    approx_offset: 69114
+  - quote: Parts produced using a die cast process are typically thinner-walled and smoother than those
+      produced by the sand casting process.
+    approx_offset: 156034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0180
+  form: die casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/metal-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: The injection process is similar to pressure die casting.
+    approx_offset: 27960
+  - quote: Tanfel Custom Metal Parts can help you select the right metal casting process from popular
+      methods such as sand casting, investment casting, and die casting.
+    approx_offset: 33662
+  - quote: Investment casting, sand casting, and die casting are the three most common metal casting processes.
+    approx_offset: 36501
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0181
+  form: dimensional measurement
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: Tanfel is a full-service dimensional measurement laboratory offering a wide range of measurement
+      services and solutions.
+    approx_offset: 92916
+  - quote: Tanfel is a full-service dimensional measurement laboratory offering a wide range of measurement
+      services and solutions.
+    approx_offset: 150145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0182
+  form: dimensional test reports
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: Detailed reports are available such as certificate of conformance, material specification sheets,
+      PPAP, dimensional test reports plus any other customer requirements.
+    approx_offset: 92744
+  - quote: Detailed reports are available such as certificate of conformance, material specification sheets,
+      PPAP, dimensional test reports plus any other customer requirements.
+    approx_offset: 149973
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0183
+  form: drill and tap
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Secondary Operations:  Trim press, drill and tap, CNC, polishing, buffing, vibratory finish,
+      shot blasting
+    approx_offset: 69348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0184
+  form: drilling and cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: operations in drilling and cutting, EDM cutting, heat treating, welding, and laser cutting.
+    approx_offset: 168168
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0185
+  form: electroplating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Finish: Anodizing, electroplating, powder coating, silkscreen and pad printing'
+    approx_offset: 123770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0186
+  form: extruded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Extruded products can be built with diameters of up to 15”, and most extruders offer extruded
+      aluminum in standard seamless tubes, rods, bars, and plates as well as custom options.
+    approx_offset: 56125
+  - quote: Extruded products can be built with diameters of up to 15”, and most extruders offer extruded
+      aluminum in standard seamless tubes, rods, bars, and plates as well as custom options.
+    approx_offset: 56210
+  - quote: Once secondary operations are complete, extruded products can be treated to a number of finishing
+      processes as well.
+    approx_offset: 56847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0187
+  form: extruding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: When combined with aluminum’s ability to perform well in the extruding process, the above traits
+      make aluminum the material of choice for custom projects.
+    approx_offset: 56562
+  - quote: When combined with aluminum’s ability to perform well in the extruding process, the above traits
+      make aluminum the material of choice for custom projects.
+    approx_offset: 77080
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0188
+  form: fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+    - https://www.tanfel.com/products/sheet-metal/
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: The difficulty of fabrication through other means may make it inefficient or even impossible
+      to manufacture otherwise.
+    approx_offset: 29854
+  - quote: 'Product development: fabrication drawings & 3D'
+    approx_offset: 91605
+  - quote: Sheet Metal Fabrication
+    approx_offset: 134005
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0189
+  form: forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/forging/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Milling is commonly used for custom parts that need precise tolerances, or as a secondary operation
+      with other manufacturing methods such as extrusion, casting or forging.
+    approx_offset: 18406
+  - quote: Industrial machinery and hardware: Casting, forging and extrusion tools, plant machinery and
+      tools, valves, and fittings
+    approx_offset: 39998
+  - quote: Cold forging, warm forging or hot forging.
+    approx_offset: 132690
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0190
+  form: grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0191
+  form: hardware insertion methods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0192
+  form: heat treated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: If further hardening is required, the parts are heat treated in artificial aging ovens.
+    approx_offset: 54236
+  - quote: However, these alloys cannot be heat treated and are not strong.
+    approx_offset: 54739
+  - quote: If further hardening is required, the parts are heat treated in artificial aging ovens.
+    approx_offset: 74754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0193
+  form: heat treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Machining, Grinding, EDM cutting, Heat treating / Stress relieving,
+      Welding,'
+    approx_offset: 57520
+  - quote: 'Secondary operations: Machining, Grinding, EDM cutting, Heat treating / Stress relieving,
+      Welding,'
+    approx_offset: 78038
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123669
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0194
+  form: heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Vacuum heat treatment, passivation, high pressure washing,
+    approx_offset: 49036
+  - quote: However, 5xxx series alloys do not respond well to heat treatment.
+    approx_offset: 55544
+  - quote: However, 5xxx series alloys do not respond well to heat treatment.
+    approx_offset: 76062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0195
+  form: high pressure washing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Vacuum heat treatment, passivation, high pressure washing,
+    approx_offset: 49065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0196
+  form: injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Metal injection molding or MIM is a process where fine powdered metal is injected into a mold
+      allowing for high volume complex parts.
+    approx_offset: 27786
+  - quote: Metal Injection Molding (MIM) gives the strength and integrity of a machined metal part while
+      giving the versatility of plastic injection molding.
+    approx_offset: 29007
+  - quote: Metal injection molding is best used for complex small parts.
+    approx_offset: 29689
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0197
+  form: internal and external threads
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Increasing complexity for traditional manufacturing methods typically does not increase cost
+      in a metal injection molding operation due to the wide range of features possible through injection
+      molding (internal and external threads, miniaturization, branding).
+    approx_offset: 30157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0198
+  form: investment casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Tanfel Custom Metal Parts can help you select the right metal casting process from popular
+      methods such as sand casting, investment casting, and die casting.
+    approx_offset: 33638
+  - quote: Parts that need to be built to meet tight tolerances and stringent specifications should use
+      die casting or investment casting processes.
+    approx_offset: 39084
+  - quote: Die casting can achieve thinner walls than investment casting
+    approx_offset: 69036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0199
+  form: jig or fixture manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 80610
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 138455
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0200
+  form: knurling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/lathe-turning/
+  evidence:
+  - quote: A lathe machine rotates raw material around an axis to perform operations such as cutting,
+      sanding, knurling, drilling or turning.
+    approx_offset: 31993
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0201
+  form: laser cut
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0202
+  form: laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134196
+  - quote: operations in drilling and cutting, EDM cutting, heat treating, welding, and laser cutting.
+    approx_offset: 168231
+  - quote: piece of metal is scrapped), as well as bending, turret punch, and laser cutting.
+    approx_offset: 168930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0203
+  form: laser, argon and spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123711
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0204
+  form: liquid paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Parts can be finished with powder coating, liquid paint, silkscreen, pad printing and many
+      other options.
+    approx_offset: 134416
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0205
+  form: metal casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Sand casting is the most widely used metal casting process.
+    approx_offset: 21214
+  - quote: Tanfel Custom Metal Parts can help you select the right metal casting process from popular
+      methods such as sand casting, investment casting, and die casting.
+    approx_offset: 33573
+  - quote: All of these advantages apply to the variety of metal casting methods available for prototype
+      and large production runs.
+    approx_offset: 35856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0206
+  form: metal injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Increasing complexity for traditional manufacturing methods typically does not increase cost
+      in a metal injection molding operation due to the wide range of features possible through injection
+      molding (internal and external threads, miniaturization, branding).
+    approx_offset: 30053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0207
+  form: metal spinning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: They’re most commonly used for metal spinning and general manufacturing.
+    approx_offset: 54803
+  - quote: They’re most commonly used for metal spinning and general manufacturing.
+    approx_offset: 75321
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0208
+  form: metal stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 117272
+  - quote: Custom metal stamping is especially useful when you have intricate designs or shapes […]
+    approx_offset: 117483
+  - quote: Learn more about the different metal stamping techniques.
+    approx_offset: 123346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0209
+  form: metal treatment services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: We offer sand, investment, and die casting services, as well as surface and other metal treatment
+      services.
+    approx_offset: 41262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0210
+  form: metrology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 30
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/design-parameters/
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+    approx_offset: 25432
+  - quote: "Metrology Services\tValidation Services\tVerification Services"
+    approx_offset: 93303
+  - quote: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+    approx_offset: 95956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0211
+  form: milled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: CNC-milled parts are used in every industry from aerospace, military, firearms to consumer
+      goods.
+    approx_offset: 17991
+  - quote: Most materials including metal, plastic, and ceramics can be milled.
+    approx_offset: 18147
+  - quote: Milled parts can be small precision parts up to large, heavy parts.
+    approx_offset: 18156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0212
+  form: nobake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Chemically bonded processes such as nobake or shell can have a similar finish to ceramic processes.
+    approx_offset: 22805
+  - quote: Chemically bonded processes such as nobake or shell can have a similar finish to ceramic processes.
+    approx_offset: 156254
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0213
+  form: pad printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Finish: Anodizing, electroplating, powder coating, silkscreen and pad printing'
+    approx_offset: 123817
+  - quote: Parts can be finished with powder coating, liquid paint, silkscreen, pad printing and many
+      other options.
+    approx_offset: 134442
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0214
+  form: painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 6
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0215
+  form: passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Vacuum heat treatment, passivation, high pressure washing,
+    approx_offset: 49052
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69441
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0216
+  form: piercing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: piece of metal is used in the final product), and piercing (the process in which a punched
+      out
+    approx_offset: 168818
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0217
+  form: plastic injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Metal Injection Molding (MIM) gives the strength and integrity of a machined metal part while
+      giving the versatility of plastic injection molding.
+    approx_offset: 28999
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0218
+  form: plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Good for plating and coating
+    approx_offset: 70144
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0219
+  form: polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: The parts go through secondary finishing operations like deburring, polishing, and anodizing.
+    approx_offset: 54344
+  - quote: Secondary Operations:  Trim press, drill and tap, CNC, polishing, buffing, vibratory finish,
+      shot blasting
+    approx_offset: 69368
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0220
+  form: powder coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/sheet-metal/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69509
+  - quote: 'Finish: Anodizing, electroplating, powder coating, silkscreen and pad printing'
+    approx_offset: 123786
+  - quote: Parts can be finished with powder coating, liquid paint, silkscreen, pad printing and many
+      other options.
+    approx_offset: 134400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0221
+  form: precision casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Investment casting—or precision casting—uses specialty wax molds to create highly detailed
+      and intricate models that capture every detail of the design.
+    approx_offset: 36706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0222
+  form: press bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134181
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0223
+  form: press brake forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0224
+  form: protective coatings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Generally used as-cast but may require some protective coatings
+    approx_offset: 23779
+  - quote: Generally used as-cast but may require some protective coatings
+    approx_offset: 157228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0225
+  form: punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 117397
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134232
+  - quote: Photo etching can be used as an alternative to stamping, punching, water jet cutting or EDM
+      for very thin gauge parts.
+    approx_offset: 144976
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0226
+  form: quality control
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 69
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: 'We help you from product design, prototype validation, production, assembly, quality control,
+      global logistics and inventory management.Tanfel parts are used by leading OEM’s in North America
+      in a number of industries including:'
+    approx_offset: 1996
+  - quote: Tanfel offers a combination of world-class manufacturing, quality control, engineering support,
+      warehouse, and logistics services.
+    approx_offset: 2388
+  - quote: QUALITY CONTROL AND INSPECTION SERVICES
+    approx_offset: 2904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0227
+  form: riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0228
+  form: rivets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0229
+  form: roll forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134251
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0230
+  form: rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/forging/
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Shaping metal by using a hammer, press or rolling.
+    approx_offset: 132675
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0231
+  form: rotary transfer machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 80691
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 138536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0232
+  form: sand casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Shell mold casting is similar to sand casting, but benefits from the use of reusable patterns.
+    approx_offset: 21882
+  - quote: Parts produced using a die cast process are typically thinner-walled and smoother than those
+      produced by the sand casting process.
+    approx_offset: 22671
+  - quote: Among these, sand casting processes typically produce rougher surfaces.
+    approx_offset: 22710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0233
+  form: sanding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/lathe-turning/
+  evidence:
+  - quote: A lathe machine rotates raw material around an axis to perform operations such as cutting,
+      sanding, knurling, drilling or turning.
+    approx_offset: 31984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0234
+  form: shot blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Secondary Operations:  Trim press, drill and tap, CNC, polishing, buffing, vibratory finish,
+      shot blasting
+    approx_offset: 69406
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0235
+  form: silkscreen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Finish: Anodizing, electroplating, powder coating, silkscreen and pad printing'
+    approx_offset: 123802
+  - quote: Parts can be finished with powder coating, liquid paint, silkscreen, pad printing and many
+      other options.
+    approx_offset: 134430
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0236
+  form: single die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 6
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0237
+  form: sintered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: The metal part is then sintered at a temperature to bind the particles but not melt the metal.
+    approx_offset: 29428
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0238
+  form: spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123728
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0239
+  form: spot-polished
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Imperfections are painted over or spot-polished
+    approx_offset: 23882
+  - quote: Imperfections are painted over or spot-polished
+    approx_offset: 157331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0240
+  form: squeeze casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Diecasting and squeeze casting both can reach 20 RMS in extreme cases.
+    approx_offset: 22983
+  - quote: Diecasting and squeeze casting both can reach 20 RMS in extreme cases.
+    approx_offset: 156432
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0241
+  form: stamped
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/industries/lighting/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Tanfel is a leading provider of stamped metal parts
+    approx_offset: 575
+  - quote: Tanfel is a leading provider of stamped metal parts
+    approx_offset: 1253
+  - quote: Whether your parts need to be stamped, extruded, cast or machined – we will make it happen.
+    approx_offset: 112988
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0242
+  form: surface treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+  evidence:
+  - quote: We can supply finished goods including any secondary operation or surface treatment...
+    approx_offset: 2580
+  - quote: We can supply finished goods including any secondary operation or surface treatment...
+    approx_offset: 175031
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0243
+  form: tensile testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: We offer tensile testing and torsion testing with the capability to do 100% inspection with
+      high volume.
+    approx_offset: 143331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0244
+  form: threading
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: stamping includes cut-outs, ribs, holes, and threading where progressive die stamping requires a
+    approx_offset: 167960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0245
+  form: tool and die manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 80659
+  - quote: Our specialty milling processes include jig or fixture manufacturing, casting machining, tool
+      and die manufacturing, and rotary transfer machining.
+    approx_offset: 138504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0246
+  form: torsion testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: We offer tensile testing and torsion testing with the capability to do 100% inspection with
+      high volume.
+    approx_offset: 143351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0247
+  form: transfer press stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: from one station to the next, transfer press stamping is more economical—a mechanical
+    approx_offset: 167761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0248
+  form: turned
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: The main focus is turned to efficiency and added value.
+    approx_offset: 93752
+  - quote: The main focus is turned to efficiency and added value.
+    approx_offset: 150981
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0249
+  form: turret punch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 123554
+  - quote: piece of metal is scrapped), as well as bending, turret punch, and laser cutting.
+    approx_offset: 168912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0250
+  form: vacuum casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Products created using vacuum casting tend to be of high quality and offer superb surface finish.
+    approx_offset: 22385
+  - quote: Shell sand can produce a range finish on average RMS values of 75-150, vacuum casting 150-200
+      RMS.
+    approx_offset: 22940
+  - quote: Products created using vacuum casting tend to be of high quality and offer superb surface finish.
+    approx_offset: 155834
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0251
+  form: vibratory finish
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Secondary Operations:  Trim press, drill and tap, CNC, polishing, buffing, vibratory finish,
+      shot blasting
+    approx_offset: 69388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0252
+  form: warm forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/forging/
+  evidence:
+  - quote: Cold forging, warm forging or hot forging.
+    approx_offset: 132699
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0253
+  form: water jet cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Material can be worked using a number of methods such as:  Stamping, press bending, laser cutting,
+      press brake forming, punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs,
+      screws and other hardware insertion methods are often used.
+    approx_offset: 134265
+  - quote: Photo etching can be used as an alternative to stamping, punching, water jet cutting or EDM
+      for very thin gauge parts.
+    approx_offset: 144986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0254
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123702
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating,
+      stress relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 123733
+  - quote: operations in drilling and cutting, EDM cutting, heat treating, welding, and laser cutting.
+    approx_offset: 168218
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0255
+  form: wet paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-process_caps-0256
+  form: wire formed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Tanfel is a leading supplier for custom springs and wire formed parts.
+    approx_offset: 143055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

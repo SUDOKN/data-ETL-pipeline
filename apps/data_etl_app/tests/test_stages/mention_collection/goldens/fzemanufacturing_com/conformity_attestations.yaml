@@ -1,0 +1,867 @@
+subject: fzemanufacturing.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+golden_set_version: 1
+anchored_on: search/expectations/fzemanufacturing_com/conformity_attestations.yaml
+labels:
+- id: fzemanufacturing_com-conformity_attestations-0001
+  form: APQP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: With extensive PPAP and APQP experience in pre-production to post-production First Articles
+      and ISIR inspection services, the machining inspection & quality assurance team is equipped to deliver
+      the highest quality assurance standards in accordance with their ISO 9001:2015 Certification.
+    approx_offset: 80112
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0002
+  form: ASTM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+  evidence:
+  - quote: These machining and quality assurance inspections ensure that machined components adhere to
+      regulatory guidelines (such as those written by UL or ASTM).
+    approx_offset: 51604
+  - quote: Testing after the passivation process provides verification of the effectiveness of the passivation
+      process and certifies compliance with ASTM, Mil-Spec, and other various industry standards.
+    approx_offset: 251545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0003
+  form: Black Belt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Furthermore, our Lean Black Belt Sigma certification, Lights Out automation, Lean Manufacturing,
+      and Kaizen/5S-based continuous improvement processes ensure that we’re constantly looking for new
+      ways to optimize our processes, meeting demanding turnaround times without compromising final product
+      qua
+    approx_offset: 7718
+  - quote: Six Sigma Certification – Black Belt
+    approx_offset: 40216
+  - quote: Lean Black Belt Six Sigma certification and Lean manufacturing
+    approx_offset: 50098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0004
+  form: DOD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Defense (DOD)
+    approx_offset: 39446
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 174965
+  - quote: DOT/DOD/DOE
+    approx_offset: 178911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0005
+  form: DOE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 39418
+  - quote: Department of Energy (DOE)
+    approx_offset: 175027
+  - quote: DOT/DOD/DOE
+    approx_offset: 178915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0006
+  form: DOT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Highway (DOT)
+    approx_offset: 39568
+  - quote: Transportation (DOT, trucking equipment)
+    approx_offset: 89192
+  - quote: Department of Transportation (DOT)
+    approx_offset: 175000
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0007
+  form: Department of Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Defense (DOD)
+    approx_offset: 39423
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 174942
+  - quote: At FZE Manufacturing, we meet all industry standards for laser marking, including those set
+      by ISO, the Department of Energy, the Department of Transportation, and the Department of Defense.
+    approx_offset: 195764
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0008
+  form: Department of Energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 39396
+  - quote: Department of Energy (DOE)
+    approx_offset: 175005
+  - quote: At FZE Manufacturing, we meet all industry standards for laser marking, including those set
+      by ISO, the Department of Energy, the Department of Transportation, and the Department of Defense.
+    approx_offset: 195700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0009
+  form: Department of Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Department of Transportation (DOT)
+    approx_offset: 174970
+  - quote: At FZE Manufacturing, we meet all industry standards for laser marking, including those set
+      by ISO, the Department of Energy, the Department of Transportation, and the Department of Defense.
+    approx_offset: 195726
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0010
+  form: FDA guidelines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Unique device identifiers (UDIs) for medical devices, per FDA guidelines
+    approx_offset: 177720
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0011
+  form: ISIR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: With extensive PPAP and APQP experience in pre-production to post-production First Articles
+      and ISIR inspection services, the machining inspection & quality assurance team is equipped to deliver
+      the highest quality assurance standards in accordance with their ISO 9001:2015 Certification.
+    approx_offset: 80184
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0012
+  form: ISO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Our ISO 9001:2015–certified quality-management systems ensure that all our processes produce
+      high-quality products.
+    approx_offset: 7347
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 40132
+  - quote: ISO 9001:2015-certified quality management system
+    approx_offset: 50195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0013
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Our ISO 9001:2015–certified quality-management systems ensure that all our processes produce
+      high-quality products.
+    approx_offset: 7347
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 40132
+  - quote: ISO 9001:2015-certified quality management system
+    approx_offset: 50195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0014
+  form: ISO 9001-2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: We are proud to be ISO 9001-2015 compliant.
+    approx_offset: 154274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0015
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Our ISO 9001:2015–certified quality-management systems ensure that all our processes produce
+      high-quality products.
+    approx_offset: 7347
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 40132
+  - quote: ISO 9001:2015-certified quality management system
+    approx_offset: 50195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0016
+  form: ISO 9001:2015 Certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 40132
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 89596
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 140266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0017
+  form: ISO 9001:2015 certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: Our manufacturing facility is ISO 9001:2015 certified as well.
+    approx_offset: 54837
+  - quote: We are also ISO 9001:2015 certified.
+    approx_offset: 179203
+  - quote: We are also ISO 9001:2015 certified.
+    approx_offset: 182699
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0018
+  form: ISO 9001:2015-certified quality management system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: ISO 9001:2015-certified quality management system
+    approx_offset: 50195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0019
+  form: Lean Black Belt Six Sigma certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Lean Black Belt Six Sigma certification and Lean manufacturing
+    approx_offset: 50093
+  - quote: Trained in multiple manufacturing efficiencies, our staff employs leading manufacturing processes
+      such as Lean Black Belt Six Sigma certification, Lights-Out or Unmanned manufacturing, Lean manufacturing,
+      and Kaizen/5S-based continuous improvement.
+    approx_offset: 54664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0020
+  form: Lean Six Sigma (Black Belt)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Lean Six Sigma (Black Belt)
+    approx_offset: 89568
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0021
+  form: Made In Wisconsin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/news/
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+  evidence:
+  - quote: Made In Wisconsin Program
+    approx_offset: 28663
+  - quote: WEDC officials present award in North Fond du Lac as part of Manufacturing Month As part of
+      Manufacturing Month, officials from the Wisconsin Economic Development Corporation (WEDC) today
+      welcomed FZE Manufacturing Solutions as the latest company to join WEDC’s Made In Wisconsin® program.
+    approx_offset: 56922
+  - quote: “The Made In Wisconsin program is a wonderful way for the many companies that call Wisconsin…
+    approx_offset: 56957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0022
+  form: Made In Wisconsin WEDC certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+  evidence:
+  - quote: We are very pleased to receive our Made In Wisconsin WEDC certification and registration and
+      to include the logo in our marketing and promotional materials.”
+    approx_offset: 188200
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0023
+  form: Made In Wisconsin®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/news/
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+    - https://fzemanufacturing.com/news/our-town-features-fze/
+  evidence:
+  - quote: FZE Manufacturing Solutions, LLC named latest Made in Wisconsin® company
+    approx_offset: 56632
+  - quote: WEDC officials present award in North Fond du Lac as part of Manufacturing Month As part of
+      Manufacturing Month, officials from the Wisconsin Economic Development Corporation (WEDC) today
+      welcomed FZE Manufacturing Solutions as the latest company to join WEDC’s Made In Wisconsin® program.
+    approx_offset: 56922
+  - quote: FZE Manufacturing Solutions, LLC named latest Made in Wisconsin® company
+    approx_offset: 185762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0024
+  form: Made in Wisconsin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/news/
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+    - https://fzemanufacturing.com/news/our-town-features-fze/
+  evidence:
+  - quote: FZE Manufacturing Solutions is one of the state’s only manufacturers to be approved by, registered
+      and trademarked with the Made in Wisconsin program.
+    approx_offset: 28814
+  - quote: We’re proud to be included in this elite group and use the Made in Wisconsin logo in our promotional
+      materials.
+    approx_offset: 29096
+  - quote: In the Made in Wisconsin program, we join nearly 250 other companies who grow, brew, build,
+      engineer, and otherwise produce in this great state.
+    approx_offset: 29157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0025
+  form: Made in Wisconsin program
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/news/
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+  evidence:
+  - quote: Made In Wisconsin Program
+    approx_offset: 28663
+  - quote: FZE Manufacturing Solutions is one of the state’s only manufacturers to be approved by, registered
+      and trademarked with the Made in Wisconsin program.
+    approx_offset: 28814
+  - quote: In the Made in Wisconsin program, we join nearly 250 other companies who grow, brew, build,
+      engineer, and otherwise produce in this great state.
+    approx_offset: 29157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0026
+  form: Mil-Spec
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Military & Mil-Spec
+    approx_offset: 40167
+  - quote: Certified to ISO 9001:2015 and Mil-Spec standards, we utilize Six Sigma, Lean, and Lights-Out
+      Manufacturing.
+    approx_offset: 52796
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 174933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0027
+  form: Mil-Spec/Department of Defense (DOD)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 174933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0028
+  form: Military & Mil-Spec
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Military & Mil-Spec
+    approx_offset: 40156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0029
+  form: PPAP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: With extensive PPAP and APQP experience in pre-production to post-production First Articles
+      and ISIR inspection services, the machining inspection & quality assurance team is equipped to deliver
+      the highest quality assurance standards in accordance with their ISO 9001:2015 Certification.
+    approx_offset: 80103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0030
+  form: Six Sigma Certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: Six Sigma Certification – Black Belt
+    approx_offset: 40190
+  - quote: Lean Black Belt Six Sigma certification and Lean manufacturing
+    approx_offset: 50109
+  - quote: Trained in multiple manufacturing efficiencies, our staff employs leading manufacturing processes
+      such as Lean Black Belt Six Sigma certification, Lights-Out or Unmanned manufacturing, Lean manufacturing,
+      and Kaizen/5S-based continuous improvement.
+    approx_offset: 54680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0031
+  form: Six Sigma-Black Belt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+  evidence:
+  - quote: To ensure top quality and efficiency, our services are backed by our ISO 9001:2015 certification
+      as well as our sustainable manufacturing practices, including Lights Out / Unmanned manufacturing,
+      Lean manufacturing, and Six Sigma-Black Belt.
+    approx_offset: 117141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0032
+  form: Six-Sigma (Black Belt)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Six-Sigma (Black Belt)
+    approx_offset: 68643
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0033
+  form: Thomas Verified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: In addition, we are a Thomas Verified supplier, so be confident you’re getting quality products
+      at a fair price.
+    approx_offset: 154480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0034
+  form: Thomas Verified supplier
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: In addition, we are a Thomas Verified supplier, so be confident you’re getting quality products
+      at a fair price.
+    approx_offset: 154480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0035
+  form: UDIs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Unique device identifiers (UDIs) for medical devices, per FDA guidelines
+    approx_offset: 177689
+  - quote: Labeling the unique device identifiers (UDIs) that the FDA requires on medical devices
+    approx_offset: 195097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0036
+  form: UL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+  evidence:
+  - quote: These machining and quality assurance inspections ensure that machined components adhere to
+      regulatory guidelines (such as those written by UL or ASTM).
+    approx_offset: 51598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0037
+  form: quality management system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Throughout our operation, we operate on a principle of continuous improvement; we invest in
+      the latest equipment, innovate our processes, and adhere to a strict quality management system throughout
+      production to ensure all customer requirements are met.
+    approx_offset: 2385
+  - quote: ISO 9001:2015-certified quality management system
+    approx_offset: 50219
+  - quote: Throughout our operation, we operate on a principle of continuous improvement; we invest in
+      the latest equipment, innovate our processes, and adhere to a strict quality management system throughout
+      production to ensure all customer requirements are met.
+    approx_offset: 198838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0038
+  form: quality-management systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Our ISO 9001:2015–certified quality-management systems ensure that all our processes produce
+      high-quality products.
+    approx_offset: 7371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0039
+  form: the FDA requires
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Labeling the unique device identifiers (UDIs) that the FDA requires on medical devices
+    approx_offset: 195108
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-conformity_attestations-0040
+  form: unique device identifiers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Unique device identifiers (UDIs) for medical devices, per FDA guidelines
+    approx_offset: 177662
+  - quote: Labeling the unique device identifiers (UDIs) that the FDA requires on medical devices
+    approx_offset: 195070
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

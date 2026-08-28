@@ -1,0 +1,1826 @@
+subject: sterlingmfg.net
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+golden_set_version: 1
+anchored_on: search/expectations/sterlingmfg_net/equipments.yaml
+labels:
+- id: sterlingmfg_net-equipments-0001
+  form: 29 injection molding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: EPTAM is equipped with 29 injection molding machines.
+    approx_offset: 50433
+  - quote: Across two facilities, EPTAM is equipped with 29 injection molding machines.
+    approx_offset: 79203
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0002
+  form: 3 Furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: 3 Furnaces.
+    approx_offset: 108277
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0003
+  form: 30 printers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptams-additive-manufacturing-capabilities/
+  evidence:
+  - quote: EPTAM offers open-sourced material FDM printing with 30 printers online.
+    approx_offset: 154400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0004
+  form: 3D printer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM has an expanded 3D printer prototyping and production line.
+    approx_offset: 107853
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0005
+  form: 3D printers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM operates more than thirty 3D printers, three furnaces, including production and prototype.
+    approx_offset: 107480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0006
+  form: 4 and 5th axis Tube Cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+  evidence:
+  - quote: EPTAM has been building a fleet of Laser Part Markers, 4 and 5th axis Tube Cutters, and Welders
+      over the past 3 years and is now ready to take on your immediate production needs.
+    approx_offset: 14436
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0007
+  form: 4th and 5th-Axis Tube Cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Fleet of Advanced Equipment: Over the past 3 years, we have built a fleet of Laser Part Markers,
+      4th and 5th-Axis Tube Cutters, and Welders to meet your high-volume production needs.'
+    approx_offset: 147285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0008
+  form: 5-Axis Mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire
+      EDM Machining.
+    approx_offset: 171198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0009
+  form: Arburg
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 47952
+  - quote: Maintain new equipment - Engel and Arburg injection machines.
+    approx_offset: 77031
+  - quote: We utilize state-of-the-art Toyo and Arburg molding machines with a press tonnage range of
+      5-200 tons, and are continually investing in our operations.
+    approx_offset: 79925
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0010
+  form: Brother
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: This is supported by Brother and Topper CNC machines.
+    approx_offset: 80758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0011
+  form: Brother and Topper CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: This is supported by Brother and Topper CNC machines.
+    approx_offset: 80758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0012
+  form: CNC Lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire
+      EDM Machining.
+    approx_offset: 171212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0013
+  form: Engel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 47942
+  - quote: Maintain new equipment - Engel and Arburg injection machines.
+    approx_offset: 77021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0014
+  form: Engel and Arburg injection machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 47942
+  - quote: Maintain new equipment - Engel and Arburg injection machines.
+    approx_offset: 77021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0015
+  form: FDM Printers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: FDM Printers
+    approx_offset: 88984
+  - quote: FDM Printers
+    approx_offset: 89228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0016
+  form: FDM printer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: FDM printer
+    approx_offset: 88622
+  - quote: FDM Printer
+    approx_offset: 88645
+  - quote: FDM Printer
+    approx_offset: 89328
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0017
+  form: HAAS VF-4SS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: HAAS VF-4SS
+    approx_offset: 69554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0018
+  form: Haas high-performance super-speed vertical machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Our Haas high-performance super-speed vertical machining centers  are a key part of our milling
+      department here at EPTAM.
+    approx_offset: 69571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0019
+  form: Hass VF-SS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0020
+  form: INTEGREX i-150
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Mazak Integrex i-150
+    approx_offset: 70102
+  - quote: The INTEGREX i-150 advanced Multi-Tasking machine from Mazak is a growing part of our milling
+      cell.
+    approx_offset: 70122
+  - quote: The INTEGREX i-150 has a small footprint but packs a big punch.
+    approx_offset: 70222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0021
+  form: Komo
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Komo Routers
+    approx_offset: 105511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0022
+  form: Komo Routers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Komo Routers
+    approx_offset: 105511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0023
+  form: L3000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma L3000 lathe
+    approx_offset: 104844
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0024
+  form: LSR injection molding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: EPTAM Silicone is equipped with LSR injection molding machines ranging from 14-120 ton and
+      compression presses ranging from 10-100 tons.
+    approx_offset: 80370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0025
+  form: LT2000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma LT2000 EX lathe
+    approx_offset: 104935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0026
+  form: LT2000 EX
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma LT2000 EX lathe
+    approx_offset: 104935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0027
+  form: Laser Part Markers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: EPTAM has been building a fleet of Laser Part Markers, 4 and 5th axis Tube Cutters, and Welders
+      over the past 3 years and is now ready to take on your immediate production needs.
+    approx_offset: 14416
+  - quote: 'Fleet of Advanced Equipment: Over the past 3 years, we have built a fleet of Laser Part Markers,
+      4th and 5th-Axis Tube Cutters, and Welders to meet your high-volume production needs.'
+    approx_offset: 147265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0028
+  form: MA-600H
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma MA-600H horizontal mill
+    approx_offset: 105208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0029
+  form: MU-4000V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma MU-4000V 5-axis CNC vertical mill
+    approx_offset: 104703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0030
+  form: Machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67105
+  - quote: Our Haas high-performance super-speed vertical machining centers  are a key part of our milling
+      department here at EPTAM.
+    approx_offset: 69614
+  - quote: As the leader in complex multi-axis metal machining, EPTAM Precision Metals offers 3, 4, and
+      5-axis machining centers.
+    approx_offset: 133137
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0031
+  form: Mazak
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67181
+  - quote: Mazak Integrex i-150
+    approx_offset: 70096
+  - quote: The INTEGREX i-150 advanced Multi-Tasking machine from Mazak is a growing part of our milling
+      cell.
+    approx_offset: 70173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0032
+  form: Mazak Integrex
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67181
+  - quote: Mazak Integrex i-150
+    approx_offset: 70096
+  - quote: With our continued purchases of Mazak Integrex Machines, we are prepared to deliver for you.
+    approx_offset: 70748
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0033
+  form: Mazak Integrex Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: With our continued purchases of Mazak Integrex Machines, we are prepared to deliver for you.
+    approx_offset: 70748
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0034
+  form: Mazak Integrex i-150
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Mazak Integrex i-150
+    approx_offset: 70096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0035
+  form: Multus B300
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma Multus B300 mill/turn
+    approx_offset: 105042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0036
+  form: Okuma L3000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma L3000 lathe
+    approx_offset: 104838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0037
+  form: Okuma L3000 lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma L3000 lathe
+    approx_offset: 104838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0038
+  form: Okuma LT2000 EX
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma LT2000 EX lathe
+    approx_offset: 104929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0039
+  form: Okuma LT2000 EX lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma LT2000 EX lathe
+    approx_offset: 104929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0040
+  form: Okuma M560
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma M560-vertical mill
+    approx_offset: 104571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0041
+  form: Okuma M560-vertical mill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma M560-vertical mill
+    approx_offset: 104571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0042
+  form: Okuma MA-600H
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma MA-600H horizontal mill
+    approx_offset: 105202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0043
+  form: Okuma MA-600H horizontal mill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma MA-600H horizontal mill
+    approx_offset: 105202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0044
+  form: Okuma MU-4000V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma MU-4000V 5-axis CNC vertical mill
+    approx_offset: 104697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0045
+  form: Okuma MU-4000V 5-axis CNC vertical mill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma MU-4000V 5-axis CNC vertical mill
+    approx_offset: 104697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0046
+  form: Okuma Multus B300
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma Multus B300 mill/turn
+    approx_offset: 105036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0047
+  form: Okuma Multus B300 mill/turn
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Okuma Multus B300 mill/turn
+    approx_offset: 105036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0048
+  form: Over 50 Machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0049
+  form: Part markers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Part markers including picosecond.
+    approx_offset: 12358
+  - quote: EPTAM has been building a fleet of Laser Part Markers, 4 and 5th axis Tube Cutters, and Welders
+      over the past 3 years and is now ready to take on your immediate production needs.
+    approx_offset: 14422
+  - quote: 'Fleet of Advanced Equipment: Over the past 3 years, we have built a fleet of Laser Part Markers,
+      4th and 5th-Axis Tube Cutters, and Welders to meet your high-volume production needs.'
+    approx_offset: 147271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0050
+  form: Part markers including picosecond
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+  evidence:
+  - quote: Part markers including picosecond.
+    approx_offset: 12358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0051
+  form: Picosecond Laser Technology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Picosecond Laser Technology: Enables ultra-fast and precise laser marking with minimal heat-affected
+      zones, ideal for sensitive medical and microelectronic applications.'
+    approx_offset: 145040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0052
+  form: SLA printer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: SLA printer
+    approx_offset: 88763
+  - quote: SLA Printer​
+    approx_offset: 88786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0053
+  form: SLS printer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: SLS printer
+    approx_offset: 88875
+  - quote: SLS Printer​
+    approx_offset: 88899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0054
+  form: Star
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0055
+  form: SwissNano
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Supporting EPTAM’s focus for micro parts for medical device OEM’s, we have dedicated ourselves
+      to utilizing the SwissNano line of machines.
+    approx_offset: 68557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0056
+  form: Topper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: This is supported by Brother and Topper CNC machines.
+    approx_offset: 80770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0057
+  form: Topper CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: This is supported by Brother and Topper CNC machines.
+    approx_offset: 80770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0058
+  form: Tornos
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67139
+  - quote: Tornos Nanos
+    approx_offset: 68431
+  - quote: Improved tool life, chip control and part quality with Tornos’ Active Chip Breaker Plus software.
+    approx_offset: 69447
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0059
+  form: Tornos Deco
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0060
+  form: Tornos Nanos
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Tornos Nanos
+    approx_offset: 68431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0061
+  form: TornosNanos
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+    approx_offset: 67152
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0062
+  form: Toyo
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: We utilize state-of-the-art Toyo and Arburg molding machines with a press tonnage range of
+      5-200 tons, and are continually investing in our operations.
+    approx_offset: 79916
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0063
+  form: Toyo and Arburg molding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: We utilize state-of-the-art Toyo and Arburg molding machines with a press tonnage range of
+      5-200 tons, and are continually investing in our operations.
+    approx_offset: 79916
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0064
+  form: Tsugami
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Tsugami swiss lathe
+    approx_offset: 105333
+  - quote: Tsugami VA2/VA3 vertical mills
+    approx_offset: 105414
+  - quote: Time-tested sliding headstock technology and Tsugami precision allow us to machine long, slender
+      parts that traditional turning centers cannot.
+    approx_offset: 133316
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0065
+  form: Tsugami VA2/VA3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Tsugami VA2/VA3 vertical mills
+    approx_offset: 105414
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0066
+  form: Tsugami VA2/VA3 vertical mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Tsugami VA2/VA3 vertical mills
+    approx_offset: 105414
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0067
+  form: Tsugami swiss lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Tsugami swiss lathe
+    approx_offset: 105333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0068
+  form: Tube cutters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Tube cutters 3, 4, 5 axis
+    approx_offset: 12317
+  - quote: EPTAM has been building a fleet of Laser Part Markers, 4 and 5th axis Tube Cutters, and Welders
+      over the past 3 years and is now ready to take on your immediate production needs.
+    approx_offset: 14451
+  - quote: 'Fleet of Advanced Equipment: Over the past 3 years, we have built a fleet of Laser Part Markers,
+      4th and 5th-Axis Tube Cutters, and Welders to meet your high-volume production needs.'
+    approx_offset: 147302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0069
+  form: Tube cutters 3, 4, 5 axis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+  evidence:
+  - quote: Tube cutters 3, 4, 5 axis
+    approx_offset: 12317
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0070
+  form: VA2/VA3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Tsugami VA2/VA3 vertical mills
+    approx_offset: 105422
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0071
+  form: VF-4SS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: HAAS VF-4SS
+    approx_offset: 69559
+  - quote: The VF-4SS is a workhorse taking on both PEEK and Titanium parts with ease.
+    approx_offset: 69830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0072
+  form: Welder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+  evidence:
+  - quote: Welder
+    approx_offset: 12347
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0073
+  form: Welders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: EPTAM has been building a fleet of Laser Part Markers, 4 and 5th axis Tube Cutters, and Welders
+      over the past 3 years and is now ready to take on your immediate production needs.
+    approx_offset: 14469
+  - quote: 'Fleet of Advanced Equipment: Over the past 3 years, we have built a fleet of Laser Part Markers,
+      4th and 5th-Axis Tube Cutters, and Welders to meet your high-volume production needs.'
+    approx_offset: 147320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0074
+  form: Wire EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168566
+  - quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire
+      EDM Machining.
+    approx_offset: 171228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0075
+  form: Wire EDM Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire
+      EDM Machining.
+    approx_offset: 171228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0076
+  form: binder jet printing system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM’s binder jet printing system combined with our three sintering furnaces can cost effectively
+      produce a single part to tens of thousands of parts per year.
+    approx_offset: 107553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0077
+  form: compression presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: EPTAM Silicone is equipped with LSR injection molding machines ranging from 14-120 ton and
+      compression presses ranging from 10-100 tons.
+    approx_offset: 80429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0078
+  form: furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM operates more than thirty 3D printers, three furnaces, including production and prototype.
+    approx_offset: 107499
+  - quote: EPTAM’s binder jet printing system combined with our three sintering furnaces can cost effectively
+      produce a single part to tens of thousands of parts per year.
+    approx_offset: 107614
+  - quote: EPTAM employs state of the art sintering furnaces, custom designed to our exact specifications.
+    approx_offset: 107938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0079
+  form: injection machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'State-of-the-Art Equipment: We maintain a fleet of Engel and Arburg injection machines, supporting
+      a wide range of LSR (Liquid Silicone Rubber) thermoplastic engineering-grade resins like PC, PS,
+      and TPE, as well as high-performance materials such as PEEK and PMMA.'
+    approx_offset: 47959
+  - quote: This facility houses two certified ISO Class 8 clean rooms dedicated to thermoplastic and silicone
+      applications, with a diverse range of injection machines from 14 to 120 tons for LSR and up to over
+      200 tons for thermoplastics.
+    approx_offset: 50924
+  - quote: Maintain new equipment - Engel and Arburg injection machines.
+    approx_offset: 77038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0080
+  form: injection molding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: EPTAM is equipped with 29 injection molding machines.
+    approx_offset: 50436
+  - quote: Across two facilities, EPTAM is equipped with 29 injection molding machines.
+    approx_offset: 79206
+  - quote: EPTAM Silicone is equipped with LSR injection molding machines ranging from 14-120 ton and
+      compression presses ranging from 10-100 tons.
+    approx_offset: 80374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0081
+  form: laser equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: We can customize laser equipment to meet a specific application.
+    approx_offset: 140830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0082
+  form: laser marking systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Our laser marking systems produce deep, biocompatible marks that withstand repeated sterilization
+      without fading.
+    approx_offset: 150516
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0083
+  form: laser processing equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+  evidence:
+  - quote: With our proprietary technology, EPTAM utilizes laser processing equipment to enable efficient
+      manufacturing, customization, automation, and quick adaptation to current industry trends.
+    approx_offset: 11228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0084
+  form: laser systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Our proprietary laser systems are designed for efficient manufacturing, customization, and
+      automation, enabling us to quickly adapt to the latest industry trends while maintaining the highest
+      standards of quality and precision.
+    approx_offset: 140256
+  - quote: These technologies ensure that our laser systems operate with utmost efficiency, making them
+      ideal for complex medical and industrial applications.
+    approx_offset: 147832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0085
+  form: laser welding systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Our laser welding systems specialize in non-contact welding to create airtight, hermetic seals
+      for implantable medical devices.
+    approx_offset: 143808
+  - quote: Our laser welding systems ensure airtight, hermetic seals for implantable medical devices such
+      as pacemakers and neurostimulators.
+    approx_offset: 150232
+  - quote: 'Solution: Our laser welding systems provided airtight, contamination-free seals that passed
+      rigorous durability testing, ensuring long-term device performance.'
+    approx_offset: 151697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0086
+  form: machining center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: They are the industry standard machining center for small work pieces requiring high precision.
+    approx_offset: 68616
+  - quote: The machine combines the capabilities of a high-powered turning center and full-function machining
+      center to produce parts in single setups.
+    approx_offset: 70489
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0087
+  form: molding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: EPTAM is equipped with 29 injection molding machines.
+    approx_offset: 50446
+  - quote: Our production molding machines are, on average, 2 years old.
+    approx_offset: 50479
+  - quote: Across two facilities, EPTAM is equipped with 29 injection molding machines.
+    approx_offset: 79216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0088
+  form: more than thirty 3D printers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM operates more than thirty 3D printers, three furnaces, including production and prototype.
+    approx_offset: 107463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0089
+  form: multifunction turning center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: We also offer the ultimate and most capable Swiss turn / milling multifunction turning center
+      on the market today.
+    approx_offset: 133221
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0090
+  form: picosecond
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Part markers including picosecond.
+    approx_offset: 12381
+  - quote: 'Picosecond Laser Technology: Enables ultra-fast and precise laser marking with minimal heat-affected
+      zones, ideal for sensitive medical and microelectronic applications.'
+    approx_offset: 145040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0091
+  form: production molding machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Our production molding machines are, on average, 2 years old.
+    approx_offset: 50468
+  - quote: Production molding machines are 2 years old on average.
+    approx_offset: 79234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0092
+  form: sintering furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM’s binder jet printing system combined with our three sintering furnaces can cost effectively
+      produce a single part to tens of thousands of parts per year.
+    approx_offset: 107604
+  - quote: EPTAM employs state of the art sintering furnaces, custom designed to our exact specifications.
+    approx_offset: 107928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0093
+  form: thermoplastic injection machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Additionally, we have thermoplastic injection machines ranging from 50-130+ tons with allocated
+      warehouse space for additional equipment and capacity.
+    approx_offset: 80497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0094
+  form: three furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM operates more than thirty 3D printers, three furnaces, including production and prototype.
+    approx_offset: 107493
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0095
+  form: three sintering furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM’s binder jet printing system combined with our three sintering furnaces can cost effectively
+      produce a single part to tens of thousands of parts per year.
+    approx_offset: 107598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0096
+  form: turning center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: The machine combines the capabilities of a high-powered turning center and full-function machining
+      center to produce parts in single setups.
+    approx_offset: 70456
+  - quote: We also offer the ultimate and most capable Swiss turn / milling multifunction turning center
+      on the market today.
+    approx_offset: 133235
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-equipments-0097
+  form: turning centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: Time-tested sliding headstock technology and Tsugami precision allow us to machine long, slender
+      parts that traditional turning centers cannot.
+    approx_offset: 133391
+  - quote: Sliding headstock technology enables precision machining of long, slender parts that are impossible
+      to produce on conventional turning centers.
+    approx_offset: 134237
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

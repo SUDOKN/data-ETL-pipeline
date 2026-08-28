@@ -1,0 +1,2900 @@
+subject: pradeepmetals.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+golden_set_version: 1
+anchored_on: search/expectations/pradeepmetals_com/process_caps.yaml
+labels:
+- id: pradeepmetals_com-process_caps-0001
+  form: ALUMINIUM FORGING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/aluminium-forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+  evidence:
+  - quote: From aluminium forging, steel to brass, most of the metals or alloys can be used in forging
+      process.
+    approx_offset: 6010
+  - quote: Pradeep Metals > Aluminium Forging
+    approx_offset: 49370
+  - quote: ALUMINIUM FORGING
+    approx_offset: 49390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0002
+  form: Austentizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Austentizing furnaces
+    approx_offset: 172750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0003
+  form: Austentizing furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Austentizing furnaces
+    approx_offset: 172750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0004
+  form: Automated hot forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Automated hot forging
+    approx_offset: 5690
+  - quote: Automated hot forging
+    approx_offset: 183513
+  - quote: Automated hot forging
+    approx_offset: 189702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0005
+  form: Batch or Continuous Process for Pre-treatment of Heavy Petrol Bottom Stocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Batch or Continuous Process for Pre-treatment of Heavy Petrol Bottom Stocks
+    approx_offset: 95947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0006
+  form: Bending and Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: 'Bending and Forming: After cutting, sheet metal is bent into the required shape.'
+    approx_offset: 215946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0007
+  form: CLOSED DIE FORGINGS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+  evidence:
+  - quote: Pradeep Metals > Closed Die Forgings
+    approx_offset: 71594
+  - quote: CLOSED DIE FORGINGS
+    approx_offset: 71616
+  - quote: WHAT IS CLOSED DIE FORGINGS?
+    approx_offset: 71645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0008
+  form: CMM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: CMM
+    approx_offset: 172506
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0009
+  form: CNC Turning Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0010
+  form: CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: 2011 – Expanded in-house CNC machining capacity
+    approx_offset: 35872
+  - quote: 2005 – In-house CNC machining installed
+    approx_offset: 36172
+  - quote: 2011 – Expanded in-house CNC machining capacity
+    approx_offset: 117403
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0011
+  form: CUTTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+    - https://www.pradeepmetals.com/manufacturing
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 688
+  - quote: CUTTING
+    approx_offset: 172550
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 193263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0012
+  form: Casting Steel Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/blog/
+  evidence:
+  - quote: The Battle Between Forged Steel Valves & Casting Steel Valves
+    approx_offset: 84210
+  - quote: Pradeep Metals > Blog > The Battle Between Forged Steel Valves & Casting Steel Valves
+    approx_offset: 209213
+  - quote: THE BATTLE BETWEEN FORGED STEEL VALVES & CASTING STEEL VALVES
+    approx_offset: 209278
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0013
+  form: Closed die forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 38
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+  evidence:
+  - quote: Closed die forging
+    approx_offset: 5597
+  - quote: Like for the drop forging, the material is heated above the recrystallization temperature then
+      it is shaped with hammer blows whereas the for the closed die forging, a closed die is used for
+      shaping the material.
+    approx_offset: 6498
+  - quote: 'ADVANTAGES OF CLOSED DIE FORGING:'
+    approx_offset: 72320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0014
+  form: Coining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Coining
+    approx_offset: 172846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0015
+  form: Cold forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Cold forging
+    approx_offset: 5712
+  - quote: Cold forging
+    approx_offset: 183535
+  - quote: Cold forging
+    approx_offset: 189724
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0016
+  form: Continuous process for baking of cured friction material using electromagnetic energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Continuous process for baking of cured friction material using electromagnetic energy
+    approx_offset: 96448
+  - quote: Continuous process for baking of cured friction material using electromagnetic energy
+    approx_offset: 135435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0017
+  form: Cutting with Shear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: 'Cutting with Shear: Shear is when a tangential force is applied on the sheet metal.'
+    approx_offset: 215554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0018
+  form: DESIGN & ENGINEERING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 116
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: Design & Engineering
+    approx_offset: 1289
+  - quote: Design & Engineering
+    approx_offset: 2832
+  - quote: Design & Engineering
+    approx_offset: 6907
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0019
+  form: DIRECT REDUCTION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: PROTOTYPE MICROWAVE-ASSISTED PLANT FOR DIRECT REDUCTION
+    approx_offset: 21110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0020
+  form: Decontamination of food additives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Decontamination of food additives (2024- ongoing): This is an exploratory project to reduce
+      microbial contamination of food additive “Gum Ghatti/Karaya”, which is a natural product obtained
+      from trees.'
+    approx_offset: 137279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0021
+  form: Disinfestation of food grains
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Disinfestation of food grains (rice, wheat)
+    approx_offset: 135695
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0022
+  form: Disinfestation of food grains (rice, wheat)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Disinfestation of food grains (rice, wheat)
+    approx_offset: 135695
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0023
+  form: Drop forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Drop forging
+    approx_offset: 5562
+  - quote: Open die drop forging
+    approx_offset: 5584
+  - quote: Like for the drop forging, the material is heated above the recrystallization temperature then
+      it is shaped with hammer blows whereas the for the closed die forging, a closed die is used for
+      shaping the material.
+    approx_offset: 6365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0024
+  form: Electric Tempering furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Electric Tempering furnace
+    approx_offset: 172772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0025
+  form: FORGING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 398
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 697
+  - quote: Pradeep Metals > Forging Metal Manufacturers
+    approx_offset: 3608
+  - quote: FORGING METAL MANUFACTURERS
+    approx_offset: 3638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0026
+  form: Finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-ultimate-manufacturing-technique/
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: 'Finishing: Finishing touches; like smoothening of edges, are used to add a final touch to
+      the sheet metal.'
+    approx_offset: 214788
+  - quote: 'Finishing: Finishing touches; like smoothening of edges, are used to add a final touch to
+      the sheet metal.'
+    approx_offset: 214799
+  - quote: 'Finishing: Once the sheet metal is cut correctly, bent, and joined into shape, a finishing
+      touch needs to be given.'
+    approx_offset: 216501
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0027
+  form: Fully Welded Ball Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Fully Welded Ball Valves
+    approx_offset: 29518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0028
+  form: HEAT TREATMENT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/manufacturing
+    - https://www.pradeepmetals.com/our-team
+  evidence:
+  - quote: He acquired advanced training in heat treatment techniques, design, manufacture and commissioning
+      of furnaces at Degussa International, West Germany.
+    approx_offset: 22735
+  - quote: 05 Effect of Microwave Heat Treatment on Steel Components
+    approx_offset: 97685
+  - quote: He acquired advanced training in heat treatment techniques, design, manufacture and commissioning
+      of furnaces at Degussa International, West Germany.
+    approx_offset: 129526
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0029
+  form: Impression die forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+  evidence:
+  - quote: Closed die forgings which are often referred to as Impression die forgings are one of the most
+      important industrial process used in the precision manufacturing industry.
+    approx_offset: 71718
+  - quote: Closed die forgings which are often referred to as Impression die forgings are one of the most
+      important industrial process used in the precision manufacturing industry.
+    approx_offset: 176092
+  - quote: The commonly distinguishable forging types are cold forging, open die forging, impression die
+      forgings and seamless rolled ring forging.
+    approx_offset: 218982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0030
+  form: Induction & Gas-fired furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Induction & Gas-fired furnaces
+    approx_offset: 172703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0031
+  form: Induction forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Induction forging
+    approx_offset: 5750
+  - quote: Induction forging
+    approx_offset: 183573
+  - quote: Induction forging
+    approx_offset: 189762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0032
+  form: Ironmaking and Steelmaking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 4th International Conference on Science and Technology of Ironmaking and Steelmaking 13-16
+      Dec.
+    approx_offset: 100159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0033
+  form: LEAN manufacturing practices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+  evidence:
+  - quote: Initiated LEAN manufacturing practices
+    approx_offset: 36206
+  - quote: Initiated LEAN manufacturing practices
+    approx_offset: 117737
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0034
+  form: Low-carbon footprint iron making process
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 18 Low-carbon footprint iron making process
+    approx_offset: 100399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0035
+  form: MACHINING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 152
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 725
+  - quote: Machining
+    approx_offset: 1324
+  - quote: Machining
+    approx_offset: 2867
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0036
+  form: Marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Marking
+    approx_offset: 172879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0037
+  form: Metal Fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Precision metal manufacturing, more commonly known as Sheet Metal Fabrication employs a set
+      of ways in which sheet metal can be manufactured.
+    approx_offset: 213924
+  - quote: Like the manufacturing of any other material, sheet metal fabrication follows a predetermined
+      set of rules.
+    approx_offset: 214165
+  - quote: 'Metal Fabrication: As the name suggests, this is where the metal is fabricated.'
+    approx_offset: 214578
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0038
+  form: Metal Forge
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+  evidence:
+  - quote: WHAT IS FORGING OR METAL FORGE?
+    approx_offset: 4346
+  - quote: Metal forge or Forging is basically the process of shaping a metal into the required shape
+      by applying external localised forces.
+    approx_offset: 4754
+  - quote: WHAT IS FORGING OR METAL FORGE?
+    approx_offset: 182169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0039
+  form: Microscopy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Microscopy
+    approx_offset: 172538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0040
+  form: Microwave Heating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 08 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 98337
+  - quote: 13 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 99364
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0041
+  form: Microwave Processing of Metallic Materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 03 Microwave Processing of Metallic Materials
+    approx_offset: 97364
+  - quote: 10 Microwave Processing of Metallic Materials
+    approx_offset: 98756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0042
+  form: Microwave Sintering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: '01 Microwave Sintering: A New Promising Option in PM'
+    approx_offset: 97008
+  - quote: 04 Effect of Atmosphere on Microwave Sintering of Stainless Steel
+    approx_offset: 97520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0043
+  form: Microwave assisted reduction of iron ore fines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Microwave assisted reduction of iron ore fines to manufacture sponge iron
+    approx_offset: 96088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0044
+  form: Multidirectional forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Multidirectional forging
+    approx_offset: 5725
+  - quote: Multidirectional forging
+    approx_offset: 183548
+  - quote: Multidirectional forging
+    approx_offset: 189737
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0045
+  form: Near shape and net shape forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Near shape and net shape forging
+    approx_offset: 231143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0046
+  form: Net shape and near shape forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+  evidence:
+  - quote: Net shape and near shape forging
+    approx_offset: 5657
+  - quote: Net shape and near shape forging
+    approx_offset: 183480
+  - quote: Net shape and near shape forging
+    approx_offset: 189669
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0047
+  form: Novel Process of Steelmaking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 14 Novel Process of Steelmaking
+    approx_offset: 99532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0048
+  form: Open Die Forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+    - https://www.pradeepmetals.com/closed-die-forging-ultimate-manufacturing-technique/
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+  evidence:
+  - quote: How Closed Die Forging Tops Open Die Forging
+    approx_offset: 84009
+  - quote: Pradeep Metals > Blog > How Closed Die Forging Tops Open Die Forging
+    approx_offset: 199537
+  - quote: HOW CLOSED DIE FORGING TOPS OPEN DIE FORGING
+    approx_offset: 199585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0049
+  form: Open die drop forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Open die drop forging
+    approx_offset: 5575
+  - quote: Open die drop forging
+    approx_offset: 183398
+  - quote: Open die drop forging
+    approx_offset: 189587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0050
+  form: Packing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Packing
+    approx_offset: 172907
+  - quote: Materials which make the packing and bushings of the step
+    approx_offset: 259975
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0051
+  form: Pounding and squeezing metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+  evidence:
+  - quote: Pounding and squeezing metals to create robust and sturdy products is termed as the forging
+      process.
+    approx_offset: 199851
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0052
+  form: Pre-treatment of coal with microwaves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Pre-treatment of coal with microwaves
+    approx_offset: 135541
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0053
+  form: Precision machine forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Precision machine forging gives an excellent surface finish and the exact dimensions to the
+      finished metal.
+    approx_offset: 231294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0054
+  form: Press Forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Press Forging
+    approx_offset: 5616
+  - quote: Press Forging
+    approx_offset: 183439
+  - quote: Press Forging
+    approx_offset: 189628
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0055
+  form: Pretreatment of Heavy Petro Bottom Stocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Batch or Continuous Process for Pretreatment of Heavy Petro Bottom Stocks
+    approx_offset: 135631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0056
+  form: Processing of Goethite ore using microwave
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Processing of Goethite ore using microwave
+    approx_offset: 96604
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0057
+  form: QUICK TOOL DEVELOPMENT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-vision-strengths
+    - https://www.pradeepmetals.com/our-vision-strengths/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: QUICK TOOL DEVELOPMENT
+    approx_offset: 11696
+  - quote: QUICK TOOL DEVELOPMENT
+    approx_offset: 55461
+  - quote: QUICK TOOL DEVELOPMENT
+    approx_offset: 112798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0058
+  form: Rapid Curing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 96227
+  - quote: 08 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 98286
+  - quote: 13 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 99313
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0059
+  form: Rapid curing of concrete paver blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0060
+  form: Rapid curing of resin bonded grinding wheels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 96227
+  - quote: 08 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 98286
+  - quote: 13 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 99313
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0061
+  form: Roll forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Roll forging
+    approx_offset: 5644
+  - quote: Roll forging
+    approx_offset: 183467
+  - quote: Roll forging
+    approx_offset: 189656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0062
+  form: Rust-prevention
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Rust-prevention
+    approx_offset: 172863
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0063
+  form: STAINLESS STEEL FORGINGS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/stainless-steel-forgings/
+    - https://www.pradeepmetals.com/stainless-steel-forgings/
+  evidence:
+  - quote: Pradeep Metals > Stainless Steel Forgings
+    approx_offset: 94868
+  - quote: STAINLESS STEEL FORGINGS
+    approx_offset: 94895
+  - quote: Pradeep Metals > Stainless Steel Forgings
+    approx_offset: 180398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0064
+  form: SUPER DUPLEX FORGING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: WHAT IS SUPER DUPLEX FORGING?
+    approx_offset: 56912
+  - quote: Thus, the forging process carried on the duplex steel is dubbed as duplex forging and similarly
+      the process carried out on the super duplex one is called the super duplex forging.
+    approx_offset: 57474
+  - quote: 'SUPER DUPLEX FORGING PROCESS:'
+    approx_offset: 57500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0065
+  form: Shear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: 1600T Shear
+    approx_offset: 172564
+  - quote: 'Cutting with Shear: Shear is when a tangential force is applied on the sheet metal.'
+    approx_offset: 215567
+  - quote: 'Cutting with Shear: Shear is when a tangential force is applied on the sheet metal.'
+    approx_offset: 215574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0066
+  form: Sheet Metal Fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Precision metal manufacturing, more commonly known as Sheet Metal Fabrication employs a set
+      of ways in which sheet metal can be manufactured.
+    approx_offset: 213918
+  - quote: Like the manufacturing of any other material, sheet metal fabrication follows a predetermined
+      set of rules.
+    approx_offset: 214159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0067
+  form: Shot blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Shot blasting
+    approx_offset: 172832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0068
+  form: Sintering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: '01 Microwave Sintering: A New Promising Option in PM'
+    approx_offset: 97018
+  - quote: 04 Effect of Atmosphere on Microwave Sintering of Stainless Steel
+    approx_offset: 97530
+  - quote: 2nd International Symposium on High-Temperature Metallurgical Processing, Sintering & Synthesis,
+      TMS (The Minerals, Metals & Materials Society), pp.
+    approx_offset: 98178
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0069
+  form: Sintering of powder metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Sintering of powder metals
+    approx_offset: 135860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0070
+  form: Smelting-reduction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Smelting-reduction of iron ore (Microwave Composite Heating Furnace)
+    approx_offset: 135986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0071
+  form: Smelting-reduction of iron ore
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Smelting-reduction of iron ore (Microwave Composite Heating Furnace)
+    approx_offset: 135986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0072
+  form: Spectrometer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Spectrometer
+    approx_offset: 172510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0073
+  form: Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Stamping
+    approx_offset: 172854
+  - quote: Some forms of bending include machining, folding, stamping, and rotary bending.
+    approx_offset: 216139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0074
+  form: TESTING & VALIDATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/testing-validation
+    - https://www.pradeepmetals.com/testing-validation/
+  evidence:
+  - quote: Pradeep Metals > Testing & Validation
+    approx_offset: 124017
+  - quote: TESTING & VALIDATION
+    approx_offset: 124040
+  - quote: Pradeep Metals > Testing & Validation
+    approx_offset: 186597
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0075
+  form: TOOL & DIE DEVELOPMENT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/tool-die-development
+    - https://www.pradeepmetals.com/tool-die-development/
+  evidence:
+  - quote: Pradeep Metals > Tool & Die Development
+    approx_offset: 7685
+  - quote: TOOL & DIE DEVELOPMENT
+    approx_offset: 7710
+  - quote: Pradeep Metals > Tool & Die Development
+    approx_offset: 191707
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0076
+  form: Tempering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Electric Tempering furnace
+    approx_offset: 172781
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0077
+  form: Tensile Tester
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Tensile Tester
+    approx_offset: 172523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0078
+  form: Trimming Presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Trimming Presses
+    approx_offset: 172686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0079
+  form: Turmeric Rhizome Drying
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/awards/
+  evidence:
+  - quote: Hemant Patil MP Of The 17th Lok Sabha From Hingoli & Member Of The Maharashtra Legislative
+      Council, Appreciated & Shown Keen Interest In Turmeric Rhizome Drying.
+    approx_offset: 142751
+  - quote: Hemant Patil MP Of The 17th Lok Sabha From Hingoli & Member Of The Maharashtra Legislative
+      Council, Appreciated & Shown Keen Interest In Turmeric Rhizome Drying.
+    approx_offset: 143194
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0080
+  form: Turning Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255328
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0081
+  form: Ultrasonic Cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/manufacturing
+  evidence:
+  - quote: Ultrasonic Cleaning
+    approx_offset: 172887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0082
+  form: Upset forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Upset forging
+    approx_offset: 5630
+  - quote: Upset forging
+    approx_offset: 183453
+  - quote: Upset forging
+    approx_offset: 189642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0083
+  form: baking of cured friction material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Continuous process for baking of cured friction material using electromagnetic energy
+    approx_offset: 96471
+  - quote: Continuous process for baking of cured friction material using electromagnetic energy
+    approx_offset: 135458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0084
+  form: bent
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Shaping the steel in its solid form through industrial machinery which uses heat and compression
+      tools, the steel is bent through excessive compression forces, and dies are used to cut and provide
+      the shape to create various kinds of valves.
+    approx_offset: 210064
+  - quote: 'Bending and Forming: After cutting, sheet metal is bent into the required shape.'
+    approx_offset: 215997
+  - quote: 'Finishing: Once the sheet metal is cut correctly, bent, and joined into shape, a finishing
+      touch needs to be given.'
+    approx_offset: 216551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0085
+  form: blanking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: There are types of shear cutting as well like shearing (for large parts), punching (making
+      holes), and blanking (cutting part perimeters).
+    approx_offset: 215741
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0086
+  form: brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some of these include welding, brazing, riveting, and adhesives.
+    approx_offset: 216388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0087
+  form: casted
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: The final products obtained have superior grain flow, high strength and durability than the
+      machined or casted machine parts.
+    approx_offset: 6232
+  - quote: The final products obtained have superior grain flow, high strength and durability than the
+      machined or casted machine parts.
+    approx_offset: 184055
+  - quote: The final products obtained have superior grain flow, high strength and durability than the
+      machined or casted machine parts.
+    approx_offset: 190244
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0088
+  form: casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: This type of casting is absolutely suitable for all kinds of materials like steel, brass and
+      aluminium.
+    approx_offset: 73343
+  - quote: The Battle Between Forged Steel Valves & Casting Steel Valves
+    approx_offset: 84210
+  - quote: This type of casting is absolutely suitable for all kinds of materials like steel, brass and
+      aluminium.
+    approx_offset: 177717
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0089
+  form: closed-die forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 455
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 193030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0090
+  form: converting Industrial metallic waste like forging scales to low alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Improving circular economy by converting Industrial metallic waste like forging scales to low
+      alloy steel
+    approx_offset: 136110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0091
+  form: custom surface finishes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: This includes polishing the surface, silk screening, paint coating, and other custom surface
+      finishes.
+    approx_offset: 216695
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0092
+  form: design and engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: At these factories, the company performs advanced processes such as design and engineering,
+      forging, die and tool development, testing practices, and validation.
+    approx_offset: 232094
+  - quote: At the Pradeep Metals India facilities, the company carries out design and engineering, tool
+      and die development, forging, machining, and testing and validation.
+    approx_offset: 245009
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0093
+  form: die and tool development
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: At these centre’s, the enterprise performs processes such as engineering and design, forging,
+      machining, die and tool development, testing procedures, and validation.
+    approx_offset: 206032
+  - quote: At these factories, the company performs advanced processes such as design and engineering,
+      forging, die and tool development, testing practices, and validation.
+    approx_offset: 232127
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0094
+  form: die tooling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/design-engineering
+    - https://www.pradeepmetals.com/design-engineering/
+  evidence:
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 655
+  - quote: CIMATRON Tool Path Generation for accurate die tooling
+    approx_offset: 47265
+  - quote: CIMATRON Tool Path Generation for accurate die tooling
+    approx_offset: 111496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0095
+  form: duplex forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: WHAT IS SUPER DUPLEX FORGING?
+    approx_offset: 56918
+  - quote: Thus, the forging process carried on the duplex steel is dubbed as duplex forging and similarly
+      the process carried out on the super duplex one is called the super duplex forging.
+    approx_offset: 57383
+  - quote: Thus, the forging process carried on the duplex steel is dubbed as duplex forging and similarly
+      the process carried out on the super duplex one is called the super duplex forging.
+    approx_offset: 57480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0096
+  form: engineering and design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: At these centre’s, the enterprise performs processes such as engineering and design, forging,
+      machining, die and tool development, testing procedures, and validation.
+    approx_offset: 205988
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0097
+  form: fabricating sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Each of these steps is extremely important when it comes to fabricating sheet metal.
+    approx_offset: 214959
+  - quote: Along with following a process in fabricating sheet metal, there are also specific steps to
+      be followed, which are listed below.
+    approx_offset: 215193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0098
+  form: folding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some forms of bending include machining, folding, stamping, and rotary bending.
+    approx_offset: 216130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0099
+  form: fully welded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Fully Welded Ball Valves
+    approx_offset: 29518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0100
+  form: hammered or pounded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+  evidence:
+  - quote: This is done through putting the metal piece in between dies, which are not enclosed, and it
+      is hammered or pounded around through rigorous movements until the desired shape is achieved.
+    approx_offset: 200809
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0101
+  form: hammering it into the required shape
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: In basic workshops, forging involves heating up the metal and hammering it into the required
+      shape.
+    approx_offset: 229885
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0102
+  form: heat-treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 706
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 193281
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0103
+  form: impression dies forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+  evidence:
+  - quote: Though the initial setup cost for the impression dies forging is higher than other processes
+      but still, it is extensively used because the production cost is very low as compared to the other
+      processes and the forged material gets 20% higher strength to weight ratio than the other machining
+      or forgi
+    approx_offset: 72026
+  - quote: Though the initial setup cost for the impression dies forging is higher than other processes
+      but still, it is extensively used because the production cost is very low as compared to the other
+      processes and the forged material gets 20% higher strength to weight ratio than the other machining
+      or forgi
+    approx_offset: 176400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0104
+  form: impression forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+  evidence:
+  - quote: Also referred to as impression forging, this forging process involves the application of high-value
+      pressure over metal billets or pieces placed on an enclosed die to create its impression with stark
+      precision.
+    approx_offset: 200388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0105
+  form: in-house CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: 2011 – Expanded in-house CNC machining capacity
+    approx_offset: 35863
+  - quote: 2005 – In-house CNC machining installed
+    approx_offset: 36163
+  - quote: 2011 – Expanded in-house CNC machining capacity
+    approx_offset: 117394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0106
+  form: laboratory testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 668
+  - quote: The production plant is integrated with state-of-the-art facilities for design, die tooling,
+      laboratory testing, cutting, forging, heat-treating, and machining.
+    approx_offset: 193243
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0107
+  form: laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some of these include laser cutting, plasma cutting, and waterjet cutting.
+    approx_offset: 215893
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0108
+  form: lean manufacturing processes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: Started lean manufacturing processes
+    approx_offset: 207090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0109
+  form: lean process layout
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: We continue to upgrade our plants, equipment, and infrastructure regularly by creating a lean
+      process layout for assessing the needs of our inventory and reorganizing it effectively.
+    approx_offset: 196682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0110
+  form: machine forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: There are different types of machine forging processes applied in the manufacturing industry.
+    approx_offset: 218838
+  - quote: The total energy required for each machine forging operation can be determined using a mathematical
+      formula.
+    approx_offset: 220088
+  - quote: What is Machine Forging?
+    approx_offset: 230233
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0111
+  form: machined
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/closed-die-forging-ultimate-manufacturing-technique/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+    - https://www.pradeepmetals.com/forging
+  evidence:
+  - quote: The final products obtained have superior grain flow, high strength and durability than the
+      machined or casted machine parts.
+    approx_offset: 6220
+  - quote: The final products obtained have superior grain flow, high strength and durability than the
+      machined or casted machine parts.
+    approx_offset: 184043
+  - quote: The final products obtained have superior grain flow, high strength and durability than the
+      machined or casted machine parts.
+    approx_offset: 190232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0112
+  form: machining difficult parts to .0005 tolerance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/india-facilities/
+    - https://www.pradeepmetals.com/imrc/
+    - https://www.pradeepmetals.com/india-facilities
+    - https://www.pradeepmetals.com/india-facilities/
+  evidence:
+  - quote: Dimensional Machine Works stands on its reputation of machining difficult parts to .0005 tolerance.
+    approx_offset: 70060
+  - quote: Dimensional Machine Works stands on its reputation of machining difficult parts to .0005 tolerance.
+    approx_offset: 89457
+  - quote: Dimensional Machine Works stands on its reputation of machining difficult parts to .0005 tolerance.
+    approx_offset: 155323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0113
+  form: melting the steel, and then molding into the required shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+  evidence:
+  - quote: As the name suggests, the process of casting involves melting the steel, and then molding into
+      the required shapes by putting it into molds.
+    approx_offset: 210266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0114
+  form: metal forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: 'Pradeep Metals: The Pinnacle of Metal Forging Companies in India'
+    approx_offset: 84795
+  - quote: 'Pradeep Metals: The Pinnacle of Metal Forging Companies in India Pradeep Metals was launched
+      in 1982 by Late Mr.'
+    approx_offset: 84860
+  - quote: Through the process of metal forging, metals are first deformed from their existing shapes
+      by application of tremendous compressive forces ...
+    approx_offset: 85777
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0115
+  form: microwave assisted processes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/imrc-introduction/
+  evidence:
+  - quote: The aim of establishing this research center was to develop environmentally friendly microwave
+      assisted processes to save energy.
+    approx_offset: 139560
+  - quote: This research facility was established to carry out applied research for real life requirements
+      for Indian industry and to convert existing processes to commercially viable microwave assisted
+      processes.
+    approx_offset: 139945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0116
+  form: microwave assisted steel making
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 11 Microwave assisted steel making from low grade iron ores for  local industries in India
+    approx_offset: 98856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0117
+  form: microwave processing of materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/imrc/imrc-introduction/
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: ICMAT 2009 & IUMRS-ICA 2009, Singapore , Industrial Symposium II – Microwave Processing of
+      Materials
+    approx_offset: 97627
+  - quote: National Symposium on Microwave Processing of Materials   (Nsmwp-2010), at Indian Institute
+      of Technology Delhi, November 28, 2010  Click to view
+    approx_offset: 97914
+  - quote: IMRC became a prominent research center in India dedicated to exploit most recent innovations
+      and successes achieved in the area of microwave processing of materials.
+    approx_offset: 139737
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0118
+  form: molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+  evidence:
+  - quote: As the name suggests, the process of casting involves melting the steel, and then molding into
+      the required shapes by putting it into molds.
+    approx_offset: 210294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0119
+  form: net shape or near net shape
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-ultimate-manufacturing-technique/
+  evidence:
+  - quote: At Pradeep Metals, the forging dies are precision machined and help in attaining a finished
+      product that are always net shape or near net shape.
+    approx_offset: 235555
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0120
+  form: paint coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: This includes polishing the surface, silk screening, paint coating, and other custom surface
+      finishes.
+    approx_offset: 216670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0121
+  form: plasma cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some of these include laser cutting, plasma cutting, and waterjet cutting.
+    approx_offset: 215908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0122
+  form: polishing the surface
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: This includes polishing the surface, silk screening, paint coating, and other custom surface
+      finishes.
+    approx_offset: 216631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0123
+  form: precision forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: But back in those times forging was more or less a work of the blacksmiths but in the world
+      today forging machine is used to ensure the precision forging and to speed up the process.
+    approx_offset: 4706
+  - quote: With the precision forging, the finished material can be obtained with exact dimensions and
+      good surface finish.
+    approx_offset: 5803
+  - quote: But back in those times forging was more or less a work of the blacksmiths but in the world
+      today forging machine is used to ensure the precision forging and to speed up the process.
+    approx_offset: 182529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0124
+  form: punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: There are types of shear cutting as well like shearing (for large parts), punching (making
+      holes), and blanking (cutting part perimeters).
+    approx_offset: 215712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0125
+  form: quality assurance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Our super-efficient quality assurance team makes sure that the ball valves are accurate in
+      its dimensions and are perfect for the required function.
+    approx_offset: 28658
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0126
+  form: riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some of these include welding, brazing, riveting, and adhesives.
+    approx_offset: 216397
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0127
+  form: rolled in rolling mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: In the first step of the process, metals are put into a forge before being rolled in rolling
+      mills.
+    approx_offset: 238538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0128
+  form: rotary bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some forms of bending include machining, folding, stamping, and rotary bending.
+    approx_offset: 216153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0129
+  form: sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: hollows and of course custom and unique shapes that are created through the combination of
+      forging with secondary processes like sawing, torch cutting, and machining.
+    approx_offset: 241297
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0130
+  form: seamless rolled ring forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/important-considerations-forging-design/
+  evidence:
+  - quote: The commonly distinguishable forging types are cold forging, open die forging, impression die
+      forgings and seamless rolled ring forging.
+    approx_offset: 219010
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0131
+  form: shearing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: There are types of shear cutting as well like shearing (for large parts), punching (making
+      holes), and blanking (cutting part perimeters).
+    approx_offset: 215684
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0132
+  form: silk screening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: This includes polishing the surface, silk screening, paint coating, and other custom surface
+      finishes.
+    approx_offset: 216654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0133
+  form: smoothening of edges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: 'Finishing: Finishing touches; like smoothening of edges, are used to add a final touch to
+      the sheet metal.'
+    approx_offset: 214823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0134
+  form: stainless steel forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: We already know that the forging can be done on various kinds of metals but the most commonly
+      forged metal is the stainless steel forging process.
+    approx_offset: 57645
+  - quote: Growth of Stainless Steel Forging in India
+    approx_offset: 195548
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0135
+  form: testing and validation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: At the Pradeep Metals India facilities, the company carries out design and engineering, tool
+      and die development, forging, machining, and testing and validation.
+    approx_offset: 245083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0136
+  form: testing practices, and validation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: At these factories, the company performs advanced processes such as design and engineering,
+      forging, die and tool development, testing practices, and validation.
+    approx_offset: 232153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0137
+  form: testing procedures, and validation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: At these centre’s, the enterprise performs processes such as engineering and design, forging,
+      machining, die and tool development, testing procedures, and validation.
+    approx_offset: 206058
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0138
+  form: the forging dies are precision machined
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/closed-die-forging-ultimate-manufacturing-technique/
+  evidence:
+  - quote: At Pradeep Metals, the forging dies are precision machined and help in attaining a finished
+      product that are always net shape or near net shape.
+    approx_offset: 235458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0139
+  form: the process of casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+  evidence:
+  - quote: As the name suggests, the process of casting involves melting the steel, and then molding into
+      the required shapes by putting it into molds.
+    approx_offset: 210234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0140
+  form: tool and die development
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: At the Pradeep Metals India facilities, the company carries out design and engineering, tool
+      and die development, forging, machining, and testing and validation.
+    approx_offset: 245033
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0141
+  form: torch cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: hollows and of course custom and unique shapes that are created through the combination of
+      forging with secondary processes like sawing, torch cutting, and machining.
+    approx_offset: 241305
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0142
+  form: waterjet cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some of these include laser cutting, plasma cutting, and waterjet cutting.
+    approx_offset: 215928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-process_caps-0143
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/lowdown-precision-metal-manufacturing/
+  evidence:
+  - quote: Some of these include welding, brazing, riveting, and adhesives.
+    approx_offset: 216379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

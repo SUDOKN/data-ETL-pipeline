@@ -1,0 +1,1404 @@
+subject: alecmfg.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+golden_set_version: 1
+anchored_on: search/expectations/alecmfg_com/process_caps.yaml
+labels:
+- id: alecmfg_com-process_caps-0001
+  form: (OES)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: Upon arrival, we performed optical emission spectrometry (OES) and hardness validation to confirm
+      conformity
+    approx_offset: 69656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0002
+  form: 3D printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 23
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+  evidence:
+  - quote: 3D Printing
+    approx_offset: 8032
+  - quote: 3D printing revolutionizes prototyping by turning your digital designs into tangible reality
+      faster than ever before.
+    approx_offset: 8045
+  - quote: From rapid prototyping to small scale production runs, our advanced 3D printing technologies
+      enable a wide range of materials and finishes, ensuring your ideas are brought to life with speed
+      and precision.
+    approx_offset: 8231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0003
+  form: 4-axis machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+  evidence:
+  - quote: 4-axis machining + precision milling
+    approx_offset: 119935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0004
+  form: 5-axis CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: ▶ 5-Axis CNC Machining Strategy
+    approx_offset: 51476
+  - quote: They discovered our company through our official website and were looking for a Chinese supplier
+      with strong 5-axis CNC machining capabilities, the ability to respond quickly to prototyping needs,
+      and full compliance with EU quality standards.
+    approx_offset: 95880
+  - quote: Learn more about our 5-axis CNC machining capabilities and how they support advanced copper
+      heat sink machining.
+    approx_offset: 109520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0005
+  form: Blasted
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Blasted + epoxy coated (offshore marine coating)
+    approx_offset: 106943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0006
+  form: CAM Programming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+  evidence:
+  - quote: Step 2:CAM Programming & 5-Axis Toolpath Design
+    approx_offset: 103059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0007
+  form: CMM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: Zeiss CONTURA G2 CMM
+    approx_offset: 52169
+  - quote: Full English CMM reports, raw material certificates, and packaging validation photos (including
+      parts fitted into their assembly jig).
+    approx_offset: 55927
+  - quote: Rigorous Inspection and Delivery TransparencyEach housing was inspected via CMM for hole concentricity,
+      flange flatness, and ventilation slot dimensions.
+    approx_offset: 58082
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0008
+  form: CMM inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: '– Documentation: CMM inspection, insert torque tests, anodizing cert, packaging photos'
+    approx_offset: 73190
+  - quote: CMM inspection sheet, anodizing cert, packaging photos, traceable label set
+    approx_offset: 77246
+  - quote: 100% CMM inspection on all critical dimensions, plus functional and assembly verification records
+    approx_offset: 127638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0009
+  form: CNC machined
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/case-studies/
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+  evidence:
+  - quote: Automation Systems Integrator | High-Precision CNC Machined Aluminum Baseplates for Robotic
+      Transport Modules
+    approx_offset: 25705
+  - quote: CNC machined parts in titanium and high-temperature alloys, for engine and structural use
+    approx_offset: 43893
+  - quote: Automation Systems Integrator | High-Precision CNC Machined Aluminum Baseplates For Robotic
+      Transport Modules
+    approx_offset: 46171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0010
+  form: CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 71
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/about-us/
+  evidence:
+  - quote: CNC Machining
+    approx_offset: 7667
+  - quote: The backbone of precision engineering, CNC machining offers unmatched accuracy and versatility
+      for your prototypes and production parts.
+    approx_offset: 7721
+  - quote: CNC Machining
+    approx_offset: 9841
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0011
+  form: CNC milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: CNC Milling vs CNC Turning
+    approx_offset: 15356
+  - quote: CNC milling and turning are two methods used to remove material from a workpiece to create
+      a desired shape.
+    approx_offset: 15384
+  - quote: 5-axis CNC milling, suitable for complex asymmetric housings
+    approx_offset: 127342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0012
+  form: CNC plasma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill.
+    approx_offset: 108274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0013
+  form: CNC turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: CNC Milling vs CNC Turning
+    approx_offset: 15371
+  - quote: In contrast, CNC turning involves a stationary cutting tool and a rotating workpiece to produce
+      cylindrical parts.
+    approx_offset: 15621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0014
+  form: DFM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: DFM Optimization
+    approx_offset: 52503
+  - quote: They also plan to introduce a new automation module later this year, for which we’ve been invited
+      to participate in the DFM (Design for Manufacturing) phase early on.
+    approx_offset: 78935
+  - quote: We also provided a bilingual DFM (Design for Manufacturing) report at the project’s start,
+      offering practical and professional suggestions (e.g., chamfer radius adjustment), which the client’s
+      engineer described as “very helpful and professional.”
+    approx_offset: 124315
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0015
+  form: Design for Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: They also plan to introduce a new automation module later this year, for which we’ve been invited
+      to participate in the DFM (Design for Manufacturing) phase early on.
+    approx_offset: 78940
+  - quote: We also provided a bilingual DFM (Design for Manufacturing) report at the project’s start,
+      offering practical and professional suggestions (e.g., chamfer radius adjustment), which the client’s
+      engineer described as “very helpful and professional.”
+    approx_offset: 124320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0016
+  form: First-article inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: First-article inspection confirmed hole position accuracy within ±0.015mm.
+    approx_offset: 57399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0017
+  form: Helicoil Installation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+  evidence:
+  - quote: Step 1:Helicoil Installation & Inspection
+    approx_offset: 73720
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0018
+  form: Medical-grade cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+  evidence:
+  - quote: Medical-grade cleaning + passivation
+    approx_offset: 120008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0019
+  form: Micro-blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: Micro-blasting
+    approx_offset: 51783
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0020
+  form: Polished
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Polished
+    approx_offset: 16645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0021
+  form: SLA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+  evidence:
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21391
+  - quote: SLA/SLS printed prototypes for functional validation and assembly fitting
+    approx_offset: 44071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0022
+  form: SLS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+  evidence:
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21383
+  - quote: SLA/SLS printed prototypes for functional validation and assembly fitting
+    approx_offset: 44075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0023
+  form: Sealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: Sealing
+    approx_offset: 51928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0024
+  form: Toolpath Programming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: Toolpath Programming
+    approx_offset: 97646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0025
+  form: Welded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Welded structural steel frames + machined interfaces
+    approx_offset: 106562
+  - quote: 1️⃣ Large Welded Structure Flatness Control
+    approx_offset: 107197
+  - quote: 2️⃣ Precise Hole Positioning Over Welded Assemblies
+    approx_offset: 107448
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0026
+  form: anodize
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: Anodize Thickness
+    approx_offset: 50702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0027
+  form: anodized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: Aerospace-grade aluminum alloy with anodized surface treatment for corrosion resistance and
+      thermal stability.
+    approx_offset: 55452
+  - quote: Uniform matte black anodized coating with no visible tool marks; secondary polishing not permitted.
+    approx_offset: 55760
+  - quote: 'Consistent Matte Anodizing: Maintaining a uniform anodized appearance without streaks or color
+      variations across large flat surfaces.'
+    approx_offset: 56411
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0028
+  form: anodizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: • Required uniform matte black anodizing with no tooling marks or microburrs.
+    approx_offset: 51401
+  - quote: Anodizing
+    approx_offset: 51862
+  - quote: 'Consistent Matte Anodizing: Maintaining a uniform anodized appearance without streaks or color
+      variations across large flat surfaces.'
+    approx_offset: 56378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0029
+  form: bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Whether you need complex prototypes or low-volume production runs, our precision cutting, bending,
+      and finishing techniques ensure parts meet your exact specifications with optimal structural integrity.
+    approx_offset: 8611
+  - quote: 'Thin-Wall Bending and Complex Cavities: 2mm rib walls and 15mm-deep ventilation slots increased
+      the risk of bending springback and deformation.'
+    approx_offset: 56084
+  - quote: 'Thin-Wall Bending and Complex Cavities: 2mm rib walls and 15mm-deep ventilation slots increased
+      the risk of bending springback and deformation.'
+    approx_offset: 56182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0030
+  form: blanking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: 'Tight Timeline: 10 days to complete blanking, bending, welding, anodizing, full inspection,
+      reporting, and international logistics.'
+    approx_offset: 56531
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0031
+  form: blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: Micro-blasting
+    approx_offset: 51789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0032
+  form: cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: The complete process—from raw material sourcing, machining, and cleaning, to final inspection
+      and export to Toulouse—had to be completed within 10 working days.
+    approx_offset: 68895
+  - quote: Medical-grade cleaning + passivation
+    approx_offset: 120022
+  - quote: We implemented triple-filtered water for cleaning/passivation and used medical-grade lint-free
+      cloths and alcohol for final wiping.
+    approx_offset: 121312
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0033
+  form: die casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/contact-us/
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Die Casting
+    approx_offset: 9421
+  - quote: Die casting is your go-to for high-volume production of metal parts with superior strength
+      and tight tolerances.
+    approx_offset: 9434
+  - quote: Our precision die casting process allows for intricate designs and consistent quality, making
+      it suitable for components requiring durability and a high degree of dimensional accuracy.
+    approx_offset: 9561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0034
+  form: drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: • Required <0.02 mm positional tolerance using multi-axis interpolation and progressive drilling.
+    approx_offset: 51184
+  - quote: – High-speed drilling using progressive pilot holes
+    approx_offset: 51585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0035
+  form: epoxy coated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Blasted + epoxy coated (offshore marine coating)
+    approx_offset: 106953
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0036
+  form: epoxy coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0037
+  form: hardness testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0038
+  form: hardness validation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: Upon arrival, we performed optical emission spectrometry (OES) and hardness validation to confirm
+      conformity
+    approx_offset: 69666
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0039
+  form: heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: After welding, each unit was stress-relieved at 620°C in our local heat treatment facility.
+    approx_offset: 108467
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0040
+  form: injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/contact-us/
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Injection Molding
+    approx_offset: 9084
+  - quote: Injection molding is the cornerstone of mass production, providing a cost-effective solution
+      for manufacturing high-quality plastic parts at scale.
+    approx_offset: 9103
+  - quote: Injection Molding
+    approx_offset: 9896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0041
+  form: insert installation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+  evidence:
+  - quote: Post-Machining Insert Installation
+    approx_offset: 73342
+  - quote: – Proper insert installation and quality control
+    approx_offset: 74540
+  - quote: – Insert installation and specialty anodizing coordination
+    approx_offset: 74782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0042
+  form: inspected via CMM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: Rigorous Inspection and Delivery TransparencyEach housing was inspected via CMM for hole concentricity,
+      flange flatness, and ventilation slot dimensions.
+    approx_offset: 58068
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0043
+  form: laser finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: Introduced laser finishing in critical areas
+    approx_offset: 57672
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0044
+  form: low-volume manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0045
+  form: low-volume production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: From cutting-edge prototyping to low-volume production, our advanced techniques ensure that
+      your components are crafted with the highest standards of quality and accuracy.
+    approx_offset: 7441
+  - quote: Whether you need complex prototypes or low-volume production runs, our precision cutting, bending,
+      and finishing techniques ensure parts meet your exact specifications with optimal structural integrity.
+    approx_offset: 8560
+  - quote: Following the successful delivery and integration of the aluminum bracket, our client has expressed
+      interest in expanding cooperation beyond prototyping and low-volume production.
+    approx_offset: 78640
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0046
+  form: milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: CNC Milling vs CNC Turning
+    approx_offset: 15360
+  - quote: CNC milling and turning are two methods used to remove material from a workpiece to create
+      a desired shape.
+    approx_offset: 15388
+  - quote: Milling utilizes a rotating cutting tool to execute complex cuts, drill holes, and create varying
+      shapes and sizes.
+    approx_offset: 15492
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0047
+  form: mold design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Our expertise in mold design and process optimization ensures consistent results, perfect for
+      projects requiring intricate details and repeatability at scale.
+    approx_offset: 9268
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0048
+  form: optical emission spectrometry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: Upon arrival, we performed optical emission spectrometry (OES) and hardness validation to confirm
+      conformity
+    approx_offset: 69626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0049
+  form: passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+  evidence:
+  - quote: Medical-grade cleaning + passivation
+    approx_offset: 120033
+  - quote: We implemented triple-filtered water for cleaning/passivation and used medical-grade lint-free
+      cloths and alcohol for final wiping.
+    approx_offset: 121321
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0050
+  form: plasma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill.
+    approx_offset: 108278
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0051
+  form: polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: 'Our facility is segmented into six specialized manufacturing zones: CNC Machining, Sheet Metal
+      Fabrication, Manual Work, Polishing and Finishing, Quality Management, and Engineering & Project
+      Management.'
+    approx_offset: 20253
+  - quote: Uniform matte black anodized coating with no visible tool marks; secondary polishing not permitted.
+    approx_offset: 55815
+  - quote: No visible tool marks, raw machined surface only (no polishing)
+    approx_offset: 101320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0052
+  form: prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 34
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+  evidence:
+  - quote: Full-Spectrum Manufacturing Services for Small-Scale Production and Prototyping
+    approx_offset: 7296
+  - quote: From cutting-edge prototyping to low-volume production, our advanced techniques ensure that
+      your components are crafted with the highest standards of quality and accuracy.
+    approx_offset: 7426
+  - quote: 3D printing revolutionizes prototyping by turning your digital designs into tangible reality
+      faster than ever before.
+    approx_offset: 8072
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0053
+  form: rapid prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/case-studies/
+  evidence:
+  - quote: From rapid prototyping to small scale production runs, our advanced 3D printing technologies
+      enable a wide range of materials and finishes, ensuring your ideas are brought to life with speed
+      and precision.
+    approx_offset: 8168
+  - quote: The technology also enables rapid prototyping and high-speed production, which can significantly
+      reduce the time to market for new products.
+    approx_offset: 12905
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0054
+  form: reaming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: – H7 reaming for tolerance-critical bores
+    approx_offset: 51675
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0055
+  form: sheet metal fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/alec-model-expands-production-capacity-with-new-cnc-factory/
+    - https://alecmfg.com/contact-us/
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Sheet Metal Fabrication
+    approx_offset: 8380
+  - quote: Sheet metal fabrication provides versatile solutions for creating durable, high-quality metal
+      parts and assemblies.
+    approx_offset: 8405
+  - quote: Sheet Metal Fabrication
+    approx_offset: 10709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0056
+  form: sheet metal processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: After learning about our extensive experience in precision aluminum alloy sheet metal processing
+      (particularly our aerospace-grade battery tray project), their lead development engineer, Jean L.,
+      reached out to our chief engineer, Marc.
+    approx_offset: 54948
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0057
+  form: small batch production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Urethane casting offers a flexible and cost-efficient approach to prototype and small batch
+      production, ideal for when quality and detail cannot be compromised.
+    approx_offset: 8833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0058
+  form: stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: Our process engineer, Li Wei, developed optimized multi-process bending and stamping plans
+      for the housing’s ventilation grid and thin rib structures.
+    approx_offset: 56964
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0059
+  form: stress relieving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0060
+  form: stress-relief
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+  evidence:
+  - quote: Material choice and stress-relief strategies were critical.
+    approx_offset: 128118
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0061
+  form: stress-relieved
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: After welding, each unit was stress-relieved at 620°C in our local heat treatment facility.
+    approx_offset: 108429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0062
+  form: surface finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: Achieve the right texture with surface finishing.
+    approx_offset: 15902
+  - quote: We offer a full array of surface finishing treatments so that your parts look, feel, and perform
+      like they are designed to.
+    approx_offset: 15946
+  - quote: Step 2:Surface Finishing & QA
+    approx_offset: 78190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0063
+  form: tapped holes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/ohio-automation-custom-cnc-machined-aluminum-bracket/
+  evidence:
+  - quote: Two through-holes + M6 tapped holes + lateral counterbores
+    approx_offset: 77018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0064
+  form: tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0065
+  form: toolpath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: The components featured complex geometries, including multiple angled surfaces, deep grooves,
+      and fine through-holes, which required advanced 5-axis programming and optimized toolpath strategies.
+    approx_offset: 96972
+  - quote: Toolpath Programming
+    approx_offset: 97646
+  - quote: Step 2:CAM Programming & 5-Axis Toolpath Design
+    approx_offset: 103084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0066
+  form: turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://alecmfg.com/services/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: 3D printing revolutionizes prototyping by turning your digital designs into tangible reality
+      faster than ever before.
+    approx_offset: 8087
+  - quote: CNC Milling vs CNC Turning
+    approx_offset: 15375
+  - quote: CNC milling and turning are two methods used to remove material from a workpiece to create
+      a desired shape.
+    approx_offset: 15400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0067
+  form: urethane casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/contact-us/
+    - https://alecmfg.com/services/
+  evidence:
+  - quote: Urethane Casting
+    approx_offset: 8735
+  - quote: Urethane casting offers a flexible and cost-efficient approach to prototype and small batch
+      production, ideal for when quality and detail cannot be compromised.
+    approx_offset: 8753
+  - quote: Urethane Casting
+    approx_offset: 9879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-process_caps-0068
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+    - https://alecmfg.com/precision-manufacturing-case-study-aluminum-alloy-sheet-metal-structural-housing-for-french-uav-client/
+  evidence:
+  - quote: 'Tight Timeline: 10 days to complete blanking, bending, welding, anodizing, full inspection,
+      reporting, and international logistics.'
+    approx_offset: 56550
+  - quote: Pre-stressed aerospace-grade aluminum alloy sheets were selected to minimize deformation during
+      bending and welding processes.
+    approx_offset: 56834
+  - quote: Oil & Gas Client | Integrated Welding And CNC Machining Of Structural Frames For Offshore Skid
+      Systems
+    approx_offset: 67498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

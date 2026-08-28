@@ -1,0 +1,771 @@
+subject: steelcraft.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+golden_set_version: 1
+anchored_on: search/expectations/steelcraft_com/material_caps.yaml
+labels:
+- id: steelcraft_com-material_caps-0001
+  form: 304 or 316 alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: LS Series Doors are available in either 304 or 316 alloy for maximum durability and corrosion
+      protection.
+    approx_offset: 197816
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0002
+  form: A60 Galvannealled steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: A60 Galvannealled steel for superior strength and resistance to corrosion
+    approx_offset: 21496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0003
+  form: A60 galvannealed steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: 14 Gauge A60 galvannealed steel for superior corrosion resistance on exterior openings
+    approx_offset: 34658
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0004
+  form: American steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/index.html
+  evidence:
+  - quote: For nearly a century, and still today—Steelcraft hollow metal doors and frames are always manufactured
+      in the United States using American steel.
+    approx_offset: 359
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0005
+  form: Galvanized steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Galvanized steel for superior strength and resistance to corrosion
+    approx_offset: 174574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0006
+  form: Galvannealed A-60 Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Colors available on all door series and sizes in Galvannealed A-60 Steel
+    approx_offset: 31936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0007
+  form: Honeycomb
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: 'Honeycomb (Standard): 1" (25 mm) cell kraft honeycomb configuration that increases structural
+      integrity while reducing overall weight'
+    approx_offset: 21774
+  - quote: 'Honeycomb (Standard): 1" (25 mm) cell kraft honeycomb configuration that increases structural
+      integrity while reducing overall weight'
+    approx_offset: 21818
+  - quote: Standard Honeycomb cell with sanded surfaces for unfailing adhesion to the steel door faces
+      reduces the weight of the door while providing the greatest structural integrity.
+    approx_offset: 42831
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0008
+  form: Lead-lining clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: Frame Lead-lining clips for easy integration of lead where radiation transmission is a concern.
+    approx_offset: 195673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0009
+  form: Mineral Board
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: The T Series has mineral board cores that resist temperature rise, maximizing emergency protection
+      in stairwells.
+    approx_offset: 6603
+  - quote: 'Mineral Board (optional): rigid, temperature rise control'
+    approx_offset: 22014
+  - quote: The T Series has mineral board cores that resist temperature rise, maximizing emergency protection
+      in stairwells.
+    approx_offset: 169582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0010
+  form: Mineral board
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/t-series-temperature-rise-fire-rated-steel-doors.html
+  evidence:
+  - quote: Mineral board core provides a 250°F (121°C) Temperature Rise rating or 450°F (232°C) at 30
+      minutes of test exposure, depending on hardware application
+    approx_offset: 16989
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0011
+  form: Polystyrene
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: 'Polystyrene (optional): enhanced thermal performance'
+    approx_offset: 21908
+  - quote: Optional Polystyrene and Polyurethane cores for enhanced thermal performance
+    approx_offset: 43086
+  - quote: Optional Polystyrene cores for enhanced thermal performance
+    approx_offset: 113809
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0012
+  form: Polyurethane
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: 'Polyurethane (optional): extreme thermal performance'
+    approx_offset: 21961
+  - quote: Optional Polystyrene and Polyurethane cores for enhanced thermal performance
+    approx_offset: 43102
+  - quote: Optional Polystyrene and Polyurethane cores for enhanced thermal performanceSquare hinge and
+      lock edges allow for non-handed inventory control for local distribution
+    approx_offset: 181743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0013
+  form: Stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+  evidence:
+  - quote: Stainless
+    approx_offset: 6508
+  - quote: LS Series Stainless Steel Doors
+    approx_offset: 7037
+  - quote: Steelcraft’s offering includes flush, stile and rail, severe weather, acoustical, stainless
+      steel and blast resistant doors as well as the GRAINTECH™ Series of stainable steel doors that provide
+      the beauty of wood with the benefits and features of steel.
+    approx_offset: 13708
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0014
+  form: Steel Stiffened
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: 'Steel Stiffened (optional): welded hat section'
+    approx_offset: 22072
+  - quote: Steel stiffened core construction using 20 gauge hat section stiffeners located 6" apart and
+      welded 5" on center the height of each stiffener, filled with 1 pound fiberglass batting between
+      stiffeners
+    approx_offset: 50825
+  - quote: While our normal honeycomb core provides the best structural integrity in testing, especially
+      considering the weight of the door, a larger localized impact to the door face can be resisted better
+      with a steel stiffened core.
+    approx_offset: 53044
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0015
+  form: Type 304
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Type 304 Alloy – standard corrosion resistance
+    approx_offset: 198595
+  - quote: 'Type 304 Alloy: typical corrosion resistance'
+    approx_offset: 222666
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0016
+  form: Type 304 Alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Type 304 Alloy – standard corrosion resistance
+    approx_offset: 198595
+  - quote: 'Type 304 Alloy: typical corrosion resistance'
+    approx_offset: 222666
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0017
+  form: Type 316
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Type 316 Alloy - heavy duty corrosion resistance
+    approx_offset: 198643
+  - quote: 'Type 316 Alloy: heavy duty corrosion resistance'
+    approx_offset: 222711
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0018
+  form: Type 316 Alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Type 316 Alloy - heavy duty corrosion resistance
+    approx_offset: 198643
+  - quote: 'Type 316 Alloy: heavy duty corrosion resistance'
+    approx_offset: 222711
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0019
+  form: all-stainless-steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: This solution utilizes all-stainless-steel construction, including reinforcement components.
+    approx_offset: 197706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0020
+  form: ceramic glass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications.html
+    - https://www.steelcraft.com/en/products/applications/fire-rated-steel-doors-and-frames.html
+  evidence:
+  - quote: Steelcraft’s fire rating capabilities include the use of ceramic glass and special glazing
+      compounds.
+    approx_offset: 110608
+  - quote: Steelcraft’s fire rating capabilities include the use of ceramic glass and special glazing
+      compounds.
+    approx_offset: 130753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0021
+  form: epoxy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+  evidence:
+  - quote: Premium standard door construction combines a beveled lock and hinge side, strong epoxy filled
+      interlock edges, and unsurpassed 7 gauge hinge reinforcement.
+    approx_offset: 16838
+  - quote: Full height, epoxy filled mechanical interlock edges provide structural support and stability
+      the full height of the door edges
+    approx_offset: 17354
+  - quote: Full height, epoxy filled mechanical interlock edges provide structural support and stability
+      the full height of the door edges
+    approx_offset: 22290
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0022
+  form: epoxy filled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+  evidence:
+  - quote: Premium standard door construction combines a beveled lock and hinge side, strong epoxy filled
+      interlock edges, and unsurpassed 7 gauge hinge reinforcement.
+    approx_offset: 16838
+  - quote: Full height, epoxy filled mechanical interlock edges provide structural support and stability
+      the full height of the door edges
+    approx_offset: 17354
+  - quote: Full height, epoxy filled mechanical interlock edges provide structural support and stability
+      the full height of the door edges
+    approx_offset: 22290
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0023
+  form: fiberglass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/why-steelcraft/steel-door-advantages.html
+  evidence:
+  - quote: Steel stiffened core construction using 20 gauge hat section stiffeners located 6" apart and
+      welded 5" on center the height of each stiffener, filled with 1 pound fiberglass batting between
+      stiffeners
+    approx_offset: 50988
+  - quote: It outperforms wood, aluminum, and fiberglass in security, fire ratings, sound reduction, vandal
+      resistance, and other demanding environments.
+    approx_offset: 171877
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0024
+  form: fiberglass batting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: Steel stiffened core construction using 20 gauge hat section stiffeners located 6" apart and
+      welded 5" on center the height of each stiffener, filled with 1 pound fiberglass batting between
+      stiffeners
+    approx_offset: 50988
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0025
+  form: galvannealed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: Uses galvannealed A-60 steel
+    approx_offset: 28728
+  - quote: Colors available on all door series and sizes in Galvannealed A-60 Steel
+    approx_offset: 31936
+  - quote: 14 Gauge A60 galvannealed steel for superior corrosion resistance on exterior openings
+    approx_offset: 34662
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0026
+  form: galvannealed A-60 steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+  evidence:
+  - quote: Uses galvannealed A-60 steel
+    approx_offset: 28728
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0027
+  form: honeycomb core
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: While our normal honeycomb core provides the best structural integrity in testing, especially
+      considering the weight of the door, a larger localized impact to the door face can be resisted better
+      with a steel stiffened core.
+    approx_offset: 52858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0028
+  form: kraft honeycomb
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: 'Honeycomb (Standard): 1" (25 mm) cell kraft honeycomb configuration that increases structural
+      integrity while reducing overall weight'
+    approx_offset: 21812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0029
+  form: lead-lined
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: For more information on lead-lined doors and frames, please also visit Republic Doors and Frames.
+    approx_offset: 196709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0030
+  form: lead-lining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: Frame Lead-lining clips for easy integration of lead where radiation transmission is a concern.
+    approx_offset: 195673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0031
+  form: mineral board cores
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+  evidence:
+  - quote: The T Series has mineral board cores that resist temperature rise, maximizing emergency protection
+      in stairwells.
+    approx_offset: 6603
+  - quote: The T Series has mineral board cores that resist temperature rise, maximizing emergency protection
+      in stairwells.
+    approx_offset: 169582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0032
+  form: polymer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+  evidence:
+  - quote: 'FT thermal separator: This durable polymer extrusion provides a more secure barrier over time
+      and is more durable in freezing conditions compared to traditional vinyl separators'
+    approx_offset: 28868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0033
+  form: polymer extrusion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+  evidence:
+  - quote: 'FT thermal separator: This durable polymer extrusion provides a more secure barrier over time
+      and is more durable in freezing conditions compared to traditional vinyl separators'
+    approx_offset: 28868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0034
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 23
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: LS Series Stainless Steel Doors
+    approx_offset: 7037
+  - quote: Steelcraft’s offering includes flush, stile and rail, severe weather, acoustical, stainless
+      steel and blast resistant doors as well as the GRAINTECH™ Series of stainable steel doors that provide
+      the beauty of wood with the benefits and features of steel.
+    approx_offset: 13708
+  - quote: Stainless Steel Data Sheet
+    approx_offset: 40571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0035
+  form: steel stiffened core
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Steel stiffened core construction using 20 gauge hat section stiffeners located 6" apart and
+      welded 5" on center the height of each stiffener, filled with 1 pound fiberglass batting between
+      stiffeners
+    approx_offset: 50825
+  - quote: While our normal honeycomb core provides the best structural integrity in testing, especially
+      considering the weight of the door, a larger localized impact to the door face can be resisted better
+      with a steel stiffened core.
+    approx_offset: 53044
+  - quote: Steel stiffened core
+    approx_offset: 174553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-material_caps-0036
+  form: stiffened core
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: B Series stiffened core doors add internal steel stiffeners, extending the full width and height
+      of the door.
+    approx_offset: 50295
+  - quote: Steel stiffened core construction using 20 gauge hat section stiffeners located 6" apart and
+      welded 5" on center the height of each stiffener, filled with 1 pound fiberglass batting between
+      stiffeners
+    approx_offset: 50831
+  - quote: While our normal honeycomb core provides the best structural integrity in testing, especially
+      considering the weight of the door, a larger localized impact to the door face can be resisted better
+      with a steel stiffened core.
+    approx_offset: 53050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

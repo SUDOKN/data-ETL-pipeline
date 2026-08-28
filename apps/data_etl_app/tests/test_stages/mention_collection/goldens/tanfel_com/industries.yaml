@@ -1,0 +1,1428 @@
+subject: tanfel.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+golden_set_version: 1
+anchored_on: search/expectations/tanfel_com/industries.yaml
+labels:
+- id: tanfel_com-industries-0001
+  form: AUDIO – MUSIC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: AUDIO – MUSIC
+    approx_offset: 26854
+  - quote: AUDIO – MUSIC
+    approx_offset: 59827
+  - quote: AUDIO – MUSIC
+    approx_offset: 64196
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0002
+  form: AUTOMOTIVE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: AUTOMOTIVE
+    approx_offset: 26796
+  - quote: AUTOMOTIVE
+    approx_offset: 59769
+  - quote: HOME INDUSTRIES AUTOMOTIVE
+    approx_offset: 63346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0003
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Aerospace
+    approx_offset: 60743
+  - quote: Aerospace
+    approx_offset: 62347
+  - quote: Aerospace
+    approx_offset: 83275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0004
+  form: Audio – Music
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2175
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43859
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 46377
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0005
+  form: Automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 662
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 1340
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0006
+  form: Automotive Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+  evidence:
+  - quote: The Automotive Industry has complex and stringent requirements for design, manufacturing, documentation
+      and more.
+    approx_offset: 63373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0007
+  form: COMMUNICATIONS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: COMMUNICATIONS
+    approx_offset: 26836
+  - quote: HOME INDUSTRIES COMMUNICATIONS
+    approx_offset: 58967
+  - quote: COMMUNICATIONS
+    approx_offset: 58982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0008
+  form: Communication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+  evidence:
+  - quote: We will do this through an instant global communication network or discuss with you face to
+      face at your site.
+    approx_offset: 44372
+  - quote: With interactive communication, we can assist you to meet your tight product development schedule,
+      cope with dynamic marketing changes and achieve responsive manufacturing.
+    approx_offset: 44458
+  - quote: We will do this through an instant global communication network or discuss with you face to
+      face at your site.
+    approx_offset: 46890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0009
+  form: Communications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 693
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 1371
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2149
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0010
+  form: Computer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/contact-us
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9678
+  - quote: Advances in technology have led to the development of Computer Numerical Control (CNC) machining.
+    approx_offset: 18737
+  - quote: Our computer systems are setup and able to receive your 3D CAD data in any format efficiently,
+      completely and accurately.
+    approx_offset: 44618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0011
+  form: Consumer Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2246
+  - quote: Consumer Electronics
+    approx_offset: 60787
+  - quote: Consumer Electronics
+    approx_offset: 62391
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0012
+  form: Consumer electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43968
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 46486
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 170989
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0013
+  form: Consumer goods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Consumer goods
+    approx_offset: 83285
+  - quote: Consumer goods
+    approx_offset: 141130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0014
+  form: Contract Manufacturer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Contract Manufacturer
+    approx_offset: 60808
+  - quote: Contract Manufacturer
+    approx_offset: 62412
+  - quote: Contract Manufacturer
+    approx_offset: 125774
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0015
+  form: Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2255
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43977
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 46495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0016
+  form: Energy / Utility
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Energy / Utility
+    approx_offset: 60830
+  - quote: Energy / Utility
+    approx_offset: 62434
+  - quote: Energy / Utility
+    approx_offset: 125796
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0017
+  form: Engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 82
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Tanfel offers a combination of world-class manufacturing, quality control, engineering support,
+      warehouse, and logistics services.
+    approx_offset: 2405
+  - quote: ENGINEERING AND DESIGN SUPPORT
+    approx_offset: 3424
+  - quote: Tanfel offers engineering and project management solutions.
+    approx_offset: 3470
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0018
+  form: Firearms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Firearms
+    approx_offset: 83312
+  - quote: Firearms
+    approx_offset: 141157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0019
+  form: Government / Military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Government / Military
+    approx_offset: 60859
+  - quote: Government / Military
+    approx_offset: 62463
+  - quote: Government / Military
+    approx_offset: 125825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0020
+  form: Health & Fitness
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2228
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43950
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 46468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0021
+  form: Health / Fitness
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Health / Fitness
+    approx_offset: 60881
+  - quote: Health / Fitness
+    approx_offset: 62485
+  - quote: Health / Fitness
+    approx_offset: 125847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0022
+  form: INSTRUMENTATION, CONTROL & AUTOMATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: INSTRUMENTATION, CONTROL & AUTOMATION
+    approx_offset: 26755
+  - quote: INSTRUMENTATION, CONTROL & AUTOMATION
+    approx_offset: 59728
+  - quote: INSTRUMENTATION, CONTROL & AUTOMATION
+    approx_offset: 64097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0023
+  form: Instrumentation / Sensors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Instrumentation / Sensors
+    approx_offset: 60898
+  - quote: Instrumentation / Sensors
+    approx_offset: 62502
+  - quote: Instrumentation / Sensors
+    approx_offset: 125864
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0024
+  form: Instrumentation, Control & Automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2268
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43911
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 46429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0025
+  form: LIGHTING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: LIGHTING
+    approx_offset: 26743
+  - quote: LIGHTING
+    approx_offset: 59716
+  - quote: LIGHTING
+    approx_offset: 64085
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0026
+  form: Lighting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 683
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 1361
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0027
+  form: Lighting / Signing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Lighting / Signing
+    approx_offset: 60924
+  - quote: Lighting / Signing
+    approx_offset: 62528
+  - quote: Lighting / Signing
+    approx_offset: 125890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0028
+  form: MEDICAL – LIFE SCIENCE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+    - https://www.tanfel.com/industries/instrumentation-control-automation/
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: HOME INDUSTRIES MEDICAL – LIFE SCIENCE
+    approx_offset: 26023
+  - quote: MEDICAL – LIFE SCIENCE
+    approx_offset: 26046
+  - quote: MEDICAL – LIFE SCIENCE
+    approx_offset: 26810
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0029
+  form: Maquiladora
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Maquiladora
+    approx_offset: 60943
+  - quote: Maquiladora
+    approx_offset: 62547
+  - quote: Maquiladora
+    approx_offset: 125909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0030
+  form: Medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 30
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 674
+  - quote: such as Automotive, Medical, Lighting, Communications and more.
+    approx_offset: 1352
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2191
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0031
+  form: Medical – Life Science
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries
+  evidence:
+  - quote: Medical – Life Science
+    approx_offset: 71402
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0032
+  form: Medical – Life Sciences
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2191
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43874
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 46392
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0033
+  form: Military and defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Military and defense
+    approx_offset: 83322
+  - quote: Military and defense
+    approx_offset: 141167
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0034
+  form: Music
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2183
+  - quote: AUDIO – MUSIC
+    approx_offset: 26862
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43867
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0035
+  form: Oil / Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Oil / Gas
+    approx_offset: 60969
+  - quote: Oil / Gas
+    approx_offset: 62573
+  - quote: Oil / Gas
+    approx_offset: 125935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0036
+  form: Wireless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Wireless
+    approx_offset: 60979
+  - quote: Wireless
+    approx_offset: 62583
+  - quote: Wireless
+    approx_offset: 125945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0037
+  form: aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: CNC-milled parts are used in every industry from aerospace, military, firearms to consumer
+      goods.
+    approx_offset: 18036
+  - quote: They are used in a broad range of applications (including medical, dental, firearms, aerospace,
+      and automotive.)
+    approx_offset: 29654
+  - quote: 2xxx series alloys are used to build aerospace components and similar products because they
+      can achieve a high strength-to-weight ratio and have good machinability.
+    approx_offset: 54882
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0038
+  form: aerospace engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: metal clamps for hospital tools to brackets and clamps for aerospace engineering, our processes
+    approx_offset: 169021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0039
+  form: architectural and structural settings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: It’s a highly weldable alloy found in many architectural and structural settings.
+    approx_offset: 55671
+  - quote: It’s a highly weldable alloy found in many architectural and structural settings.
+    approx_offset: 76189
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0040
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9655
+  - quote: They are used in a broad range of applications (including medical, dental, firearms, aerospace,
+      and automotive.)
+    approx_offset: 29669
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0041
+  form: computer accessories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9678
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0042
+  form: computers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Tanfel offers silicone rubber and plastic keypads / keyboards for use in computers, mobile
+      phones, data organizers, calculators, remote controls and numerous other items.
+    approx_offset: 16091
+  - quote: Tanfel offers silicone rubber and plastic keypads / keyboards for use in computers, mobile
+      phones, data organizers, calculators, remote controls and numerous other items.
+    approx_offset: 129091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0043
+  form: consumer goods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: CNC-milled parts are used in every industry from aerospace, military, firearms to consumer
+      goods.
+    approx_offset: 18069
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0044
+  form: dental
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: They are used in a broad range of applications (including medical, dental, firearms, aerospace,
+      and automotive.)
+    approx_offset: 29636
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0045
+  form: electronic products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9769
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131437
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0046
+  form: firearms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: CNC-milled parts are used in every industry from aerospace, military, firearms to consumer
+      goods.
+    approx_offset: 18057
+  - quote: They are used in a broad range of applications (including medical, dental, firearms, aerospace,
+      and automotive.)
+    approx_offset: 29644
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0047
+  form: food and chemical industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: These types of alloys frequently appear in the food and chemical industries as well as in general
+      manufacturing.
+    approx_offset: 55258
+  - quote: These types of alloys frequently appear in the food and chemical industries as well as in general
+      manufacturing.
+    approx_offset: 75776
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0048
+  form: general manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: They’re most commonly used for metal spinning and general manufacturing.
+    approx_offset: 54822
+  - quote: These types of alloys frequently appear in the food and chemical industries as well as in general
+      manufacturing.
+    approx_offset: 55301
+  - quote: They’re most commonly used for metal spinning and general manufacturing.
+    approx_offset: 75340
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0049
+  form: instrumentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: Communications, Lighting, Audio – Music , Medical – Life Sciences, Automotive, Health & Fitness,
+      Consumer Electronics, Instrumentation, Control & Automation and more.
+    approx_offset: 2268
+  - quote: INSTRUMENTATION, CONTROL & AUTOMATION
+    approx_offset: 26755
+  - quote: Communications, Lighting, Audio – Music, Medical – Life Sciences, Automotive, Instrumentation,
+      Control & Automation, Health & Fitness, Consumer electronics, & more.
+    approx_offset: 43911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0050
+  form: lighting industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: Tanfel has been a trusted partner in the lighting industry for over 10 years.
+    approx_offset: 113091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0051
+  form: marine environments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: 5xxx series resists corrosion very well, and it also possesses good formability, strength,
+      and weldability, which make it ideally suited for use in marine environments.
+    approx_offset: 55472
+  - quote: 5xxx series resists corrosion very well, and it also possesses good formability, strength,
+      and weldability, which make it ideally suited for use in marine environments.
+    approx_offset: 75990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0052
+  form: medical and life sciences industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/industries/medical-life-science/
+    - https://www.tanfel.com/industries/medical/
+  evidence:
+  - quote: All the support systems of the medical and life sciences industry need to be as well.
+    approx_offset: 26130
+  - quote: All the support systems of the medical and life sciences industry need to be as well.
+    approx_offset: 161274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0053
+  form: military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: CNC-milled parts are used in every industry from aerospace, military, firearms to consumer
+      goods.
+    approx_offset: 18047
+  - quote: Government / Military
+    approx_offset: 60872
+  - quote: Government / Military
+    approx_offset: 62476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0054
+  form: mining tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Carbide is often used for end mills, drill bits, cutters, mining tools, saw blades and other
+      cutting tools.
+    approx_offset: 135960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0055
+  form: mining vehicles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Heavy equipment and transportation vehicles: Automobiles, airplanes, farming and mining vehicles,
+      trains, and ships
+    approx_offset: 39919
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0056
+  form: music industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/industries/music/
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: We have a history of working with music industry leaders and would like an opportunity to work
+      with you.
+    approx_offset: 118384
+  - quote: We understand the unique requirements in the music industry and can help you with your prototype
+      needs up to large production and supply chain management.
+    approx_offset: 118500
+  - quote: Parts for the music industry
+    approx_offset: 121945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0057
+  form: quick serve restaurants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+  evidence:
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 59251
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 159763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0058
+  form: sporting goods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/quality
+  evidence:
+  - quote: When our brand new globally retailed sporting goods product sold out faster than planned, I
+      was both excited and anxious.
+    approx_offset: 6498
+  - quote: When our brand new globally retailed sporting goods product sold out faster than planned, I
+      was both excited and anxious.
+    approx_offset: 7953
+  - quote: When our brand new globally retailed sporting goods product sold out faster than planned, I
+      was both excited and anxious.
+    approx_offset: 87036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0059
+  form: sporting goods product
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/quality
+  evidence:
+  - quote: When our brand new globally retailed sporting goods product sold out faster than planned, I
+      was both excited and anxious.
+    approx_offset: 6498
+  - quote: When our brand new globally retailed sporting goods product sold out faster than planned, I
+      was both excited and anxious.
+    approx_offset: 7953
+  - quote: When our brand new globally retailed sporting goods product sold out faster than planned, I
+      was both excited and anxious.
+    approx_offset: 87036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-industries-0060
+  form: transportation vehicles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Heavy equipment and transportation vehicles: Automobiles, airplanes, farming and mining vehicles,
+      trains, and ships
+    approx_offset: 39858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

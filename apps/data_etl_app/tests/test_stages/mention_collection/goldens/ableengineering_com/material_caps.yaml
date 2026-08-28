@@ -1,0 +1,151 @@
+subject: ableengineering.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+golden_set_version: 1
+anchored_on: search/expectations/ableengineering_com/material_caps.yaml
+labels:
+- id: ableengineering_com-material_caps-0001
+  form: CAD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5319
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-material_caps-0002
+  form: CAD plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-material_caps-0003
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able’s innovative, additive manufacturing capability for repairing aluminum and magnesium components.
+    approx_offset: 5955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-material_caps-0004
+  form: cadmium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-material_caps-0005
+  form: chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5260
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-material_caps-0006
+  form: chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-material_caps-0007
+  form: magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able’s innovative, additive manufacturing capability for repairing aluminum and magnesium components.
+    approx_offset: 5968
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-material_caps-0008
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5311
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42151
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

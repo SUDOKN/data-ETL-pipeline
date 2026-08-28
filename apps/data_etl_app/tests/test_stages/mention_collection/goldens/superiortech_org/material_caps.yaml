@@ -1,0 +1,611 @@
+subject: superiortech.org
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+  sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+golden_set_version: 1
+anchored_on: search/expectations/superiortech_org/material_caps.yaml
+labels:
+- id: superiortech_org-material_caps-0001
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12296
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0002
+  form: Hastalloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0003
+  form: Inconel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0004
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12278
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0005
+  form: Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12271
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12288
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0006
+  form: Titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0007
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10364
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10506
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0008
+  form: aluminum alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0009
+  form: billets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: Machines have the capacity to accommodate large castings, forgings, or billets up to 50” diameters
+      x 33” tall and maximum work piece weights up to 6,600lbs
+    approx_offset: 28318
+  - quote: Machines have the capacity to accommodate large castings, forgings, or billets up to 55” x
+      47” x 52” and maximum work piece weights up to 4,850lbs
+    approx_offset: 28642
+  - quote: Machines have the capacity to accommodate large castings, forgings, or billets up to 50” diameters
+      x 33” tall and maximum work piece weights up to 6,600lbs
+    approx_offset: 56569
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0010
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16455
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0011
+  form: brass & copper alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16455
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0012
+  form: carbon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0013
+  form: carbon & stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0014
+  form: castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16488
+  - quote: Machines have the capacity to accommodate large castings, forgings, or billets up to 50” diameters
+      x 33” tall and maximum work piece weights up to 6,600lbs
+    approx_offset: 28295
+  - quote: Machines have the capacity to accommodate large castings, forgings, or billets up to 55” x
+      47” x 52” and maximum work piece weights up to 4,850lbs
+    approx_offset: 28619
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0015
+  form: chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10542
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0016
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10377
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16463
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52624
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0017
+  form: copper alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0018
+  form: forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16498
+  - quote: Machines have the capacity to accommodate large castings, forgings, or billets up to 50” diameters
+      x 33” tall and maximum work piece weights up to 6,600lbs
+    approx_offset: 28305
+  - quote: Machines have the capacity to accommodate large castings, forgings, or billets up to 55” x
+      47” x 52” and maximum work piece weights up to 4,850lbs
+    approx_offset: 28629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0019
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10553
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0020
+  form: nitriding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10324
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0021
+  form: phosphatizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10585
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0022
+  form: plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0023
+  form: stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12278
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16364
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0024
+  form: stainless steels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16364
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0025
+  form: steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10253
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10281
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-material_caps-0026
+  form: super alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,310 @@
+subject: sterlingmfg.net
+slug: sterlingmfg_net
+subject_name: EPTAM Precision Solutions (the seed domain sterlingmfg.net resolves here)
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+role: full_unit
+role_source: 'kept verbatim from search/expectations/sterlingmfg_net/subject.yaml; the value is in this
+  schema''s enum and is reused unchanged. It fits this stage as well: all six capability fields are dense,
+  and the subject''s distinguishing features -- a 249-entry country dropdown printed twice, a 52-page
+  footer that carries the whole certification list, and attestations bound to four separate legal registrants
+  -- are all mention-stage problems (occurrence inflation, snippet context, whose_words) rather than admission
+  problems.'
+business_type: five-acquisition medical-device contract manufacturing roll-up trading as EPTAM Precision
+  Solutions, HQ Northfield NH, owned by Frazier Healthcare Partners; nine named sites; certifications
+  held by four distinct legal registrants with four FDA establishment numbers
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/sterlingmfg_net/subject.yaml
+- apps/data_etl_app/tests/test_stages/GOLDEN_CORPUS_EXPANSION_2026-08-27.md (rows 9, 22, 26, 30, 45)
+third_party_roster:
+- Sterling Manufacturing
+- Albright Silicone
+- Relius Medical
+- Mendell Machine and Manufacturing
+- Ingram Machining
+- Frazier Healthcare Partners
+- New Heritage Capital
+- UFP Technologies
+- Viant Medical
+- Vention Medical
+- ATEK Medical
+- Parata Systems
+- Tecomet
+- Flextronics Medical
+- iiMED
+- LongueVue
+- Star
+- Tornos
+- Mazak
+- Okuma
+- Tsugami
+- Komo
+- Haas (spelled 'Hass')
+- Engel
+- Arburg
+- Toyo
+- Brother
+- Topper
+- Fanuc
+- Universal Robots (UR10)
+- Zeiss
+- ISO
+- FDA
+- ANVISA
+- NCSL
+- AS9100 / AS9102
+- ITAR / DDTC
+- 21 CFR 820
+- Mil-I-45662A
+- Mil-I-45208
+- wedü (the web agency in the footer credit)
+third_party_roster_note: the richest roster in the batch, and it splits three ways. (1) FIVE ACQUIRED
+  COMPANIES, each with an 'About <company>' block in a press release describing THEIR equipment, products
+  and certifications in the third person. (2) NINE FORMER EMPLOYERS named in executive biographies, with
+  the products those people made there. (3) Machine builders and standards bodies. The acquired-company
+  blocks are the dangerous ones because they are grammatically indistinguishable from EPTAM's own capability
+  prose and sit on EPTAM's own domain.
+shape:
+  pages: 52
+  distinct_page_bodies: 48
+  total_lines: 6102
+  bytes: 211477
+  characters: 210482
+  nonblank_lines: 4923
+  distinct_nonblank_lines: 1523
+  share_of_nonblank_lines_occurring_2x_or_more: 78.9%
+  share_of_nonblank_chars_occurring_2x_or_more: 38.3%
+  distinct_lines_occurring_52x_or_more: 47
+  line_instances_from_those_47: 2742
+  share_of_nonblank_lines_from_those_47: 55.7%
+  share_of_nonblank_chars_from_those_47: 23.0%
+  nonascii_chars: 618
+  distinct_nonascii_codepoints: 21
+  nbsp_count: 92
+  nbsp_trailing: 69
+  nbsp_mid_line: 23
+  nbsp_leading: 0
+  zwsp_count: 13
+  zwsp_all_trailing: true
+  narrow_nbsp_count: 5
+  note: 'the 78.9%-of-lines against 38.3%-of-characters split is the shape of this subject: the boilerplate
+    is a great many short lines (nav labels, footer menu entries, 249 bare country names) while the content
+    is a smaller number of long paragraphs. Top non-ASCII: U+2019 149, U+00A0 92, U+201D 86, U+201C 56,
+    U+00FC 54, U+00A9 52, U+2013 51, U+00AE 29, U+200B 13, U+2122 6, U+2014 6, U+202F 5. 52 of the 54
+    U+00FC are the footer credit ''Site by wedü''; the other two are ''Türkiye'' in the country list.'
+coverage: full_text
+coverage_note: all 6,102 lines / 210,482 characters accounted for. The 48 distinct page bodies were read;
+  the 4 duplicate bodies were matched by sha256 rather than re-read, and the second copy of the 249-line
+  country dropdown was verified line-for-line equal to the first rather than re-read. Every count in this
+  file was computed over the whole text.
+text_hazards:
+- hazard: country_dropdown
+  note: THE headline mention-stage hazard on this subject, and the measurement corrects the profiles on
+    record. The list is 249 entries, not '~240', and it is printed TWICE verbatim -- lines 2663-2911 and
+    3900-4148 -- so 498 of the file's 4,923 non-blank lines (10.1%) are a one-line bare place name with
+    no sentence around them. It is the careers page's address form, dumped as plain text at both /careers/
+    and /about/careers/. Every one of the 498 clips to a snippet that is the country name alone. Sixteen
+    entries collide with ordinary or manufacturing vocabulary -- Chad, Chile, China, Georgia, Grenada,
+    Guinea, India, Israel, Japan, Jersey, Jordan, Mali, Malta, Niger, Oman, Panama -- and each of those
+    is an industry-shaped or material-shaped false friend that occurs exactly twice.
+  quote: Bonaire, Sint Eustatius and Saba
+  measured:
+    entries: 249
+    printed_times: 2
+    line_instances: 498
+    share_of_nonblank_lines: 10.1%
+    share_of_total_lines: 8.2%
+    share_of_nonblank_chars: 2.5%
+  approx_offset: 94068
+- hazard: label_below_its_list
+  note: the detail that makes the dropdown worse than decimal.net's, and it is new here. The word 'Country'
+    occurs exactly TWICE in the whole file, and both times it sits BELOW the 249 entries it labels --
+    line 2912, immediately after Åland Islands, and line 4149. The nearest line ABOVE the list is 'ZIP
+    / Postal Code'. So a snippet that reaches upward for context, which is the correct move for a bare
+    list item everywhere else in this corpus, finds a postcode field 250 lines from the bottom of the
+    list and never finds the word that would identify these as countries. The disambiguating token is
+    downward-only.
+  quote: Country
+  approx_offset: 96668
+- hazard: repeated_footer
+  note: '47 distinct lines occur 52 or more times, accounting for 2,742 line-instances -- 55.7% of all
+    non-blank lines but only 23.0% of the characters. The block carries the ENTIRE certification list,
+    so every attestation form on this subject occurs 52+ times in an identical footer snippet and only
+    a handful of times in prose. The quoted line is a certificate BOUND TO A NAMED LEGAL REGISTRANT, repeated
+    52 times, and it is the cleanest single artifact on this subject: the FDA number and the registrant
+    name travel together on one line, so a correct clip preserves the binding and a line-splitting clip
+    destroys it.'
+  quote: 'EPTAM Plastics, LTD Registration Number: 3005144609'
+  approx_offset: 3181
+- hazard: attestation_bound_to_registrant
+  note: the quality page states the bindings properly, under a heading that occurs exactly ONCE, and then
+    gives four registrant names as bare lines each followed by its own certificate lines. 'ISO 13485:2016
+    Certified' appears under all FOUR registrants, so the string alone carries no scope and the ONLY thing
+    separating the four is the bare name line above each group. The quoted heading is the single most
+    load-bearing line in the file for whose_words and belongs_to, and it occurs once against the footer's
+    52 scope-free repetitions.
+  quote: Certifications by location
+  approx_offset: 136611
+- hazard: registrant_naming_mismatch
+  note: 'the footer and the quality page name the SAME legal entities differently, and the FDA number
+    is the only join key. Footer: ''EPTAM Plastics, LTD'' (52x) and ''EPTAM West, LLC'' (52x). Quality
+    page: ''EPTAM Precision Plastics'' (2x) and ''EPTAM Precision Metals'' (6x). #3005144609 and #3011302692
+    are what tie them together. A grouping label that merges on the name will produce two entities where
+    there is one, and a location label reading the footer will attribute to a company name the quality
+    page never uses.'
+  quote: 'FDA #3011302692 Registered'
+  approx_offset: 136981
+- hazard: self_contradiction
+  note: the silicone-molding page lists the SAME two FDA numbers the quality page and footer call held
+    as PENDING, once, in a single line. The word that inverts the claim is the first word of the line,
+    so any clip that starts after it reports a registration the text says does not exist yet.
+  quote: 'Pending FDA Registration (#3005144609, #3011302692)'
+  approx_offset: 48808
+- hazard: two_spellings_one_standard
+  note: 'the same medical-device standard is spelled two ways with different punctuation and the counts
+    are wildly asymmetric: ''ISO:13485:2016 Certified'' with an extra colon occurs 53 times (it is the
+    footer form), while ''ISO 13485:2016 Certified'' occurs 7 times (the prose form). Two more variants
+    exist once each, ''ISO 13485 Certified'' and ''ISO 13485:2016 Registered''. A grouping label that
+    does not fold the colon reports the footer variant as the dominant entity and the real prose evidence
+    as a rare one.'
+  quote: ISO:13485:2016 Certified
+  approx_offset: 3136
+- hazard: entity_drift
+  note: the corpus's entity-drift case, and it is total. All 52 page URLs are on eptam.com, the site names
+    itself EPTAM Precision Solutions, and the seed domain sterlingmfg.net occurs exactly ONCE in 210,482
+    characters -- inside a press release's 'About Sterling Manufacturing and Albright Silicone' paragraph,
+    as a pointer to a company EPTAM acquired. Every location label on this subject that says 'the site'
+    is naming EPTAM, not Sterling, and the one place the two are connected is third-person boilerplate
+    about the acquiree.
+  quote: For more information about Sterling and Albright, visit (http://www.sterlingmfg.net/)
+  approx_offset: 160168
+- hazard: error_page
+  note: 'FOUR of the 52 pages scrape to a 404 stub, three of them byte-identical (993 characters: /?page_id=3433,
+    /news/ and /rapid-launch-center/) and a fourth at the malformed URL https://eptam.com/www.eptam.com.
+    The /news/ index and the Rapid Launch Center page being dead is the notable part -- the Rapid Launch
+    Center is one of the five acquisitions, and its own page has no content.'
+  quote: It looks like nothing was found at this location.
+  approx_offset: 4025
+- hazard: duplicate_page
+  note: 52 URLs, 48 distinct bodies. /resources/ and /resources are the same page at two URLs; /careers/
+    and /about/careers/ likewise, which is why the country dropdown is printed twice rather than once.
+    Baseline occurrence for anything on those pages is 2, not 1.
+  quote: https://eptam.com/about/careers/
+  approx_offset: 124343
+- hazard: flattened_spec_table
+  note: 'the additive-manufacturing page is a table flattened to consecutive bare lines -- machine name,
+    unit count, machine name again, build envelope, filament list -- with no sentence anywhere and no
+    column headers. It also carries THREE spellings of one thing within thirty lines: ''FDM printer''
+    (lowercase p), ''FDM Printer'', and ''FDM Printer'' followed by a ZERO WIDTH SPACE. The quoted line
+    is a unit count with a trailing ZWSP, which is what a clip on any of these machines returns as its
+    neighbouring context.'
+  quote: 1 in shop​
+  approx_offset: 88634
+- hazard: invisible_trailing_characters
+  note: '92 NO-BREAK SPACEs and 13 ZERO WIDTH SPACEs, and their placement is the opposite of what search/expectations
+    reported. Measured here: ALL 13 ZWSPs are line-TRAILING, and of the 92 NBSPs, 69 are trailing, 23
+    are mid-line and none is leading. So the certification lines quoted below end in an invisible character
+    rather than containing one -- a form matched against them succeeds, but a snippet clipped to the line
+    carries a trailing NBSP that any exact-span check will see. There are also 5 U+202F NARROW NO-BREAK
+    SPACEs, one of them adjacent to an NBSP in a single phrase.'
+  quote: ISO Class 8 certified cleanrooms 
+  approx_offset: 77891
+- hazard: mis_filed_footer_column
+  note: the footer prints 'Rapid Prototyping' TWICE per page -- once under the CAPABILITIES heading and
+    once under INDUSTRIES -- so a process is asserted as a served industry 52 times over. The form has
+    110 occurrences in the file in total. Its two footer occurrences are 12 lines apart and identical,
+    so nothing in the snippet distinguishes them; only the ALL-CAPS heading above each column does.
+  quote: Rapid Prototyping
+  approx_offset: 2937
+- hazard: heading_style_all_caps
+  note: the footer's five column headings are bare ALL-CAPS lines (CAPABILITIES, CERTIFICATIONS, TECHNICAL
+    MANUFACTURING, INDUSTRIES, COMPANY) and are the only thing assigning the bare labels beneath them.
+    CAPABILITIES occurs 105 times and INDUSTRIES 104 -- roughly twice per page, because the same word
+    is also a top-nav item. So the heading a snippet would need to reach for is itself an ambiguous, doubly-occurring
+    string.
+  quote: TECHNICAL MANUFACTURING
+  approx_offset: 3475
+- hazard: scrape_faithful_typos
+  note: 'seven typos survive the scrape and each one is a form that can only be matched as spelled: ''Hass
+    VF-SS'' for Haas (1), ''semi-conductur'' (1), ''Polyproplene'' (1), ''Nylond 12'' (1), ''Wood FIll''
+    (1), ''manfanufacturing'' (1), ''design-forassembly'' (1). The quoted line is the machine-brand one
+    and packs four builders into a single sentence, so all four share one snippet.'
+  quote: Over 50 Machining centers driven by Star, Tornos Deco, TornosNanos, Hass VF-SS, and Mazak Integrex.
+  approx_offset: 67097
+- hazard: client_side_applications_list
+  note: the semiconductor page lists END PRODUCTS OF EPTAM'S CUSTOMERS' CUSTOMERS as a bare comma list.
+    These read as EPTAM products and are two steps removed from anything it makes. One line, one snippet,
+    three product-shaped forms.
+  quote: Computers, Laptops, Tablets
+  approx_offset: 119174
+third_party_voice:
+- speaker: the five acquired companies (Sterling Manufacturing, Albright Silicone, Relius Medical, Mendell
+    Machine and Manufacturing, Ingram Machining), described in press-release 'About X' boilerplate
+  whose_words: third_party
+  note: the highest-value whose_words case on this subject. Each acquisition announcement ends with third-person
+    'About <company>' paragraphs describing the ACQUIREE's equipment, products, certifications and industries.
+    They sit on EPTAM's domain, in EPTAM's page template, under EPTAM's footer, and they are grammatically
+    ordinary capability prose. The quoted sentence names three machine categories that belong to Ingram
+    Machining, not to EPTAM -- and note that it does not say 'Ingram' anywhere, so the clip must reach
+    up to the 'About Ingram' heading to know whose equipment it is.
+  quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire
+    EDM Machining.
+- speaker: named executives of the acquired companies, in direct quotation
+  whose_words: third_party
+  note: 'the press releases carry direct speech from people who are not EPTAM. The quoted line is the
+    president of the ACQUIRED company speaking about EPTAM in the second person, inside curly quotation
+    marks, on an EPTAM page. Its neighbour two lines up is EPTAM''s own CEO speaking, whose_words: site.
+    Two consecutive quoted paragraphs, opposite speakers, identical typography.'
+  quote: Stan Bowker, President of Sterling, said, “We are excited to be joining the EPTAM family.
+- speaker: former employers named in executive biographies (UFP Technologies, Viant Medical, Vention Medical,
+    ATEK Medical, Parata Systems, Tecomet, Flextronics Medical, iiMED, LongueVue)
+  whose_words: third_party
+  note: the leadership page describes what each executive did AT A PREVIOUS COMPANY, in the past tense,
+    naming products EPTAM does not make. The tense is the only signal, and a sentence-level clip preserves
+    it while a phrase-level one does not.
+  quote: he oversaw the design and manufacture of medical devices, sterile packaging, and robotic surgical
+    drape systems
+- speaker: Frazier Healthcare Partners and New Heritage Capital (the private-equity owners)
+  whose_words: parent
+  note: the owner gets its own 'About Frazier Healthcare Partners' boilerplate, describing a private-equity
+    firm's capital and portfolio. Nothing in it is manufacturing, but it is first-person-adjacent corporate
+    prose on the subject's own domain and it names a healthcare sector focus that reads as a served industry.
+  quote: Founded in 1991, Frazier Healthcare Partners is a leading private equity firm focused exclusively
+    on the healthcare sector.
+- speaker: wedü (the web agency), in the footer credit
+  whose_words: vendor
+  note: 52 occurrences, one per page, and the only line in the file that names its own author. It also
+    carries the U+00A9 COPYRIGHT SIGN and 52 of the file's 54 U+00FC characters, which makes it the single
+    most useful line for checking that a snippet preserved non-ASCII bytes.
+  quote: ©2023 EPTAM Precision - All Rights Reserved. Site by wedü
+- speaker: ISO, FDA, ANVISA, NCSL, AS9100/AS9102, ITAR/DDTC, 21 CFR 820, Mil-I-45662A/45208
+  whose_words: standards_body
+  note: 'the densest standards regime in the batch, and almost all of it lives in the 52-times footer
+    rather than in prose. The FDA appears as four distinct establishment numbers, which is unusual: the
+    standards body is referenced by the subject''s own registration identifiers, so the same body maps
+    to four different scopes on one site.'
+  quote: 'Equipment Calibration: ISO 10012 and/or NCSL Z540 Compliant'
+notes: 'The batch''s hardest subject for this stage, for three separate reasons that do not overlap. (1)
+  OCCURRENCE INFLATION: 47 lines repeat 52+ times and carry the entire certification list, so every attestation''s
+  count is dominated by a footer with no sentence in it, while the one page that actually scopes those
+  attestations to their legal registrants says so exactly once. (2) LIST CONTEXT: the 249-entry country
+  dropdown is printed twice, 498 bare lines, and its ''Country'' label sits BELOW the list, so upward
+  context-seeking -- the correct heuristic everywhere else -- fails here by design. (3) WHOSE_WORDS: five
+  acquired companies, nine former employers and two private-equity owners are all described on EPTAM''s
+  own domain in prose that is grammatically identical to EPTAM''s own. Add the entity drift on top: the
+  subject is keyed to sterlingmfg.net and that string occurs once in the file, inside a paragraph about
+  a company EPTAM bought. Anything that attributes by domain mis-attributes everything here.'
+provenance:
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: harvested:search
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: harvested:expansion-doc
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: corpus-seed

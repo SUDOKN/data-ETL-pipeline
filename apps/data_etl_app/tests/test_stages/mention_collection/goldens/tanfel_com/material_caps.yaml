@@ -1,0 +1,3960 @@
+subject: tanfel.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+golden_set_version: 1
+anchored_on: search/expectations/tanfel_com/material_caps.yaml
+labels:
+- id: tanfel_com-material_caps-0001
+  form: '1018'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "1018\t1020\t1025\t1030\t1040\t1045"
+    approx_offset: 50590
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0002
+  form: '1020'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "1018\t1020\t1025\t1030\t1040\t1045"
+    approx_offset: 50595
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0003
+  form: '1025'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "1018\t1020\t1025\t1030\t1040\t1045"
+    approx_offset: 50600
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0004
+  form: '1030'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "1018\t1020\t1025\t1030\t1040\t1045"
+    approx_offset: 50605
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0005
+  form: '1040'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "1018\t1020\t1025\t1030\t1040\t1045"
+    approx_offset: 50610
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0006
+  form: '1045'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "1018\t1020\t1025\t1030\t1040\t1045"
+    approx_offset: 50615
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0007
+  form: 15-5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "15-5\t17-4"
+    approx_offset: 50749
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0008
+  form: 17-4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "15-5\t17-4"
+    approx_offset: 50754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0009
+  form: 1xxx series aluminum alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0010
+  form: 2xxx series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: 2xxx series alloys are used to build aerospace components and similar products because they
+      can achieve a high strength-to-weight ratio and have good machinability.
+    approx_offset: 54845
+  - quote: 2xxx series alloys are used to build aerospace components and similar products because they
+      can achieve a high strength-to-weight ratio and have good machinability.
+    approx_offset: 75363
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0011
+  form: 300 Series Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: 300 Series Stainless Steel
+    approx_offset: 50422
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0012
+  form: 300 and 400 series stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0013
+  form: 304L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Stainless steel: SS17-4ph, 304L, 420'
+    approx_offset: 28379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0014
+  form: '310'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+    - https://www.tanfel.com/section-301-tariffs-china
+  evidence:
+  - quote: 'App: 440C, 310Nb, 310'
+    approx_offset: 28418
+  - quote: “Sections 301 through 310 of the Trade Act of 1974, as amended, are commonly referred to as
+      “Section 301”.
+    approx_offset: 97248
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0015
+  form: 310Nb
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'App: 440C, 310Nb, 310'
+    approx_offset: 28411
+  - quote: 'Corrosion Resistant: SS316L, 310Nb'
+    approx_offset: 28451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0016
+  form: 3xxx series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: 3xxx series– This alloy type is built with manganese, which raises the aluminum’s strength
+      by 20% while preserving its purity.
+    approx_offset: 55084
+  - quote: 3xxx series– This alloy type is built with manganese, which raises the aluminum’s strength
+      by 20% while preserving its purity.
+    approx_offset: 75602
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0017
+  form: 400 Series Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40304
+  - quote: 400 Series Stainless Steel
+    approx_offset: 50449
+  - quote: 400 Series Stainless Steel
+    approx_offset: 50661
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0018
+  form: '410'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "410\t420\t431\t440C\t440F"
+    approx_offset: 50688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0019
+  form: '4130'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "4130\t4140\t4340\t6150\t8620"
+    approx_offset: 50636
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0020
+  form: '4140'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Through hardened steel: MIM 4650, 4340, 4140, 52100'
+    approx_offset: 28340
+  - quote: "4130\t4140\t4340\t6150\t8620"
+    approx_offset: 50641
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0021
+  form: '420'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Stainless steel: SS17-4ph, 304L, 420'
+    approx_offset: 28385
+  - quote: "410\t420\t431\t440C\t440F"
+    approx_offset: 50692
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0022
+  form: '431'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "410\t420\t431\t440C\t440F"
+    approx_offset: 50696
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0023
+  form: '4340'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Through hardened steel: MIM 4650, 4340, 4140, 52100'
+    approx_offset: 28334
+  - quote: "4130\t4140\t4340\t6150\t8620"
+    approx_offset: 50646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0024
+  form: 440C
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'App: 440C, 310Nb, 310'
+    approx_offset: 28405
+  - quote: "410\t420\t431\t440C\t440F"
+    approx_offset: 50700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0025
+  form: 440F
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "410\t420\t431\t440C\t440F"
+    approx_offset: 50705
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0026
+  form: '4600'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Material: Case hardened steel: MIM8620, 9310, 4600'
+    approx_offset: 28295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0027
+  form: '52100'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Through hardened steel: MIM 4650, 4340, 4140, 52100'
+    approx_offset: 28346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0028
+  form: 5xxx series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: 5xxx series resists corrosion very well, and it also possesses good formability, strength,
+      and weldability, which make it ideally suited for use in marine environments.
+    approx_offset: 55324
+  - quote: However, 5xxx series alloys do not respond well to heat treatment.
+    approx_offset: 55502
+  - quote: 5xxx series resists corrosion very well, and it also possesses good formability, strength,
+      and weldability, which make it ideally suited for use in marine environments.
+    approx_offset: 75842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0029
+  form: '6150'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "4130\t4140\t4340\t6150\t8620"
+    approx_offset: 50651
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0030
+  form: 6xxx series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: 6xxx series is the most prevalently used series of aluminum alloys.
+    approx_offset: 55560
+  - quote: 6xxx series is the most prevalently used series of aluminum alloys.
+    approx_offset: 76078
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0031
+  form: '8620'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "4130\t4140\t4340\t6150\t8620"
+    approx_offset: 50656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0032
+  form: '9310'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Material: Case hardened steel: MIM8620, 9310, 4600'
+    approx_offset: 28289
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0033
+  form: A356
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "A356\tA357"
+    approx_offset: 50844
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0034
+  form: A357
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "A356\tA357"
+    approx_offset: 50849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0035
+  form: ABS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9876
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0036
+  form: AL Die Casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: AL Die Casting
+    approx_offset: 122146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0037
+  form: ALUMINUM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: ALUMINUM EXTRUSION
+    approx_offset: 719
+  - quote: ALUMINUM EXTRUSION
+    approx_offset: 1397
+  - quote: HOME CAPABILITIES ALUMINUM EXTRUSION
+    approx_offset: 51806
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0038
+  form: Acrylic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Acrylic
+    approx_offset: 122238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0039
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 66
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+  evidence:
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 267
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 945
+  - quote: Aluminum Extrusion
+    approx_offset: 2735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0040
+  form: Aluminum (1xxx, 2xxx , 3xxx , 5xxx , 6xxx , 7xxx) series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Aluminum (1xxx, 2xxx , 3xxx , 5xxx , 6xxx , 7xxx) series
+    approx_offset: 57323
+  - quote: Aluminum (1xxx, 2xxx , 3xxx , 5xxx , 6xxx , 7xxx) series
+    approx_offset: 77841
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0041
+  form: Aluminum Alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Aluminum Alloy
+    approx_offset: 50562
+  - quote: Aluminum Alloy
+    approx_offset: 50829
+  - quote: SELECTING THE RIGHT ALUMINUM ALLOY
+    approx_offset: 54391
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0042
+  form: Aluminum alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Alloys: Aluminum alloys, cobalt-based alloys, and nickel-based alloys
+    approx_offset: 40412
+  - quote: Aluminum alloys come with many different properties that enable them to perform well in different
+      applications.
+    approx_offset: 54407
+  - quote: 1xxx series aluminum alloys resist corrosion very well and possess good machinability and weldability.
+    approx_offset: 54616
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0043
+  form: Aluminum billets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Aluminum billets are heated to the desired temperature, which is typically 800–925°F.
+    approx_offset: 53143
+  - quote: Aluminum billets are heated to the desired temperature, which is typically 800–925°F.
+    approx_offset: 73661
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0044
+  form: BIIR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10077
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0045
+  form: BR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10046
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131714
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0046
+  form: Brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/forging/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: 'Materials: Aluminum, Brass, Bronze, Cast Iron, Copper,'
+    approx_offset: 18992
+  - quote: Materials:  Aluminum, Steel, Brass, Bronze, Iron and more
+    approx_offset: 32248
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48568
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0047
+  form: Bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/lathe-turning/
+  evidence:
+  - quote: 'Materials: Aluminum, Brass, Bronze, Cast Iron, Copper,'
+    approx_offset: 18999
+  - quote: Materials:  Aluminum, Steel, Brass, Bronze, Iron and more
+    approx_offset: 32255
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48613
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0048
+  form: CARBIDE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: HOME CAPABILITIES CARBIDE
+    approx_offset: 135557
+  - quote: CARBIDE
+    approx_offset: 135565
+  - quote: Carbide – Cemented carbide – Tungsten carbide
+    approx_offset: 135593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0049
+  form: CIIR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10071
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0050
+  form: CR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10063
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131731
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0051
+  form: Carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+  evidence:
+  - quote: Carbide
+    approx_offset: 19850
+  - quote: Carbide
+    approx_offset: 31273
+  - quote: Carbide
+    approx_offset: 32761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0052
+  form: Carbon Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Carbon Steel
+    approx_offset: 50393
+  - quote: Carbon Steel
+    approx_offset: 50577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0053
+  form: Carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40282
+  - quote: 'Material: Carbon steel, Low alloy steel, Stainless steel,'
+    approx_offset: 48461
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0054
+  form: Case hardened steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Material: Case hardened steel: MIM8620, 9310, 4600'
+    approx_offset: 28259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0055
+  form: Cast Iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: 'Materials: Aluminum, Brass, Bronze, Cast Iron, Copper,'
+    approx_offset: 19007
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0056
+  form: Cast iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Cast iron is hard and strong but features a relatively high degree of elasticity.
+    approx_offset: 82210
+  - quote: Cast iron is hard and strong but features a relatively high degree of elasticity.
+    approx_offset: 140055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0057
+  form: Cemented carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Carbide – Cemented carbide – Tungsten carbide
+    approx_offset: 135584
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0058
+  form: Cobalt Base Alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Cobalt Base Alloy
+    approx_offset: 50544
+  - quote: Cobalt Base Alloy
+    approx_offset: 50810
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0059
+  form: Cobalt alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0060
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: 'Materials: Aluminum, Brass, Bronze, Cast Iron, Copper,'
+    approx_offset: 19018
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48575
+  - quote: Copper is a non-magnetic metal that can be easily drawn, is an excellent conductor, and resists
+      corrosion.
+    approx_offset: 82292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0061
+  form: Copper Alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 82618
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 140463
+  - quote: Copper and Copper Alloys
+    approx_offset: 145970
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0062
+  form: Copper and Brass wire
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: 'Materials: SUS 304 , SUS 316 , Copper and Brass wire'
+    approx_offset: 143538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0063
+  form: CuVerro
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0064
+  form: CuVerro antibacterial copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0065
+  form: D2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Tool steel: S7, M2, D2'
+    approx_offset: 28573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0066
+  form: EPDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10030
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0067
+  form: EPM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10036
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131704
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0068
+  form: Fe-49Co-2V
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Magnetic material: Fe3Si, SS430, Fe-49Co-2V'
+    approx_offset: 28490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0069
+  form: Fe-Alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: Mild Steels and Fe-Alloys
+    approx_offset: 146074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0070
+  form: Fe3Si
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Magnetic material: Fe3Si, SS430, Fe-49Co-2V'
+    approx_offset: 28476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0071
+  form: HDPE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9887
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131555
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0072
+  form: Hardened metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19026
+  - quote: Hardened metals have been heat-treated for additional exterior hardness and damage resistance.
+    approx_offset: 82399
+  - quote: Hardened metals have been heat-treated for additional exterior hardness and damage resistance.
+    approx_offset: 140244
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0073
+  form: Hardened metals have been heat-treated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Hardened metals have been heat-treated for additional exterior hardness and damage resistance.
+    approx_offset: 82399
+  - quote: Hardened metals have been heat-treated for additional exterior hardness and damage resistance.
+    approx_offset: 140244
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0074
+  form: Heat resistant alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48535
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0075
+  form: IR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10067
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0076
+  form: Inconel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Heavy / Super Alloy: WHA1, WHA2, Inconel, Nimonic90'
+    approx_offset: 28534
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0077
+  form: Iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/lathe-turning/
+  evidence:
+  - quote: 'Materials: Aluminum, Brass, Bronze, Cast Iron, Copper,'
+    approx_offset: 19012
+  - quote: Materials:  Aluminum, Steel, Brass, Bronze, Iron and more
+    approx_offset: 32263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0078
+  form: LCP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9918
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131586
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0079
+  form: Large Carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Large Carbide
+    approx_offset: 121802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0080
+  form: Low Alloy Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Low Alloy Steel
+    approx_offset: 50406
+  - quote: Low Alloy Steel
+    approx_offset: 50620
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0081
+  form: Low alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: 'Material: Carbon steel, Low alloy steel, Stainless steel,'
+    approx_offset: 48475
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0082
+  form: M2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Tool steel: S7, M2, D2'
+    approx_offset: 28569
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0083
+  form: MAGNESIUM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: 'DIE CAST METALS: ALUMINUM, ZINC, AND MAGNESIUM'
+    approx_offset: 69151
+  - quote: MAGNESIUM
+    approx_offset: 69280
+  - quote: 'BASIC GUIDELINES FOR ALUMINUM, ZINC AND MAGNESIUM ALLOYS:'
+    approx_offset: 69794
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0084
+  form: MAGNESIUM ALLOYS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: 'BASIC GUIDELINES FOR ALUMINUM, ZINC AND MAGNESIUM ALLOYS:'
+    approx_offset: 69794
+  - quote: 'MAGNESIUM ALLOYS:'
+    approx_offset: 70164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0085
+  form: MIM 4650
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Through hardened steel: MIM 4650, 4340, 4140, 52100'
+    approx_offset: 28324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0086
+  form: MIM8620
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Material: Case hardened steel: MIM8620, 9310, 4600'
+    approx_offset: 28280
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0087
+  form: Magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 277
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 955
+  - quote: 'Die Casting: Aluminum, Magnesium & Zinc'
+    approx_offset: 121565
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0088
+  form: Mild Steels and Fe-Alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: Mild Steels and Fe-Alloys
+    approx_offset: 146058
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0089
+  form: Molybdenum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cemented-carbide/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 82644
+  - quote: 'Material: Carbide , Tungsten, Molybdenum, Tantalum, Niobium'
+    approx_offset: 136273
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 140489
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0090
+  form: NBR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10054
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0091
+  form: NR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10050
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131718
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0092
+  form: Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19043
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28169
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0093
+  form: Nickel Alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19052
+  - quote: 'Materials: Aluminum, Copper, Zinc, Steel, Nickel and Nickel Alloys'
+    approx_offset: 123427
+  - quote: Nickel & Nickel Alloys
+    approx_offset: 146044
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0094
+  form: Nickel Base Alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Nickel Base Alloy
+    approx_offset: 50526
+  - quote: Nickel Base Alloy
+    approx_offset: 50791
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0095
+  form: Nickel Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0096
+  form: Nickel alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 82562
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 140407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0097
+  form: Nimonic90
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Heavy / Super Alloy: WHA1, WHA2, Inconel, Nimonic90'
+    approx_offset: 28543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0098
+  form: Niobium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: 'Material: Carbide , Tungsten, Molybdenum, Tantalum, Niobium'
+    approx_offset: 136295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0099
+  form: Nylon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9906
+  - quote: Nylon Extrusion
+    approx_offset: 122222
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0100
+  form: PBT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9913
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131581
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0101
+  form: PC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9707
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9872
+  - quote: PC films caps download silicone product sheet here
+    approx_offset: 17038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0102
+  form: PMMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9881
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0103
+  form: PP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9898
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131566
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0104
+  form: PU
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9902
+  - quote: 'Protective Coating: Glossy / Matte / EM / PU / Metallic'
+    approx_offset: 16849
+  - quote: 'Protective Coating: Glossy / Matte / EM / PU / Metallic'
+    approx_offset: 129849
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0105
+  form: PVC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 9893
+  - quote: 'Materials include: PC, ABS, PMMA, HDPE, PVC, PP, PU, Nylon, PBT, LCP'
+    approx_offset: 131561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0106
+  form: Polycarbonate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Polyester or Polycarbonate overlays
+    approx_offset: 111215
+  - quote: Polyester or Polycarbonate overlays
+    approx_offset: 127157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0107
+  form: Polyester
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Polyester or Polycarbonate overlays
+    approx_offset: 111202
+  - quote: Polyester or Polycarbonate overlays
+    approx_offset: 127144
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0108
+  form: Polyester or Polycarbonate overlays
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Polyester or Polycarbonate overlays
+    approx_offset: 111202
+  - quote: Polyester or Polycarbonate overlays
+    approx_offset: 127144
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0109
+  form: Precipitation Hardened Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Precipitation Hardened Stainless Steel
+    approx_offset: 50476
+  - quote: Precipitation Hardened Stainless Steel
+    approx_offset: 50710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0110
+  form: S7
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Tool steel: S7, M2, D2'
+    approx_offset: 28565
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0111
+  form: SBR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10041
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0112
+  form: SILICONE RUBBER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.tanfel.com/additional-capabilities
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+    - https://www.tanfel.com/products/plastic-products
+  evidence:
+  - quote: Silicone Rubber Products
+    approx_offset: 10384
+  - quote: HOME CAPABILITIES SILICONE RUBBER PRODUCTS
+    approx_offset: 15750
+  - quote: SILICONE RUBBER PRODUCTS
+    approx_offset: 15775
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0113
+  form: SK2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "SK2\tSKD11\tSKD61\tSKS3"
+    approx_offset: 50770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0114
+  form: SKD11
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "SK2\tSKD11\tSKD61\tSKS3"
+    approx_offset: 50774
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0115
+  form: SKD61
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "SK2\tSKD11\tSKD61\tSKS3"
+    approx_offset: 50780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0116
+  form: SKS3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: "SK2\tSKD11\tSKD61\tSKS3"
+    approx_offset: 50786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0117
+  form: SR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 10059
+  - quote: 'Polymers Available: EPDM, EPM, SBR, BR, NR, NBR, SR, CR, IR, CIIR, BIIR'
+    approx_offset: 131727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0118
+  form: SS17-4ph
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Stainless steel: SS17-4ph, 304L, 420'
+    approx_offset: 28369
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0119
+  form: SS301
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: 'Stainless Steel: SS304, SS301, SS302, SS316, SS430'
+    approx_offset: 146008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0120
+  form: SS302
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: 'Stainless Steel: SS304, SS301, SS302, SS316, SS430'
+    approx_offset: 146015
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0121
+  form: SS304
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: 'Stainless Steel: SS304, SS301, SS302, SS316, SS430'
+    approx_offset: 146001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0122
+  form: SS316
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: 'Stainless Steel: SS304, SS301, SS302, SS316, SS430'
+    approx_offset: 146022
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0123
+  form: SS316L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Corrosion Resistant: SS316L, 310Nb'
+    approx_offset: 28443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0124
+  form: SS430
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: 'Magnetic material: Fe3Si, SS430, Fe-49Co-2V'
+    approx_offset: 28483
+  - quote: 'Stainless Steel: SS304, SS301, SS302, SS316, SS430'
+    approx_offset: 146029
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0125
+  form: SUS 304
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: 'Materials: SUS 304 , SUS 316 , Copper and Brass wire'
+    approx_offset: 143518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0126
+  form: SUS 316
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: 'Materials: SUS 304 , SUS 316 , Copper and Brass wire'
+    approx_offset: 143528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0127
+  form: Sand
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 46
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/automotive/
+  evidence:
+  - quote: '& SAND CASTING'
+    approx_offset: 241
+  - quote: 'Sand Casting: Great for smaller volume and larger size parts.'
+    approx_offset: 356
+  - quote: '& SAND CASTING'
+    approx_offset: 919
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0128
+  form: Sheet Metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/industries/music/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+  evidence:
+  - quote: Sheet Metal
+    approx_offset: 19858
+  - quote: Sheet Metal
+    approx_offset: 31281
+  - quote: Sheet Metal
+    approx_offset: 32769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0129
+  form: Silicone rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16607
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 129607
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0130
+  form: Small Carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Small Carbide
+    approx_offset: 122021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0131
+  form: Stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/cemented-carbide/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19067
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28151
+  - quote: 'Stainless steel: SS17-4ph, 304L, 420'
+    approx_offset: 28352
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0132
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28151
+  - quote: 300 Series Stainless Steel
+    approx_offset: 50433
+  - quote: 400 Series Stainless Steel
+    approx_offset: 50460
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0133
+  form: Stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/forging/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19067
+  - quote: 'Stainless steel: SS17-4ph, 304L, 420'
+    approx_offset: 28352
+  - quote: 'Material: Carbon steel, Low alloy steel, Stainless steel,'
+    approx_offset: 48492
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0134
+  form: Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/lathe-turning/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28161
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28176
+  - quote: Materials:  Aluminum, Steel, Brass, Bronze, Iron and more
+    approx_offset: 32241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0135
+  form: Tac
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0136
+  form: Tantalum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135669
+  - quote: 'Material: Carbide , Tungsten, Molybdenum, Tantalum, Niobium'
+    approx_offset: 136285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0137
+  form: Tantalum carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135669
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0138
+  form: Teflon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Finish:  Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder
+      coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 69454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0139
+  form: Through hardened steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Through hardened steel: MIM 4650, 4340, 4140, 52100'
+    approx_offset: 28300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0140
+  form: TiC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0141
+  form: Titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+    - https://www.tanfel.com/products/forging/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28195
+  - quote: 'Material: Aluminum, Brass, Stainless steel, Titanium Grade 2'
+    approx_offset: 132934
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0142
+  form: Titanium Grade 2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/forging/
+  evidence:
+  - quote: 'Material: Aluminum, Brass, Stainless steel, Titanium Grade 2'
+    approx_offset: 132934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0143
+  form: Titanium carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0144
+  form: Tool Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Tool Steel
+    approx_offset: 50515
+  - quote: Tool Steel
+    approx_offset: 50759
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0145
+  form: Tool steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28183
+  - quote: 'Tool steel: S7, M2, D2'
+    approx_offset: 28553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0146
+  form: Tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Carbide – Cemented carbide – Tungsten carbide
+    approx_offset: 135603
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135621
+  - quote: 'Material: Carbide , Tungsten, Molybdenum, Tantalum, Niobium'
+    approx_offset: 136263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0147
+  form: Tungsten carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Carbide – Cemented carbide – Tungsten carbide
+    approx_offset: 135603
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0148
+  form: WC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tungsten carbide – WC , Titanium carbide – TiC, Tantalum carbide – Tac
+    approx_offset: 135640
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0149
+  form: WHA1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Heavy / Super Alloy: WHA1, WHA2, Inconel, Nimonic90'
+    approx_offset: 28522
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0150
+  form: WHA2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: 'Heavy / Super Alloy: WHA1, WHA2, Inconel, Nimonic90'
+    approx_offset: 28528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0151
+  form: ZINC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: 'DIE CAST METALS: ALUMINUM, ZINC, AND MAGNESIUM'
+    approx_offset: 69141
+  - quote: ZINC
+    approx_offset: 69206
+  - quote: 'BASIC GUIDELINES FOR ALUMINUM, ZINC AND MAGNESIUM ALLOYS:'
+    approx_offset: 69785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0152
+  form: ZINC ALLOYS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: 'ZINC ALLOYS:'
+    approx_offset: 69960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0153
+  form: Zinc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/metal-casting/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 288
+  - quote: 'Die Casting: Aluminum, Magnesium, Zinc'
+    approx_offset: 966
+  - quote: Zinc die casting with black nickel finish
+    approx_offset: 41020
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0154
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 49
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Die casting uses tool steel molds to create castings from softer metals like zinc and aluminum.
+    approx_offset: 37996
+  - quote: Although aluminum can be used in this process, die casting may be a better alternative.
+    approx_offset: 48371
+  - quote: Extrusion is an inexpensive and fast way to create aluminum parts without resorting to extensive
+      machine work.
+    approx_offset: 51896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0155
+  form: billets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Aluminum billets are heated to the desired temperature, which is typically 800–925°F.
+    approx_offset: 53152
+  - quote: The billets are coated with a lubricant and transferred to a loader.
+    approx_offset: 53343
+  - quote: Aluminum billets are heated to the desired temperature, which is typically 800–925°F.
+    approx_offset: 73670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0156
+  form: black nickel finish
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Zinc die casting with black nickel finish
+    approx_offset: 41042
+  - quote: Zinc Die-Cast Black Nickel Finish
+    approx_offset: 121610
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0157
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Common applications for brass include decorations.
+    approx_offset: 82055
+  - quote: Common applications for brass include decorations.
+    approx_offset: 139900
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0158
+  form: bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 5
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0159
+  form: carbon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/metal-casting/
+    - https://www.tanfel.com/products/silicone-rubber-products
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16680
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40282
+  - quote: 'Material: Carbon steel, Low alloy steel, Stainless steel,'
+    approx_offset: 48461
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0160
+  form: cast iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 3
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0161
+  form: cemented carbide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0162
+  form: ceramic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Chemically bonded processes such as nobake or shell can have a similar finish to ceramic processes.
+    approx_offset: 22850
+  - quote: Expendable molds are made from materials such as sand or ceramic.
+    approx_offset: 34444
+  - quote: Mold creators then encase the wax in ceramic to create a longer-lasting mold that can be used
+      multiple times without degradation.
+    approx_offset: 36874
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0163
+  form: ceramics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+  evidence:
+  - quote: Most materials including metal, plastic, and ceramics can be milled.
+    approx_offset: 18131
+  - quote: Depending on the nature of your product and its intended applications, you can also request
+      machining processes for different varieties of plastics and ceramics.
+    approx_offset: 83136
+  - quote: Depending on the nature of your product and its intended applications, you can also request
+      machining processes for different varieties of plastics and ceramics.
+    approx_offset: 140981
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0164
+  form: chromium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Stainless steel also contains chromium and has excellent resistance to corrosion.
+    approx_offset: 82842
+  - quote: Stainless steel also contains chromium and has excellent resistance to corrosion.
+    approx_offset: 140687
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0165
+  form: clay
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: In sand casting, molds are made from mixtures of sand and clay.
+    approx_offset: 37366
+  - quote: Builders pack the sand and clay mixture over an existing model or pattern to give it structural
+      integrity before the molten metal is poured into the mold.
+    approx_offset: 37399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0166
+  form: cobalt-based alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Alloys: Aluminum alloys, cobalt-based alloys, and nickel-based alloys
+    approx_offset: 40429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0167
+  form: conductive rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Once you give us a concept, we can design and produce a high quality and low-cost conductive
+      rubber pad that precisely meets your needs.
+    approx_offset: 16272
+  - quote: Once you give us a concept, we can design and produce a high quality and low-cost conductive
+      rubber pad that precisely meets your needs.
+    approx_offset: 129272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0168
+  form: copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/investment-casting/
+  evidence:
+  - quote: Nickel and Cobalt alloys, Heat resistant alloys, Aluminum, Brass, Copper, CuVerro antibacterial
+      copper, Bronze
+    approx_offset: 48605
+  - quote: Brass is a non-magnetic copper-zinc alloy that is easy to machine and cast.
+    approx_offset: 81979
+  - quote: Bronze is a non-magnetic copper-tin alloy that is ductile, resistant to corrosion, and comes
+      in multiple specialized varieties.
+    approx_offset: 82107
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0169
+  form: copper-tin alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Bronze is a non-magnetic copper-tin alloy that is ductile, resistant to corrosion, and comes
+      in multiple specialized varieties.
+    approx_offset: 82107
+  - quote: Bronze is a non-magnetic copper-tin alloy that is ductile, resistant to corrosion, and comes
+      in multiple specialized varieties.
+    approx_offset: 139952
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0170
+  form: copper-zinc alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Brass is a non-magnetic copper-zinc alloy that is easy to machine and cast.
+    approx_offset: 81979
+  - quote: Brass is a non-magnetic copper-zinc alloy that is easy to machine and cast.
+    approx_offset: 139824
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0171
+  form: flat sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 117288
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 163142
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 164350
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0172
+  form: glass beads
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Abrasive blasting using materials like sand and glass beads produces smooth finish at a lower
+      cost for clients.
+    approx_offset: 24700
+  - quote: Abrasive blasting using materials like sand and glass beads produces smooth finish at a lower
+      cost for clients.
+    approx_offset: 158149
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0173
+  form: gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16688
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 129688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0174
+  form: iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Aluminum will have a smoother finish than iron or steel castings.
+    approx_offset: 23323
+  - quote: Metal injection molded parts are up to 98% as dense as wrought iron.
+    approx_offset: 29563
+  - quote: Cast iron is hard and strong but features a relatively high degree of elasticity.
+    approx_offset: 82215
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0175
+  form: low-alloy steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0176
+  form: magnesium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/die-casting/
+  evidence:
+  - quote: Most die castings are aluminum, magnesium, or zinc.
+    approx_offset: 68492
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0177
+  form: manganese
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: 3xxx series– This alloy type is built with manganese, which raises the aluminum’s strength
+      by 20% while preserving its purity.
+    approx_offset: 55127
+  - quote: 3xxx series– This alloy type is built with manganese, which raises the aluminum’s strength
+      by 20% while preserving its purity.
+    approx_offset: 75645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0178
+  form: molding sand
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 21570
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 155019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0179
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19052
+  - quote: Alloys: Aluminum alloys, cobalt-based alloys, and nickel-based alloys
+    approx_offset: 40454
+  - quote: Zinc die casting with black nickel finish
+    approx_offset: 41048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0180
+  form: nickel-based alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Alloys: Aluminum alloys, cobalt-based alloys, and nickel-based alloys
+    approx_offset: 40454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0181
+  form: nickel-copper alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 82611
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 140456
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0182
+  form: nickel-iron alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 82591
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 140436
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0183
+  form: nickel-molybdenum alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 82637
+  - quote: Nickel alloys, which include nickel-iron alloys, nickel-copper alloys, and nickel-molybdenum
+      alloys.
+    approx_offset: 140482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0184
+  form: plastic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://www.tanfel.com/additional-capabilities
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/cnc-milling/
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: HOME CAPABILITIES PLASTIC PRODUCTS
+    approx_offset: 9278
+  - quote: PLASTIC PRODUCTS
+    approx_offset: 9295
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0185
+  form: plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/products/cnc-machining-service/
+  evidence:
+  - quote: Depending on the nature of your product and its intended applications, you can also request
+      machining processes for different varieties of plastics and ceramics.
+    approx_offset: 83123
+  - quote: Depending on the nature of your product and its intended applications, you can also request
+      machining processes for different varieties of plastics and ceramics.
+    approx_offset: 140968
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0186
+  form: precipitation hardened stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40332
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0187
+  form: sand
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 30
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 21578
+  - quote: After the sand and the chemical binder are mixed with a catalyst, the binder will begin to
+      harden the entire mixture.
+    approx_offset: 21594
+  - quote: Shell mold casting is similar to sand casting, but benefits from the use of reusable patterns.
+    approx_offset: 21882
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0188
+  form: sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/2019/02/
+    - https://www.tanfel.com/blog/
+    - https://www.tanfel.com/category/uncategorized/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/photo-etching-chemical-etching/
+  evidence:
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 117293
+  - quote: Chemical milling corrosively machines away selected sheet metal material to produce a complex
+      part with fine detail.
+    approx_offset: 144853
+  - quote: 'Metal Stamping Processes: Getting the Shape You Need With Tanfel   With metal stamping, flat
+      sheet metal is transformed into specific forms or shapes through techniques such as baking, bending,
+      or punching.'
+    approx_offset: 163147
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0189
+  form: sheet, coil or strip
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Fabricated products made from sheet, coil or strip with a large variety of material choices.
+    approx_offset: 134048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0190
+  form: silicone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://www.tanfel.com/additional-capabilities
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Silicone Rubber Products
+    approx_offset: 10384
+  - quote: HOME CAPABILITIES SILICONE RUBBER PRODUCTS
+    approx_offset: 15750
+  - quote: SILICONE RUBBER PRODUCTS
+    approx_offset: 15775
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0191
+  form: silicone rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Tanfel offers silicone rubber and plastic keypads / keyboards for use in computers, mobile
+      phones, data organizers, calculators, remote controls and numerous other items.
+    approx_offset: 16032
+  - quote: Tanfel offers silicone rubber and plastic keypads / keyboards for use in computers, mobile
+      phones, data organizers, calculators, remote controls and numerous other items.
+    approx_offset: 129032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0192
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: This casting process can be used to create steel and stainless steel metal parts.
+    approx_offset: 37020
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40315
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0193
+  form: steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Hardened metals, Nickel / nickel alloys, Stainless steel
+    approx_offset: 19077
+  - quote: Aluminum will have a smoother finish than iron or steel castings.
+    approx_offset: 23331
+  - quote: Materials:  Stainless Steel , Nickel Steel, Tool steel, Titanium and more.
+    approx_offset: 28188
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0194
+  form: tool steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Die casting uses tool steel molds to create castings from softer metals like zinc and aluminum.
+    approx_offset: 37927
+  - quote: Steels: Carbon steel, 300 and 400 series stainless steel, precipitation hardened stainless
+      steel, low-alloy steel, and tool steel
+    approx_offset: 40393
+  - quote: Carbide is more expensive than standard tool steel.
+    approx_offset: 136143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0195
+  form: tungsten
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 3
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0196
+  form: wax
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Investment casting—or precision casting—uses specialty wax molds to create highly detailed
+      and intricate models that capture every detail of the design.
+    approx_offset: 36739
+  - quote: Mold creators then encase the wax in ceramic to create a longer-lasting mold that can be used
+      multiple times without degradation.
+    approx_offset: 36867
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0197
+  form: wax molds
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Investment casting—or precision casting—uses specialty wax molds to create highly detailed
+      and intricate models that capture every detail of the design.
+    approx_offset: 36739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-material_caps-0198
+  form: zinc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/cnc-machining-service/
+    - https://www.tanfel.com/products/die-casting/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Die casting uses tool steel molds to create castings from softer metals like zinc and aluminum.
+    approx_offset: 37987
+  - quote: Most die castings are aluminum, magnesium, or zinc.
+    approx_offset: 68506
+  - quote: Relatively lightweight (270% lighter than zinc)
+    approx_offset: 69871
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

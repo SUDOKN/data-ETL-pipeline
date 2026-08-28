@@ -1,0 +1,338 @@
+subject: acimachine.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/acimachine.com.txt
+  sha256: 05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b
+golden_set_version: 1
+anchored_on: search/expectations/acimachine_com/process_caps.yaml
+labels:
+- id: acimachine_com-process_caps-0001
+  form: Ball Bar Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Ball Bar Testing
+    approx_offset: 14856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0002
+  form: Machine & Option Installations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Machine & Option Installations
+    approx_offset: 14763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0003
+  form: Maintenance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 46
+    pages:
+    - https://acimachine.com/equipment/7190948-chevalier-fbl-300-cnc-lathes
+    - https://acimachine.com/equipment/7191000-jet-jsh-275-10-hoists-all-types
+    - https://acimachine.com/equipment/7191001-jet-jsh-275-15-hoists-all-types
+    - https://acimachine.com/equipment/7191002-jet-jsh-275-20-hoists-all-types
+    - https://acimachine.com/equipment/7191005-jet-jsh-550-10-hoists-all-types
+  evidence:
+  - quote: Troubleshooting - Repairs - Maintenance
+    approx_offset: 14395
+  - quote: Maintenance
+    approx_offset: 14844
+  - quote: The maintenance-free gear train incorporates a sealed oil bath, for reliability and durability.
+    approx_offset: 178454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0004
+  form: Mechanical & Electrical Troubleshooting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Mechanical & Electrical Troubleshooting
+    approx_offset: 14695
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0005
+  form: Part Replacements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Part Replacements
+    approx_offset: 14794
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0006
+  form: Precision Leveling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Precision Leveling
+    approx_offset: 14823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0007
+  form: Retrofit
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Retrofit
+    approx_offset: 14814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0008
+  form: Spindle & Control Repairs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Spindle & Control Repairs
+    approx_offset: 14735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0009
+  form: Troubleshooting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://acimachine.com/support
+  evidence:
+  - quote: Troubleshooting - Repairs - Maintenance
+    approx_offset: 14367
+  - quote: Mechanical & Electrical Troubleshooting
+    approx_offset: 14719
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0010
+  form: ball bar test
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0011
+  form: control repair
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0012
+  form: leveling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://acimachine.com/equipment/7191942-willis-2280-engine-lathes
+    - https://acimachine.com/equipment/7191943-willis-2680cnc-cnc-lathes
+    - https://acimachine.com/equipment/7191944-willis-30120-6-cnc-lathes
+    - https://acimachine.com/support
+  evidence:
+  - quote: Precision Leveling
+    approx_offset: 14833
+  - quote: Leveling Blocks
+    approx_offset: 840735
+  - quote: Leveling Blocks
+    approx_offset: 916897
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0013
+  form: machine installation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0014
+  form: part replacement
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0015
+  form: precision sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://acimachine.com/equipment/7191343-jet-evbs-20-vertical-band-saws
+    - https://acimachine.com/equipment/7191344-jet-evbs-26-vertical-band-saws
+  evidence:
+  - quote: Featuring variable speed drivetrains with precision balanced cast-iron blade wheels with a
+      bonded rubber blade track, precision ground articulating table, 4.2 KVA Bi-Metal Blade stations,
+      and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of
+      ferrous and non-
+    approx_offset: 746620
+  - quote: Featuring variable speed drivetrains with precision balanced cast-iron blade wheels with a
+      bonded rubber blade track, precision ground articulating table, 4.2 KVA Bi-Metal Blade stations,
+      and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of
+      ferrous and non-
+    approx_offset: 2291575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0016
+  form: selling and servicing machine tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://acimachine.com/About_Us
+    - https://acimachine.com/support
+  evidence:
+  - quote: ACI Machine Tool Sales has been active in the business of selling and servicing machine tools
+      since Mark Cox founded the company in 2001.
+    approx_offset: 14467
+  - quote: ACI Machine Tool Sales has been active in the business of selling and servicing machine tools
+      since Mark Cox founded the company in 2001.
+    approx_offset: 74554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0017
+  form: servicing machine tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://acimachine.com/About_Us
+    - https://acimachine.com/support
+  evidence:
+  - quote: ACI Machine Tool Sales has been active in the business of selling and servicing machine tools
+      since Mark Cox founded the company in 2001.
+    approx_offset: 14479
+  - quote: ACI Machine Tool Sales has been active in the business of selling and servicing machine tools
+      since Mark Cox founded the company in 2001.
+    approx_offset: 74566
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-process_caps-0018
+  form: spindle repair
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

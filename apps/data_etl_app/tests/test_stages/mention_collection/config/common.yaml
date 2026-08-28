@@ -1,0 +1,147 @@
+# Mention-stage evaluation — shared configuration.
+#
+# The code half (checks/) reads `thresholds`, `enforcement` and `noise`.
+# Everything else is the instrument's declarative record, maintained by hand
+# through the RUNBOOK's evolution step.
+
+taxonomy_version: 1   # the integer the change log tracks; the CACHE key is the
+                      # sha256 of TAXONOMY.md (checks/paths.taxonomy_version)
+
+thresholds:
+  # Mechanical facts only. Every one of these was a real defect; each is now
+  # exact because the mechanical half is deterministic and has no noise floor.
+  not_described_max: 0
+  unknown_answer_ids_max: 0
+  url_in_location_max: 0
+  banned_opener_max: 0
+  cross_reference_max: 0
+  mentions_on_excluded_pages_max: 0
+  # Judged rates never gate; they are banded once a noise floor exists.
+  gate_on_judged_rates: false
+
+enforcement:
+  # Flip a check on only when its upstream fix has landed, and record the flip.
+  form_in_own_snippet: true
+  mention_id_is_snippet_hash: true
+  no_duplicate_occurrences: true
+  collapsed_names_its_target: true      # D21, 2026-08-27
+  products_equals_contract_products: true
+  pv_matches_metadata: true
+
+noise:
+  # The Location stage's A/A reproducibility has NEVER been measured. Until
+  # checks/aa_probe.py measures it, no location band gates and no location
+  # delta below this is reported as a result.
+  location_aa_floor: null
+  fallback_relative_band: 0.15
+  # Measured elsewhere on this pipeline, for calibration only:
+  reference_floors:
+    freehand_grounding_row_identity: [0.777, 0.901]
+    search_window_set_identity: 0.284
+    search_per_form_jaccard: 0.769
+
+prices:
+  # gpt-4.1, USD per million tokens; used for the cost line only.
+  input_per_million: 2.00
+  output_per_million: 8.00
+
+born_from_baselines:
+  # Run 20260824T020729 = the byte-exact mention stage of the completed run
+  # 20260825T194457. PRE-D8-REVERSAL: every number below is stale for any run
+  # after 2026-08-27 and is kept as the "before" side of that change.
+  source_run: '20260824T020729'
+  stale_after: '2026-08-27'   # bbfc42b reversed D8 and added D21
+  mentions: 6085
+  distinct_snippets_windowed: 3345
+  described: 3345
+  not_described: 0
+  retried: 0
+  unknown_answer_ids: 0
+  zero_hit_forms: 0
+  empty_groups: 115
+  empty_groups_cause: 'all longest-span containment — a cause that no longer exists'
+  banned_openers: 0
+  urls_in_locations: 0
+  cross_references: 0
+  location_len_median: 154
+  location_len_p90: 224
+  location_share_of_payload: 0.611
+  attribution_slot_filled: 1.00
+  attribution_boilerplate_share: 0.995   # "in the site's own copy"
+  party_carry_through: 0.66
+  mean_mentions_per_group: 2.27
+  single_mention_share: 0.671
+  input_tokens: 942984
+  output_tokens: 234723
+  usd: 3.76
+  client_latency_p50_s: 7.9
+  client_latency_p90_s: 15.6
+  location_correctness: null   # S2 AND S3 AND S4 — never measured
+  dilution_rate: null          # I1 — impossible before the D8 reversal
+
+watch_items:
+  - id: MW-1
+    title: Decentralization dilution
+    class: emerged
+    first_seen: '2026-08-27'
+    provenance: 'bbfc42b reversed D8; fold_dump_util comment records door 60 -> 157 entries'
+    detector: 'checks/loading.FieldRun.nested_mentions'
+    measure: 'I1 dilution rate; nested_occurrences; groups_over_50_entries'
+    expect: 'unknown — no run exists on the new code'
+    status: {}
+
+  - id: MW-2
+    title: Attribution slot is boilerplate
+    class: remaining
+    first_seen: '2026-08-24'
+    provenance: 'run 020729: 2,791 of 2,805 locations say "in the site''s own copy"'
+    detector: 'metrics.attribution_boilerplate_share'
+    measure: 'S4 pass rate on passages that are NOT the site''s own words'
+    expect: 'the slot is filled 100%; its correctness is unknown'
+    status: {}
+
+  - id: MW-3
+    title: Snippet extent may truncate sense
+    class: latent
+    first_seen: '2026-08-26'
+    provenance: 'synthesis CANDIDATE_DIMENSIONS C1 blames this stage''s clipping radius'
+    detector: 'S1 judgments'
+    measure: 'S1 fail rate, sliced by snippet kind (table row / heading / prose)'
+    expect: 'unknown; snippet_radius has never been exercised above 0'
+    status: {}
+
+  - id: MW-4
+    title: Location verbosity
+    class: remaining
+    first_seen: '2026-08-24'
+    provenance: 'locations are 61.1% of the synthesis evidence payload'
+    detector: 'metrics.location_len_median, location_chars'
+    measure: 'median length and share of payload; direction wanted: down'
+    expect: 'median 154 chars at the 020729 baseline'
+    status: {}
+
+  - id: MW-5
+    title: Groups past the synthesis packing limit
+    class: emerged
+    first_seen: '2026-08-24'
+    provenance: 'steelcraft products already had one 60-entry group pre-D8; D8 grows this'
+    detector: 'metrics.groups_over_50_entries'
+    measure: 'count per field; handed to synthesis (BOUNDARY.md)'
+    expect: '1 per products field at the 020729 baseline'
+    status: {}
+
+  - id: MW-6
+    title: Empty groups changed meaning
+    class: improved
+    first_seen: '2026-08-27'
+    provenance: 'containment was the sole cause; the D8 reversal removed it'
+    detector: 'metrics.empty_groups'
+    measure: 'exported to the search eval, never gated here (BOUNDARY.md)'
+    expect: 'should fall sharply from 115; the residue is search false positives'
+    status: {}
+
+notes: >
+  Tripwires gate, judged rates do not. The mechanical half of this stage is
+  deterministic, so its checks are exact; everything a model wrote has a noise
+  floor and is banded once that floor is measured. No run exists on the current
+  code (bbfc42b, 2026-08-27), so every baseline here is the "before" side.

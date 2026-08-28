@@ -1,0 +1,1196 @@
+subject: decimal.net
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+golden_set_version: 1
+anchored_on: search/expectations/decimal_net/equipments.yaml
+labels:
+- id: decimal_net-equipments-0001
+  form: 2D/3D Laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: 2D/3D Laser (with load/unload)
+    approx_offset: 20442
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0002
+  form: 2D/3D Laser (with load/unload)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: 2D/3D Laser (with load/unload)
+    approx_offset: 20442
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0003
+  form: 3-axis vertical mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Our 3-axis vertical mills are capable of machining parts up to 60″ in length, 25″ in width,
+      and 27″ in height, while our 4-axis horizontal mills have a work envelope of 22″ x 20″ x 20″.
+    approx_offset: 5704
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0004
+  form: 4-axis horizontal mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Our 3-axis vertical mills are capable of machining parts up to 60″ in length, 25″ in width,
+      and 27″ in height, while our 4-axis horizontal mills have a work envelope of 22″ x 20″ x 20″.
+    approx_offset: 5821
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0005
+  form: 9-axis Mill/Turn centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Last but not least, are our 9-axis Mill/Turn centers which are capable of machining parts up
+      to 8.2″ in diameter by 12″ in length.
+    approx_offset: 5914
+  - quote: CNC 9-Axis Mill/Turn Centers
+    approx_offset: 7494
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0006
+  form: A71NX-571
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.decimal.net/decimal-adds-the-makino-a71nx-571-to-its-already-stacked-line-up/
+    - https://www.decimal.net/decimal-engineering-wins-sfma-manufacture-of-the-year/
+    - https://www.decimal.net/news/
+  evidence:
+  - quote: DECIMAL ADDS THE MAKINO A71NX-571 TO IT’S ALREADY STACKED LINE UP!
+    approx_offset: 48513
+  - quote: Decimal Engineering adds the Makino A71NX-571 to handle it’s growing demand in precision manufacturing
+      business.
+    approx_offset: 48593
+  - quote: The Makino A71NX-571 sets a new benchmark in machining excellence with its advanced features
+      and capabilities and Decimal is already putting this workhorse in action.
+    approx_offset: 48681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0007
+  form: Auto-Sert
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Haeger and Auto-Sert Insertion MachinesMiller Welding Machines
+    approx_offset: 20606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0008
+  form: Beyeler Press Brakes (9-Axis of control)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0009
+  form: Beyeler press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Our Beyeler press brakes can provide bending of up to 9 axes of control allowing for unmatched
+      versatility.
+    approx_offset: 17255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0010
+  form: Bridgeport Mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Bridgeport Mills
+    approx_offset: 7473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0011
+  form: ByStar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: Our New Bystronic ByStar 12,000 Fiber Laser Laser has a maximum power output of 12,000 watts
+      and a cutting table that can accommodate sheets up to 120″ in length and 60″ in width.
+    approx_offset: 24145
+  - quote: Our New Bystronic ByStar 12,000 Fiber Laser has a maximum power output of 12,000 watts and
+      a cutting table that can accommodate sheets up to 120″ in length and 60″ in width.
+    approx_offset: 50150
+  - quote: Our New Bystronic ByStar 12,000 Fiber Laser has a maximum power output of 12,000 watts and
+      a cutting table that can accommodate sheets up to 120″ in length and 60″ in width.
+    approx_offset: 91581
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0012
+  form: Bystronic Beyeler CNC Press Brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Our team employed a full suite of equipment for the job that included a Mazak Laser Cutter,
+      Bystronic Beyeler CNC Press Brake, Kitamura CNC Machining Center, and several welding operations.
+    approx_offset: 75490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0013
+  form: Bystronic ByStar 12,000 Fiber Laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: Our New Bystronic ByStar 12,000 Fiber Laser Laser has a maximum power output of 12,000 watts
+      and a cutting table that can accommodate sheets up to 120″ in length and 60″ in width.
+    approx_offset: 24135
+  - quote: Our New Bystronic ByStar 12,000 Fiber Laser has a maximum power output of 12,000 watts and
+      a cutting table that can accommodate sheets up to 120″ in length and 60″ in width.
+    approx_offset: 50140
+  - quote: Our New Bystronic ByStar 12,000 Fiber Laser has a maximum power output of 12,000 watts and
+      a cutting table that can accommodate sheets up to 120″ in length and 60″ in width.
+    approx_offset: 91571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0014
+  form: Bystronic Laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/d-e-b-r-a-is-ready-for-action/
+  evidence:
+  - quote: Also, in July Decimal is upgrading its Bystronic Laser.
+    approx_offset: 100793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0015
+  form: Bystronic Xpert 40 Mobile Bending Robot
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/d-e-b-r-a-is-ready-for-action/
+    - https://www.decimal.net/news/
+  evidence:
+  - quote: is the Bystronic Xpert 40 Mobile Bending Robot.
+    approx_offset: 50565
+  - quote: is the Bystronic Xpert 40 Mobile Bending Robot.
+    approx_offset: 100302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0016
+  form: CNC 9-Axis Mill/Turn Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: CNC 9-Axis Mill/Turn Centers
+    approx_offset: 7490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0017
+  form: CNC Horizontal Milling Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: CNC Horizontal Milling Centers (with multiple pallets)CNC Lathes (with live tooling)
+    approx_offset: 7519
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0018
+  form: CNC Horizontal Milling Centers (with multiple pallets)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: CNC Horizontal Milling Centers (with multiple pallets)CNC Lathes (with live tooling)
+    approx_offset: 7519
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0019
+  form: CNC Lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: CNC Horizontal Milling Centers (with multiple pallets)CNC Lathes (with live tooling)
+    approx_offset: 7573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0020
+  form: CNC Lathes (with live tooling)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: CNC Horizontal Milling Centers (with multiple pallets)CNC Lathes (with live tooling)
+    approx_offset: 7573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0021
+  form: CNC Press Brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: CNC Press Brakes
+    approx_offset: 20555
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0022
+  form: CNC Turret Punch Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: CNC Turret Punch Press
+    approx_offset: 20572
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0023
+  form: CNC Vertical Milling Centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: CNC Vertical Milling Centers
+    approx_offset: 7604
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0024
+  form: Chicken Breast Flattening Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/assembly/
+  evidence:
+  - quote: Stainless Chicken Breast Flattening Machine
+    approx_offset: 107288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0025
+  form: D.E.B.R.A.
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.decimal.net/d-e-b-r-a-is-ready-for-action/
+    - https://www.decimal.net/decimal-honored-by-the-city-of-coral-springs/
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: D.E.B.R.A.
+    approx_offset: 50416
+  - quote: Decimal Engineering has a new employee, D.E.B.R.A.
+    approx_offset: 50488
+  - quote: D.E.B.R.A.
+    approx_offset: 50547
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0026
+  form: Decimal Engineering Bending Robot Automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/d-e-b-r-a-is-ready-for-action/
+    - https://www.decimal.net/news/
+  evidence:
+  - quote: (Decimal Engineering Bending Robot Automation).
+    approx_offset: 50500
+  - quote: (Decimal Engineering Bending Robot Automation).
+    approx_offset: 100237
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0027
+  form: FOBA M2000-B
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/laser-marking-service/
+  evidence:
+  - quote: Our new FOBA M2000-B advanced laser marking workstation is for precise and economic processing
+      of small, large and geometrically complex workpieces as well as small and large batches of parts.
+    approx_offset: 3594
+  - quote: The FOBA M2000-B is equipped with a programmable Z-axis, a work table, and an electric lift
+      door.
+    approx_offset: 3783
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0028
+  form: FOBA M2000-B advanced laser marking workstation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-marking-service/
+  evidence:
+  - quote: Our new FOBA M2000-B advanced laser marking workstation is for precise and economic processing
+      of small, large and geometrically complex workpieces as well as small and large batches of parts.
+    approx_offset: 3594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0029
+  form: FX10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: With Wire Electronic Discharge Machining (Wire EDM) using our Mitsubishi FX10, we are now producing
+      2000 units annually with a standard delivery time of one week (a few days if expedited).
+    approx_offset: 78511
+  - quote: "Equipment Used to Manufacture Part\tMitsubishi FX10"
+    approx_offset: 79579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0030
+  form: Federated Punch Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: "Equipment Used to Manufacture Part\tHutchinson tapping head in a Federated Punch Press"
+    approx_offset: 12649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0031
+  form: Federated punch press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: Using a Hutchinson tapping head in a Federated punch press, we performed in-die tapping via
+      a 1032 tap with a ¼” head.
+    approx_offset: 11752
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0032
+  form: Fiber Laser Cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/decimal-engineering-adds-a-new-loading-dock/
+    - https://www.decimal.net/news/page/2/
+  evidence:
+  - quote: They also added the new pad to mount the 3,000 gallon AirAgas tank to feed the Fiber Laser
+      Cutter.
+    approx_offset: 83837
+  - quote: They also added the new pad to mount the 3,000 gallon AirAgas tank to feed the Fiber Laser
+      Cutter.
+    approx_offset: 108339
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0033
+  form: Haeger
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Haeger and Auto-Sert Insertion MachinesMiller Welding Machines
+    approx_offset: 20595
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0034
+  form: Haeger and Auto-Sert Insertion Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0035
+  form: Insertion Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0036
+  form: Kitamura
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Our team employed a full suite of equipment for the job that included a Mazak Laser Cutter,
+      Bystronic Beyeler CNC Press Brake, Kitamura CNC Machining Center, and several welding operations.
+    approx_offset: 75525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0037
+  form: Kitamura CNC Machining Center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Our team employed a full suite of equipment for the job that included a Mazak Laser Cutter,
+      Bystronic Beyeler CNC Press Brake, Kitamura CNC Machining Center, and several welding operations.
+    approx_offset: 75525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0038
+  form: Makino A71NX-571
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/decimal-adds-the-makino-a71nx-571-to-its-already-stacked-line-up/
+    - https://www.decimal.net/decimal-engineering-wins-sfma-manufacture-of-the-year/
+    - https://www.decimal.net/news/
+  evidence:
+  - quote: DECIMAL ADDS THE MAKINO A71NX-571 TO IT’S ALREADY STACKED LINE UP!
+    approx_offset: 48506
+  - quote: Decimal Engineering adds the Makino A71NX-571 to handle it’s growing demand in precision manufacturing
+      business.
+    approx_offset: 48586
+  - quote: The Makino A71NX-571 sets a new benchmark in machining excellence with its advanced features
+      and capabilities and Decimal is already putting this workhorse in action.
+    approx_offset: 48674
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0039
+  form: Mazak
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Our team employed a full suite of equipment for the job that included a Mazak Laser Cutter,
+      Bystronic Beyeler CNC Press Brake, Kitamura CNC Machining Center, and several welding operations.
+    approx_offset: 75470
+  - quote: Mazak Laser Cutter
+    approx_offset: 76654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0040
+  form: Mazak Laser Cutter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Our team employed a full suite of equipment for the job that included a Mazak Laser Cutter,
+      Bystronic Beyeler CNC Press Brake, Kitamura CNC Machining Center, and several welding operations.
+    approx_offset: 75470
+  - quote: Mazak Laser Cutter
+    approx_offset: 76654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0041
+  form: Miller Welding Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0042
+  form: Mitsubishi FX10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: With Wire Electronic Discharge Machining (Wire EDM) using our Mitsubishi FX10, we are now producing
+      2000 units annually with a standard delivery time of one week (a few days if expedited).
+    approx_offset: 78500
+  - quote: "Equipment Used to Manufacture Part\tMitsubishi FX10"
+    approx_offset: 79568
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0043
+  form: Mitsubishi hole popper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Exceptionally tight tolerances on the order of ±0.0002″ can be held with our wire EDM machines
+      and holes between 0.020″ and 0.12″ can be accurately cut using our Mitsubishi hole popper.
+    approx_offset: 29394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0044
+  form: Mori Seiki NT3150
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machine, we fabricated each servo body with a
+      diameter of 8.263″ x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed
+      to QQ-A-250/11F specifications.
+    approx_offset: 42465
+  - quote: "Equipment Used to Manufacture Part\tMori Seiki NT3150 9-Axis Mill/Turn Machine"
+    approx_offset: 43776
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machining system, we programed the unit to complete
+      each part in a single operation.
+    approx_offset: 60515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0045
+  form: Mori Seiki NT3150 9-Axis Mill/Turn Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machine, we fabricated each servo body with a
+      diameter of 8.263″ x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed
+      to QQ-A-250/11F specifications.
+    approx_offset: 42465
+  - quote: "Equipment Used to Manufacture Part\tMori Seiki NT3150 9-Axis Mill/Turn Machine"
+    approx_offset: 43776
+  - quote: "Equipment Used to Manufacture Part\tMori Seiki NT3150 9-Axis Mill/Turn machine"
+    approx_offset: 61585
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0046
+  form: NT3150
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machine, we fabricated each servo body with a
+      diameter of 8.263″ x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed
+      to QQ-A-250/11F specifications.
+    approx_offset: 42476
+  - quote: "Equipment Used to Manufacture Part\tMori Seiki NT3150 9-Axis Mill/Turn Machine"
+    approx_offset: 43787
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machining system, we programed the unit to complete
+      each part in a single operation.
+    approx_offset: 60526
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0047
+  form: P2-2520
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/after-months-and-months-of-waiting-our-new-salvagnini-p2-l-2520-and-was-worth-the-wait/
+  evidence:
+  - quote: And with its advanced cycles, the P2-2520 completes an average of 17 bends per minute.
+    approx_offset: 90488
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0048
+  form: P2L-2520
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/after-months-and-months-of-waiting-our-new-salvagnini-p2-l-2520-and-was-worth-the-wait/
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Our Salvagini P2L-2520 automated panel bender, because of its innovative design, allows us
+      to bend in one piece, configurations that would typically be formed in two pieces.
+    approx_offset: 17373
+  - quote: Salvagini P2L-2520 Automated Panel BenderBeyeler Press Brakes (9-Axis of control)
+    approx_offset: 20483
+  - quote: The P2L-2520 panel bender, […]
+    approx_offset: 50024
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0049
+  form: P2L-2520 panel bender
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0050
+  form: RAS Panel Bender
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: RAS Panel Bender
+    approx_offset: 20658
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0051
+  form: Salvagini P2L-2520 Automated Panel Bender
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Our Salvagini P2L-2520 automated panel bender, because of its innovative design, allows us
+      to bend in one piece, configurations that would typically be formed in two pieces.
+    approx_offset: 17363
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0052
+  form: Salvagnini P2-L-2520
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/after-months-and-months-of-waiting-our-new-salvagnini-p2-l-2520-and-was-worth-the-wait/
+    - https://www.decimal.net/decimal-is-finalist-for-smfa-2023-manufacturer-of-the-year/
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: AFTER MONTHS AND MONTHS OF WAITING OUR NEW SALVAGNINI P2-L-2520 IS HERE AND BOY IT WAS WORTH
+      THE WAIT!!
+    approx_offset: 49645
+  - quote: Why did Decimal Engineering wait for the Salvagnini P2-L-2520?
+    approx_offset: 49748
+  - quote: After months and months of waiting our New Salvagnini P2-L-2520 is here and boy it was worth
+      the wait!!
+    approx_offset: 87605
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0053
+  form: Stainless Chicken Breast Flattening Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/assembly/
+  evidence:
+  - quote: Stainless Chicken Breast Flattening Machine
+    approx_offset: 107278
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0054
+  form: Welding Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Haeger and Auto-Sert Insertion MachinesMiller Welding Machines
+    approx_offset: 20641
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0055
+  form: Wire EDM Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Wire EDM Machines
+    approx_offset: 7633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0056
+  form: Xpert 40
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/d-e-b-r-a-is-ready-for-action/
+    - https://www.decimal.net/news/
+  evidence:
+  - quote: is the Bystronic Xpert 40 Mobile Bending Robot.
+    approx_offset: 50575
+  - quote: is the Bystronic Xpert 40 Mobile Bending Robot.
+    approx_offset: 100312
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0057
+  form: combination Mill/Turn centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: However, by maintaining a variety of sophisticated equipment, including combination Mill/Turn
+      centers which have a combined 9-axis machining capability, these costs can be contained and even
+      reduced.
+    approx_offset: 5086
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0058
+  form: general purpose marking machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-marking-service/
+  evidence:
+  - quote: The manually loaded general purpose marking machine is perfect for marking smaller and larger
+      parts.
+    approx_offset: 3897
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0059
+  form: hole popper EDM equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: we offer electrical discharge machining using wire EDM and hole popper EDM equipment.
+    approx_offset: 28911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0060
+  form: press brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/after-months-and-months-of-waiting-our-new-salvagnini-p2-l-2520-and-was-worth-the-wait/
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Well, conventional bending is characterized by an average OEE of 30%, with flexibility dependent
+      on the tool change system – which is often costly and more time-consuming than on a panel bender
+      – or on the installation of more than one press brake.
+    approx_offset: 50007
+  - quote: Our team employed a full suite of equipment for the job that included a Mazak Laser Cutter,
+      Bystronic Beyeler CNC Press Brake, Kitamura CNC Machining Center, and several welding operations.
+    approx_offset: 75512
+  - quote: Well, conventional bending is characterized by an average OEE of 30%, with flexibility dependent
+      on the tool change system – which is often costly and more time-consuming than on a panel bender
+      – or on the installation of more than one press brake.
+    approx_offset: 90263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0061
+  form: wire EDM equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: We operate wire EDM equipment with 4 axes of cutting ability, with a maximum taper of 17° at
+      a 4″ material thickness.
+    approx_offset: 29429
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-equipments-0062
+  form: wire EDM machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Exceptionally tight tolerances on the order of ±0.0002″ can be held with our wire EDM machines
+      and holes between 0.020″ and 0.12″ can be accurately cut using our Mitsubishi hole popper.
+    approx_offset: 29309
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

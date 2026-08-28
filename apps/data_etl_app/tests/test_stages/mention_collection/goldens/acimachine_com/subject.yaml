@@ -1,0 +1,123 @@
+subject: acimachine.com
+slug: acimachine_com
+subject_name: ACI Machine Tool Sales
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/acimachine.com.txt
+  sha256: 05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b
+role: scale_stress
+role_source: kept verbatim from search/expectations/acimachine_com/subject.yaml; not re-derived by this pass
+business_type: machine-tool dealer/distributor, Lawrenceburg KY; founded 2001 by Mark Cox
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/acimachine_com/subject.yaml
+- apps/data_etl_app/tests/test_stages/grounding/expectations/acimachine_com/subject.yaml
+- apps/data_etl_app/tests/test_stages/synthesis/expectations/acimachine_com/subject.yaml
+third_party_roster:
+- JET
+- ACER
+- CHEVALIER
+- SHARP
+- HURCO
+- WILLIS
+- EXPAND MACHINERY
+- DAINICHI
+- WATERJET CORP
+- WELLSAW
+- NOMURA
+- UNI-HYDRO
+- SHIMADA
+- WINEMA
+- Equipt
+- Moore CNC
+shape:
+  pages: 1430
+  equipment_listing_pages: 1292
+  total_lines: 235682
+  nonblank_lines: 223307
+  distinct_nonblank_lines: 9762
+  share_of_nonblank_lines_occurring_5x_or_more: 95.6%
+  share_of_nonblank_bytes_occurring_5x_or_more: 86.6%
+  share_of_nonblank_lines_occurring_1000x_or_more: 73.5%
+  median_nonblank_line_chars: 13
+  p99_nonblank_line_chars: 74
+  longest_line_chars: 2110
+  tab_characters: 7341
+  nbsp_count: 2297
+text_hazards:
+- hazard: nav_menu_floods_occurrence_counts
+  note: the single most important fact about this subject for this stage. Only 9,762 distinct non-blank lines exist across 223,307 non-blank lines. 'CNC Lathes' occurs 6,702 times, 'Reciprocating Surface Grinders' 3,664, 'Vertical Machining Centers' 2,839, 'View All' 8,118 - essentially all of them as a bare nav / Top Types / Related Types / Suggested Equipment link with no sentence. Every one of them is also a legitimate equipment-category form, so this is not junk to filter, it is real forms occurring thousands of times in a context that carries no claim.
+  quote: CNC Lathes
+- hazard: truncated_nav_labels
+  note: 'the footer menu ellipsis-truncates its own labels, so the SAME category exists in the file in two spellings that cannot match each other: ''Vertical Machining Centers'' 2,839 times and ''Vertical Machinin...'' 2,860 times. Likewise ''Reciprocating Sur...'' (1,430) and ''Gantry Machining ...'' (1,430, with a space before the ellipsis). A grouping label case, and a reason a zero-hit form may not be a fabrication.'
+  quote: Vertical Machinin...
+- hazard: own_capability_singletons
+  note: ACI's eight OWN services each occur EXACTLY ONCE in 4 MB - Mechanical & Electrical Troubleshooting, Spindle & Control Repairs, Machine & Option Installations, Part Replacements, Retrofit, Precision Leveling, Maintenance, Ball Bar Testing (all verified count = 1). Everything occurring thousands of times belongs to someone else. The occurrence-frequency signal is exactly inverted here.
+  quote: Ball Bar Testing
+- hazard: flattened_two_column_table
+  note: 'those eight own-capability singletons live in a two-column table flattened to alternating lines with a TAB-ONLY line between each pair (lines 974-984). The only thing marking them as the subject''s own work is the heading ''Look What We Can Do!'' (1 occurrence, line 971) sitting above the whole block. A snippet clipped to the line cannot carry that, so the location model has to reach past the clip - and these are the only 8 mentions on the subject where getting whose_words: site right actually matters.'
+  quote: Look What We Can Do!
+- hazard: spec_table_tab_pairs
+  note: every one of the 1,292 listings ends in a Specifications block of TAB-separated label/value pairs, one pair per line (7,341 tabs in the file). Labels are extremely short - 'X', 'Y', 'Z', '# ATC', '# Axis', 'Taper', 'Power' - so any short searched form collides with a table key, and the clipped snippet is a measurement with no sentence.
+  quote: "Grinding Wheel Dia.\t14\""
+- hazard: key_and_value_on_separate_lines
+  note: 'in the Overview block of every listing the field label and its value are on DIFFERENT lines: ''Manufacturer:'' then ''CHEVALIER'', ''Type:'' then the category. A line-level clip on the value therefore loses the key entirely - the snippet for CHEVALIER here is the bare word CHEVALIER, with nothing saying it is the manufacturer field of a resale listing. The opposite failure of the tab-pair case above, in the same table.'
+  quote: 'Manufacturer:'
+- hazard: label_value_fusion
+  note: 'label and value fused with no separator, once per listing page: 1,291 occurrences of ConditionNew and 1,291 of the Condition line overall. The form ''New'' cannot match on a word boundary here.'
+  quote: ConditionNew
+- hazard: truncated_card_teasers
+  note: listing cards cut the manufacturer's description mid-sentence at roughly 160 characters and append '...'. The full text exists elsewhere in the file under a Description heading, so the same prose is present both complete and truncated, and a snippet clipped from a teaser is a fragment by construction.
+  quote: The new JET 1015 is an ideal choice for the novice woodturner looking for an affordable, user-friendly first lathe, as well as the advanced enthusiast or pro...
+- hazard: cookie_banner
+  note: the cookie notice and the 'Cookie preferences' footer control each appear on all 1,430 pages. The notice line ends in U+00A0 NO-BREAK SPACE, not a plain space - so it is 1,430 lines that no exact match on the visible text will hit.
+  quote: We use cookies to improve your experience. 
+- hazard: footer_boilerplate
+  note: the full nav + Quick Links + Top Categories + Top Types + Top Brands + subscribe + cookie block repeats on all 1,430 pages; this vendor credit line is its last member and the cheapest page-boundary probe
+  quote: Equipt Pro website by Equipt
+- hazard: locale_duplicate_pages
+  note: '15 /en/ pages duplicate the content of their bare-path twins under a different URL. No URL appears twice in the file (checked: zero duplicate URL lines), so page-level dedup by URL will not catch these.'
+  quote: https://acimachine.com/en/brands/jet
+- hazard: duplicate_blog_urls
+  note: the 7 blog posts are each scraped under two URLs (/blog/71 and /blog/71-hurco-conversational-programming and so on), so every form in the blog has exactly twice its true occurrence count
+  quote: https://acimachine.com/blog/71-hurco-conversational-programming
+- hazard: inch_mark_variants
+  note: 'dimensions are written three ways in the same file: ASCII " , U+201D RIGHT DOUBLE QUOTATION MARK (312 times) and U+2033 DOUBLE PRIME (67). Plus 2,297 NBSP, 189 registered signs, 308 bullets, 41 vulgar one-quarters and 30 one-halves. A span or identity check that normalizes quotes will silently merge these; one that does not will split one dimension into three forms.'
+  quote: ½ ton to 5 ton capacities
+- hazard: placeholder_address
+  note: the support-page contact form carries a placeholder address that contradicts the real one in the footer of the same page (Lawrenceburg, KY 40342), and the city line repeats twice directly beneath it. approx line 988
+  quote: U.S. 60, Phoenix, Arizona, USA
+- hazard: no_degenerate_pages
+  note: 'checked and absent: zero lorem ipsum, zero ''Coming Soon'' stubs, zero DB-error pages, zero country dropdowns. The 35 lines matching ''404'' are all machine model numbers such as this one, not error pages - a ready must_not_occur probe.'
+  quote: CHEVALIER FCL-4040
+third_party_voice:
+- speaker: Hurco, in its own first person, pasted onto ACI's listing page
+  whose_words: vendor
+  note: THE highest-value location case on this subject. The 'Our' in this sentence is Hurco, not ACI; it sits under a Description heading on https://acimachine.com/equipment/7191542-hurco-vmx42i-vertical-machining-centers with nothing marking the voice change. Roughly 1,292 listing pages carry a Description block of the machine builder's own brochure copy, so first-person capability language on this site is overwhelmingly NOT the subject's. approx line 9591
+  quote: Our signature line of VMX machining centers takes machining to the next level.
+- speaker: JET, in its own first person
+  whose_words: vendor
+  note: 'a second, blunter instance: ''anything we’ve made before'' is JET speaking about JET''s product history, on ACI''s domain. Note the curly apostrophe.'
+  quote: The JET 1221VS is different from anything we’ve made before.
+- speaker: Winema (German machine builder), translated brochure copy
+  whose_words: vendor
+  note: same construction in second person - the 'you' is the machine buyer and the capability described is the machine's, not ACI's. approx line 4190
+  quote: With these new rotary indexing machines, you will be able to meet the demands of the changing markets and still achieve the high outputs of mechanical transfer machines.
+- speaker: Mark Cox (founder), personal sales-career blog voice
+  whose_words: site
+  note: the 7 blog posts are the founder's own voice and they report other people's speech inside it, and praise a third party's video channel (Moore CNC / Titans of CNC) while discussing a third party's machine (Hurco). Site words, third-party subject, reported speech - three layers in one paragraph. approx line 9123 region and 235111
+  quote: Machine shop owners say that it is hard to find experienced machine operators.
+- speaker: ACI Machine Tool Sales itself (the only genuinely own-voice prose)
+  whose_words: site
+  note: 'the About and Support pages hold the only sentences on the site that describe the subject''s own business, and they are near-duplicates of each other. Together with the 8 capability table cells they are the entire site: everything else is a resale listing or menu.'
+  quote: ACI Machine Tool Sales has been active in the business of selling and servicing machine tools since Mark Cox founded the company in 2001.
+- speaker: (absence) no customer testimonials
+  whose_words: customer
+  note: 'checked: zero occurrences of ''testimonial'' and no review or customer-quote blocks in 4 MB. Like ableengineering, whose_words: customer is wrong by construction on this subject.'
+  quote: Have one to sell?
+coverage: full_text
+coverage_note: 'full_text per the user''s choice, but this pass SAMPLED the 4,037,573-byte file rather than reading it end to end. What was actually done: (1) a whole-file streaming pass computing line/byte repetition, line-length distribution and the non-ASCII census, so every number in `shape` and every occurrence count quoted in the hazards is measured over 100% of the file; (2) full reads of the homepage, About_Us, support, brands and blog pages; (3) full reads of the Chevalier FSG-3A1224, Winema RV 10 Flexmaster and Hurco VMX42i listings, plus strided 16-line slices at lines 30000, 60000, 120000, 180000 and 220000; (4) whole-file greps for cookie/testimonial/country-list/ lorem/404/ellipsis-truncated labels. 86.6% of non-blank BYTES sit on lines that occur five or more times, so the sampled remainder is overwhelmingly repetition of what was read: only 9,762 distinct non-blank lines exist in the whole file. Judgment labels should still be confined to the pages listed here and in search/expectations/acimachine_com/subject.yaml until a second pass widens them.'
+notes: 'Largest text in the corpus and the stage''s worst-case on two axes at once: occurrence volume (a single form occurring 6,702 times) and voice (the first-person prose on ~1,292 pages belongs to fourteen different machine builders, not to the subject). Its own eight capabilities occur once each, so frequency and ownership point in opposite directions - which is why whose_words, not occurrence counting, is the thing worth labelling here.'
+provenance:
+- action: added
+  by: seed-agent-batch1
+  date: '2026-08-27'
+  source: harvested:search + corpus-seed

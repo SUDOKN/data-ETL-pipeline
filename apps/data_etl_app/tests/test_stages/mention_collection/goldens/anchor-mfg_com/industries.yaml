@@ -1,0 +1,345 @@
+subject: anchor-mfg.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+golden_set_version: 1
+anchored_on: search/expectations/anchor-mfg_com/industries.yaml
+labels:
+- id: anchor-mfg_com-industries-0001
+  form: Agricultural
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Agricultural
+    approx_offset: 491
+  - quote: Agricultural
+    approx_offset: 6485
+  - quote: Agricultural
+    approx_offset: 21095
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0002
+  form: Agriculture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Some suggest that without agriculture, there is no culture, period.
+    approx_offset: 21927
+  - quote: Agriculture produces not only the food we eat, but the houses in which we live, the wood in
+      our desks, the clothes designed for our various needs, and in the case of 20 percent of Americans,
+      the job they’re committed to.
+    approx_offset: 21969
+  - quote: Anchor keeps agriculture rolling.
+    approx_offset: 22203
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0003
+  form: Appliance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Appliance
+    approx_offset: 481
+  - quote: Appliance
+    approx_offset: 6475
+  - quote: Appliance
+    approx_offset: 21085
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0004
+  form: Automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Automotive
+    approx_offset: 470
+  - quote: Since 1970, Anchor Manufacturing has been providing exceptional quality stampings and welded
+      assemblies to diversified industries with significant expertise in the automotive industry.
+    approx_offset: 724
+  - quote: Automotive
+    approx_offset: 6464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0005
+  form: Class 8 heavy trucks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Many of our stampings and assemblies are used in the manufacture of Class 8 heavy trucks and
+      busses.
+    approx_offset: 22316
+  - quote: Many of our stampings and assemblies are used in the manufacture of Class 8 heavy trucks and
+      busses.
+    approx_offset: 25802
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0006
+  form: Commercial Vehicle
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Commercial Vehicle
+    approx_offset: 504
+  - quote: Commercial Vehicle
+    approx_offset: 6498
+  - quote: Commercial Vehicle
+    approx_offset: 21108
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0007
+  form: Consumer Product
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Consumer Product
+    approx_offset: 523
+  - quote: Consumer Product
+    approx_offset: 22548
+  - quote: Consumer Product
+    approx_offset: 26034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0008
+  form: Consumer Products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Consumer Products
+    approx_offset: 6517
+  - quote: Consumer Products
+    approx_offset: 21127
+  - quote: Consumer Products
+    approx_offset: 24613
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0009
+  form: Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/anchor-supplier-responsibility-policy-code-conduct/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/customer-portal/
+  evidence:
+  - quote: Defense
+    approx_offset: 540
+  - quote: Defense
+    approx_offset: 6535
+  - quote: Seller shall defend, at its own expense, any claim or suit arising out of any act or omission
+      of Seller and brought against Buyer based upon a claim of infringement of a United States patent
+      or copyright resulting from the sale or use of the goods and shall pay all costs, settlements or
+      damages fina
+    approx_offset: 13198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0010
+  form: Industrial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Industrial
+    approx_offset: 548
+  - quote: Industrial
+    approx_offset: 6543
+  - quote: Industrial
+    approx_offset: 21153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0011
+  form: automotive industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/
+  evidence:
+  - quote: Since 1970, Anchor Manufacturing has been providing exceptional quality stampings and welded
+      assemblies to diversified industries with significant expertise in the automotive industry.
+    approx_offset: 724
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0012
+  form: commercial vehicles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0013
+  form: defense industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor has been a strategic supplier to the defense industry for many years.
+    approx_offset: 22937
+  - quote: Anchor has been a strategic supplier to the defense industry for many years.
+    approx_offset: 26423
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0014
+  form: home appliance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: In the home appliance industry, designs are constantly updating to meet consumer tastes and
+      changing market demands.
+    approx_offset: 21495
+  - quote: In the home appliance industry, designs are constantly updating to meet consumer tastes and
+      changing market demands.
+    approx_offset: 24981
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-industries-0015
+  form: military industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: The combination of innovation, process control and comprehensive quality assurance systems
+      allows our products to meet the specifications of the military industry.
+    approx_offset: 23307
+  - quote: The combination of innovation, process control and comprehensive quality assurance systems
+      allows our products to meet the specifications of the military industry.
+    approx_offset: 26793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

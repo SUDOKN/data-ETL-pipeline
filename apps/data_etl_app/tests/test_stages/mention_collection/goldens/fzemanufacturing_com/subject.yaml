@@ -1,0 +1,233 @@
+subject: fzemanufacturing.com
+subject_name: FZE Manufacturing Solutions LLC
+slug: fzemanufacturing_com
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+role: genre_probe
+role_note: >-
+  Seeded as `full_unit` before this corpus adopted the search harness's
+  vocabulary wholesale. Normalized to search's `genre_probe` on 2026-08-27:
+  it is the same roster, and a second vocabulary would fork the corpus
+  silently. The earlier value is kept here because the reasoning behind
+  it describes what THIS stage sees, which search's word may not.
+role_source: 'search/expectations/fzemanufacturing_com/subject.yaml assigns `genre_probe`, which
+  has no equivalent in the mention role vocabulary (full_unit | inventory_subject | scale_stress |
+  out_of_domain_negative | degenerate_input_probe). `full_unit` chosen here: structurally this is a
+  complete manufacturer profile carrying every hazard family this stage cares about. The genre
+  finding that earned `genre_probe` is preserved below as the three-register hazard, which is what
+  the stage actually has to survive.'
+
+# The site speaks in three registers. The roster is who is NOT FZE speaking as FZE.
+third_party_roster:
+- Doug Pribyl                 # the blog author; his archive page is a near-duplicate of the homepage
+- Thomas (Thomas Verified)    # the B2B directory whose spec-table format is reproduced verbatim
+- OKK                         # machine vendor
+- Doosan                      # machine vendor (also DOOSAN TT18000SY, a mis-typed model)
+- Daewoo                      # machine vendor
+- Haas                        # machine vendor
+- Hanwha / Hanwa / HANHWA     # machine vendor, THREE spellings on one page
+- Nomura                      # machine vendor
+- Nakamura                    # machine vendor
+- Hwacheon                    # machine vendor
+- Sheffield                   # metrology vendor (Sheffield Discovery CMM) - NOT the UK city
+- Keyence                     # metrology vendor
+- J&L                         # metrology vendor (optical comparator)
+- Miller                      # welding vendor (Miller Welding Cobot)
+- Beamer                      # laser-marking vendor
+- 'generic "manufacturers" / "designers" / "some firms"'   # the SEO encyclopedia's third-person subject
+- ISO                         # standards body
+- Made in Wisconsin           # regional programme mark, 8 occurrences
+
+coverage: full_text
+# No page on this site matches the pipeline's privacy|cookie|terms|legal|disclaimer|gdpr|
+# imprint|impressum exclusion rule, so NOTHING is page-trimmed here - unusual for the corpus.
+# Consequence: the "Privacy Policy" / "Terms of Service" footer lines and the homepage cookie
+# banner all survive into the text the stage sees, and occurrence counts need no trim caveat.
+page_trim:
+  excluded_pages: []
+  note: 'no page path matches the exclusion rule; occurrence counts here are exact, not trimmed'
+
+text_hazards:
+
+# ---- repeated lines -------------------------------------------------------------
+- hazard: repeated_footer
+  note: 'an 8-line footer closes all 54 pages: company name, phone, fax, Privacy Policy,
+    Sitemap, Terms of Service, copyright. Each is a standalone line with no sentence around
+    it, so the company name alone accounts for 55 of its occurrences and the phone number for
+    54. Any frequency reading of this subject is dominated by furniture.'
+  quote: "© 2025 FZE Manufacturing Solutions LLC, All Rights Reserved"
+
+- hazard: repeated_nav
+  note: 'a 4-line nav header opens all 54 pages ("Search", "Skip To Content", "RFQ", "call
+    search"). "Search" and "call search" are content-free tokens that will nonetheless clip
+    into 54 identical one-word snippets each.'
+  quote: "Skip To Content"
+
+- hazard: cookie_banner
+  note: 'the cookie banner appears exactly ONCE, on the homepage only - it is not a repeated
+    line here, which is what makes it interesting: the same sentence on a rival site would
+    repeat 54 times. It is also the ONLY textual difference between the homepage and the
+    author-archive duplicate below.'
+  quote: "We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it."
+
+# ---- table-like structures ------------------------------------------------------
+- hazard: spec_table_cells
+  note: 'THE structural hazard on this subject. Thomas-directory spec tables are flattened to a
+    tab-TERMINATED header line followed by bare one-word cells, one per line, with blank lines
+    inside the cell run. 39 distinct header cells; the same table body is repeated verbatim on
+    4 capability pages (hydraulic, Swiss, HMC/VMC, shaft), so ~60 material and process
+    designations occur 4x each, every one of them as a bare fragment. 75% of this file''s
+    non-blank lines (2,493 of 3,346) end without terminal punctuation. A snippet clipped to
+    "Inconel" or "Tantalum" carries nothing; only the header line 5-15 lines above says what
+    the cell means, and it is not in the clip.'
+  quote: "Materials (Exotic & Precious Metals)\t"
+
+- hazard: spec_table_cells
+  note: 'the same table shape used for materials the shop does NOT claim - the plastics block
+    lists 20 polymers on 20 bare lines. Identical clip shape, opposite truth value; nothing in
+    the snippet distinguishes a claimed material from a directory-template one.'
+  quote: "PTFE (PolyTetraFluoroEthylene)"
+
+- hazard: fused_table_cells
+  note: 'the welding page''s Industry Focus table lost a line break, so two industry cells
+    arrive as one line. The clip yields a single snippet that is evidence for two industries
+    and matches neither cleanly.'
+  quote: "Material Handling Medical"
+
+- hazard: bare_token_lines
+  note: 'the owned-equipment roster is a hyphen-prefixed bare-line list with the machine''s
+    spec fragments on SEPARATE following lines, often after a blank. The clip severs a machine
+    from its capacity ("D-28 & D12" is a bare line two lines below the CMM it describes). The
+    roster also mixes production machines with metrology (Sheffield Discovery CMMs, Keyence
+    IM7030T, J&L Optical Comparator, granite tables, hand gages) and with areas and inventory
+    (Central Tooling Set-up Area, Finished Goods Inventory) under one Equipment heading, so
+    belongs_to cannot be inferred from the neighbouring lines either.'
+  quote: "-(2) Sheffield Discovery CMM’s"
+
+- hazard: bare_token_lines
+  note: 'a second Equipment List block on the same page mis-copies specs between machines and
+    spells the vendor a third way. Two spellings of one owned machine plus a wrong spec block
+    means grouping and snippet labels disagree about what the record is.'
+  quote: "HANHWA XD32/38II"
+
+- hazard: bare_token_lines
+  note: 'the videos page and the blog index are PURE title lists - bare lines, no prose at all,
+    curly quotes inside the titles. 25 consecutive lines of this on the videos page.'
+  quote: "FZE “Ballizer”"
+
+# ---- heading styles -------------------------------------------------------------
+- hazard: heading_all_caps
+  note: 'only 44 ALL-CAPS lines in the whole file - unusually few for this corpus. FZE headings
+    are mostly Title Case standalone lines instead, which is harder for the location model,
+    not easier: a Title-Case standalone line is not visually distinct from a table cell or a
+    list item, and this file is 75% such lines.'
+  quote: "OUR CAPABILITIES"
+
+- hazard: heading_standalone_line
+  note: 'the SEO articles are structured as Title-Case standalone-line headings above bullet
+    runs, and the bullets are themselves "Label: sentence" lines. The heading is the only thing
+    saying the bullets are a generic explainer rather than a capability list, and it is one
+    line above the clip.'
+  quote: "Types of CNC Machining"
+
+- hazard: heading_names_party
+  note: 'the SEO article closes with a heading naming the subject, then a first-person claim -
+    the ONLY first-party sentence in a 60-line third-person explainer. The register flips at
+    this line, and everything above it must NOT inherit the first-party reading.'
+  quote: "CNC Prototyping by FZE Manufacturing"
+
+# ---- third-party voice ----------------------------------------------------------
+- hazard: seo_encyclopedia_third_person
+  note: 'THE `whose_words` case on this subject. A third-person SEO process encyclopedia
+    describes processes, machines and industries in the voice of the trade at large -
+    "manufacturers", "designers", "some equipment manufacturers or firms" - never FZE. The
+    waterjet/plasma/oxy-fuel/chemical cutting list below is a generic "other types of CNC
+    cutting" aside inside a prototyping explainer, and the five processes arrive as five bare
+    lines under it. whose_words here is `third_party` (the trade in general), NOT `site`; a
+    location that says `site` converts an encyclopedia entry into a capability claim, which is
+    exactly the defect the expansion doc recorded live on this subject.'
+  quote: "Other types of CNC cutting that benefit from new technological developments include:"
+
+- hazard: seo_encyclopedia_third_person
+  note: 'a second exemplar in prose form, with a mid-word non-breaking space after the colon.
+    Grammatically third-person throughout; nothing in the sentence names FZE.'
+  quote: "Lathes:\xA0CNC lathes rotate the workpiece against stationary drills or lateral stationary cutting tools, which progressively remove material from the workpiece to shape it into the desired finished geometry."
+
+- hazard: negation_contrast_echo
+  note: 'electropolishing is defined by contrast, so ELECTROPLATING is named only as the thing
+    electropolishing is not. The full sentence carries the contrast; a snippet clipped tighter
+    than the clause loses it and the mention reads as a claimed process. This is a snippet
+    label, not a location label - the voice is correctly `site` either way.'
+  quote: "is best understood as the reverse of electroplating"
+
+- hazard: third_party_voice
+  note: 'the Thomas Verified sentence imports a DIRECTORY''s attestation into first-person site
+    prose ("we are a Thomas Verified supplier"). whose_words is `site`; the attestation belongs
+    to `third_party`. Same shape as decimal''s supplier-held NADCAP trap.'
+  quote: "In addition, we are a Thomas Verified supplier, so be confident you’re getting quality products at a fair price."
+
+- hazard: entity_name_inconsistency
+  note: 'the oil & gas page calls the company "FZE Manufacturing, Inc." while every other page
+    says "FZE Manufacturing Solutions LLC". A grouping label has to decide whether these are
+    one entity; the mention stage will see them as different forms.'
+  quote: "FZE Manufacturing, Inc. offers machining and manufacturing services to oil & gas customers"
+
+# ---- degeneracy -----------------------------------------------------------------
+- hazard: duplicate_pages
+  note: 'CORRECTION TO THE HARVESTED PROFILE. search/expectations calls the author archive
+    page a "byte-identical duplicate of the homepage". It is not byte-identical: it is the
+    homepage MINUS the cookie banner (2,647 vs 2,809 chars, 65 vs 69 lines, 0.97 similarity).
+    Everything else duplicates, so every phrase on the homepage occurs exactly twice while the
+    cookie banner occurs once. An occurrence label that assumes exact duplication will be off
+    by one on the banner and correct everywhere else.'
+  quote: "https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/"
+
+- hazard: truncated_sentences
+  note: 'the scrape dropped words mid-sentence, leaving dangling lists that end in a bare
+    conjunction and a period. The clip is a well-formed-looking sentence whose final list item
+    is missing - a snippet that reads as complete evidence but is not.'
+  quote: "Laser engraving can be used on various materials, including metals, plastics, and ."
+
+# ---- character-level ------------------------------------------------------------
+- hazard: nbsp_mid_phrase
+  note: '193 non-breaking spaces spread over 150 lines (the harvested profile''s "150" counts
+    lines, not characters - both numbers are right about different things). Several sit
+    mid-sentence and at least one sits between a label and its value.'
+  quote: "Multi-Axis, 2.65” Dia x 12’ bar feeder"
+
+- hazard: non_ascii
+  note: '16 distinct non-ASCII code points: U+2019 curly apostrophe (187 - the highest count in
+    my four subjects), U+00A0 (193), U+201D (86), U+2013 (72), U+00A9 (54), U+2033 (32),
+    U+201C (19), U+2014 (18), U+00B1 (16), U+2026 (11), U+00AE (6), U+00BD (4). Dimensions mix
+    U+2033 double-prime, U+201D right double quote and U+2019 for the same units, so a form
+    written with an ASCII quote never matches.'
+  quote: "0.0002”"
+
+notes: 'What makes fzemanufacturing.com a mention-stage subject: it is the corpus''s clearest
+  REGISTER-MIXING case, and register is exactly what the location label''s `whose_words` element
+  has to read. Three voices share one site with no visual marker separating them - first-party
+  capability prose, a machine-readable Thomas-directory spec table repeated verbatim on four
+  pages, and a third-person SEO process encyclopedia. The encyclopedia is where the harvested
+  profiles recorded live defects (waterjet/plasma/oxy-fuel harvested as own capability, and the
+  electroplating contrast echo), and both defects are location/snippet failures, not search
+  failures - the forms were legitimately in the text.
+
+
+  The second thing this subject stresses is bare-fragment clipping: 75% of non-blank lines end
+  without terminal punctuation, and the two densest blocks (the 39-cell spec tables and the
+  hyphen-prefixed equipment roster) are entirely bare cells whose meaning lives in a header line
+  well outside any sentence-or-line clip.
+
+
+  One correction to the harvested profile is recorded above: the author-archive page is a
+  near-duplicate, not a byte-identical one - it lacks the cookie banner. Verified by diff.
+
+
+  All quotes were extracted from the snapshot by line offset and verified byte-exact; none was
+  retyped.'
+
+provenance:
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: corpus-seed}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:search'}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:expansion-doc'}

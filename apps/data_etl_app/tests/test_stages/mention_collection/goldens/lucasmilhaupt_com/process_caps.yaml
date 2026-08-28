@@ -1,0 +1,5113 @@
+subject: lucasmilhaupt.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+golden_set_version: 1
+anchored_on: search/expectations/lucasmilhaupt_com/process_caps.yaml
+labels:
+- id: lucasmilhaupt_com-process_caps-0001
+  form: Acoustic emission testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Acoustic emission testing - evaluating the extent of discontinuity-using the premise that acoustic
+      signals undergo a frequency or amplitude change when traveling across discontinuities
+    approx_offset: 99978
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0002
+  form: Adhesive bonding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Adhesive bonding and soldering will provide permanent bonds, but generally, neither can offer
+      the strength of a brazed joint –equal to or greater than that of the base metals themselves.
+    approx_offset: 53487
+  - quote: Adhesive bonding and soldering will provide permanent bonds, but generally, neither can offer
+      the strength of a brazed joint –equal to or greater than that of the base metals themselves.
+    approx_offset: 165675
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0003
+  form: Aluminum Brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-700-Series.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+    - https://www.lucasmilhaupt.com/Resources-Library/Demo-Videos
+  evidence:
+  - quote: Browse Aluminum Brazing Solutions
+    approx_offset: 11365
+  - quote: Aluminum Brazing of Evaporators and Condenser Coils
+    approx_offset: 144610
+  - quote: Watch Aluminum Brazing Videos
+    approx_offset: 182468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0004
+  form: Brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 126
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/About/Find-Locations
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: It’s also the home of our Brazing Academy and training courses, where people gather to learn
+      about all things brazing.
+    approx_offset: 7380
+  - quote: Learn About Our Brazing Academy
+    approx_offset: 7490
+  - quote: Brazing Audits
+    approx_offset: 8272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0005
+  form: Chemical cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Chemical cleaning - You can use an acidic or basic solution, generally with short soak times
+      to avoid deteriorating the base materials.
+    approx_offset: 92209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0006
+  form: Destructive testing methods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Brazed Joint Examination Methods: Destructive testing methods'
+    approx_offset: 100382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0007
+  form: Die Attach
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 18896
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 230160
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0008
+  form: EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 17047
+  - quote: Our laser, EDM, and stamping fabrication capability allow for precise preform design on microelectronic
+      packaging that demand extremely tight tolerances.
+    approx_offset: 21814
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 228311
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0009
+  form: FLUXING THE PARTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Step 3: Fluxing the Parts'
+    approx_offset: 55791
+  - quote: 'STEP 3: FLUXING THE PARTS'
+    approx_offset: 69116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0010
+  form: Fatigue testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Fatigue testing - testing the base metal plus the brazed joint-a time-consuming and costly
+      method
+    approx_offset: 101043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0011
+  form: Flattening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Wire Drawing & Flattening
+    approx_offset: 154145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0012
+  form: Flux Removal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Flux Removal
+    approx_offset: 89029
+  - quote: Flux removal is a simple, but essential operation.
+    approx_offset: 89043
+  - quote: Methods for Flux Removal
+    approx_offset: 90509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0013
+  form: Fluxing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Step 3: Fluxing the Parts'
+    approx_offset: 55791
+  - quote: 'STEP 3: FLUXING THE PARTS'
+    approx_offset: 69116
+  - quote: Fluxing is an essential step in the brazing operation, aside from a few exceptions.
+    approx_offset: 73503
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0014
+  form: Hermetic Package Sealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Hermetic Package Sealing & Feedthroughs: We provide brazing alloys and preforms to create
+      airtight, hermetic seals in microelectronic packages.'
+    approx_offset: 19391
+  - quote: 'Hermetic Package Sealing & Feedthroughs: We provide brazing alloys and preforms to create
+      airtight, hermetic seals in microelectronic packages.'
+    approx_offset: 230655
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0015
+  form: Impact testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Impact testing - determines the basic properties of brazed joints-generally used in a lab setting
+    approx_offset: 101142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0016
+  form: Leak testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Leak testing - for determining gas- or liquid-tightness of a brazement.
+    approx_offset: 98840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0017
+  form: Liquid penetrant examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Liquid penetrant examination - dye and fluorescent penetrants may detect cracks open to the
+      surface of joints-not suitable for inspection of fillets, where some porosity is always present
+    approx_offset: 99789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0018
+  form: Material Analysis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+  evidence:
+  - quote: Material Analysis
+    approx_offset: 6730
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0019
+  form: Mechanical cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Mechanical cleaning - Clean residue from brazed joints with a wire brush or by sandblasting.
+    approx_offset: 92428
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0020
+  form: Mechanically fastened
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Mechanically fastened joints (threaded, staked or riveted) generally don’t compare to brazed
+      joints in strength, resistance to shock and vibration, or leak-tightness.
+    approx_offset: 53320
+  - quote: Mechanically fastened joints (threaded, staked or riveted) generally don’t compare to brazed
+      joints in strength, resistance to shock and vibration, or leak-tightness.
+    approx_offset: 165508
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0021
+  form: Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Metal Stamping
+    approx_offset: 153408
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0022
+  form: Metallographic examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Metallographic examination - testing the general quality of joints-detecting porosity, poor
+      filler metal flow, base metal erosion and improper fit
+    approx_offset: 100748
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0023
+  form: Nondestructive testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Brazed Joint Examination Methods: Nondestructive testing methods'
+    approx_offset: 98492
+  - quote: 'Nondestructive testing methods of checking quality and specification conformance include:'
+    approx_offset: 98524
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0024
+  form: Nondestructive testing methods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Brazed Joint Examination Methods: Nondestructive testing methods'
+    approx_offset: 98492
+  - quote: 'Nondestructive testing methods of checking quality and specification conformance include:'
+    approx_offset: 98524
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0025
+  form: Peel testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Peel testing - useful for evaluating lap joints and production quality control for general
+      quality of the bond plus presence of voids and flux inclusions-where one member is held rigid while
+      the other is peeled away from the joint
+    approx_offset: 100516
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0026
+  form: Precision Microfabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 16934
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 228198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0027
+  form: Preforms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+  evidence:
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 17094
+  - quote: 'Hermetic Package Sealing & Feedthroughs: We provide brazing alloys and preforms to create
+      airtight, hermetic seals in microelectronic packages.'
+    approx_offset: 19462
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800
+      is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+    approx_offset: 22762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0028
+  form: Pressure (or bubble leak) testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Pressure (or bubble leak) testing involves the application of air at greater-than-service pressures.
+    approx_offset: 98912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0029
+  form: Proof testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Proof testing - subjecting a brazed joint to a one-time load greater than the service level-applied
+      by hydrostatic methods, tensile loading or spin testing
+    approx_offset: 99394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0030
+  form: Quality Control
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: Quality Control
+    approx_offset: 6838
+  - quote: Vertically Integrated Quality Control – Our melt-to-fabrication vertical integration delivers
+      consistent alloy chemistry and full traceability, reducing variability and ensuring first-time-through
+      joint quality .
+    approx_offset: 41424
+  - quote: Vertically Integrated Quality Control – Our melt-to-fabrication vertical integration delivers
+      consistent alloy chemistry and full traceability, reducing variability and ensuring first-time-through
+      joint quality .
+    approx_offset: 247880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0031
+  form: Quenching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Quenching
+    approx_offset: 91421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0032
+  form: Radiographic examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Radiographic examination - useful in detecting internal flaws, large cracks and braze voids,
+      if thickness and X-ray absorption ratios permit delineation of the brazing filler metal-cannot verify
+      a proper metallurgical bond (pictured right)
+    approx_offset: 99153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0033
+  form: Rapid Prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Rapid Prototyping
+    approx_offset: 21348
+  - quote: Rapid Prototyping
+    approx_offset: 232612
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0034
+  form: Silver brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Silver brazing is a cost-effective method for joining metals, especially when joints are designed
+      for maximum brazing efficiency and fixtures are designed as described.
+    approx_offset: 78227
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0035
+  form: Slitting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Slitting
+    approx_offset: 153704
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0036
+  form: Soaking/wetting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Soaking/wetting
+    approx_offset: 91068
+  - quote: The most common cleaning methods involve water-specifically soaking/wetting and quenching.
+    approx_offset: 96780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0037
+  form: Steam lance cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Steam lance cleaning - This process employs superheated steam under pressure to dissolve and
+      blast away flux residue.
+    approx_offset: 92091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0038
+  form: Strip Rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Strip Rolling
+    approx_offset: 153915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0039
+  form: Tension and shear testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Tension and shear testing - determines strength of a joint in tension or in shear-used during
+      qualification or development rather than production
+    approx_offset: 100896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0040
+  form: Thermal transfer examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Thermal transfer examination - detects changes in thermal transfer rates due to discontinuities
+      or unbrazed areas-images show brazed areas as light spots and void areas as dark spots
+    approx_offset: 100164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0041
+  form: Torch brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: Torch brazing with a silver-bearing filler metal is the most common application of brazing,
+      and many of the advantages and disadvantages below will be listed as such.
+    approx_offset: 129560
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0042
+  form: Torsion testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Torsion testing - used on brazed joints in production quality control-for example, studs or
+      screws brazed to thick sections
+    approx_offset: 101241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0043
+  form: Ultrasonic examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Ultrasonic examination - a comparative method for evaluating joint quality, in immersion mode
+      or contract mode-involves reflection of sound waves by surfaces, using a transducer to emit a pulse
+      and receive echoes (pictured to the right)
+    approx_offset: 99551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0044
+  form: Vacuum testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Vacuum testing is useful for refrigeration equipment and detection of minute leaks, employing
+      a mass spectrometer and a helium atmosphere.
+    approx_offset: 99013
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0045
+  form: Visual examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Visual examination - with or without magnification-for evaluating voids, porosity, surface
+      cracks, fillet size and shape, discontinuous fillets plus base metal erosion (not internal issues
+      such as porosity and lack of fill)
+    approx_offset: 98615
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0046
+  form: We melt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 30042
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 243032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0047
+  form: Wire Drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Wire Drawing & Flattening
+    approx_offset: 154130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0048
+  form: abrasive cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: (If you try to remove rust or scale by abrasive cleaning before getting rid of the oil, you’ll
+      wind up scrubbing the oil, as well as fine abrasive powder, more deeply into the surface.)
+    approx_offset: 67888
+  - quote: Mechanical removal calls for abrasive cleaning.
+    approx_offset: 68579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0049
+  form: acid pickle
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Oil and grease should be removed first, because an acid pickle solution aimed to remove rust
+      and scale won’t work on a greasy surface.
+    approx_offset: 67765
+  - quote: For chemical removal, use an acid pickle treatment, making sure that the chemicals are compatible
+      with the base metals being cleaned, and that no acid traces remain in crevices or blind holes.
+    approx_offset: 68386
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0050
+  form: acid pickle treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: For chemical removal, use an acid pickle treatment, making sure that the chemicals are compatible
+      with the base metals being cleaned, and that no acid traces remain in crevices or blind holes.
+    approx_offset: 68386
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0051
+  form: adhesive bonding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: And metals can also be joined efficiently and economically without the need for heat or a filler
+      metal at all, by mechanical fastening or adhesive bonding.
+    approx_offset: 131696
+  - quote: (Mechanical fastening, for example, or soft soldering or adhesive bonding.) If you are selecting
+      a method to seal the seams of tin cans, there is nothing to stop you from brazing.
+    approx_offset: 132814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0052
+  form: alkaline
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing
+      solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+    approx_offset: 68211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0053
+  form: alkaline or aqueous cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing
+      solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+    approx_offset: 68211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0054
+  form: alloy casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: 'By controlling every step from alloy casting through precision stamping, we deliver consistent
+      quality, shorter lead times, and the engineering insight customers need to “Join with the BEST.”
+      Our metallurgists and application engineers collaborate directly with design teams, provide on-site
+      audits, '
+    approx_offset: 3101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0055
+  form: aluminum brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-700-Series.htm
+  evidence:
+  - quote: In the last three decades the HVAC/R industry has steadily moved toward aluminum brazing solutions.
+    approx_offset: 11074
+  - quote: Over the next twenty years, Lucas Milhaupt began to offer copper, brass and aluminum brazing
+      preforms and soft solder forms to keep up with the demand of the electronic age.
+    approx_offset: 110986
+  - quote: Our aluminum brazing consumables, including AL CC™ corrosive flux-cored wire and AL 718 Al-Si
+      filler for aluminum-to-aluminum joints, help cut through oxide layers, improve capillary flow, and
+      reduce flux residue that can mask leaks.
+    approx_offset: 168487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0056
+  form: analyze braze products and materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+  evidence:
+  - quote: The test lab enables us to analyze braze products and materials at a microscopic level.
+    approx_offset: 6776
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0057
+  form: aqueous cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing
+      solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+    approx_offset: 68223
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0058
+  form: atomize
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 167598
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 221658
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0059
+  form: atomized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Maintain tight control on your material usage and yield consistent high quality joints with
+      paste products consisting of an atomized filler metal powder, a flux (when necessary) and a binder
+      to hold the components together.
+    approx_offset: 154839
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0060
+  form: atomized filler metal powder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Maintain tight control on your material usage and yield consistent high quality joints with
+      paste products consisting of an atomized filler metal powder, a flux (when necessary) and a binder
+      to hold the components together.
+    approx_offset: 154839
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0061
+  form: automated brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: And, as we’ll see later on, these economies in time and labor are multiplied many times over
+      in high production automated brazing.
+    approx_offset: 103736
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 172020
+  - quote: A general-purpose, free-flowing aluminum-silicon brazing alloy for joining aluminum to aluminum
+      in A/C and heat-transfer components; available in Handy One® flux-cored forms for automated brazing.
+    approx_offset: 226080
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0062
+  form: automated dispensing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0063
+  form: beveling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: For example, if you want to butt-weld two pieces of metal, you begin by beveling the edges
+      of the metal pieces to allow room for the welding filler metal.
+    approx_offset: 162824
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0064
+  form: blend
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/Culture
+    - https://www.lucasmilhaupt.com/Products
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Paste products are a custom blend of braze filler metal and specially formulated binders, suited
+      to unique customer applications where precision and braze joint consistency is a must.
+    approx_offset: 105129
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113706
+  - quote: Inspired by French precision and artistry, we blend tradition with advanced science to deliver
+      brazing solutions worthy of excellence”
+    approx_offset: 149319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0065
+  form: blend precisely metered alloy powders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0066
+  form: braze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 116
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/About/NewsEvents
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: 'By controlling every step from alloy casting through precision stamping, we deliver consistent
+      quality, shorter lead times, and the engineering insight customers need to “Join with the BEST.”
+      Our metallurgists and application engineers collaborate directly with design teams, provide on-site
+      audits, '
+    approx_offset: 3407
+  - quote: The test lab enables us to analyze braze products and materials at a microscopic level.
+    approx_offset: 6784
+  - quote: We offer how-to videos and in person training to help Service Technicians braze stronger joints
+      in the field.
+    approx_offset: 10795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0067
+  form: brazed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 104
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: What is the strength of a brazed joint?
+    approx_offset: 12698
+  - quote: How do you disassemble brazed joints?
+    approx_offset: 12892
+  - quote: 'Surgical Instruments & Other High-Tech Medical Devices: Brazed assemblies for surgical tools
+      (forceps, endoscopes, robotic surgery components) and other high-tech medical devices, providing
+      strong, corrosion-resistant joints that withstand sterilization cycles and repeated use.'
+    approx_offset: 27055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0068
+  form: brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 449
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/About/Culture
+    - https://www.lucasmilhaupt.com/About/Find-Locations
+  evidence:
+  - quote: From custom brazing alloys to fluxes to precision metal joining components.
+    approx_offset: 2115
+  - quote: For more than 80 years, Lucas Milhaupt has been the name behind high-performance brazing alloys,
+      fluxes, and custom pre-forms that keep critical assemblies functioning in the world’s toughest environments.
+    approx_offset: 2945
+  - quote: When performance, reliability, and speed to market matter, Lucas Milhaupt isn’t just a materials
+      vendor, we’re the trusted brazing partner behind successful assemblies worldwide.
+    approx_offset: 4560
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0069
+  form: bubble leak) testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Pressure (or bubble leak) testing involves the application of air at greater-than-service pressures.
+    approx_offset: 98925
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0070
+  form: butt-weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: For example, if you want to butt-weld two pieces of metal, you begin by beveling the edges
+      of the metal pieces to allow room for the welding filler metal.
+    approx_offset: 162780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0071
+  form: capacitor discharge
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: You can weld on a production basis via electron beam, capacitor discharge, friction and other
+      methods.
+    approx_offset: 164635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0072
+  form: casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/HVACR/OEM
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: Casting to Fabrication
+    approx_offset: 1790
+  - quote: Being a vertically integrated supplier means we carefully control every aspect of the process
+      – from casting to fabrication - to ensure we deliver the best quality products.
+    approx_offset: 1915
+  - quote: 'By controlling every step from alloy casting through precision stamping, we deliver consistent
+      quality, shorter lead times, and the engineering insight customers need to “Join with the BEST.”
+      Our metallurgists and application engineers collaborate directly with design teams, provide on-site
+      audits, '
+    approx_offset: 3107
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0073
+  form: casting to fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/Industries/HVACR/OEM
+    - https://www.lucasmilhaupt.com/Lucas
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Casting to Fabrication
+    approx_offset: 1790
+  - quote: Being a vertically integrated supplier means we carefully control every aspect of the process
+      – from casting to fabrication - to ensure we deliver the best quality products.
+    approx_offset: 1915
+  - quote: Casting to Fabrication
+    approx_offset: 118300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0074
+  form: chemical cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0075
+  form: chemical immersion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Stainless-steel and aluminum parts, for example, may benefit from chemical immersion to improve
+      surface corrosion resistance.
+    approx_offset: 92875
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0076
+  form: clean water rinse
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: "20% sulphuric acid, 20% hydrochloric acid, 60% water, used at 170-180°F (75-80°C.)\tThis pickle\
+      \ is followed directly by a 10% nitric dip, and then a clean water rinse."
+    approx_offset: 95463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0077
+  form: coat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 167613
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 221673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0078
+  form: coated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: If they are “contaminated”—coated with oil, grease, rust, scale or just plain dirt—those contaminants
+      have to be removed.
+    approx_offset: 67144
+  - quote: If the metal surfaces are coated with oxide or scale, you can remove those contaminants chemically
+      or mechanically.
+    approx_offset: 68267
+  - quote: Another important advantage of brazing is the ease of joining dissimilar metals using flux
+      or flux-cored/coated alloys.
+    approx_offset: 159022
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0079
+  form: coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: A coating of flux on the joint area guards the surfaces from the air, preventing oxide formation.
+    approx_offset: 69589
+  - quote: A cadmium coating on a base metal will volatilize and produce toxic fume during heating.
+    approx_offset: 88177
+  - quote: If the assemblies are going to be stored for use at a later time, give them a light rust-resistant
+      protective coating by adding a water soluble oil to the final rinse water.
+    approx_offset: 102427
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0080
+  form: coil brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Lucas Milhaupt has decades of HVAC/R coil brazing experience that we leverage for automotive
+      thermal systems, supporting cleaner joints, easier inspection, and higher first-pass yield in volume
+      production.
+    approx_offset: 168754
+  - quote: Lucas Milhaupt has decades of HVAC/R coil brazing experience that we leverage for automotive
+      thermal systems, supporting cleaner joints, easier inspection, and higher first-pass yield in volume
+      production.
+    approx_offset: 222814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0081
+  form: controlled atmosphere
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: Our controlled atmosphere processes produce strong, hermetic joints without contamination,
+      which is crucial for sensitive medical devices.
+    approx_offset: 25833
+  - quote: (The phosphorus in these alloys acts as a fluxing agent on copper.) You can also omit fluxing
+      if brazing occurs in a controlled atmosphere (i.e.
+    approx_offset: 73861
+  - quote: Even in controlled atmosphere brazing you may find that a small amount of flux improves the
+      wetting action of the brazing filler metal.
+    approx_offset: 74123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0082
+  form: controlled atmosphere brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Even in controlled atmosphere brazing you may find that a small amount of flux improves the
+      wetting action of the brazing filler metal.
+    approx_offset: 74123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0083
+  form: controlled atmosphere processes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: Our controlled atmosphere processes produce strong, hermetic joints without contamination,
+      which is crucial for sensitive medical devices.
+    approx_offset: 25833
+  - quote: Our controlled atmosphere processes produce strong, hermetic joints without contamination,
+      which is crucial for sensitive medical devices.
+    approx_offset: 238816
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0084
+  form: core
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Careers
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: At the core of our new HQ facility is the Center of Excellence – an innovation hub designed
+      to accelerate our R&D, prototyping, and testing operations.
+    approx_offset: 1404
+  - quote: We are proud to be a part of the Steel Partners family of companies with a shared commitment
+      to core values of Teamwork, Integrity, Respect, and Commitment.
+    approx_offset: 110041
+  - quote: 'At the core are our Filler Metals: a comprehensive line of silver, aluminum, copper, nickel,
+      precious-metal, and specialized alloy forms (wire, strip, rings, preforms, and powders) engineered
+      to deliver consistent braze strength and metallurgical integrity across demanding thermal cycles.'
+    approx_offset: 113088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0085
+  form: cored
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 37
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+  evidence:
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 9477
+  - quote: Learn more about our innovative, patent pending triangular brazing ring and flux cored brazing
+      rings for return bends, or U-bends.
+    approx_offset: 11307
+  - quote: Another important advantage of brazing is the ease of joining dissimilar metals using flux
+      or flux-cored/coated alloys.
+    approx_offset: 159016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0086
+  form: crimping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75794
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0087
+  form: custom blend
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products/Pastes
+  evidence:
+  - quote: Paste products are a custom blend of braze filler metal and specially formulated binders, suited
+      to unique customer applications where precision and braze joint consistency is a must.
+    approx_offset: 105122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0088
+  form: custom preform fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: Our AS9100-certified, vertically integrated manufacturing controls alloy chemistry and geometry
+      from the melt through custom preform fabrication, holding tolerances measured in microns for hermetic,
+      vibration-resistant joints in flight-critical hardware.
+    approx_offset: 32639
+  - quote: Our AS9100-certified, vertically integrated manufacturing controls alloy chemistry and geometry
+      from the melt through custom preform fabrication, holding tolerances measured in microns for hermetic,
+      vibration-resistant joints in flight-critical hardware.
+    approx_offset: 245629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0089
+  form: custom slitting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: Finally, through our Distribution services we extend more than raw materials; we offer custom
+      slitting, spooling, kitting, VMI programs, and global logistics support, so your brazing supply
+      chain stays lean and responsive.
+    approx_offset: 114046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0090
+  form: cut, and fabricate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 167631
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 221691
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0091
+  form: cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: By focusing on cutting-edge material joining solutions, we ensure our customers benefit from
+      the latest advancements and remain competitive in the industry.
+    approx_offset: 6237
+  - quote: Learn about the cutting-edge joining solutions our engineers have designed to help OEMs stay
+      competitive in today’s market.
+    approx_offset: 10080
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 17038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0092
+  form: degreasing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing
+      solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+    approx_offset: 68164
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing
+      solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+    approx_offset: 68193
+  - quote: When they do, a quick dip, dozens at a time, in a degreasing solution does the job.
+    approx_offset: 103078
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0093
+  form: degreasing solution
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: When they do, a quick dip, dozens at a time, in a degreasing solution does the job.
+    approx_offset: 103078
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0094
+  form: degreasing solvent
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing
+      solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+    approx_offset: 68164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0095
+  form: destructive and mechanical testing methods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'There are also several destructive and mechanical testing methods, often used in random or
+      lot testing:'
+    approx_offset: 100434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0096
+  form: destructive testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Brazed Joint Examination Methods: Destructive testing methods'
+    approx_offset: 100382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0097
+  form: die attach
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Whether for power transistors, LEDs, or integrated circuits, these solder alloys ensure a strong,
+      void-free die attach that endures thermal cycling.
+    approx_offset: 19350
+  - quote: Whether for power transistors, LEDs, or integrated circuits, these solder alloys ensure a strong,
+      void-free die attach that endures thermal cycling.
+    approx_offset: 230614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0098
+  form: die attachment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Our Premabraze® 880 (an 88% Au / 12% Ge eutectic alloy) is used for die attachment in many
+      high-reliability chips, offering a robust bond with very low vapor pressure to maintain vacuum integrity
+      during device operation.
+    approx_offset: 19089
+  - quote: Our Premabraze® 880 (an 88% Au / 12% Ge eutectic alloy) is used for die attachment in many
+      high-reliability chips, offering a robust bond with very low vapor pressure to maintain vacuum integrity
+      during device operation.
+    approx_offset: 230353
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0099
+  form: dimpling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0100
+  form: dispensable flux
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: But as production quantities increase, it may be more effective to apply the flux by dipping
+      or dispensing a pre-measured deposit of high-viscosity dispensable flux from an applicator gun.
+    approx_offset: 70252
+  - quote: Why dispensable flux?
+    approx_offset: 70297
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0101
+  form: dispensing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: But as production quantities increase, it may be more effective to apply the flux by dipping
+      or dispensing a pre-measured deposit of high-viscosity dispensable flux from an applicator gun.
+    approx_offset: 70200
+  - quote: There are fluxes formulated for practically every need; for example - fluxes for brazing at
+      very high temperatures (in the 2000°F/1093°C area), fluxes for metals with refractory oxides, fluxes
+      for long heating cycles, and fluxes for dispensing by automated machines.
+    approx_offset: 71132
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0102
+  form: draw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 30063
+  - quote: Since these are poor conductors, they draw the least heat away from the joint.
+    approx_offset: 75294
+  - quote: The ability to draw wire also enables us to provide round, square, half round, regular or unusual
+      cross sections.
+    approx_offset: 154373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0103
+  form: draw wire
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: The ability to draw wire also enables us to provide round, square, half round, regular or unusual
+      cross sections.
+    approx_offset: 154373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0104
+  form: drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Lucas Milhaupt is a leading provider of brazing and soldering solutions, drawing on decades
+      of materials science expertise and a portfolio of over 500 custom alloys to improve process efficiency
+      and extend product life.
+    approx_offset: 15880
+  - quote: Wire Drawing & Flattening
+    approx_offset: 154135
+  - quote: Lucas Milhaupt is a leading provider of brazing and soldering solutions, drawing on decades
+      of materials science expertise and a portfolio of over 500 custom alloys to improve process efficiency
+      and extend product life.
+    approx_offset: 227144
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0105
+  form: drilled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: Where this is not possible, small holes may be drilled into the blind spots to allow flux escape.
+    approx_offset: 66219
+  - quote: The joint is completed when molten filler metal appears at the outside surface of these drilled
+      holes.
+    approx_offset: 66358
+  - quote: Where this is not possible, small holes may be drilled into the blind spots to allow flux escape.
+    approx_offset: 142516
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0106
+  form: drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts and wear protection
+      features for PDC and roller-cone designs to withstand impact, abrasion and high temperatures.'
+    approx_offset: 120810
+  - quote: 'Drilling and completion wear components: Stabilizers, subs, mandrels and bearing surfaces
+      that require robust carbide-to-steel joints for extended service life.'
+    approx_offset: 120987
+  - quote: The cutters, picks, and drill bits that tame these materials rely on brazed joints that survive
+      crushing loads, high-speed abrasion, thermal shock, and corrosive drilling fluids.
+    approx_offset: 121779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0107
+  form: dye and fluorescent penetrants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Liquid penetrant examination - dye and fluorescent penetrants may detect cracks open to the
+      surface of joints-not suitable for inspection of fillets, where some porosity is always present
+    approx_offset: 99820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0108
+  form: electrical resistance welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: For example, if you want to join two small strips of metal at a single point, an electrical
+      resistance welding approach is practical.
+    approx_offset: 162473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0109
+  form: electron beam
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: You can weld on a production basis via electron beam, capacitor discharge, friction and other
+      methods.
+    approx_offset: 164620
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0110
+  form: electroplated finish
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The assembly is ready for use, or for the application of an electroplated finish.
+    approx_offset: 102170
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0111
+  form: fabricate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 30069
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 167640
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 221700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0112
+  form: fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+  evidence:
+  - quote: Casting to Fabrication
+    approx_offset: 1801
+  - quote: Being a vertically integrated supplier means we carefully control every aspect of the process
+      – from casting to fabrication - to ensure we deliver the best quality products.
+    approx_offset: 1926
+  - quote: In the competitive microelectronics sector, manufacturers demand partners they can trust –
+      those who provide high-purity alloys, precision fabrication for micro components, and fast turnaround
+      to meet aggressive development timelines.
+    approx_offset: 15711
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0113
+  form: failure analysis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Our team can help with root-cause failure analysis, feed-speed recommendations and offer cost-down
+      alloy substitutions.
+    approx_offset: 122221
+  - quote: Our team can help with root-cause failure analysis, feed-speed recommendations and offer cost-down
+      alloy substitutions.
+    approx_offset: 256863
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0114
+  form: flame-brazed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Fixture design is a key factor in achieving quality flame-brazed or soldered joints.
+    approx_offset: 79433
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0115
+  form: flame-brazed or soldered joints
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Fixture design is a key factor in achieving quality flame-brazed or soldered joints.
+    approx_offset: 79433
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0116
+  form: flattening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0117
+  form: flux application
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Flux Application
+    approx_offset: 69928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0118
+  form: flux cored
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: Learn more about our innovative, patent pending triangular brazing ring and flux cored brazing
+      rings for return bends, or U-bends.
+    approx_offset: 11302
+  - quote: Lucas Milhaupt engineered a flux cored aluminum braze alloy to make it easier for Service Technicians
+      to repair aluminum coils and condensers in the field.
+    approx_offset: 182205
+  - quote: Flux cored
+    approx_offset: 183635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0119
+  form: flux removal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Let''s examine five reasons why post-braze flux removal is important:'
+    approx_offset: 89923
+  - quote: 'The most common methods for post-braze flux removal are:'
+    approx_offset: 91049
+  - quote: Finally, flux removal is generally no more than a hot water rinse, and oxide removal needs
+      only a dip into an acid bath.
+    approx_offset: 103372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0120
+  form: flux-coated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Process Efficiency & Automation Support – Flux-cored and flux-coated brazing products help
+      cut manual steps; our training, audits, and Center of Excellence resources support smoother line
+      conversions and better first-pass yield.
+    approx_offset: 167827
+  - quote: Process Efficiency & Automation Support – Flux-cored and flux-coated brazing products help
+      cut manual steps; our training, audits, and Center of Excellence resources support smoother line
+      conversions and better first-pass yield.
+    approx_offset: 221887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0121
+  form: flux-cored
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 9472
+  - quote: Another important advantage of brazing is the ease of joining dissimilar metals using flux
+      or flux-cored/coated alloys.
+    approx_offset: 159011
+  - quote: Whether you need flux-cored wire, custom preform washers for tapered valves, or highly fluid
+      aluminum filler metals for high-throughput brazing, we’re ready to support your next program.
+    approx_offset: 167065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0122
+  form: fluxing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+  evidence:
+  - quote: 'The ability to remove flux residue can be an important factor such as in certain HVAC and
+      other fluid transport systems; closed loop systems which cannot be readily cleaned after joining
+      must often be brazed or soldered in vacuum or under a protective atmosphere, or a self-fluxing filler
+      metal such '
+    approx_offset: 53174
+  - quote: (The phosphorus in these alloys acts as a fluxing agent on copper.) You can also omit fluxing
+      if brazing occurs in a controlled atmosphere (i.e.
+    approx_offset: 73786
+  - quote: (The phosphorus in these alloys acts as a fluxing agent on copper.) You can also omit fluxing
+      if brazing occurs in a controlled atmosphere (i.e.
+    approx_offset: 73830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0123
+  form: friction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: You can weld on a production basis via electron beam, capacitor discharge, friction and other
+      methods.
+    approx_offset: 164656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0124
+  form: friction and other methods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: You can weld on a production basis via electron beam, capacitor discharge, friction and other
+      methods.
+    approx_offset: 164656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0125
+  form: furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+  evidence:
+  - quote: Whether it’s furnace, induction, or vacuum brazing, our technical team will train your operators
+      in best practices to achieve dependable, long-lasting joints.
+    approx_offset: 41887
+  - quote: a gaseous mixture contained in an enclosed space, usually a brazing furnace).
+    approx_offset: 73957
+  - quote: When fixturing for furnace brazing, hold the mass of the fixture to a minimum.
+    approx_offset: 78890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0126
+  form: furnace brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: When fixturing for furnace brazing, hold the mass of the fixture to a minimum.
+    approx_offset: 78890
+  - quote: However, if you need assistance with furnace brazing, please see our furnace atmosphere blog.
+    approx_offset: 80319
+  - quote: These binders are best suited for high temperature furnace brazing application in exothermic,
+      dissociated ammonia, or vacuum atmosphere.
+    approx_offset: 209542
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0127
+  form: grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: Particularly in repair brazing, where parts may be very dirty or heavily rusted, you can speed
+      the cleaning process by using a grinding wheel, or file or metallic grit blast, followed by a rinsing
+      operation.
+    approx_offset: 68725
+  - quote: There is seldom any need for grinding, filing or mechanical finishing after the joint is completed.
+    approx_offset: 130605
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0128
+  form: grit blast
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Particularly in repair brazing, where parts may be very dirty or heavily rusted, you can speed
+      the cleaning process by using a grinding wheel, or file or metallic grit blast, followed by a rinsing
+      operation.
+    approx_offset: 68761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0129
+  form: hermetic sealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: If your design demands micron-level accuracy or hermetic sealing, Lucas Milhaupt has the capability
+      to deliver.
+    approx_offset: 17362
+  - quote: We help enable hermetic sealing of optical components, bonding of sensor elements, and assembly
+      of fiber-optic and imaging modules.
+    approx_offset: 21012
+  - quote: If your design demands micron-level accuracy or hermetic sealing, Lucas Milhaupt has the capability
+      to deliver.
+    approx_offset: 228626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0130
+  form: high production automated brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: And, as we’ll see later on, these economies in time and labor are multiplied many times over
+      in high production automated brazing.
+    approx_offset: 103720
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0131
+  form: hot water rinse
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Finally, flux removal is generally no more than a hot water rinse, and oxide removal needs
+      only a dip into an acid bath.
+    approx_offset: 103413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0132
+  form: hydrostatic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Proof testing - subjecting a brazed joint to a one-time load greater than the service level-applied
+      by hydrostatic methods, tensile loading or spin testing
+    approx_offset: 99497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0133
+  form: induction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+  evidence:
+  - quote: Whether it’s furnace, induction, or vacuum brazing, our technical team will train your operators
+      in best practices to achieve dependable, long-lasting joints.
+    approx_offset: 41896
+  - quote: Black flux is beneficial for fast induction heating, may provide better protection in a high-temperature
+      brazing operation, and can be helpful with high-liquidus filler metals.
+    approx_offset: 71261
+  - quote: When fixturing for induction heating, keep fixtures away from the work coil, so they will not
+      act as heat sinks or interfere with the magnetic field.
+    approx_offset: 79065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0134
+  form: induction brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'There are four main types of brazing heating methods: torch or manual brazing, induction brazing,
+      resistance brazing, and vacuum brazing.'
+    approx_offset: 80048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0135
+  form: induction heating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Black flux is beneficial for fast induction heating, may provide better protection in a high-temperature
+      brazing operation, and can be helpful with high-liquidus filler metals.
+    approx_offset: 71261
+  - quote: When fixturing for induction heating, keep fixtures away from the work coil, so they will not
+      act as heat sinks or interfere with the magnetic field.
+    approx_offset: 79065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0136
+  form: interlocking seams
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75804
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0137
+  form: joining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 120
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About
+    - https://www.lucasmilhaupt.com/About/Careers
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: Discover the next-generation material joining solutions that are driving industry forward.
+    approx_offset: 187
+  - quote: With more than 500 custom alloys, and decades of materials science expertise, Lucas Milhaupt
+      develops custom joining solutions that improve process efficiency and extend the life of products.
+    approx_offset: 581
+  - quote: We empower OEMs to innovate faster and more efficiently, through custom metal joining solutions,
+      advanced R&D, and rapid prototyping.
+    approx_offset: 826
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0138
+  form: kitting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: Finally, through our Distribution services we extend more than raw materials; we offer custom
+      slitting, spooling, kitting, VMI programs, and global logistics support, so your brazing supply
+      chain stays lean and responsive.
+    approx_offset: 114073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0139
+  form: knurling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75873
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0140
+  form: laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 17032
+  - quote: Our brazing team has helped many microelectronic manufacturers design cost-effective joining
+      methods and prototypes, utilizing in-house tooling to test new designs and small-run laser cutting
+      that keep you ahead of the competition.
+    approx_offset: 18414
+  - quote: Lucas Milhaupt can help you meet your customers' aggressive deadlines with in stock dies, laser
+      cutting, and best-in-class quote turnaround.
+    approx_offset: 22490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0141
+  form: laser-cut
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this
+      Au88/Ge12 eutectuc is designed for high-reliability hermetic seals.
+    approx_offset: 23529
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this
+      Au88/Ge12 eutectuc is designed for high-reliability hermetic seals.
+    approx_offset: 234793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0142
+  form: leak testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0143
+  form: lid attachment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector
+      feedthroughs for sensors, medical implants, and aerospace electronics.
+    approx_offset: 19591
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector
+      feedthroughs for sensors, medical implants, and aerospace electronics.
+    approx_offset: 230855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0144
+  form: liquid penetrant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Liquid penetrant examination - dye and fluorescent penetrants may detect cracks open to the
+      surface of joints-not suitable for inspection of fillets, where some porosity is always present
+    approx_offset: 99789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0145
+  form: manual brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: For the sake of simplicity, we'll discuss these six brazing process steps mainly in terms of
+      "manual brazing," that is, brazing with hand-held torch and hand-fed filler metal.
+    approx_offset: 55355
+  - quote: But everything said about manual brazing applies as well to mass production brazing.
+    approx_offset: 55463
+  - quote: 'There are four main types of brazing heating methods: torch or manual brazing, induction brazing,
+      resistance brazing, and vacuum brazing.'
+    approx_offset: 80032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0146
+  form: mass production brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: But everything said about manual brazing applies as well to mass production brazing.
+    approx_offset: 55497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0147
+  form: material analysis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0148
+  form: material joining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Careers
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: Discover the next-generation material joining solutions that are driving industry forward.
+    approx_offset: 178
+  - quote: world headquarters which affords us the space to innovate and the capacity to deliver solutions
+      to your most complex material joining challenges.
+    approx_offset: 1329
+  - quote: By focusing on cutting-edge material joining solutions, we ensure our customers benefit from
+      the latest advancements and remain competitive in the industry.
+    approx_offset: 6250
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0149
+  form: mechanical cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: A final mechanical cleaning, therefore, is advisable for work which is to be plated.
+    approx_offset: 96329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0150
+  form: mechanical fastening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: And metals can also be joined efficiently and economically without the need for heat or a filler
+      metal at all, by mechanical fastening or adhesive bonding.
+    approx_offset: 131672
+  - quote: (You can “de-braze” a brazed joint if you have to, but why plan on it?) For the typical non-permanent
+      joint, mechanical fastening is usually the most practical method.
+    approx_offset: 132379
+  - quote: (Mechanical fastening, for example, or soft soldering or adhesive bonding.) If you are selecting
+      a method to seal the seams of tin cans, there is nothing to stop you from brazing.
+    approx_offset: 132758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0151
+  form: mechanical finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: Mechanical finishing is necessary for bright finishes.
+    approx_offset: 95130
+  - quote: There is seldom any need for grinding, filing or mechanical finishing after the joint is completed.
+    approx_offset: 130625
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0152
+  form: melt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+  evidence:
+  - quote: Eutectic melt point of 356 °C (673 °F) delivers a wider operating margin than 800 for power
+      or high-temp electronics.
+    approx_offset: 23784
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 30045
+  - quote: Combined with vertical integration and high-purity melt control, this helps prevent impurity-driven
+      leak paths and supports long service life in critical assemblies.
+    approx_offset: 31856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0153
+  form: melt to fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Consulting-Services
+  evidence:
+  - quote: Our ability to control the process from melt to fabrication, paired with our internal laboratory
+      capabilities for sample testing and analysis, makes Lucas Milhaupt a premier brazing partner for
+      OEMs.
+    approx_offset: 173518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0154
+  form: melting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: As a vertically integrated brazing alloy producer and brazing technology partner, we control
+      quality at every step...from melting the alloy to delivering the finished product.
+    approx_offset: 40839
+  - quote: Because Lucas Milhaupt owns the entire process—from alloy melting to finished preforms—it can
+      guarantee chemistry, traceability, and tight-tolerance fabrication in one seamless chain.
+    approx_offset: 46563
+  - quote: In both cases the filler metal has a lower melting point than the base metals being joined.
+    approx_offset: 51161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0155
+  form: melting the alloy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: As a vertically integrated brazing alloy producer and brazing technology partner, we control
+      quality at every step...from melting the alloy to delivering the finished product.
+    approx_offset: 40839
+  - quote: As a vertically integrated brazing alloy producer and brazing technology partner, we control
+      quality at every step...from melting the alloy to delivering the finished product.
+    approx_offset: 247295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0156
+  form: metal fabrication processes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: Today, Lucas Milhaupt offers all of the product and process innovation in Handy & Harman tradition,
+      while developing new and innovative brazing preforms and metal fabrication processes.
+    approx_offset: 125698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0157
+  form: metal joining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 57
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/About/Find-Locations
+  evidence:
+  - quote: We empower OEMs to innovate faster and more efficiently, through custom metal joining solutions,
+      advanced R&D, and rapid prototyping.
+    approx_offset: 820
+  - quote: We offer a full portfolio of custom solutions designed to meet your metal joining needs.
+    approx_offset: 2082
+  - quote: From custom brazing alloys to fluxes to precision metal joining components.
+    approx_offset: 2153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0158
+  form: metallic grit blast
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Particularly in repair brazing, where parts may be very dirty or heavily rusted, you can speed
+      the cleaning process by using a grinding wheel, or file or metallic grit blast, followed by a rinsing
+      operation.
+    approx_offset: 68752
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0159
+  form: microfabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 16944
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 228208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0160
+  form: nondestructive examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Common discontinuities of brazed joints, identified through nondestructive examination, include:'
+    approx_offset: 97422
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0161
+  form: package
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: 'Hermetic Package Sealing & Feedthroughs: We provide brazing alloys and preforms to create
+      airtight, hermetic seals in microelectronic packages.'
+    approx_offset: 19400
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 30084
+  - quote: Our skilled machine operators slit strip to widths from 6” down to .062” (152.4mm to 1.57mm)
+      and package the material on either spools or coils, depending upon your needs and production requirements.
+    approx_offset: 153811
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0162
+  form: packaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 19010
+  - quote: Our laser, EDM, and stamping fabrication capability allow for precise preform design on microelectronic
+      packaging that demand extremely tight tolerances.
+    approx_offset: 21907
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder that can be used on ferrous and non-ferrous
+      base metals and sees most use in the electronics packaging industry or applications where lead or
+      silver are not permissible.
+    approx_offset: 198786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0163
+  form: peening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0164
+  form: pickle
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Oil and grease should be removed first, because an acid pickle solution aimed to remove rust
+      and scale won’t work on a greasy surface.
+    approx_offset: 67770
+  - quote: For chemical removal, use an acid pickle treatment, making sure that the chemicals are compatible
+      with the base metals being cleaned, and that no acid traces remain in crevices or blind holes.
+    approx_offset: 68391
+  - quote: The best pickle to use is generally the one recommended by the manufacturer of the brazing
+      materials you’re using.
+    approx_offset: 93785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0165
+  form: pickling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Second— pickling to remove any oxide scale formed during the brazing process.
+    approx_offset: 88958
+  - quote: After you’ve gotten rid of the flux, use a pickling solution to remove any oxides that remain
+      on areas that were unprotected by flux during the brazing process.
+    approx_offset: 93658
+  - quote: Highly oxidizing pickling solutions, such as bright dips containing nitric acid, should be
+      avoided if possible, as they attack the silver filler metal.
+    approx_offset: 93908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0166
+  form: pinning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0167
+  form: plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Excellent wetting on nickel-plated substrates enables leak-tight micro-packages and RF lid
+      seals.
+    approx_offset: 23705
+  - quote: When the brazed joint is to be plated or tinned, the removal of the slag is absolutely essential.
+    approx_offset: 96254
+  - quote: A final mechanical cleaning, therefore, is advisable for work which is to be plated.
+    approx_offset: 96398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0168
+  form: polished
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: (Highly polished surfaces, on the other hand, tend to restrict filler metal flow.)
+    approx_offset: 57908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0169
+  form: polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In the few instances where you need an ultra-clean finish, you can get it by polishing the
+      assembly with a fine emery cloth.
+    approx_offset: 102269
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0170
+  form: post-braze flux removal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'Let''s examine five reasons why post-braze flux removal is important:'
+    approx_offset: 89912
+  - quote: 'The most common methods for post-braze flux removal are:'
+    approx_offset: 91038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0171
+  form: pre-packaged
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Distributor
+    - https://www.lucasmilhaupt.com/NA/EN/About/Contact-Us.htm
+    - https://www.lucasmilhaupt.com/Resources-Library/Demo-Videos
+  evidence:
+  - quote: Check out our distribution locator to find Lucas Milhaupt pre-packaged products near you.
+    approx_offset: 47444
+  - quote: Filler Metals, Pre-Packaged, Custom Solutions(9)
+    approx_offset: 144537
+  - quote: Pre-Packaged(19)
+    approx_offset: 144593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0172
+  form: precision fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: In the competitive microelectronics sector, manufacturers demand partners they can trust –
+      those who provide high-purity alloys, precision fabrication for micro components, and fast turnaround
+      to meet aggressive development timelines.
+    approx_offset: 15701
+  - quote: In the competitive microelectronics sector, manufacturers demand partners they can trust –
+      those who provide high-purity alloys, precision fabrication for micro components, and fast turnaround
+      to meet aggressive development timelines.
+    approx_offset: 226965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0173
+  form: precision stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'By controlling every step from alloy casting through precision stamping, we deliver consistent
+      quality, shorter lead times, and the engineering insight customers need to “Join with the BEST.”
+      Our metallurgists and application engineers collaborate directly with design teams, provide on-site
+      audits, '
+    approx_offset: 3123
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 17056
+  - quote: We have collaborated with our customers to design custom solutions with wire diameter down
+      to .006" and precision stamping with alloy thickness down to .001".
+    approx_offset: 22061
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0174
+  form: preform design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Our laser, EDM, and stamping fabrication capability allow for precise preform design on microelectronic
+      packaging that demand extremely tight tolerances.
+    approx_offset: 21873
+  - quote: PREFORM DESIGN
+    approx_offset: 193307
+  - quote: Our laser, EDM, and stamping fabrication capability allow for precise preform design on microelectronic
+      packaging that demand extremely tight tolerances.
+    approx_offset: 233137
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0175
+  form: preform sizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Collaborative joint design, preform sizing (SilvaCut), and process tuning to improve wetting,
+      control filler volume, reduce rework, and boost throughput.
+    approx_offset: 122061
+  - quote: Collaborative joint design, preform sizing (SilvaCut), and process tuning to improve wetting,
+      control filler volume, reduce rework, and boost throughput.
+    approx_offset: 256703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0176
+  form: pressure test
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In pressure service, flux may mask pinholes in a braze joint, even though it withstands a pressure
+      test.
+    approx_offset: 90232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0177
+  form: prototype
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: The lab is equipped with the latest technology to analyze, develop, and prototype material
+      joining solutions.
+    approx_offset: 6691
+  - quote: At its Center of Excellence in Milwaukee, metallurgists, chemists, and applications engineers
+      collaborate with OEM teams to prototype next-gen electrical assemblies.
+    approx_offset: 45381
+  - quote: At its Center of Excellence in Milwaukee, metallurgists, chemists, and applications engineers
+      collaborate with OEM teams to prototype next-gen electrical assemblies.
+    approx_offset: 251837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0178
+  form: prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+  evidence:
+  - quote: We empower OEMs to innovate faster and more efficiently, through custom metal joining solutions,
+      advanced R&D, and rapid prototyping.
+    approx_offset: 869
+  - quote: At the core of our new HQ facility is the Center of Excellence – an innovation hub designed
+      to accelerate our R&D, prototyping, and testing operations.
+    approx_offset: 1512
+  - quote: The heart of innovation at Lucas Milhaupt, designed to accelerate our R&D, prototyping, and
+      testing operations.
+    approx_offset: 5599
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0179
+  form: quality checks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+  evidence:
+  - quote: Being vertically integrated allows us to control product quality throughout the manufacturing
+      process, with quality checks in the lab.
+    approx_offset: 6963
+  - quote: Being vertically integrated allows us to control product quality throughout the manufacturing
+      process, with quality checks in the lab.
+    approx_offset: 7122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0180
+  form: quality control
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Industries/HVACR/OEM
+  evidence:
+  - quote: Peel testing - useful for evaluating lap joints and production quality control for general
+      quality of the bond plus presence of voids and flux inclusions-where one member is held rigid while
+      the other is peeled away from the joint
+    approx_offset: 100579
+  - quote: Torsion testing - used on brazed joints in production quality control-for example, studs or
+      screws brazed to thick sections
+    approx_offset: 101295
+  - quote: From engineering to operations to quality control, we collaborate with your team to develop
+      joint solutions.
+    approx_offset: 175351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0181
+  form: quench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: (Flux residues are chemically corrosive and, if not removed, could weaken certain joints.)
+      Since most brazing fluxes are water soluble, the easiest way to remove them is to quench the assembly
+      in hot water (120°F/50°C or hotter).
+    approx_offset: 89267
+  - quote: Quench only after the braze filler metal has solidified to avoid cracks or rough braze joints.
+    approx_offset: 91592
+  - quote: Do not quench materials with large differences in coefficients of thermal expansion to avoid
+      cracks in the base materials and tears within the braze alloy.
+    approx_offset: 91762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0182
+  form: quenching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Best bet is to immerse them while they’re still hot, just making sure that the filler metal
+      has solidified completely before quenching.
+    approx_offset: 89449
+  - quote: When quenching a brazed part in hot water, take care to avoid compromising the braze joint.
+    approx_offset: 91505
+  - quote: Note that quenching can affect base material mechanical properties.
+    approx_offset: 91697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0183
+  form: radiographic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Radiographic examination - useful in detecting internal flaws, large cracks and braze voids,
+      if thickness and X-ray absorption ratios permit delineation of the brazing filler metal-cannot verify
+      a proper metallurgical bond (pictured right)
+    approx_offset: 99153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0184
+  form: rapid prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: We empower OEMs to innovate faster and more efficiently, through custom metal joining solutions,
+      advanced R&D, and rapid prototyping.
+    approx_offset: 863
+  - quote: We empower OEMs to innovate faster and more efficiently, through custom metal joining solutions,
+      advanced R&D, and rapid prototyping.
+    approx_offset: 117373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0185
+  form: refining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: Founded more than a century ago in 1867, Handy & Harman (HNH) had long been recognized as a
+      leading company in precious metal fabrication, processing and refining.
+    approx_offset: 126148
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0186
+  form: repair
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+  evidence:
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 9552
+  - quote: Particularly in repair brazing, where parts may be very dirty or heavily rusted, you can speed
+      the cleaning process by using a grinding wheel, or file or metallic grit blast, followed by a rinsing
+      operation.
+    approx_offset: 68614
+  - quote: Lucas Milhaupt helps operators, OEMs and repair shops build stronger, longer-lasting assemblies
+      with engineered brazing alloys, fluxes and pastes that hold up in harsh environments.
+    approx_offset: 119384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0187
+  form: repair brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 9552
+  - quote: Particularly in repair brazing, where parts may be very dirty or heavily rusted, you can speed
+      the cleaning process by using a grinding wheel, or file or metallic grit blast, followed by a rinsing
+      operation.
+    approx_offset: 68614
+  - quote: We offer advanced flux-cored alloys (such as AL822 for aluminum-to-aluminum or aluminum-to-copper
+      repair brazing ) and provide industry-specific training and support.
+    approx_offset: 217898
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0188
+  form: resistance brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+  evidence:
+  - quote: 'There are four main types of brazing heating methods: torch or manual brazing, induction brazing,
+      resistance brazing, and vacuum brazing.'
+    approx_offset: 80067
+  - quote: Handy Flo 100 Series are general purpose flux binders that are mixed with most common silver
+      alloy powders to form a paste to be used in torch, induction, and resistance brazing operations.
+    approx_offset: 201965
+  - quote: Handy Flo 200 Series are general purpose flux binders that are mixed with high temperature
+      braze alloy powders to form a paste to be used in torch, induction, and resistance brazing operations.
+    approx_offset: 207738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0189
+  form: resistance welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: For example, if you want to join two small strips of metal at a single point, an electrical
+      resistance welding approach is practical.
+    approx_offset: 162484
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0190
+  form: resistance-weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: A resistance-weld joint made at a single point is relatively easy to automate.
+    approx_offset: 164066
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0191
+  form: rinsing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Particularly in repair brazing, where parts may be very dirty or heavily rusted, you can speed
+      the cleaning process by using a grinding wheel, or file or metallic grit blast, followed by a rinsing
+      operation.
+    approx_offset: 68787
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0192
+  form: rinsing operation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Particularly in repair brazing, where parts may be very dirty or heavily rusted, you can speed
+      the cleaning process by using a grinding wheel, or file or metallic grit blast, followed by a rinsing
+      operation.
+    approx_offset: 68787
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0193
+  form: riveted
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Mechanically fastened joints (threaded, staked or riveted) generally don’t compare to brazed
+      joints in strength, resistance to shock and vibration, or leak-tightness.
+    approx_offset: 53370
+  - quote: Mechanically fastened joints (threaded, staked or riveted) generally don’t compare to brazed
+      joints in strength, resistance to shock and vibration, or leak-tightness.
+    approx_offset: 165558
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0194
+  form: riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0195
+  form: roll
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 30057
+  - quote: We have the ability to roll your strip thicknesses not available directly from the mills.
+    approx_offset: 153953
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 167625
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0196
+  form: roll your strip
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: We have the ability to roll your strip thicknesses not available directly from the mills.
+    approx_offset: 153953
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0197
+  form: root-cause failure analysis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Our team can help with root-cause failure analysis, feed-speed recommendations and offer cost-down
+      alloy substitutions.
+    approx_offset: 122210
+  - quote: Our team can help with root-cause failure analysis, feed-speed recommendations and offer cost-down
+      alloy substitutions.
+    approx_offset: 256852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0198
+  form: sample testing and analysis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Consulting-Services
+  evidence:
+  - quote: Our ability to control the process from melt to fabrication, paired with our internal laboratory
+      capabilities for sample testing and analysis, makes Lucas Milhaupt a premier brazing partner for
+      OEMs.
+    approx_offset: 173592
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0199
+  form: sandblasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Mechanical cleaning - Clean residue from brazed joints with a wire brush or by sandblasting.
+    approx_offset: 92507
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0200
+  form: shear testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Tension and shear testing - determines strength of a joint in tension or in shear-used during
+      qualification or development rather than production
+    approx_offset: 100908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0201
+  form: silk screening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-600-Series.htm
+  evidence:
+  - quote: Precision application, stenciling, silk screening
+    approx_offset: 204114
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0202
+  form: silver brazed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: 'For most applications, you''re on safe ground with the "rule of three." More specifically,
+      if you know the approximate tensile strengths of the base members, the lap length required for optimum
+      joint strength in a silver brazed joint is as follows:'
+    approx_offset: 62185
+  - quote: 'For most applications, you''re on safe ground with the "rule of three." More specifically,
+      if you know the approximate tensile strengths of the base members, the lap length required for optimum
+      joint strength in a silver brazed joint is as follows:'
+    approx_offset: 137005
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0203
+  form: silver brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: A silver brazing filler metal, by virtue of its silver content, has very little tendency to
+      increase electrical resistance across a properly-brazed joint.
+    approx_offset: 64787
+  - quote: Sil-Fos® has been the preferred silver brazing alloy for HVAC/R contractors since it was patented
+      in 1931.
+    approx_offset: 124675
+  - quote: In 1931, (HNH) patented Sil-Fos, a silver brazing alloy.
+    approx_offset: 126193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0204
+  form: slit strip
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Our skilled machine operators slit strip to widths from 6” down to .062” (152.4mm to 1.57mm)
+      and package the material on either spools or coils, depending upon your needs and production requirements.
+    approx_offset: 153744
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0205
+  form: slitting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: Finally, through our Distribution services we extend more than raw materials; we offer custom
+      slitting, spooling, kitting, VMI programs, and global logistics support, so your brazing supply
+      chain stays lean and responsive.
+    approx_offset: 114053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0206
+  form: small-run laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Our brazing team has helped many microelectronic manufacturers design cost-effective joining
+      methods and prototypes, utilizing in-house tooling to test new designs and small-run laser cutting
+      that keep you ahead of the competition.
+    approx_offset: 18404
+  - quote: Our brazing team has helped many microelectronic manufacturers design cost-effective joining
+      methods and prototypes, utilizing in-house tooling to test new designs and small-run laser cutting
+      that keep you ahead of the competition.
+    approx_offset: 229668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0207
+  form: soak
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Use hot water with agitation in a soak tank to remove excess flux immediately following the
+      braze operation, and then dry the assembly.
+    approx_offset: 91119
+  - quote: When using a soak bath of any kind, change the solution periodically to avoid saturating the
+      cleaning solution.
+    approx_offset: 91321
+  - quote: Chemical cleaning - You can use an acidic or basic solution, generally with short soak times
+      to avoid deteriorating the base materials.
+    approx_offset: 92291
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0208
+  form: soaking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Soaking/wetting
+    approx_offset: 91068
+  - quote: When soaking is not possible, use a wire brush along with a spray bottle or wet towel.
+    approx_offset: 91226
+  - quote: The most common cleaning methods involve water-specifically soaking/wetting and quenching.
+    approx_offset: 96780
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0209
+  form: solder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+  evidence:
+  - quote: As North America’s largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity
+      alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze 880) and
+      Silvaloy 721 – deliver exceptional bond strength, corrosion resistance, and thermal/electrical conductivity
+      in
+    approx_offset: 16064
+  - quote: Whether for power transistors, LEDs, or integrated circuits, these solder alloys ensure a strong,
+      void-free die attach that endures thermal cycling.
+    approx_offset: 19309
+  - quote: Lucas Milhaupt alloys fulfill these needs by providing excellent thermal and electrical transfer
+      at the solder joint.
+    approx_offset: 20292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0210
+  form: soldered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+  evidence:
+  - quote: This means a that a soldered assembly may exhibit less joint strength and lower fatigue resistance
+      than a brazed assembly
+    approx_offset: 52352
+  - quote: 'The ability to remove flux residue can be an important factor such as in certain HVAC and
+      other fluid transport systems; closed loop systems which cannot be readily cleaned after joining
+      must often be brazed or soldered in vacuum or under a protective atmosphere, or a self-fluxing filler
+      metal such '
+    approx_offset: 53111
+  - quote: Fixture design is a key factor in achieving quality flame-brazed or soldered joints.
+    approx_offset: 79449
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0211
+  form: soldering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 39
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+  evidence:
+  - quote: What is soldering?
+    approx_offset: 12510
+  - quote: What is the difference between brazing and soldering?
+    approx_offset: 12564
+  - quote: Lucas Milhaupt is a leading provider of brazing and soldering solutions, drawing on decades
+      of materials science expertise and a portfolio of over 500 custom alloys to improve process efficiency
+      and extend product life.
+    approx_offset: 15859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0212
+  form: spin testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Proof testing - subjecting a brazed joint to a one-time load greater than the service level-applied
+      by hydrostatic methods, tensile loading or spin testing
+    approx_offset: 99537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0213
+  form: spooling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: Finally, through our Distribution services we extend more than raw materials; we offer custom
+      slitting, spooling, kitting, VMI programs, and global logistics support, so your brazing supply
+      chain stays lean and responsive.
+    approx_offset: 114063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0214
+  form: spray
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: When soaking is not possible, use a wire brush along with a spray bottle or wet towel.
+    approx_offset: 91281
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0215
+  form: sprayed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-600-Series.htm
+  evidence:
+  - quote: Handy Flo 600 Series are flux-free binders that are mixed with braze alloy powder to form a
+      paste that can be stenciled or sprayed.
+    approx_offset: 203912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0216
+  form: stamped
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: We have achieved wire diameters as small as 0.006″ and stamped foils down to 0.001″ thick,
+      enabling reliable bonding even for the smallest and most complex parts.
+    approx_offset: 17206
+  - quote: Our extensive inventory of more than 4,000 dies enables us to deliver high quality stamped
+      parts quickly.
+    approx_offset: 153507
+  - quote: We have achieved wire diameters as small as 0.006″ and stamped foils down to 0.001″ thick,
+      enabling reliable bonding even for the smallest and most complex parts.
+    approx_offset: 228470
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0217
+  form: stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: 'By controlling every step from alloy casting through precision stamping, we deliver consistent
+      quality, shorter lead times, and the engineering insight customers need to “Join with the BEST.”
+      Our metallurgists and application engineers collaborate directly with design teams, provide on-site
+      audits, '
+    approx_offset: 3133
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including
+      laser cutting, EDM, and precision stamping, to produce custom preforms and components with extremely
+      tight tolerances.'
+    approx_offset: 17066
+  - quote: Our laser, EDM, and stamping fabrication capability allow for precise preform design on microelectronic
+      packaging that demand extremely tight tolerances.
+    approx_offset: 21823
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0218
+  form: steam lance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Steam lance cleaning - This process employs superheated steam under pressure to dissolve and
+      blast away flux residue.
+    approx_offset: 92091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0219
+  form: stencil
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0220
+  form: stenciled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-600-Series.htm
+  evidence:
+  - quote: Handy Flo 600 Series are flux-free binders that are mixed with braze alloy powder to form a
+      paste that can be stenciled or sprayed.
+    approx_offset: 203899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0221
+  form: stenciling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-600-Series.htm
+  evidence:
+  - quote: Precision application, stenciling, silk screening
+    approx_offset: 204102
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0222
+  form: step brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: Electrical contacts, electrodes, step brazing/soldering operations
+    approx_offset: 199093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0223
+  form: step brazing/soldering operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: Electrical contacts, electrodes, step brazing/soldering operations
+    approx_offset: 199093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0224
+  form: strip rolling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0225
+  form: swaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+    approx_offset: 75824
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0226
+  form: tensile loading
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Proof testing - subjecting a brazed joint to a one-time load greater than the service level-applied
+      by hydrostatic methods, tensile loading or spin testing
+    approx_offset: 99518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0227
+  form: test brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Brazing-Audit
+  evidence:
+  - quote: With our in-house lab, we conduct test brazing, examine assemblies, and perform feasibility
+      studies to explore process alternatives.
+    approx_offset: 115833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0228
+  form: threaded, staked or riveted
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Mechanically fastened joints (threaded, staked or riveted) generally don’t compare to brazed
+      joints in strength, resistance to shock and vibration, or leak-tightness.
+    approx_offset: 53350
+  - quote: Mechanically fastened joints (threaded, staked or riveted) generally don’t compare to brazed
+      joints in strength, resistance to shock and vibration, or leak-tightness.
+    approx_offset: 165538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0229
+  form: tinned
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: When the brazed joint is to be plated or tinned, the removal of the slag is absolutely essential.
+    approx_offset: 96264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0230
+  form: torch brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Resources-Library/FAQ
+  evidence:
+  - quote: What is the best safety protection for torch brazing?
+    approx_offset: 13013
+  - quote: In torch brazing, a variety of fuels are available—natural gas, acetylene, propane, propylene,
+      etc., combusted with either oxygen or air.
+    approx_offset: 81090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0231
+  form: torch or manual brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'There are four main types of brazing heating methods: torch or manual brazing, induction brazing,
+      resistance brazing, and vacuum brazing.'
+    approx_offset: 80023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0232
+  form: ultrasonic cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: You can use more elaborate methods of removing flux as well—an ultrasonic cleaning tank to
+      speed the action of the hot water, or live steam.
+    approx_offset: 91975
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0233
+  form: ultrasonic examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0234
+  form: vacuum brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: Lucas Milhaupt offers a clean lab room and vacuum brazing capabilities for our medical customers
+      to test parts as part of the design process.
+    approx_offset: 27916
+  - quote: Whether it’s furnace, induction, or vacuum brazing, our technical team will train your operators
+      in best practices to achieve dependable, long-lasting joints.
+    approx_offset: 41910
+  - quote: 'There are four main types of brazing heating methods: torch or manual brazing, induction brazing,
+      resistance brazing, and vacuum brazing.'
+    approx_offset: 80091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0235
+  form: vapor degreasing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing
+      solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+    approx_offset: 68187
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0236
+  form: visual examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0237
+  form: visual inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Discontinuous fillets - areas on the joint surface where the fillet is interrupted-usually
+      discovered by visual inspection
+    approx_offset: 97965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0238
+  form: we cast
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 167589
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 221649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0239
+  form: weld
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: This means that if you try to weld copper (melting point 1981°F/1083°C) to steel (melting point
+      2500°F/1370°C), you must employ rather sophisticated and expensive welding techniques.
+    approx_offset: 159327
+  - quote: For example, if you want to butt-weld two pieces of metal, you begin by beveling the edges
+      of the metal pieces to allow room for the welding filler metal.
+    approx_offset: 162785
+  - quote: Then you weld, first heating one end of the joint area to melting temperature, then slowly
+      moving the heat along the joint line, depositing filler metal in synchronization with the heat.
+    approx_offset: 162916
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0240
+  form: welded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: Internal copper connectors in transformers are generally brazed (unlike aluminum, which is
+      usually welded) to create robust bonds between windings and terminals.
+    approx_offset: 44438
+  - quote: There are exceptions to the rule, of course, but in most cases a brazed joint is made fast—considerably
+      faster than a linear welded joint.
+    approx_offset: 103610
+  - quote: A brazed joint is made in a completely different manner from a welded joint.
+    approx_offset: 156758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0241
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 30
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+  evidence:
+  - quote: The American Welding Society (AWS) defines brazing as a group of joining processes that produce
+      coalescence of materials by heating them to the brazing temperature and by using a filler metal
+      (solder) having a liquidus above 840°F (450°C) and below the solidus of the base metals.
+    approx_offset: 51505
+  - quote: Brazing is defined by the American Welding Society as a group of joining processes that produces
+      a coalescence of materials by heating them to the brazing temperature and by using a filler metal
+      (solder) having a liquidus above 840°F (450°C), and below the solidus of the base metals.
+    approx_offset: 128987
+  - quote: Welding and soldering are similar in these respects.
+    approx_offset: 131505
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-process_caps-0242
+  form: wire drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

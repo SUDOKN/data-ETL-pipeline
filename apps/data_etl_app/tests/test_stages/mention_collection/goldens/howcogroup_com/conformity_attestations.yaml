@@ -1,0 +1,1950 @@
+subject: howcogroup.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+golden_set_version: 1
+anchored_on: search/expectations/howcogroup_com/conformity_attestations.yaml
+labels:
+- id: howcogroup_com-conformity_attestations-0001
+  form: A276
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 88790
+  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 107773
+  - quote: 'STAINLESS : ASTM A182, A276, A479'
+    approx_offset: 113219
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0002
+  form: A479
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 88796
+  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 107779
+  - quote: 'STAINLESS : ASTM A182, A276, A479'
+    approx_offset: 113225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0003
+  form: AMS 2750
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+  evidence:
+  - quote: Our furnace is calibrated to AMS 2750 Class 3 and can perform API and AMS recipes up to 2200F.
+    approx_offset: 49697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0004
+  form: AMS 2750 Class 3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+  evidence:
+  - quote: Our furnace is calibrated to AMS 2750 Class 3 and can perform API and AMS recipes up to 2200F.
+    approx_offset: 49697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0005
+  form: AMS 5662
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
+    approx_offset: 84702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0006
+  form: AMS 5662, 5663 & 5664
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
+    approx_offset: 84702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0007
+  form: AMS 5854
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: 'API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)'
+    approx_offset: 117347
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0008
+  form: AP16A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: 'API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)'
+    approx_offset: 117370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0009
+  form: API 5B
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: API 5B
+    approx_offset: 87914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0010
+  form: API 5CT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.howcogroup.com/materials/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+  evidence:
+  - quote: GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42290
+  - quote: HOME  MATERIALS  MECHANICAL TUBING & OCTG  GRADE 420 MOD & API 5CT 13CR TUBE
+    approx_offset: 42394
+  - quote: API 5CT 13Cr
+    approx_offset: 43431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0011
+  form: API 6A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: With targeted cast analysis and Howco’s heat treatment control, the increased, demanding requirements
+      of 10”ER QTCs per API 6A 21st edition can be satisfied.
+    approx_offset: 27924
+  - quote: Micro Examination (including API 6A CRA).
+    approx_offset: 58760
+  - quote: API 6A CRA (UNS N07725)
+    approx_offset: 90342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0012
+  form: API 6A CRA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-725/
+  evidence:
+  - quote: Micro Examination (including API 6A CRA).
+    approx_offset: 58760
+  - quote: API 6A CRA (UNS N07725)
+    approx_offset: 90342
+  - quote: 'API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)'
+    approx_offset: 117321
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0013
+  form: API 6ACRA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-925/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-945/
+  evidence:
+  - quote: API 6ACRA includes 718 heat treated to 120ksi and 140ksi strength levels, and it is commonplace
+      for this alloy to be supplied at 125ksi 0.2% yield in compliance with the former.
+    approx_offset: 85734
+  - quote: 925 is manufactured to the requirements of API 6ACRA, and is approved for use under NACE MR0175
+      in a number of different conditions with different hardness restrictions.
+    approx_offset: 104504
+  - quote: 945 is manufactured to the requirements of API 6ACRA and is approved in NACE MR0175 when solution
+      annealed and age hardened to a maximum hardness of 42HRC.
+    approx_offset: 129772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0014
+  form: API SPECIFICATION Q1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: API SPECIFICATION Q1
+    approx_offset: 87977
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0015
+  form: API-7-2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: API-7-2
+    approx_offset: 87945
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0016
+  form: AS9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: AS9100
+    approx_offset: 50131
+  - quote: AS9100 approved for Manufacture of Additively Manufactured Parts including Machining, Heat
+      Treatment, Testing and Hot Isostatic Pressing.
+    approx_offset: 50139
+  - quote: Our AS9100 and ISO9001 certifications underline our commitment to quality, meaning our clients
+      can rest assured that they are in safe hands.
+    approx_offset: 172553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0017
+  form: AS9100D
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'LRQA AS9100D: QUALITY ASSURANCE'
+    approx_offset: 87208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0018
+  form: ASME
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Welder qualifications to ASME 1X, EN ISO 9606-1.
+    approx_offset: 72376
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0019
+  form: ASME 1X
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Welder qualifications to ASME 1X, EN ISO 9606-1.
+    approx_offset: 72376
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0020
+  form: ASNT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'WORLDWIDE ASNT NDE LEVEL II: NONDESTRUCTIVE TESTING'
+    approx_offset: 87727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0021
+  form: ASNT NDE LEVEL II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'WORLDWIDE ASNT NDE LEVEL II: NONDESTRUCTIVE TESTING'
+    approx_offset: 87727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0022
+  form: ASTM A182
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/9-cr-1-mo/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+  evidence:
+  - quote: 'UNS S50400: ASTM A182'
+    approx_offset: 41091
+  - quote: 'UNS S41500: ASTM A182'
+    approx_offset: 45892
+  - quote: ASTM A182 specifies a minimum 0.2 PS value of 95 KSI.
+    approx_offset: 46524
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0023
+  form: ASTM A182, A276, A479
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-410/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 88779
+  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 107762
+  - quote: 'STAINLESS : ASTM A182, A276, A479'
+    approx_offset: 113208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0024
+  form: ASTM A29
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4130/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4140/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4145/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4330v/
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-4340/
+  evidence:
+  - quote: 'LOW ALLOY 4330V: ASTM A29'
+    approx_offset: 15101
+  - quote: 'LOW ALLOY 4130: ASTM A29'
+    approx_offset: 27132
+  - quote: 'LOW ALLOY 4140: ASTM A29 (VO1.05)'
+    approx_offset: 37255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0025
+  form: ASTM A519
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-4130-4140-4145-tube/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+  evidence:
+  - quote: Available in tubular form either as mechanical tube or casing tube The manufacturing standards
+      of ASTM A519 are used for mechanical tube supply.
+    approx_offset: 42609
+  - quote: Stocked through a wide range of sizes, in either mechanical tube per ASTM A519 or casing product
+      forms, these grades of low alloy steel containing chromium and molybdenum are the most widely used
+      alloy for oil patch applications.
+    approx_offset: 94218
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0026
+  form: ASTM A564
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-17-4-ph/
+  evidence:
+  - quote: 'UNS S17400 : ASTM A564 GRADE 630'
+    approx_offset: 4055
+  - quote: ASTM A564 lists several alternative supply conditions.
+    approx_offset: 4865
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0027
+  form: ASTM B423
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/alloy-825-alloy-28-tube/
+  evidence:
+  - quote: 'UNS N08825 : ASTM B423 UNS N080287 : ASTM B668GENERAL SCOPE'
+    approx_offset: 80004
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0028
+  form: ASTM B425 & B564
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: 'UNS N08825 : ASTM B425 & B564 (VO2.04)'
+    approx_offset: 16830
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0029
+  form: ASTM B446 & B564
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: 'UNS N06625: ASTM B446 & B564'
+    approx_offset: 75201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0030
+  form: ASTM B637
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-718/
+  evidence:
+  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
+    approx_offset: 84682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0031
+  form: ASTM B668
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0032
+  form: ASTM B805
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625-plus/
+  evidence:
+  - quote: 'API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)'
+    approx_offset: 117358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0033
+  form: B425
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: 'UNS N08825 : ASTM B425 & B564 (VO2.04)'
+    approx_offset: 16835
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0034
+  form: B564
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-825/
+  evidence:
+  - quote: 'UNS N08825 : ASTM B425 & B564 (VO2.04)'
+    approx_offset: 16842
+  - quote: 'UNS N06625: ASTM B446 & B564'
+    approx_offset: 75213
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0035
+  form: B668
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0036
+  form: BS EN 10088
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s31803-f51/
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-s32760-f55/
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 88802
+  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 107785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0037
+  form: BS OHSAS 18001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: BS OHSAS 18001 Safety Management System
+    approx_offset: 39659
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0038
+  form: CSWIP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Weld Inspection CSWIP 3.2
+    approx_offset: 72785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0039
+  form: CSWIP 3.2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Weld Inspection CSWIP 3.2
+    approx_offset: 72785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0040
+  form: Class 10,000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Cleanroom technology (Class 10,000)
+    approx_offset: 111126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0041
+  form: Cleanroom technology (Class 10,000)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/scientific-assembly/
+  evidence:
+  - quote: Cleanroom technology (Class 10,000)
+    approx_offset: 111104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0042
+  form: Conflict Minerals Policy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 100
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: Conflict Minerals Policy
+    approx_offset: 3405
+  - quote: Conflict Minerals Policy
+    approx_offset: 5667
+  - quote: Conflict Minerals Policy
+    approx_offset: 14502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0043
+  form: EN ISO 9606-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Welder qualifications to ASME 1X, EN ISO 9606-1.
+    approx_offset: 72385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0044
+  form: Energy & Carbon Report
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 100
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: Energy & Carbon Report
+    approx_offset: 3544
+  - quote: Energy & Carbon Report
+    approx_offset: 5806
+  - quote: Energy & Carbon Report
+    approx_offset: 14641
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0045
+  form: GDPR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/esg-policies/
+  evidence:
+  - quote: GDPR Privacy Notice & Retention Policy
+    approx_offset: 35751
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0046
+  form: GDPR Privacy Notice & Retention Policy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/esg-policies/
+  evidence:
+  - quote: GDPR Privacy Notice & Retention Policy
+    approx_offset: 35751
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0047
+  form: ICorr
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Coating inspection personnel Nace level 2, ICorr level 3 qualified
+    approx_offset: 40415
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0048
+  form: ICorr level 3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Coating inspection personnel Nace level 2, ICorr level 3 qualified
+    approx_offset: 40415
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0049
+  form: ISO 14001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: 'ISO 14001 : 2015 Environmental Management System'
+    approx_offset: 39610
+  - quote: ISO 14001 Environmental Management System
+    approx_offset: 72586
+  - quote: LRQA ISO 14001 | ISO 45001 OCCUPATIONAL HEALTH & SAFETY STANDARD
+    approx_offset: 87265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0050
+  form: 'ISO 14001 : 2015'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 'ISO 14001 : 2015 Environmental Management System'
+    approx_offset: 39610
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0051
+  form: 'ISO 14001: 2015'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: 'The ‘Made in Sheffield’ recognition complements the site’s long standing ISO accreditations  ISO
+      9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190350
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0052
+  form: ISO 17025
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'ISO 17025: TEST LABORATORY MECHANICAL TESTING'
+    approx_offset: 87643
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0053
+  form: 'ISO 17025: TEST LABORATORY MECHANICAL TESTING'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'ISO 17025: TEST LABORATORY MECHANICAL TESTING'
+    approx_offset: 87643
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0054
+  form: ISO 3834
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: 'ISO 3834 : 2 Quality Requirements for Welding'
+    approx_offset: 39564
+  - quote: ISO 3834-2 Quality Requirements for Welding
+    approx_offset: 72542
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0055
+  form: 'ISO 3834 : 2'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 'ISO 3834 : 2 Quality Requirements for Welding'
+    approx_offset: 39564
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0056
+  form: ISO 3834-2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: ISO 3834-2 Quality Requirements for Welding
+    approx_offset: 72542
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0057
+  form: ISO 45001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: ISO 45001 Occupational Health and Safety Management
+    approx_offset: 72628
+  - quote: LRQA ISO 14001 | ISO 45001 OCCUPATIONAL HEALTH & SAFETY STANDARD
+    approx_offset: 87277
+  - quote: 'The ‘Made in Sheffield’ recognition complements the site’s long standing ISO accreditations  ISO
+      9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190367
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0058
+  form: ISO 45001 Occupational Health and Safety Management
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: ISO 45001 Occupational Health and Safety Management
+    approx_offset: 72628
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0059
+  form: ISO 45001:2018
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: 'The ‘Made in Sheffield’ recognition complements the site’s long standing ISO accreditations  ISO
+      9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190367
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0060
+  form: ISO 50,001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: ISO 50,001 Energy Management Systems
+    approx_offset: 39699
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0061
+  form: ISO 50001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: ISO 50001 Energy Management Systems
+    approx_offset: 72680
+  - quote: LRQA ISO 50001 ENERGY STANDARD – HELD BY ALL UNITED KINGDOM MANUFACTURING SITES
+    approx_offset: 87400
+  - quote: 'The ‘Made in Sheffield’ recognition complements the site’s long standing ISO accreditations  ISO
+      9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0062
+  form: ISO 50001:2018
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: 'The ‘Made in Sheffield’ recognition complements the site’s long standing ISO accreditations  ISO
+      9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0063
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 103
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: 'Certified: ISO 9001: 2015'
+    approx_offset: 3698
+  - quote: 'Certified: ISO 9001: 2015'
+    approx_offset: 5960
+  - quote: 'Certified: ISO 9001: 2015'
+    approx_offset: 14795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0064
+  form: 'ISO 9001 : 2015'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 'ISO 9001 : 2015 Quality Management System'
+    approx_offset: 39522
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0065
+  form: 'ISO 9001: 2015'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 99
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: 'Certified: ISO 9001: 2015'
+    approx_offset: 3698
+  - quote: 'Certified: ISO 9001: 2015'
+    approx_offset: 5960
+  - quote: 'Certified: ISO 9001: 2015'
+    approx_offset: 14795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0066
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: 'The ‘Made in Sheffield’ recognition complements the site’s long standing ISO accreditations  ISO
+      9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+    approx_offset: 190335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0067
+  form: ISO 9606
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Welder qualifications to ASME 1X, EN ISO 9606-1.
+    approx_offset: 72388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0068
+  form: ISO 9606-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Welder qualifications to ASME 1X, EN ISO 9606-1.
+    approx_offset: 72388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0069
+  form: ISO9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/additive-manufacturing-pushing-the-boundaries-of-whats-possible/
+  evidence:
+  - quote: Our AS9100 and ISO9001 certifications underline our commitment to quality, meaning our clients
+      can rest assured that they are in safe hands.
+    approx_offset: 172564
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0070
+  form: LRQA AS9100D
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'LRQA AS9100D: QUALITY ASSURANCE'
+    approx_offset: 87203
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0071
+  form: LRQA ISO 14001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: LRQA ISO 14001 | ISO 45001 OCCUPATIONAL HEALTH & SAFETY STANDARD
+    approx_offset: 87260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0072
+  form: LRQA ISO 50001 ENERGY STANDARD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: LRQA ISO 50001 ENERGY STANDARD – HELD BY ALL UNITED KINGDOM MANUFACTURING SITES
+    approx_offset: 87395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0073
+  form: LRQA ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'LRQA ISO 9001: QUALITY ASSURANCE'
+    approx_offset: 87145
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0074
+  form: Made In Sheffield
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.howcogroup.com/news/discover-the-history-of-made-in-sheffield-with-dr-mike-lowden/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+  evidence:
+  - quote: Discover the history of Made In Sheffield with Dr Mike Lowden
+    approx_offset: 163890
+  - quote: Howco has been a proud ‘Made In Sheffield’ licence holder since the end of 2023, but we’ve
+      recently discovered that our connection with this world-recognisable designation actually runs much
+      deeper.
+    approx_offset: 163966
+  - quote: Howco Receives ‘Made In Sheffield’ Accreditation
+    approx_offset: 166939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0075
+  form: Made in Sheffield
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.howcogroup.com/news/discover-the-history-of-made-in-sheffield-with-dr-mike-lowden/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: Carla’s Father, Dr Mike Lowden, was instrumental in setting up the Made in Sheffield licence
+      program at the dawn of the new millennium.
+    approx_offset: 177661
+  - quote: “As the city entered the 20th century, the city leaders recognised the value of the words ‘Made
+      in Sheffield’, and the likelihood that other parts of the world would seek to emulate Sheffield’s
+      success by misusing the word Sheffield.
+    approx_offset: 178884
+  - quote: “This partnership is defined as ‘Members’ of Made in Sheffield and remains to this day but
+      now with the inclusion of Barnsley and Rotherham Chamber of Commerce.
+    approx_offset: 179300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0076
+  form: Modern Slavery Transparency Statement
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/modern-slavery-and-human-trafficking-statement/
+  evidence:
+  - quote: Modern Slavery Transparency Statement for the Fiscal Year 2024
+    approx_offset: 119080
+  - quote: Modern Slavery Transparency Statement for the Fiscal Year 2023
+    approx_offset: 119148
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0077
+  form: Modern Slavery and Human Trafficking Statement
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 102
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: Modern Slavery and Human Trafficking Statement
+    approx_offset: 3431
+  - quote: Modern Slavery and Human Trafficking Statement
+    approx_offset: 5693
+  - quote: Modern Slavery and Human Trafficking Statement
+    approx_offset: 14528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0078
+  form: NACE MR0175
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.howcogroup.com/materials/low-alloy-steel/aisi-8630/
+    - https://www.howcogroup.com/materials/low-alloy-steel/f22/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-4130-4140-4145-tube/
+    - https://www.howcogroup.com/materials/mechanical-tubing-octg/grade-420-mod-api-5ct-13cr-tube/
+    - https://www.howcogroup.com/materials/nickel-super-alloys/alloy-625/
+  evidence:
+  - quote: In addition to limiting the hardness, NACE MR0175 restricts the age hardening cycles that can
+      be applied to the alloy to two of the several available.
+    approx_offset: 4560
+  - quote: NACE MR0175 only permits solution treatment, followed by double aging to either the H1150M
+      condition 760°C (1400°F) / 620°C (1150°F) or the DH1150 condition 620°C (1150 °F) / 620°C (1150°F).
+    approx_offset: 4673
+  - quote: Until 2003 this alloy was approved by NACE MR0175 for general use.
+    approx_offset: 4958
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0079
+  form: NACE approved
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/materials/stainless-duplex-super-duplex/grade-f6nm/
+  evidence:
+  - quote: This NACE approved grade is limited to 75 KSI because of the hardness restriction.
+    approx_offset: 46583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0080
+  form: Nace level 2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Coating inspection personnel Nace level 2, ICorr level 3 qualified
+    approx_offset: 40401
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0081
+  form: Norsok M-501
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Norsok M-501 System 7 B & C, System 1 coatings
+    approx_offset: 39763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0082
+  form: Norsok M-501 System 7 B & C, System 1 coatings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Norsok M-501 System 7 B & C, System 1 coatings
+    approx_offset: 39763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0083
+  form: Norwegian Transparency Act
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 98
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: Report On The Norwegian Transparency Act
+    approx_offset: 3493
+  - quote: Report On The Norwegian Transparency Act
+    approx_offset: 5755
+  - quote: Report On The Norwegian Transparency Act
+    approx_offset: 14590
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0084
+  form: OHSAS 18001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: BS OHSAS 18001 Safety Management System
+    approx_offset: 39662
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0085
+  form: PCN
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: PCN Level III consultancy.
+    approx_offset: 59001
+  - quote: PCN Level II Operators.
+    approx_offset: 59099
+  - quote: PCN NDE Level II Non-destructive Testing MT, LPI, UT
+    approx_offset: 72716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0086
+  form: PCN Level II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: PCN Level II Operators.
+    approx_offset: 59099
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0087
+  form: PCN Level II Operators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: PCN Level II Operators.
+    approx_offset: 59099
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0088
+  form: PCN Level III
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: PCN Level III consultancy.
+    approx_offset: 59001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0089
+  form: PCN Level III consultancy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/testing-ndt/
+  evidence:
+  - quote: PCN Level III consultancy.
+    approx_offset: 59001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0090
+  form: PCN NDE Level II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: PCN NDE Level II Non-destructive Testing MT, LPI, UT
+    approx_offset: 72716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0091
+  form: Report on the Norwegian Transparency Act
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 98
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: Report On The Norwegian Transparency Act
+    approx_offset: 3479
+  - quote: Report On The Norwegian Transparency Act
+    approx_offset: 5741
+  - quote: Report On The Norwegian Transparency Act
+    approx_offset: 14576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0092
+  form: Section 172 Statement
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 101
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/about/
+    - https://www.howcogroup.com/about/accreditations/
+    - https://www.howcogroup.com/about/esg-policies/
+    - https://www.howcogroup.com/about/hse/
+  evidence:
+  - quote: Section 172 Statement
+    approx_offset: 3521
+  - quote: Section 172 Statement
+    approx_offset: 5783
+  - quote: Section 172 Statement
+    approx_offset: 14618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0093
+  form: Statement on Conflict Minerals during Steel Production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/esg-policies/
+  evidence:
+  - quote: Statement on Conflict Minerals during Steel Production
+    approx_offset: 35820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0094
+  form: Streamlined Energy and Carbon Reporting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/esg-policies/
+  evidence:
+  - quote: Streamlined Energy and Carbon Reporting For the Year Ended March 2023
+    approx_offset: 36325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0095
+  form: UKAS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
+    approx_offset: 93273
+  - quote: Today, it’s also the site of our UKAS approved test laboratory.
+    approx_offset: 190434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0096
+  form: UKAS approved mechanical and metallurgical testing laboratory
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
+    approx_offset: 93273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0097
+  form: UKAS approved test laboratory
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: Today, it’s also the site of our UKAS approved test laboratory.
+    approx_offset: 190434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0098
+  form: WORLDWIDE ASNT NDE LEVEL II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/about/accreditations/
+  evidence:
+  - quote: 'WORLDWIDE ASNT NDE LEVEL II: NONDESTRUCTIVE TESTING'
+    approx_offset: 87717
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0099
+  form: Weld Inspection CSWIP 3.2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/precision-fabrication/
+  evidence:
+  - quote: Weld Inspection CSWIP 3.2
+    approx_offset: 72769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0100
+  form: ‘Made In Sheffield’ licence holder
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/discover-the-history-of-made-in-sheffield-with-dr-mike-lowden/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+  evidence:
+  - quote: Howco has been a proud ‘Made In Sheffield’ licence holder since the end of 2023, but we’ve
+      recently discovered that our connection with this world-recognisable designation actually runs much
+      deeper.
+    approx_offset: 163965
+  - quote: Howco has been a proud ‘Made In Sheffield’ licence holder since the end of 2023, but we’ve
+      recently discovered that our connection with this world-recognisable designation actually runs much
+      deeper.
+    approx_offset: 177238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-conformity_attestations-0101
+  form: ‘Made in Sheffield’ mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/news/discover-the-history-of-made-in-sheffield-with-dr-mike-lowden/
+    - https://www.howcogroup.com/news/howco-receives-made-in-sheffield-accreditation/
+  evidence:
+  - quote: This Group was made up of a whole array of companies many of which are recipients of the ‘Made
+      in Sheffield’ mark today.
+    approx_offset: 180812
+  - quote: That’s why we’re so pleased to announce that we have received the world recognised ‘Made in
+      Sheffield’ mark.
+    approx_offset: 189797
+  - quote: Holding the ‘Made in Sheffield’ mark is only possible for businesses located within the ‘S’
+      postcode area of the UK.
+    approx_offset: 189836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

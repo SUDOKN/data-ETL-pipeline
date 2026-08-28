@@ -1,0 +1,469 @@
+subject: anchor-mfg.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+golden_set_version: 1
+anchored_on: search/expectations/anchor-mfg_com/equipments.yaml
+labels:
+- id: anchor-mfg_com-equipments-0001
+  form: 2000 ton to 110 ton
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: 2000 ton to 110 ton
+    approx_offset: 6792
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0002
+  form: 4,000 Watt CNC Laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: 4,000 Watt CNC Laser with 48” x 96” Capabilities up to .625” Thickness
+    approx_offset: 7411
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0003
+  form: Automated Error Proofing Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Automated Error Proofing Systems
+    approx_offset: 6986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0004
+  form: CNC 7 Axis Press Brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: CNC 7 Axis Press Brakes
+    approx_offset: 7283
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0005
+  form: CNC Laser
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: 4,000 Watt CNC Laser with 48” x 96” Capabilities up to .625” Thickness
+    approx_offset: 7422
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0006
+  form: CNC Multi-Axis Press Brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: CNC Multi-Axis Press Brakes
+    approx_offset: 7255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0007
+  form: Coil Fed Servo Transfer System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Coil Fed Servo Transfer System
+    approx_offset: 6839
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0008
+  form: Flexible Weld Cells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Over 40 Flexible Weld Cells
+    approx_offset: 6937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0009
+  form: Large Press Tandem Line
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Large Press Tandem Line
+    approx_offset: 6870
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0010
+  form: Laser – Turret Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Laser – Turret Press
+    approx_offset: 7234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0011
+  form: Material Shear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Material Shear
+    approx_offset: 7482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0012
+  form: Mechanical Press Brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+    approx_offset: 7307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0013
+  form: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+    approx_offset: 7307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0014
+  form: Milling Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+    approx_offset: 7543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0015
+  form: Milling Machines / Vertical Mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+    approx_offset: 7543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0016
+  form: Over 40 Flexible Weld Cells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Over 40 Flexible Weld Cells
+    approx_offset: 6929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0017
+  form: Over 60 presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Over 60 presses
+    approx_offset: 6776
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0018
+  form: Vertical Mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+    approx_offset: 7562
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0019
+  form: error proofing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Automated Error Proofing Systems
+    approx_offset: 6996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0020
+  form: press brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+    approx_offset: 7318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0021
+  form: press brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: CNC Multi-Axis Press Brakes
+    approx_offset: 7270
+  - quote: CNC 7 Axis Press Brakes
+    approx_offset: 7294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0022
+  form: presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Over 60 presses
+    approx_offset: 6784
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0023
+  form: servo transfer system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Coil Fed Servo Transfer System
+    approx_offset: 6848
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0024
+  form: shear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Material Shear
+    approx_offset: 7491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0025
+  form: tandem line
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Large Press Tandem Line
+    approx_offset: 6882
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0026
+  form: turret press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Laser – Turret Press
+    approx_offset: 7242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-equipments-0027
+  form: weld cells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Over 40 Flexible Weld Cells
+    approx_offset: 6946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

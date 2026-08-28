@@ -1,0 +1,473 @@
+subject: tanfel.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+golden_set_version: 1
+anchored_on: search/expectations/tanfel_com/conformity_attestations.yaml
+labels:
+- id: tanfel_com-conformity_attestations-0001
+  form: AS 9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev.
+    approx_offset: 28813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0002
+  form: AS 9100 Rev. C
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev. C
+    approx_offset: 28813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0003
+  form: C-TPAT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: We work closely with Customs to ensure we are in compliance with NAFTA, C-TPAT, Tariffs, Anti-Dumping
+      and much more.
+    approx_offset: 94038
+  - quote: We work closely with Customs to ensure we are in compliance with NAFTA, C-TPAT, Tariffs, Anti-Dumping
+      and much more.
+    approx_offset: 151267
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0004
+  form: IATF
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: Our global network of quality ISO & IATF certified facilities can support your prototype to
+      large production requirements.
+    approx_offset: 92240
+  - quote: Our global network of quality ISO & IATF certified facilities can support your prototype to
+      large production requirements.
+    approx_offset: 149469
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0005
+  form: ISO & IATF certified facilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: Our global network of quality ISO & IATF certified facilities can support your prototype to
+      large production requirements.
+    approx_offset: 92234
+  - quote: Our global network of quality ISO & IATF certified facilities can support your prototype to
+      large production requirements.
+    approx_offset: 149463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0006
+  form: ISO & TS certified facilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: With our worldwide network of quality ISO & TS certified facilities, we can support your large
+      production or prototype requirements.
+    approx_offset: 44037
+  - quote: With our worldwide network of quality ISO & TS certified facilities, we can support your large
+      production or prototype requirements.
+    approx_offset: 46555
+  - quote: With our worldwide network of quality ISO & TS certified facilities, we can support your large
+      production or prototype requirements.
+    approx_offset: 171058
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0007
+  form: ISO 13485
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/industries/medical-life-science/
+    - https://www.tanfel.com/industries/medical/
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: With ISO 13485 certified facilities, and project relationships with Fortune 500 companies,
+      we’re the study partner you can count on to meet your deadlines.
+    approx_offset: 26190
+  - quote: ISO 13485
+    approx_offset: 49107
+  - quote: ISO 13485
+    approx_offset: 124193
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0008
+  form: ISO 14001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: ISO 14001
+    approx_offset: 49117
+  - quote: ISO 14001
+    approx_offset: 124203
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0009
+  form: ISO 2768
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Tolerances per ISO 2768 (m)
+    approx_offset: 28703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0010
+  form: ISO 2768 (m)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: Tolerances per ISO 2768 (m)
+    approx_offset: 28703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0011
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev.
+    approx_offset: 28763
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 44866
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 47384
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0012
+  form: ISO 9001-2008
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev.
+    approx_offset: 28763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0013
+  form: ISO 9001:2008
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: ISO 9001:2008
+    approx_offset: 124171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0014
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 44866
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 47384
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 171887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0015
+  form: ISO 9001:2015 CERTIFICATE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 44866
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 47384
+  - quote: ISO 9001:2015 CERTIFICATE
+    approx_offset: 171887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0016
+  form: ISO CERTIFIED FACILITIES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: OUR WORLDWIDE NETWORK OF QUALITY ISO CERTIFIED FACILITIES CAN SUPPORT YOUR QUICK-TURN THROUGH
+      LARGE PRODUCTION REQUIREMENTS.
+    approx_offset: 111054
+  - quote: OUR WORLDWIDE NETWORK OF QUALITY ISO CERTIFIED FACILITIES CAN SUPPORT YOUR QUICK-TURN THROUGH
+      LARGE PRODUCTION REQUIREMENTS.
+    approx_offset: 126996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0017
+  form: ISO certified facilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: We have ISO certified facilities around the world to complete all of your metal casting and
+      other metalworking project needs quickly.
+    approx_offset: 41296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0018
+  form: ISO/13485:2003
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev.
+    approx_offset: 28797
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0019
+  form: ISO/TS 16949:2009
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev.
+    approx_offset: 28778
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0020
+  form: NAFTA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: We work closely with Customs to ensure we are in compliance with NAFTA, C-TPAT, Tariffs, Anti-Dumping
+      and much more.
+    approx_offset: 94031
+  - quote: We work closely with Customs to ensure we are in compliance with NAFTA, C-TPAT, Tariffs, Anti-Dumping
+      and much more.
+    approx_offset: 151260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0021
+  form: PPAP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/services
+    - https://www.tanfel.com/services/
+  evidence:
+  - quote: Detailed reports are available such as certificate of conformance, material specification sheets,
+      PPAP, dimensional test reports plus any other customer requirements.
+    approx_offset: 92738
+  - quote: Detailed reports are available such as certificate of conformance, material specification sheets,
+      PPAP, dimensional test reports plus any other customer requirements.
+    approx_offset: 149967
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0022
+  form: TS 16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/investment-casting/
+    - https://www.tanfel.com/products/mim-metal-injection-molding/
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev.
+    approx_offset: 28782
+  - quote: TS 16949
+    approx_offset: 49098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-conformity_attestations-0023
+  form: TS16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: TS16949
+    approx_offset: 124185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,1289 @@
+subject: decimal.net
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+golden_set_version: 1
+anchored_on: search/expectations/decimal_net/industries.yaml
+labels:
+- id: decimal_net-industries-0001
+  form: AEROSPACE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 408
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial
+      manufacturing sectors, Decimal Engineering, Inc.
+    approx_offset: 4714
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0002
+  form: AUTOMOTIVE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0003
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3513
+  - quote: Aerospace
+    approx_offset: 9748
+  - quote: Aerospace
+    approx_offset: 22782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0004
+  form: Aerospace components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: At Decimal Engineering, we are ISO 9000:2008 compliant and had to adhere to several standards
+      related to this project, including AS9100 quality management for Aerospace components, P.S.
+    approx_offset: 43128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0005
+  form: Assembly Food
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/assembly/
+  evidence:
+  - quote: Aluminum Espresso Machine Assembly Food
+    approx_offset: 106838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0006
+  form: Audio
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Stainless Knurled Knob Audio
+    approx_offset: 80709
+  - quote: Steel Front Panel for Speaker Audio
+    approx_offset: 80747
+  - quote: Perforated Steel Grill Audio
+    approx_offset: 103037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0007
+  form: Automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/laser-marking-service/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3534
+  - quote: Automotive
+    approx_offset: 9758
+  - quote: Automotive
+    approx_offset: 22792
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0008
+  form: Avionics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/assembly/
+  evidence:
+  - quote: Aluminum Front Panel Avionics
+    approx_offset: 106985
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0009
+  form: COMPUTER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 480
+  - quote: Decimal specializes in the Aerospace, Defense, Medical, Security, Telecommunications, Electronics,
+      Computer, Automotive & Marine industries.
+    approx_offset: 35020
+  - quote: Ruggedized Aluminum Computer Screen
+    approx_offset: 80627
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0010
+  form: Computers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Computers
+    approx_offset: 9769
+  - quote: Computers
+    approx_offset: 22803
+  - quote: Computers
+    approx_offset: 27790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0011
+  form: Construction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Construction
+    approx_offset: 9779
+  - quote: Construction
+    approx_offset: 22813
+  - quote: Construction
+    approx_offset: 27800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0012
+  form: DEFENSE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 419
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0013
+  form: Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: Defense
+    approx_offset: 9792
+  - quote: Defense
+    approx_offset: 22826
+  - quote: Defense
+    approx_offset: 27813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0014
+  form: ELECTRONICS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 467
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0015
+  form: ENVIRONMENTAL PROTECTION INDUSTRY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: ENGINEERING & MACHINING OF A SPRAY SHOWER TESTER FOR THE ENVIRONMENTAL PROTECTION INDUSTRY
+    approx_offset: 59668
+  - quote: Engineering & Machining of a Spray Shower Tester for the Environmental Protection Industry
+    approx_offset: 68779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0016
+  form: Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/laser-marking-service/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3546
+  - quote: Electronics
+    approx_offset: 9800
+  - quote: Electronics
+    approx_offset: 22834
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0017
+  form: Energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Energy
+    approx_offset: 9812
+  - quote: Energy
+    approx_offset: 22846
+  - quote: Energy
+    approx_offset: 27833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0018
+  form: Entertainment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Entertainment
+    approx_offset: 9819
+  - quote: Entertainment
+    approx_offset: 22853
+  - quote: Entertainment
+    approx_offset: 27840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0019
+  form: Environmental
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Environmental
+    approx_offset: 9833
+  - quote: Environmental
+    approx_offset: 22867
+  - quote: Environmental
+    approx_offset: 27854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0020
+  form: Environmental Protection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: ENGINEERING & MACHINING OF A SPRAY SHOWER TESTER FOR THE ENVIRONMENTAL PROTECTION INDUSTRY
+    approx_offset: 59668
+  - quote: "Industry for Use\tEnvironmental Protection"
+    approx_offset: 61794
+  - quote: Engineering & Machining of a Spray Shower Tester for the Environmental Protection Industry
+    approx_offset: 68779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0021
+  form: Firearms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Firearms
+    approx_offset: 9847
+  - quote: Firearms
+    approx_offset: 22881
+  - quote: Firearms
+    approx_offset: 27868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0022
+  form: Food
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/assembly/
+  evidence:
+  - quote: Aluminum Espresso Machine Assembly Food
+    approx_offset: 106847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0023
+  form: Furniture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Furniture
+    approx_offset: 9856
+  - quote: Furniture
+    approx_offset: 22890
+  - quote: Furniture
+    approx_offset: 27877
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0024
+  form: Grill Audio
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Perforated Steel Grill Audio
+    approx_offset: 103031
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0025
+  form: HOUSEHOLD APPLIANCE APPLICATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: PROGRESSIVE STAMPING IN-DIE TAPPING OF A HOT WATER HEATER FOR A HOUSEHOLD APPLIANCE APPLICATION
+    approx_offset: 10819
+  - quote: Progressive Stamping In-Die Tapping of a Hot Water Heater for a Household Appliance Application
+    approx_offset: 68690
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0026
+  form: Home Appliances
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: "Industry for Use\tHome Appliances"
+    approx_offset: 12850
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0027
+  form: Hospitality
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Hospitality
+    approx_offset: 32726
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0028
+  form: JEWELRY INDUSTRY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: WIRE EDM MACHINING OF CROSS PENDANTS FOR THE JEWELRY INDUSTRY
+    approx_offset: 77740
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0029
+  form: Jewelry Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: Wire EDM Machining of Cross Pendants for the Jewelry Industry
+    approx_offset: 13770
+  - quote: Wire EDM Machining of Cross Pendants for the Jewelry Industry
+    approx_offset: 68918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0030
+  form: Jewelry fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: Thanks to our Tool Designer, EDM operators, and Engineers, we’ve broadened our business partnerships
+      to include Jewelry fabrication.
+    approx_offset: 79262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0031
+  form: Knob Audio
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+  evidence:
+  - quote: Stainless Knurled Knob Audio
+    approx_offset: 80704
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0032
+  form: Lighting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Lighting
+    approx_offset: 9885
+  - quote: Lighting
+    approx_offset: 22919
+  - quote: Lighting
+    approx_offset: 27906
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0033
+  form: MARINE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 566
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0034
+  form: MEDICAL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 428
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0035
+  form: MILITARY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: CUSTOM MACHINING OF A SERVO BODY FOR A MILITARY APPLICATION
+    approx_offset: 42095
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0036
+  form: Marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Marine
+    approx_offset: 9894
+  - quote: Marine
+    approx_offset: 22928
+  - quote: Marine
+    approx_offset: 27915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0037
+  form: Medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/laser-marking-service/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3497
+  - quote: Medical
+    approx_offset: 9901
+  - quote: Medical
+    approx_offset: 22935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0038
+  form: Medical Device
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-marking-service/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0039
+  form: Military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3524
+  - quote: Military
+    approx_offset: 9909
+  - quote: Custom Machining of a Servo Body for a Military Application
+    approx_offset: 13697
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0040
+  form: Mining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Mining
+    approx_offset: 9918
+  - quote: Mining
+    approx_offset: 22952
+  - quote: Mining
+    approx_offset: 27939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0041
+  form: OEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: OEM
+    approx_offset: 9925
+  - quote: OEM
+    approx_offset: 22959
+  - quote: OEM
+    approx_offset: 27946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0042
+  form: Promotional
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-marking-service/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3559
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0043
+  form: Retail
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Retail
+    approx_offset: 9929
+  - quote: Retail
+    approx_offset: 22963
+  - quote: Retail
+    approx_offset: 27950
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0044
+  form: SECURITY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 437
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0045
+  form: Security
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Security
+    approx_offset: 9936
+  - quote: Security
+    approx_offset: 22970
+  - quote: Security
+    approx_offset: 27957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0046
+  form: Speaker Audio
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+  evidence:
+  - quote: Steel Front Panel for Speaker Audio
+    approx_offset: 80739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0047
+  form: Street Furniture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/assembly/
+  evidence:
+  - quote: Aluminum News Rack Street Furniture
+    approx_offset: 107015
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0048
+  form: TELECOMMUNICATIONS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/
+  evidence:
+  - quote: SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS,
+      COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES
+    approx_offset: 447
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0049
+  form: TRANSPORTATION INDUSTRY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: Custom Manufacturing of a Power Conversion Locker for the Transportation Industry
+    approx_offset: 68602
+  - quote: CUSTOM MANUFACTURING OF A POWER CONVERSION LOCKER FOR THE TRANSPORTATION INDUSTRY
+    approx_offset: 74543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0050
+  form: Telecommunications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Telecommunications
+    approx_offset: 9945
+  - quote: Telecommunications
+    approx_offset: 22979
+  - quote: Telecommunications
+    approx_offset: 27966
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0051
+  form: Textile
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Textile
+    approx_offset: 9964
+  - quote: Textile
+    approx_offset: 22998
+  - quote: Textile
+    approx_offset: 27985
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0052
+  form: Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: Transportation
+    approx_offset: 9972
+  - quote: Custom Manufacturing of a Power Conversion Locker for the Transportation >>>
+    approx_offset: 13491
+  - quote: Transportation
+    approx_offset: 23006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0053
+  form: commercial manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial
+      manufacturing sectors, Decimal Engineering, Inc.
+    approx_offset: 4746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0054
+  form: commercial manufacturing sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial
+      manufacturing sectors, Decimal Engineering, Inc.
+    approx_offset: 4746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0055
+  form: defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial
+      manufacturing sectors, Decimal Engineering, Inc.
+    approx_offset: 4733
+  - quote: We specialize in PQR and WPS compliant welding; though these standards are mostly for the defense
+      industry, our ability to provide conformity is a testament to our dedication to quality.
+    approx_offset: 19093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0056
+  form: energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial
+      manufacturing sectors, Decimal Engineering, Inc.
+    approx_offset: 4725
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0057
+  form: environmental protection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: A local area customer in Sunrise, FL specializing in environmental protection required a spray
+      shower tester part for scientific measuring.
+    approx_offset: 60077
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0058
+  form: household appliances
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: "Project Description\tHot water heater used in household appliances."
+    approx_offset: 12517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0059
+  form: jewelry design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: can produce intricate products for a variety of industries, including jewelry design.
+    approx_offset: 77939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0060
+  form: military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: In the project highlighted here, a military customer in Melbourne, FL required extremely tight
+      geometric tolerances, true positions, and complex features for the production of servo bodies.
+    approx_offset: 42152
+  - quote: Each unit adhered to stringent material and machining requirements, including a serialization
+      procedure that conformed to military grade standards.
+    approx_offset: 42429
+  - quote: To learn more about our manufacturing efforts for the military, please contact us or refer
+      to the table below.
+    approx_offset: 43525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-industries-0061
+  form: transportation industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: A Florida customer in the transportation industry requested the manufacturing of a locomotive
+      power distribution locker with over 100 individual parts.
+    approx_offset: 74854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

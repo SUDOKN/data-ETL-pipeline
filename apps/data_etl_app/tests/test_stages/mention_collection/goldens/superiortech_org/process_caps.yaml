@@ -1,0 +1,3873 @@
+subject: superiortech.org
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+  sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+golden_set_version: 1
+anchored_on: search/expectations/superiortech_org/process_caps.yaml
+labels:
+- id: superiortech_org-process_caps-0001
+  form: 1st article
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: This can be done on manufactured parts by Superior Technology or as a contract basis for 1st
+      article, short run or production inspections.
+    approx_offset: 11345
+  - quote: This can be done on manufactured parts by Superior Technology or as a contract basis for 1st
+      article, short run or production inspections.
+    approx_offset: 53592
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0002
+  form: 1st article, short run or production inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: This can be done on manufactured parts by Superior Technology or as a contract basis for 1st
+      article, short run or production inspections.
+    approx_offset: 11345
+  - quote: This can be done on manufactured parts by Superior Technology or as a contract basis for 1st
+      article, short run or production inspections.
+    approx_offset: 53592
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0003
+  form: 4th Axis Live Tool Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter
+      24” x 36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work.
+    approx_offset: 32552
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter
+      24” x 36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work.
+    approx_offset: 49345
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0004
+  form: 4th Axis Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: CNC Turning with 4th Axis Milling & CNC Swiss style turning with sizes up to diameter 24” x
+      36” long, up to 1 ¾” Barfeed or chucking work.
+    approx_offset: 13692
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0005
+  form: Assembly & Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1317
+  - quote: Assembly & Testing
+    approx_offset: 14703
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0006
+  form: Brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Welding & Brazing
+    approx_offset: 12178
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12345
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15218
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0007
+  form: Brazing & Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15218
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0008
+  form: Broaching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 9595
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15184
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender
+      & Shear'
+    approx_offset: 26288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0009
+  form: CBN Hard Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 32895
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 49688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0010
+  form: CMM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/careers-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: CMM Programmer
+    approx_offset: 6508
+  - quote: (1) WENZEL  XO97 CMM (36”/60”/24”) Resolution 0.000004” (4 millionths).
+    approx_offset: 26633
+  - quote: (1) ZEISS  C-400 CMM (15”/30”/12”)
+    approx_offset: 26712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0011
+  form: CNC Cylindrical grinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: 'CNC Cylindrical grinders up to 9” diameter x 24: long, we can achieve tolerance of ±0.0001”.'
+    approx_offset: 18591
+  - quote: 'CNC Cylindrical grinders up to 9” diameter x 24: long, we can achieve tolerance of ±0.0001”.'
+    approx_offset: 58017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0012
+  form: CNC External Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: CNC External Grinding – Diameters.
+    approx_offset: 17682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0013
+  form: CNC External Precision Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: CNC External Precision Grinding up to 9″ Diameter x 24″ Long we can achieve tolerance of ±0.0001”.
+    approx_offset: 14471
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0014
+  form: CNC Horizontal Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: CNC Horizontal Milling up to 48″ x 48″ x 48″
+    approx_offset: 17560
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0015
+  form: CNC Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1229
+  - quote: CNC Milling with 4th Axis, in both Vertical & Horizontal Configurations, Including Palletech
+      – Flexible 12 Pallet Pool Manufacturing System & High Speed Drill Tap Centers for high volume production,
+      with sizes up to 40″ x 30″ x 30″
+    approx_offset: 13954
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0016
+  form: CNC Milling with 4th Axis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: CNC Milling with 4th Axis, in both Vertical & Horizontal Configurations, Including Palletech
+      – Flexible 12 Pallet Pool Manufacturing System & High Speed Drill Tap Centers for high volume production,
+      with sizes up to 40″ x 30″ x 30″
+    approx_offset: 13954
+  - quote: CNC Milling with 4th Axis available in both Vertical & Horizontal Configurations, with sizes
+      up to 40″ x 30″ x 30″.
+    approx_offset: 39912
+  - quote: Our High Speed Drill/Tap Centers and latest Mazak Palletech CNC Milling with 4th Axis, in both
+      Vertical & Horizontal Configurations, Including Palletech – Flexible 12 Pallet Pool Manufacturing
+      System & High Speed Drill Tap Centers for high volume production, with sizes up to 40″ x 30″ x 30″,
+      allow d
+    approx_offset: 40088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0017
+  form: CNC Swiss Turned
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: CNC Swiss Turned – – Diameters up to 1″ x 24″ Long
+    approx_offset: 17372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0018
+  form: CNC Swiss machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16015
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0019
+  form: CNC Swiss style turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: CNC Turning with 4th Axis Milling & CNC Swiss style turning with sizes up to diameter 24” x
+      36” long, up to 1 ¾” Barfeed or chucking work.
+    approx_offset: 13711
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter
+      24” x 36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work.
+    approx_offset: 32581
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter
+      24” x 36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work.
+    approx_offset: 49374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0020
+  form: CNC Turned
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: CNC Turned – Diameters up to 50” x 36″ Long.
+    approx_offset: 17224
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0021
+  form: CNC Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1216
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1253
+  - quote: CNC Turning
+    approx_offset: 13662
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0022
+  form: CNC Vertical Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: CNC Vertical Milling up to 59″ x 26″ x 24″
+    approx_offset: 17483
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0023
+  form: CNC cylindrical grinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: Superior Technology, Inc’s ultra-precision CNC cylindrical grinders, Surface Grinding, Lapping,
+      and Honing machines, allow us to work on wide range of finishing applications which achieve extremely
+      accurate tolerances and fine surface finishes to 4Ra
+    approx_offset: 18382
+  - quote: Superior Technology, Inc’s ultra-precision CNC cylindrical grinders, Surface Grinding, Lapping,
+      and Honing machines, allow us to work on wide range of finishing applications which achieve extremely
+      accurate tolerances and fine surface finishes to 4Ra
+    approx_offset: 57808
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0024
+  form: Clean Room Assembly & Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1306
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0025
+  form: Contract Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1370
+  - quote: Contract Manufacturing
+    approx_offset: 15263
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0026
+  form: Coordinate Measuring Machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: Our highly skilled staff insect parts and assemblies using modern metrology equipment ranging
+      from High Accuracy CMM (Coordinate Measuring Machines), Video & Optical Gaging, Precision Measuring
+      & Gaging Instruments.
+    approx_offset: 42859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0027
+  form: Deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Deburring and Part Finishing
+    approx_offset: 8992
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15084
+  - quote: (2) TIMESAVER  Liner Wet Sander, Deburring, Finishing & Graining to 36’ Wide
+    approx_offset: 26213
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0028
+  form: Dynamic & Static Balancing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Dynamic & Static Balancing
+    approx_offset: 10682
+  - quote: Dynamic & Static Balancing
+    approx_offset: 52929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0029
+  form: Dynamic & Static balancing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Dynamic & Static balancing is performed on parts up to 48” diameter and 400lbs to ensure vibration
+      free operation of the parts.
+    approx_offset: 10710
+  - quote: Dynamic & Static balancing is performed on parts up to 48” diameter and 400lbs to ensure vibration
+      free operation of the parts.
+    approx_offset: 52957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0030
+  form: Dynamic Balancing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0031
+  form: Electrical Testers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: 'Misc Tools: Manual Presses, Leak Tests Stations, Torque Tools, Electrical Testers'
+    approx_offset: 25981
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0032
+  form: Electro-Mechanical Assembly & Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16114
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0033
+  form: Electro-Plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15111
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0034
+  form: Etching Passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In addition we are able to perform specific cleaning and packaging to meet even the most stringent
+      specifications, this can include Etching Passivation, Rust Inhibiting Ultrasonic Cleaning in many
+      chemistries.
+    approx_offset: 12692
+  - quote: In addition we are able to perform specific cleaning and packaging to meet even the most stringent
+      specifications, this can include Etching Passivation, Rust Inhibiting Ultrasonic Cleaning in many
+      chemistries.
+    approx_offset: 54939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0035
+  form: Gear Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 9609
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 51856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0036
+  form: Graining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 9347
+  - quote: (2) TIMESAVER  Liner Wet Sander, Deburring, Finishing & Graining to 36’ Wide
+    approx_offset: 26236
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 51594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0037
+  form: Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1278
+  - quote: Grinding, Lapping & Honing
+    approx_offset: 14443
+  - quote: CNC External Precision Grinding up to 9″ Diameter x 24″ Long we can achieve tolerance of ±0.0001”.
+    approx_offset: 14494
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0038
+  form: Heat Treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Heat Treatment
+    approx_offset: 10010
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15095
+  - quote: Heat Treatment
+    approx_offset: 52257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0039
+  form: High Accuracy CMM (Coordinate Measuring Machines)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: Our highly skilled staff insect parts and assemblies using modern metrology equipment ranging
+      from High Accuracy CMM (Coordinate Measuring Machines), Video & Optical Gaging, Precision Measuring
+      & Gaging Instruments.
+    approx_offset: 42840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0040
+  form: Hobbing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 9586
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15196
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 51833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0041
+  form: Honing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1298
+  - quote: Grinding, Lapping & Honing
+    approx_offset: 14463
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16106
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0042
+  form: Ink & stencil printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 12117
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 54364
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0043
+  form: Inspection Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0044
+  form: KEY SEATER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (1)  HANDSFORD KEY SEATER
+    approx_offset: 25437
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0045
+  form: Lapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1288
+  - quote: Grinding, Lapping & Honing
+    approx_offset: 14453
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0046
+  form: Large CNC Turning & Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0047
+  form: Large Part CNC Turning and Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0048
+  form: Large Parts CNC Turning & Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/large-cnc-turning-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities/large-cnc-turning-milling-superior-technology-inc/
+  evidence:
+  - quote: Large Parts CNC Turning & Milling
+    approx_offset: 27684
+  - quote: Large Parts CNC Turning & Milling
+    approx_offset: 55935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0049
+  form: Large Parts CNC Turning and Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16049
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0050
+  form: Leak Tests Stations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: 'Misc Tools: Manual Presses, Leak Tests Stations, Torque Tools, Electrical Testers'
+    approx_offset: 25946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0051
+  form: Liner Wet Sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (2) TIMESAVER  Liner Wet Sander, Deburring, Finishing & Graining to 36’ Wide
+    approx_offset: 26195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0052
+  form: MAGNETIC PARTICLE INSPECTION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (2)  (MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines
+    approx_offset: 25597
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0053
+  form: MIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (1)  LINDE 200 Amp MIG
+    approx_offset: 26449
+  - quote: (1)  LINDE 300 Amp MIG
+    approx_offset: 26473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0054
+  form: MPI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11434
+  - quote: (2)  (MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines
+    approx_offset: 25592
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0055
+  form: MPI (magnetic particle crack testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11434
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0056
+  form: Multi-axis milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex including
+      machining of exotic materials used parts such as machine parts, pump & valve housings, auto parts,
+      tool components, automation & robotics components, test fixtures and tooling for Aerospace, Automotive,
+      Indu
+    approx_offset: 40504
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex including
+      machining of exotic materials used parts such as machine parts, pump & valve housings, auto parts,
+      tool components, automation & robotics components, test fixtures and tooling for Aerospace, Automotive,
+      Indu
+    approx_offset: 46389
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0057
+  form: NDT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 11126
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15205
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 53373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0058
+  form: NDT (non-destructive testing)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 11126
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 53373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0059
+  form: NDT Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15205
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0060
+  form: Non-Destructive Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 11131
+  - quote: (2)  (MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines
+    approx_offset: 25626
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 53378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0061
+  form: Optical comparators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (3) Optical comparators (from 15″ and 30″),
+    approx_offset: 26921
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0062
+  form: Other Surface Treatments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0063
+  form: PEM fasteners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 30955
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 47785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0064
+  form: PVD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10612
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0065
+  form: PVD coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10612
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0066
+  form: Painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0067
+  form: Part & Ultrasonic Cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part & Ultrasonic Cleaning
+    approx_offset: 12414
+  - quote: Part & Ultrasonic Cleaning
+    approx_offset: 54661
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0068
+  form: Part Finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Deburring and Part Finishing
+    approx_offset: 9006
+  - quote: Deburring and Part Finishing
+    approx_offset: 51253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0069
+  form: Part Marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part Marking
+    approx_offset: 11909
+  - quote: Part Marking
+    approx_offset: 54156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0070
+  form: Part Traceability
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 11923
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 54170
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0071
+  form: Plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 10406
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15119
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 52653
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0072
+  form: Precision Measuring & Gaging Instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: Our highly skilled staff insect parts and assemblies using modern metrology equipment ranging
+      from High Accuracy CMM (Coordinate Measuring Machines), Video & Optical Gaging, Precision Measuring
+      & Gaging Instruments.
+    approx_offset: 42915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0073
+  form: Private Label Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/private-label-manufacturing-superior-technology-inc/
+  evidence:
+  - quote: Private Label Manufacturing
+    approx_offset: 3421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0074
+  form: Production Brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12334
+  - quote: (3)  PRODUCTION BRAZING STATION – Oxygen/Acetylene sets
+    approx_offset: 26483
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54581
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0075
+  form: Production Sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Production Sawing
+    approx_offset: 13080
+  - quote: Production Sawing
+    approx_offset: 55327
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0076
+  form: Punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (1)  TRUMPF TRUMATIC 120 Punching Machine; (4’ x 8’)
+    approx_offset: 25271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0077
+  form: Punching Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (1)  TRUMPF TRUMATIC 120 Punching Machine; (4’ x 8’)
+    approx_offset: 25271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0078
+  form: Roller Burnishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 32913
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 49706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0079
+  form: Rust Inhibiting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In addition we are able to perform specific cleaning and packaging to meet even the most stringent
+      specifications, this can include Etching Passivation, Rust Inhibiting Ultrasonic Cleaning in many
+      chemistries.
+    approx_offset: 12713
+  - quote: In addition we are able to perform specific cleaning and packaging to meet even the most stringent
+      specifications, this can include Etching Passivation, Rust Inhibiting Ultrasonic Cleaning in many
+      chemistries.
+    approx_offset: 54960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0080
+  form: SEM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 11834
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 54081
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0081
+  form: SEM material chemical analysis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 11834
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 54081
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0082
+  form: Sandblaster
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender
+      & Shear'
+    approx_offset: 26299
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0083
+  form: Self-Clinching Fastener Press
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (3)  PEMSERTER – Self-Clinching Fastener Press
+    approx_offset: 25716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0084
+  form: Specialized Surface Treatments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 10423
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 52670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0085
+  form: Sub-Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: Sub-Assembly and Tested using both manual and automated equipment, ensuring customer specifications
+      are meets and fully tested assemblies are delivered ready for use.
+    approx_offset: 14723
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0086
+  form: Surface Finish Profilometers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (3) Surface Finish Profilometers,
+    approx_offset: 26966
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0087
+  form: Surface Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: Surface Grinding and lapping up to 36” x 18” x 12” with to down 0.00002” 20 millionths flatness
+      and extremely fine surface finishes
+    approx_offset: 14570
+  - quote: Surface Grinding& Lapping up to 36” x 18”
+    approx_offset: 17800
+  - quote: Superior Technology, Inc’s ultra-precision CNC cylindrical grinders, Surface Grinding, Lapping,
+      and Honing machines, allow us to work on wide range of finishing applications which achieve extremely
+      accurate tolerances and fine surface finishes to 4Ra
+    approx_offset: 18408
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0088
+  form: Swiss Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter
+      24” x 36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work.
+    approx_offset: 32657
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter
+      24” x 36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work.
+    approx_offset: 49450
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0089
+  form: TIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (1)  MILLER Aerowave 300 Amp TIG
+    approx_offset: 26425
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0090
+  form: Time-Saver machine graining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 9328
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 51575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0091
+  form: Toolroom Fixtures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Toolroom Fixtures
+    approx_offset: 12774
+  - quote: Toolroom Fixtures
+    approx_offset: 55021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0092
+  form: Torque Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11597
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53844
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0093
+  form: Torque Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: 'Misc Tools: Manual Presses, Leak Tests Stations, Torque Tools, Electrical Testers'
+    approx_offset: 25967
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0094
+  form: Ultrasonic Cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part & Ultrasonic Cleaning
+    approx_offset: 12421
+  - quote: In addition we are able to perform specific cleaning and packaging to meet even the most stringent
+      specifications, this can include Etching Passivation, Rust Inhibiting Ultrasonic Cleaning in many
+      chemistries.
+    approx_offset: 12729
+  - quote: Part & Ultrasonic Cleaning
+    approx_offset: 54668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0095
+  form: Value Added Secondary Processes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our capabilities include CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding,
+      Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing,
+      and Managed Inventory Solutions.
+    approx_offset: 1337
+  - quote: Value Added Secondary Processes
+    approx_offset: 8276
+  - quote: offers limitless internal and external managed Value Added Secondary Processes that add value
+      and allow us to ship parts to customers finished complete Suppling complete certified parts to customers
+      reduces their risks of sending parts to the additional suppliers eliminating logistics delays, part
+      d
+    approx_offset: 8382
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0096
+  form: Value Added Secondary Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 16153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0097
+  form: Video & Optical Gaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: Our highly skilled staff insect parts and assemblies using modern metrology equipment ranging
+      from High Accuracy CMM (Coordinate Measuring Machines), Video & Optical Gaging, Precision Measuring
+      & Gaging Instruments.
+    approx_offset: 42891
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0098
+  form: Video Measuring System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (1) OGP SMART  SCOPE FLASH 200 Video Measuring System (8”/8”/6”) Resolution 0.00002” (20 millionths).
+    approx_offset: 26815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0099
+  form: Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Welding & Brazing
+    approx_offset: 12168
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12215
+  - quote: We offer Value Added Secondary Processes including but not limited to Deburring, Heat Treatment,
+      Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching & Hobbing, NDT
+      Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 15228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0100
+  form: Wet Sander
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (2) TIMESAVER  Liner Wet Sander, Deburring, Finishing & Graining to 36’ Wide
+    approx_offset: 26201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0101
+  form: abrasive vibratory tumbling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 9281
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 51528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0102
+  form: alloy steel heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10275
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52522
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0103
+  form: aluminum and copper alloy treatments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10364
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52611
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0104
+  form: aluminum anodizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10506
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0105
+  form: annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10335
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0106
+  form: assembly torque & force
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 31100
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 47930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0107
+  form: automatic assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 30924
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 47754
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0108
+  form: automatic saws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We cut all of a blanks in house using out automatic saws, this saves time, material cost and
+      allows production flexibility.
+    approx_offset: 13141
+  - quote: We cut all of a blanks in house using out automatic saws, this saves time, material cost and
+      allows production flexibility.
+    approx_offset: 55388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0109
+  form: blackening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10600
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0110
+  form: broach
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 9856
+  - quote: (1)  MILES Production Broach; 20” stroke
+    approx_offset: 25353
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 52103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0111
+  form: burr removal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: All parts shipped from Superior Technology will meet or exceed customer specifications for
+      burr removal and surface finish requirements.
+    approx_offset: 9112
+  - quote: All parts shipped from Superior Technology will meet or exceed customer specifications for
+      burr removal and surface finish requirements.
+    approx_offset: 51359
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0112
+  form: calibrated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/quality-assurance-superior-technology-inc/
+  evidence:
+  - quote: All equipment is calibrated regularly and tracked back to traceable to NIST & ISO national
+      and International Standards
+    approx_offset: 42974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0113
+  form: calibration
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: GAGETRACK  Gage calibration software
+    approx_offset: 27211
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 30970
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 47800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0114
+  form: chrome and nickel plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10542
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0115
+  form: clean room assembly facility
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 30764
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 47594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0116
+  form: close tolerance precision machined parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/
+  evidence:
+  - quote: Specializing in manufacturing of close tolerance precision machined parts and assemblies from
+      prototype to high volume production, in a wide range of part sizes and materials.
+    approx_offset: 1048
+  - quote: With over 70 CNC Machines, we have the ability to manufacture close tolerance precision machined
+      parts and assemblies from prototype to high volume production, in a wide range of part sizes and
+      materials.
+    approx_offset: 1930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0117
+  form: coatings measurements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11574
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53821
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0118
+  form: deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Additional this can be done by our skilled deburring specialists manually with precision hand
+      tools, often under a microscope to ensure fine intricacies are meet and every part is fully inspected
+      ensuring a high part quantity.
+    approx_offset: 9400
+  - quote: Additional this can be done by our skilled deburring specialists manually with precision hand
+      tools, often under a microscope to ensure fine intricacies are meet and every part is fully inspected
+      ensuring a high part quantity.
+    approx_offset: 51647
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0119
+  form: design and manufacture tooling and fixtures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our well-equipped tool room is available with a team of highly skilled journeyman toolmakers
+      and design engineers, who design and manufacture tooling and fixtures, for all of our production
+      needs, this reduces lead times and allows continuous improvement to be quickly implemented.
+    approx_offset: 12913
+  - quote: Our well-equipped tool room is available with a team of highly skilled journeyman toolmakers
+      and design engineers, who design and manufacture tooling and fixtures, for all of our production
+      needs, this reduces lead times and allows continuous improvement to be quickly implemented.
+    approx_offset: 55160
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0120
+  form: dimensional measurement inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 11184
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 53431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0121
+  form: dimensional metrology measurement inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11626
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53873
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0122
+  form: dye-penetrant crack testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11520
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53767
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0123
+  form: electrical testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 31146
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 47976
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0124
+  form: electro-plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10568
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0125
+  form: engraving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 12077
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 54324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0126
+  form: environmental and durability testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 11866
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 54113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0127
+  form: full dimensional metrology measurement inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11621
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0128
+  form: functional operation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 31078
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 47908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0129
+  form: grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/grinding-lapping-honing-superior-technology-inc/
+    - https://superiortech.org/capabilities/grinding-lapping-honing-superior-technology-inc/
+  evidence:
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 18856
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts including machining
+      of very hard materials used wear parts, such as machine parts, pump and valve components, auto parts,
+      automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consume
+    approx_offset: 58282
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0130
+  form: hand held Metrology Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: Extensive collection of hand held Metrology Equipment
+    approx_offset: 27087
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0131
+  form: hard anodizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10526
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52773
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0132
+  form: hard turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: We excel in extremely close tolerances, fine surface finishes (down to 4 micro inches), difficult
+      to machine materials, hard turning, very small parts, with common diameter tolerances of ±0.0002”,
+      0.0001” straightness & 0.0005” circular runout, and many lathes are controlled to 0.00001” (ten
+      million
+    approx_offset: 32348
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing for extremely fine surface
+      finishes, these processes allow us to produce a wide variety of parts including precision shafts
+      & rings, machine parts, fuels system components, test fixtures, tooling components, pump & valve
+      components f
+    approx_offset: 32899
+  - quote: We excel in extremely close tolerances, fine surface finishes (down to 4 micro inches), difficult
+      to machine materials, hard turning, very small parts, with common diameter tolerances of ±0.0002”,
+      0.0001” straightness & 0.0005” circular runout, and many lathes are controlled to 0.00001” (ten
+      million
+    approx_offset: 49141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0133
+  form: hardness
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 11815
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 54062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0134
+  form: heat treatment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10287
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52534
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0135
+  form: hobb
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+  evidence:
+  - quote: (1)  BOURNE & KOCH 6-16 Production hobb
+    approx_offset: 25198
+  - quote: (2)  BARBER COLEMAN 6-10 Production hobb
+    approx_offset: 25240
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0136
+  form: honing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 10
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0137
+  form: hydrographic printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 12141
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 54388
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0138
+  form: in-house fixture design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: With the variety of machine sizes, cellular manufacturing layouts, interchangeable pallet systems,
+      innovative tooling, and in-house fixture design & development allow us the flexibility of changing
+      programs and tooling between machines, reducing set-up times and improving process repeatability.
+    approx_offset: 39558
+  - quote: With the variety of machine sizes, cellular manufacturing layouts, interchangeable pallet systems,
+      innovative tooling, and in-house fixture design & development allow us the flexibility of changing
+      programs and tooling between machines, reducing set-up times and improving process repeatability.
+    approx_offset: 45443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0139
+  form: induction hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10303
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52550
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0140
+  form: key seating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0141
+  form: keyway
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0142
+  form: keyways
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 9870
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 52117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0143
+  form: knurl
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 9984
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 52231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0144
+  form: knurl configurations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 9984
+  - quote: In addition we are able to broach flats, keyways, hexagonal, squares, splines, and other polygon
+      shapes both internally or externally, as well as multiple knurl configurations.
+    approx_offset: 52231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0145
+  form: lapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: Surface Grinding and lapping up to 36” x 18” x 12” with to down 0.00002” 20 millionths flatness
+      and extremely fine surface finishes
+    approx_offset: 14591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0146
+  form: laser marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 12088
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 54335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0147
+  form: leak & flow testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 31125
+  - quote: Specific testing such as, dimensional, functional operation, assembly torque & force, leak
+      & flow testing, electrical testing of mechanical or electrical assemblies are all performed in house.
+    approx_offset: 47955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0148
+  form: leak & pressure testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 11549
+  - quote: Our in house capabilities included MPI (magnetic particle crack testing in a purpose built
+      high powered testing machine, dye-penetrant crack testing, leak & pressure testing, coatings measurements,
+      Torque Testing, and the full dimensional metrology measurement inspections in our inspection departmen
+    approx_offset: 53796
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0149
+  form: machine graining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 9339
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 51586
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0150
+  form: machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 33
+    pages:
+    - https://superiortech.org/about-us-superior-technology-inc/careers-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/facilities-list-superior-technology-inc/
+    - https://superiortech.org/about-us-superior-technology-inc/history-of-excellence-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: We have a very diverse staff many who have been with the company 20 years plus and who have
+      decades of machining and manufacturing experience.
+    approx_offset: 5577
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 9201
+  - quote: Horizontal CNC Machining Center with sizes up to 55” x 47” x 52” with maximum weights up to
+      4,850lbs
+    approx_offset: 14353
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0151
+  form: metallurgical testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 11157
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing, and
+      dimensional measurement inspections & reports with certifiable results.
+    approx_offset: 53404
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0152
+  form: milling capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/cnc-milling-superior-technology-inc/
+  evidence:
+  - quote: has a wide range of milling capabilities to meet our customer’s prototype and production milling
+      needs.
+    approx_offset: 39351
+  - quote: has a wide range of milling capabilities to meet our customer’s prototype and production milling
+      needs.
+    approx_offset: 45236
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0153
+  form: nitriding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10324
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0154
+  form: other surface treatments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10652
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0155
+  form: paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 10415
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10625
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 52662
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0156
+  form: phosphatizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10585
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52832
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0157
+  form: pin stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 12103
+  - quote: Part Traceability is something we take seriously and marking of customer parts for identification,
+      functional and decorative purposes can be performed by engraving, laser marking, pin stamping, Ink
+      & stencil printing, hydrographic printing.
+    approx_offset: 54350
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0158
+  form: plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10560
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10576
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52807
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0159
+  form: powder coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 10632
+  - quote: Available process include but are not limited to; aluminum anodizing, hard anodizing, chrome
+      and nickel plating electro-plating, phosphatizing, blackening, PVD coating, paint, powder coating,
+      and other surface treatments.
+    approx_offset: 52879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0160
+  form: precision machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: we pride ourselves on the broad scope of our precision machining and assembly expertise, specializing
+      in CNC Turning, CNC Swiss machining, CNC Milling, Large Parts CNC Turning and Milling, Grinding,
+      Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract
+      Man
+    approx_offset: 15942
+  - quote: We have vast experience in the precision machining close tolerance parts in a wide range of
+      materials, including carbon & stainless steels, aluminum alloys, super alloys (such as Titanium
+      and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials
+      in between.
+    approx_offset: 16273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0161
+  form: private label manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/private-label-manufacturing-superior-technology-inc/
+  evidence:
+  - quote: is a reliable partner who offers full service private label manufacturing, we can help you
+      develop and manufacture you entire product, from prototype and packaging development,  thru to product
+      testing, manufacturing, and distribution.
+    approx_offset: 3522
+  - quote: We offer full service private label manufacturing, we can develop and manufacture your entire
+      product from prototype development, product testing, manufacturing and distribution, Outsourcing
+      your products, allows the OEM the confidence of a known fixed cost
+    approx_offset: 15309
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0162
+  form: prototype
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://superiortech.org/
+    - https://superiortech.org/capabilities-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-milling-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/capabilities-superior-technology-inc/private-label-manufacturing-superior-technology-inc/
+  evidence:
+  - quote: Specializing in manufacturing of close tolerance precision machined parts and assemblies from
+      prototype to high volume production, in a wide range of part sizes and materials.
+    approx_offset: 1109
+  - quote: With over 70 CNC Machines, we have the ability to manufacture close tolerance precision machined
+      parts and assemblies from prototype to high volume production, in a wide range of part sizes and
+      materials.
+    approx_offset: 1991
+  - quote: is a reliable partner who offers full service private label manufacturing, we can help you
+      develop and manufacture you entire product, from prototype and packaging development,  thru to product
+      testing, manufacturing, and distribution.
+    approx_offset: 3616
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0163
+  form: prototype development
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/
+  evidence:
+  - quote: We offer full service private label manufacturing, we can develop and manufacture your entire
+      product from prototype development, product testing, manufacturing and distribution, Outsourcing
+      your products, allows the OEM the confidence of a known fixed cost
+    approx_offset: 15394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0164
+  form: prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://superiortech.org/
+  evidence:
+  - quote: provides complete production solutions from start to finish, which starts with DFM (Design
+      for Manufacturing) assistance, continuing through to prototyping and on-time volume production.
+    approx_offset: 1601
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0165
+  form: riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 30944
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 47774
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0166
+  form: sandblasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 9310
+  - quote: This work is either done in process in the machining process to ensure accuracy and reduce
+      additional part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine
+      graining.
+    approx_offset: 51557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0167
+  form: steel case hardening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10253
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0168
+  form: stress relieving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 10346
+  - quote: Available process include but are not limited to; steel case hardening, alloy steel heat treatment,
+      induction hardening, nitriding, annealing, stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 52593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0169
+  form: surface finish requirements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: All parts shipped from Superior Technology will meet or exceed customer specifications for
+      burr removal and surface finish requirements.
+    approx_offset: 9129
+  - quote: All parts shipped from Superior Technology will meet or exceed customer specifications for
+      burr removal and surface finish requirements.
+    approx_offset: 51376
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0170
+  form: tensile
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 11825
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 54072
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0171
+  form: turning capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/cnc-turning-superior-technology-inc/
+    - https://superiortech.org/cnc-turning-superior-technology-inc/
+  evidence:
+  - quote: has a wide range of turning capabilities to meet our customer’s prototype and production turning
+      needs.
+    approx_offset: 32144
+  - quote: has a wide range of turning capabilities to meet our customer’s prototype and production turning
+      needs.
+    approx_offset: 48937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0172
+  form: ultrasonically cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/assembly-testing-superior-technology-inc/
+    - https://superiortech.org/capabilities/assembly-testing-superior-technology-inc/
+  evidence:
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 30899
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test of high precision
+      Electro-Mechanical Assemblies, processes can include ultrasonically cleaning, automatic assembly,
+      riveting & PEM fasteners, calibration, and testing to ensure customer specifications are meet.
+    approx_offset: 47729
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0173
+  form: welding operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 12215
+  - quote: We are able to perform many welding operations certifiable to ASME AWS standards in Steel,
+      Stainless Steel & Aluminum in a production environment, Production Brazing is available to make
+      tube, fitting and other assemblies.
+    approx_offset: 54462
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: superiortech_org-process_caps-0174
+  form: x-ray
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://superiortech.org/capabilities-superior-technology-inc/value-added-services-superior-technology-inc/
+    - https://superiortech.org/value-added-services-superior-technology-inc/
+  evidence:
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 11808
+  - quote: In additionally we working with trusted vendors who can perform almost any testing required
+      including x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability
+      testing.
+    approx_offset: 54055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

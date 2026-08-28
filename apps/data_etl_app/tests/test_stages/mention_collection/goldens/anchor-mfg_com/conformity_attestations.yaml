@@ -1,0 +1,128 @@
+subject: anchor-mfg.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+golden_set_version: 1
+anchored_on: search/expectations/anchor-mfg_com/conformity_attestations.yaml
+labels:
+- id: anchor-mfg_com-conformity_attestations-0001
+  form: EMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/supplier-portal-2/
+    - https://www.anchor-mfg.com/supplier-portal/
+  evidence:
+  - quote: EMS Certificate 03.015.1
+    approx_offset: 24115
+  - quote: EMS Certificate 03.015.1
+    approx_offset: 54788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-conformity_attestations-0002
+  form: EMS Certificate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/supplier-portal-2/
+    - https://www.anchor-mfg.com/supplier-portal/
+  evidence:
+  - quote: EMS Certificate 03.015.1
+    approx_offset: 24115
+  - quote: EMS Certificate 03.015.1
+    approx_offset: 54788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-conformity_attestations-0003
+  form: EMS Certificate 03.015.1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/supplier-portal-2/
+    - https://www.anchor-mfg.com/supplier-portal/
+  evidence:
+  - quote: EMS Certificate 03.015.1
+    approx_offset: 24115
+  - quote: EMS Certificate 03.015.1
+    approx_offset: 54788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-conformity_attestations-0004
+  form: IATF
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/supplier-portal-2/
+    - https://www.anchor-mfg.com/supplier-portal/
+  evidence:
+  - quote: IATF Certificate without Product Design 03.225.5
+    approx_offset: 24141
+  - quote: IATF Certificate without Product Design 03.225.5
+    approx_offset: 54814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-conformity_attestations-0005
+  form: IATF Certificate without Product Design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/supplier-portal-2/
+    - https://www.anchor-mfg.com/supplier-portal/
+  evidence:
+  - quote: IATF Certificate without Product Design 03.225.5
+    approx_offset: 24141
+  - quote: IATF Certificate without Product Design 03.225.5
+    approx_offset: 54814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-conformity_attestations-0006
+  form: IATF Certificate without Product Design 03.225.5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/supplier-portal-2/
+    - https://www.anchor-mfg.com/supplier-portal/
+  evidence:
+  - quote: IATF Certificate without Product Design 03.225.5
+    approx_offset: 24141
+  - quote: IATF Certificate without Product Design 03.225.5
+    approx_offset: 54814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

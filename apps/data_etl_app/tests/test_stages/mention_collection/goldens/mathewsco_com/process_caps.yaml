@@ -1,0 +1,1922 @@
+subject: mathewsco.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+golden_set_version: 1
+anchored_on: search/expectations/mathewsco_com/process_caps.yaml
+labels:
+- id: mathewsco_com-process_caps-0001
+  form: 5-axis vertical milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0002
+  form: Aluminum Die Casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself
+      to compete against off shore manufacturer by offering quick turnaround lead times, medium to high
+      volume runs, competitive tooling pricing and producing high quality parts.
+    approx_offset: 24435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0003
+  form: Automatic Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Automatic Stamping - aids the identification of parts
+    approx_offset: 49817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0004
+  form: Black Oxidizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating - is useful for corrosion resistance
+    approx_offset: 49871
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0005
+  form: CNC Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0006
+  form: CNC production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Our fast design and prototype service, coupled with our CNC production technology, gives you
+      a unique and long-term manufacturing partner.
+    approx_offset: 57686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0007
+  form: CNC production technology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=101&Itemid=161
+  evidence:
+  - quote: Our fast design and prototype service, coupled with our CNC production technology, gives you
+      a unique and long-term manufacturing partner.
+    approx_offset: 57686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0008
+  form: Centrifugal Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Centrifugal Castings
+    approx_offset: 22971
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0009
+  form: Coining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Coining or Sizing - is beneficial for close dimensional control as well as densification
+    approx_offset: 49728
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0010
+  form: Coining or Sizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Coining or Sizing - is beneficial for close dimensional control as well as densification
+    approx_offset: 49728
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0011
+  form: Cold Heading
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Cold Heading - Our cold header offers external thread parts from 3/4" diameter parts by 1/16"
+      to 5 1/2" in length.
+    approx_offset: 26373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0012
+  form: Compression Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25419
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0013
+  form: Deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Vibratory Deburring - removes the sharp edges from parts
+    approx_offset: 49681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0014
+  form: Deep Draw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Deep Draw Stampings
+    approx_offset: 22821
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0015
+  form: Deep Draw Stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Deep Draw Stampings
+    approx_offset: 22821
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0016
+  form: Die Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0017
+  form: Ductile Gray Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Ductile Gray Castings
+    approx_offset: 23016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0018
+  form: Extrusions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0019
+  form: Injection Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping,
+      Custom Plastic Insert and Injection Molding company.
+    approx_offset: 4084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0020
+  form: Injection and Compression Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25405
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0021
+  form: Insert Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: We specialize in custom Plastic Injection and Insert Molding that feature a high degree of
+      difficulty on both product design and high performance molding resins.
+    approx_offset: 4294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0022
+  form: Investment Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0023
+  form: Investment castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0024
+  form: Laser Technology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Laser Technology
+    approx_offset: 52065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0025
+  form: Laser prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Laser prototyping is among the biggest advances in parts production technology in five decades,
+      and we're committed to being on the cutting edge.
+    approx_offset: 52083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0026
+  form: Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping,
+      Custom Plastic Insert and Injection Molding company.
+    approx_offset: 4042
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4433
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4514
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0027
+  form: Metal Stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Metal Stampings
+    approx_offset: 22787
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0028
+  form: Oil Dip Coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating - is useful for corrosion resistance
+    approx_offset: 49890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0029
+  form: Oil Impregnation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Oil Impregnation - makes bearings self-lubricate and is ideal for applications where lubrecation
+      is difficult, needed frequently, or impossible.
+    approx_offset: 50035
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0030
+  form: Plastic Injection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: We specialize in custom Plastic Injection and Insert Molding that feature a high degree of
+      difficulty on both product design and high performance molding resins.
+    approx_offset: 4272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0031
+  form: Plastic Insert
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping,
+      Custom Plastic Insert and Injection Molding company.
+    approx_offset: 4065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0032
+  form: Plastic Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4452
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4533
+  - quote: Plastic Molding
+    approx_offset: 22907
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0033
+  form: Precision Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping,
+      Custom Plastic Insert and Injection Molding company.
+    approx_offset: 4032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0034
+  form: Premier Precision Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping,
+      Custom Plastic Insert and Injection Molding company.
+    approx_offset: 4024
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0035
+  form: Rubber Fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0036
+  form: SPC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: We offer SPC data collection, JIT delivery scheduling, EDI capability, and we are ISO 9001:2015
+      certified.
+    approx_offset: 53790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0037
+  form: SPC data collection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: We offer SPC data collection, JIT delivery scheduling, EDI capability, and we are ISO 9001:2015
+      certified.
+    approx_offset: 53790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0038
+  form: Sand Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0039
+  form: Secondary operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Secondary operations included deburring, tapping, reaming, welding and assembly.
+    approx_offset: 25034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0040
+  form: Sizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Coining or Sizing - is beneficial for close dimensional control as well as densification
+    approx_offset: 49739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0041
+  form: Slitting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0042
+  form: Stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=116&Itemid=179
+  evidence:
+  - quote: Micro Stampings
+    approx_offset: 22712
+  - quote: Metal Stampings
+    approx_offset: 22793
+  - quote: Deep Draw Stampings
+    approx_offset: 22831
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0043
+  form: Steam Treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Steam Treating - will make the surface hard, improve corrosion resistance and seal porosity
+    approx_offset: 49943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0044
+  form: Transfer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0045
+  form: Transfer, Injection and Compression Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0046
+  form: Vibratory Deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Vibratory Deburring - removes the sharp edges from parts
+    approx_offset: 49671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0047
+  form: Water Jet Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting, Slitting, Extrusions, Transfer, Injection and Compression
+      Molding.
+    approx_offset: 25354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0048
+  form: aluminum die casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself
+      to compete against off shore manufacturer by offering quick turnaround lead times, medium to high
+      volume runs, competitive tooling pricing and producing high quality parts.
+    approx_offset: 24488
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0049
+  form: assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Secondary operations included deburring, tapping, reaming, welding and assembly.
+    approx_offset: 25105
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0050
+  form: coining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Presently, we operate 70 compacting (molding to 100t in 2) and 40 coining (sizing to 60T in
+      2) presses.
+    approx_offset: 49294
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0051
+  form: cold header
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Cold Heading - Our cold header offers external thread parts from 3/4" diameter parts by 1/16"
+      to 5 1/2" in length.
+    approx_offset: 26392
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0052
+  form: compacting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Presently, we operate 70 compacting (molding to 100t in 2) and 40 coining (sizing to 60T in
+      2) presses.
+    approx_offset: 49253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0053
+  form: cope & drag
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Size ranges from 1lbs to 10,000lbs in a variety of processes floor molding, cope & drag, semi-automatic
+      and permanent mold.
+    approx_offset: 25759
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0054
+  form: custom forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0055
+  form: deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Secondary operations included deburring, tapping, reaming, welding and assembly.
+    approx_offset: 25064
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0056
+  form: decorative finishes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: Our materials include aluminum, brass, steel, and stainless steel with more than 35 decorative
+      finishes.
+    approx_offset: 60419
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0057
+  form: deep drawn
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: green manufacturer of deep drawn metal enclosures, or cases, and stampings, including metal
+      diaphragms.
+    approx_offset: 33947
+  - quote: No tooling charges on over 15,000 standard deep drawn shapes and sizes available in the catalog,
+      including round, square, rectangular, MIL-T-27 spec and relay cases.
+    approx_offset: 34490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0058
+  form: densification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Coining or Sizing - is beneficial for close dimensional control as well as densification
+    approx_offset: 49803
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0059
+  form: die casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself
+      to compete against off shore manufacturer by offering quick turnaround lead times, medium to high
+      volume runs, competitive tooling pricing and producing high quality parts.
+    approx_offset: 24444
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself
+      to compete against off shore manufacturer by offering quick turnaround lead times, medium to high
+      volume runs, competitive tooling pricing and producing high quality parts.
+    approx_offset: 24497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0060
+  form: edge welded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 35110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0061
+  form: floor molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Size ranges from 1lbs to 10,000lbs in a variety of processes floor molding, cope & drag, semi-automatic
+      and permanent mold.
+    approx_offset: 25744
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0062
+  form: forged
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 8041
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0063
+  form: forging manufacturing facilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Operating from 2 forging manufacturing facilities, ELLWOOD City Forge Group is known worldwide
+      as a leader in the open-die forging industry.
+    approx_offset: 7514
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0064
+  form: forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products
+      from carbon, alloy, stainless, tool steels, aluminum and nickel alloys in weights up to 70,000 pounds,
+      lengths to 57 feet, and diameters to 135 inches.
+    approx_offset: 7688
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 7921
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0065
+  form: honing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26077
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0066
+  form: impregnation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems with synthetic, graphite fortified,
+      petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E.
+    approx_offset: 49336
+  - quote: Oil Impregnation - makes bearings self-lubricate and is ideal for applications where lubrecation
+      is difficult, needed frequently, or impossible.
+    approx_offset: 50039
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0067
+  form: lapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0068
+  form: laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Stampings - For short to medium run stampings or laser cutting up to 1/2 thick .
+    approx_offset: 24848
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0069
+  form: laser technology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Learn more about the solutions we offer...such as laser technology, in-house tooling with CAD
+      assistance, value-added operations to stamping, and punch presses with coil feeds and a capacity
+      range of 45 to 400 tons.
+    approx_offset: 51867
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0070
+  form: machined
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: We can supply your rapid prototype machined.
+    approx_offset: 24413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0071
+  form: machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24183
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26021
+  - quote: STADCO Precision is a precision machining company with extensive experience serving automotive,
+      aerospace and medical manufacturers throughout the US, and worldwide.
+    approx_offset: 53492
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0072
+  form: metal stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Clow Stamping Company, with over 300 employees, provides services to the OEM Industry in prototype
+      and short to medium volume metal stampings, using most of the materials available.
+    approx_offset: 51501
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0073
+  form: near net shape
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0074
+  form: near net shape casting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0075
+  form: open-die forging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: Operating from 2 forging manufacturing facilities, ELLWOOD City Forge Group is known worldwide
+      as a leader in the open-die forging industry.
+    approx_offset: 7611
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0076
+  form: permanent mold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Size ranges from 1lbs to 10,000lbs in a variety of processes floor molding, cope & drag, semi-automatic
+      and permanent mold.
+    approx_offset: 25791
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0077
+  form: plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We also provide un-plated, plated, and custom-design samples and technical information for
+      engineering and evaluation purposes.
+    approx_offset: 60531
+  - quote: We also provide un-plated, plated, and custom-design samples and technical information for
+      engineering and evaluation purposes.
+    approx_offset: 60539
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0078
+  form: platings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: Our print and electronic catalogs include complete dimensional drawings and specifications
+      for materials, threads, tolerances, and platings.
+    approx_offset: 60325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0079
+  form: powder coat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We also offer a powder coat finish in more than 50 colors and textures.
+    approx_offset: 60456
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0080
+  form: powder coat finish
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We also offer a powder coat finish in more than 50 colors and textures.
+    approx_offset: 60456
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0081
+  form: precision grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0082
+  form: precision machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Precision components and assemblies - If you are looking for a company that does precision
+      machine that is AS9100c:2009/ISO9001:2008 Registered.
+    approx_offset: 25900
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0083
+  form: precision machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: STADCO Precision is a precision machining company with extensive experience serving automotive,
+      aerospace and medical manufacturers throughout the US, and worldwide.
+    approx_offset: 53482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0084
+  form: rapid prototype
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They also offer rapid prototype in a cast metal in a couple of weeks from your CAD drawings.
+    approx_offset: 24301
+  - quote: We can supply your rapid prototype machined.
+    approx_offset: 24397
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0085
+  form: reaming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Secondary operations included deburring, tapping, reaming, welding and assembly.
+    approx_offset: 25084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0086
+  form: rough turned
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 8059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0087
+  form: rough turned bar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+  evidence:
+  - quote: We specialize in a variety of custom forgings including shafts, blocks, eccentrics, hollow
+      sleeves, rings, spindles, couplings, and discs, as well as smooth forged billet and rough turned
+      bar.
+    approx_offset: 8059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0088
+  form: secondary machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+  evidence:
+  - quote: '"Near net" bar stock is often specified to eliminate secondary machining and lower costs.'
+    approx_offset: 54046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0089
+  form: secondary operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: 'Our in house secondary operations include:'
+    approx_offset: 49640
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0090
+  form: semi-automatic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Size ranges from 1lbs to 10,000lbs in a variety of processes floor molding, cope & drag, semi-automatic
+      and permanent mold.
+    approx_offset: 25772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0091
+  form: sintering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Seven controlled atmosphere sintering furnaces heat up the situation as we operate our plant
+      24 hours a day, five days a week.
+    approx_offset: 49527
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0092
+  form: sizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+  evidence:
+  - quote: Presently, we operate 70 compacting (molding to 100t in 2) and 40 coining (sizing to 60T in
+      2) presses.
+    approx_offset: 49303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0093
+  form: sorting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: They offer a wide variety of sorting so you receive what you ordered.
+    approx_offset: 26714
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0094
+  form: stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=102&Itemid=163
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=104&Itemid=166
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=115&Itemid=178
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping,
+      Custom Plastic Insert and Injection Molding company.
+    approx_offset: 4048
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4439
+  - quote: Our experience in the Metal Stamping and Plastic Molding Industries allows us to offer a wide
+      range of Metal Stamping and Plastic Molding products and capabilities for a variety of industries.
+    approx_offset: 4520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0095
+  form: stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Stampings - For short to medium run stampings or laser cutting up to 1/2 thick .
+    approx_offset: 24835
+  - quote: green manufacturer of deep drawn metal enclosures, or cases, and stampings, including metal
+      diaphragms.
+    approx_offset: 33990
+  - quote: Hudson Technologies' seamless enclosures, also referred to as cases, cans, covers, containers
+      and stampings, are integral to aerospace, aviation, automotive, commercial battery, electrical,
+      irrigation, implantable medical devices, flow meters, relay cases, semi-conductor, mechanical seals,
+      edge weld
+    approx_offset: 34917
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0096
+  form: surface finishes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting eliminating costly
+      machining and surface finishes of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 24197
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0097
+  form: tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Secondary operations included deburring, tapping, reaming, welding and assembly.
+    approx_offset: 25075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0098
+  form: tool & die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: A highly-skilled staff of engineers and tool & die makers build customized tooling and parts
+      designed to customers' precision specifications.
+    approx_offset: 34716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0099
+  form: tool & die makers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: A highly-skilled staff of engineers and tool & die makers build customized tooling and parts
+      designed to customers' precision specifications.
+    approx_offset: 34716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0100
+  form: un-plated, plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: We also provide un-plated, plated, and custom-design samples and technical information for
+      engineering and evaluation purposes.
+    approx_offset: 60528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0101
+  form: value-add services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Modifications, finishes and value-add services are available.
+    approx_offset: 34642
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0102
+  form: value-added operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: Learn more about the solutions we offer...such as laser technology, in-house tooling with CAD
+      assistance, value-added operations to stamping, and punch presses with coil feeds and a capacity
+      range of 45 to 400 tons.
+    approx_offset: 51923
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0103
+  form: vertical milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling,
+      precision grinding, honing and lapping.
+    approx_offset: 26039
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-process_caps-0104
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Secondary operations included deburring, tapping, reaming, welding and assembly.
+    approx_offset: 25093
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

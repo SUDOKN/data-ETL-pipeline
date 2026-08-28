@@ -1,0 +1,74 @@
+subject: med-tekinc.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+  sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+golden_set_version: 1
+anchored_on: search/expectations/med-tekinc_com/industries.yaml
+labels:
+- id: med-tekinc_com-industries-0001
+  form: fabricator
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-industries-0002
+  form: fabricators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: Our metallurgy experts focus on ensuring the final product is as strong and durable as possible
+      for machine shops and fabricators to use.
+    approx_offset: 544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-industries-0003
+  form: machine shop
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: med-tekinc_com-industries-0004
+  form: machine shops
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://med-tekinc.com/
+  evidence:
+  - quote: Our metallurgy experts focus on ensuring the final product is as strong and durable as possible
+      for machine shops and fabricators to use.
+    approx_offset: 526
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,973 @@
+subject: howcogroup.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+  sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+golden_set_version: 1
+anchored_on: search/expectations/howcogroup_com/equipments.yaml
+labels:
+- id: howcogroup_com-equipments-0001
+  form: 2 pre-heat ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 2 pre-heat ovens
+    approx_offset: 40355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0002
+  form: 3D printers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+  evidence:
+  - quote: See our 3D printers, furnace and CNC machine in operation.
+    approx_offset: 49283
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0003
+  form: 4 Metre Deep Hole Boring Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore
+    approx_offset: 3215
+  - quote: We’re very pleased to announce the arrival of a state-of-the-art 4 metre Deep Hole Boring Machine...
+    approx_offset: 3343
+  - quote: New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore
+    approx_offset: 23500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0004
+  form: 4m Deep Hole Borer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: The new 4m Deep Hole Borer is a highly specialised machine designed to drill deep, precise
+      bores through nickel alloy bars and other high-performance materials.
+    approx_offset: 131510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0005
+  form: 5 curing ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 5 curing ovens
+    approx_offset: 40340
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0006
+  form: Alkaline degreasing equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Alkaline degreasing equipment
+    approx_offset: 40288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0007
+  form: BUTT WELDING STATIONS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: BUTT WELDING STATIONS
+    approx_offset: 44756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0008
+  form: Butt Welding Stations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds.
+    approx_offset: 44786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0009
+  form: CNC machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+  evidence:
+  - quote: See our 3D printers, furnace and CNC machine in operation.
+    approx_offset: 49308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0010
+  form: CNC machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/first-stage-machining/
+  evidence:
+  - quote: Howco’s global first stage machining capabilities utilise both conventional and CNC machinery.
+    approx_offset: 22109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0011
+  form: CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/careers/
+  evidence:
+  - quote: A typical day in my role involves setting up and operating CNC machines with the professional
+      shadowing me, performing maintenance checks such as cleaning work areas and coolant levels and ensuring
+      that any part meets the precise specifications required.
+    approx_offset: 20050
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0012
+  form: COMPACT & VERTICAL CLADDING SYSTEMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: COMPACT & VERTICAL CLADDING SYSTEMS
+    approx_offset: 44482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0013
+  form: Cladding Systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: COMPACT & VERTICAL CLADDING SYSTEMS
+    approx_offset: 44501
+  - quote: The Cladding Systems of our established supply chain partners are designed to perform fully-automated
+      GTAW build-up of corrosion-resistant alloy welding on engineered components for the oil & gas, petrochemical
+      and engineering sectors.
+    approx_offset: 44523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0014
+  form: Deep Hole Boring Machine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.howcogroup.com/
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore
+    approx_offset: 3223
+  - quote: We’re very pleased to announce the arrival of a state-of-the-art 4 metre Deep Hole Boring Machine...
+    approx_offset: 3351
+  - quote: New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore
+    approx_offset: 23508
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0015
+  form: Deep Hole Drilling machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/deep-hole-boring/
+  evidence:
+  - quote: Deep Hole Drilling machines – 18
+    approx_offset: 83732
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0016
+  form: G-M model HVF 101-XB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress
+      relief, solution annealing and age hardening.
+    approx_offset: 123496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0017
+  form: HVF 101-XB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress
+      relief, solution annealing and age hardening.
+    approx_offset: 123506
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0018
+  form: HVF 101-xb
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: Featuring an 18” W x 18” H x 24” L envelope, the HVF 101-xb is capable of handling even the
+      most complex and demanding heat treatment processes.
+    approx_offset: 123680
+  - quote: The HVF 101-xb also boasts a range of advanced features, including real-time monitoring and
+      control, automatic gas quenching, and advanced heating and cooling capabilities.
+    approx_offset: 123904
+  - quote: The HVF 101-xb is also incredibly versatile, able to handle a wide range of materials and applications,
+      from aerospace and automotive components to medical devices and industrial parts.
+    approx_offset: 124224
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0019
+  form: Horizontal Borers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated
+      team of machinists trained to the highest of standards.
+    approx_offset: 97018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0020
+  form: Horizontal CNC Turning Centres
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0021
+  form: Horizontal and Vertical CNC Turning Centres
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+  evidence:
+  - quote: New Horizontal and Vertical CNC Turning Centres Now in Operation at Bredbury
+    approx_offset: 24169
+  - quote: As part of our ongoing commitment to precision manufacturing, we’re delighted to confirm the
+      addition of two new state-of-the-art Horizontal and Vertical CNC Turning Centres at our Bredbury
+      site.
+    approx_offset: 24386
+  - quote: New Horizontal and Vertical CNC Turning Centres Now in Operation at Bredbury
+    approx_offset: 199229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0022
+  form: Horizontal front loading vacuum furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+  evidence:
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress
+      relief, solution annealing and age hardening.
+    approx_offset: 123525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0023
+  form: Large shot blasting chamber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Large shot blasting chamber
+    approx_offset: 40260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0024
+  form: Millturn
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated
+      team of machinists trained to the highest of standards.
+    approx_offset: 96986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0025
+  form: Millturn’s
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated
+      team of machinists trained to the highest of standards.
+    approx_offset: 96986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0026
+  form: Post Weld Heat Treatment & Stress Relieving ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment
+      of welded components to industry standards / requirements or for stress relieving operations which
+      assists with maintaining machining tolerance during production.
+    approx_offset: 44992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0027
+  form: SLM 280
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: The SLM 280 is a dual laser machine offers high productivity with automatic sieving.
+    approx_offset: 14116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0028
+  form: SLM 500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: Featuring a large build envelope of 500 x 280 x 365 mm, the SLM 500 allows you to create large,
+      complex and intricate parts with ease.
+    approx_offset: 13681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0029
+  form: SLM280
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: SLM280
+    approx_offset: 14068
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0030
+  form: SLM500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/printing/
+  evidence:
+  - quote: SLM500
+    approx_offset: 13514
+  - quote: Four lasers enable the SLM500 to keep up with high volume demands.
+    approx_offset: 13904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0031
+  form: Stress Relieving ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/welding-cladding/
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment
+      of welded components to industry standards / requirements or for stress relieving operations which
+      assists with maintaining machining tolerance during production.
+    approx_offset: 45019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0032
+  form: VTLs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: Also known as vertical borers or vertical turning lathes (VTLs), these state-of-the-art turning
+      centres will further our precision machining capability.
+    approx_offset: 186255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0033
+  form: Various sized furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: Various sized furnaces up to 20 Tonnes, max.
+    approx_offset: 92793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0034
+  form: Vertical Borers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated
+      team of machinists trained to the highest of standards.
+    approx_offset: 96998
+  - quote: Vertical borers are high precision, specialist lathes.
+    approx_offset: 186772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0035
+  form: Vertical Borers and Horizontal Borers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated
+      team of machinists trained to the highest of standards.
+    approx_offset: 96998
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0036
+  form: Vertical CNC Turning Centre
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can seamlessly execute a diverse range of tasks without
+      the need for manual intervention between each operation.
+    approx_offset: 187198
+  - quote: Instead, the Vertical CNC Turning Centre will streamline our manufacturing process and importantly,
+      reduce production times whilst ensuring superior surface finish, quality and precision.
+    approx_offset: 187753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0037
+  form: Vertical CNC Turning Centres
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.howcogroup.com/news/
+    - https://www.howcogroup.com/news/?et_blog
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+    - https://www.howcogroup.com/news/page/2/?et_blog
+  evidence:
+  - quote: New Horizontal and Vertical CNC Turning Centres Now in Operation at Bredbury
+    approx_offset: 24184
+  - quote: As part of our ongoing commitment to precision manufacturing, we’re delighted to confirm the
+      addition of two new state-of-the-art Horizontal and Vertical CNC Turning Centres at our Bredbury
+      site.
+    approx_offset: 24401
+  - quote: New Vertical CNC Turning Centres Arrive at Our Irvine Site
+    approx_offset: 166231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0038
+  form: band sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: In the metals industry, band sawing is one of the primary methods used to cut metal materials.
+    approx_offset: 32454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0039
+  form: band saws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: Technological advancements have equipped band saws with superior blades that have led to increased
+      production rates and blade life.
+    approx_offset: 32566
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0040
+  form: curing ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 5 curing ovens
+    approx_offset: 40342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0041
+  form: deep hole boring and honing machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-4-metre-deep-hole-boring-machine-installed-at-howcosingapore/
+  evidence:
+  - quote: This cutting-edge machine complements the four existing deep hole boring and honing machines
+      already in operation at the Singapore site, creating a robust and versatile machining capability
+      particularly suited to supporting our downhole completion product customers.
+    approx_offset: 131914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0042
+  form: energy efficient furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: We utilise energy efficient furnaces, maintaining tight quality control over the heat treatment
+      process to provide exceptional quality and on-time service.
+    approx_offset: 92647
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0043
+  form: furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.howcogroup.com/additive-manufacturing/
+    - https://www.howcogroup.com/additive-manufacturing/heat-treatment/
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: See our 3D printers, furnace and CNC machine in operation.
+    approx_offset: 49296
+  - quote: Our furnace is calibrated to AMS 2750 Class 3 and can perform API and AMS recipes up to 2200F.
+    approx_offset: 49672
+  - quote: Fully computerized recording system producing digital furnace charts
+    approx_offset: 92904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0044
+  form: furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/integrated-services/heat-treatment/
+  evidence:
+  - quote: We utilise energy efficient furnaces, maintaining tight quality control over the heat treatment
+      process to provide exceptional quality and on-time service.
+    approx_offset: 92664
+  - quote: Various sized furnaces up to 20 Tonnes, max.
+    approx_offset: 92807
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0045
+  form: high technology saws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: Howco’s global investment in high technology saws and the latest blade technology coupled with
+      our global capabilities ensures we can cut and deliver quality products to our customers’ specifications
+      on schedule wherever in the world they are needed.
+    approx_offset: 32687
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0046
+  form: machine tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/cnc-machining/
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: Through continuous investment in technology and machine tools, we are able to manufacture a
+      wide variety of complex products and features to satisfy our customer’s needs.
+    approx_offset: 96602
+  - quote: This allows them to exploit the full capabilities of our machine tools including features such
+      as; 5 axis machining, Facing & Contouring Heads, Multi – Angled Milling Heads and Outfacing Bars.
+    approx_offset: 97177
+  - quote: The ‘You Ji’ machines were supplied by TDT Machine Tools Ltd and have now arrived at our Irvine
+      site in Scotland.
+    approx_offset: 186125
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0047
+  form: pre-heat ovens
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: 2 pre-heat ovens
+    approx_offset: 40357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0048
+  form: saws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/integrated-services/sawing/
+  evidence:
+  - quote: Technological advancements have equipped band saws with superior blades that have led to increased
+      production rates and blade life.
+    approx_offset: 32571
+  - quote: Howco’s global investment in high technology saws and the latest blade technology coupled with
+      our global capabilities ensures we can cut and deliver quality products to our customers’ specifications
+      on schedule wherever in the world they are needed.
+    approx_offset: 32703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0049
+  form: shot blasting chamber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/cnc-machining-manufacturing/coating-finishing/
+  evidence:
+  - quote: Large shot blasting chamber
+    approx_offset: 40266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0050
+  form: vertical borers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: Also known as vertical borers or vertical turning lathes (VTLs), these state-of-the-art turning
+      centres will further our precision machining capability.
+    approx_offset: 186211
+  - quote: The 1.8m vertical borers with C axis drives use the very latest technology and have been put
+      into service to aid our delivery of a product line for a multi-year contract.
+    approx_offset: 186588
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: howcogroup_com-equipments-0051
+  form: vertical turning lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.howcogroup.com/news/new-vertical-cnc-turning-centres-arrive-at-our-irvine-site/
+  evidence:
+  - quote: Also known as vertical borers or vertical turning lathes (VTLs), these state-of-the-art turning
+      centres will further our precision machining capability.
+    approx_offset: 186230
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

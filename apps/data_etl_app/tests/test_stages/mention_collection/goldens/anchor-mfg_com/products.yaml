@@ -1,0 +1,709 @@
+subject: anchor-mfg.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+golden_set_version: 1
+anchored_on: search/expectations/anchor-mfg_com/products.yaml
+labels:
+- id: anchor-mfg_com-products-0001
+  form: Class A appearance trim
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1075
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21312
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0002
+  form: N.V.H.
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1141
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21378
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24864
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0003
+  form: NVH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0004
+  form: appearance trim
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1083
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21320
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24806
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0005
+  form: brake
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1189
+  - quote: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+    approx_offset: 7324
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21426
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0006
+  form: brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/careers/
+  evidence:
+  - quote: has excelled at producing safety related metal assemblies for steering columns, brakes, chassis,
+      energy absorbing structural supports, and other safety related components.
+    approx_offset: 2390
+  - quote: CNC Multi-Axis Press Brakes
+    approx_offset: 7276
+  - quote: CNC 7 Axis Press Brakes
+    approx_offset: 7300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0007
+  form: chassis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/careers/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1196
+  - quote: has excelled at producing safety related metal assemblies for steering columns, brakes, chassis,
+      energy absorbing structural supports, and other safety related components.
+    approx_offset: 2398
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21433
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0008
+  form: complex welded assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1039
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21248
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24734
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0009
+  form: energy absorbing structural supports
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/careers/
+  evidence:
+  - quote: has excelled at producing safety related metal assemblies for steering columns, brakes, chassis,
+      energy absorbing structural supports, and other safety related components.
+    approx_offset: 2407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0010
+  form: engineered stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: At Anchor Manufacturing, we produce technically advanced engineered stampings and fabricated
+      parts to many industries and across a variety of market segments.
+    approx_offset: 23399
+  - quote: At Anchor Manufacturing, we produce technically advanced engineered stampings and fabricated
+      parts to many industries and across a variety of market segments.
+    approx_offset: 26885
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0011
+  form: exhaust
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1132
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21369
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0012
+  form: exterior
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1112
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21349
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24835
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0013
+  form: fabricated parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: 'Anchor is a world class supplier of metal stampings, welded assemblies, fabricated parts and
+      tooling with proven expertise in the following industries:'
+    approx_offset: 389
+  - quote: At Anchor Manufacturing, we produce technically advanced engineered stampings and fabricated
+      parts to many industries and across a variety of market segments.
+    approx_offset: 23424
+  - quote: At Anchor Manufacturing, we produce technically advanced engineered stampings and fabricated
+      parts to many industries and across a variety of market segments.
+    approx_offset: 26910
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0014
+  form: interior
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1122
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21359
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0015
+  form: metal stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: 'Anchor is a world class supplier of metal stampings, welded assemblies, fabricated parts and
+      tooling with proven expertise in the following industries:'
+    approx_offset: 353
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1019
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0016
+  form: ride control
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1149
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21386
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24872
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0017
+  form: safety related components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/careers/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1209
+  - quote: has excelled at producing safety related metal assemblies for steering columns, brakes, chassis,
+      energy absorbing structural supports, and other safety related components.
+    approx_offset: 2455
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0018
+  form: safety related metal assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/careers/
+  evidence:
+  - quote: has excelled at producing safety related metal assemblies for steering columns, brakes, chassis,
+      energy absorbing structural supports, and other safety related components.
+    approx_offset: 2336
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0019
+  form: seating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1163
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21400
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24886
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0020
+  form: stampings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+    - https://www.anchor-mfg.com/executive-team/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: 'Anchor is a world class supplier of metal stampings, welded assemblies, fabricated parts and
+      tooling with proven expertise in the following industries:'
+    approx_offset: 359
+  - quote: Since 1970, Anchor Manufacturing has been providing exceptional quality stampings and welded
+      assemblies to diversified industries with significant expertise in the automotive industry.
+    approx_offset: 632
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1025
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0021
+  form: steering column
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1172
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21409
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24895
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0022
+  form: steering columns
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/careers/
+  evidence:
+  - quote: has excelled at producing safety related metal assemblies for steering columns, brakes, chassis,
+      energy absorbing structural supports, and other safety related components.
+    approx_offset: 2372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0023
+  form: structural
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/careers/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1100
+  - quote: has excelled at producing safety related metal assemblies for steering columns, brakes, chassis,
+      energy absorbing structural supports, and other safety related components.
+    approx_offset: 2424
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21337
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0024
+  form: tooling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: 'Anchor is a world class supplier of metal stampings, welded assemblies, fabricated parts and
+      tooling with proven expertise in the following industries:'
+    approx_offset: 410
+  - quote: 'Types of Tooling Include:'
+    approx_offset: 7939
+  - quote: In-House Tooling Expertise
+    approx_offset: 27908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0025
+  form: trim
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1094
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 21331
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      used throughout the vehicle including Class A appearance trim, structural, exterior, interior, exhaust,
+      N.V.H., ride control, seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 24817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0026
+  form: welded assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/executive-team/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: 'Anchor is a world class supplier of metal stampings, welded assemblies, fabricated parts and
+      tooling with proven expertise in the following industries:'
+    approx_offset: 370
+  - quote: Since 1970, Anchor Manufacturing has been providing exceptional quality stampings and welded
+      assemblies to diversified industries with significant expertise in the automotive industry.
+    approx_offset: 646
+  - quote: Anchor’s core expertise includes small to large metal stampings and complex welded assemblies
+      including Class A appearance trim, structural, exterior, interior, exhaust, N.V.H., ride control,
+      seating, steering column, brake, chassis, and safety related components.
+    approx_offset: 1047
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-products-0027
+  form: welded, complex assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+  evidence:
+  - quote: Under second generation leadership of Frederick Pfaff, President and CEO, Anchor has evolved
+      and grown into a world class producer of metal stampings and welded, complex assemblies.
+    approx_offset: 27738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

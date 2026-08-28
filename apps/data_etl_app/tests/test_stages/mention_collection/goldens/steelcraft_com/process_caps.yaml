@@ -1,0 +1,785 @@
+subject: steelcraft.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+golden_set_version: 1
+anchored_on: search/expectations/steelcraft_com/process_caps.yaml
+labels:
+- id: steelcraft_com-process_caps-0001
+  form: Custom crates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/Kansas-City-Service-Center.html
+  evidence:
+  - quote: Custom crates to minimize risk of damage during transit
+    approx_offset: 206253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0002
+  form: Door modifications for light and louvers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/Kansas-City-Service-Center.html
+  evidence:
+  - quote: Door modifications for light and louvers
+    approx_offset: 206212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0003
+  form: Factory prepared
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/fn-series-three-sided-flush-frames.html
+  evidence:
+  - quote: Factory prepared for field-installed silencers
+    approx_offset: 47351
+  - quote: Frames are factory prepared for field-installed silencers.
+    approx_offset: 48849
+  - quote: Factory prepared for field-installed silencers
+    approx_offset: 103094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0004
+  form: Factory-applied baked-on rust inhibiting primer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 18714
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 25700
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011; separator material
+      is not to hold prime or finished paint
+    approx_offset: 29986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0005
+  form: Hand-stained
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: Hand-stained GRAINTECH™ embossed finishes, fire rated 20 minutes to 3 hours, as well as INPACT
+      exit device finish options, provide an attractive, durable, high-quality look
+    approx_offset: 106558
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0006
+  form: Hardware preparations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 18390
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 29864
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 35552
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0007
+  form: Intertek (WHI) fire labeling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/Kansas-City-Service-Center.html
+  evidence:
+  - quote: Intertek (WHI) fire labeling
+    approx_offset: 206140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0008
+  form: Labeling with Intertek and UL fire ratings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Labeling with Intertek and UL fire ratings
+    approx_offset: 38430
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0009
+  form: Modifications for lights and louvers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Modifications for lights and louvers
+    approx_offset: 38393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0010
+  form: baked-on
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 18730
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 25716
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011; separator material
+      is not to hold prime or finished paint
+    approx_offset: 30002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0011
+  form: continuous bonding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sz-series-falcon-flush-doors.html
+  evidence:
+  - quote: The continuous bonding of the laminated core to steel face sheets provides an attractive, flat
+      door, free of face welding marks.
+    approx_offset: 42385
+  - quote: The continuous bonding of the laminated core to steel face sheets provides an attractive, flat
+      door, free of face welding marks.
+    approx_offset: 54899
+  - quote: The continuous bonding of the laminated core to steel face sheets provides an attractive, flat
+      door.
+    approx_offset: 113282
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0012
+  form: custom frame manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Local, custom frame manufacturing and welding
+    approx_offset: 38190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0013
+  form: customized colors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: That's why Steelcraft not only offers a wide selection of standard finish paint colors, but
+      will also create customized colors ensuring the perfect complement to your hollow metal projects.
+    approx_offset: 31664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0014
+  form: cut to length, notched and/or mitered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: Components are cut to length, notched and/or mitered, assembled and welded into assemblies
+      to match specific openings, all done at the factory or the distributor’s fabrication shop.
+    approx_offset: 185058
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0015
+  form: die-mitered
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: 'Die-mitered corner connections: Die-mitered corner connection at the head and jamb insure
+      an attractive, tight and closed mitered connection.'
+    approx_offset: 29011
+  - quote: 'Die-mitered corner connections: Die-mitered corner connection at the head and jamb insure
+      an attractive, tight and closed mitered connection.'
+    approx_offset: 29043
+  - quote: Die-mitered corner connections at the head and jamb.
+    approx_offset: 34736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0016
+  form: doors and frames modifications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Along with a sizable finished goods inventory, the facility offers a wide variety of  doors
+      and frames modifications, from light cutouts to function hole preps on doors to reinforcing and
+      welding of stock frames.
+    approx_offset: 37866
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0017
+  form: engraining and staining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: Our exclusive engraining and staining process simulates a wide variety of wood finishes, from
+      ash to walnut, including custom finish matching.
+    approx_offset: 127038
+  - quote: Our exclusive engraining and staining process simulates a wide variety of wood finishes, from
+      ash to walnut, including custom finish matching.
+    approx_offset: 202648
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0018
+  form: epoxy-glued
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Stainless steel stiffeners are epoxy-glued to eliminate surface imperfections associated with
+      welding.
+    approx_offset: 197913
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0019
+  form: factory prepped
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+  evidence:
+  - quote: Factory prepped for field installed silencers
+    approx_offset: 119306
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0020
+  form: finish paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: FINISH PAINT
+    approx_offset: 31472
+  - quote: That's why Steelcraft not only offers a wide selection of standard finish paint colors, but
+      will also create customized colors ensuring the perfect complement to your hollow metal projects.
+    approx_offset: 31622
+  - quote: Finish paint tested in accordance with ANSI A250.3-2007 (R2011) Test Procedure and Acceptance
+      Criteria for Factory Applied Finish
+    approx_offset: 31960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0021
+  form: finish painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Steelcraft offers finish painting on doors only.
+    approx_offset: 32638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0022
+  form: fire labeling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/Kansas-City-Service-Center.html
+  evidence:
+  - quote: Intertek (WHI) fire labeling
+    approx_offset: 206155
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0023
+  form: frame manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/locations.html
+    - https://www.steelcraft.com/en/locations/steelcraft-main-plant.html
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: With our frame manufacturing capabilities, we can customize frames to your specifications,
+      with an express lead time.
+    approx_offset: 38002
+  - quote: Local, custom frame manufacturing and welding
+    approx_offset: 38197
+  - quote: Combined door and frame manufacturing footprint of 553,000 sq ft.
+    approx_offset: 122525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0024
+  form: frame manufacturing capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: With our frame manufacturing capabilities, we can customize frames to your specifications,
+      with an express lead time.
+    approx_offset: 38002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0025
+  form: function hole preps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Along with a sizable finished goods inventory, the facility offers a wide variety of  doors
+      and frames modifications, from light cutouts to function hole preps on doors to reinforcing and
+      welding of stock frames.
+    approx_offset: 37920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0026
+  form: hardware preps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+  evidence:
+  - quote: 'T Series (Pages 113-116): Includes options (p 125), lights (p 153), hardware preps (p 235),
+      fire rated products (p 277), performance (p 323)'
+    approx_offset: 19155
+  - quote: 'FT Series (Pages 230-233: Includes Anchors, Hardware Preps, Lights, Fire Ratings'
+    approx_offset: 30464
+  - quote: 'FP Series: Includes Anchors, Hardware Preps, Lights, Fire Ratings'
+    approx_offset: 36431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0027
+  form: laminated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: Laminated to both steel faces, enhancing the structural integrity of the whole door.
+    approx_offset: 21689
+  - quote: The continuous bonding of the laminated core to steel face sheets provides an attractive, flat
+      door, free of face welding marks.
+    approx_offset: 42411
+  - quote: Variety of core systems laminated to both steel faces, enhancing the structural integrity of
+      the whole door
+    approx_offset: 42738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0028
+  form: light cutouts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Along with a sizable finished goods inventory, the facility offers a wide variety of  doors
+      and frames modifications, from light cutouts to function hole preps on doors to reinforcing and
+      welding of stock frames.
+    approx_offset: 37903
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0029
+  form: notched
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: Components are cut to length, notched and/or mitered, assembled and welded into assemblies
+      to match specific openings, all done at the factory or the distributor’s fabrication shop.
+    approx_offset: 185073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0030
+  form: reinforcing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25344
+  - quote: Along with a sizable finished goods inventory, the facility offers a wide variety of  doors
+      and frames modifications, from light cutouts to function hole preps on doors to reinforcing and
+      welding of stock frames.
+    approx_offset: 37952
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0031
+  form: rust inhibiting primer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 18739
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 25725
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011; separator material
+      is not to hold prime or finished paint
+    approx_offset: 30011
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0032
+  form: staining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: Our exclusive engraining and staining process simulates a wide variety of wood finishes, from
+      ash to walnut, including custom finish matching.
+    approx_offset: 127053
+  - quote: Our exclusive engraining and staining process simulates a wide variety of wood finishes, from
+      ash to walnut, including custom finish matching.
+    approx_offset: 202663
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0033
+  form: stitch welded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/t-series-temperature-rise-fire-rated-steel-doors.html
+  evidence:
+  - quote: Edges may be filled (with tack welds around openings) or may be stitch welded and filled, which
+      is proven to be more structurally sound than continuously welded edges (which are commonly weaker
+      due to heat buildup)
+    approx_offset: 17533
+  - quote: Edges may be filled (with tack welds around openings) or may be stitch welded and filled, which
+      is proven to be more structurally sound than continuously welded edges which are commonly weaker
+      because of heat buildup.
+    approx_offset: 22469
+  - quote: Edges may be filled (with tack welds around openings) or may be stitch welded and filled, which
+      is proven to be more structurally sound than continuously welded edges (which are commonly weaker
+      because of heat buildup)
+    approx_offset: 43547
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0034
+  form: stock modifications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Many door and frame stock modifications available
+    approx_offset: 38341
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0035
+  form: welded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/fn-series-three-sided-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: Edges may be filled (with tack welds around openings) or may be stitch welded and filled, which
+      is proven to be more structurally sound than continuously welded edges (which are commonly weaker
+      due to heat buildup)
+    approx_offset: 17540
+  - quote: Edges may be filled (with tack welds around openings) or may be stitch welded and filled, which
+      is proven to be more structurally sound than continuously welded edges (which are commonly weaker
+      due to heat buildup)
+    approx_offset: 17623
+  - quote: 'Steel Stiffened (optional): welded hat section'
+    approx_offset: 22100
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-process_caps-0036
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.steelcraft.com/en/locations/Kansas-City-Service-Center.html
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: The miter includes four corner tabs designed with concealed connection eliminating the need
+      for continuous profile welding
+    approx_offset: 29268
+  - quote: Along with a sizable finished goods inventory, the facility offers a wide variety of  doors
+      and frames modifications, from light cutouts to function hole preps on doors to reinforcing and
+      welding of stock frames.
+    approx_offset: 37968
+  - quote: Local, custom frame manufacturing and welding
+    approx_offset: 38221
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

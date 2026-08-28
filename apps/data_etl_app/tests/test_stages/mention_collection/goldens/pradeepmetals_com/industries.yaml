@@ -1,0 +1,1440 @@
+subject: pradeepmetals.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+golden_set_version: 1
+anchored_on: search/expectations/pradeepmetals_com/industries.yaml
+labels:
+- id: pradeepmetals_com-industries-0001
+  form: Aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Aviation
+    approx_offset: 96438
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136369
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0002
+  form: BFSI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+  evidence:
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 128990
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 152553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0003
+  form: BFSI, engineering, automotive, retail pharma, FMCG, hospitality, media and advertising
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+  evidence:
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 128990
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 152553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0004
+  form: Ball Valve Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: Evolving With The Changing Landscape of Ball Valve Industry
+    approx_offset: 84610
+  - quote: Pradeep Metals > Blog > Evolving With The Changing Landscape of Ball Valve Industry
+    approx_offset: 252338
+  - quote: EVOLVING WITH THE CHANGING LANDSCAPE OF BALL VALVE INDUSTRY
+    approx_offset: 252401
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0005
+  form: Electrical and Electronics Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+  evidence:
+  - quote: He has over 50 years experience in the Electrical and Electronics Industry.
+    approx_offset: 128505
+  - quote: He has over 50 years experience in the Electrical and Electronics Industry.
+    approx_offset: 152068
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0006
+  form: FMCG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+  evidence:
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 129036
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 152599
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0007
+  form: General Engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 143
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 526
+  - quote: General Engineering
+    approx_offset: 845
+  - quote: General Engineering
+    approx_offset: 1067
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0008
+  form: INDIAN DEFENSE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: INDIAN DEFENSE
+    approx_offset: 9119
+  - quote: INDIAN DEFENSE
+    approx_offset: 115161
+  - quote: INDIAN DEFENSE
+    approx_offset: 119546
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0009
+  form: Indian forging industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: The Indian forging industry is an important contributor to the manufacturing sector of the
+      Indian Economy.
+    approx_offset: 86545
+  - quote: Value of Indian Forging Industry
+    approx_offset: 204619
+  - quote: As per figures released by the AIFI (Association of Indian Forging Industry), the installed
+      forging capacity in the nation was 39.4 lakh tonnes in 2017-18.
+    approx_offset: 204799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0010
+  form: Indian manufacturing industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: The forging industry in India is a major contributor to the Indian manufacturing industry.
+    approx_offset: 85445
+  - quote: Forging industry has become the most prominent contributor to the Indian manufacturing industry
+      overall.
+    approx_offset: 195883
+  - quote: The forging industry in India is a major contributor to the Indian manufacturing industry.
+    approx_offset: 243136
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0011
+  form: Instrumentation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 490
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 193065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0012
+  form: Iron & Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Iron & Steel
+    approx_offset: 96074
+  - quote: Iron & Steel
+    approx_offset: 96698
+  - quote: Present Scenario of iron & steel in India
+    approx_offset: 99868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0013
+  form: Mineral processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Mineral processing
+    approx_offset: 96584
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0014
+  form: Off-Highway Vehicles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/clientele
+    - https://www.pradeepmetals.com/clientele/
+  evidence:
+  - quote: Off-Highway Vehicles
+    approx_offset: 1029
+  - quote: Off-Highway Vehicles
+    approx_offset: 134300
+  - quote: Off-Highway Vehicles
+    approx_offset: 147556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0015
+  form: Oil & Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/clientele
+    - https://www.pradeepmetals.com/clientele/
+  evidence:
+  - quote: Oil & Gas
+    approx_offset: 1019
+  - quote: Oil & Gas
+    approx_offset: 134290
+  - quote: Oil & Gas
+    approx_offset: 147546
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0016
+  form: Oil and Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: In the upcoming years, Pradeep Metals will particularly focus on the development of machined
+      forgings for the Oil and Gas industry for increased turnover and ultimately, better profitability.
+    approx_offset: 197831
+  - quote: It is a key element in the growth of the Indian automobile and other industries such as general
+      engineering, construction equipment, oil and gas.
+    approx_offset: 223332
+  - quote: The automobile industry is the biggest consumer of forgings, with a 60% share and the rest
+      come from the non-automotive sector such as oil and gas industry, petrochemical industry, pharmaceutical
+      industry, dairy industry etc.
+    approx_offset: 225474
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0017
+  form: Petrochemical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 507
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 193082
+  - quote: The automobile industry is the biggest consumer of forgings, with a 60% share and the rest
+      come from the non-automotive sector such as oil and gas industry, petrochemical industry, pharmaceutical
+      industry, dairy industry etc.
+    approx_offset: 225496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0018
+  form: Petroleum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Petroleum
+    approx_offset: 95936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0019
+  form: Pipes & Fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/clientele
+    - https://www.pradeepmetals.com/clientele/
+  evidence:
+  - quote: Pipes & Fittings
+    approx_offset: 1050
+  - quote: Pipes & Fittings
+    approx_offset: 134321
+  - quote: Pipes & Fittings
+    approx_offset: 147577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0020
+  form: Process Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/clientele
+    - https://www.pradeepmetals.com/clientele/
+  evidence:
+  - quote: Process Industry
+    approx_offset: 1002
+  - quote: Process Industry
+    approx_offset: 134273
+  - quote: Process Industry
+    approx_offset: 147529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0021
+  form: Valve
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 61
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/valves/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 483
+  - quote: Pradeep Metals > Forged Steel Valve Manufacturers
+    approx_offset: 13644
+  - quote: FORGED STEEL VALVE MANUFACTURERS
+    approx_offset: 13679
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0022
+  form: aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Companies engaged in the auto forging space are also trying to reduce the dependence on the
+      automobile sector by diversifying product range through technology upgradation to expand their customer
+      base in non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts,
+      defens
+    approx_offset: 225881
+  - quote: It is much preferred in high precision industries like aerospace, automotive, water circulation,
+      fire systems, and automation to name a few.
+    approx_offset: 248103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0023
+  form: auto forging space
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Companies engaged in the auto forging space are also trying to reduce the dependence on the
+      automobile sector by diversifying product range through technology upgradation to expand their customer
+      base in non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts,
+      defens
+    approx_offset: 225664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0024
+  form: automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/imrc/amenities/
+  evidence:
+  - quote: 'Automation: PLC based programmer with HMI'
+    approx_offset: 20554
+  - quote: 'Automation: PLC based programmer with HMI'
+    approx_offset: 20645
+  - quote: 'Automation: PLC based programmer with HMI'
+    approx_offset: 20920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0025
+  form: automobile industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Impression die to forge is generally used in the automobile industry and several other sectors
+      of the manufacturing industry where forging of huge metal alloy parts are required.
+    approx_offset: 72727
+  - quote: Impression die to forge is generally used in the automobile industry and several other sectors
+      of the manufacturing industry where forging of huge metal alloy parts are required.
+    approx_offset: 177101
+  - quote: The automobile industry is the biggest consumer of forgings, with a 60% share and the rest
+      come from the non-automotive sector such as oil and gas industry, petrochemical industry, pharmaceutical
+      industry, dairy industry etc.
+    approx_offset: 225343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0026
+  form: automobile sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Improved demand was driven by increased exports, increased demand from the automobile sector
+      and diversification into the non-automotive sectors.
+    approx_offset: 225268
+  - quote: Companies engaged in the auto forging space are also trying to reduce the dependence on the
+      automobile sector by diversifying product range through technology upgradation to expand their customer
+      base in non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts,
+      defens
+    approx_offset: 225731
+  - quote: Consequently, demand for overall forging industry is expected to be driven not only by the
+      increased demand from the automobile sector but also from the non-automotive sectors.
+    approx_offset: 226120
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0027
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 129009
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 152572
+  - quote: Improved demand was driven by increased exports, increased demand from the automobile sector
+      and diversification into the non-automotive sectors.
+    approx_offset: 225319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0028
+  form: banking sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: This will create a positive impact in the banking sector by offering the lower rate of interest
+      to consumers which will lead to increased investments in the real estate and automobile sector.
+    approx_offset: 226583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0029
+  form: chemical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves/
+    - https://www.pradeepmetals.com/imrc/projects/
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: Examples of industries that has the best use of butterfly valves include chemical, food processing,
+      pharmaceutical, high-temperature, and high-pressure water and steam services, water circulation,
+      fire systems etc.
+    approx_offset: 102762
+  - quote: Microwave option is being tried out as a new promising non-chemical decontamination process,
+      where a very short exposure of this material in lump or powder form can be decontaminated at much
+      lower temperatures.
+    approx_offset: 137822
+  - quote: Not only that, thanks to the dispersion of segregation of non-metallics substances and alloys,
+      the chemical; uniformity thus created is far superior.
+    approx_offset: 239777
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0030
+  form: chemicals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+    - https://www.pradeepmetals.com/our-team
+    - https://www.pradeepmetals.com/our-team/
+  evidence:
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 22895
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 129686
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 153249
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0031
+  form: construction equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: It is a key element in the growth of the Indian automobile and other industries such as general
+      engineering, construction equipment, oil and gas.
+    approx_offset: 223308
+  - quote: Companies engaged in the auto forging space are also trying to reduce the dependence on the
+      automobile sector by diversifying product range through technology upgradation to expand their customer
+      base in non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts,
+      defens
+    approx_offset: 225942
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0032
+  form: cosmetics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: As these are used in pharma as well in food & cosmetics.
+    approx_offset: 137641
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0033
+  form: dairy industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: The automobile industry is the biggest consumer of forgings, with a 60% share and the rest
+      come from the non-automotive sector such as oil and gas industry, petrochemical industry, pharmaceutical
+      industry, dairy industry etc.
+    approx_offset: 225545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0034
+  form: defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/imrc/projects/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: INDIAN DEFENSE
+    approx_offset: 9126
+  - quote: INDIAN DEFENSE
+    approx_offset: 115168
+  - quote: INDIAN DEFENSE
+    approx_offset: 119553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0035
+  form: energy, oil and gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Companies engaged in the auto forging space are also trying to reduce the dependence on the
+      automobile sector by diversifying product range through technology upgradation to expand their customer
+      base in non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts,
+      defens
+    approx_offset: 225892
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0036
+  form: fire systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: Examples of industries that has the best use of butterfly valves include chemical, food processing,
+      pharmaceutical, high-temperature, and high-pressure water and steam services, water circulation,
+      fire systems etc.
+    approx_offset: 102886
+  - quote: It is much preferred in high precision industries like aerospace, automotive, water circulation,
+      fire systems, and automation to name a few.
+    approx_offset: 248145
+  - quote: Due to the exemplary performance provided by them, butterfly valves are used in a considerable
+      number of industries like food processing, chemicals, water circulation, pharmaceuticals, steam
+      and water services characterized by high pressure as well as high temperatures, fire systems, and
+      much more.
+    approx_offset: 260635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0037
+  form: food & cosmetics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: As these are used in pharma as well in food & cosmetics.
+    approx_offset: 137634
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0038
+  form: food processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: Examples of industries that has the best use of butterfly valves include chemical, food processing,
+      pharmaceutical, high-temperature, and high-pressure water and steam services, water circulation,
+      fire systems etc.
+    approx_offset: 102772
+  - quote: Due to the exemplary performance provided by them, butterfly valves are used in a considerable
+      number of industries like food processing, chemicals, water circulation, pharmaceuticals, steam
+      and water services characterized by high pressure as well as high temperatures, fire systems, and
+      much more.
+    approx_offset: 260485
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0039
+  form: forging industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 48
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+    - https://www.pradeepmetals.com/closed-die-forging-ultimate-manufacturing-technique/
+  evidence:
+  - quote: But stainless steel has several variations too and duplex or super duplex stainless steel is
+      some of the best quality steel that is used in the forging industry.
+    approx_offset: 57822
+  - quote: Forged Steel Valves- Prominent trends in the Forging Industry
+    approx_offset: 84406
+  - quote: Pradeep Metal’s Growth in the Forging Industry
+    approx_offset: 84989
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0040
+  form: heavy engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience in the steel and
+      heavy engineering industries.
+    approx_offset: 12086
+  - quote: Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience in the steel and
+      heavy engineering industries.
+    approx_offset: 35003
+  - quote: Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience in the steel and
+      heavy engineering industries.
+    approx_offset: 113188
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0041
+  form: high-temperature, and high-pressure water and steam services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: Examples of industries that has the best use of butterfly valves include chemical, food processing,
+      pharmaceutical, high-temperature, and high-pressure water and steam services, water circulation,
+      fire systems etc.
+    approx_offset: 102805
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0042
+  form: iron and steel industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: Going hand in hand with the iron and steel industries in India, the Indian forging industry
+      is elevating its stature day by day, thanks to the pioneering and quality work done by forging companies
+      in India like Pradeep Metals.
+    approx_offset: 238671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0043
+  form: manufacturing industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+  evidence:
+  - quote: In the manufacturing industry, the forging is done with proper precision by using a forging
+      machine to provide the material with a proper finish, to provide it with the best qualities and
+      to reduce the time consumed in the process by mostly automating it.
+    approx_offset: 4074
+  - quote: Industrial forging is done on various metals; from stainless steel to aluminium, there are
+      several processes of forging used in the manufacturing industry but the most commonly forged metal
+      in the manufacturing sector is the stainless steel.
+    approx_offset: 56790
+  - quote: Closed die forgings which are often referred to as Impression die forgings are one of the most
+      important industrial process used in the precision manufacturing industry.
+    approx_offset: 71813
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0044
+  form: manufacturing sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+  evidence:
+  - quote: Forging in India is one of the most important industrial processes that are used in the manufacturing
+      sector.
+    approx_offset: 3755
+  - quote: Industrial forging is done on various metals; from stainless steel to aluminium, there are
+      several processes of forging used in the manufacturing industry but the most commonly forged metal
+      in the manufacturing sector is the stainless steel.
+    approx_offset: 56855
+  - quote: The forging industry in India is an important segment of the nation’s manufacturing sector.
+    approx_offset: 85076
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0045
+  form: metal forging industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: This makes Pradeep Metals one of the best manufacturers in the metal forging industry in India.
+    approx_offset: 255606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0046
+  form: mining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: We provide a wide range of ball valves suited for diverse industries like oil and petrochemicals,
+      mining, and more.
+    approx_offset: 28885
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0047
+  form: non-automotive sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Improved demand was driven by increased exports, increased demand from the automobile sector
+      and diversification into the non-automotive sectors.
+    approx_offset: 225315
+  - quote: Companies engaged in the auto forging space are also trying to reduce the dependence on the
+      automobile sector by diversifying product range through technology upgradation to expand their customer
+      base in non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts,
+      defens
+    approx_offset: 225843
+  - quote: Consequently, demand for overall forging industry is expected to be driven not only by the
+      increased demand from the automobile sector but also from the non-automotive sectors.
+    approx_offset: 226156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0048
+  form: petrochemical industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: The automobile industry is the biggest consumer of forgings, with a 60% share and the rest
+      come from the non-automotive sector such as oil and gas industry, petrochemical industry, pharmaceutical
+      industry, dairy industry etc.
+    approx_offset: 225496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0049
+  form: petrochemicals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: We provide a wide range of ball valves suited for diverse industries like oil and petrochemicals,
+      mining, and more.
+    approx_offset: 28869
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0050
+  form: pharma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 129028
+  - quote: As these are used in pharma as well in food & cosmetics.
+    approx_offset: 137616
+  - quote: Advait has expertise in the areas of business strategy, balanced scorecard and HR consulting
+      and has led consulting projects across the range of sectors including BFSI, engineering, automotive,
+      retail pharma, FMCG, hospitality, media and advertising.
+    approx_offset: 152591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0051
+  form: pharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves/
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Examples of industries that has the best use of butterfly valves include chemical, food processing,
+      pharmaceutical, high-temperature, and high-pressure water and steam services, water circulation,
+      fire systems etc.
+    approx_offset: 102789
+  - quote: The automobile industry is the biggest consumer of forgings, with a 60% share and the rest
+      come from the non-automotive sector such as oil and gas industry, petrochemical industry, pharmaceutical
+      industry, dairy industry etc.
+    approx_offset: 225520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0052
+  form: pharmaceutical industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: The automobile industry is the biggest consumer of forgings, with a 60% share and the rest
+      come from the non-automotive sector such as oil and gas industry, petrochemical industry, pharmaceutical
+      industry, dairy industry etc.
+    approx_offset: 225520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0053
+  form: pharmaceuticals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Due to the exemplary performance provided by them, butterfly valves are used in a considerable
+      number of industries like food processing, chemicals, water circulation, pharmaceuticals, steam
+      and water services characterized by high pressure as well as high temperatures, fire systems, and
+      much more.
+    approx_offset: 260532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0054
+  form: power sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: Companies engaged in the auto forging space are also trying to reduce the dependence on the
+      automobile sector by diversifying product range through technology upgradation to expand their customer
+      base in non-automotive sectors which includes aerospace, energy, oil and gas, heavy engine parts,
+      defens
+    approx_offset: 225969
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0055
+  form: precision manufacturing industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+  evidence:
+  - quote: Closed die forgings which are often referred to as Impression die forgings are one of the most
+      important industrial process used in the precision manufacturing industry.
+    approx_offset: 71803
+  - quote: Closed die forgings which are often referred to as Impression die forgings are one of the most
+      important industrial process used in the precision manufacturing industry.
+    approx_offset: 176177
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0056
+  form: real estate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/policies-like-make-india-skill-india-going-elevate-forging-industry/
+  evidence:
+  - quote: This will create a positive impact in the banking sector by offering the lower rate of interest
+      to consumers which will lead to increased investments in the real estate and automobile sector.
+    approx_offset: 226698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0057
+  form: steam and water services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Due to the exemplary performance provided by them, butterfly valves are used in a considerable
+      number of industries like food processing, chemicals, water circulation, pharmaceuticals, steam
+      and water services characterized by high pressure as well as high temperatures, fire systems, and
+      much more.
+    approx_offset: 260549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0058
+  form: steel and heavy engineering industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+  evidence:
+  - quote: Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience in the steel and
+      heavy engineering industries.
+    approx_offset: 12076
+  - quote: Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience in the steel and
+      heavy engineering industries.
+    approx_offset: 34993
+  - quote: Ved Prakash Goyal who was a Chartered Engineer with 50 years of experience in the steel and
+      heavy engineering industries.
+    approx_offset: 113178
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0059
+  form: steelmaking industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Ved Goyal was a qualified chartered engineer who had vast experience in the heavy engineering
+      and steelmaking industries.
+    approx_offset: 228928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0060
+  form: the Valve, Instrumentation, Petrochemical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 479
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 193054
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0061
+  form: valve manufacturers in India
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: Forged steel valve manufacturing is a widely used process for the production of strong and
+      reliable valves, and Pradeep Metals has emerged as one of the sternest forged steel valve manufacturers
+      in India.
+    approx_offset: 195191
+  - quote: Pradeep Metals has been one of the biggest valve manufacturers in India for longer than a decade.
+    approx_offset: 253783
+  - quote: Leveraging advanced technology and refined manufacturing process, Pradeep Metals aims to grow
+      as the most prominent ball valve manufacturers in India.
+    approx_offset: 254250
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-industries-0062
+  form: water circulation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: Examples of industries that has the best use of butterfly valves include chemical, food processing,
+      pharmaceutical, high-temperature, and high-pressure water and steam services, water circulation,
+      fire systems etc.
+    approx_offset: 102867
+  - quote: It is much preferred in high precision industries like aerospace, automotive, water circulation,
+      fire systems, and automation to name a few.
+    approx_offset: 248126
+  - quote: Due to the exemplary performance provided by them, butterfly valves are used in a considerable
+      number of industries like food processing, chemicals, water circulation, pharmaceuticals, steam
+      and water services characterized by high pressure as well as high temperatures, fire systems, and
+      much more.
+    approx_offset: 260513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

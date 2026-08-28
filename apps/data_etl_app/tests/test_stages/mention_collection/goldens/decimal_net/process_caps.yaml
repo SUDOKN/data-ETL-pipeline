@@ -1,0 +1,5204 @@
+subject: decimal.net
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+golden_set_version: 1
+anchored_on: search/expectations/decimal_net/process_caps.yaml
+labels:
+- id: decimal_net-process_caps-0001
+  form: 2D Laser Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: At Decimal Engineering, Inc., part of this capability is high precision 2D laser cutting services.
+    approx_offset: 23985
+  - quote: Features such as holes, slots, and other custom patterns can be cut on preformed parts utilizing
+      our 2D laser cutting and contouring capabilities.
+    approx_offset: 24647
+  - quote: "Capability\t2D Laser Cutting (Flat Stock)"
+    approx_offset: 25692
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0002
+  form: 2D/3D Laser Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0003
+  form: 3D Printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0004
+  form: 3rd Party Weld Inspection as Needed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: 3rd Party Weld Inspection as Needed
+    approx_offset: 21365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0005
+  form: 9-Axis Mill/Turn Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34089
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machining system, we programed the unit to complete
+      each part in a single operation.
+    approx_offset: 60533
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0006
+  form: Air Gaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Air Gaging
+    approx_offset: 8309
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0007
+  form: Anodize Coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: "Material Finish\tAnodize Coating"
+    approx_offset: 43922
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0008
+  form: Anodized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Anodized Aluminum Caps Defense
+    approx_offset: 80397
+  - quote: Anodized Aluminum LED Light Heatsink
+    approx_offset: 80430
+  - quote: Anodized Turned Aluminum Cyllinder
+    approx_offset: 80469
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0009
+  form: Anodizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Anodizing
+    approx_offset: 8654
+  - quote: Anodizing
+    approx_offset: 21729
+  - quote: Anodizing
+    approx_offset: 26716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0010
+  form: Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Assembly
+    approx_offset: 9220
+  - quote: Our customer was pleased with the work and requested 100,000 of these units annually, delivered
+      on schedule to Mexico for final assembly.
+    approx_offset: 12405
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value
+      added assembly.
+    approx_offset: 19406
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0011
+  form: Barrel Plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Barrel Plating
+    approx_offset: 8713
+  - quote: Barrel Plating
+    approx_offset: 21788
+  - quote: Barrel Plating
+    approx_offset: 26775
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0012
+  form: Black Chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Black Chrome
+    approx_offset: 8728
+  - quote: Black Chrome
+    approx_offset: 21803
+  - quote: Black Chrome
+    approx_offset: 26790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0013
+  form: Black Oxide
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Black Oxide
+    approx_offset: 8741
+  - quote: Black Oxide
+    approx_offset: 21816
+  - quote: Black Oxide
+    approx_offset: 26803
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0014
+  form: Boring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Boring
+    approx_offset: 7314
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0015
+  form: Brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Brazing
+    approx_offset: 20323
+  - quote: Dip Brazing
+    approx_offset: 20335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0016
+  form: Bright Dip
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Bright Dip
+    approx_offset: 8664
+  - quote: Bright Dip
+    approx_offset: 21739
+  - quote: Bright Dip
+    approx_offset: 26726
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0017
+  form: Bright Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Bright Nickel
+    approx_offset: 8753
+  - quote: Bright Nickel
+    approx_offset: 21828
+  - quote: Bright Nickel
+    approx_offset: 26815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0018
+  form: Brush Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Brush Nickel
+    approx_offset: 8767
+  - quote: Brush Nickel
+    approx_offset: 21842
+  - quote: Brush Nickel
+    approx_offset: 26829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0019
+  form: CMM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.decimal.net/decimal-engineering-adds-to-its-already-world-class-quality-department/
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: These capabilities are supported by a robust quality program and testing equipment such as
+      our CMM.
+    approx_offset: 6295
+  - quote: In use, this CMM can operate in a fully automated mode.
+    approx_offset: 6313
+  - quote: CMM Equipment
+    approx_offset: 8339
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0020
+  form: CMM Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: CMM Equipment
+    approx_offset: 8339
+  - quote: CMM Equipment
+    approx_offset: 21143
+  - quote: CMM Equipment
+    approx_offset: 26378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0021
+  form: CNC Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 297
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34074
+  - quote: "Capabilities Applied/Processes\tCNC Machining"
+    approx_offset: 43727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0022
+  form: CNC Turret Punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: CNC Turret Punching
+    approx_offset: 20122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0023
+  form: CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial
+      manufacturing sectors, Decimal Engineering, Inc.
+    approx_offset: 4692
+  - quote: In addition to sheet metal fabrication, the company has expanded its services to include CNC
+      machining, laser cutting, metal stamping, and wire EDM.
+    approx_offset: 15668
+  - quote: In addition to laser cutting, full CNC machining, precision sheet metal fabrication, finishing,
+      value-added assembly and inspection services are available.
+    approx_offset: 25055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0024
+  form: CNC punched
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: This cutting edge measuring machine allows us to inspect laser cut and CNC punched parts in
+      a matter of minutes.
+    approx_offset: 18529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0025
+  form: CNC turret punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0026
+  form: COMPLETE MILLING SERVICE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/screw-machining-services/
+  evidence:
+  - quote: COMPLETE MILLING SERVICE
+    approx_offset: 63476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0027
+  form: CWI (Certified Weld Inspection)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: CWI (Certified Weld Inspection)
+    approx_offset: 21419
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0028
+  form: Cadmium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Cadmium
+    approx_offset: 8780
+  - quote: Cadmium
+    approx_offset: 21855
+  - quote: Cadmium
+    approx_offset: 26842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0029
+  form: Centerless Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Centerless Grinding
+    approx_offset: 9229
+  - quote: Centerless Grinding
+    approx_offset: 32098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0030
+  form: Certified Mil-Spec Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0031
+  form: Certified Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Certified Welding
+    approx_offset: 20413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0032
+  form: Chem Film
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 8840
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 21915
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 26902
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0033
+  form: Chromate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 8788
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 21863
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 26850
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0034
+  form: Chromate (Clear or Yellow)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 8788
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 21863
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 26850
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0035
+  form: Coining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0036
+  form: Complete Tooling Maintenance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Complete Tooling Maintenance
+    approx_offset: 57892
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0037
+  form: Compound Die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34158
+  - quote: At Decimal Engineering, Inc., we provide customers with a wide range of manufacturing options,
+      including stamping processes such as progressive, single hit, in-die tapping, and compound die stamping.
+    approx_offset: 54112
+  - quote: Compound Die
+    approx_offset: 56271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0038
+  form: Coordinate Measuring Machine (CMM)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: Each part was produced using a single machine setup, with inspection conducted via a Coordinate
+      Measuring Machine (CMM).
+    approx_offset: 42762
+  - quote: To confirm dimensional accuracy, our inspectors used a Coordinate Measuring Machine (CMM).
+    approx_offset: 60800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0039
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/wire-edm-machining/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Copper
+    approx_offset: 8039
+  - quote: Copper
+    approx_offset: 8858
+  - quote: Copper
+    approx_offset: 20941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0040
+  form: Counterboring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Counterboring
+    approx_offset: 7336
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0041
+  form: Countersinking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Countersinking
+    approx_offset: 7321
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0042
+  form: Deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Deburring
+    approx_offset: 8538
+  - quote: Deburring
+    approx_offset: 21613
+  - quote: Deburring
+    approx_offset: 26600
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0043
+  form: Dielectric Paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Dielectric Paint
+    approx_offset: 9143
+  - quote: Dielectric Paint
+    approx_offset: 22218
+  - quote: Dielectric Paint
+    approx_offset: 27205
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0044
+  form: Dimensional Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+  evidence:
+  - quote: Dimensional Inspection
+    approx_offset: 47300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0045
+  form: Dip Brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Dip Brazing
+    approx_offset: 20331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0046
+  form: Drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Drilling
+    approx_offset: 7350
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0047
+  form: Dye Penetrant Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Dye Penetrant Testing
+    approx_offset: 21473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0048
+  form: E-coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: E-coating
+    approx_offset: 9160
+  - quote: E-coating
+    approx_offset: 22235
+  - quote: E-coating
+    approx_offset: 27222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0049
+  form: EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 36
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/album/wire-edm-machining/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/ask-alan/
+  evidence:
+  - quote: EDM
+    approx_offset: 161
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 375
+  - quote: Wire EDM
+    approx_offset: 817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0050
+  form: Electrical Discharge Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Electrical discharge machining, or EDM, is a unique machining method that relies on electrical
+      charge, rather than mechanical abrasion, for material removal.
+    approx_offset: 28938
+  - quote: "Electrical Discharge Machining Processes\tHole Popper EDM"
+    approx_offset: 30705
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0051
+  form: Electroless Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Electroless Nickel
+    approx_offset: 8874
+  - quote: Electroless Nickel
+    approx_offset: 21949
+  - quote: Electroless Nickel
+    approx_offset: 26936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0052
+  form: Electropolish
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Electropolish
+    approx_offset: 8893
+  - quote: Electropolish
+    approx_offset: 21968
+  - quote: Electropolish
+    approx_offset: 26955
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0053
+  form: Embossing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Embossing
+    approx_offset: 20142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0054
+  form: Engraving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Engraving
+    approx_offset: 9249
+  - quote: Engraving
+    approx_offset: 22304
+  - quote: Engraving
+    approx_offset: 27291
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0055
+  form: Etching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Etching
+    approx_offset: 8865
+  - quote: Etching
+    approx_offset: 21940
+  - quote: Etching
+    approx_offset: 26927
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0056
+  form: Facing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Facing
+    approx_offset: 7380
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0057
+  form: Form/Fit and Function
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: "In Process Testing/Inspection Performed\tForm/Fit and Function"
+    approx_offset: 77062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0058
+  form: Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/d-e-b-r-a-is-ready-for-action/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: These systems allow for forming of virtually any geometry in a single set-up, with times being
+      less than 10 minutes in many cases.
+    approx_offset: 18172
+  - quote: Forming and bending are only one aspect of our sheet metal fabrication capabilities.
+    approx_offset: 18805
+  - quote: Forming
+    approx_offset: 20172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0059
+  form: GMAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GMAW (MIG)
+    approx_offset: 20343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0060
+  form: GMAW (MIG)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GMAW (MIG)
+    approx_offset: 20343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0061
+  form: GTAW
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0062
+  form: GTAW (TIG)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20354
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0063
+  form: Glass Bead Blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Glass Bead Blasting
+    approx_offset: 8548
+  - quote: Glass Bead Blasting
+    approx_offset: 21623
+  - quote: Glass Bead Blasting
+    approx_offset: 26610
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0064
+  form: Gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Gold
+    approx_offset: 8907
+  - quote: Gold
+    approx_offset: 21982
+  - quote: Gold
+    approx_offset: 26969
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0065
+  form: Gold Plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Gold Plated Turned Copper Spool
+    approx_offset: 80506
+  - quote: Gold Plated Stamped Brass Clip
+    approx_offset: 102981
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0066
+  form: Graining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 8568
+  - quote: Graining
+    approx_offset: 20152
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 21643
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0067
+  form: Graining (Brushed Finish)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 8568
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 21643
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 26630
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0068
+  form: Grind/File
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Grind/File
+    approx_offset: 20161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0069
+  form: Hard Chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Hard Chrome
+    approx_offset: 8912
+  - quote: Hard Chrome
+    approx_offset: 21987
+  - quote: Hard Chrome
+    approx_offset: 26974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0070
+  form: Hard Coat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Hard Coat
+    approx_offset: 8702
+  - quote: Hard Coat
+    approx_offset: 21750
+  - quote: Hard Coat
+    approx_offset: 26764
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0071
+  form: Hardness Testers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Hardness Testers
+    approx_offset: 8438
+  - quote: Hardness Testers
+    approx_offset: 31304
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0072
+  form: Heat Treating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Heat Treating
+    approx_offset: 9259
+  - quote: Heat Treating
+    approx_offset: 22314
+  - quote: Heat Treating
+    approx_offset: 27301
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0073
+  form: Hem Bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Hem Bending
+    approx_offset: 20180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0074
+  form: High Speed Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: High Speed Machining
+    approx_offset: 7359
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0075
+  form: Hole Popper EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: "Electrical Discharge Machining Processes\tHole Popper EDM"
+    approx_offset: 30746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0076
+  form: In-Die Tapped
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Stamped In-Die Tapped Brass Terminal
+    approx_offset: 103227
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0077
+  form: In-Die Tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: In-Die Tapping of a Hot
+    approx_offset: 687
+  - quote: PROGRESSIVE STAMPING IN-DIE TAPPING OF A HOT WATER HEATER FOR A HOUSEHOLD APPLIANCE APPLICATION
+    approx_offset: 10776
+  - quote: In-die tapping allows metal stampers to tap a part within a single station, saving die space
+      and tooling costs.
+    approx_offset: 11603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0078
+  form: In-House Fixturing & Tooling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: "Fixturing\tIn-House Fixturing & Tooling"
+    approx_offset: 7722
+  - quote: "Fixturing\tIn-House Fixturing & Tooling"
+    approx_offset: 20721
+  - quote: "Fixturing\tIn-House Fixturing & Tooling"
+    approx_offset: 30801
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0079
+  form: Ink Fill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Ink Fill
+    approx_offset: 9273
+  - quote: Ink Fill
+    approx_offset: 22328
+  - quote: Ink Fill
+    approx_offset: 27315
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0080
+  form: Iridite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 8829
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 21904
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 26891
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0081
+  form: Iridited
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+  evidence:
+  - quote: Machined Iridited Aluminum Side Panel
+    approx_offset: 80549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0082
+  form: Kitting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Kitting
+    approx_offset: 9282
+  - quote: Kitting
+    approx_offset: 22337
+  - quote: Kitting
+    approx_offset: 27324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0083
+  form: LASER CUTTING SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: LASER CUTTING SERVICES
+    approx_offset: 23772
+  - quote: At Decimal Engineering, Inc., part of this capability is high precision 2D laser cutting services.
+    approx_offset: 23988
+  - quote: Laser Cutting Services
+    approx_offset: 68389
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0084
+  form: LASER MARKING SERVICE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-marking-service/
+    - https://www.decimal.net/services/screw-machining-services/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: LASER MARKING SERVICE
+    approx_offset: 3371
+  - quote: LASER MARKING SERVICE
+    approx_offset: 63502
+  - quote: Laser Marking Service
+    approx_offset: 68464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0085
+  form: Lancing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Lancing
+    approx_offset: 20192
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0086
+  form: Laser Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 312
+  - quote: LASER CUTTING SERVICES
+    approx_offset: 23772
+  - quote: Laser cutting is a versatile process that allows for efficient cutting of parts at a range
+      of production volumes.
+    approx_offset: 24012
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0087
+  form: Laser Marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/services/laser-marking-service/
+    - https://www.decimal.net/services/screw-machining-services/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 327
+  - quote: LASER MARKING SERVICE
+    approx_offset: 3371
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0088
+  form: Laser Marking Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-marking-service/
+  evidence:
+  - quote: Decimal Engineering now offers contract Laser Marking Services to a wide range of industries
+      including Medical Device, Aerospace, Military, Automotive, Electronics, Promotional and much more.
+    approx_offset: 3434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0089
+  form: Laser Scanners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0090
+  form: Leak
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Leak TestingMagnetic Particle Testing
+    approx_offset: 21495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0091
+  form: Leak Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0092
+  form: Lights Out Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: Complete Lights Out Manufacturing Capabilities
+    approx_offset: 25857
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0093
+  form: METAL STAMPING SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: METAL STAMPING SERVICES
+    approx_offset: 53910
+  - quote: Metal Stamping Services
+    approx_offset: 68347
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0094
+  form: MIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GMAW (MIG)
+    approx_offset: 20349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0095
+  form: Magnetic Particle Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0096
+  form: Maximum Draw Depth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: "Maximum Draw Depth\tUp to 7.88″"
+    approx_offset: 56473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0097
+  form: Metal Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: We offer state-of-the-art laser cutting, metal forming, CNC machining, and welding services
+      to meet any complex design challenge.
+    approx_offset: 74738
+  - quote: Metal Forming
+    approx_offset: 76554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0098
+  form: Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: In addition to sheet metal fabrication, the company has expanded its services to include CNC
+      machining, laser cutting, metal stamping, and wire EDM.
+    approx_offset: 15698
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34142
+  - quote: METAL STAMPING SERVICES
+    approx_offset: 53910
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0099
+  form: Micro Spot Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20364
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0100
+  form: Mill-Turn
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0101
+  form: Mill/Turn
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: However, by maintaining a variety of sophisticated equipment, including combination Mill/Turn
+      centers which have a combined 9-axis machining capability, these costs can be contained and even
+      reduced.
+    approx_offset: 5098
+  - quote: Last but not least, are our 9-axis Mill/Turn centers which are capable of machining parts up
+      to 8.2″ in diameter by 12″ in length.
+    approx_offset: 5921
+  - quote: CNC 9-Axis Mill/Turn Centers
+    approx_offset: 7501
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0102
+  form: Milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/screw-machining-services/
+  evidence:
+  - quote: CNC Horizontal Milling Centers (with multiple pallets)CNC Lathes (with live tooling)
+    approx_offset: 7534
+  - quote: CNC Vertical Milling Centers
+    approx_offset: 7617
+  - quote: 49 (Turning & Milling Center)
+    approx_offset: 7683
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0103
+  form: Nickel Plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Stamped Nickel Plated Steel Arm Connector
+    approx_offset: 103266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0104
+  form: Non-destructive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+  evidence:
+  - quote: Non-destructive TestingPPAP (Production Part Approval Process)
+    approx_offset: 47362
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0105
+  form: Non-destructive Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0106
+  form: OD Grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: OD Grinding
+    approx_offset: 9290
+  - quote: OD Grinding
+    approx_offset: 32159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0107
+  form: PRECISION MACHINING SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: PRECISION MACHINING SERVICES
+    approx_offset: 4627
+  - quote: Precision Machining Services
+    approx_offset: 68275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0108
+  form: PRECISION SHEET METAL FABRICATION SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: PRECISION SHEET METAL FABRICATION SERVICES
+    approx_offset: 16612
+  - quote: Precision Sheet Metal Fabrication Services
+    approx_offset: 68304
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0109
+  form: PROGRESSIVE STAMPING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: PROGRESSIVE STAMPING IN-DIE TAPPING OF A HOT WATER HEATER FOR A HOUSEHOLD APPLIANCE APPLICATION
+    approx_offset: 10755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0110
+  form: PTFE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: PTFE
+    approx_offset: 57848
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0111
+  form: Painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We can also provide a long list of finishing services; some of these include precision grinding,
+      polishing, wet painting, powder coating and a variety of plating.
+    approx_offset: 6891
+  - quote: These can be combined with a myriad of finishing processes such as polishing, wet painting,
+      powder coating and a variety of plating.
+    approx_offset: 19498
+  - quote: Additional finishing such as precision grinding, polishing, wet painting, powder coating, and
+      a variety of plating can also be provided.
+    approx_offset: 25323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0112
+  form: Part Numbering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Part Numbering
+    approx_offset: 20223
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0113
+  form: Particle Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Leak TestingMagnetic Particle Testing
+    approx_offset: 21516
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0114
+  form: Passivated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Stamped Passivated Stainless Latch Coupling Marine
+    approx_offset: 103310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0115
+  form: Passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Passivation (Nitric of Citric)
+    approx_offset: 8924
+  - quote: Passivation (Nitric of Citric)
+    approx_offset: 21999
+  - quote: Passivation (Nitric of Citric)
+    approx_offset: 26986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0116
+  form: Passivation (Nitric of Citric)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Passivation (Nitric of Citric)
+    approx_offset: 8924
+  - quote: Passivation (Nitric of Citric)
+    approx_offset: 21999
+  - quote: Passivation (Nitric of Citric)
+    approx_offset: 26986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0117
+  form: Pemming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Pemming
+    approx_offset: 58000
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0118
+  form: Phosphate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Phosphate (Pretreat)
+    approx_offset: 8955
+  - quote: Phosphate (Pretreat)
+    approx_offset: 22030
+  - quote: Phosphate (Pretreat)
+    approx_offset: 27017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0119
+  form: Phosphate (Pretreat)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Phosphate (Pretreat)
+    approx_offset: 8955
+  - quote: Phosphate (Pretreat)
+    approx_offset: 22030
+  - quote: Phosphate (Pretreat)
+    approx_offset: 27017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0120
+  form: Plating Services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Plating Services
+    approx_offset: 8636
+  - quote: Plating Services
+    approx_offset: 21711
+  - quote: Plating Services
+    approx_offset: 26698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0121
+  form: Polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 8593
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 21668
+  - quote: Graining (Brushed Finish)Polishing
+    approx_offset: 26655
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0122
+  form: Powder Coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Powder Coating
+    approx_offset: 57833
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0123
+  form: Powdercaoted
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: Powdercaoted Steel Key Storage Drawer Security
+    approx_offset: 81495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0124
+  form: Powdercoated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: Powdercoated Aluminum Pump Housing Environmental
+    approx_offset: 81544
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0125
+  form: Precision Bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Precision Bending
+    approx_offset: 20238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0126
+  form: Precision Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: PRECISION MACHINING SERVICES
+    approx_offset: 4627
+  - quote: PRECISION MACHINING CAPABILITIES
+    approx_offset: 7260
+  - quote: Precision Machining
+    approx_offset: 64220
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0127
+  form: Pressure Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Pressure Testing
+    approx_offset: 21539
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0128
+  form: Profiling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Profiling
+    approx_offset: 7404
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0129
+  form: Progressive Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: Progressive Stamping
+    approx_offset: 666
+  - quote: Progressive Stamping In-Die Tapping of a Hot Water Heater for >>>
+    approx_offset: 13517
+  - quote: Progressive Stamping In-Die Tapping of a Hot Water Heater for a Household Appliance Application
+    approx_offset: 68626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0130
+  form: Pull Testers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Pull Testers
+    approx_offset: 21299
+  - quote: Pull Testers
+    approx_offset: 26534
+  - quote: Pull Testers
+    approx_offset: 31375
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0131
+  form: Punching
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16915
+  - quote: CNC Turret Punching
+    approx_offset: 20133
+  - quote: Punching
+    approx_offset: 20256
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0132
+  form: Radiographic Examination
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Radiographic Examination (X-Ray)
+    approx_offset: 21556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0133
+  form: Radiographic Examination (X-Ray)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Radiographic Examination (X-Ray)
+    approx_offset: 21556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0134
+  form: Reverse Engineering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34327
+  - quote: Parallel Engineering (Design Support)Reverse Engineering
+    approx_offset: 47042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0135
+  form: Rhodium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Rhodium
+    approx_offset: 8976
+  - quote: Rhodium
+    approx_offset: 22051
+  - quote: Rhodium
+    approx_offset: 27038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0136
+  form: Riveted
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: Riveted Formed Aluminum Assembly Aerospace
+    approx_offset: 81595
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0137
+  form: Riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Riveting
+    approx_offset: 20265
+  - quote: Riveting
+    approx_offset: 58008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0138
+  form: SCREW MACHINING SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/screw-machining-services/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: SCREW MACHINING SERVICES
+    approx_offset: 62950
+  - quote: Screw Machining Services
+    approx_offset: 68486
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0139
+  form: Sand Blasting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Sand Blasting
+    approx_offset: 8603
+  - quote: Sand Blasting
+    approx_offset: 21678
+  - quote: Sand Blasting
+    approx_offset: 26665
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0140
+  form: Saw Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Saw Cutting
+    approx_offset: 7414
+  - quote: Saw Cutting
+    approx_offset: 20274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0141
+  form: Screw Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/services/screw-machining-services/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 352
+  - quote: SCREW MACHINING SERVICES
+    approx_offset: 62950
+  - quote: Laser Marking & Screw Machining
+    approx_offset: 64361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0142
+  form: Screw machined
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/screw-machining-services/
+  evidence:
+  - quote: Screw machined parts that require milling features are no
+    approx_offset: 63124
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0143
+  form: Secondary Operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Secondary Operations
+    approx_offset: 57964
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0144
+  form: Shearing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Shearing
+    approx_offset: 20286
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0145
+  form: Sheet Metal Fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 272
+  - quote: PRECISION SHEET METAL FABRICATION SERVICES
+    approx_offset: 16622
+  - quote: SHEET METAL FABRICATION CAPABILITIES
+    approx_offset: 20062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0146
+  form: Silk Screening
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Silk Screening
+    approx_offset: 9302
+  - quote: Silk Screening
+    approx_offset: 22345
+  - quote: Silk Screening
+    approx_offset: 27332
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0147
+  form: Silkscreened
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: Painted Silkscreened Bracket Electronics
+    approx_offset: 81378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0148
+  form: Silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Silver
+    approx_offset: 8984
+  - quote: Silver Soldering
+    approx_offset: 20383
+  - quote: Silver
+    approx_offset: 22059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0149
+  form: Silver Plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Silver Plated Reel to Reel Stamped Terminals
+    approx_offset: 103083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0150
+  form: Silver Soldering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Silver Soldering
+    approx_offset: 20383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0151
+  form: Single-Hit
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34185
+  - quote: Single-Hit
+    approx_offset: 56310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0152
+  form: Spot Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20370
+  - quote: Spot Welding
+    approx_offset: 20400
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0153
+  form: Stamped
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: SEE STAMPED PARTS »
+    approx_offset: 56177
+  - quote: Clear Zinc Plated Stamped Caster Leveler Foot
+    approx_offset: 102951
+  - quote: Gold Plated Stamped Brass Clip
+    approx_offset: 102993
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0154
+  form: Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/project-gallery/
+  evidence:
+  - quote: Stamping
+    approx_offset: 147
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 342
+  - quote: Progressive Stamping
+    approx_offset: 678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0155
+  form: Surfacing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Surfacing
+    approx_offset: 7426
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0156
+  form: TIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20360
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0157
+  form: Tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: In-Die Tapping of a Hot
+    approx_offset: 694
+  - quote: Tapping
+    approx_offset: 7436
+  - quote: PROGRESSIVE STAMPING IN-DIE TAPPING OF A HOT WATER HEATER FOR A HOUSEHOLD APPLIANCE APPLICATION
+    approx_offset: 10783
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0158
+  form: Thread Gauge
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: Our ISO 9001:2008 compliant process ensured consistent production quality, while also inspecting
+      each part using thread gauge measurements.
+    approx_offset: 12140
+  - quote: "In Process Testing/Inspection Performed\tThread Gauge"
+    approx_offset: 12820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0159
+  form: Threading
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Threading
+    approx_offset: 7444
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0160
+  form: Tin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Tin
+    approx_offset: 8991
+  - quote: Tin
+    approx_offset: 22066
+  - quote: Tin
+    approx_offset: 27053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0161
+  form: Tool & Die Work
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0162
+  form: Tumbling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Vibratory Tumbling
+    approx_offset: 8627
+  - quote: Tumbling
+    approx_offset: 20295
+  - quote: Vibratory Tumbling
+    approx_offset: 21702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0163
+  form: Turned
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/decimal-engineering-adds-to-its-already-world-class-quality-department/
+  evidence:
+  - quote: Our proven dedication to quality, sense of urgency, and creativity has turned more than 99%
+      of our first-time jobs into long-term partnerships.
+    approx_offset: 1247
+  - quote: Anodized Turned Aluminum Cyllinder
+    approx_offset: 80478
+  - quote: Gold Plated Turned Copper Spool
+    approx_offset: 80518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0164
+  form: Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Turning
+    approx_offset: 7454
+  - quote: 49 (Turning & Milling Center)
+    approx_offset: 7673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0165
+  form: Value-Added Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: In addition to laser cutting, full CNC machining, precision sheet metal fabrication, finishing,
+      value-added assembly and inspection services are available.
+    approx_offset: 25116
+  - quote: Our capabilities include Advanced Manufacturing, CNC Machining, 9-Axis Mill/Turn Machining,
+      Sheet Metal Fabrication, Metal Stamping (Compound Die, Progressive, Single-Hit), Wire EDM, 2D/3D
+      Laser Cutting, Certified Mil-Spec Welding, Engineering & Design Services, Value-Added Assembly,
+      Tool & Die Work
+    approx_offset: 34288
+  - quote: In addition to laser cutting, full CNC machining, precision sheet metal fabrication, finishing,
+      value-added assembly and inspection services are available.
+    approx_offset: 92545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0166
+  form: Vibratory Tumbling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Vibratory Tumbling
+    approx_offset: 8617
+  - quote: Vibratory Tumbling
+    approx_offset: 21692
+  - quote: Vibratory Tumbling
+    approx_offset: 26679
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0167
+  form: Virtek (Laser Scanner)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Virtek (Laser Scanner)
+    approx_offset: 8495
+  - quote: Virtek (Laser Scanner)
+    approx_offset: 21322
+  - quote: Virtek (Laser Scanner)
+    approx_offset: 26557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0168
+  form: Virtek Laser Scanning System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/decimal-engineering-adds-to-its-already-world-class-quality-department/
+    - https://www.decimal.net/news/
+  evidence:
+  - quote: Quality Manager Curtis Wright said “The IM-8000 will be able to handle the overflow to Decimal’s
+      Quality department that already features Mitutoyo Bright A710 CMM, Virtek Laser Scanning System,
+      TESAHITE 700, Mitutoyo Surface Measurement System, and Mitutoyo […]
+    approx_offset: 51528
+  - quote: Mitutoyo Bright A710 CMM, Virtek Laser Scanning System, TESAHITE 700, Mitutoyo
+    approx_offset: 104365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0169
+  form: WIRE EDM SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/services/wire-edm/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 370
+  - quote: WIRE EDM SERVICES
+    approx_offset: 28751
+  - quote: Wire EDM Services
+    approx_offset: 68371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0170
+  form: Weld Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: 3rd Party Weld Inspection as Needed
+    approx_offset: 21375
+  - quote: CWI (Certified Weld Inspection)
+    approx_offset: 21434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0171
+  form: Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Welding Processes
+    approx_offset: 20304
+  - quote: GTAW (TIG)Micro Spot Welding
+    approx_offset: 20375
+  - quote: Spot Welding
+    approx_offset: 20405
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0172
+  form: Wet Paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Wet Paint
+    approx_offset: 9189
+  - quote: Wet Paint
+    approx_offset: 22264
+  - quote: Wet Paint
+    approx_offset: 27251
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0173
+  form: Wire EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/album/wire-edm-machining/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/project-gallery/
+  evidence:
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 370
+  - quote: Wire EDM
+    approx_offset: 812
+  - quote: Wire EDM Machines
+    approx_offset: 7633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0174
+  form: Wire EDM Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/album/wire-edm-machining/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: Wire EDM Machining of Cross Pendants for the Jewelry Industry
+    approx_offset: 13725
+  - quote: Wire EDM Machining
+    approx_offset: 62511
+  - quote: Wire EDM Machining of Cross Pendants for the Jewelry Industry
+    approx_offset: 68873
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0175
+  form: Zinc (Clear, Yellow or Black)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 8995
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 22070
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 27057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0176
+  form: Zinc Cobalt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Zinc Cobalt
+    approx_offset: 9064
+  - quote: Zinc Cobalt
+    approx_offset: 22139
+  - quote: Zinc Cobalt
+    approx_offset: 27126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0177
+  form: Zinc Plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: Zinc Plated Steel Bracket Electronics
+    approx_offset: 81696
+  - quote: Zinc Plated Steel Chassis with Card Guides
+    approx_offset: 81736
+  - quote: Clear Zinc Plated Stamped Caster Leveler Foot
+    approx_offset: 102939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0178
+  form: a variety of plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We can also provide a long list of finishing services; some of these include precision grinding,
+      polishing, wet painting, powder coating and a variety of plating.
+    approx_offset: 6920
+  - quote: These can be combined with a myriad of finishing processes such as polishing, wet painting,
+      powder coating and a variety of plating.
+    approx_offset: 19527
+  - quote: Additional finishing such as precision grinding, polishing, wet painting, powder coating, and
+      a variety of plating can also be provided.
+    approx_offset: 25353
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0179
+  form: adding pems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: In addition, we manufacture value added assemblies, taking your stamped part and then adding
+      pems, rivets, hardware and even spotwelding/welding when needed.
+    approx_offset: 54673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0180
+  form: adhesive bonding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value
+      added assembly.
+    approx_offset: 19373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0181
+  form: air bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16882
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0182
+  form: anodized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: Upon completion, each servo body was anodized according to MIL-A-8625 requirements.
+    approx_offset: 42835
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0183
+  form: bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.decimal.net/after-months-and-months-of-waiting-our-new-salvagnini-p2-l-2520-and-was-worth-the-wait/
+    - https://www.decimal.net/d-e-b-r-a-is-ready-for-action/
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16873
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16886
+  - quote: At the heart of our sheet metal fabrication service is a number of cutting edge bending systems
+      that give us a distinct competitive advantage.
+    approx_offset: 17079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0184
+  form: blanking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming
+      and forming.
+    approx_offset: 54407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0185
+  form: brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We also provide welding, spot welding, brazing and soldering, all performed by highly trained
+      certified welders.
+    approx_offset: 18929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0186
+  form: certified welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0187
+  form: coining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16895
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming
+      and forming.
+    approx_offset: 54427
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0188
+  form: complex bending
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16865
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0189
+  form: die stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: At Decimal Engineering, Inc., we provide customers with a wide range of manufacturing options,
+      including stamping processes such as progressive, single hit, in-die tapping, and compound die stamping.
+    approx_offset: 54121
+  - quote: In quantities over 5,000 parts, die stamping becomes a very economical manufacturing option;
+      this is enhanced further when combined with capabilities such as in-die tapping.
+    approx_offset: 54850
+  - quote: Die Stamping Processes
+    approx_offset: 56247
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0190
+  form: dimensionally inspect
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Traditionally, quality control required the technician to manually dimensionally inspect each
+      piece by hand.
+    approx_offset: 18638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0191
+  form: drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: 'As one engineer put it: “You can give me a drawing off a bar napkin and I can make it happen.'
+    approx_offset: 34658
+  - quote: Or you can give us the detailed drawing.
+    approx_offset: 34797
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming
+      and forming.
+    approx_offset: 54436
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0192
+  form: drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming
+      and forming.
+    approx_offset: 54445
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0193
+  form: electrical discharge machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: we offer electrical discharge machining using wire EDM and hole popper EDM equipment.
+    approx_offset: 28861
+  - quote: Any conductive material can be machined via EDM, with hard metals greatly benefiting from electrical
+      discharge machining.
+    approx_offset: 29627
+  - quote: For more information about our electrical discharge machining capabilities, see the table below,
+      or contact us directly.
+    approx_offset: 30545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0194
+  form: embossing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0195
+  form: fastener insertion
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value
+      added assembly.
+    approx_offset: 19323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0196
+  form: final assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: Our customer was pleased with the work and requested 100,000 of these units annually, delivered
+      on schedule to Mexico for final assembly.
+    approx_offset: 12399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0197
+  form: first article reports
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: With the push of one button, first article reports can easily be performed.
+    approx_offset: 6504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0198
+  form: fixturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: "Fixturing\tIn-House Fixturing & Tooling"
+    approx_offset: 7712
+  - quote: "Fixturing\tIn-House Fixturing & Tooling"
+    approx_offset: 7731
+  - quote: "Fixturing\tIn-House Fixturing & Tooling"
+    approx_offset: 20711
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0199
+  form: formed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Our Salvagini P2L-2520 automated panel bender, because of its innovative design, allows us
+      to bend in one piece, configurations that would typically be formed in two pieces.
+    approx_offset: 17511
+  - quote: Due to the complex nature of these advanced manufacturing processes, we utilize a virtual manufacturing
+      process that simulates each bend in sequence before any physical part is formed.
+    approx_offset: 17868
+  - quote: Not only was the metal assembly to be laser cut, formed, machined, and welded, they also wanted
+      in-house assembly and two-color painting.
+    approx_offset: 75156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0200
+  form: full CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: In addition to laser cutting, full CNC machining, precision sheet metal fabrication, finishing,
+      value-added assembly and inspection services are available.
+    approx_offset: 25050
+  - quote: In addition to laser cutting, full CNC machining, precision sheet metal fabrication, finishing,
+      value-added assembly and inspection services are available.
+    approx_offset: 92479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0201
+  form: graining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value
+      added assembly.
+    approx_offset: 19353
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0202
+  form: heat treat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Distortion or loss in material properties due to excess heat are eliminated, allowing for tighter
+      tolerances to be held and preventing the need for post-machining heat treat.
+    approx_offset: 29939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0203
+  form: hole popper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: we offer electrical discharge machining using wire EDM and hole popper EDM equipment.
+    approx_offset: 28911
+  - quote: Exceptionally tight tolerances on the order of ±0.0002″ can be held with our wire EDM machines
+      and holes between 0.020″ and 0.12″ can be accurately cut using our Mitsubishi hole popper.
+    approx_offset: 29405
+  - quote: "Electrical Discharge Machining Processes\tHole Popper EDM"
+    approx_offset: 30746
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0204
+  form: hole popper EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: we offer electrical discharge machining using wire EDM and hole popper EDM equipment.
+    approx_offset: 28911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0205
+  form: in-die tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: offers full service tool design, building, maintenance, and manufacturing of parts while also
+      utilizing cutting edge technologies such as in-die tapping, a more efficient alternative to secondary
+      tapping.
+    approx_offset: 11028
+  - quote: Our team had recently began using in-die tapping as an alternative to costly and time consuming
+      secondary operations.
+    approx_offset: 11519
+  - quote: Using a Hutchinson tapping head in a Federated punch press, we performed in-die tapping via
+      a 1032 tap with a ¼” head.
+    approx_offset: 11788
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0206
+  form: laser cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/faqs/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/design-engineering-manufacturability/
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: Does Decimal Engineering have laser cutting capabilities?
+    approx_offset: 2111
+  - quote: In addition to sheet metal fabrication, the company has expanded its services to include CNC
+      machining, laser cutting, metal stamping, and wire EDM.
+    approx_offset: 15683
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0207
+  form: lights out manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: Our laser cutting process includes lights out manufacturing capabilities.
+    approx_offset: 24729
+  - quote: Our laser cutting process includes lights out manufacturing capabilities.
+    approx_offset: 92158
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0208
+  form: lights-out operation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: Our capacity to run a lights-out operation also complements the flow of production.
+    approx_offset: 33962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0209
+  form: louvering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16925
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0210
+  form: marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/ask-alan/
+    - https://www.decimal.net/services/laser-marking-service/
+    - https://www.decimal.net/services/screw-machining-services/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: Marking
+    approx_offset: 228
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 333
+  - quote: LASER MARKING SERVICE
+    approx_offset: 3377
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0211
+  form: milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/screw-machining-services/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: When precision tolerances on hard metal are required, EDM can offer significant advantages
+      over traditional milling.
+    approx_offset: 29767
+  - quote: Screw machined parts that require milling features are no
+    approx_offset: 63158
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0212
+  form: milling features
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/screw-machining-services/
+  evidence:
+  - quote: Screw machined parts that require milling features are no
+    approx_offset: 63158
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0213
+  form: piercing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming
+      and forming.
+    approx_offset: 54417
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0214
+  form: plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: We can also provide a long list of finishing services; some of these include precision grinding,
+      polishing, wet painting, powder coating and a variety of plating.
+    approx_offset: 6933
+  - quote: Plating Services
+    approx_offset: 8636
+  - quote: Barrel Plating
+    approx_offset: 8720
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0215
+  form: polishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We can also provide a long list of finishing services; some of these include precision grinding,
+      polishing, wet painting, powder coating and a variety of plating.
+    approx_offset: 6876
+  - quote: These can be combined with a myriad of finishing processes such as polishing, wet painting,
+      powder coating and a variety of plating.
+    approx_offset: 19483
+  - quote: Additional finishing such as precision grinding, polishing, wet painting, powder coating, and
+      a variety of plating can also be provided.
+    approx_offset: 25308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0216
+  form: powder coat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/faqs/
+  evidence:
+  - quote: Do you powder coat finish in house?
+    approx_offset: 1949
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0217
+  form: powder coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We can also provide a long list of finishing services; some of these include precision grinding,
+      polishing, wet painting, powder coating and a variety of plating.
+    approx_offset: 6901
+  - quote: These can be combined with a myriad of finishing processes such as polishing, wet painting,
+      powder coating and a variety of plating.
+    approx_offset: 19508
+  - quote: Additional finishing such as precision grinding, polishing, wet painting, powder coating, and
+      a variety of plating can also be provided.
+    approx_offset: 25333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0218
+  form: precision CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: As an industry leader in precision CNC machining for the aerospace, energy, defense, and commercial
+      manufacturing sectors, Decimal Engineering, Inc.
+    approx_offset: 4682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0219
+  form: precision grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: We can also provide a long list of finishing services; some of these include precision grinding,
+      polishing, wet painting, powder coating and a variety of plating.
+    approx_offset: 6856
+  - quote: Additional finishing such as precision grinding, polishing, wet painting, powder coating, and
+      a variety of plating can also be provided.
+    approx_offset: 25288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0220
+  form: precision machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6575
+  - quote: For more information about our precision machining capabilities and value added services, see
+      the table below, or contact us directly.
+    approx_offset: 7090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0221
+  form: progressive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/project-gallery/
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/sitemap/
+  evidence:
+  - quote: Progressive Stamping
+    approx_offset: 666
+  - quote: PROGRESSIVE STAMPING IN-DIE TAPPING OF A HOT WATER HEATER FOR A HOUSEHOLD APPLIANCE APPLICATION
+    approx_offset: 10755
+  - quote: Progressive Stamping In-Die Tapping of a Hot Water Heater for >>>
+    approx_offset: 13517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0222
+  form: progressive die and stage tooling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: As a full-service manufacturer, we can also design and fabricate all of the required tooling
+      and fixturing in-house; this includes progressive die and stage tooling.
+    approx_offset: 55123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0223
+  form: punch a part
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/faqs/
+  evidence:
+  - quote: What factors do you look at when deciding whether to laser cut or punch a part?
+    approx_offset: 2705
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0224
+  form: reaming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Our capabilities include, blanking, piercing, coining, drawing, drilling, tapping, reaming
+      and forming.
+    approx_offset: 54464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0225
+  form: reverse engineer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/why-decimal/
+  evidence:
+  - quote: You can give me the part and we’ll reverse engineer it.
+    approx_offset: 34744
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0226
+  form: riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value
+      added assembly.
+    approx_offset: 19343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0227
+  form: secondary operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Our team had recently began using in-die tapping as an alternative to costly and time consuming
+      secondary operations.
+    approx_offset: 11581
+  - quote: While most stampers don’t like secondary operations, we excel at these.
+    approx_offset: 54776
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0228
+  form: secondary tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: offers full service tool design, building, maintenance, and manufacturing of parts while also
+      utilizing cutting edge technologies such as in-die tapping, a more efficient alternative to secondary
+      tapping.
+    approx_offset: 11076
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0229
+  form: sheet metal fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: In addition to sheet metal fabrication, the company has expanded its services to include CNC
+      machining, laser cutting, metal stamping, and wire EDM.
+    approx_offset: 15594
+  - quote: At Decimal Engineering, Inc., we provide precision sheet metal fabrication that can accommodate
+      the needs of a wide range of industries and applications.
+    approx_offset: 16707
+  - quote: At the heart of our sheet metal fabrication service is a number of cutting edge bending systems
+      that give us a distinct competitive advantage.
+    approx_offset: 17019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0230
+  form: single hit
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: At Decimal Engineering, Inc., we provide customers with a wide range of manufacturing options,
+      including stamping processes such as progressive, single hit, in-die tapping, and compound die stamping.
+    approx_offset: 54080
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0231
+  form: slotting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Our team used techniques such as slotting, tabbing, and cleco holes to ensure precise self-alignment.
+    approx_offset: 75817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0232
+  form: slotting, tabbing, and cleco holes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Our team used techniques such as slotting, tabbing, and cleco holes to ensure precise self-alignment.
+    approx_offset: 75817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0233
+  form: soldering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We also provide welding, spot welding, brazing and soldering, all performed by highly trained
+      certified welders.
+    approx_offset: 18941
+  - quote: Silver Soldering
+    approx_offset: 20390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0234
+  form: spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16984
+  - quote: We also provide welding, spot welding, brazing and soldering, all performed by highly trained
+      certified welders.
+    approx_offset: 18915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0235
+  form: spotwelding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: In addition, we manufacture value added assemblies, taking your stamped part and then adding
+      pems, rivets, hardware and even spotwelding/welding when needed.
+    approx_offset: 54712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0236
+  form: stamped
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: In addition, we manufacture value added assemblies, taking your stamped part and then adding
+      pems, rivets, hardware and even spotwelding/welding when needed.
+    approx_offset: 54651
+  - quote: Our extra attention to proper die care and maintenance prevents downtime and eliminates the
+      risk of nonconforming stamped parts.
+    approx_offset: 55877
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0237
+  form: stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: In addition to sheet metal fabrication, the company has expanded its services to include CNC
+      machining, laser cutting, metal stamping, and wire EDM.
+    approx_offset: 15704
+  - quote: At Decimal Engineering, Inc., we provide customers with a wide range of manufacturing options,
+      including stamping processes such as progressive, single hit, in-die tapping, and compound die stamping.
+    approx_offset: 54040
+  - quote: At Decimal Engineering, Inc., we provide customers with a wide range of manufacturing options,
+      including stamping processes such as progressive, single hit, in-die tapping, and compound die stamping.
+    approx_offset: 54125
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0238
+  form: tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: offers full service tool design, building, maintenance, and manufacturing of parts while also
+      utilizing cutting edge technologies such as in-die tapping, a more efficient alternative to secondary
+      tapping.
+    approx_offset: 11035
+  - quote: offers full service tool design, building, maintenance, and manufacturing of parts while also
+      utilizing cutting edge technologies such as in-die tapping, a more efficient alternative to secondary
+      tapping.
+    approx_offset: 11086
+  - quote: Our team had recently began using in-die tapping as an alternative to costly and time consuming
+      secondary operations.
+    approx_offset: 11526
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0239
+  form: tested for form, fit, and function
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Each assembly was extensively tested for form, fit, and function.
+    approx_offset: 75916
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0240
+  form: thread gauge measurements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: Our ISO 9001:2008 compliant process ensured consistent production quality, while also inspecting
+      each part using thread gauge measurements.
+    approx_offset: 12140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0241
+  form: tool design, building, maintenance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: offers full service tool design, building, maintenance, and manufacturing of parts while also
+      utilizing cutting edge technologies such as in-die tapping, a more efficient alternative to secondary
+      tapping.
+    approx_offset: 10910
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0242
+  form: traditional milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: When precision tolerances on hard metal are required, EDM can offer significant advantages
+      over traditional milling.
+    approx_offset: 29755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0243
+  form: tumbling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value
+      added assembly.
+    approx_offset: 19363
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0244
+  form: two-color painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Not only was the metal assembly to be laser cut, formed, machined, and welded, they also wanted
+      in-house assembly and two-color painting.
+    approx_offset: 75225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0245
+  form: value added assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: These include fastener insertion, riveting, graining, tumbling, adhesive bonding and value
+      added assembly.
+    approx_offset: 19394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0246
+  form: welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16972
+  - quote: We operate a well-equipped facility that is geared for complex bending, air bending, coining,
+      CNC turret punching, louvering, embossing, laser cutting, certified welding and spot welding.
+    approx_offset: 16989
+  - quote: We also provide welding, spot welding, brazing and soldering, all performed by highly trained
+      certified welders.
+    approx_offset: 18906
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0247
+  form: wet painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: We can also provide a long list of finishing services; some of these include precision grinding,
+      polishing, wet painting, powder coating and a variety of plating.
+    approx_offset: 6887
+  - quote: These can be combined with a myriad of finishing processes such as polishing, wet painting,
+      powder coating and a variety of plating.
+    approx_offset: 19494
+  - quote: Additional finishing such as precision grinding, polishing, wet painting, powder coating, and
+      a variety of plating can also be provided.
+    approx_offset: 25319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-process_caps-0248
+  form: wire EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: In addition to sheet metal fabrication, the company has expanded its services to include CNC
+      machining, laser cutting, metal stamping, and wire EDM.
+    approx_offset: 15718
+  - quote: we offer electrical discharge machining using wire EDM and hole popper EDM equipment.
+    approx_offset: 28898
+  - quote: In wire EDM, different wire diameters can be used to achieve the appropriate balance of precision
+      and speed for a specific application.
+    approx_offset: 29099
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

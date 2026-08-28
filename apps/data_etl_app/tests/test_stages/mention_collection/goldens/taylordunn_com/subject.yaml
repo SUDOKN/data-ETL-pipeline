@@ -1,0 +1,236 @@
+subject: taylordunn.com
+slug: taylordunn_com
+subject_name: Taylor-Dunn (a brand of Waev Inc.)
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/taylordunn.com.txt
+  sha256: dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113
+role: degenerate_input_probe
+role_source: 'kept from search/expectations/taylordunn_com/subject.yaml, and re-verified rather than assumed:
+  the value is in this schema''s five-value enum, and the claim behind it holds. All 31 page blocks carry
+  the same cookie-consent modal and the same nav/footer menu, and NOT ONE line of page prose about vehicles,
+  processes, materials or certifications survives anywhere in 227,618 characters. The only non-blank lines
+  in the file that occur exactly once are the 31 URL header lines themselves. This is the corpus''s degenerate
+  input by measurement, not by reputation.'
+business_type: electric industrial-vehicle maker (burden carriers, stockchasers, personnel carriers, tow
+  tractors), Anaheim CA, owned by Waev Inc. -- but NONE of that business is present in this snapshot except
+  as nav and footer menu labels
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/taylordunn_com/subject.yaml
+- apps/data_etl_app/tests/test_stages/grounding/expectations/taylordunn_com/subject.yaml
+third_party_roster:
+- Waev Inc.
+- Complianz
+- Elementor
+- WordPress
+- WPForms
+- Google Adsense
+- Google Fonts
+- Google reCAPTCHA
+- Google Maps
+- Google Ads
+- YouTube
+- Facebook
+- LinkedIn
+- Instagram
+third_party_roster_note: Waev Inc. is the parent and the only legal person named in the file; Complianz
+  is the cookie-consent plugin whose template this policy is; the other twelve are the ad-tech and CMS
+  brands listed in the Placed-cookies table. Taylor-Dunn itself names no customer, no supplier and no
+  standards body anywhere in the snapshot.
+shape:
+  page_blocks: 31
+  distinct_url_paths_after_slash_normalise: 28
+  distinct_page_bodies: 1
+  total_lines: 6449
+  nonblank_lines: 4402
+  distinct_nonblank_lines: 160
+  share_of_nonblank_lines_occurring_2x_or_more: 99.3%
+  share_of_nonblank_chars_occurring_2x_or_more: 99.4%
+  share_of_nonblank_lines_occurring_exactly_31x: 99.3%
+  nonblank_lines_occurring_exactly_once: 31
+  per_block_nonblank_lines: 142
+  per_block_nonblank_chars: 7118
+  nonascii_chars: 434
+  distinct_nonascii_codepoints: 4
+  nbsp_count: 31
+  zwsp_count: 0
+  note: measured on this pass. Every one of the 31 lines that occurs exactly once is a URL header line;
+    the other 129 distinct lines each occur 31 times, once per block. 4,371 of 4,402 non-blank lines (99.3%)
+    occur exactly 31 times. Three URL paths differ from another only by a trailing slash (/contact-us,
+    /find-a-dealer, /manufacturing-warehousing), so 31 blocks cover 28 distinct paths.
+boilerplate_measurement:
+  method: split the file on the 31 separator lines of fifty '#' characters, stripped the URL header line
+    from each block, hashed the remainder with sha256. Then segmented one block by its four visible regions
+    and counted non-blank lines and the characters on them.
+  blocks_content_identical_after_url_strip: 31 of 31
+  correction_to_the_brief: 'the brief said ''30 of 31 pages identical''. That is one page too few. All
+    31 bodies are content-identical; the last block (/supplier-code-of-conduct/) differs from the other
+    30 by exactly one trailing empty line, an artifact of the file''s final newline, and is identical
+    once trailing blanks are dropped. search/expectations'' ''bodies_identical_after_url_strip: true''
+    is the correct statement.'
+  per_block_segments:
+    separator_and_url:
+      nonblank_lines: 2
+      chars: 78
+    nav_top:
+      nonblank_lines: 9
+      chars: 110
+    cookie_modal:
+      nonblank_lines: 91
+      chars: 6326
+    footer_menu:
+      nonblank_lines: 38
+      chars: 529
+    footer_legal:
+      nonblank_lines: 2
+      chars: 75
+  cookie_modal_share_of_nonblank_lines: 64.1%
+  cookie_modal_share_of_nonblank_chars: 88.9%
+  cookie_and_legal_share_of_nonblank_chars: 89.9%
+  in_domain_nav_and_footer_share_of_nonblank_chars: 9.0%
+  verdict_on_the_reported_97_5_percent: NOT REPRODUCED as stated, and the true number is worse in the
+    way that matters. The cookie-policy modal is 88.9% of the characters on non-blank lines and 64.1%
+    of the non-blank lines -- not 97.5%. But 99.4% of non-blank characters and 99.3% of non-blank lines
+    are exact repeats of another line in the same file, and the share of the file that is actual Taylor-Dunn
+    page prose is ZERO. The right headline number for this stage is 99.3% repeated, not ~97.5% cookie.
+coverage: full_text
+coverage_note: all 6,449 lines / 227,618 characters accounted for. One block read line-for-line; the other
+  30 proved identical to it by sha256 of the body, so reading them again would add nothing. Every count
+  in this file is over the whole text, not the sample.
+text_hazards:
+- hazard: cookie_banner
+  note: THE subject. A Complianz cookie-consent policy, dated 7 January 2025, is the entire body of every
+    one of the 31 page blocks -- 91 non-blank lines and 6,326 characters per block, 88.9% of the characters
+    on non-blank lines. Any form the search stage sends will land in this text or in the nav menu, nowhere
+    else.
+  quote: This Cookie Policy was last updated on January 7, 2025 and applies to citizens and legal permanent
+    residents of the European Economic Area, the United Kingdom and Switzerland.
+  occurrences: 31
+  approx_offset: 201
+- hazard: duplicate_page
+  note: '31 page blocks, ONE distinct body. Every non-URL line in the file therefore occurs 31 times exactly.
+    For an occurrence label this means the true count is always a multiple of 31, and 31 is the floor
+    rather than evidence of emphasis. It also means the occurrence half of this stage can be graded here
+    with total confidence while the snippet half discriminates nothing: 30 of every 31 clips are byte-identical
+    to the first.'
+  quote: https://www.taylor-dunn.com/supplier-code-of-conduct/
+  occurrences: 1
+  approx_offset: 220316
+- hazard: repeated_footer
+  note: 'the footer menu is 38 non-blank lines repeated 31 times and is the ONLY in-domain text in the
+    file: 9.0% of the characters on non-blank lines, against 88.9% for the cookie policy. Every product-shaped
+    and industry-shaped form on this subject resolves here and ONLY here, to a bare menu label with no
+    sentence, no verb and no claim around it.'
+  quote: Bigfoot Burden Carriers
+  occurrences: 31
+  approx_offset: 6749
+- hazard: repeated_nav
+  note: the 9-line top nav is 110 characters per block, 31 times. Note the TRAILING SPACE on four of its
+    lines -- the quote below ends in one -- where the footer menu spells the same labels without it, and
+    spells 'SALES & SERVICES' where the nav says 'SALES & SUPPORT'. A form matched in the nav and the
+    same form matched in the footer are not the same span even when they look identical.
+  quote: 'SALES & SUPPORT '
+  occurrences: 31
+  approx_offset: 132
+- hazard: heading_only_line
+  note: 'the footer menu''s five section headings sit alone on their own ALL-CAPS lines (VEHICLES, INDUSTRIES,
+    SALES & SERVICES, ABOUT, RESOURCES) and are the only thing that says what the bare labels beneath
+    them are. A snippet clipped to the line cannot carry that heading, so ''Aviation'' and ''Federal Government''
+    arrive with no marker that they are served-industry menu entries. The numbered cookie-policy headings
+    (''1. Introduction'' through ''10. Contact details'') have the same shape. The quoted string occurs
+    62 times: 31 as the bare footer heading and 31 more inside the nav line ''INDUSTRIES '' with its trailing
+    space.'
+  quote: INDUSTRIES
+  occurrences: 62
+  approx_offset: 120
+- hazard: vendor_table
+  note: the 'Placed cookies' section is a flattened three-column table -- vendor name, purpose, consent
+    key -- rendered as three consecutive bare lines with blanks between them, 13 vendors deep. It names
+    Elementor, WordPress, WPForms, Complianz, four Google services, YouTube, Facebook, LinkedIn and a
+    'Miscellaneous' row. These are ad-tech and CMS brands and they are the single richest bait in the
+    file for a product or equipment form.
+  quote: Consent to service elementor
+  occurrences: 31
+  approx_offset: 3471
+- hazard: legal_contact_block
+  note: the only postal address in 227,618 characters sits in the cookie policy's section 10 and belongs
+    to the PARENT, Waev Inc. It is a privacy-contact address, not a facility claim, so anything reading
+    it as a plant location is wrong in the fact and in the speaker at once.
+  quote: 2114 W Ball Rd, Anaheim, CA 92804
+  occurrences: 31
+  approx_offset: 6534
+- hazard: url_slug_only_form
+  note: '''tow tractors'' is a real Taylor-Dunn product line and it exists in this file ONLY as the URL
+    header line quoted below -- never as running text, and not even as a footer menu label. A form whose
+    sole match is inside a URL is the cleanest must_not_occur candidate on this subject: the string is
+    present, the mention is not.'
+  quote: https://www.taylor-dunn.com/tow-tractors/
+  occurrences: 1
+  approx_offset: 212975
+- hazard: sparse_nonascii
+  note: 'only four distinct non-ASCII codepoints in the whole file, and their counts are exactly 31 or
+    6*31: U+201C LEFT DOUBLE QUOTATION MARK 186x, U+201D RIGHT DOUBLE QUOTATION MARK 186x, U+00A0 NO-BREAK
+    SPACE 31x, U+00A9 COPYRIGHT SIGN 31x. There is exactly ONE NBSP per block and it sits mid-sentence,
+    between the full stop after ''website'' and the following ''We'', in the 5.2 statistics-cookies paragraph.
+    The quote below carries that NBSP verbatim; the same string spelled with an ASCII space matches ZERO
+    times, which is the whole hazard. No zero-width spaces anywhere.'
+  quote: With these statistics cookies we get insights in the usage of our website. We ask your permission
+    to place statistics cookies.
+  occurrences: 31
+  approx_offset: 2010
+- hazard: curly_quotes_in_definitions
+  note: the cookie policy quotes its own defined terms in U+201C/U+201D pairs -- the website, cookies,
+    like, pin, tweet, Save preferences. Six pairs per block, 186 of each codepoint. A form spelled with
+    an ASCII double quote cannot match any of them.
+  quote: 'Our website, https://www.taylor-dunn.com (hereinafter: “the website”) uses cookies and other
+    related technologies (for convenience all technologies are referred to as “cookies”).'
+  occurrences: 31
+  approx_offset: 396
+third_party_voice:
+- speaker: Complianz (cookie-consent plugin vendor), writing template legal prose in Taylor-Dunn's first
+    person
+  whose_words: third_party
+  note: 'THE location judgment on this subject, and the reason it is worth labelling at all. 88.9% of
+    the characters in this file are generated legal boilerplate that says ''we'', ''our website'' and
+    ''our servers'' -- so a location model reading the pronouns will call every one of these passages
+    whose_words: site, and be wrong 88.9% of the time. The evidence that it is not the site''s own writing
+    is inside the text: the vendor table lists Complianz with ''Consent to service complianz'', which
+    is the generator naming itself. Nothing in this file is Taylor-Dunn''s own marketing voice.'
+  quote: We may place these cookies without your consent.
+- speaker: Waev Inc. (parent company)
+  whose_words: parent
+  note: the cookie policy's section 10 signs itself with the PARENT's name, address, privacy mailbox and
+    phone, and the footer copyright line does the same. The subject's own name never appears as a legal
+    person anywhere in the file -- 'Taylor-Dunn' survives only inside the URLs and in the footer menu
+    item 'Why Taylor-Dunn'.
+  quote: © 2024 WAEV INC. | ALL RIGHTS RESERVED
+- speaker: ad-tech and CMS vendors (Elementor, WordPress, WPForms, Google, YouTube, Facebook, LinkedIn)
+  whose_words: vendor
+  note: the 13-row Placed-cookies table is a roster of other companies' products, named as products. Any
+    equipment or product form matching here has found a software vendor, not a Taylor-Dunn artifact.
+  quote: Google reCAPTCHA
+- speaker: Facebook, LinkedIn and Instagram, referenced as embedded third-party content
+  whose_words: third_party
+  note: section 5.4 is the one passage that explicitly hands authorship to somebody else and then disclaims
+    responsibility for it -- a rare in-text statement of whose words the surrounding content is.
+  quote: This content is embedded with code derived from Facebook, LinkedIn and Instagram and places cookies.
+notes: 'The corpus''s degenerate input, and its value to THIS stage is narrow and real. The occurrence
+  half is trivially gradeable and perfectly determined: one distinct body repeated 31 times means every
+  true count is a multiple of 31, so any count that is not is a defect the eval can name without a judgment
+  call. The snippet half is untestable here -- 30 of every 31 clips are byte-identical. The location half
+  is where the subject earns its place: 88.9% of the text is third-party generated legal prose written
+  in the site''s own first person, exactly the shape that makes whose_words fail, and the file offers
+  a parent-company block and a 13-brand vendor table as the two other speakers. Everything a manufacturing
+  ontology would want from Taylor-Dunn -- vehicles, industries served, plant, standards -- exists only
+  as bare footer menu labels totalling 529 characters per block, 9.0% of the file. NOTE for anyone reading
+  the grounding and synthesis expectations alongside this: those say 30 crawled URLs, this file has 31
+  page blocks and 28 distinct URL paths after slash-normalisation; the discrepancy is the three paths
+  that appear both with and without a trailing slash.'
+provenance:
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: harvested:search
+- action: added
+  by: seed-agent-batch5
+  date: '2026-08-27'
+  source: corpus-seed

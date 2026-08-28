@@ -1,0 +1,250 @@
+subject: alecmfg.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+golden_set_version: 1
+anchored_on: search/expectations/alecmfg_com/equipments.yaml
+labels:
+- id: alecmfg_com-equipments-0001
+  form: CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/about-us/
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: The adaptability of CNC machines allows for the production of complex shapes and designs that
+      would be difficult or impossible to achieve with manual machining.
+    approx_offset: 12265
+  - quote: CNC machines exhibit remarkable versatility in the range of materials they can work with, including
+      metals like aluminum and steel, plastics such as ABS and polycarbonate, and even composites.
+    approx_offset: 13493
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21445
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0002
+  form: CNC plasma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: All steel plates were cut and pre-machined in-house from ASTM A36 using CNC plasma and mill.
+    approx_offset: 108274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0003
+  form: HS-V55LS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: Recently, three new vertical machining centers, the HS-V55LS models from Taiwan Hashuo, have
+      already arrived at our new facility.
+    approx_offset: 136058
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0004
+  form: SLS and SLA rapid prototyping machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/about-us/
+  evidence:
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0005
+  form: Taiwan Hashuo
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: Recently, three new vertical machining centers, the HS-V55LS models from Taiwan Hashuo, have
+      already arrived at our new facility.
+    approx_offset: 136079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0006
+  form: double-column CNC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Final precision machining was done in our double-column CNC center using Renishaw probing to
+      set datums and align bores.
+    approx_offset: 108535
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0007
+  form: double-column CNC center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Final precision machining was done in our double-column CNC center using Renishaw probing to
+      set datums and align bores.
+    approx_offset: 108535
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0008
+  form: lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0009
+  form: lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/about-us/
+  evidence:
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21462
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0010
+  form: multi-axis CNC machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/about-us/
+  evidence:
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21434
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0011
+  form: rapid prototyping machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/about-us/
+  evidence:
+  - quote: As Alec Model evolves, we’ve expanded our arsenal with cutting-edge technology, including SLS
+      and SLA rapid prototyping machines, as well as multi-axis CNC machines and lathes, to enhance our
+      production capabilities and optimize our processes.
+    approx_offset: 21395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0012
+  form: vertical machining center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-equipments-0013
+  form: vertical machining centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: This significant move includes plans to add 10 vertical machining centers to boost production
+      capacity and meet increasing customer demand.
+    approx_offset: 135600
+  - quote: Recently, three new vertical machining centers, the HS-V55LS models from Taiwan Hashuo, have
+      already arrived at our new facility.
+    approx_offset: 136026
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

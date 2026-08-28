@@ -1,0 +1,823 @@
+subject: ableengineering.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+golden_set_version: 1
+anchored_on: search/expectations/ableengineering_com/process_caps.yaml
+labels:
+- id: ableengineering_com-process_caps-0001
+  form: CAD plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0002
+  form: CNC mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0003
+  form: NDT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: NADCAP – NDT
+    approx_offset: 1547
+  - quote: Our 250,000-square-foot facility includes a state-of-the-art machine shop, plating, special
+      processing and NDT.
+    approx_offset: 4822
+  - quote: NON-DESTRUCTIVE TESTING (NDT)
+    approx_offset: 5545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0004
+  form: Non-Destructive Testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: NON-DESTRUCTIVE TESTING (NDT)
+    approx_offset: 5520
+  - quote: We know the integrity of your aircraft’s parts is most important, which is why we’ve established
+      comprehensive, in-house and NADCAP-approved Non-Destructive Testing (NDT) services.
+    approx_offset: 5692
+  - quote: Non-Destructive Testing (NDT)
+    approx_offset: 42217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0005
+  form: Plating – Chrome, Nickel, CAD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0006
+  form: additive manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able’s innovative, additive manufacturing capability for repairing aluminum and magnesium components.
+    approx_offset: 5907
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0007
+  form: bearing services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0008
+  form: bearings services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+  evidence:
+  - quote: Operating from a 250,000-square-foot, state-of-the-art headquarters in Mesa, Arizona, Able
+      offers more than 10,000 FAA-approved repairs and overhauls, some of the world’s largest rotable
+      exchange inventories and in-house specialized services ranging from electroplating, chemical processing,
+      machinin
+    approx_offset: 81341
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0009
+  form: blast
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Our special processing includes blast, shot peen, cold spray and paint.
+    approx_offset: 4859
+  - quote: Special Processes – Shot Peen, Blast, Cold Spray and Paint
+    approx_offset: 42279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0010
+  form: chemical processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/processes/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: NADCAP – CHEMICAL PROCESSING
+    approx_offset: 1591
+  - quote: CHEMICAL PROCESSING AND PAINT
+    approx_offset: 5201
+  - quote: NADCAP – CHEMICAL PROCESSING
+    approx_offset: 27589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0011
+  form: chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5260
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0012
+  form: chrome plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0013
+  form: cold spray
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Our special processing includes blast, shot peen, cold spray and paint.
+    approx_offset: 4877
+  - quote: COLD SPRAY
+    approx_offset: 5876
+  - quote: Special Processes – Shot Peen, Blast, Cold Spray and Paint
+    approx_offset: 42286
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0014
+  form: completion services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: YOUR FULL-SERVICE PROVIDER OF AIRCRAFT COMPONENT REPAIR AND OVERHAUL, APPROVED REPLACEMENT
+      PARTS AND COMPLETION SERVICES.
+    approx_offset: 25858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0015
+  form: crating and packaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Able’s unmatched quality from the beginning repair and overhaul process to the final custom
+      crating and packaging we offer the solution needed to meet your landing gear MRO requirements.
+    approx_offset: 41556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0016
+  form: custom crating and packaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Able’s unmatched quality from the beginning repair and overhaul process to the final custom
+      crating and packaging we offer the solution needed to meet your landing gear MRO requirements.
+    approx_offset: 41549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0017
+  form: electroplating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+  evidence:
+  - quote: Operating from a 250,000-square-foot, state-of-the-art headquarters in Mesa, Arizona, Able
+      offers more than 10,000 FAA-approved repairs and overhauls, some of the world’s largest rotable
+      exchange inventories and in-house specialized services ranging from electroplating, chemical processing,
+      machinin
+    approx_offset: 81238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0018
+  form: grind
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42344
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0019
+  form: grinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: MACHINING & GRINDING
+    approx_offset: 5024
+  - quote: Operating from a 250,000-square-foot, state-of-the-art headquarters in Mesa, Arizona, Able
+      offers more than 10,000 FAA-approved repairs and overhauls, some of the world’s largest rotable
+      exchange inventories and in-house specialized services ranging from electroplating, chemical processing,
+      machinin
+    approx_offset: 81289
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0020
+  form: honing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0021
+  form: hydraulic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 6
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0022
+  form: hydraulics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/processes/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: HYDRAULICS
+    approx_offset: 5733
+  - quote: Able’s in-house hydraulics team provides services for both rotor wing and fixed wing aircraft
+      for Red Oil and Skydrol components.
+    approx_offset: 5761
+  - quote: HYDRAULICS
+    approx_offset: 25646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0023
+  form: lathe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0024
+  form: lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0025
+  form: machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: MACHINING & GRINDING
+    approx_offset: 5012
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42308
+  - quote: Operating from a 250,000-square-foot, state-of-the-art headquarters in Mesa, Arizona, Able
+      offers more than 10,000 FAA-approved repairs and overhauls, some of the world’s largest rotable
+      exchange inventories and in-house specialized services ranging from electroplating, chemical processing,
+      machinin
+    approx_offset: 81275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0026
+  form: mill
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0027
+  form: milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0028
+  form: nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5311
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42151
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0029
+  form: nickel plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0030
+  form: overhaul
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/military/
+  evidence:
+  - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing
+      customers around the world.
+    approx_offset: 312
+  - quote: We complete 13,000+ jobs every year and our processes provide a solution for nearly every repair
+      and overhaul.
+    approx_offset: 5001
+  - quote: YOUR FULL-SERVICE PROVIDER OF AIRCRAFT COMPONENT REPAIR AND OVERHAUL, APPROVED REPLACEMENT
+      PARTS AND COMPLETION SERVICES.
+    approx_offset: 25817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0031
+  form: overhauls
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/mro/?type_search=fixed%20wing
+    - https://www.ableaerospace.com/mro/?type_search=rotor%20wing
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-for-airbus-helicopters-with-contract-renewal/
+  evidence:
+  - quote: What sets us apart from all other MRO providers is our ability to complete more than 98% of
+      repairs and overhauls on-site.
+    approx_offset: 4696
+  - quote: REPAIRS & OVERHAULS
+    approx_offset: 28842
+  - quote: Our extensive catalog of repairs and overhauls ensures we have a solution for your aircraft.
+    approx_offset: 28890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0032
+  form: paint
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: Our special processing includes blast, shot peen, cold spray and paint.
+    approx_offset: 4892
+  - quote: CHEMICAL PROCESSING AND PAINT
+    approx_offset: 5225
+  - quote: Our full suite of paint and coating services – along with our skilled team and innovative technology
+      – make us equipped to handle painting services with ease.
+    approx_offset: 5378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0033
+  form: paint and coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Our full suite of paint and coating services – along with our skilled team and innovative technology
+      – make us equipped to handle painting services with ease.
+    approx_offset: 5378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0034
+  form: painting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Our full suite of paint and coating services – along with our skilled team and innovative technology
+      – make us equipped to handle painting services with ease.
+    approx_offset: 5490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0035
+  form: plating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Our 250,000-square-foot facility includes a state-of-the-art machine shop, plating, special
+      processing and NDT.
+    approx_offset: 4790
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5323
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 42133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0036
+  form: repair
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 49
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing
+      customers around the world.
+    approx_offset: 301
+  - quote: APPROVED AIRBUS HELICOPTERS MAINTENANCE & REPAIR CENTER
+    approx_offset: 1679
+  - quote: Instructions for Continued Airworthiness (ICAs) - Yoke Assembly Repair
+    approx_offset: 2225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0037
+  form: repairs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/military/
+    - https://www.ableaerospace.com/mro/?type_search=fixed%20wing
+  evidence:
+  - quote: 10,000+ REPAIRS
+    approx_offset: 908
+  - quote: We offer 10,000+ FAA-approved fixed and rotor wing repairs – many of these repairs are proprietary
+      to Able.
+    approx_offset: 968
+  - quote: We offer 10,000+ FAA-approved fixed and rotor wing repairs – many of these repairs are proprietary
+      to Able.
+    approx_offset: 992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0038
+  form: shot peen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Our special processing includes blast, shot peen, cold spray and paint.
+    approx_offset: 4866
+  - quote: SHOT PEEN
+    approx_offset: 5991
+  - quote: NADCAP-approved, Able has state-of-the-art CNC shot peen and manual capabilities.
+    approx_offset: 6049
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0039
+  form: tested
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Boeing
+    - https://www.ableaerospace.com/parts/?type_search=rotor%20wing
+    - https://www.ableaerospace.com/parts/?type_search=rotor%20wing&make_search=Airbus
+  evidence:
+  - quote: All parts are tested to meet or exceed the performance of original equipment.
+    approx_offset: 3229
+  - quote: All parts are tested to meet or exceed the performance of original equipment.
+    approx_offset: 7399
+  - quote: All parts are tested to meet or exceed the performance of original equipment.
+    approx_offset: 15171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-process_caps-0040
+  form: testing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-of-u-s-navy-th-57-training-fleet-through-relationship-with-vertex-aerospace/
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: NON-DESTRUCTIVE TESTING (NDT)
+    approx_offset: 5536
+  - quote: We know the integrity of your aircraft’s parts is most important, which is why we’ve established
+      comprehensive, in-house and NADCAP-approved Non-Destructive Testing (NDT) services.
+    approx_offset: 5708
+  - quote: Hydraulics – disassembly, testing and modifications
+    approx_offset: 42190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

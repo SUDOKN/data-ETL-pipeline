@@ -1,0 +1,309 @@
+subject: ableengineering.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+golden_set_version: 1
+anchored_on: search/expectations/ableengineering_com/industries.yaml
+labels:
+- id: ableengineering_com-industries-0001
+  form: Military & Foreign Government
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/contact/
+  evidence:
+  - quote: Military & Foreign Government
+    approx_offset: 44421
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0002
+  form: airlines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Able Aerospace is your full-service solution for landing gear, from narrow body airlines to
+      business jets and turboprops.
+    approx_offset: 41208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0003
+  form: aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/mro/?type_search=fixed%20wing
+    - https://www.ableaerospace.com/press/
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-for-airbus-helicopters-with-contract-renewal/
+  evidence:
+  - quote: A full-service operation, Able also provides a parts exchange program and approved replacement
+      parts for some of the biggest names in aviation.
+    approx_offset: 508
+  - quote: Able Aerospace is a subsidiary of Textron Aviation.
+    approx_offset: 889
+  - quote: Driven by our mission to empower our collective talent to design and deliver the best aviation
+      experience to customers, Able is committed to providing the industry’s best MRO solution.
+    approx_offset: 25966
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0004
+  form: aviation industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+  evidence:
+  - quote: “As an organization, we understand our responsibility in being a good steward of the environment
+      as well as achieving excellence in the aviation industry,” said Tyler.
+    approx_offset: 84191
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0005
+  form: business jets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Able Aerospace is your full-service solution for landing gear, from narrow body airlines to
+      business jets and turboprops.
+    approx_offset: 41220
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0006
+  form: defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.ableaerospace.com/military/
+    - https://www.ableaerospace.com/mro/?type_search=fixed%20wing
+    - https://www.ableaerospace.com/press/meet-yuri-hoverson/
+  evidence:
+  - quote: Coast Guard, and numerous foreign-allied militaries, has established Able as a highly credible
+      MRO for the Departments of Defense, Homeland Security and Allied Nations.
+    approx_offset: 51287
+  - quote: Textron Aviation Defense LLC
+    approx_offset: 68229
+  - quote: He succeeds Travis Tyler, who has transitioned to a new role as senior vice president, Defense
+      & Special Missions and president and CEO for Textron Aviation Defense.
+    approx_offset: 88042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0007
+  form: fixed wing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 74
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: FIXED WING
+    approx_offset: 110
+  - quote: Fixed Wing
+    approx_offset: 1944
+  - quote: FIXED WING
+    approx_offset: 3002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0008
+  form: fixed-wing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/military/
+  evidence:
+  - quote: FIXED-WING
+    approx_offset: 1247
+  - quote: FIXED-WING
+    approx_offset: 1279
+  - quote: FIXED-WING
+    approx_offset: 47700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0009
+  form: government aircraft fleets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/military/
+  evidence:
+  - quote: Maintaining government aircraft fleets requires expert knowledge and understanding.
+    approx_offset: 50454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0010
+  form: military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 32
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: MILITARY
+    approx_offset: 121
+  - quote: MILITARY
+    approx_offset: 3013
+  - quote: MILITARY
+    approx_offset: 4486
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0011
+  form: narrow body airlines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Able Aerospace is your full-service solution for landing gear, from narrow body airlines to
+      business jets and turboprops.
+    approx_offset: 41196
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0012
+  form: rotor wing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 77
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: ROTOR WING
+    approx_offset: 99
+  - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing
+      customers around the world.
+    approx_offset: 335
+  - quote: We offer 10,000+ FAA-approved fixed and rotor wing repairs – many of these repairs are proprietary
+      to Able.
+    approx_offset: 957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0013
+  form: rotor-wing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/press/
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+    - https://www.ableaerospace.com/press/able-aerospace-earns-faa-acceptance-for-safety-management-system-in-aircraft-and-component-maintenance/
+    - https://www.ableaerospace.com/press/meet-yuri-hoverson/
+  evidence:
+  - quote: ROTOR-WING
+    approx_offset: 1311
+  - quote: ROTOR-WING
+    approx_offset: 1341
+  - quote: ROTOR-WING
+    approx_offset: 1373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-industries-0014
+  form: turboprops
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Able Aerospace is your full-service solution for landing gear, from narrow body airlines to
+      business jets and turboprops.
+    approx_offset: 41238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

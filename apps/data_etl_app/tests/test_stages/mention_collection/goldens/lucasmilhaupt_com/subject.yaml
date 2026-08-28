@@ -1,0 +1,245 @@
+subject: lucasmilhaupt.com
+subject_name: Lucas-Milhaupt LLC
+slug: lucasmilhaupt_com
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+role: genre_probe
+role_note: >-
+  Seeded as `scale_stress` before this corpus adopted the search harness's
+  vocabulary wholesale. Normalized to search's `genre_probe` on 2026-08-27:
+  it is the same roster, and a second vocabulary would fork the corpus
+  silently. The earlier value is kept here because the reasoning behind
+  it describes what THIS stage sees, which search's word may not.
+role_source: 'search/expectations/lucasmilhaupt_com/subject.yaml assigns `genre_probe`, a word the
+  mention role vocabulary does not have. `scale_stress` chosen here on measured grounds specific to
+  THIS stage: 8 of 69 pages are BYTE-IDENTICAL duplicates of other pages (verified by md5), so every
+  phrase on 16 pages carries exactly two occurrences and every grouping decision on them is made
+  twice; 791 non-breaking spaces on 716 lines put span integrity under continuous load; and 388
+  lines are country-dropdown geography. The search harness''s genre finding is preserved below as
+  the second-person-manual hazard, which is this file''s single largest register.'
+
+# Who else speaks on this site. The manual is the hard one: it is first-party-authored but
+# reader-addressed, so it is the site's words about the READER's work.
+third_party_roster:
+- Steel Partners              # parent company; `whose_words: parent`
+- Steel Sports / Kids First   # parent-company CSR programmes - "Steel" here is a corporate name
+- Handy & Harman              # legacy brand/affiliate carried in product names (Handy One, Handy Flux)
+- 'the READER ("you", "your joint", "your production requirements")'   # the ~1,000-line manual
+- Hugh M. Cunningham Companies   # manufacturer's rep, in a bare-line contact directory
+- Kivlan Group                   # manufacturer's rep
+- Kliman Sales, Inc              # manufacturer's rep
+- Mid-Atlantic Sales             # manufacturer's rep
+- Monti & Associates             # manufacturer's rep  (19 rep firms in all, dumped twice)
+- HubSpot / Titan CMS / ASP.NET / Google Tag Manager   # cookie-vendor names, on the trimmed /Privacy page
+- AWS / ISO / AMS / NATE      # standards bodies and a training scheme
+
+coverage: full_text
+# Advisory for the page-trim leniency: /Privacy (76 lines, 5,617 chars) matches the pipeline's
+# exclusion rule and is dropped before chunking. That page is where ALL the cookie/CMS
+# software-name junk lives, so the trimmed text this stage actually sees is cleaner than the
+# snapshot - an occurrence label counted over the full file will OVERCOUNT those names.
+page_trim:
+  excluded_pages: ['https://www.lucasmilhaupt.com/Privacy']
+  note: '76 lines / 5,617 chars dropped; removes every ASP.NET / Google / HubSpot / Titan CMS mention'
+
+text_hazards:
+
+# ---- third-party voice: the file's largest register ------------------------------
+- hazard: instructional_second_person
+  note: 'THE `whose_words` case on this subject, and the largest single register in the file:
+    roughly 1,000 lines across /Brazing-Academy/Brazing-Fundamentals (1186-1757),
+    Principles-of-Joint-Design, Why-Brazing, Brazing-vs-Soldering and Brazing-vs-Welding are a
+    HOW-TO ADDRESSED TO THE READER, not a capability claim. Grammatically it is second person
+    throughout - "you should", "you must", "your joint", "your production requirements". It
+    names two dozen further processes (degreasing, acid pickling, abrasive cleaning,
+    sandblasting, quenching, twelve NDT and destructive test methods) and several machines
+    (furnace, torch, work coil, applicator gun, soak tank) that Lucas-Milhaupt never claims to
+    operate. The sentence-shaped clip reads exactly like a capability sentence; only the
+    pronoun distinguishes them. kind_of_text must say instructional/how-to and whose_words must
+    NOT resolve to a capability claim about the site.'
+  quote: "So you must take into account the “coefficient of thermal expansion” of the metals being joined."
+
+- hazard: instructional_second_person
+  note: 'a second exemplar that would be catastrophic if read as first-party: the sentence names
+    steel and copper and asserts a joining capability, in the second person, inside a page
+    arguing that BRAZING beats welding. Nobody at Lucas-Milhaupt is brazing steel to copper in
+    this sentence - the reader is.'
+  quote: "You can braze steel to copper as easily as steel to steel."
+
+- hazard: negation_contrast_echo
+  note: '/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding argues at LENGTH against welding, and
+    /Why-Brazing and /Brazing-vs-Soldering do the same for mechanical fastening, adhesive
+    bonding and soft soldering. Welding, resistance welding, electron beam, capacitor discharge
+    and friction welding occur ONLY as the rejected alternative. The expansion doc records this
+    firing live: the old pipeline tagged resistance welding from a page arguing against welding.
+    This is a snippet-extent problem - clip to the clause and the contrast survives, clip to the
+    noun phrase and it inverts.'
+  quote: "However, there are disadvantages to this linear-joint-welding approach."
+
+- hazard: parent_company_voice
+  note: 'parent-company CSR content (Steel Partners, Steel Sports, Kids First youth sports camps,
+    DEI, Code of Conduct) is written in the parent''s voice on Lucas-Milhaupt''s site. "Steel" in
+    all of it is a CORPORATE NAME, not the metal - and this is a materials company where "steel"
+    is otherwise a real material. Same token, two senses, one file.'
+  quote: "Steel Sports exists to forge a path of success for the next generation of leaders"
+
+- hazard: third_party_voice
+  note: 'a manufacturer''s-rep DIRECTORY dumped into the body of two industry pages: 19 firms
+    with contact names, emails and street addresses, rendered as bare lines with no sentence
+    anywhere. These are third-party companies, not customers and not capabilities, and every
+    line clips to a fragment (a name, an email, "Address:", a street). "Sterling" appears in
+    this file ONLY inside one of these street addresses.'
+  quote: "100 Sterling Pkwy, Suite 111"
+
+- hazard: employee_testimonial
+  note: 'the careers page carries employee testimonials attributed by first name and job title,
+    each repeated THREE times by a carousel. Personnel, not capabilities; whose_words is an
+    individual employee, which the vocabulary has no slot for - the honest answer is `site`
+    with belongs_to naming the testimonial carousel.'
+  quote: "- Goyko, Plant Metallurgist"
+
+# ---- repeated lines -------------------------------------------------------------
+- hazard: repeated_footer
+  note: 'a 16-line footer closes all 69 pages: the tagline, the four plant locations, the phone,
+    and four nav words. Every one is a standalone line. The Cudahy / Warwick / Ribérac / Suzhou
+    plant lines occur 69-70 times each, so a geography form on this subject is essentially all
+    footer - and the Ribérac line carries U+00E9.'
+  quote: "© Copyright 2025 Lucas-Milhaupt LLC | All rights reserved."
+
+- hazard: repeated_nav
+  note: 'a 4-line nav header opens all 69 pages, including a bare "EN " line with a trailing
+    space and a bare "MENU". Content-free tokens that still produce 69 identical snippets each.'
+  quote: "Skip to Content"
+
+- hazard: country_dropdown
+  note: 'COUNTRY-DROPDOWN GEO POISON, and a CORRECTION to the harvested profile. The list is
+    dumped TWICE, on /Industries/HVACR/OEM (lines 3641-3834) and /Industries/HVACR/Distributor
+    (4398-4592). Each block is 194 entries, not the ~240 the search profile and the expansion
+    doc record - I counted them line by line. 388 lines total. Both blocks end with "Syria" and
+    "Cuba" appended AFTER "Zimbabwe", out of alphabetical order. Every entry is a bare one-word
+    line; several collide with real vocabulary ("Turkey", "Chad", "Jersey", "Georgia"), and
+    "Brazil" collides on its first four letters with "braz(ing)", the single most common stem in
+    this file.'
+  quote: "Congo {Democratic Rep}"
+
+# ---- table-like structures ------------------------------------------------------
+- hazard: bare_token_lines
+  note: 'the TDS/SDS catalogue on /Resources-Library/Technical-and-Safety-Data-Sheets renders 30
+    rows as bare lines: an alloy designation followed by a document-type suffix, no sentence, no
+    punctuation. These are the densest material designations in the corpus and the whole snippet
+    is the row. Note also the truncation trap - the page announces 517 results and 18 pages but
+    the scrape captured page 1 only, so the other ~487 rows are simply absent and cannot be
+    expected.'
+  quote: "78ZN/22AL SDS"
+
+- hazard: bare_token_lines
+  note: 'the count line for the truncated catalogue. Worth a label of its own because it is the
+    only evidence in the text that 487 rows are missing.'
+  quote: "517 Results Listed"
+
+- hazard: bare_token_lines
+  note: 'FILTER-FACET LIST ITEMS: the /Products/Pastes page renders its facets as bare lines with
+    a parenthesised count suffix and no grammatical context at all. Real material designations
+    arriving with a numeral glued to the closing parenthesis, so the form has no right word
+    boundary.'
+  quote: "Cadmium-Bearing Silver Filler Metals(1)"
+
+- hazard: table_row
+  note: '71% of this file''s non-blank lines (2,765 of 3,904) end without terminal punctuation -
+    the lowest share in my batch, because the manual is genuine prose, but still the majority.
+    The product detail pages pair a label and a value on one line with malformed units - a stray
+    degree sign after the Fahrenheit value.'
+  quote: "900 °F °, 482 °C"
+
+# ---- heading styles -------------------------------------------------------------
+- hazard: heading_standalone_line
+  note: '175 ALL-CAPS lines, but this site''s dominant heading style is a Title-Case standalone
+    line - and the manual''s step headings are numbered ones. This heading also carries a typo
+    ("Learances" for "Clearances") that the body text does not, so heading and body disagree on
+    the spelling of the same concept and will not group.'
+  quote: "Step 1: Good Fit and Proper Learances"
+
+- hazard: heading_names_party
+  note: 'a Title-Case standalone heading naming the company, immediately above first-party prose -
+    the register marker that separates capability claims from the manual. Also carries a typo
+    ("Manfacturing").'
+  quote: "Manfacturing Excellence from Casting to Fabrication"
+
+# ---- degeneracy -----------------------------------------------------------------
+- hazard: duplicate_pages
+  note: 'THE scale hazard, and it is exact rather than approximate: 8 of 69 pages are
+    BYTE-IDENTICAL duplicates of other pages - verified by md5 over the page bodies. The pairs
+    are /Industries/{HVACR, Microelectronics, Medical, Aerospace, Electrical, Oil-and-Gas,
+    Automotive} mirrored by their /EN/Industries/*.htm twins, plus /About/Contact mirrored by
+    /NA/EN/About/Contact-Us.htm. Every phrase on those 16 pages therefore occurs EXACTLY twice.
+    This inflates every frequency reading, doubles every grouping decision, and is the cleanest
+    inheritance/grouping test material in the corpus because the two occurrences are provably
+    the same passage.'
+  quote: "https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm"
+
+- hazard: within_corpus_homograph
+  note: '"dies" is stamping TOOLING on /Services/Capabilities ("4,000 dies", "progressive dies",
+    "carbide and diamond dies") and SEMICONDUCTOR DIES on the microelectronics page. One is
+    excluded from equipment as tooling, the other is a genuine product. The bare form is
+    unscoreable without its snippet - which is exactly what a `snippet` label with a `carries`
+    element is for. And because the microelectronics page is one of the 8 duplicated pages, this
+    sense occurs exactly twice.'
+  quote: "high-purity solders for attaching semiconductor chips (dies) to substrates"
+
+- hazard: substring_trap
+  note: 'NEGATIVE-LABEL MATERIAL. "Lead" is a real material here (lead-free alloys, Tin-Lead Soft
+    Solders, 97.5PB/2.5AG) but the bare token occurs ~24 times and is "lead time" or "leading" in
+    all but three. The mention stage''s word-boundary rule does not save it - "lead" in "lead
+    times" IS a whole word. Only the snippet distinguishes them, which makes this an occurrence
+    label with must_not_occur on the wrong sense and a snippet label on the right one.'
+  quote: "we deliver consistent quality, shorter lead times"
+
+# ---- character-level ------------------------------------------------------------
+- hazard: nbsp_mid_phrase
+  note: 'THE character-level hazard on this subject: 791 non-breaking spaces on 716 lines - by
+    far the most in the corpus, and there are ZERO ASCII double-spaces, so the site uses NBSP
+    where other sites use whitespace. 108 of the affected lines are mid-prose. The exemplar
+    below has an NBSP immediately after a product name and another before an en dash, so a span
+    covering "Premabraze 880 and Silvaloy 721" crosses two of them. Any quote or form crossing an
+    NBSP needs elastic whitespace, and any snippet reproducing one must reproduce it exactly.'
+  quote: "(AuSn Premabraze 800, AuGe Premabraze 880)\xA0and Silvaloy 721\xA0– deliver exceptional bond strength"
+
+- hazard: non_ascii
+  note: '15 distinct non-ASCII code points: U+00A0 (791), U+2019 (128), U+00B0 degree (122, in
+    every brazing temperature), U+2013 (75), U+00E9 (72, mostly "Ribérac" in the 69-page footer),
+    U+00A9 (69), U+201D (41), U+2014 (33), U+00AE registered mark (30, glued to trade names such
+    as "Premabraze®"). The registered mark matters: it sits INSIDE the product form with no
+    space, so "Premabraze" and "Premabraze®" are different strings for the same product.'
+  quote: "Premabraze® Series"
+
+notes: 'Why lucasmilhaupt.com is a scale_stress subject for THIS stage specifically: three
+  separate multipliers act on every occurrence count. Eight of 69 pages are byte-identical
+  duplicates (md5-verified), so 16 pages'' worth of phrases each carry exactly two occurrences;
+  791 non-breaking spaces on 716 lines mean a large share of spans cross a character that ordinary
+  whitespace matching misses; and 388 lines of country dropdown produce bare one-word snippets in
+  bulk. None of that is about which forms were searched for - it is entirely about finding,
+  clipping and grouping them, which is this instrument''s contract.
+
+
+  The register story is the other half. The file''s single largest block - roughly 1,000 lines -
+  is a SECOND-PERSON technical manual, and its sentences are grammatically indistinguishable from
+  capability claims except for the pronoun. Two of its pages argue AGAINST welding and soldering
+  at length, so those processes appear only as rejected alternatives. Both failures are already
+  on record as having fired live on this subject (expansion doc, defect patterns 3 and 6), and
+  both are snippet/location failures rather than search failures.
+
+
+  CORRECTION TO THE HARVESTED PROFILES: both the search expectations and the expansion doc
+  describe the country dump as a "~240-entry ISO country list". I counted it line by line in both
+  blocks: 194 entries each, 388 lines total, with Syria and Cuba appended after Zimbabwe. The
+  hazard is real and its shape is unchanged; only the number was wrong.
+
+
+  All quotes were extracted from the snapshot by line offset and verified byte-exact, including
+  the non-breaking spaces; none was retyped.'
+
+provenance:
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: corpus-seed}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:search'}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:expansion-doc'}

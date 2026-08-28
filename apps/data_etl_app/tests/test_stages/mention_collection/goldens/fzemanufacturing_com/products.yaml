@@ -1,0 +1,3918 @@
+subject: fzemanufacturing.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+golden_set_version: 1
+anchored_on: search/expectations/fzemanufacturing_com/products.yaml
+labels:
+- id: fzemanufacturing_com-products-0001
+  form: ATVs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: ATVs & Motorcycles
+    approx_offset: 170458
+  - quote: FZE’s custom Shaft machining allows for the production of high-quality shafts for parts like
+      power drivetrains, suspension systems, and steering components on ATVs, dirt bikes, and motorcycles.
+    approx_offset: 170637
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0002
+  form: Agricultural Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: Utilizing advanced machinery and skilled machinists and technicians who understand the nuances
+      of working with agricultural equipment, we ensure that every product surpasses your expectations
+      and outperforms competitors.
+    approx_offset: 73082
+  - quote: Agricultural Equipment
+    approx_offset: 164232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0003
+  form: All-Terrain Vehicle Components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: All-Terrain Vehicle Components
+    approx_offset: 164255
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0004
+  form: Blades and other cutting instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Blades and other cutting instruments
+    approx_offset: 214087
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0005
+  form: Bolts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: The bolts are often fed automatically into the welder.
+    approx_offset: 139702
+  - quote: Bolts, fasteners and screws
+    approx_offset: 162998
+  - quote: The bolts are often fed automatically into the welder.
+    approx_offset: 183722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0006
+  form: Bolts, fasteners and screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Bolts, fasteners and screws
+    approx_offset: 162998
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0007
+  form: Brakes and Braking equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Brakes and Braking equipment
+    approx_offset: 4812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0008
+  form: CNC prototypes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+  evidence:
+  - quote: FZE is ISO 9001:2015 Certified, practices Lean Manufacturing, has a modern facility with modern
+      equipment and draws from four+ decades of skilled experience as a full-service manufacturing solutions
+      provider to create high-quality CNC prototypes as well as small-to-large volume orders.
+    approx_offset: 219876
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0009
+  form: CT Scanner
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: CT Scanner
+    approx_offset: 121601
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0010
+  form: Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+  evidence:
+  - quote: Our inspection processes guarantee the highest quality standards on a wide range of production
+      run types, such as castings, coatings, cranes, gears, machinery, and welds.
+    approx_offset: 54159
+  - quote: Castings
+    approx_offset: 55739
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0011
+  form: Circuit board printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Circuit board printing
+    approx_offset: 257244
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0012
+  form: Commercial mowers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Mowers: Commercial mowers contain various CNC-machined parts to ensure accurate cuts on grass,
+      weeds, and other vegetation.'
+    approx_offset: 72362
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0013
+  form: Cranes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+  evidence:
+  - quote: Cranes
+    approx_offset: 55757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0014
+  form: Cylinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Hydraulics – Cylinders, rods, and valves for fluid power applications in heavy machinery.
+    approx_offset: 83209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0015
+  form: Cylinders, rods, and valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Hydraulics – Cylinders, rods, and valves for fluid power applications in heavy machinery.
+    approx_offset: 83209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0016
+  form: Diagnostic Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Diagnostic equipment can also be precision machined to ensure reliable and accurate readings.
+    approx_offset: 95248
+  - quote: Diagnostic Equipment
+    approx_offset: 115889
+  - quote: Professional Hand Tools, Power Tools, Diagnostic Equipment
+    approx_offset: 119063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0017
+  form: Electronic components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Electronic components, such as semiconductors, LEDs, and ID cards
+    approx_offset: 177872
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0018
+  form: Fasteners and pins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Fasteners and pins
+    approx_offset: 214124
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0019
+  form: Firearm components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Firearm components
+    approx_offset: 1055
+  - quote: Firearm components
+    approx_offset: 48952
+  - quote: Firearm components
+    approx_offset: 98320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0020
+  form: Firearm parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: We specialize in high-end CNC milling and turning of Firearm parts, creating accurate firearm
+      components that require tight tolerances and exact specifications ranging from 0.1″ up to 2″ in
+      diameter.
+    approx_offset: 98393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0021
+  form: Fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Specialized Fasteners and Fittings
+    approx_offset: 16388
+  - quote: The Importance of Specialized Fasteners & Fittings in Industry
+    approx_offset: 17098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0022
+  form: Gears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Gears
+    approx_offset: 55764
+  - quote: Gears, pulleys, and shafts
+    approx_offset: 163083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0023
+  form: Gears, pulleys, and shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Gears, pulleys, and shafts
+    approx_offset: 163083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0024
+  form: Harvesters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Harvesters: Harvesters are machines designed to harvest crops such as wheat, soybeans, corn,
+      and other grains.'
+    approx_offset: 71218
+  - quote: 'Harvesters: Harvesters are machines designed to harvest crops such as wheat, soybeans, corn,
+      and other grains.'
+    approx_offset: 71230
+  - quote: Agriculture – Durable machined parts for tractors, harvesters, and irrigation systems.
+    approx_offset: 83160
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0025
+  form: Heart rate monitor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Heart rate monitor
+    approx_offset: 121635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0026
+  form: Hinges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Hinges, latches and plates
+    approx_offset: 163110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0027
+  form: Hinges, latches and plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Hinges, latches and plates
+    approx_offset: 163110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0028
+  form: Hydraulic presses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Hydraulic presses
+    approx_offset: 4794
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0029
+  form: MRI Scanner
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: MRI Scanner
+    approx_offset: 121612
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0030
+  form: Machine blades
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Machine blades
+    approx_offset: 4899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0031
+  form: Marine Assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Marine Assemblies
+    approx_offset: 164214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0032
+  form: Mechanical Assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Mechanical Assemblies
+    approx_offset: 164286
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0033
+  form: Mechanisms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/recreational-marine/
+  evidence:
+  - quote: These machines produce ultra-precise, intricate parts essential for the sophisticated mechanisms
+      of marine craft.
+    approx_offset: 31566
+  - quote: Mechanisms
+    approx_offset: 164308
+  - quote: From propeller shafts to steering mechanisms, our components are built to withstand fresh and
+      saltwater environments in high mechanical stress, providing reliable and safe operation for recreational
+      marine applications.
+    approx_offset: 169947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0034
+  form: Mild Steel and/or Aluminum frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Mild Steel and/or Aluminum frames used in professional turf care
+    approx_offset: 49204
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0035
+  form: Mowers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: The correct size and shape of the shaft ensure optimal performance for the cutting blades on
+      mowers, trenchers, and other types of grass-cutting tools used by groundskeepers and landscapers
+      alike.
+    approx_offset: 43737
+  - quote: 'Mowers: Commercial mowers contain various CNC-machined parts to ensure accurate cuts on grass,
+      weeds, and other vegetation.'
+    approx_offset: 72354
+  - quote: 'Mowers: Commercial mowers contain various CNC-machined parts to ensure accurate cuts on grass,
+      weeds, and other vegetation.'
+    approx_offset: 72373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0036
+  form: PCBs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Electronics such as computers, cell phones, and tablets require small, easily identified stainless
+      steel components for PCBs, circuits, and other critical operations.
+    approx_offset: 246999
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0037
+  form: PCBs, circuits
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Electronics such as computers, cell phones, and tablets require small, easily identified stainless
+      steel components for PCBs, circuits, and other critical operations.
+    approx_offset: 246999
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0038
+  form: Piping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Widely used in residential, commercial, and industrial settings, copper fittings ensure efficient
+      fluid flow and maintain high-quality performance in various piping applications.
+    approx_offset: 18661
+  - quote: Piping and tubing
+    approx_offset: 214143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0039
+  form: Piping and tubing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Piping and tubing
+    approx_offset: 214143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0040
+  form: Planters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Planters: Planters are machines used to plant seeds into the soil or other substrates rapidly.'
+    approx_offset: 71512
+  - quote: 'Planters: Planters are machines used to plant seeds into the soil or other substrates rapidly.'
+    approx_offset: 71522
+  - quote: Our Shaft machining services help produce rugged shafts that power essential farm machinery,
+      including tractors, combines, balers, havestors, planters and tillage equipment.
+    approx_offset: 169108
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0041
+  form: Power Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Professional hand and power tools
+    approx_offset: 49074
+  - quote: Professional hand tools, power tools, diagnostic equipment
+    approx_offset: 94892
+  - quote: Using machining capabilities in hand tools, power tools, and diagnostic equipment allows professionals
+      to create high-quality products quickly and efficiently.
+    approx_offset: 94971
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0042
+  form: Professional Hand Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Professional Hand Tools
+    approx_offset: 49382
+  - quote: Professional hand tools, power tools, diagnostic equipment
+    approx_offset: 94867
+  - quote: We are proficient and skilled in  manufacturing for Professional hand tools and power tools,
+      as well as the design and engineering of diagnostic equipment components.
+    approx_offset: 95396
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0043
+  form: Prototype
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Prototype
+    approx_offset: 38887
+  - quote: Prototype
+    approx_offset: 139949
+  - quote: Prototype
+    approx_offset: 139980
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0044
+  form: Pumps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Pumps
+    approx_offset: 39912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0045
+  form: Recreational boats
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Recreational boats, motors and the related heavy-duty components are often made from Stainless
+      Steel.
+    approx_offset: 66816
+  - quote: Our custom Shaft machining services allow us to produce corrosion-resistant shafts for recreational
+      boats, jet skis, and other watercraft.
+    approx_offset: 169861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0046
+  form: Robotic Arms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Robotic Arms
+    approx_offset: 4930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0047
+  form: Screwdrivers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Screwdrivers are another type of hand tool that requires machining for optimal performance.
+    approx_offset: 120450
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0048
+  form: Shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Shafts have several important uses in the aerospace, agriculture, automotive,…
+    approx_offset: 60951
+  - quote: Shafts, bearings and bushings
+    approx_offset: 163053
+  - quote: Precision-machined Shafts from FZE are vital to turf care equipment, such as commercial mowers,
+      aerators, and dethatchers.
+    approx_offset: 169433
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0049
+  form: Shafts, bearings and bushings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Shafts, bearings and bushings
+    approx_offset: 163053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0050
+  form: Specialized Fasteners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Specialized Fasteners
+    approx_offset: 999
+  - quote: Specialized Fasteners and Fittings
+    approx_offset: 16362
+  - quote: The Importance of Specialized Fasteners & Fittings in Industry
+    approx_offset: 17074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0051
+  form: Specialized Fasteners and Fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Specialized Fasteners and Fittings
+    approx_offset: 16362
+  - quote: At FZE Manufacturing Solutions, our custom and/or specialized fasteners and fittings are engineered
+      in accordance with the application, reflecting a commitment to uphold the industry’s highest standards.
+    approx_offset: 17611
+  - quote: FZE Manufacturing Solutions harnesses barfed CNC Turning Centers as well as CNC Swiss Machining
+      to achieve unparalleled accuracy in creating custom and/or specialized fasteners and fittings.
+    approx_offset: 19742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0052
+  form: Sprayers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like
+      nozzles, hoses and connectors, filters, and valves to ensure that pesticides, fungicides, and other
+      chemicals are accurately applied to crops in the right quantities at each spot.'
+    approx_offset: 72079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0053
+  form: Springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Springs, clamps, and clips
+    approx_offset: 163026
+  - quote: Springs
+    approx_offset: 214161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0054
+  form: Springs, clamps, and clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Springs, clamps, and clips
+    approx_offset: 163026
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0055
+  form: Tractors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Tractors: Modern tractors contain various CNC-machined parts to make them more precise and
+      efficient.'
+    approx_offset: 71874
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0056
+  form: Ultrasound
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Ultrasound
+    approx_offset: 121624
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0057
+  form: Valve actuators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Valve actuators
+    approx_offset: 4914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0058
+  form: Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 7
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0059
+  form: Welded Assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Welded Assemblies
+    approx_offset: 164331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0060
+  form: Wire racks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Wire racks
+    approx_offset: 214169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0061
+  form: a jigsaw or a circular saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Whether a jigsaw or a circular saw, both require machining to create clean and accurate cuts.
+    approx_offset: 120262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0062
+  form: actuators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Valve actuators
+    approx_offset: 4920
+  - quote: Our custom machining ensures exact tolerances, delivering optimal performance for pumps, motors,
+      and actuators in demanding applications such as construction, forestry, and material handling.
+    approx_offset: 170366
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0063
+  form: aerators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Machinery used in professional turf care includes mowers, edgers, dethatchers, aerators, and
+      specialty tools such as brush hogs or slit seeders.
+    approx_offset: 94233
+  - quote: Precision-machined Shafts from FZE are vital to turf care equipment, such as commercial mowers,
+      aerators, and dethatchers.
+    approx_offset: 169510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0064
+  form: agricultural machinery components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Advanced machining technologies are being used for the production of agricultural machinery
+      components.
+    approx_offset: 93241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0065
+  form: agriculture machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: With an expansive knowledge of agriculture machinery and equipment, our team provides custom
+      solutions tailored to the needs of agriculture-based operations.
+    approx_offset: 93817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0066
+  form: aircraft structures, engine parts, and landing gear systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Aerospace – Precision-machined components for aircraft structures, engine parts, and landing
+      gear systems.
+    approx_offset: 82947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0067
+  form: airplane engines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Stainless steel components used in airplane engines, panels, fixtures, landing gear, and other
+      components must be clearly marked and traceable.
+    approx_offset: 246757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0068
+  form: angles, casting replacements, plates, panels, tubes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: FZE’s trained metal fabrication staff can bend, shape, and cut a long list of metals to create
+      products such as angles, casting replacements, plates, panels, tubes, and more.
+    approx_offset: 181919
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0069
+  form: balers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Our Shaft machining services help produce rugged shafts that power essential farm machinery,
+      including tractors, combines, balers, havestors, planters and tillage equipment.
+    approx_offset: 169089
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0070
+  form: ball bearings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: Heavy equipment (ball bearings, fasteners)
+    approx_offset: 252100
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0071
+  form: bearing housings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Machined parts are used for many agricultural needs, such as power transmission components,
+      cutting tools, mounting systems, hopper systems, bearing housings, and much more.
+    approx_offset: 93625
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0072
+  form: bearings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Shafts, bearings and bushings
+    approx_offset: 163061
+  - quote: Heavy equipment (ball bearings, fasteners)
+    approx_offset: 252105
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0073
+  form: beverage components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+  evidence:
+  - quote: They machine, fabricate, manufacture and assemble parts, components and end products across
+      a diverse range of markets including recreational marine markets, professional turf and lawn care,
+      hydraulics, agriculture, precision metrology, office furniture, firefighting, safety equipment,
+      beverage comp
+    approx_offset: 187694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0074
+  form: blades
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: Machine blades
+    approx_offset: 4907
+  - quote: CNC Swiss machined components offer superior quality and reliability for professional turf
+      care needs, from mower blades to irrigation systems and other specialized equipment.
+    approx_offset: 43025
+  - quote: The correct size and shape of the shaft ensure optimal performance for the cutting blades on
+      mowers, trenchers, and other types of grass-cutting tools used by groundskeepers and landscapers
+      alike.
+    approx_offset: 43727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0075
+  form: brackets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Maybe they need brackets, frames for a machine or project, or something more complex like a
+      metal enclosure.
+    approx_offset: 133914
+  - quote: Examples of parts with irregular or special shapes include brackets and bases.
+    approx_offset: 229885
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0076
+  form: brakes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Brakes and Braking equipment
+    approx_offset: 4812
+  - quote: 'Bending: Press brakes and similar devices are used to weld or air-bend metal sheets in modern
+      metal manufacturing.'
+    approx_offset: 136056
+  - quote: CNC press brakes are simple and quick to program with offline software.
+    approx_offset: 136285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0077
+  form: bushings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Shafts, bearings and bushings
+    approx_offset: 163074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0078
+  form: casting replacements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: FZE’s trained metal fabrication staff can bend, shape, and cut a long list of metals to create
+      products such as angles, casting replacements, plates, panels, tubes, and more.
+    approx_offset: 181927
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0079
+  form: cell phones, tablets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: While it can be applied in most industries, aluminum laser marking is especially prominent
+      in the electronics industry to etch components and pieces used in medical machinery, electronic
+      tools, cell phones, tablets, and sensitive components like computer chips and heat sinks.
+    approx_offset: 194706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0080
+  form: circular saw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Whether a jigsaw or a circular saw, both require machining to create clean and accurate cuts.
+    approx_offset: 120276
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0081
+  form: clamps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Springs, clamps, and clips
+    approx_offset: 163035
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0082
+  form: clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Springs, clamps, and clips
+    approx_offset: 163047
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0083
+  form: combines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Our Shaft machining services help produce rugged shafts that power essential farm machinery,
+      including tractors, combines, balers, havestors, planters and tillage equipment.
+    approx_offset: 169079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0084
+  form: commercial mowers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Precision-machined Shafts from FZE are vital to turf care equipment, such as commercial mowers,
+      aerators, and dethatchers.
+    approx_offset: 169491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0085
+  form: components for motors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3663
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0086
+  form: computer chips and heat sinks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: While it can be applied in most industries, aluminum laser marking is especially prominent
+      in the electronics industry to etch components and pieces used in medical machinery, electronic
+      tools, cell phones, tablets, and sensitive components like computer chips and heat sinks.
+    approx_offset: 194758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0087
+  form: cookware
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Laser marking creates product labels, branding, and component identification for stainless
+      steel knives, cookware, and appliances.
+    approx_offset: 246357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0088
+  form: copper fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Likewise, our copper fittings are essential components in plumbing and HVAC systems, prized
+      for their excellent conductivity, antimicrobial properties, and resistance to corrosion.
+    approx_offset: 18336
+  - quote: Widely used in residential, commercial, and industrial settings, copper fittings ensure efficient
+      fluid flow and maintain high-quality performance in various piping applications.
+    approx_offset: 18568
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0089
+  form: cranes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Lifting equipment (cranes, hydraulic jacks, wheelchair & scissor lifts, etc.)
+    approx_offset: 4647
+  - quote: Components found in heavy machinery, including cranes, tractors, railways, railcars, and other
+      rolling equipment
+    approx_offset: 49316
+  - quote: Our inspection processes guarantee the highest quality standards on a wide range of production
+      run types, such as castings, coatings, cranes, gears, machinery, and welds.
+    approx_offset: 54179
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0090
+  form: custom fastener
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Whether the requirement is for a standard component or a custom fastener or fitting, FZE is
+      equipped to deliver with precision and quality that is unmatched in the industry.
+    approx_offset: 25462
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0091
+  form: custom shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: Professional turf care requires the use of custom shafts that are machined to exact specifications.
+    approx_offset: 43261
+  - quote: Automotive – Custom shafts, hydraulic fittings, and specialized fasteners for vehicle manufacturing.
+    approx_offset: 83021
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0092
+  form: cutting blades
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: The correct size and shape of the shaft ensure optimal performance for the cutting blades on
+      mowers, trenchers, and other types of grass-cutting tools used by groundskeepers and landscapers
+      alike.
+    approx_offset: 43719
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0093
+  form: cylinder & rods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3646
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0094
+  form: cylinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+    - https://fzemanufacturing.com/industries-served/pneumatics-industry/
+  evidence:
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11632
+  - quote: Hydraulic machining creates or modifies hydraulic components such as valves and cylinders,
+      ensuring proper functionality.
+    approx_offset: 78039
+  - quote: We produce parts such as valves and cylinders, making sure each component meets precise tolerances
+      and performs efficiently under pressure.
+    approx_offset: 158138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0095
+  form: dethatchers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Machinery used in professional turf care includes mowers, edgers, dethatchers, aerators, and
+      specialty tools such as brush hogs or slit seeders.
+    approx_offset: 94220
+  - quote: Precision-machined Shafts from FZE are vital to turf care equipment, such as commercial mowers,
+      aerators, and dethatchers.
+    approx_offset: 169524
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0096
+  form: device components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: The medical industry uses laser-marked stainless steel for device components, as well as surgical
+      tools and diagnostic and clinical equipment.
+    approx_offset: 246451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0097
+  form: diagnostic equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Professional hand tools, power tools, diagnostic equipment
+    approx_offset: 94905
+  - quote: Using machining capabilities in hand tools, power tools, and diagnostic equipment allows professionals
+      to create high-quality products quickly and efficiently.
+    approx_offset: 94988
+  - quote: We are proficient and skilled in  manufacturing for Professional hand tools and power tools,
+      as well as the design and engineering of diagnostic equipment components.
+    approx_offset: 95478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0098
+  form: diagnostic equipment components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: We are proficient and skilled in  manufacturing for Professional hand tools and power tools,
+      as well as the design and engineering of diagnostic equipment components.
+    approx_offset: 95478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0099
+  form: drills, mills, and taps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: In metalworking applications, drills, mills, and taps create holes in materials such as steel
+      and aluminum.
+    approx_offset: 119806
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0100
+  form: drive sprockets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: These machines use CNC-machined parts, such as feed rollers, grain conveyor augers, and drive
+      sprockets, to precisely cut and collect the crop material during harvesting operations.
+    approx_offset: 71417
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0101
+  form: drivetrains
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: FZE’s custom Shaft machining allows for the production of high-quality shafts for parts like
+      power drivetrains, suspension systems, and steering components on ATVs, dirt bikes, and motorcycles.
+    approx_offset: 170577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0102
+  form: drop tubes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71662
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0103
+  form: electronic components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Our team is equipped to handle all types of electronic components such as resistors, capacitors,
+      diodes, transistors, connectors, and more.
+    approx_offset: 163293
+  - quote: This makes them ideal for applications that require intricate designs or small details, such
+      as medical devices or electronic components.
+    approx_offset: 256601
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0104
+  form: engine parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Aerospace – Precision-machined components for aircraft structures, engine parts, and landing
+      gear systems.
+    approx_offset: 82968
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0105
+  form: feed rollers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: These machines use CNC-machined parts, such as feed rollers, grain conveyor augers, and drive
+      sprockets, to precisely cut and collect the crop material during harvesting operations.
+    approx_offset: 71376
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0106
+  form: feed rollers, grain conveyor augers, and drive sprockets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: These machines use CNC-machined parts, such as feed rollers, grain conveyor augers, and drive
+      sprockets, to precisely cut and collect the crop material during harvesting operations.
+    approx_offset: 71376
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0107
+  form: fertilizer hoppers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71674
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0108
+  form: filters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like
+      nozzles, hoses and connectors, filters, and valves to ensure that pesticides, fungicides, and other
+      chemicals are accurately applied to crops in the right quantities at each spot.'
+    approx_offset: 72204
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0109
+  form: firearm components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+  evidence:
+  - quote: Thanks to our highly skilled staff and our state-of-the-art quality equipment and measurement
+      instrumentation, all our inspections comply with the highest standards and regulatory requirements
+      across a variety of industries, including demanding fields such as recreational marine, firearm
+      components,
+    approx_offset: 53677
+  - quote: We specialize in high-end CNC milling and turning of Firearm parts, creating accurate firearm
+      components that require tight tolerances and exact specifications ranging from 0.1″ up to 2″ in
+      diameter.
+    approx_offset: 98426
+  - quote: With FZE’s state-of-the-art facility and expert staff, partnering with us for firearm component
+      manufacturing services provides Firearm component manufacturers with a dependable source for quality,
+      affordable firearm components.
+    approx_offset: 98883
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0110
+  form: firearm parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0111
+  form: fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3693
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11614
+  - quote: This specialized technique is particularly effective for creating intricate hydraulic machined
+      parts and fittings.
+    approx_offset: 13622
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0112
+  form: frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Mild Steel and/or Aluminum frames used in professional turf care
+    approx_offset: 49231
+  - quote: Maybe they need brackets, frames for a machine or project, or something more complex like a
+      metal enclosure.
+    approx_offset: 133924
+  - quote: They are usually used in the construction of building frames and heavy equipment.
+    approx_offset: 135078
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0113
+  form: gear drives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+  evidence:
+  - quote: From pump shafts to gear drives and many other applications, we machine components that sustain
+      critical operations like fire fighting operations, ensuring reliability when every rotation is crucial.
+    approx_offset: 124805
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0114
+  form: gears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+  evidence:
+  - quote: Our inspection processes guarantee the highest quality standards on a wide range of production
+      run types, such as castings, coatings, cranes, gears, machinery, and welds.
+    approx_offset: 54187
+  - quote: Engineers can mix and match shafts and gears of different diameters to vary the force and speed
+      of these components’ rotation.
+    approx_offset: 60863
+  - quote: Engineers can mix and match shafts and gears of different diameters to vary the force and speed
+      of these components’ rotation.
+    approx_offset: 199586
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0115
+  form: golf clubs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: This makes it ideal for marking golf clubs, lawnmowers, and other pieces of equipment that
+      may need a permanent mark applied.
+    approx_offset: 44265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0116
+  form: grain conveyor augers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: These machines use CNC-machined parts, such as feed rollers, grain conveyor augers, and drive
+      sprockets, to precisely cut and collect the crop material during harvesting operations.
+    approx_offset: 71390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0117
+  form: hand tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Professional Hand Tools
+    approx_offset: 49395
+  - quote: Professional hand tools, power tools, diagnostic equipment
+    approx_offset: 94880
+  - quote: Using machining capabilities in hand tools, power tools, and diagnostic equipment allows professionals
+      to create high-quality products quickly and efficiently.
+    approx_offset: 94959
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0118
+  form: havestors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Our Shaft machining services help produce rugged shafts that power essential farm machinery,
+      including tractors, combines, balers, havestors, planters and tillage equipment.
+    approx_offset: 169097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0119
+  form: heat sinks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: While it can be applied in most industries, aluminum laser marking is especially prominent
+      in the electronics industry to etch components and pieces used in medical machinery, electronic
+      tools, cell phones, tablets, and sensitive components like computer chips and heat sinks.
+    approx_offset: 194777
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0120
+  form: hopper systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Machined parts are used for many agricultural needs, such as power transmission components,
+      cutting tools, mounting systems, hopper systems, bearing housings, and much more.
+    approx_offset: 93609
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0121
+  form: hose hardware
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0122
+  form: hoses and connectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like
+      nozzles, hoses and connectors, filters, and valves to ensure that pesticides, fungicides, and other
+      chemicals are accurately applied to crops in the right quantities at each spot.'
+    approx_offset: 72182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0123
+  form: hydraulic components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/industries-served/pneumatics-industry/
+    - https://fzemanufacturing.com/videos/
+  evidence:
+  - quote: Hydraulic Components Machining
+    approx_offset: 3057
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3607
+  - quote: What is Hydraulic Components Machining?
+    approx_offset: 4166
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0124
+  form: hydraulic fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: For example, our hydraulic fittings are vital components in hydraulic systems, facilitating
+      the transfer of fluid power to operate machinery and equipment.
+    approx_offset: 19099
+  - quote: Widely employed in industries such as construction, agriculture, and manufacturing, FZE Manufacturing’s
+      hydraulic fittings ensure seamless connections and efficient power transmission for diverse applications.
+    approx_offset: 19342
+  - quote: Automotive – Custom shafts, hydraulic fittings, and specialized fasteners for vehicle manufacturing.
+    approx_offset: 83036
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0125
+  form: hydraulic jacks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Lifting equipment (cranes, hydraulic jacks, wheelchair & scissor lifts, etc.)
+    approx_offset: 4655
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0126
+  form: hydraulic jacks, wheelchair & scissor lifts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Lifting equipment (cranes, hydraulic jacks, wheelchair & scissor lifts, etc.)
+    approx_offset: 4655
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0127
+  form: hydraulic machine parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: Our experienced engineers and skilled machinists are adept at producing hydraulic machine parts
+      with precision and efficiency.
+    approx_offset: 11484
+  - quote: Whether you require custom hydraulic machine parts or specialized fabrication services, we
+      are always ready to assist you.
+    approx_offset: 14827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0128
+  form: hydraulic machined parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11578
+  - quote: This specialized technique is particularly effective for creating intricate hydraulic machined
+      parts and fittings.
+    approx_offset: 13593
+  - quote: Our part assembly and kitting services ensure that hydraulic machined parts are assembled correctly
+      and ready for installation, improving overall performance and reliability.
+    approx_offset: 14164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0129
+  form: hydraulic parts and components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: For more than four decades, FZE Manufacturing Solutions, LLC, has specialized in machining
+      and manufacturing a wide range of hydraulic parts and components.
+    approx_offset: 3214
+  - quote: Manufacturing complex hydraulic parts and components with high accuracy and repeatability can
+      be challenging.
+    approx_offset: 5639
+  - quote: This array of capabilities allows us to manufacture hydraulic parts and components for industries
+      ranging from construction and agriculture to marine, aerospace, automotive and trucking.
+    approx_offset: 6694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0130
+  form: irrigation systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: CNC Swiss machined components offer superior quality and reliability for professional turf
+      care needs, from mower blades to irrigation systems and other specialized equipment.
+    approx_offset: 43035
+  - quote: Agriculture – Durable machined parts for tractors, harvesters, and irrigation systems.
+    approx_offset: 83176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0131
+  form: jigsaw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Whether a jigsaw or a circular saw, both require machining to create clean and accurate cuts.
+    approx_offset: 120264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0132
+  form: keychains
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Adding promotional aspects, like a brand name, logo, or tagline, to aluminum items (e.g., keychains,
+      badges, trophies, etc.)
+    approx_offset: 194909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0133
+  form: keychains, badges, trophies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Adding promotional aspects, like a brand name, logo, or tagline, to aluminum items (e.g., keychains,
+      badges, trophies, etc.)
+    approx_offset: 194909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0134
+  form: kit
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Kitting is grouping assembled parts together into a “kit” to provide a ready for assembly line
+      offering.
+    approx_offset: 79847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0135
+  form: knives, cookware, and appliances
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Laser marking creates product labels, branding, and component identification for stainless
+      steel knives, cookware, and appliances.
+    approx_offset: 246349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0136
+  form: landing gear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Aircraft – landing gear, flaps, doors
+    approx_offset: 4852
+  - quote: Aerospace – Precision-machined components for aircraft structures, engine parts, and landing
+      gear systems.
+    approx_offset: 82986
+  - quote: Stainless steel components used in airplane engines, panels, fixtures, landing gear, and other
+      components must be clearly marked and traceable.
+    approx_offset: 246793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0137
+  form: landing gear, flaps, doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Aircraft – landing gear, flaps, doors
+    approx_offset: 4852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0138
+  form: latches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Hinges, latches and plates
+    approx_offset: 163118
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0139
+  form: lawnmowers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: This makes it ideal for marking golf clubs, lawnmowers, and other pieces of equipment that
+      may need a permanent mark applied.
+    approx_offset: 44277
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0140
+  form: machined parts for hydraulic equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: Utilizing advanced technology, we can produce complex machined parts for hydraulic equipment.
+    approx_offset: 11860
+  - quote: This attention to detail guarantees that our customers receive machined parts for hydraulic
+      equipment that function reliably in demanding environments.
+    approx_offset: 12933
+  - quote: These techniques improve our efficiency and allow for greater accuracy and flexibility in manufacturing
+      machined parts for hydraulic equipment.
+    approx_offset: 13260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0141
+  form: mechanical assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0142
+  form: medical device assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Medical – High-precision components for surgical instruments and medical device assemblies.
+    approx_offset: 83351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0143
+  form: medical devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Electropolishing is a transformative process that beautifies metal surfaces and imbues them
+      with enhanced performance characteristics, such as increased corrosion resistance and ease of sterilization—attributes
+      essential in industries like medical devices and food processing.
+    approx_offset: 23919
+  - quote: Unique device identifiers (UDIs) for medical devices, per FDA guidelines
+    approx_offset: 177699
+  - quote: Labeling the unique device identifiers (UDIs) that the FDA requires on medical devices
+    approx_offset: 195128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0144
+  form: metal enclosure
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Maybe they need brackets, frames for a machine or project, or something more complex like a
+      metal enclosure.
+    approx_offset: 133990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0145
+  form: motors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3678
+  - quote: They help ensure that all required parts and components, including the blades, motors, and
+      other mower components, are properly assembled for smooth and efficient operation.
+    approx_offset: 44636
+  - quote: Recreational boats, motors and the related heavy-duty components are often made from Stainless
+      Steel.
+    approx_offset: 66836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0146
+  form: mounting systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Machined parts are used for many agricultural needs, such as power transmission components,
+      cutting tools, mounting systems, hopper systems, bearing housings, and much more.
+    approx_offset: 93591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0147
+  form: mower blades
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: CNC Swiss machined components offer superior quality and reliability for professional turf
+      care needs, from mower blades to irrigation systems and other specialized equipment.
+    approx_offset: 43019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0148
+  form: nozzles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+  evidence:
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like
+      nozzles, hoses and connectors, filters, and valves to ensure that pesticides, fungicides, and other
+      chemicals are accurately applied to crops in the right quantities at each spot.'
+    approx_offset: 72173
+  - quote: From valves to nozzles, our meticulous attention to detail ensures that every piece performs
+      when it matters most.
+    approx_offset: 124174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0149
+  form: nozzles, hoses and connectors, filters, and valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like
+      nozzles, hoses and connectors, filters, and valves to ensure that pesticides, fungicides, and other
+      chemicals are accurately applied to crops in the right quantities at each spot.'
+    approx_offset: 72173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0150
+  form: office furniture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0151
+  form: oil suction pipes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: The company has expertise in producing elements essential to oil & gas production, such as
+      oil suction pipes, oil well accessories, and components for oil processing or handling equipment.
+    approx_offset: 99700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0152
+  form: oil well accessories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: The company has expertise in producing elements essential to oil & gas production, such as
+      oil suction pipes, oil well accessories, and components for oil processing or handling equipment.
+    approx_offset: 99719
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0153
+  form: orthopedic implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: Medical (orthopedic implants, surgical instruments)
+    approx_offset: 252169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0154
+  form: panels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: FZE’s trained metal fabrication staff can bend, shape, and cut a long list of metals to create
+      products such as angles, casting replacements, plates, panels, tubes, and more.
+    approx_offset: 181957
+  - quote: Stainless steel components used in airplane engines, panels, fixtures, landing gear, and other
+      components must be clearly marked and traceable.
+    approx_offset: 246775
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0155
+  form: pins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+  evidence:
+  - quote: Fasteners and pins
+    approx_offset: 214138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0156
+  form: pipes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: The company has expertise in producing elements essential to oil & gas production, such as
+      oil suction pipes, oil well accessories, and components for oil processing or handling equipment.
+    approx_offset: 99712
+  - quote: Some of the industries that use it to make their metal parts and products include aerospace,
+      sheet metal manufacturing, and pipes/pipelines.
+    approx_offset: 224378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0157
+  form: pipes/pipelines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+  evidence:
+  - quote: Some of the industries that use it to make their metal parts and products include aerospace,
+      sheet metal manufacturing, and pipes/pipelines.
+    approx_offset: 224378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0158
+  form: pistons
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11643
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0159
+  form: planter axles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71708
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0160
+  form: plungers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11652
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0161
+  form: power drivetrains
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: FZE’s custom Shaft machining allows for the production of high-quality shafts for parts like
+      power drivetrains, suspension systems, and steering components on ATVs, dirt bikes, and motorcycles.
+    approx_offset: 170571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0162
+  form: power transmission components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Machined parts are used for many agricultural needs, such as power transmission components,
+      cutting tools, mounting systems, hopper systems, bearing housings, and much more.
+    approx_offset: 93545
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0163
+  form: pressure vessels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+  evidence:
+  - quote: It is commonly used for sheet metal welding in the automotive and home improvement industries
+      as well as to produce pressure vessels and steel structures.
+    approx_offset: 223304
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0164
+  form: pressure vessels and steel structures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+  evidence:
+  - quote: It is commonly used for sheet metal welding in the automotive and home improvement industries
+      as well as to produce pressure vessels and steel structures.
+    approx_offset: 223304
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0165
+  form: propeller shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: From propeller shafts to steering mechanisms, our components are built to withstand fresh and
+      saltwater environments in high mechanical stress, providing reliable and safe operation for recreational
+      marine applications.
+    approx_offset: 169918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0166
+  form: prototype
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+  evidence:
+  - quote: Whatever your needs – single prototype part, low-to- high-volume production runs, or anything
+      in between – the staff at FZE is ready and capable to process your custom quote.
+    approx_offset: 54900
+  - quote: Our machinists are highly skilled in projects, including prototype parts, low-volume runs,
+      and large production orders.
+    approx_offset: 75579
+  - quote: Each job, big or small, is quoted on an individual basis, so whether your current project needs
+      a prototype, a small run, or you’re ready to scale into full production, contact FZE so we can start
+      building your custom quote today.
+    approx_offset: 140417
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0167
+  form: prototype parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Our machinists are highly skilled in projects, including prototype parts, low-volume runs,
+      and large production orders.
+    approx_offset: 75579
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0168
+  form: pulleys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Gears, pulleys, and shafts
+    approx_offset: 163090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0169
+  form: pump shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+  evidence:
+  - quote: From pump shafts to gear drives and many other applications, we machine components that sustain
+      critical operations like fire fighting operations, ensuring reliability when every rotation is crucial.
+    approx_offset: 124790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0170
+  form: pumps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3686
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11665
+  - quote: A gas nozzle pumps a combination of argon and oxygen into the workspace, forming the arc plasma
+      and shielding the entire process from the surrounding air.
+    approx_offset: 147158
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0171
+  form: railcars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Components found in heavy machinery, including cranes, tractors, railways, railcars, and other
+      rolling equipment
+    approx_offset: 49344
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0172
+  form: railways, railcars, and other rolling equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Components found in heavy machinery, including cranes, tractors, railways, railcars, and other
+      rolling equipment
+    approx_offset: 49334
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0173
+  form: recreational boats, jet skis, and other watercraft
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Our custom Shaft machining services allow us to produce corrosion-resistant shafts for recreational
+      boats, jet skis, and other watercraft.
+    approx_offset: 169861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0174
+  form: resistors, capacitors, diodes, transistors, connectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Our team is equipped to handle all types of electronic components such as resistors, capacitors,
+      diodes, transistors, connectors, and more.
+    approx_offset: 163323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0175
+  form: row cleaners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0176
+  form: scissor lifts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Lifting equipment (cranes, hydraulic jacks, wheelchair & scissor lifts, etc.)
+    approx_offset: 4685
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0177
+  form: screws
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Drills have rotating bits that create round holes in hard materials; mills feature rotating
+      cutters with multiple blades that can cut grooves into soft metals such as brass, while taps are
+      used to thread screws into surfaces.
+    approx_offset: 120088
+  - quote: These tools feature a handle with a tip that fits into the head of screws to turn them securely
+      and precisely.
+    approx_offset: 120609
+  - quote: Bolts, fasteners and screws
+    approx_offset: 163019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0178
+  form: seed plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0179
+  form: seed plates, drop tubes, fertilizer hoppers, row cleaners, planter axles, and skid shoes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0180
+  form: shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Employing advanced techniques, we shape and refine shafts that transmit power smoothly and
+      efficiently, enabling your vessel to glide through water with grace and power.
+    approx_offset: 32229
+  - quote: Professional turf care requires the use of custom shafts that are machined to exact specifications.
+    approx_offset: 43268
+  - quote: When it comes to professional turf care, using properly-machined shafts helps ensure that machinery
+      operates safely and efficiently.
+    approx_offset: 43576
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0181
+  form: skid shoes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: They use CNC-machined components, such as seed plates, drop tubes, fertilizer hoppers, row
+      cleaners, planter axles, and skid shoes, to measure and place seeds into the ground to ensure accurate
+      results.
+    approx_offset: 71727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0182
+  form: specialized fasteners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: FZE Manufacturing Solutions stands at the forefront of this crucial industry, transforming
+      conceptual designs into tangible realities with custom and/or specialized fasteners that fuse strength
+      with precision.
+    approx_offset: 16998
+  - quote: At FZE Manufacturing Solutions, our custom and/or specialized fasteners and fittings are engineered
+      in accordance with the application, reflecting a commitment to uphold the industry’s highest standards.
+    approx_offset: 17611
+  - quote: FZE Manufacturing Solutions harnesses barfed CNC Turning Centers as well as CNC Swiss Machining
+      to achieve unparalleled accuracy in creating custom and/or specialized fasteners and fittings.
+    approx_offset: 19742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0183
+  form: spindles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/cnc-hmc-vmc-machining-services/
+    - https://fzemanufacturing.com/capabilities/cnc-swiss-machining-services/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: Each component is designed to provide an even cut from blades to spindles every time.
+    approx_offset: 72543
+  - quote: Twin-Spindles, Twin Turrets
+    approx_offset: 105115
+  - quote: A vertical machining center offers CNC vertical milling machines that are equipped with vertical
+      spindles.
+    approx_offset: 128508
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0184
+  form: sprayer machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like
+      nozzles, hoses and connectors, filters, and valves to ensure that pesticides, fungicides, and other
+      chemicals are accurately applied to crops in the right quantities at each spot.'
+    approx_offset: 72123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0185
+  form: stainless steel fasteners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Our stainless steel fasteners find widespread use across industries due to their exceptional
+      corrosion resistance and durability.
+    approx_offset: 18037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0186
+  form: stainless steel studs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: As an example, our stainless steel studs are crucial structural elements utilized in construction,
+      machinery, and automotive industries for their exceptional strength and corrosion resistance.
+    approx_offset: 21281
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0187
+  form: steel structures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+  evidence:
+  - quote: It is commonly used for sheet metal welding in the automotive and home improvement industries
+      as well as to produce pressure vessels and steel structures.
+    approx_offset: 223325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0188
+  form: steering and suspension systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Laser marked stainless steel automotive components offer superior traceability, including steering
+      and suspension systems, brakes, engines, and exhaust components.
+    approx_offset: 246637
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0189
+  form: steering components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: FZE’s custom Shaft machining allows for the production of high-quality shafts for parts like
+      power drivetrains, suspension systems, and steering components on ATVs, dirt bikes, and motorcycles.
+    approx_offset: 170614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0190
+  form: steering mechanisms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: From propeller shafts to steering mechanisms, our components are built to withstand fresh and
+      saltwater environments in high mechanical stress, providing reliable and safe operation for recreational
+      marine applications.
+    approx_offset: 169938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0191
+  form: studs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: As an example, our stainless steel studs are crucial structural elements utilized in construction,
+      machinery, and automotive industries for their exceptional strength and corrosion resistance.
+    approx_offset: 21297
+  - quote: These studs provide secure fastening solutions for heavy-duty applications where durability
+      and reliability are paramount, ensuring structural integrity and longevity in diverse environments.
+    approx_offset: 21461
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0192
+  form: surgical instruments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/
+  evidence:
+  - quote: Medical – High-precision components for surgical instruments and medical device assemblies.
+    approx_offset: 83326
+  - quote: Medical (orthopedic implants, surgical instruments)
+    approx_offset: 252190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0193
+  form: surgical tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: The medical industry uses laser-marked stainless steel for device components, as well as surgical
+      tools and diagnostic and clinical equipment.
+    approx_offset: 246481
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0194
+  form: suspension systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: FZE’s custom Shaft machining allows for the production of high-quality shafts for parts like
+      power drivetrains, suspension systems, and steering components on ATVs, dirt bikes, and motorcycles.
+    approx_offset: 170590
+  - quote: Laser marked stainless steel automotive components offer superior traceability, including steering
+      and suspension systems, brakes, engines, and exhaust components.
+    approx_offset: 246650
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0195
+  form: tractors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: Components found in heavy machinery, including cranes, tractors, railways, railcars, and other
+      rolling equipment
+    approx_offset: 49324
+  - quote: 'Tractors: Modern tractors contain various CNC-machined parts to make them more precise and
+      efficient.'
+    approx_offset: 71891
+  - quote: Agriculture – Durable machined parts for tractors, harvesters, and irrigation systems.
+    approx_offset: 83150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0196
+  form: trophies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Adding promotional aspects, like a brand name, logo, or tagline, to aluminum items (e.g., keychains,
+      badges, trophies, etc.)
+    approx_offset: 194928
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0197
+  form: valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11624
+  - quote: 'Sprayers: Much like fertilizer applicators, sprayer machines use CNC-machined components like
+      nozzles, hoses and connectors, filters, and valves to ensure that pesticides, fungicides, and other
+      chemicals are accurately applied to crops in the right quantities at each spot.'
+    approx_offset: 72217
+  - quote: Hydraulic machining creates or modifies hydraulic components such as valves and cylinders,
+      ensuring proper functionality.
+    approx_offset: 78028
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0198
+  form: watercraft
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Our custom Shaft machining services allow us to produce corrosion-resistant shafts for recreational
+      boats, jet skis, and other watercraft.
+    approx_offset: 169901
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-products-0199
+  form: welded assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+  evidence:
+  - quote: From MIG welding to TIG welding to FCA welding to spot/stud welding, we use our extensive manufacturing
+      experience and expertise to produce quality welded assemblies that can meet the requirements of
+      any industry.
+    approx_offset: 225042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

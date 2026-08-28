@@ -1,0 +1,59 @@
+subject: 101machine.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/101machine.com.txt
+  sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+golden_set_version: 1
+anchored_on: search/expectations/101machine_com/equipments.yaml
+labels:
+- id: 101machine_com-equipments-0001
+  form: Chevalier EM2040L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/New.html
+  evidence:
+  - quote: Chevalier EM2040L
+    approx_offset: 6006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-equipments-0002
+  form: EM2040L
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/New.html
+  evidence:
+  - quote: Chevalier EM2040L
+    approx_offset: 6016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-equipments-0003
+  form: Milling Center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/New.html
+  evidence:
+  - quote: Just added a new Milling Center.
+    approx_offset: 5990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

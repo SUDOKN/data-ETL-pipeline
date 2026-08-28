@@ -1,0 +1,2484 @@
+subject: tanfel.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+  sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+golden_set_version: 1
+anchored_on: search/expectations/tanfel_com/products.yaml
+labels:
+- id: tanfel_com-products-0001
+  form: Adjustable thread ring gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Adjustable thread ring gauges
+    approx_offset: 106850
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0002
+  form: Audio parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Audio parts
+    approx_offset: 122104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0003
+  form: Automobiles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Heavy equipment and transportation vehicles: Automobiles, airplanes, farming and mining vehicles,
+      trains, and ships
+    approx_offset: 39883
+  - quote: Extrusion is widely used to make standard parts like tubes and rods as well as custom parts
+      like door and window frames for automobiles.
+    approx_offset: 52790
+  - quote: Extrusion is widely used to make standard parts like tubes and rods as well as custom parts
+      like door and window frames for automobiles.
+    approx_offset: 73308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0004
+  form: Automotive parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Automotive parts
+    approx_offset: 121980
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0005
+  form: Busbar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+  evidence:
+  - quote: Busbar
+    approx_offset: 63842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0006
+  form: CUSTOM METAL PARTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: TANFEL IS A LEADING PROVIDER OF CUSTOM METAL PARTS
+    approx_offset: 1586
+  - quote: Tanfel Custom Metal Parts can help you select the right metal casting process from popular
+      methods such as sand casting, investment casting, and die casting.
+    approx_offset: 33524
+  - quote: TANFEL IS A LEADING PROVIDER OF CUSTOM METAL PARTS AND SUPPLY CHAIN SOLUTIONS
+    approx_offset: 43165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0007
+  form: Carbide Rod
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Carbide Rod
+    approx_offset: 122116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0008
+  form: Coil springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0009
+  form: Compressors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Electrical equipment: Compressors, generators, motors, and pumps
+    approx_offset: 39795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0010
+  form: Fabricated products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/sheet-metal/
+  evidence:
+  - quote: Fabricated products made from sheet, coil or strip with a large variety of material choices.
+    approx_offset: 134018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0011
+  form: GO NOGO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Tanfel 1:2-13 UNC-2B Taperlock GO NOGO Thread Plug Gage
+    approx_offset: 106952
+  - quote: 'Tanfel #2-56 UNC-2B Taperlock GO NOGO Thread Plug Gage'
+    approx_offset: 107007
+  - quote: Tanfel 1:4-20 UNC-2B Taperlock GO NOGO Thread Plug Gage
+    approx_offset: 107065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0012
+  form: GO/NO-GO thread gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: This page will provide an overview of metrology and how GO/NO-GO thread gauges, also referred
+      to as thread gages, support a variety of industrial operations.
+    approx_offset: 104376
+  - quote: GO/NO-GO thread gauges are available in a broad range of sizes and thread measurements to assist
+      in the verification of nearly any pitch diameter or major internal diameter.
+    approx_offset: 108098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0013
+  form: GO/NO-GO thread plug gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Tanfel Metrology offers high-quality GO/NO-GO thread plug gauges for a broad range of applications.
+    approx_offset: 108358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0014
+  form: Graphic Overlays & labels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Graphic Overlays & labels
+    approx_offset: 111356
+  - quote: Graphic Overlays & labels
+    approx_offset: 127298
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0015
+  form: Heat Sinks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/industries/automotive/
+    - https://www.tanfel.com/industries/lighting/
+    - https://www.tanfel.com/industries/medical-life-science/
+    - https://www.tanfel.com/industries/medical/
+    - https://www.tanfel.com/industries/music/
+  evidence:
+  - quote: Heat Sinks
+    approx_offset: 26440
+  - quote: Heat Sinks
+    approx_offset: 63799
+  - quote: Heat Sinks
+    approx_offset: 113304
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0016
+  form: Heatsink
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Skive Heatsink
+    approx_offset: 122195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0017
+  form: Hollow Extrusion Shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+  evidence:
+  - quote: Hollow Extrusion Shapes
+    approx_offset: 113331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0018
+  form: Hollow Extrusions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/industries/music/
+  evidence:
+  - quote: Hollow Extrusions
+    approx_offset: 118817
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0019
+  form: IMD lens/ covers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9725
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0020
+  form: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/design-parameters/
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+    approx_offset: 25421
+  - quote: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+    approx_offset: 95945
+  - quote: 'HOME CAPABILITIES INDUSTRIAL METROLOGY: GO AND NO-GO THREAD PLUG GAUGES'
+    approx_offset: 104087
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0021
+  form: LED sticker
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: LED sticker
+    approx_offset: 111306
+  - quote: LED sticker
+    approx_offset: 127248
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0022
+  form: MEMBRANE SWITCHES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: HOME CAPABILITIES MEMBRANE SWITCHES
+    approx_offset: 110773
+  - quote: MEMBRANE SWITCHES
+    approx_offset: 110791
+  - quote: MEMBRANE SWITCHES & OVERLAY PRODUCT SHEET
+    approx_offset: 111976
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0023
+  form: Membrane Switch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Membrane Switch
+    approx_offset: 61203
+  - quote: MEMBRANE SWITCH CONSTRUCTION
+    approx_offset: 111947
+  - quote: Membrane Switch
+    approx_offset: 122173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0024
+  form: Membrane Switches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/additional-capabilities
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+    - https://www.tanfel.com/products/silicone-rubber-products
+  evidence:
+  - quote: Membrane Switches
+    approx_offset: 10366
+  - quote: Membrane Switches
+    approx_offset: 17389
+  - quote: Membrane Switches
+    approx_offset: 42566
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0025
+  form: Metal-pill contact
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Metal-pill contact
+    approx_offset: 16954
+  - quote: Metal-pill contact
+    approx_offset: 129954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0026
+  form: O-ring seals and gaskets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products/casting-finishes/
+  evidence:
+  - quote: Well-suited to use for small components like O-ring seals and gaskets
+    approx_offset: 24460
+  - quote: Well-suited to use for small components like O-ring seals and gaskets
+    approx_offset: 157909
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0027
+  form: OR SOLID SHAPES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+  evidence:
+  - quote: OR SOLID SHAPES
+    approx_offset: 760
+  - quote: OR SOLID SHAPES
+    approx_offset: 1438
+  - quote: OR SOLID SHAPES
+    approx_offset: 173211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0028
+  form: PC card adapters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9707
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131375
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0029
+  form: PC films caps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: PC films caps download silicone product sheet here
+    approx_offset: 17038
+  - quote: PC films caps download silicone product sheet here
+    approx_offset: 130038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0030
+  form: PCB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: PCB
+    approx_offset: 61219
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0031
+  form: PLASTIC PRODUCTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: HOME CAPABILITIES PLASTIC PRODUCTS
+    approx_offset: 9278
+  - quote: PLASTIC PRODUCTS
+    approx_offset: 9295
+  - quote: HOME CAPABILITIES PLASTIC PRODUCTS
+    approx_offset: 130946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0032
+  form: Parts for the music industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Parts for the music industry
+    approx_offset: 121931
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0033
+  form: Plastic Products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/additional-capabilities
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+    - https://www.tanfel.com/products/silicone-rubber-products
+  evidence:
+  - quote: Plastic Products
+    approx_offset: 17372
+  - quote: Plastic Products
+    approx_offset: 42549
+  - quote: Plastic Products
+    approx_offset: 96270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0034
+  form: Plastic key tree keycap
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Plastic key tree keycap
+    approx_offset: 17014
+  - quote: Plastic key tree keycap
+    approx_offset: 130014
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0035
+  form: Plastic keycap-to-rubber keypad assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Plastic keycap-to-rubber keypad assembly
+    approx_offset: 16973
+  - quote: Plastic keycap-to-rubber keypad assembly
+    approx_offset: 129973
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0036
+  form: Rods, Bars and Strips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tanfel offers completed custom parts as well as standard Rods, Bars and Strips.
+    approx_offset: 136216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0037
+  form: Rods, Bars, Strips and Custom parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Rods, Bars, Strips and Custom parts
+    approx_offset: 136303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0038
+  form: SEAMLESS TUBE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+  evidence:
+  - quote: SEAMLESS TUBE
+    approx_offset: 746
+  - quote: SEAMLESS TUBE
+    approx_offset: 1424
+  - quote: SEAMLESS TUBE
+    approx_offset: 173197
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0039
+  form: SILICONE RUBBER CONNECTORS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: SILICONE RUBBER CONNECTORS
+    approx_offset: 17116
+  - quote: SILICONE RUBBER CONNECTORS
+    approx_offset: 130116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0040
+  form: SILICONE RUBBER PRODUCTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: HOME CAPABILITIES SILICONE RUBBER PRODUCTS
+    approx_offset: 15750
+  - quote: SILICONE RUBBER PRODUCTS
+    approx_offset: 15775
+  - quote: HOME CAPABILITIES SILICONE RUBBER PRODUCTS
+    approx_offset: 128750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0041
+  form: Seamless Tube
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/industries/lighting/
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Seamless Tube, Rod, Bar, Plate, and Custom parts
+    approx_offset: 57415
+  - quote: Seamless Tube, Rod, Bar, Plate, and Custom parts
+    approx_offset: 77933
+  - quote: Seamless Tube Extrusion
+    approx_offset: 113355
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0042
+  form: Seamless Tube, Rod, Bar, Plate, and Custom parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Seamless Tube, Rod, Bar, Plate, and Custom parts
+    approx_offset: 57415
+  - quote: Seamless Tube, Rod, Bar, Plate, and Custom parts
+    approx_offset: 77933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0043
+  form: Silicone Keypads
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/request-a-quote
+  evidence:
+  - quote: Silicone keypads
+    approx_offset: 61186
+  - quote: Silicone Keypads
+    approx_offset: 122246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0044
+  form: Silicone Rubber Products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/additional-capabilities
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+    - https://www.tanfel.com/products/plastic-products
+  evidence:
+  - quote: Silicone Rubber Products
+    approx_offset: 10384
+  - quote: Silicone Rubber Products
+    approx_offset: 42584
+  - quote: Silicone Rubber Products
+    approx_offset: 96305
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0045
+  form: Silicone rubber keypads
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16607
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 129607
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0046
+  form: Skive Heatsink
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Skive Heatsink
+    approx_offset: 122189
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0047
+  form: Solid thread ring gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Solid thread ring gauges
+    approx_offset: 106825
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0048
+  form: Stainless Pipes Welded
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Stainless Pipes Welded
+    approx_offset: 122048
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0049
+  form: Stamped Aluminum and Copper Busbars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Stamped Aluminum and Copper Busbars
+    approx_offset: 121853
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0050
+  form: Stamped parts for a variety of industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/photo-gallery
+  evidence:
+  - quote: Stamped parts for a variety of industries
+    approx_offset: 121889
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0051
+  form: THREAD PLUG GAGES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 42
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: TANFEL NOW MAKES HIGH-QUALITY THREAD PLUG GAGES.
+    approx_offset: 2643
+  - quote: TANFEL NOW MAKES HIGH-QUALITY THREAD PLUG GAGES.
+    approx_offset: 10316
+  - quote: TANFEL NOW MAKES HIGH-QUALITY THREAD PLUG GAGES.
+    approx_offset: 17322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0052
+  form: 'Tanfel #10-24 UNC- 2B Taperlock GO NOGO Thread Plug Gage'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: 'Tanfel #10-24 UNC- 2B Taperlock GO NOGO Thread Plug Gage'
+    approx_offset: 107090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0053
+  form: 'Tanfel #2-56 UNC-2B Taperlock GO NOGO Thread Plug Gage'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: 'Tanfel #2-56 UNC-2B Taperlock GO NOGO Thread Plug Gage'
+    approx_offset: 106977
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0054
+  form: Tanfel 1:2-13 UNC-2B Taperlock GO NOGO Thread Plug Gage
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Tanfel 1:2-13 UNC-2B Taperlock GO NOGO Thread Plug Gage
+    approx_offset: 106921
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0055
+  form: Tanfel 1:4-20 UNC-2B Taperlock GO NOGO Thread Plug Gage
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Tanfel 1:4-20 UNC-2B Taperlock GO NOGO Thread Plug Gage
+    approx_offset: 107034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0056
+  form: Tanfel Custom Metal Parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/contact-us
+    - https://www.tanfel.com/contact-us/
+    - https://www.tanfel.com/products/metal-casting/
+    - https://www.tanfel.com/video-gallery/
+  evidence:
+  - quote: Tanfel Custom Metal Parts can help you select the right metal casting process from popular
+      methods such as sand casting, investment casting, and die casting.
+    approx_offset: 33517
+  - quote: Having questions regarding Tanfel Custom Metal Parts or technical support, please feel free
+      to contact us.
+    approx_offset: 61858
+  - quote: 'TANFEL CUSTOM METAL PARTS:'
+    approx_offset: 67565
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0057
+  form: Thread Plug Gages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/design-parameters/
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Thread Plug Gages
+    approx_offset: 25475
+  - quote: Thread Plug Gages
+    approx_offset: 95999
+  - quote: Thread plug gauges, also referred to as Thread Plug Gages, assure the assembly of mating parts
+      and provide quality control for production runs of threaded parts.
+    approx_offset: 107249
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0058
+  form: Thread Plug Gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/design-parameters/
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+    approx_offset: 25456
+  - quote: 'Industrial Metrology: GO and NO-GO Thread Plug Gauges'
+    approx_offset: 95980
+  - quote: 'HOME CAPABILITIES INDUSTRIAL METROLOGY: GO AND NO-GO THREAD PLUG GAUGES'
+    approx_offset: 104122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0059
+  form: Thread caliper gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Thread caliper gauges
+    approx_offset: 106880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0060
+  form: Transparent, male and female connector attachments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Transparent, male and female connector attachments
+    approx_offset: 111255
+  - quote: Transparent, male and female connector attachments
+    approx_offset: 127197
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0061
+  form: Wire Forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.tanfel.com/cnc-machining-service/
+    - https://www.tanfel.com/metal/
+    - https://www.tanfel.com/photo-gallery
+    - https://www.tanfel.com/products
+    - https://www.tanfel.com/products/aluminum-extrusion/
+  evidence:
+  - quote: Wire Forming / Springs
+    approx_offset: 19760
+  - quote: Wire Forming / Springs
+    approx_offset: 31183
+  - quote: Wire Forming / Springs
+    approx_offset: 32671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0062
+  form: airplanes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Heavy equipment and transportation vehicles: Automobiles, airplanes, farming and mining vehicles,
+      trains, and ships
+    approx_offset: 39896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0063
+  form: antenna springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0064
+  form: assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/casting-finishes/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/casting-finishes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: The casting finishing process occurs as pre-molded and cooled cast assemblies are ground down
+      or otherwise altered to produce a specified texture on an item’s exterior.
+    approx_offset: 20849
+  - quote: Tanfel has been a provider of precision stamped metal parts and assemblies since 2008.
+    approx_offset: 122914
+  - quote: The casting finishing process occurs as pre-molded and cooled cast assemblies are ground down
+      or otherwise altered to produce a specified texture on an item’s exterior.
+    approx_offset: 154298
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0065
+  form: automotive panels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9655
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0066
+  form: battery springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143209
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0067
+  form: brackets and clamps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: This process also produces brackets and clamps along with some firearm
+    approx_offset: 167465
+  - quote: metal clamps for hospital tools to brackets and clamps for aerospace engineering, our processes
+    approx_offset: 168997
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0068
+  form: brush springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143247
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0069
+  form: car and aerospace parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: cookware, car and aerospace parts, and utensils.
+    approx_offset: 166865
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0070
+  form: clamp springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143278
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0071
+  form: completed custom parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/cemented-carbide/
+  evidence:
+  - quote: Tanfel offers completed custom parts as well as standard Rods, Bars and Strips.
+    approx_offset: 136173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0072
+  form: compression springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143089
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143226
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0073
+  form: conductive keypads
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: We specialize in various types of standard and conductive keypads.
+    approx_offset: 16587
+  - quote: We specialize in various types of standard and conductive keypads.
+    approx_offset: 129587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0074
+  form: conductive pills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: 'Many options are available to ensure that your needs are met including: material, finish,
+      print options, color , conductive pills and more.'
+    approx_offset: 15990
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16662
+  - quote: 'Many options are available to ensure that your needs are met including: material, finish,
+      print options, color , conductive pills and more.'
+    approx_offset: 128990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0075
+  form: conductive rubber pad
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Once you give us a concept, we can design and produce a high quality and low-cost conductive
+      rubber pad that precisely meets your needs.
+    approx_offset: 16272
+  - quote: Once you give us a concept, we can design and produce a high quality and low-cost conductive
+      rubber pad that precisely meets your needs.
+    approx_offset: 129272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0076
+  form: cookware
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: cookware, car and aerospace parts, and utensils.
+    approx_offset: 166855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0077
+  form: custom metal parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/about
+    - https://www.tanfel.com/about-tanfel
+    - https://www.tanfel.com/about-tanfel/
+  evidence:
+  - quote: With our Headquarters in Scottsdale, Arizona Tanfel has been a leading provider of custom metal
+      parts since 2008.
+    approx_offset: 1689
+  - quote: Tanfel strives to be your partner of choice for your custom metal parts.
+    approx_offset: 4712
+  - quote: Tanfel strives to be your partner of choice for your custom metal parts.
+    approx_offset: 5365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0078
+  form: door and window frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Extrusion is widely used to make standard parts like tubes and rods as well as custom parts
+      like door and window frames for automobiles.
+    approx_offset: 52763
+  - quote: Extrusion is widely used to make standard parts like tubes and rods as well as custom parts
+      like door and window frames for automobiles.
+    approx_offset: 73281
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0079
+  form: energy efficient dog doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/quality
+  evidence:
+  - quote: There are a variety of manufacturing challenges with our line of energy efficient dog doors,
+      but great suppliers like Tanfel makes our job much easier.
+    approx_offset: 6981
+  - quote: There are a variety of manufacturing challenges with our line of energy efficient dog doors,
+      but great suppliers like Tanfel makes our job much easier.
+    approx_offset: 8436
+  - quote: There are a variety of manufacturing challenges with our line of energy efficient dog doors,
+      but great suppliers like Tanfel makes our job much easier.
+    approx_offset: 87519
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0080
+  form: extension springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0081
+  form: fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Industrial machinery and hardware: Casting, forging and extrusion tools, plant machinery and
+      tools, valves, and fittings
+    approx_offset: 40066
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0082
+  form: gears and metal clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: From springs and surgical tools in the medical field to gears and metal clips in the automotive
+    approx_offset: 166300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0083
+  form: generators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Electrical equipment: Compressors, generators, motors, and pumps
+    approx_offset: 39808
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0084
+  form: graphic overlays
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Our membrane switches, graphic overlays and label products are manufactured with strict process
+      controls.
+    approx_offset: 110833
+  - quote: Graphic Overlays & labels
+    approx_offset: 111356
+  - quote: Our membrane switches, graphic overlays and label products are manufactured with strict process
+      controls.
+    approx_offset: 126775
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0085
+  form: hearing aids
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+  evidence:
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 59203
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 159715
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0086
+  form: heat seal connectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Female, male connector, solder pins and heat seal connectors are available
+    approx_offset: 111912
+  - quote: Female, male connector, solder pins and heat seal connectors are available
+    approx_offset: 127854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0087
+  form: label products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Our membrane switches, graphic overlays and label products are manufactured with strict process
+      controls.
+    approx_offset: 110854
+  - quote: Our membrane switches, graphic overlays and label products are manufactured with strict process
+      controls.
+    approx_offset: 126796
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0088
+  form: lid of a beverage can
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: lid of a beverage can.
+    approx_offset: 167415
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0089
+  form: membrane switches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Our membrane switches, graphic overlays and label products are manufactured with strict process
+      controls.
+    approx_offset: 110814
+  - quote: Our membrane switches, graphic overlays and label products are manufactured with strict process
+      controls.
+    approx_offset: 126756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0090
+  form: metal clamps for hospital tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: metal clamps for hospital tools to brackets and clamps for aerospace engineering, our processes
+    approx_offset: 168962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0091
+  form: metal clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: From springs and surgical tools in the medical field to gears and metal clips in the automotive
+    approx_offset: 166310
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0092
+  form: miniature gears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9790
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0093
+  form: mobile phone plastic housing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9625
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0094
+  form: motors, and pumps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Electrical equipment: Compressors, generators, motors, and pumps
+    approx_offset: 39820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0095
+  form: paper springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143127
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0096
+  form: precision stamped metal parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Tanfel has been a provider of precision stamped metal parts and assemblies since 2008.
+    approx_offset: 122880
+  - quote: Tanfel has provided precision stamped metal parts and assemblies since 2008 for all
+    approx_offset: 168609
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0097
+  form: radio towers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+  evidence:
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 59217
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 159729
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0098
+  form: satellite arrays
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/industries/communication/
+    - https://www.tanfel.com/industries/communications/
+  evidence:
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 59231
+  - quote: Whether your project is for hearing aids, radio towers, satellite arrays or quick serve restaurants,
+      Tanfel will help your product provide clarity for your customers.
+    approx_offset: 159743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0099
+  form: seamless tubes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Extruded products can be built with diameters of up to 15”, and most extruders offer extruded
+      aluminum in standard seamless tubes, rods, bars, and plates as well as custom options.
+    approx_offset: 56240
+  - quote: Extruded products can be built with diameters of up to 15”, and most extruders offer extruded
+      aluminum in standard seamless tubes, rods, bars, and plates as well as custom options.
+    approx_offset: 76758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0100
+  form: silicone conductive pills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 16653
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 129653
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0101
+  form: silicone rubber and plastic keypads / keyboards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/silicone-rubber-products
+    - https://www.tanfel.com/products/silicone-rubber-products/
+  evidence:
+  - quote: Tanfel offers silicone rubber and plastic keypads / keyboards for use in computers, mobile
+      phones, data organizers, calculators, remote controls and numerous other items.
+    approx_offset: 16032
+  - quote: Tanfel offers silicone rubber and plastic keypads / keyboards for use in computers, mobile
+      phones, data organizers, calculators, remote controls and numerous other items.
+    approx_offset: 129032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0102
+  form: snap spring clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0103
+  form: solder pins
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: Female, male connector, solder pins and heat seal connectors are available
+    approx_offset: 111896
+  - quote: Female, male connector, solder pins and heat seal connectors are available
+    approx_offset: 127838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0104
+  form: spiral springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143262
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0105
+  form: stamped metal parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://www.tanfel.com/
+    - https://www.tanfel.com/
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Tanfel is a leading provider of stamped metal parts
+    approx_offset: 575
+  - quote: Tanfel is a leading provider of stamped metal parts
+    approx_offset: 1253
+  - quote: Tanfel has been a provider of precision stamped metal parts and assemblies since 2008.
+    approx_offset: 122890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0106
+  form: stamped metal parts and assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+    - https://www.tanfel.com/products/stamping/
+  evidence:
+  - quote: Tanfel has been a provider of precision stamped metal parts and assemblies since 2008.
+    approx_offset: 122890
+  - quote: Tanfel has provided precision stamped metal parts and assemblies since 2008 for all
+    approx_offset: 168619
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0107
+  form: surgical tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: From springs and surgical tools in the medical field to gears and metal clips in the automotive
+    approx_offset: 166261
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0108
+  form: tension springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0109
+  form: textured overlays
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/membrane-switches
+    - https://www.tanfel.com/products/membrane-switches/
+  evidence:
+  - quote: A wide variety of textured overlays
+    approx_offset: 111400
+  - quote: A wide variety of textured overlays
+    approx_offset: 127342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0110
+  form: thin wall casings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/plastic-products
+    - https://www.tanfel.com/products/plastic-products/
+  evidence:
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 9807
+  - quote: 'We have experience in manufacturing various high quality parts and component products including:
+      mobile phone plastic housing, automotive panels, and computer accessories such as PC card adapters,
+      IMD lens/ covers, multi-component parts for electronic products, miniature gears, thin wall casings
+      and'
+    approx_offset: 131475
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0111
+  form: thread gages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: This page will provide an overview of metrology and how GO/NO-GO thread gauges, also referred
+      to as thread gages, support a variety of industrial operations.
+    approx_offset: 104420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0112
+  form: thread gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: This page will provide an overview of metrology and how GO/NO-GO thread gauges, also referred
+      to as thread gages, support a variety of industrial operations.
+    approx_offset: 104385
+  - quote: 'Multiple types of thread gauges exist, including:'
+    approx_offset: 106792
+  - quote: Thread gauges are typically used to check tapped holes in a component, which is a simple method
+      for inspecting threads.
+    approx_offset: 107607
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0113
+  form: thread plug gages
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 48
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0114
+  form: thread plug gauges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.tanfel.com/products/metrology-thread-plug-gauges/
+  evidence:
+  - quote: Machine shops and other manufacturing environments rely on thread plug gauges to verify the
+      functionality of threaded holes.
+    approx_offset: 106708
+  - quote: Tanfel Metrology offers high-quality GO/NO-GO thread plug gauges for a broad range of applications.
+    approx_offset: 108367
+  - quote: By selling directly to our customers without distributors, we can offer significant savings
+      on our full range of thread plug gauges.
+    approx_offset: 108534
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0115
+  form: torsion springs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Coil springs, compression springs, antenna springs, paper springs, tension springs, torsion
+      springs, wire forming, snap spring clips, battery springs, compression springs, brush springs, spiral
+      springs, clamp springs, extension springs and more.
+    approx_offset: 143159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0116
+  form: train wheels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: This method of producing metal parts been used for centuries and remains in use today, creating
+      products ranging from train wheels to lamp posts.
+    approx_offset: 33933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0117
+  form: train wheels to lamp posts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: This method of producing metal parts been used for centuries and remains in use today, creating
+      products ranging from train wheels to lamp posts.
+    approx_offset: 33933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0118
+  form: trains, and ships
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Heavy equipment and transportation vehicles: Automobiles, airplanes, farming and mining vehicles,
+      trains, and ships
+    approx_offset: 39936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0119
+  form: tubes and rods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.tanfel.com/products/aluminum-extrusion/
+    - https://www.tanfel.com/products/extrusion/
+  evidence:
+  - quote: Extrusion is widely used to make standard parts like tubes and rods as well as custom parts
+      like door and window frames for automobiles.
+    approx_offset: 52719
+  - quote: Extrusion is widely used to make standard parts like tubes and rods as well as custom parts
+      like door and window frames for automobiles.
+    approx_offset: 73237
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0120
+  form: utensils
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/metal-stamping-processes/
+  evidence:
+  - quote: cookware, car and aerospace parts, and utensils.
+    approx_offset: 166894
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0121
+  form: valves, and fittings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/metal-casting/
+  evidence:
+  - quote: Industrial machinery and hardware: Casting, forging and extrusion tools, plant machinery and
+      tools, valves, and fittings
+    approx_offset: 40054
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: tanfel_com-products-0122
+  form: wire formed parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.tanfel.com/products/wire-forming-springs/
+  evidence:
+  - quote: Tanfel is a leading supplier for custom springs and wire formed parts.
+    approx_offset: 143055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

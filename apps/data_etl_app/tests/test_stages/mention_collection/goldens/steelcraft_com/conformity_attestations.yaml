@@ -1,0 +1,2355 @@
+subject: steelcraft.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+golden_set_version: 1
+anchored_on: search/expectations/steelcraft_com/conformity_attestations.yaml
+labels:
+- id: steelcraft_com-conformity_attestations-0001
+  form: A115
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 18482
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25455
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 29956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0002
+  form: A250.10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 18773
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25214
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 25759
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0003
+  form: A250.13
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+      Resistant Components for Swinging Door Assemblies for Protection of Building Envelopes, the Florida
+      Building Code (FBC) and the South Florida Building Code (SFBC).
+    approx_offset: 10881
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11167
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 11247
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0004
+  form: A250.3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25367
+  - quote: Finish paint tested in accordance with ANSI A250.3-2007 (R2011) Test Procedure and Acceptance
+      Criteria for Factory Applied Finish
+    approx_offset: 32004
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0005
+  form: A250.4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25289
+  - quote: SDI/A250.4 to 1 Million Cycles and a 350 lb.
+    approx_offset: 107941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0006
+  form: A250.6
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 18441
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25327
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 29915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0007
+  form: A250.8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Overall door construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames
+    approx_offset: 18219
+  - quote: Overall door construction exceeds ANSI A250.8-2017(SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames.
+    approx_offset: 24944
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25197
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0008
+  form: ADA compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: ADA compliant
+    approx_offset: 175106
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0009
+  form: ADA-compliant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/index.html
+  evidence:
+  - quote: ADA-compliant glass lights available
+    approx_offset: 1019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0010
+  form: ANSI A115
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25450
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0011
+  form: ANSI A250.10-2011
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+    - https://www.steelcraft.com/en/products/frames/mu-series-multiuse-flush-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 18768
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 25754
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011; separator material
+      is not to hold prime or finished paint
+    approx_offset: 30040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0012
+  form: ANSI A250.13
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11162
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 11242
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 11322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0013
+  form: ANSI A250.3-2007 (R2011)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Finish paint tested in accordance with ANSI A250.3-2007 (R2011) Test Procedure and Acceptance
+      Criteria for Factory Applied Finish
+    approx_offset: 31999
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0014
+  form: ANSI A250.6-2003
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 18436
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 29910
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 35598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0015
+  form: ANSI A250.8-2017 (SDI-100)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/fn-series-three-sided-flush-frames.html
+  evidence:
+  - quote: Overall door construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames
+    approx_offset: 18214
+  - quote: Overall frame construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames
+    approx_offset: 29636
+  - quote: Overall frame construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames
+    approx_offset: 35295
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0016
+  form: ANSI UL 10C
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25237
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0017
+  form: ANSI/ASTM E330
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: 'ANSI/ASTM E330 (also validated by TAS 202): Uniform static air pressure (non-impact)'
+    approx_offset: 24652
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0018
+  form: ANSI/BHMA A156.3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: Hardware meets ANSI/BHMA A156.3 2014
+    approx_offset: 107915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0019
+  form: ANSI/DHI A115
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 18473
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 29947
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI
+      A115, unless otherwise stated
+    approx_offset: 35635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0020
+  form: ANSI/SDI A250.10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25205
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0021
+  form: ANSI/SDI A250.13
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+      Resistant Components for Swinging Door Assemblies for Protection of Building Envelopes, the Florida
+      Building Code (FBC) and the South Florida Building Code (SFBC).
+    approx_offset: 10872
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0022
+  form: ANSI/SDI A250.3
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0023
+  form: ANSI/SDI A250.4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25280
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0024
+  form: ANSI/SDI A250.6
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0025
+  form: ANSI/SDI A250.8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25188
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0026
+  form: ASTM A653
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0027
+  form: ASTM A666
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Compliance with ASTM A666, ASTM E152, UL-10B, and USL-10C
+    approx_offset: 198884
+  - quote: 'Exceptional corrosion resistance, conforming to ASTM A666:'
+    approx_offset: 222655
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0028
+  form: ASTM B117
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Salt spray testing in accordance with ASTM B117-18
+    approx_offset: 32211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0029
+  form: ASTM B117-18
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Salt spray testing in accordance with ASTM B117-18
+    approx_offset: 32211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0030
+  form: ASTM C1363
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+  evidence:
+  - quote: Frames tested to ASTM C1363 for Thermal Performance
+    approx_offset: 29829
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0031
+  form: ASTM D3359
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Film adhesion test in accordance with ASTM D3359-17
+    approx_offset: 32358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0032
+  form: ASTM D3359-17
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Film adhesion test in accordance with ASTM D3359-17
+    approx_offset: 32358
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0033
+  form: ASTM D4585
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0034
+  form: ASTM D4585-D4585M-18
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0035
+  form: ASTM E152
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Doors meet the broadest fire rating requirements; they are listed for installations requiring
+      compliance to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+      (UL-10C)
+    approx_offset: 18651
+  - quote: Doors meet the broadest fire rating requirements; they are listed for installations requiring
+      compliance to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+      (UL-10C)
+    approx_offset: 25637
+  - quote: Frames meet fire rating requirements; they are listed for installations requiring compliance
+      to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards (UL-10C)
+    approx_offset: 35801
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0036
+  form: ASTM E1886
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11144
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 11300
+  - quote: 'TAS 203 (ASTM E1886 outside Florida HVHZ): Cyclic wind pressure tests -- inward/outward pressure'
+    approx_offset: 24298
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0037
+  form: ASTM E1886/E1996
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11144
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 11300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0038
+  form: ASTM E1996
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: 'TAS 202 (ASTM E1996 outside Florida HVHZ): Uniform static air pressure tests -- structural
+      load'
+    approx_offset: 24202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0039
+  form: ASTM E330
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 11227
+  - quote: 'ANSI/ASTM E330 (also validated by TAS 202): Uniform static air pressure (non-impact)'
+    approx_offset: 24657
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0040
+  form: ASTM E413
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+  evidence:
+  - quote: The STC rating is calculated in accordance with ASTM E413.
+    approx_offset: 167635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0041
+  form: CALGreen
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Steelcraft HPDs & CALGreen Building Code
+    approx_offset: 4371
+  - quote: Clean Air Gold Certification supports CALGreen, the nation's first state-mandated green building
+      code based on criteria set by the California Department of Public Health (CDPH).
+    approx_offset: 4689
+  - quote: For the most updated HPD and CALGreen Building Code documentation, see the HPD page on us.allegion.com.
+    approx_offset: 4859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0042
+  form: CALGreen Building Code
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Steelcraft HPDs & CALGreen Building Code
+    approx_offset: 4371
+  - quote: For the most updated HPD and CALGreen Building Code documentation, see the HPD page on us.allegion.com.
+    approx_offset: 4859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0043
+  form: CalGreen Building Standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: LEED Credits CalGreen Building Standards
+    approx_offset: 5361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0044
+  form: California PROP65
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+  evidence:
+  - quote: In accordance with California PROP65 -
+    approx_offset: 19251
+  - quote: In accordance with California PROP65 -
+    approx_offset: 26162
+  - quote: In accordance with California PROP65 -
+    approx_offset: 30523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0045
+  form: Clean Air Gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Clean Air Gold Certification supports CALGreen, the nation's first state-mandated green building
+      code based on criteria set by the California Department of Public Health (CDPH).
+    approx_offset: 4651
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0046
+  form: Clean Air Gold Certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Clean Air Gold Certification supports CALGreen, the nation's first state-mandated green building
+      code based on criteria set by the California Department of Public Health (CDPH).
+    approx_offset: 4651
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0047
+  form: D2794
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Impact test D2794-93R19
+    approx_offset: 32308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0048
+  form: D2794-93R19
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+  evidence:
+  - quote: Impact test D2794-93R19
+    approx_offset: 32308
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0049
+  form: Declare Labels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Steelcraft Declare Labels
+    approx_offset: 4946
+  - quote: For the most updated information and documentation related to Declare Labels, see The Living
+      Building Challenge page on us.allegion.com.
+    approx_offset: 5117
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0050
+  form: Declare labels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: To support the Living Building Challenge, Allegion provides Declare labels for products.
+    approx_offset: 5023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0051
+  form: E1886
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11149
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 11305
+  - quote: 'TAS 203 (ASTM E1886 outside Florida HVHZ): Cyclic wind pressure tests -- inward/outward pressure'
+    approx_offset: 24303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0052
+  form: E1996
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11155
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 11311
+  - quote: 'TAS 202 (ASTM E1996 outside Florida HVHZ): Uniform static air pressure tests -- structural
+      load'
+    approx_offset: 24207
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0053
+  form: EPD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: For the most updated documentation, see the EPD page on us.allegion.com.
+    approx_offset: 4322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0054
+  form: EPDs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Steelcraft EPDs
+    approx_offset: 4077
+  - quote: Environmental Product Declarations (EPDs), are independently verified documents that communicate
+      transparent information about the environmental impact of products throughout their life cycle.
+    approx_offset: 4119
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0055
+  form: Environmental Product Declarations (EPDs)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Environmental Product Declarations (EPDs), are independently verified documents that communicate
+      transparent information about the environmental impact of products throughout their life cycle.
+    approx_offset: 4083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0056
+  form: FBC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+      Resistant Components for Swinging Door Assemblies for Protection of Building Envelopes, the Florida
+      Building Code (FBC) and the South Florida Building Code (SFBC).
+    approx_offset: 11043
+  - quote: Florida Building Code (FBC)
+    approx_offset: 21305
+  - quote: 'Florida Building Code (FBC) – Select link, input FL # or select Product Manufacturer in dropdown
+      menu as Allegion-Schlage Lock Company, LLC.” > Search'
+    approx_offset: 23245
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0057
+  form: FEMA 320
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: 'The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado
+      resistance to extreme effects of 250 mph winds for impact and wind load pressure, labeled by Intertek
+      signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361 (2021), as required '
+    approx_offset: 34170
+  - quote: Tested and Intertek labeled showing compliance with ICC500-2014 and FEMA 320/361
+    approx_offset: 35539
+  - quote: Listed and labeled by Intertek and UL showing compliance with ICC500-2014, ICC 500-2020 and
+      and FEMA 320/361.
+    approx_offset: 176216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0058
+  form: FEMA 361
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: Steel is the only readily available door material that passes the FEMA 361 and ICC 500 tornado
+      test (250 mph wind speeds).
+    approx_offset: 9368
+  - quote: 'The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado
+      resistance to extreme effects of 250 mph winds for impact and wind load pressure, labeled by Intertek
+      signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361 (2021), as required '
+    approx_offset: 34191
+  - quote: The FP14 Paladin™ Series is designed to meet requirements of ICC500-2014 code, FEMA 361⁄320
+      guidelines, and ANSI compliance to protect against the extreme effects of tornadoes.
+    approx_offset: 100246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0059
+  form: FEMA P-320
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/index.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Meets FEMA P-320 & P-361/ICC500-2014 standards for tornado shelters
+    approx_offset: 889
+  - quote: They are labeled from the factory showing compliance with ICC 500-2020, FEMA P-320 (2021),
+      and FEMA P-361 (2021) as required by the International Building Code.
+    approx_offset: 174414
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0060
+  form: FEMA P-361
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: No wood door, with or without metal sheathing, has successfully passed FEMA P-361.
+    approx_offset: 9497
+  - quote: FEMA P-361 offers best practices on the design and construction of safe rooms but FEMA does
+      not regulate construction.
+    approx_offset: 9510
+  - quote: They are labeled from the factory showing compliance with ICC 500-2020, FEMA P-320 (2021),
+      and FEMA P-361 (2021) as required by the International Building Code.
+    approx_offset: 174437
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0061
+  form: Florida Building Code
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/resources.html
+    - https://www.steelcraft.com/en/resources/Literature.html
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+      Resistant Components for Swinging Door Assemblies for Protection of Building Envelopes, the Florida
+      Building Code (FBC) and the South Florida Building Code (SFBC).
+    approx_offset: 11020
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+      Resistant Components for Swinging Door Assemblies for Protection of Building Envelopes, the Florida
+      Building Code (FBC) and the South Florida Building Code (SFBC).
+    approx_offset: 11062
+  - quote: Florida Building Code (FBC)
+    approx_offset: 21282
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0062
+  form: HPD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: For the most updated HPD and CALGreen Building Code documentation, see the HPD page on us.allegion.com.
+    approx_offset: 4851
+  - quote: For the most updated HPD and CALGreen Building Code documentation, see the HPD page on us.allegion.com.
+    approx_offset: 4905
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0063
+  form: HPDs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Steelcraft HPDs & CALGreen Building Code
+    approx_offset: 4364
+  - quote: Health Product Declarations (HPDs) disclose the potential chemicals of concern in products.
+    approx_offset: 4424
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0064
+  form: HVHZ
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Approved Series for Impact are typically Coastal to combat wind-borne debris, tested to HVHZ
+      protocols (coastal Palm Beach/Dade).
+    approx_offset: 23845
+  - quote: 'TAS 202 (ASTM E1996 outside Florida HVHZ): Uniform static air pressure tests -- structural
+      load'
+    approx_offset: 24229
+  - quote: 'TAS 203 (ASTM E1886 outside Florida HVHZ): Cyclic wind pressure tests -- inward/outward pressure'
+    approx_offset: 24325
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0065
+  form: HVHZ protocols
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Approved Series for Impact are typically Coastal to combat wind-borne debris, tested to HVHZ
+      protocols (coastal Palm Beach/Dade).
+    approx_offset: 23845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0066
+  form: Health Product Declarations (HPDs)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Health Product Declarations (HPDs) disclose the potential chemicals of concern in products.
+    approx_offset: 4395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0067
+  form: ICC 500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Steel is the only readily available door material that passes the FEMA 361 and ICC 500 tornado
+      test (250 mph wind speeds).
+    approx_offset: 9381
+  - quote: ICC 500 is the Standard for the Design and Construction of Storm Shelters.
+    approx_offset: 9629
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11180
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0068
+  form: ICC 500-2014
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: 'The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado
+      resistance to extreme effects of 250 mph winds for impact and wind load pressure, labeled by Intertek
+      signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361 (2021), as required '
+    approx_offset: 34156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0069
+  form: ICC 500-2020
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: 'The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado
+      resistance to extreme effects of 250 mph winds for impact and wind load pressure, labeled by Intertek
+      signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361 (2021), as required '
+    approx_offset: 34142
+  - quote: See Steelcraft Paladin Door section for ICC 500-2020 Customer Guide and ICC 500-2020 Hardware
+      Selection Guide.
+    approx_offset: 34506
+  - quote: See Steelcraft Paladin Door section for ICC 500-2020 Customer Guide and ICC 500-2020 Hardware
+      Selection Guide.
+    approx_offset: 34538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0070
+  form: ICC500
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/index.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Meets FEMA P-320 & P-361/ICC500-2014 standards for tornado shelters
+    approx_offset: 908
+  - quote: Tested and Intertek labeled showing compliance with ICC500-2014 and FEMA 320/361
+    approx_offset: 35523
+  - quote: Commercial buildings in tornado alley as well as residential shelters, commonly new school
+      gymnasiums constructed as ICC500 compliant tornado shelters for K-12 and higher education.
+    approx_offset: 36075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0071
+  form: ICC500-2014
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/index.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Meets FEMA P-320 & P-361/ICC500-2014 standards for tornado shelters
+    approx_offset: 908
+  - quote: Tested and Intertek labeled showing compliance with ICC500-2014 and FEMA 320/361
+    approx_offset: 35523
+  - quote: The FP14 Paladin™ Series is designed to meet requirements of ICC500-2014 code, FEMA 361⁄320
+      guidelines, and ANSI compliance to protect against the extreme effects of tornadoes.
+    approx_offset: 100228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0072
+  form: ICC500-2020
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0073
+  form: International Building Code
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/applications.html
+    - https://www.steelcraft.com/en/products/applications/fire-rated-steel-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: 'The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado
+      resistance to extreme effects of 250 mph winds for impact and wind load pressure, labeled by Intertek
+      signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361 (2021), as required '
+    approx_offset: 34227
+  - quote: Fire doors must meet the requirements of the International Building Code and International
+      Fire Code, as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives.
+    approx_offset: 110295
+  - quote: Fire doors must meet the requirements of the International Building Code and International
+      Fire Code, as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives.
+    approx_offset: 130440
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0074
+  form: International Fire Code
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications.html
+    - https://www.steelcraft.com/en/products/applications/fire-rated-steel-doors-and-frames.html
+  evidence:
+  - quote: Fire doors must meet the requirements of the International Building Code and International
+      Fire Code, as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives.
+    approx_offset: 110327
+  - quote: Fire doors must meet the requirements of the International Building Code and International
+      Fire Code, as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives.
+    approx_offset: 130472
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0075
+  form: Intertek (WHI)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/Kansas-City-Service-Center.html
+  evidence:
+  - quote: Intertek (WHI) fire labeling
+    approx_offset: 206140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0076
+  form: Intertek and UL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Labeling with Intertek and UL fire ratings
+    approx_offset: 38444
+  - quote: Listed and labeled by Intertek and UL showing compliance with ICC500-2014, ICC 500-2020 and
+      and FEMA 320/361.
+    approx_offset: 176142
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0077
+  form: Intertek labeled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: Tested and Intertek labeled showing compliance with ICC500-2014 and FEMA 320/361
+    approx_offset: 35482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0078
+  form: LEED
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Steelcraft and Leadership in Energy and Environmental Design (LEED)
+    approx_offset: 2756
+  - quote: The benchmark for sustainable design in the United States is the Leadership in Energy and Environmental
+      Design (LEED) rating system developed by the U.S.
+    approx_offset: 3345
+  - quote: 'In the system, buildings become LEED certified by earning credits from the following categories:
+      sustainable sites, water efficiency, energy and atmosphere, materials and resources, and indoor
+      environmental quality.'
+    approx_offset: 3451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0079
+  form: Leadership in Energy and Environmental Design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: Steelcraft and Leadership in Energy and Environmental Design (LEED)
+    approx_offset: 2709
+  - quote: The benchmark for sustainable design in the United States is the Leadership in Energy and Environmental
+      Design (LEED) rating system developed by the U.S.
+    approx_offset: 3298
+  - quote: Allegion recognizes the value of the Leadership in Energy and Environmental Design (LEED) rating
+      system to building environmentally safe and sustainable structures.
+    approx_offset: 3673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0080
+  form: Listed and labeled by Intertek
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Listed and labeled by Intertek and UL showing compliance with ICC500-2014, ICC 500-2020 and
+      and FEMA 320/361.
+    approx_offset: 176120
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0081
+  form: Living Building Challenge
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/resources/sustainability.html
+  evidence:
+  - quote: To support the Living Building Challenge, Allegion provides Declare labels for products.
+    approx_offset: 4978
+  - quote: For the most updated information and documentation related to Declare Labels, see The Living
+      Building Challenge page on us.allegion.com.
+    approx_offset: 5141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0082
+  form: MD-NOA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: MD-NOA Lookup-Approvals (Excel)
+    approx_offset: 26460
+  - quote: MD-NOA Lookup-Anchors (Excel)
+    approx_offset: 26493
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0083
+  form: Miami-Dade
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Miami-Dade (MD)
+    approx_offset: 21310
+  - quote: Miami-Dade  – Select link, or go to Product Control Search.
+    approx_offset: 23373
+  - quote: Hurricane approved (NOA Miami-Dade County Florida)
+    approx_offset: 222881
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0084
+  form: NFPA 80
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications.html
+    - https://www.steelcraft.com/en/products/applications/fire-rated-steel-doors-and-frames.html
+  evidence:
+  - quote: Fire doors must meet the requirements of the International Building Code and International
+      Fire Code, as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives.
+    approx_offset: 110363
+  - quote: Fire doors must meet the requirements of the International Building Code and International
+      Fire Code, as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives.
+    approx_offset: 130508
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0085
+  form: NOA Dade County Florida
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Hurricane-approved (NOA Dade County Florida)
+    approx_offset: 198843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0086
+  form: NOA Miami-Dade County Florida
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: Hurricane approved (NOA Miami-Dade County Florida)
+    approx_offset: 222877
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0087
+  form: P-361
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/index.html
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Meets FEMA P-320 & P-361/ICC500-2014 standards for tornado shelters
+    approx_offset: 902
+  - quote: No wood door, with or without metal sheathing, has successfully passed FEMA P-361.
+    approx_offset: 9502
+  - quote: FEMA P-361 offers best practices on the design and construction of safe rooms but FEMA does
+      not regulate construction.
+    approx_offset: 9515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0088
+  form: PROP65
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/finish-paint.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+  evidence:
+  - quote: In accordance with California PROP65 -
+    approx_offset: 19262
+  - quote: In accordance with California PROP65 -
+    approx_offset: 26173
+  - quote: In accordance with California PROP65 -
+    approx_offset: 30534
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0089
+  form: SDI 100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Door construction meets the requirements of ANSI A250.8-2003 (SDI 100)
+    approx_offset: 198989
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0090
+  form: SDI 117
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0091
+  form: SDI Certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/why-steelcraft/steel-doors-101.html
+  evidence:
+  - quote: To learn more about the SDI Certification requirements and to view their list of approved manufacturers,
+      visit their website here.
+    approx_offset: 193940
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0092
+  form: SDI Certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and
+      quality standards set by the Steel Door Institute
+    approx_offset: 18052
+  - quote: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and
+      quality standard set by the Steel Door Institute
+    approx_offset: 24778
+  - quote: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and
+      quality standard set by the Steel Door Institute
+    approx_offset: 29474
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0093
+  form: SDI Membership
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0094
+  form: SDI-100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Overall door construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames
+    approx_offset: 18232
+  - quote: Overall door construction exceeds ANSI A250.8-2017(SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames.
+    approx_offset: 24956
+  - quote: Overall frame construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying
+      sizes, design, materials, construction, finishing and performance for standard commercial steel
+      doors and frames
+    approx_offset: 29654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0095
+  form: SDI/A250.4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: SDI/A250.4 to 1 Million Cycles and a 350 lb.
+    approx_offset: 107937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0096
+  form: SFBC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+      Resistant Components for Swinging Door Assemblies for Protection of Building Envelopes, the Florida
+      Building Code (FBC) and the South Florida Building Code (SFBC).
+    approx_offset: 11085
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0097
+  form: South Florida Building Code
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm
+      Resistant Components for Swinging Door Assemblies for Protection of Building Envelopes, the Florida
+      Building Code (FBC) and the South Florida Building Code (SFBC).
+    approx_offset: 11056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0098
+  form: Steel Door Institute
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 23
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: Founded in 1933 in Cincinnati, Ohio, Steelcraft was one of the original members of The Steel
+      Door Institute (SDI).
+    approx_offset: 13093
+  - quote: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and
+      quality standards set by the Steel Door Institute
+    approx_offset: 18159
+  - quote: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and
+      quality standard set by the Steel Door Institute
+    approx_offset: 24884
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0099
+  form: TAS 201
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 11135
+  - quote: 'TAS 201: Missile impact tests -- Level D: 50 F/S 34 mph; Level E: 80 F/S 54.5 mph, risk category
+      4'
+    approx_offset: 24094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0100
+  form: TAS 202
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 11218
+  - quote: 'TAS 202 (ASTM E1996 outside Florida HVHZ): Uniform static air pressure tests -- structural
+      load'
+    approx_offset: 24193
+  - quote: 'ANSI/ASTM E330 (also validated by TAS 202): Uniform static air pressure (non-impact)'
+    approx_offset: 24686
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0101
+  form: TAS 203
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 11291
+  - quote: 'TAS 203 (ASTM E1886 outside Florida HVHZ): Cyclic wind pressure tests -- inward/outward pressure'
+    approx_offset: 24289
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0102
+  form: TDI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Texas Department of Insurance (TDI) listing requirements for resistance to hurricane forces
+    approx_offset: 21357
+  - quote: Texas Department of Insurance (TDI) - See Steelcraft Hurricane Lookup Tool for correct Report
+      Number on links below
+    approx_offset: 23548
+  - quote: TDI Impact – Select “Steelcraft Mfg.
+    approx_offset: 23633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0103
+  form: Texas Department of Insurance (TDI)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: Texas Department of Insurance (TDI) listing requirements for resistance to hurricane forces
+    approx_offset: 21326
+  - quote: Texas Department of Insurance (TDI) - See Steelcraft Hurricane Lookup Tool for correct Report
+      Number on links below
+    approx_offset: 23517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0104
+  form: UL 10B
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0105
+  form: UL 10C
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0106
+  form: UL 1784
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI
+      A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance),
+      ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All
+      T
+    approx_offset: 25257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0107
+  form: UL fire ratings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+  evidence:
+  - quote: Labeling with Intertek and UL fire ratings
+    approx_offset: 38457
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0108
+  form: UL-10B
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+  evidence:
+  - quote: Doors meet the broadest fire rating requirements; they are listed for installations requiring
+      compliance to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+      (UL-10C)
+    approx_offset: 18665
+  - quote: Doors meet the broadest fire rating requirements; they are listed for installations requiring
+      compliance to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+      (UL-10C)
+    approx_offset: 25651
+  - quote: Frames meet fire rating requirements; they are listed for installations requiring compliance
+      to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards (UL-10C)
+    approx_offset: 35815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0109
+  form: UL-10C
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+  evidence:
+  - quote: Doors meet the broadest fire rating requirements; they are listed for installations requiring
+      compliance to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+      (UL-10C)
+    approx_offset: 18706
+  - quote: Doors meet the broadest fire rating requirements; they are listed for installations requiring
+      compliance to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+      (UL-10C)
+    approx_offset: 25692
+  - quote: Frames meet fire rating requirements; they are listed for installations requiring compliance
+      to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards (UL-10C)
+    approx_offset: 35856
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0110
+  form: USL-10C
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: Compliance with ASTM A666, ASTM E152, UL-10B, and USL-10C
+    approx_offset: 198918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-conformity_attestations-0111
+  form: labeled by Intertek
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: 'The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado
+      resistance to extreme effects of 250 mph winds for impact and wind load pressure, labeled by Intertek
+      signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361 (2021), as required '
+    approx_offset: 34097
+  - quote: Listed and labeled by Intertek and UL showing compliance with ICC500-2014, ICC 500-2020 and
+      and FEMA 320/361.
+    approx_offset: 176131
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,202 @@
+subject: austinelectricservices.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/austinelectricservices.com.txt
+  sha256: 26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118
+golden_set_version: 1
+anchored_on: search/expectations/austinelectricservices_com/conformity_attestations.yaml
+labels:
+- id: austinelectricservices_com-conformity_attestations-0001
+  form: EPA 608
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.austin-companies.com/es/job-opening/area-de-phoenix/tecnico-de-puesta-en-marcha-de-sistemas-hvac/
+    - https://www.austin-companies.com/es/job-opening/area-de-phoenix/tecnico-de-servicio-de-vac/
+    - https://www.austin-companies.com/job-opening/phoenix/hvac-service-mechanic/
+    - https://www.austin-companies.com/job-opening/phoenix/hvac-start-up-tech/
+  evidence:
+  - quote: Candidate must EPA 608 certification and be willing to attend regular trainings.
+    approx_offset: 35936
+  - quote: Candidate must EPA 608 certification and be willing to participate in an On-Call rotation.
+    approx_offset: 61183
+  - quote: El candidato debe contar con la certificación EPA 608 y estar dispuesto a asistir a capacitaciones
+      regulares.
+    approx_offset: 85573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0002
+  form: EPA 608 certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/job-opening/phoenix/hvac-service-mechanic/
+    - https://www.austin-companies.com/job-opening/phoenix/hvac-start-up-tech/
+  evidence:
+  - quote: Candidate must EPA 608 certification and be willing to attend regular trainings.
+    approx_offset: 35936
+  - quote: Candidate must EPA 608 certification and be willing to participate in an On-Call rotation.
+    approx_offset: 61183
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0003
+  form: Energy Star
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/es/hvac-2/que-hacemos/
+    - https://www.austin-companies.com/hvac/what-we-do/
+  evidence:
+  - quote: • Energy Efficient/Energy Star Certified Systems
+    approx_offset: 72406
+  - quote: • Sistemas con certificación Energy Star/Eficiencia Energética
+    approx_offset: 104583
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0004
+  form: Energy Star Certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/hvac/what-we-do/
+  evidence:
+  - quote: • Energy Efficient/Energy Star Certified Systems
+    approx_offset: 72406
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0005
+  form: Field Certification Program
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/concrete/what-we-do/
+  evidence:
+  - quote: Technicians are certified by the Post-Tensioning Institute’s Field Certification Program
+    approx_offset: 77153
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0006
+  form: Post-Tensioning Institute
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/concrete/what-we-do/
+    - https://www.austin-companies.com/es/concreta/que-hacemos/
+  evidence:
+  - quote: Technicians are certified by the Post-Tensioning Institute’s Field Certification Program
+    approx_offset: 77125
+  - quote: Los técnicos están certificados por el Programa de Certificación de Campo del Post-Tensioning
+      Institute
+    approx_offset: 84668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0007
+  form: Post-Tensioning Institute’s Field Certification Program
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/concrete/what-we-do/
+  evidence:
+  - quote: Technicians are certified by the Post-Tensioning Institute’s Field Certification Program
+    approx_offset: 77125
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0008
+  form: Programa de Certificación de Campo del Post-Tensioning Institute
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/es/concreta/que-hacemos/
+  evidence:
+  - quote: Los técnicos están certificados por el Programa de Certificación de Campo del Post-Tensioning
+      Institute
+    approx_offset: 84629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0009
+  form: certificación EPA 608
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.austin-companies.com/es/job-opening/area-de-phoenix/tecnico-de-puesta-en-marcha-de-sistemas-hvac/
+    - https://www.austin-companies.com/es/job-opening/area-de-phoenix/tecnico-de-servicio-de-vac/
+  evidence:
+  - quote: El candidato debe contar con la certificación EPA 608 y estar dispuesto a asistir a capacitaciones
+      regulares.
+    approx_offset: 85559
+  - quote: El candidato debe contar con la certificación EPA 608 y estar dispuesto a participar en una
+      rotación de guardia.
+    approx_offset: 101768
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: austinelectricservices_com-conformity_attestations-0010
+  form: certificación Energy Star
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.austin-companies.com/es/hvac-2/que-hacemos/
+  evidence:
+  - quote: • Sistemas con certificación Energy Star/Eficiencia Energética
+    approx_offset: 104569
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

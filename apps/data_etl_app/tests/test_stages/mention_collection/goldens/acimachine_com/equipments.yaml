@@ -1,0 +1,660 @@
+subject: acimachine.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/acimachine.com.txt
+  sha256: 05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b
+golden_set_version: 1
+anchored_on: search/expectations/acimachine_com/equipments.yaml
+labels:
+- id: acimachine_com-equipments-0001
+  form: ACER DYNAMIC 7060G
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190469-acer-dynamic-70360g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190477-acer-dynamic-7060g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190479-acer-dynamic-60360g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190481-acer-dynamic-60280g-oil-field-and-hollow-spindle-lathes
+  evidence:
+  - quote: ACER DYNAMIC 7060G
+    approx_offset: 104571
+  - quote: ACER DYNAMIC 7060G
+    approx_offset: 724381
+  - quote: ACER DYNAMIC 7060G
+    approx_offset: 1056275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0002
+  form: ACER E-LATHE 1760G
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190225-acer-dynamic-2180gh-engine-lathes
+    - https://acimachine.com/equipment/7190228-acer-e-lathe-1440v-engine-lathes
+    - https://acimachine.com/equipment/7190237-acer-e-lathe-1760g-engine-lathes
+    - https://acimachine.com/equipment/7190263-acer-arg-32sd-rotary-surface-grinders
+  evidence:
+  - quote: ACER E-LATHE 1760G
+    approx_offset: 92262
+  - quote: ACER E-LATHE 1760G
+    approx_offset: 523775
+  - quote: ACER E-LATHE 1760G
+    approx_offset: 669747
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0003
+  form: ACER SUPRA-618II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190235-acer-supra-618ii-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190236-acer-supra-818ahd-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190261-acer-egrinder-618-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190317-acer-supra-1228nc-reciprocating-surface-grinders
+  evidence:
+  - quote: ACER SUPRA-618II
+    approx_offset: 107373
+  - quote: ACER SUPRA-618II
+    approx_offset: 854726
+  - quote: ACER SUPRA-618II
+    approx_offset: 913736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0004
+  form: BP-2248H
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190987-jet-bpf-1450-box-and-pan-brakes-including-finger
+    - https://acimachine.com/equipment/7190989-jet-bpf-1240-box-and-pan-brakes-including-finger
+    - https://acimachine.com/equipment/7191149-jet-jws-770a-stackers
+    - https://acimachine.com/equipment/7191309-jet-bp-1248h-box-and-pan-brakes-including-finger
+  evidence:
+  - quote: JET BP-2248H
+    approx_offset: 99581
+  - quote: JET BP-2248H
+    approx_offset: 446650
+  - quote: JET BP-2248H
+    approx_offset: 716186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0005
+  form: CHEVALIER FSG-3A1224
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://acimachine.com/
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190867-chevalier-fsg-3a1224-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190869-chevalier-fsg-612sp-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190881-chevalier-smart-b818iii-reciprocating-surface-grinders
+  evidence:
+  - quote: CHEVALIER FSG-3A1224
+    approx_offset: 515
+  - quote: CHEVALIER FSG-3A1224
+    approx_offset: 77678
+  - quote: New CHEVALIER FSG-3A1224 | Reciprocating Surface Grinders
+    approx_offset: 77703
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0006
+  form: CHEVALIER SMART-B1224III
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190220-acer-ags-1020ahd-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190857-chevalier-fsg-618sp-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190871-chevalier-hydro-h1224-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190882-chevalier-smart-b1224iii-reciprocating-surface-grinders
+  evidence:
+  - quote: CHEVALIER SMART-B1224III
+    approx_offset: 108483
+  - quote: CHEVALIER SMART-B1224III
+    approx_offset: 253663
+  - quote: CHEVALIER SMART-B1224III
+    approx_offset: 652672
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0007
+  form: DYNAMIC 7060G
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190469-acer-dynamic-70360g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190477-acer-dynamic-7060g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190479-acer-dynamic-60360g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190481-acer-dynamic-60280g-oil-field-and-hollow-spindle-lathes
+  evidence:
+  - quote: ACER DYNAMIC 7060G
+    approx_offset: 104576
+  - quote: ACER DYNAMIC 7060G
+    approx_offset: 724386
+  - quote: ACER DYNAMIC 7060G
+    approx_offset: 1056280
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0008
+  form: E-LATHE 1760G
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190225-acer-dynamic-2180gh-engine-lathes
+    - https://acimachine.com/equipment/7190228-acer-e-lathe-1440v-engine-lathes
+    - https://acimachine.com/equipment/7190237-acer-e-lathe-1760g-engine-lathes
+    - https://acimachine.com/equipment/7190263-acer-arg-32sd-rotary-surface-grinders
+  evidence:
+  - quote: ACER E-LATHE 1760G
+    approx_offset: 92267
+  - quote: ACER E-LATHE 1760G
+    approx_offset: 523780
+  - quote: ACER E-LATHE 1760G
+    approx_offset: 669752
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0009
+  form: FANUC Oi-TD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://acimachine.com/equipment/7191810-sharp-sta-38-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7191813-sharp-sta-44-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7191815-sharp-sta-50-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7191818-sharp-stb-38-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7191821-sharp-stb-44-oil-field-and-hollow-spindle-lathes
+  evidence:
+  - quote: This is a high precision CNC flat bed lathe with FANUC Oi-TD control.
+    approx_offset: 1055390
+  - quote: This is a high precision CNC flat bed lathe with FANUC Oi-TD control.
+    approx_offset: 1902140
+  - quote: This is a high precision CNC flat bed lathe with FANUC Oi-TD control.
+    approx_offset: 2539623
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0010
+  form: FSG-3A1224
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://acimachine.com/
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190867-chevalier-fsg-3a1224-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190869-chevalier-fsg-612sp-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190881-chevalier-smart-b818iii-reciprocating-surface-grinders
+  evidence:
+  - quote: CHEVALIER FSG-3A1224
+    approx_offset: 525
+  - quote: CHEVALIER FSG-3A1224
+    approx_offset: 77688
+  - quote: New CHEVALIER FSG-3A1224 | Reciprocating Surface Grinders
+    approx_offset: 77713
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0011
+  form: HM1700RI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190293-acer-hmc-2824s-horizontal-machining-centers
+    - https://acimachine.com/equipment/7190294-acer-hmc-2420sh-horizontal-machining-centers
+    - https://acimachine.com/equipment/7191503-hurco-autobend-s6-backgauges
+    - https://acimachine.com/equipment/7191506-hurco-autobend-lp22-backgauges
+  evidence:
+  - quote: HURCO HM1700RI
+    approx_offset: 103340
+  - quote: HURCO HM1700RI
+    approx_offset: 274164
+  - quote: The Hurco HM1700Ri horizontal mill machine is designed for maximum efficiency and is equipped
+      with pre-tensioned, dual ballscrews which results in increased ...
+    approx_offset: 274214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0012
+  form: HP-5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190939-jet-hp-35a-h-frame-presses
+    - https://acimachine.com/equipment/7190980-jet-cs-315-circular-cold-saws
+    - https://acimachine.com/equipment/7191289-jet-j-41002-belt-grinders-including-sanders
+    - https://acimachine.com/equipment/7191326-jet-hp-15a-h-frame-presses
+  evidence:
+  - quote: JET HP-5
+    approx_offset: 100353
+  - quote: JET HP-5
+    approx_offset: 403769
+  - quote: JET HP-5
+    approx_offset: 678584
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0013
+  form: HURCO HM1700RI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190293-acer-hmc-2824s-horizontal-machining-centers
+    - https://acimachine.com/equipment/7190294-acer-hmc-2420sh-horizontal-machining-centers
+    - https://acimachine.com/equipment/7191503-hurco-autobend-s6-backgauges
+    - https://acimachine.com/equipment/7191506-hurco-autobend-lp22-backgauges
+  evidence:
+  - quote: HURCO HM1700RI
+    approx_offset: 103334
+  - quote: HURCO HM1700RI
+    approx_offset: 274158
+  - quote: The Hurco HM1700Ri horizontal mill machine is designed for maximum efficiency and is equipped
+      with pre-tensioned, dual ballscrews which results in increased ...
+    approx_offset: 274208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0014
+  form: HURCO VMX42I
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://acimachine.com/
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7191501-hurco-autobend-lp11-backgauges
+    - https://acimachine.com/equipment/7191535-hurco-vm5i-vertical-machining-centers
+    - https://acimachine.com/equipment/7191537-hurco-vm20i-vertical-machining-centers
+  evidence:
+  - quote: HURCO VMX42I
+    approx_offset: 475
+  - quote: HURCO VMX42I
+    approx_offset: 96174
+  - quote: HURCO VMX42I
+    approx_offset: 141543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0015
+  form: JET BP-2248H
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190987-jet-bpf-1450-box-and-pan-brakes-including-finger
+    - https://acimachine.com/equipment/7190989-jet-bpf-1240-box-and-pan-brakes-including-finger
+    - https://acimachine.com/equipment/7191149-jet-jws-770a-stackers
+    - https://acimachine.com/equipment/7191309-jet-bp-1248h-box-and-pan-brakes-including-finger
+  evidence:
+  - quote: JET BP-2248H
+    approx_offset: 99577
+  - quote: JET BP-2248H
+    approx_offset: 446646
+  - quote: JET BP-2248H
+    approx_offset: 716182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0016
+  form: JET HP-5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190939-jet-hp-35a-h-frame-presses
+    - https://acimachine.com/equipment/7190980-jet-cs-315-circular-cold-saws
+    - https://acimachine.com/equipment/7191289-jet-j-41002-belt-grinders-including-sanders
+    - https://acimachine.com/equipment/7191326-jet-hp-15a-h-frame-presses
+  evidence:
+  - quote: JET HP-5
+    approx_offset: 100349
+  - quote: JET HP-5
+    approx_offset: 403765
+  - quote: JET HP-5
+    approx_offset: 678580
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0017
+  form: RV 10 FLEXMASTER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://acimachine.com/
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/brands/winema
+    - https://acimachine.com/equipment/7191985-winema-rv-10-flexmaster-rotary-trunnion-horizontal-and-vertical-transfer-machines
+    - https://acimachine.com/types/22440-rotary-trunnion-horizontal-and-vertical-transfer-machines
+  evidence:
+  - quote: WINEMA RV 10 FLEXMASTER
+    approx_offset: 399
+  - quote: WINEMA RV 10 FLEXMASTER
+    approx_offset: 80604
+  - quote: New WINEMA RV 10 FLEXMASTER | Rotary, Trunnion (Horizontal & Vertical) Transfer Machines
+    approx_offset: 80632
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0018
+  form: SHARP STA-38
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190485-acer-dynamic-60120g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190945-chevalier-fbl-530-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190947-chevalier-fbl-540-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7191604-sharp-vh3-vertical-and-horizontal-mills
+  evidence:
+  - quote: SHARP STA-38
+    approx_offset: 104745
+  - quote: SHARP STA-38
+    approx_offset: 531519
+  - quote: SHARP STA-38
+    approx_offset: 857407
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0019
+  form: SHARP SVL-2416SE-F
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190284-acer-smc-2543-vertical-machining-centers
+    - https://acimachine.com/equipment/7190289-acer-smc-2956-vertical-machining-centers
+    - https://acimachine.com/equipment/7191535-hurco-vm5i-vertical-machining-centers
+    - https://acimachine.com/equipment/7191547-hurco-vmx64i-vertical-machining-centers
+  evidence:
+  - quote: SHARP SVL-2416SE-F
+    approx_offset: 96642
+  - quote: SHARP SVL-2416SE-F
+    approx_offset: 695677
+  - quote: SHARP SVL-2416SE-F
+    approx_offset: 1139663
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0020
+  form: SMART-B1224III
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190220-acer-ags-1020ahd-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190857-chevalier-fsg-618sp-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190871-chevalier-hydro-h1224-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190882-chevalier-smart-b1224iii-reciprocating-surface-grinders
+  evidence:
+  - quote: CHEVALIER SMART-B1224III
+    approx_offset: 108493
+  - quote: CHEVALIER SMART-B1224III
+    approx_offset: 253673
+  - quote: CHEVALIER SMART-B1224III
+    approx_offset: 652682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0021
+  form: STA-38
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190485-acer-dynamic-60120g-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190945-chevalier-fbl-530-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7190947-chevalier-fbl-540-oil-field-and-hollow-spindle-lathes
+    - https://acimachine.com/equipment/7191604-sharp-vh3-vertical-and-horizontal-mills
+  evidence:
+  - quote: SHARP STA-38
+    approx_offset: 104751
+  - quote: SHARP STA-38
+    approx_offset: 531525
+  - quote: SHARP STA-38
+    approx_offset: 857413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0022
+  form: SUPRA-618II
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190235-acer-supra-618ii-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190236-acer-supra-818ahd-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190261-acer-egrinder-618-reciprocating-surface-grinders
+    - https://acimachine.com/equipment/7190317-acer-supra-1228nc-reciprocating-surface-grinders
+  evidence:
+  - quote: ACER SUPRA-618II
+    approx_offset: 107378
+  - quote: ACER SUPRA-618II
+    approx_offset: 854731
+  - quote: ACER SUPRA-618II
+    approx_offset: 913741
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0023
+  form: SVL-2416SE-F
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7190284-acer-smc-2543-vertical-machining-centers
+    - https://acimachine.com/equipment/7190289-acer-smc-2956-vertical-machining-centers
+    - https://acimachine.com/equipment/7191535-hurco-vm5i-vertical-machining-centers
+    - https://acimachine.com/equipment/7191547-hurco-vmx64i-vertical-machining-centers
+  evidence:
+  - quote: SHARP SVL-2416SE-F
+    approx_offset: 96648
+  - quote: SHARP SVL-2416SE-F
+    approx_offset: 695683
+  - quote: SHARP SVL-2416SE-F
+    approx_offset: 1139669
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0024
+  form: VMX42I
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://acimachine.com/
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/equipment/7191501-hurco-autobend-lp11-backgauges
+    - https://acimachine.com/equipment/7191535-hurco-vm5i-vertical-machining-centers
+    - https://acimachine.com/equipment/7191537-hurco-vm20i-vertical-machining-centers
+  evidence:
+  - quote: HURCO VMX42I
+    approx_offset: 481
+  - quote: HURCO VMX42I
+    approx_offset: 96180
+  - quote: HURCO VMX42I
+    approx_offset: 141549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0025
+  form: WELLSAW 1200
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/brands/wellsaw
+    - https://acimachine.com/equipment/7191244-jet-hvbs-710s-horizontal-band-saws
+    - https://acimachine.com/equipment/7191912-wellsaw-1016-horizontal-band-saws
+    - https://acimachine.com/equipment/7191913-wellsaw-1338-horizontal-band-saws
+  evidence:
+  - quote: WELLSAW 1200
+    approx_offset: 102858
+  - quote: WELLSAW 1200
+    approx_offset: 159589
+  - quote: WELLSAW 1200
+    approx_offset: 815359
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: acimachine_com-equipments-0026
+  form: WINEMA RV 10 FLEXMASTER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://acimachine.com/
+    - https://acimachine.com/active-inventory
+    - https://acimachine.com/brands/winema
+    - https://acimachine.com/equipment/7191985-winema-rv-10-flexmaster-rotary-trunnion-horizontal-and-vertical-transfer-machines
+    - https://acimachine.com/types/22440-rotary-trunnion-horizontal-and-vertical-transfer-machines
+  evidence:
+  - quote: WINEMA RV 10 FLEXMASTER
+    approx_offset: 392
+  - quote: WINEMA RV 10 FLEXMASTER
+    approx_offset: 80597
+  - quote: New WINEMA RV 10 FLEXMASTER | Rotary, Trunnion (Horizontal & Vertical) Transfer Machines
+    approx_offset: 80625
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

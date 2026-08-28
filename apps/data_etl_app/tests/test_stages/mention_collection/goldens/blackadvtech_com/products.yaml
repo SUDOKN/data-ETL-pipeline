@@ -1,0 +1,2212 @@
+subject: blackadvtech.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+  sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+golden_set_version: 1
+anchored_on: search/expectations/blackadvtech_com/products.yaml
+labels:
+- id: blackadvtech_com-products-0001
+  form: 2-piece aluminum cans
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: This process is used to make fuel tanks for automotive, 2-piece aluminum cans, and kitchen
+      sinks, among other materials.
+    approx_offset: 228201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0002
+  form: AMMUNITION LOCKER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: AMMUNITION LOCKER
+    approx_offset: 29290
+  - quote: AMMUNITION LOCKER
+    approx_offset: 115962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0003
+  form: Alternator silencer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Alternator silencer
+    approx_offset: 88014
+  - quote: Alternator silencer
+    approx_offset: 114494
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0004
+  form: Aluminum tanks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Aluminum tanks are inarguably the best solution for fuel storage.
+    approx_offset: 175097
+  - quote: You can seamlessly mold and construct aluminum tanks into your preferred design and shape.
+    approx_offset: 175885
+  - quote: Aluminum tanks can cruise in rough seas without showing any signs of leaking.
+    approx_offset: 176089
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0005
+  form: Bookdrop
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Blackstone Donates Bookdrop to Prendergast Library
+    approx_offset: 42357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0006
+  form: CUSTOM METAL COMPONENTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/gallery/
+  evidence:
+  - quote: CUSTOM METAL COMPONENTS IMAGE GALLERY
+    approx_offset: 70589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0007
+  form: Cadaver Trays
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: 'created for our customers: Cadaver Trays, Computer Stands, misc.'
+    approx_offset: 2522
+  - quote: 'We have created for our customers: Cadaver Trays, Computer Stands, Misc.'
+    approx_offset: 67418
+  - quote: Cadaver Trays
+    approx_offset: 76273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0008
+  form: Computer Stands
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: 'created for our customers: Cadaver Trays, Computer Stands, misc.'
+    approx_offset: 2537
+  - quote: 'We have created for our customers: Cadaver Trays, Computer Stands, Misc.'
+    approx_offset: 67433
+  - quote: Computer Stands
+    approx_offset: 76287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0009
+  form: Covers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/industries-served/transportation
+  evidence:
+  - quote: Enclosures, & Covers Furniture for Laboratories.
+    approx_offset: 2574
+  - quote: Enclosures & Covers, Furniture for Laboratories
+    approx_offset: 67469
+  - quote: Enclosures & Covers
+    approx_offset: 76322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0010
+  form: DIESEL COMPRESSOR ENCLOSURE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: DIESEL COMPRESSOR ENCLOSURE
+    approx_offset: 29262
+  - quote: DIESEL COMPRESSOR ENCLOSURE
+    approx_offset: 115934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0011
+  form: ENCLOSURE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+  evidence:
+  - quote: DIESEL COMPRESSOR ENCLOSURE
+    approx_offset: 29280
+  - quote: LABORATORY FURNITURE & ENCLOSURE MANUFACTURING
+    approx_offset: 76085
+  - quote: DIESEL COMPRESSOR ENCLOSURE
+    approx_offset: 115952
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0012
+  form: Enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Enclosures, & Covers Furniture for Laboratories.
+    approx_offset: 2560
+  - quote: Enclosures & Covers, Furniture for Laboratories
+    approx_offset: 67456
+  - quote: Metal Furniture & Enclosures
+    approx_offset: 76127
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0013
+  form: Furniture for Laboratories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Enclosures, & Covers Furniture for Laboratories.
+    approx_offset: 2581
+  - quote: Enclosures & Covers, Furniture for Laboratories
+    approx_offset: 67477
+  - quote: Furniture for Laboratories
+    approx_offset: 76329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0014
+  form: Gears and Shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Manufacture of Gears and Shafts
+    approx_offset: 197467
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0015
+  form: Heavy Forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Used for the Manufacture of Heavy Forgings
+    approx_offset: 197213
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0016
+  form: Inverter cabinets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Inverter cabinets
+    approx_offset: 87809
+  - quote: Inverter cabinets
+    approx_offset: 87937
+  - quote: Inverter cabinets
+    approx_offset: 114289
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0017
+  form: LABORATORY FURNITURE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+  evidence:
+  - quote: LABORATORY FURNITURE & ENCLOSURE MANUFACTURING
+    approx_offset: 76062
+  - quote: LABORATORY FURNITURE & ENCLOSURE MANUFACTURING
+    approx_offset: 116706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0018
+  form: Large hoods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Large hoods
+    approx_offset: 87827
+  - quote: Large hoods
+    approx_offset: 114307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0019
+  form: MARINE SECURITY FILING CABINETS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: MARINE SECURITY FILING CABINETS
+    approx_offset: 29114
+  - quote: MARINE SECURITY FILING CABINETS
+    approx_offset: 115786
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0020
+  form: Marine fuel tanks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/category/military/
+    - https://blackadvtech.com/category/sheet-metal/
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: How Marine Fuel Tanks and Sheet Metal Fabrication Coexist
+    approx_offset: 100132
+  - quote: How Marine Fuel Tanks and Sheet Metal Fabrication Coexist
+    approx_offset: 106886
+  - quote: HOW MARINE FUEL TANKS AND SHEET METAL FABRICATION COEXIST
+    approx_offset: 173763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0021
+  form: Marine tank
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Marine tank fabrication is a long process that involves lots of handling and precision.
+    approx_offset: 173832
+  - quote: Designing a marine tank encompasses many complex procedures.
+    approx_offset: 174355
+  - quote: Aluminum is among the most sought after materials for marine tank fabrication.
+    approx_offset: 175712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0022
+  form: Metal Furniture & Enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+  evidence:
+  - quote: Metal Furniture & Enclosures
+    approx_offset: 76109
+  - quote: Metal Furniture & Enclosures
+    approx_offset: 116753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0023
+  form: Metal connector plate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Metal connector plate– in this form, teeth are stamped out such that they are perpendicular
+      to the plane of the plate in a particular pattern.
+    approx_offset: 229569
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0024
+  form: Metal nail plate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: Metal nail plate– in this form, nails are used as a wood fastener.
+    approx_offset: 229433
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0025
+  form: Misc. Enclosures & Covers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/industries-served/scientific
+    - https://blackadvtech.com/industries-served/scientific/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: 'We have created for our customers: Cadaver Trays, Computer Stands, Misc. Enclosures & Covers'
+    approx_offset: 67450
+  - quote: Misc. Enclosures & Covers
+    approx_offset: 76303
+  - quote: Misc. Enclosures & Covers
+    approx_offset: 116947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0026
+  form: Misc. parts, brackets & enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Misc. parts, brackets & enclosures
+    approx_offset: 87877
+  - quote: Misc. parts, brackets & enclosures
+    approx_offset: 88034
+  - quote: Misc. parts, brackets & enclosures
+    approx_offset: 114357
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0027
+  form: Mufflers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Mufflers
+    approx_offset: 87868
+  - quote: Mufflers
+    approx_offset: 114348
+  - quote: Mostly, seam welding is used to fabricate sheet metal containers and automobile mufflers.
+    approx_offset: 182810
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0028
+  form: NAVY SCBA LOCKERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: NAVY SCBA LOCKERS
+    approx_offset: 29146
+  - quote: NAVY SCBA LOCKERS
+    approx_offset: 115818
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0029
+  form: Radiator cabinets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Radiator cabinets
+    approx_offset: 87850
+  - quote: Radiator cabinets
+    approx_offset: 114330
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0030
+  form: Rear noses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Rear noses
+    approx_offset: 87839
+  - quote: Rear noses
+    approx_offset: 114319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0031
+  form: SHIPBOARD MODULAR SECRETARY BUREAUS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: SHIPBOARD MODULAR SECRETARY BUREAUS
+    approx_offset: 28882
+  - quote: SHIPBOARD MODULAR SECRETARY BUREAUS
+    approx_offset: 115554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0032
+  form: SHIPBOARD MODULAR TRANSOM BERTH BED/COUCH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: SHIPBOARD MODULAR TRANSOM BERTH BED/COUCH
+    approx_offset: 29164
+  - quote: SHIPBOARD MODULAR TRANSOM BERTH BED/COUCH
+    approx_offset: 115836
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0033
+  form: SHIPBOARD OFFICER’S SLEEPING BERTH WITH STORAGE DRAWERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: SHIPBOARD OFFICER’S SLEEPING BERTH WITH STORAGE DRAWERS
+    approx_offset: 29206
+  - quote: SHIPBOARD OFFICER’S SLEEPING BERTH WITH STORAGE DRAWERS
+    approx_offset: 115878
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0034
+  form: STANDARD MILITARY & MARINE METAL PRODUCTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: STANDARD MILITARY & MARINE METAL PRODUCTS
+    approx_offset: 28840
+  - quote: STANDARD MILITARY & MARINE METAL PRODUCTS
+    approx_offset: 115512
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0035
+  form: Stainless steel HVAC covers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Stainless steel HVAC covers
+    approx_offset: 87986
+  - quote: Stainless steel HVAC covers
+    approx_offset: 114466
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0036
+  form: Stainless steel HVAC weldments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Stainless steel HVAC weldments
+    approx_offset: 87955
+  - quote: Stainless steel HVAC weldments
+    approx_offset: 114435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0037
+  form: Steel drums
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Steel drums, radiators, and tin cans are produced through this process.
+    approx_offset: 184017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0038
+  form: Steel drums, radiators, and tin cans
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Steel drums, radiators, and tin cans are produced through this process.
+    approx_offset: 184017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0039
+  form: aircraft frames and turbine engines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-rise-of-robotics-in-welding-revolutionizing-the-industry/
+  evidence:
+  - quote: Robotic welders in the aerospace industry are tasked with creating strong, high-precision welds
+      in critical components such as aircraft frames and turbine engines.
+    approx_offset: 137618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0040
+  form: aluminum fuel tanks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 174809
+  - quote: Aluminum fuel tanks exhibit high strength and can run for years.
+    approx_offset: 175163
+  - quote: Aluminum fuel tanks are generally accepted for the storage of gasoline and diesel.
+    approx_offset: 175575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0041
+  form: automobile body panels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: These steels are often used in to make bolts, steel plates, fixtures, and automobile body panels.
+    approx_offset: 201626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0042
+  form: automobile parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Whether you are fabricating military equipment or automobile parts, it’s essential to follow
+      the stipulated guidelines.
+    approx_offset: 191869
+  - quote: manufacture of automobile parts
+    approx_offset: 240770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0043
+  form: boat fuel system
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: They will guide you on how to make a great boat fuel system, as well as how you can customize
+      your marine fuel tank.
+    approx_offset: 177399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0044
+  form: bolts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: These steels are often used in to make bolts, steel plates, fixtures, and automobile body panels.
+    approx_offset: 201591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0045
+  form: bolts, steel plates, fixtures, and automobile body panels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: These steels are often used in to make bolts, steel plates, fixtures, and automobile body panels.
+    approx_offset: 201591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0046
+  form: brackets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: parts, brackets & enclosures
+    approx_offset: 87890
+  - quote: parts, brackets & enclosures
+    approx_offset: 88047
+  - quote: parts, brackets & enclosures
+    approx_offset: 114370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0047
+  form: bumpers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 15771
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 34184
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 51986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0048
+  form: car chassis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-stages-of-preparing-sheet-metal-for-finishing/
+  evidence:
+  - quote: The process of converting sheet metal to a car chassis isn’t obvious.
+    approx_offset: 217602
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0049
+  form: chasses for racing cars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Also, car manufacturers use seam welding in making chasses for racing cars.
+    approx_offset: 185726
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0050
+  form: complex sheet metal components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/
+  evidence:
+  - quote: Laser cutting is perfect for small, complex sheet metal components.
+    approx_offset: 13887
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0051
+  form: computer-cabinet hardware
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: computer-cabinet hardware
+    approx_offset: 240846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0052
+  form: drive shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 15757
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 34170
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 51972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0053
+  form: electronic enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/rfq/
+  evidence:
+  - quote: From train cars and submarines to electronic enclosures and military lockers, we have experience
+      with creating large and small sheet metal products that stand up to all environments.
+    approx_offset: 27779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0054
+  form: enclosures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+  evidence:
+  - quote: Provides enclosures for Windurance, a global supplier of wind turbine blade pitch control systems.
+    approx_offset: 2115
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 2221
+  - quote: From train cars and submarines to electronic enclosures and military lockers, we have experience
+      with creating large and small sheet metal products that stand up to all environments.
+    approx_offset: 27790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0055
+  form: exhaust pipes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: exhaust pipes
+    approx_offset: 240894
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0056
+  form: faucets and taps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Mainly, stainless steel is used the manufacture of household items including utensils, faucets
+      and taps.
+    approx_offset: 201755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0057
+  form: forging industrial blades and knives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: forging industrial blades and knives
+    approx_offset: 188383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0058
+  form: forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Used for the Manufacture of Heavy Forgings
+    approx_offset: 197219
+  - quote: They have a great ability to withstand massive temperatures and thus the perfect metals to
+      manufacture forgings for severe weather and robust applications.
+    approx_offset: 197398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0059
+  form: fuel tanks for automotive, 2-piece aluminum cans, and kitchen sinks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: This process is used to make fuel tanks for automotive, 2-piece aluminum cans, and kitchen
+      sinks, among other materials.
+    approx_offset: 228174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0060
+  form: gas cylinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Manufacture of gas cylinders
+    approx_offset: 196881
+  - quote: This makes it ideal for the production of gas cylinders.
+    approx_offset: 196999
+  - quote: The use of slightly higher nickel contents adds pressure resistance and high-temperature strength
+      to steel, an essential requirement in the manufacture of gas cylinders.
+    approx_offset: 197169
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0061
+  form: heat exchangers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Seam welding is also used in the fabrication of heat exchangers.
+    approx_offset: 185860
+  - quote: Most of the welded heat exchangers have excellent qualities.
+    approx_offset: 185896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0062
+  form: kitchen carts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/industrial-welding/
+  evidence:
+  - quote: kitchen carts).
+    approx_offset: 10724
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0063
+  form: kitchen knives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: High-carbon steel is always used for the manufacture of sturdy kitchen knives for high-end
+      application.
+    approx_offset: 202896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0064
+  form: kitchen sinks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: This process is used to make fuel tanks for automotive, 2-piece aluminum cans, and kitchen
+      sinks, among other materials.
+    approx_offset: 228228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0065
+  form: knives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: forging industrial blades and knives
+    approx_offset: 188413
+  - quote: The usual talk of carbon steel is mostly referenced to the high carbon industrial steel used
+      in making various tools and knives.
+    approx_offset: 200742
+  - quote: High-carbon steel is always used for the manufacture of sturdy kitchen knives for high-end
+      application.
+    approx_offset: 202904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0066
+  form: laminated writing desk
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: They are assembled and can come complete with a laminated writing desk, wiring and light fixtures.
+    approx_offset: 29063
+  - quote: They are assembled and can come complete with a laminated writing desk, wiring and light fixtures.
+    approx_offset: 115735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0067
+  form: large sheet metal components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Ability to fabricate a variety of large sheet metal components for the transportation industry.
+    approx_offset: 2359
+  - quote: Blackstone has the ability to fabricate a variety of large sheet metal components for the transportation
+      industry.
+    approx_offset: 66980
+  - quote: Blackstone has fabricated a variety of large sheet metal components for the transportation
+      industry.
+    approx_offset: 87532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0068
+  form: light fixtures
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: They are assembled and can come complete with a laminated writing desk, wiring and light fixtures.
+    approx_offset: 29098
+  - quote: They are assembled and can come complete with a laminated writing desk, wiring and light fixtures.
+    approx_offset: 115770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0069
+  form: locomotives
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We produce products for locomotives and passenger cars.
+    approx_offset: 67066
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0070
+  form: locomotives and passenger cars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We produce products for locomotives and passenger cars.
+    approx_offset: 67066
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0071
+  form: making automotive valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: making automotive valves
+    approx_offset: 188420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0072
+  form: making hydraulic cylinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: making hydraulic cylinders
+    approx_offset: 188303
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0073
+  form: manufacture of automobile parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: manufacture of automobile parts
+    approx_offset: 240755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0074
+  form: marine fuel tank
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://blackadvtech.com/how-marine-fuel-tanks-and-sheet-metal-fabrication-coexist/
+  evidence:
+  - quote: Tips for Fabricating Aluminum Marine Fuel Tank
+    approx_offset: 176198
+  - quote: If you want to have a reliable marine fuel tank, sitting by the guidelines is critical.
+    approx_offset: 176247
+  - quote: Fabricating Your Marine Fuel Tank
+    approx_offset: 177234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0075
+  form: marine shafts and automobile gears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Nickel Steel is almost indestructible and offers the perfect solution for the manufacture of
+      marine shafts and automobile gears.
+    approx_offset: 197713
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0076
+  form: marine sheet metal products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2743
+  - quote: We produce standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 28713
+  - quote: We produce standard military and marine sheet metal products.
+    approx_offset: 67270
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0077
+  form: metal enclosure
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+  evidence:
+  - quote: 5 SHEET METAL ENCLOSURE DESIGN TIPS
+    approx_offset: 213247
+  - quote: Whether you want to design a metal enclosure for a sensitive machine or for simple storage
+      cabinets, perfection is key.
+    approx_offset: 213377
+  - quote: These 5 sheet metal enclosure tips will help make your project a success;
+    approx_offset: 213633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0078
+  form: metal filing cabinets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: metal filing cabinets
+    approx_offset: 240872
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0079
+  form: military equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/the-blackstone-fundamentals-of-sheet-metal-design/
+  evidence:
+  - quote: Whether you are fabricating military equipment or automobile parts, it’s essential to follow
+      the stipulated guidelines.
+    approx_offset: 191847
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0080
+  form: military lockers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/rfq/
+  evidence:
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2804
+  - quote: From train cars and submarines to electronic enclosures and military lockers, we have experience
+      with creating large and small sheet metal products that stand up to all environments.
+    approx_offset: 27805
+  - quote: We produce standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 28774
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0081
+  form: passenger cars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We produce products for locomotives and passenger cars.
+    approx_offset: 67082
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0082
+  form: plasticizing screw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/transferred-vs-non-transferred-plasma-arc-welding/
+  evidence:
+  - quote: plasticizing screw
+    approx_offset: 188284
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0083
+  form: prototype and production jobs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/about-us/facility/
+  evidence:
+  - quote: Located in Jamestown, NY our 275,000-square foot facility is equipped with the industry’s most
+      advanced equipment and state-of-the-art technology, enabling us to offer clients cost effective
+      solutions for both prototype and production jobs.
+    approx_offset: 19587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0084
+  form: prototypes, components, or final assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/everything-you-should-know-about-powder-coating-finishes/
+    - https://blackadvtech.com/is-fiber-laser-cutting-the-proper-solution-for-your-application/
+  evidence:
+  - quote: We can fabricate any order, whether it includes prototypes, components, or final assemblies.
+    approx_offset: 120484
+  - quote: We can fabricate any order, whether it includes prototypes, components, or final assemblies.
+    approx_offset: 153010
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0085
+  form: racing cars’ chassis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Sturdy welds make racing cars’ chassis safe and durable.
+    approx_offset: 185769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0086
+  form: radiators
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Steel drums, radiators, and tin cans are produced through this process.
+    approx_offset: 184030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0087
+  form: resistance wires
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: The addition of more than 20% chromium is ideal for the manufacture of resistance wires.
+    approx_offset: 198705
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0088
+  form: rotating shafts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/number-2-vs-number-3-metals-what-you-need-to-know/
+  evidence:
+  - quote: Nickel alloys have high strengths to manufacture gears and rotating shafts.
+    approx_offset: 197603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0089
+  form: school lockers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/cold-rolling-and-its-possible-defects/
+  evidence:
+  - quote: school lockers
+    approx_offset: 240908
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0090
+  form: sheet metal components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/cell-manufacturing/
+  evidence:
+  - quote: Ability to fabricate a variety of large sheet metal components for the transportation industry.
+    approx_offset: 2365
+  - quote: Paint coating sheet metal components is not only used for aesthetic purposes, but also to increase
+      the level of surface protection of the part while keeping costs down.
+    approx_offset: 5092
+  - quote: Laser cutting is perfect for small, complex sheet metal components.
+    approx_offset: 13895
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0091
+  form: sheet metal containers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Mostly, seam welding is used to fabricate sheet metal containers and automobile mufflers.
+    approx_offset: 182772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0092
+  form: shipboard furniture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+  evidence:
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2780
+  - quote: We produce standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 28750
+  - quote: We produce standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 115422
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0093
+  form: skids and crates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Capable of constructing skids and crates to customer specifications
+    approx_offset: 91234
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0094
+  form: soda cans
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/how-thin-can-sheet-metal-get/
+  evidence:
+  - quote: Ironing is another essential process in the manufacture of soda cans.
+    approx_offset: 206607
+  - quote: Usually, ironing occurs in 2 or 3 processes, whereby different dies are used to form the preferred
+      thickness of soda cans.
+    approx_offset: 206790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0095
+  form: spoilers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://blackadvtech.com/capabilities/
+    - https://blackadvtech.com/capabilities/newequipment/
+    - https://blackadvtech.com/capabilities/sand-blasting/
+  evidence:
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 15780
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 34193
+  - quote: Full 72″ wide inside work area to handle drive shafts, bumpers, spoilers, rockers, ground effects,
+      or any wide item that needs blasted.
+    approx_offset: 51995
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0096
+  form: standard military and marine sheet metal products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/military
+    - https://blackadvtech.com/industries-served/military/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Producing standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 2721
+  - quote: We produce standard military and marine sheet metal products, such as shipboard furniture and
+      military lockers.
+    approx_offset: 28691
+  - quote: We produce standard military and marine sheet metal products.
+    approx_offset: 67248
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0097
+  form: steel plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: These steels are often used in to make bolts, steel plates, fixtures, and automobile body panels.
+    approx_offset: 201598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0098
+  form: storage cabinets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/5-sheet-metal-enclosure-design-tips/
+  evidence:
+  - quote: Whether you want to design a metal enclosure for a sensitive machine or for simple storage
+      cabinets, perfection is key.
+    approx_offset: 213431
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0099
+  form: submarines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/rfq/
+  evidence:
+  - quote: From train cars and submarines to electronic enclosures and military lockers, we have experience
+      with creating large and small sheet metal products that stand up to all environments.
+    approx_offset: 27765
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0100
+  form: surface cutting tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: This process is used to create surface cutting tools such as surform.
+    approx_offset: 228840
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0101
+  form: surform
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/sheet-metal-vs-plate-metal/
+  evidence:
+  - quote: This process is used to create surface cutting tools such as surform.
+    approx_offset: 228870
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0102
+  form: tent frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/news/
+  evidence:
+  - quote: Blackstone Advanced Technologies LLC took the opportunity to use the production of tent frames
+      as a learning tool and project for the Cassadaga Valley Central School welding class.
+    approx_offset: 43695
+  - quote: Blackstone donated the tubing, cut to length, and provided the instruction and training to
+      produce the tent frames which will be used at Camp Merz in Mayville.
+    approx_offset: 43896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0103
+  form: tin cans
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/advantages-of-seam-welding/
+  evidence:
+  - quote: Steel drums, radiators, and tin cans are produced through this process.
+    approx_offset: 184045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0104
+  form: train cars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/rfq/
+  evidence:
+  - quote: facility can accommodate trucks, train cars, and more.
+    approx_offset: 5022
+  - quote: From train cars and submarines to electronic enclosures and military lockers, we have experience
+      with creating large and small sheet metal products that stand up to all environments.
+    approx_offset: 27750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0105
+  form: underground mining equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 2278
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 48348
+  - quote: We also provide enclosures for the mining industry to house controls for underground mining
+      equipment.
+    approx_offset: 66880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0106
+  form: utensils
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Mainly, stainless steel is used the manufacture of household items including utensils, faucets
+      and taps.
+    approx_offset: 201745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0107
+  form: utensils, faucets and taps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://blackadvtech.com/steel-or-stainless-steel-what-is-the-most-durable-sheet-metal/
+  evidence:
+  - quote: Mainly, stainless steel is used the manufacture of household items including utensils, faucets
+      and taps.
+    approx_offset: 201745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0108
+  form: weldment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://blackadvtech.com/capabilities/finishing/
+    - https://blackadvtech.com/capabilities/machinery/
+  evidence:
+  - quote: Large weldment wash booth
+    approx_offset: 6235
+  - quote: Large weldment wet spray paint booth
+    approx_offset: 6261
+  - quote: Large weldment wash booth
+    approx_offset: 90502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0109
+  form: weldments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://blackadvtech.com/industries-served/transportation
+    - https://blackadvtech.com/industries-served/transportation/
+  evidence:
+  - quote: Stainless steel HVAC weldments
+    approx_offset: 87976
+  - quote: Stainless steel HVAC weldments
+    approx_offset: 114456
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: blackadvtech_com-products-0110
+  form: wind turbine blade pitch control systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://blackadvtech.com/
+    - https://blackadvtech.com/
+    - https://blackadvtech.com/industries-served/industrial
+    - https://blackadvtech.com/industries-served/industrial/
+    - https://blackadvtech.com/work-with-blackstone/
+  evidence:
+  - quote: Provides enclosures for Windurance, a global supplier of wind turbine blade pitch control systems.
+    approx_offset: 2163
+  - quote: Blackstone provides enclosures for Windurance, a global supplier of wind turbine blade pitch
+      control systems.
+    approx_offset: 48233
+  - quote: Blackstone provides enclosures for Windurance, a global supplier of wind turbine blade pitch
+      control systems.
+    approx_offset: 66765
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

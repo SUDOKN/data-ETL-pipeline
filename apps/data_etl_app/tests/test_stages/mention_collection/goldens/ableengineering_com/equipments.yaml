@@ -1,0 +1,150 @@
+subject: ableengineering.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+golden_set_version: 1
+anchored_on: search/expectations/ableengineering_com/equipments.yaml
+labels:
+- id: ableengineering_com-equipments-0001
+  form: CNC gantry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5188
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-equipments-0002
+  form: CNC mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-equipments-0003
+  form: Grind (CNC and Manual)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42344
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-equipments-0004
+  form: Lathe (CNC and Manual)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: Machining – Lathe (CNC and Manual), Grind (CNC and Manual), Mill (CNC and Manual)
+    approx_offset: 42320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-equipments-0005
+  form: five-axis CNC gantry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5178
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-equipments-0006
+  form: five-axis CNC mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-equipments-0007
+  form: grinders
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-equipments-0008
+  form: lathes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Utilizing the latest CNC technology, Able has several five-axis CNC mills, grinders and lathes,
+      as well as horizontal and vertical honing and a five-axis CNC gantry.
+    approx_offset: 5122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,1094 @@
+subject: anchor-mfg.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+  sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+golden_set_version: 1
+anchored_on: search/expectations/anchor-mfg_com/process_caps.yaml
+labels:
+- id: anchor-mfg_com-process_caps-0001
+  form: Automated Powder Spraying
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Automated Powder Spraying
+    approx_offset: 7606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0002
+  form: Automated Tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Automated Tapping
+    approx_offset: 7146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0003
+  form: CNC Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: CNC Machining
+    approx_offset: 7577
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0004
+  form: Complete Engineering Design Support from Concept Through Launch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+  evidence:
+  - quote: Complete Engineering Design Support from Concept Through Launch
+    approx_offset: 27926
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0005
+  form: Conventional & Orbital Riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Conventional & Orbital Riveting
+    approx_offset: 7092
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0006
+  form: Deep Draw
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Deep Draw
+    approx_offset: 7989
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0007
+  form: Die Adaptation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Die Adaptation
+    approx_offset: 7914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0008
+  form: Die Design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Die Design
+    approx_offset: 7837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0009
+  form: Drawn Arc Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Drawn Arc Welding
+    approx_offset: 7046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0010
+  form: Engineering Design Support
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+  evidence:
+  - quote: Complete Engineering Design Support from Concept Through Launch
+    approx_offset: 27935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0011
+  form: Fabricating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Fabricating
+    approx_offset: 7222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0012
+  form: In-press Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: In-press Assembly (Studs, Nuts)
+    approx_offset: 7190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0013
+  form: In-press Assembly (Studs, Nuts)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: In-press Assembly (Studs, Nuts)
+    approx_offset: 7190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0014
+  form: MIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Manual Welding, Including MIG & TIG
+    approx_offset: 7523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0015
+  form: MIG & TIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Manual Welding, Including MIG & TIG
+    approx_offset: 7523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0016
+  form: Major Engineering Changes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Major Engineering Changes
+    approx_offset: 7869
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0017
+  form: Manual Component Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Manual Component Assembly
+    approx_offset: 7164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0018
+  form: Material Shear
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Material Shear
+    approx_offset: 7482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0019
+  form: Metal Stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/executive-team/
+  evidence:
+  - quote: He has over 35 years of experience in every facet of metal stamping, Fred has substantial technical
+      knowledge of tool & die, machining and metal forming from both classroom and shop floor experience.
+    approx_offset: 5783
+  - quote: Metal Stamping
+    approx_offset: 6761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0020
+  form: Mig Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Robotic Spot & Mig Welding
+    approx_offset: 7034
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0021
+  form: Milling Machines / Vertical Mills
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+    approx_offset: 7543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0022
+  form: New Die Construction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: New Die Construction
+    approx_offset: 7848
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0023
+  form: Powder Coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Powder Coating
+    approx_offset: 7591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0024
+  form: Repair / Refurbish
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Repair / Refurbish
+    approx_offset: 7895
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0025
+  form: Resistance Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Resistance Welding
+    approx_offset: 7064
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0026
+  form: Robotic Spot & Mig Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Robotic Spot & Mig Welding
+    approx_offset: 7019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0027
+  form: Salt Spray Capability
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Salt Spray Capability– up to 1,200 Hours
+    approx_offset: 7732
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0028
+  form: Seven Stage Iron Phosphate Wash
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Seven Stage Iron Phosphate Wash
+    approx_offset: 7632
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0029
+  form: Shearing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Shearing Capabilities up to 1/8” x 12’
+    approx_offset: 7372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0030
+  form: Staking & Toggle Lock
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Staking & Toggle Lock
+    approx_offset: 7124
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0031
+  form: TIG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Manual Welding, Including MIG & TIG
+    approx_offset: 7529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0032
+  form: TIG welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0033
+  form: Tool & Die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.anchor-mfg.com/
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+    - https://www.anchor-mfg.com/anchor-supplier-responsibility-policy-code-conduct/
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Copyright © 2018 Anchor Tool & Die Co.
+    approx_offset: 1529
+  - quote: Copyright © 2018 Anchor Tool & Die Co.
+    approx_offset: 1949
+  - quote: Copyright © 2018 Anchor Tool & Die Co.
+    approx_offset: 3848
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0034
+  form: Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Welding
+    approx_offset: 6921
+  - quote: Robotic Spot & Mig Welding
+    approx_offset: 7038
+  - quote: Drawn Arc Welding
+    approx_offset: 7056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0035
+  form: component assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Manual Component Assembly
+    approx_offset: 7171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0036
+  form: conventional riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0037
+  form: deep drawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0038
+  form: die construction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: New Die Construction
+    approx_offset: 7852
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0039
+  form: die repair
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0040
+  form: drawn arc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Drawn Arc Welding
+    approx_offset: 7046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0041
+  form: engineering changes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Major Engineering Changes
+    approx_offset: 7875
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0042
+  form: engineering design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/about-anchor-mfg/
+  evidence:
+  - quote: Complete Engineering Design Support from Concept Through Launch
+    approx_offset: 27935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0043
+  form: fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 21711
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 25197
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0044
+  form: iron phosphate wash
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Seven Stage Iron Phosphate Wash
+    approx_offset: 7644
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0045
+  form: machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/executive-team/
+  evidence:
+  - quote: He has over 35 years of experience in every facet of metal stamping, Fred has substantial technical
+      knowledge of tool & die, machining and metal forming from both classroom and shop floor experience.
+    approx_offset: 5855
+  - quote: Machining
+    approx_offset: 7533
+  - quote: CNC Machining
+    approx_offset: 7581
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0046
+  form: metal forming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/executive-team/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: He has over 35 years of experience in every facet of metal stamping, Fred has substantial technical
+      knowledge of tool & die, machining and metal forming from both classroom and shop floor experience.
+    approx_offset: 5869
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 21629
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 25115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0047
+  form: metal stamper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 21610
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 25096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0048
+  form: milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+    approx_offset: 7543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0049
+  form: orbital riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Conventional & Orbital Riveting
+    approx_offset: 7107
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0050
+  form: powder coating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0051
+  form: powder spraying
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Automated Powder Spraying
+    approx_offset: 7616
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0052
+  form: prototype fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/Anchor/industries-served/
+    - https://www.anchor-mfg.com/industries-served/
+  evidence:
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 21701
+  - quote: As a metal stamper, our metal forming capabilities can provide everything from small volume
+      and prototype fabrication to mass production.
+    approx_offset: 25187
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0053
+  form: refurbish
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Repair / Refurbish
+    approx_offset: 7904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0054
+  form: riveting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Conventional & Orbital Riveting
+    approx_offset: 7115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0055
+  form: robotic spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0056
+  form: salt spray
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Salt Spray Capability– up to 1,200 Hours
+    approx_offset: 7732
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0057
+  form: spot welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0058
+  form: staking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Staking & Toggle Lock
+    approx_offset: 7124
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0059
+  form: stamping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+    - https://www.anchor-mfg.com/executive-team/
+  evidence:
+  - quote: He has over 35 years of experience in every facet of metal stamping, Fred has substantial technical
+      knowledge of tool & die, machining and metal forming from both classroom and shop floor experience.
+    approx_offset: 5789
+  - quote: Metal Stamping
+    approx_offset: 6767
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0060
+  form: tapping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Automated Tapping
+    approx_offset: 7156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0061
+  form: toggle lock
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/capabilities-services/
+  evidence:
+  - quote: Staking & Toggle Lock
+    approx_offset: 7134
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: anchor-mfg_com-process_caps-0062
+  form: tool and die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.anchor-mfg.com/
+  evidence:
+  - quote: With 350,000 square feet of manufacturing space and a stand-alone tool and die business, Anchor
+      supplies the highest quality products to North American, European, and Asian OEM’s as well as Tier
+      I and Tier II manufacturers.
+    approx_offset: 812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

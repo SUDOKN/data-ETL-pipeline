@@ -1,0 +1,1481 @@
+subject: lucasmilhaupt.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+golden_set_version: 1
+anchored_on: search/expectations/lucasmilhaupt_com/industries.yaml
+labels:
+- id: lucasmilhaupt_com-industries-0001
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: Aerospace
+    approx_offset: 983
+  - quote: Aerospace
+    approx_offset: 4673
+  - quote: Aerospace Brazing Expertise You Can Trust
+    approx_offset: 29287
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0002
+  form: Automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+  evidence:
+  - quote: Automotive
+    approx_offset: 1028
+  - quote: Automotive
+    approx_offset: 4684
+  - quote: 'IATF 16949: Committing to Automotive Excellence'
+    approx_offset: 14327
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0003
+  form: Aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: 'AS 9100: Committing to the highest quality standards in Aviation, Space and Defense'
+    approx_offset: 14273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0004
+  form: Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: 'AS 9100: Committing to the highest quality standards in Aviation, Space and Defense'
+    approx_offset: 14293
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0005
+  form: Dental
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/Careers
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances)
+      that require precise, durable joints and biocompatible materials to ensure safe, long-lasting performance
+      in patient care.'
+    approx_offset: 26303
+  - quote: Medical, Dental
+    approx_offset: 107470
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances)
+      that require precise, durable joints and biocompatible materials to ensure safe, long-lasting performance
+      in patient care.'
+    approx_offset: 239286
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0006
+  form: EV
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: EV
+    approx_offset: 1010
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3682
+  - quote: EV
+    approx_offset: 117520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0007
+  form: Electrical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 63
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+  evidence:
+  - quote: Electrical
+    approx_offset: 1039
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3820
+  - quote: Electrical
+    approx_offset: 4696
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0008
+  form: Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'RF & Microwave Components and Power Electronics: High-frequency and high-power electronic
+      assemblies demand joining materials that can conduct electricity and heat efficiently while retaining
+      strength.'
+    approx_offset: 20022
+  - quote: High-Power Vacuum Electronics – Traveling wave tubes (TWTs) and other vacuum electronic devices
+      rely on brazing for assembly of their intricate metal-ceramic structures.
+    approx_offset: 43632
+  - quote: Electronics
+    approx_offset: 48109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0009
+  form: HVAC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 90
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy
+  evidence:
+  - quote: HVAC
+    approx_offset: 1013
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3712
+  - quote: HVAC/R
+    approx_offset: 4708
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0010
+  form: HVAC & Refrigeration
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Industries/HVACR/OEM
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: Designing Innovative Joining Solutions for HVAC & Refrigeration
+    approx_offset: 174640
+  - quote: Lucas Milhaupt is the leading provider of joining materials for the HVAC & Refrigeration market.
+    approx_offset: 179451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0011
+  form: HVAC/R
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 72
+    pages:
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy
+    - https://www.lucasmilhaupt.com/Brazing-Academy/How-to-Braze-Aluminum
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3712
+  - quote: HVAC/R
+    approx_offset: 4708
+  - quote: Brazing in HVAC/R
+    approx_offset: 8731
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0012
+  form: HVAC/R industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: Lucas Milhaupt has been a trusted partner to the HVAC/R industry for decades, providing specialized
+      brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air conditioning
+      equipment .
+    approx_offset: 8837
+  - quote: In the last three decades the HVAC/R industry has steadily moved toward aluminum brazing solutions.
+    approx_offset: 11032
+  - quote: Aluminum coils and condensers on home and commercial air conditioning and refrigeration units
+      were introduced to the HVAC/R industry in the early 2000’s.
+    approx_offset: 182140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0013
+  form: Jewelry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+  evidence:
+  - quote: Jewelry
+    approx_offset: 205561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0014
+  form: MRO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: From tool joints and wear parts to valves and heat exchangers, our solutions support both new
+      build and MRO needs.
+    approx_offset: 119629
+  - quote: From tool joints and wear parts to valves and heat exchangers, our solutions support both new
+      build and MRO needs.
+    approx_offset: 254271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0015
+  form: Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house,
+      giving you full material traceability, consistent chemistry, improved lead times, and cost advantages
+      vs.
+    approx_offset: 30026
+  - quote: Lucas Milhaupt is committed to using Steel Partners Operational Excellence Programs include
+      Lean Manufacturing, Design for Six Sigma, Six Sigma and Strategy Deployment to reduce and eliminate
+      waste.
+    approx_offset: 111623
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate
+      in-house, reducing variability, shortening lead times, and improving consistency for high-volume
+      automotive programs.
+    approx_offset: 167573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0016
+  form: Medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 59
+    pages:
+    - https://www.lucasmilhaupt.com/About/Careers
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3867
+  - quote: Medical
+    approx_offset: 4716
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector
+      feedthroughs for sensors, medical implants, and aerospace electronics.
+    approx_offset: 19655
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0017
+  form: Microelectronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: Microelectronics
+    approx_offset: 993
+  - quote: Microelectronics
+    approx_offset: 4725
+  - quote: Powering Precision in Microelectronics
+    approx_offset: 15495
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0018
+  form: Oil & Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Oil & Gas
+    approx_offset: 48147
+  - quote: Trusted Alloys for Demanding Oil & Gas Applications
+    approx_offset: 119229
+  - quote: Oil & Gas(13)
+    approx_offset: 144420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0019
+  form: Oil & gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: Oil & gas
+    approx_offset: 1018
+  - quote: Oil & gas
+    approx_offset: 117528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0020
+  form: Oil and Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Oil and Gas
+    approx_offset: 4743
+  - quote: Oil and gas equipment operates where heat, pressure, vibration and abrasion are constant.
+    approx_offset: 119253
+  - quote: Oil and gas equipment operates where heat, pressure, vibration and abrasion are constant.
+    approx_offset: 253895
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0021
+  form: Optoelectronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors
+      and precision medical devices, Lucas Milhaupt supports advanced applications requiring miniature,
+      ultra-reliable joins.'
+    approx_offset: 20649
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors
+      and precision medical devices, Lucas Milhaupt supports advanced applications requiring miniature,
+      ultra-reliable joins.'
+    approx_offset: 231913
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0022
+  form: Power Distribution
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: Power Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters,
+      electrical fuses, and switch contact assemblies.
+    approx_offset: 43105
+  - quote: Power Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters,
+      electrical fuses, and switch contact assemblies.
+    approx_offset: 249561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0023
+  form: Refrigeration
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Industries/HVACR/OEM
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: Designing Innovative Joining Solutions for HVAC & Refrigeration
+    approx_offset: 174647
+  - quote: Lucas Milhaupt is the leading provider of joining materials for the HVAC & Refrigeration market.
+    approx_offset: 179458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0024
+  form: Semiconductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 18882
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 230146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0025
+  form: Space
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.lucasmilhaupt.com/
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Lucas
+  evidence:
+  - quote: world headquarters which affords us the space to innovate and the capacity to deliver solutions
+      to your most complex material joining challenges.
+    approx_offset: 1252
+  - quote: A collaborative space where curiosity knows no bounds - where we constantly ask ourselves,
+      “what’s next?”
+    approx_offset: 1565
+  - quote: of space in our HQ is home to state of the art lab equipment and technology
+    approx_offset: 5755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0026
+  form: aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3601
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector
+      feedthroughs for sensors, medical implants, and aerospace electronics.
+    approx_offset: 19677
+  - quote: The result is robust connectivity for optical and sensing devices used in industries like telecommunications,
+      defense, aerospace, and medical – all backed by Lucas Milhaupt’s proven performance in micro-scale
+      brazing.
+    approx_offset: 21248
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0027
+  form: aerospace and defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3601
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0028
+  form: air conditioning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: Lucas Milhaupt has been a trusted partner to the HVAC/R industry for decades, providing specialized
+      brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air conditioning
+      equipment .
+    approx_offset: 8976
+  - quote: Examples range from air conditioning systems for automobiles to highly sensitive jet turbine
+      blades to satellite components to fine jewelry.
+    approx_offset: 157813
+  - quote: Aluminum coils and condensers on home and commercial air conditioning and refrigeration units
+      were introduced to the HVAC/R industry in the early 2000’s.
+    approx_offset: 182076
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0029
+  form: appliance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3723
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0030
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 29
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3667
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders
+      with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing, stencil,
+      or syringe applications, ideal for automotive, HVAC, and electronics lines seeking repeatable first-pa
+    approx_offset: 113881
+  - quote: Brazing applications include electronics/electrical, aerospace, automotive, HVAC/R, construction
+      and more.
+    approx_offset: 157750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0031
+  form: automotive and EV
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3667
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0032
+  form: aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: Based on the stringent ISO 9001 quality requirements, AS9100 is the single common group of
+      quality management standards for the aviation, space and defense industry.
+    approx_offset: 14134
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0033
+  form: construction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: As a lightweight, corrosion-resistant alloy, aluminum can be a cost-effective solution for
+      heat exchange coil construction.
+    approx_offset: 11212
+  - quote: Brazing applications include electronics/electrical, aerospace, automotive, HVAC/R, construction
+      and more.
+    approx_offset: 157770
+  - quote: Applications include transportation, construction, manufacturing and repair shops.
+    approx_offset: 161977
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0034
+  form: defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3615
+  - quote: Based on the stringent ISO 9001 quality requirements, AS9100 is the single common group of
+      quality management standards for the aviation, space and defense industry.
+    approx_offset: 14154
+  - quote: The result is robust connectivity for optical and sensing devices used in industries like telecommunications,
+      defense, aerospace, and medical – all backed by Lucas Milhaupt’s proven performance in micro-scale
+      brazing.
+    approx_offset: 21239
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0035
+  form: dental
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances)
+      that require precise, durable joints and biocompatible materials to ensure safe, long-lasting performance
+      in patient care.'
+    approx_offset: 26341
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances)
+      that require precise, durable joints and biocompatible materials to ensure safe, long-lasting performance
+      in patient care.'
+    approx_offset: 239324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0036
+  form: electrical industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: In the electrical industry, reliability is paramount, a single joint failure can leave people
+      without power or critical equipment offline.
+    approx_offset: 39837
+  - quote: Reliable Global Supply Chain – Lucas Milhaupt understands the critical nature of uptime and
+      production continuity in the electrical industry.
+    approx_offset: 42720
+  - quote: Other Electrical Assemblies – Lucas Milhaupt supports brazing across all segments of the electrical
+      industry.
+    approx_offset: 44751
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0037
+  form: electrical power
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3820
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0038
+  form: electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+    - https://www.lucasmilhaupt.com/Products
+  evidence:
+  - quote: By partnering with Lucas Milhaupt, microelectronics OEMs can achieve precise, reliable connections
+      faster, empowering them to bring innovative electronics to market with confidence.
+    approx_offset: 16491
+  - quote: Our Premabraze® 800 and 880 series, provides high bond strength, excellent corrosion/oxidation
+      resistance, and superior thermal conductivity, ideal for high-power and high-reliability electronics.
+    approx_offset: 17790
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector
+      feedthroughs for sensors, medical implants, and aerospace electronics.
+    approx_offset: 19687
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0039
+  form: electronics packaging industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+  evidence:
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder that can be used on ferrous and non-ferrous
+      base metals and sees most use in the electronics packaging industry or applications where lead or
+      silver are not permissible.
+    approx_offset: 198774
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0040
+  form: fine jewelry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Examples range from air conditioning systems for automobiles to highly sensitive jet turbine
+      blades to satellite components to fine jewelry.
+    approx_offset: 157920
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0041
+  form: healthcare
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: This commitment to quality and traceability guarantees reliable performance in critical healthcare
+      applications.
+    approx_offset: 25620
+  - quote: This commitment to quality and traceability guarantees reliable performance in critical healthcare
+      applications.
+    approx_offset: 238603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0042
+  form: industrial power systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: Our alloys and expertise support these high-current joints, helping prevent hot spots and ensuring
+      efficient power flow in utility and industrial power systems.
+    approx_offset: 44636
+  - quote: Our alloys and expertise support these high-current joints, helping prevent hot spots and ensuring
+      efficient power flow in utility and industrial power systems.
+    approx_offset: 251092
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0043
+  form: jewelry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-500-Series.htm
+  evidence:
+  - quote: Examples range from air conditioning systems for automobiles to highly sensitive jet turbine
+      blades to satellite components to fine jewelry.
+    approx_offset: 157925
+  - quote: Handy Flo 500 Series are a variety of flux and flux-free binders that are primarily mixed with
+      karat gold braze powders to form a paste for use in jewelry brazing.
+    approx_offset: 205387
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0044
+  form: manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 32
+    pages:
+    - https://www.lucasmilhaupt.com/About/Center-of-Exellence
+    - https://www.lucasmilhaupt.com/About/Contact
+    - https://www.lucasmilhaupt.com/Brazing-Academy
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/How-to-Braze-Aluminum
+  evidence:
+  - quote: Backed by vertically integrated manufacturing on two continents and a global distributor network,
+      we scale with your demand while safeguarding continuity of supply.
+    approx_offset: 4303
+  - quote: Being vertically integrated allows us to control product quality throughout the manufacturing
+      process, with quality checks in the lab.
+    approx_offset: 6935
+  - quote: Being vertically integrated allows us to control product quality throughout the manufacturing
+      process, with quality checks in the lab.
+    approx_offset: 7094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0045
+  form: medical device industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: Lucas Milhaupt is a leading provider of brazing alloys and custom brazing solutions for the
+      medical device industry.
+    approx_offset: 24497
+  - quote: Lucas Milhaupt is a leading provider of brazing alloys and custom brazing solutions for the
+      medical device industry.
+    approx_offset: 237480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0046
+  form: medical devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Medical
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3867
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors
+      and precision medical devices, Lucas Milhaupt supports advanced applications requiring miniature,
+      ultra-reliable joins.'
+    approx_offset: 20756
+  - quote: Our engineering-focused approach supports the design and manufacture of high-tech medical devices
+      by ensuring reliable, precision joints with biocompatible materials.
+    approx_offset: 24604
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0047
+  form: microelectronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-600-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/PREMABRAZE-800.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3756
+  - quote: In the competitive microelectronics sector, manufacturers demand partners they can trust –
+      those who provide high-purity alloys, precision fabrication for micro components, and fast turnaround
+      to meet aggressive development timelines.
+    approx_offset: 15591
+  - quote: By partnering with Lucas Milhaupt, microelectronics OEMs can achieve precise, reliable connections
+      faster, empowering them to bring innovative electronics to market with confidence.
+    approx_offset: 16383
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0048
+  form: microelectronics sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: In the competitive microelectronics sector, manufacturers demand partners they can trust –
+      those who provide high-purity alloys, precision fabrication for micro components, and fast turnaround
+      to meet aggressive development timelines.
+    approx_offset: 15591
+  - quote: In the competitive microelectronics sector, manufacturers demand partners they can trust –
+      those who provide high-purity alloys, precision fabrication for micro components, and fast turnaround
+      to meet aggressive development timelines.
+    approx_offset: 226855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0049
+  form: oil & gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0050
+  form: optoelectronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0051
+  form: plumbing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Principles-of-Joint-Design
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: Lucas Milhaupt partners with HVAC/R and plumbing distributors.
+    approx_offset: 10297
+  - quote: The lap joint doubles the thickness at the joint, but in many applications (plumbing connections,
+      for example) this reinforcement of the joint is preferable.
+    approx_offset: 60771
+  - quote: Sil-Fos® alloys have become popular in the HVAC/R and plumbing industries because of the ability
+      to join copper to copper without flux.
+    approx_offset: 124976
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0052
+  form: plumbing industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: Sil-Fos® alloys have become popular in the HVAC/R and plumbing industries because of the ability
+      to join copper to copper without flux.
+    approx_offset: 124976
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0053
+  form: power distribution
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0054
+  form: power electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: 'RF & Microwave Components and Power Electronics: High-frequency and high-power electronic
+      assemblies demand joining materials that can conduct electricity and heat efficiently while retaining
+      strength.'
+    approx_offset: 20016
+  - quote: This makes them ideal for RF microwave modules, telecommunications hardware, and power electronics
+      (heat spreaders, laser diode submounts) where managing heat and ensuring signal integrity are critical.
+    approx_offset: 20387
+  - quote: 'RF & Microwave Components and Power Electronics: High-frequency and high-power electronic
+      assemblies demand joining materials that can conduct electricity and heat efficiently while retaining
+      strength.'
+    approx_offset: 231280
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0055
+  form: refrigeration
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: Lucas Milhaupt has been a trusted partner to the HVAC/R industry for decades, providing specialized
+      brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air conditioning
+      equipment .
+    approx_offset: 8958
+  - quote: This step can be crucial since most fluxes are corrosive, such as the pictured refrigeration
+      line corrosion.
+    approx_offset: 89826
+  - quote: Vacuum testing is useful for refrigeration equipment and detection of minute leaks, employing
+      a mass spectrometer and a helium atmosphere.
+    approx_offset: 99042
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0056
+  form: repair shops
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/Industries/Oil-and-Gas
+  evidence:
+  - quote: Lucas Milhaupt helps operators, OEMs and repair shops build stronger, longer-lasting assemblies
+      with engineered brazing alloys, fluxes and pastes that hold up in harsh environments.
+    approx_offset: 119384
+  - quote: Applications include transportation, construction, manufacturing and repair shops.
+    approx_offset: 162009
+  - quote: Lucas Milhaupt helps operators, OEMs and repair shops build stronger, longer-lasting assemblies
+      with engineered brazing alloys, fluxes and pastes that hold up in harsh environments.
+    approx_offset: 254026
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0057
+  form: semiconductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic packages
+      for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      a
+    approx_offset: 3777
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 18966
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor
+      chips (dies) to substrates or packaging.'
+    approx_offset: 230230
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0058
+  form: space and defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: Based on the stringent ISO 9001 quality requirements, AS9100 is the single common group of
+      quality management standards for the aviation, space and defense industry.
+    approx_offset: 14144
+  - quote: 'AS 9100: Committing to the highest quality standards in Aviation, Space and Defense'
+    approx_offset: 14283
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0059
+  form: telecom
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: From telecom packages to implantable devices, our materials help maintain the integrity of
+      every sealed enclosure.
+    approx_offset: 19876
+  - quote: From telecom packages to implantable devices, our materials help maintain the integrity of
+      every sealed enclosure.
+    approx_offset: 231140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0060
+  form: telecommunications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: This makes them ideal for RF microwave modules, telecommunications hardware, and power electronics
+      (heat spreaders, laser diode submounts) where managing heat and ensuring signal integrity are critical.
+    approx_offset: 20354
+  - quote: The result is robust connectivity for optical and sensing devices used in industries like telecommunications,
+      defense, aerospace, and medical – all backed by Lucas Milhaupt’s proven performance in micro-scale
+      brazing.
+    approx_offset: 21219
+  - quote: This makes them ideal for RF microwave modules, telecommunications hardware, and power electronics
+      (heat spreaders, laser diode submounts) where managing heat and ensuring signal integrity are critical.
+    approx_offset: 231618
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0061
+  form: transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: Applications include transportation, construction, manufacturing and repair shops.
+    approx_offset: 161961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-industries-0062
+  form: utility and industrial power systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: Our alloys and expertise support these high-current joints, helping prevent hot spots and ensuring
+      efficient power flow in utility and industrial power systems.
+    approx_offset: 44624
+  - quote: Our alloys and expertise support these high-current joints, helping prevent hot spots and ensuring
+      efficient power flow in utility and industrial power systems.
+    approx_offset: 251080
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

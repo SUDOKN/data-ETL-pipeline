@@ -1,0 +1,233 @@
+subject: taylordunn.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/taylordunn.com.txt
+  sha256: dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113
+golden_set_version: 1
+anchored_on: search/expectations/taylordunn_com/industries.yaml
+labels:
+- id: taylordunn_com-industries-0001
+  form: Aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Aviation
+    approx_offset: 6998
+  - quote: Aviation
+    approx_offset: 14351
+  - quote: Aviation
+    approx_offset: 21693
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0002
+  form: Business & Residential
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Business & Residential
+    approx_offset: 6868
+  - quote: Business & Residential
+    approx_offset: 14221
+  - quote: Business & Residential
+    approx_offset: 21563
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0003
+  form: Colleges & Universities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Colleges & Universities
+    approx_offset: 6844
+  - quote: Colleges & Universities
+    approx_offset: 14197
+  - quote: Colleges & Universities
+    approx_offset: 21539
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0004
+  form: Conventions & Events
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Conventions & Events
+    approx_offset: 6955
+  - quote: Conventions & Events
+    approx_offset: 14308
+  - quote: Conventions & Events
+    approx_offset: 21650
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0005
+  form: Federal Government
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Federal Government
+    approx_offset: 6891
+  - quote: Federal Government
+    approx_offset: 14244
+  - quote: Federal Government
+    approx_offset: 21586
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0006
+  form: Hospitality & Tourism
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Hospitality & Tourism
+    approx_offset: 6976
+  - quote: Hospitality & Tourism
+    approx_offset: 14329
+  - quote: Hospitality & Tourism
+    approx_offset: 21671
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0007
+  form: Manufacturing & Warehousing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Manufacturing & Warehousing
+    approx_offset: 6816
+  - quote: Manufacturing & Warehousing
+    approx_offset: 14169
+  - quote: Manufacturing & Warehousing
+    approx_offset: 21511
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0008
+  form: Parks & Recreation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: Parks & Recreation
+    approx_offset: 6936
+  - quote: Parks & Recreation
+    approx_offset: 14289
+  - quote: Parks & Recreation
+    approx_offset: 21631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: taylordunn_com-industries-0009
+  form: State & Local Governments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 28
+    pages:
+    - https://www.taylor-dunn.com/
+    - https://www.taylor-dunn.com/about/
+    - https://www.taylor-dunn.com/aviation/
+    - https://www.taylor-dunn.com/bigfoot/
+    - https://www.taylor-dunn.com/build-your-bigfoot
+  evidence:
+  - quote: State & Local Governments
+    approx_offset: 6910
+  - quote: State & Local Governments
+    approx_offset: 14263
+  - quote: State & Local Governments
+    approx_offset: 21605
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

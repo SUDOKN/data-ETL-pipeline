@@ -1,0 +1,4279 @@
+subject: sterlingmfg.net
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+golden_set_version: 1
+anchored_on: search/expectations/sterlingmfg_net/process_caps.yaml
+labels:
+- id: sterlingmfg_net-process_caps-0001
+  form: 3, 5, and 7-axis plastics-machining capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: EPTAM’s Manufacturing Center employs dedicated 3, 5, and 7-axis plastics-machining capabilities,
+      along with dry-machining techniques or wet bench coolants that will not contaminate or chemically
+      attack plastic material as oil-based fluids may.
+    approx_offset: 119426
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0002
+  form: 3-, 4-, and 5-axis CNC milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131747
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0003
+  form: 3-, 5-, and 7-axis machine centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: EPTAM Plastics is the leader in complex multi-axis plastic machining using 3-, 5-, and 7-axis
+      machine centers, CNC turning, Swiss, milling, routing, sawing, and drilling.
+    approx_offset: 102682
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0004
+  form: 3-axis, 4-axis, and 5-axis CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: 3-axis, 4-axis, and 5-axis CNC machining.
+    approx_offset: 132203
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0005
+  form: 3D printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics along with processes for injection
+      molding, machining, and 3D printing are where we live, every day.
+    approx_offset: 1936
+  - quote: Along with precision injection molding, EPTAM offers 3D printing, dedicated engineering, tool
+      development, and a full range of value-added services.
+    approx_offset: 78376
+  - quote: We offer a wide range of 3D printing services to meet all of your needs.
+    approx_offset: 87268
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0006
+  form: 3D printing metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: 3D printing metal.
+    approx_offset: 132513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0007
+  form: 5-Axis Mill Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: The company utilizes state-of-the-art equipment including the latest technology to bring customers
+      the best in Multi-Axis Swiss Turning, 5-Axis Mill Turning, Prototype Machining and Advanced Inspection
+      Equipment.
+    approx_offset: 192223
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0008
+  form: 7- and 5-axis plastics-machining capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: 7- and 5-axis plastics-machining capabilities employ dry-machining techniques that will not
+      contaminate or chemically attack plastic parts.
+    approx_offset: 119745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0009
+  form: Additive Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/category/news/
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: Additive Manufacturing
+    approx_offset: 3002
+  - quote: EPTAM’s Additive Manufacturing Capabilities
+    approx_offset: 54447
+  - quote: Contact us for Additive Manufacturing information.
+    approx_offset: 54499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0010
+  form: Advanced 3D Packaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Advanced 3D Packaging
+    approx_offset: 119128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0011
+  form: Advanced Inspection Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: The company utilizes state-of-the-art equipment including the latest technology to bring customers
+      the best in Multi-Axis Swiss Turning, 5-Axis Mill Turning, Prototype Machining and Advanced Inspection
+      Equipment.
+    approx_offset: 192268
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0012
+  form: Airtight Hermetic Sealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Laser Welding: Airtight Hermetic Sealing and Micro-Welding'
+    approx_offset: 143759
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0013
+  form: Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: EPTAM Precision Metal/Laser, a dedicated metal machining, assembly, pack, and laser processing
+      high volume facility, is situated in Colorado Springs.
+    approx_offset: 13917
+  - quote: Our vertical integration allows to make the components using our micro machine, laser cutting,
+      laser welding, insert molding and final assembly.
+    approx_offset: 30844
+  - quote: Cleanroom environments are utilized to meet both production and assembly requirements.
+    approx_offset: 36095
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0014
+  form: Assembly pack and clean
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Assembly pack and clean, including complex assemblies with hundreds of components.
+    approx_offset: 103578
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0015
+  form: Automated assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Automated assembly
+    approx_offset: 77208
+  - quote: In addition, Sterling offers a wide array of secondary operations such as automated assembly,
+      pad printing, and sonic welding, amongst others.
+    approx_offset: 159880
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0016
+  form: Binder Jet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: Expertise in multiple additive technologies which include FDM, FFF, SLA, SLS, and Binder Jet.
+    approx_offset: 107200
+  - quote: EPTAM’s binder jet printing system combined with our three sintering furnaces can cost effectively
+      produce a single part to tens of thousands of parts per year.
+    approx_offset: 107553
+  - quote: 'Binder Jet: 17-4, 316 Stainless Steel.'
+    approx_offset: 109380
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0017
+  form: BinderJet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: 3D Printing – BinderJet/FDM/SLS 3D printing metals and plastics.
+    approx_offset: 87829
+  - quote: 3D Printing – BinderJet/FDM/SLS 3D printing metals and plastics.
+    approx_offset: 103526
+  - quote: BINDERJET
+    approx_offset: 107018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0018
+  form: CNC Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Since its founding in 1981, EPTAM Plastics, a Northfield, New Hampshire-based company, has
+      been a leader in solving the most difficult challenges in plastic component manufacturing and CNC
+      machining.
+    approx_offset: 101340
+  - quote: 3-axis, 4-axis, and 5-axis CNC machining.
+    approx_offset: 132230
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168551
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0019
+  form: CNC micro-machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: Mendell is a medical component manufacturer located in Lakeville, MN that specializes in precision
+      CNC micro-machining of implantable devices for the orthopedic, structural heart, cardiovascular,
+      and endovascular markets.
+    approx_offset: 189437
+  - quote: Mendell’s core focus in precision CNC micro-machining for medical applications brings industry-leading
+      expertise to the EPTAM team.
+    approx_offset: 190535
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0020
+  form: CNC milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0021
+  form: CNC turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Our facility in Northfield, New Hampshire houses EPTAM PRECISION – PLASTICS offering complete
+      fabricating capabilities for CNC turning, milling, routing, sawing, and drilling.
+    approx_offset: 58063
+  - quote: EPTAM Plastics is the leader in complex multi-axis plastic machining using 3-, 5-, and 7-axis
+      machine centers, CNC turning, Swiss, milling, routing, sawing, and drilling.
+    approx_offset: 102718
+  - quote: EPTAM Precision Plastics also offers complete fabricating capabilities for CNC turning, Swiss,
+      milling, routing, sawing, and drilling.
+    approx_offset: 104510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0022
+  form: Cellular Manufacturing Environment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Cellular Manufacturing Environment
+    approx_offset: 43198
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0023
+  form: Cleanroom manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/medical-biopharma/
+  evidence:
+  - quote: 'Cleanroom manufacturing: EPTAM offers cleanroom manufacturing capabilities to meet the strict
+      cleanliness and purity requirements of the Biopharmaceutical industry, ensuring the safety and efficacy
+      of the final products.'
+    approx_offset: 38333
+  - quote: 'Cleanroom manufacturing: EPTAM offers cleanroom manufacturing capabilities to meet the strict
+      cleanliness and purity requirements of the Biopharmaceutical industry, ensuring the safety and efficacy
+      of the final products.'
+    approx_offset: 38371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0024
+  form: Compression molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: '"We developed an efficient process for molding production-grade LSR in compression molding,
+      ideal for small-volume and prototyping projects.'
+    approx_offset: 51100
+  - quote: Compression molding
+    approx_offset: 77322
+  - quote: Compression molding
+    approx_offset: 77658
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0025
+  form: DFM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Quick turn MUD based molds for development or short run designs, onsite metallurgical lab,
+      Tooling design, DFM services, on site sintering and molding to dial in processes
+    approx_offset: 6598
+  - quote: Materials offer a wide range of characteristics, and EPTAM’s team of engineers and DFM specialists
+      understand how to select and work with the proper materials.
+    approx_offset: 8809
+  - quote: Our facility in Colorado Springs, Colorado houses EPTAM PRECISION – METALS which can handle
+      all its customers’ assembly, packaging, DFM, and PPAP and IQ OQ PQ needs.
+    approx_offset: 56213
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0026
+  form: Decorating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Decorating and Assembly
+    approx_offset: 78992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0027
+  form: Decorating and Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Decorating and Assembly
+    approx_offset: 78992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0028
+  form: Design for Manufacturability (DFM)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Design for Manufacturability (DFM), Rapid Prototyping, IQ, OQ, PQ, Process Validation and SPC
+      Review ensure your project comes out of the gate strong.
+    approx_offset: 67540
+  - quote: Design for manufacturability (DFM) and new product introduction (NPI) processes for assured
+      success.
+    approx_offset: 102977
+  - quote: Design for Manufacturability (DFM) assistance
+    approx_offset: 108397
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0029
+  form: Design for Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/industries/medical-implants/
+    - https://eptam.com/industries/medical-molecular-diagnostics/
+    - https://eptam.com/industries/space-aerospace-defense/
+    - https://eptam.com/rapid-launch/
+  evidence:
+  - quote: Simply put, we perform better – from Design for Manufacturing stages to scaling for market
+      demand.
+    approx_offset: 315
+  - quote: They are fully equipped to improve on design engineering, ensure design for manufacturing goals
+      are met, and provide live simulation parts within a fast turnaround.
+    approx_offset: 29076
+  - quote: Our orthopedic work is market-leading with constant innovation surrounding rapid development
+      and testing, improved operational efficiency – even realized through better design for manufacturing
+      practices, and our automation in quality control and assurance.
+    approx_offset: 41666
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0030
+  form: EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131849
+  - quote: EDM (Electrical Discharge Machining)
+    approx_offset: 132297
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0031
+  form: EDM (Electrical Discharge Machining)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: EDM (Electrical Discharge Machining)
+    approx_offset: 132297
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0032
+  form: EDM machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131849
+  - quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire
+      EDM Machining.
+    approx_offset: 171233
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0033
+  form: Electrical Discharge Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: EDM (Electrical Discharge Machining)
+    approx_offset: 132302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0034
+  form: Enhanced Marking Capability
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Enhanced Marking Capability includes uni-glaze paints, machining and laser.
+    approx_offset: 43801
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0035
+  form: FDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/eptams-additive-manufacturing-capabilities/
+  evidence:
+  - quote: 3D Printing – BinderJet/FDM/SLS 3D printing metals and plastics.
+    approx_offset: 87839
+  - quote: FDM printer
+    approx_offset: 88622
+  - quote: FDM Printer
+    approx_offset: 88645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0036
+  form: FFF
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: Expertise in multiple additive technologies which include FDM, FFF, SLA, SLS, and Binder Jet.
+    approx_offset: 107181
+  - quote: 31 machines encompassing FDM, FFF, SLA, SLS, BinderJet technologies.
+    approx_offset: 108135
+  - quote: 'FFF: PEEK, ABS, PC, Nylon.'
+    approx_offset: 109237
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0037
+  form: FMEA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: With 10+ probe and vision coordinate-measuring machines (CMM), EPTAM Plastics can support you
+      with metal-to-plastic conversions, material design support, and design for manufacturability using
+      FMEA practice.
+    approx_offset: 102592
+  - quote: EPTAM’s best-in-class technology is backed by our Advanced Semiconductor Polymer Design Engineering
+      Support for DFM with FMEA practice.
+    approx_offset: 117606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0038
+  form: FMEA practice
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: With 10+ probe and vision coordinate-measuring machines (CMM), EPTAM Plastics can support you
+      with metal-to-plastic conversions, material design support, and design for manufacturability using
+      FMEA practice.
+    approx_offset: 102592
+  - quote: EPTAM’s best-in-class technology is backed by our Advanced Semiconductor Polymer Design Engineering
+      Support for DFM with FMEA practice.
+    approx_offset: 117606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0039
+  form: Finishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: In-house machining to handle any tight tolerance finishing requirements.
+    approx_offset: 108572
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168639
+  - quote: In addition to these small-scale, high-complexity manufacturing capabilities, Ingram offers
+      in-house finishing operations including Laser Engraving, and Passivation.
+    approx_offset: 171547
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0040
+  form: Finishing and Secondary Process capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168639
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0041
+  form: First Article Inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/quality-certifications/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'First Article Inspection (FAI): Thorough assessments to verify that product specifications
+      are met before full-scale manufacturing begins.'
+    approx_offset: 49321
+  - quote: First Article Inspection to AS9102
+    approx_offset: 136782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0042
+  form: First Article Inspection (FAI)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'First Article Inspection (FAI): Thorough assessments to verify that product specifications
+      are met before full-scale manufacturing begins.'
+    approx_offset: 49321
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0043
+  form: GDT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Geometric Dimension and Tolerancing (GDT) & 4 Coordinate-Measure Machines CMM’s with probe
+      and vision systems including Zeiss O-inspect and Contura Lines.
+    approx_offset: 67728
+  - quote: Geometric dimension and tolerancing (GDT) & coordinate-measure machines CMM’s experts.
+    approx_offset: 103401
+  - quote: Geometric Dimension and Tolerancing (GDT) & Coordinate-Measure Machines CMM’s experts.
+    approx_offset: 108633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0044
+  form: Geometric Dimension and Tolerancing (GDT)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Geometric Dimension and Tolerancing (GDT) & 4 Coordinate-Measure Machines CMM’s with probe
+      and vision systems including Zeiss O-inspect and Contura Lines.
+    approx_offset: 67691
+  - quote: Geometric dimension and tolerancing (GDT) & coordinate-measure machines CMM’s experts.
+    approx_offset: 103364
+  - quote: Geometric Dimension and Tolerancing (GDT) & Coordinate-Measure Machines CMM’s experts.
+    approx_offset: 108596
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0045
+  form: Gun drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131779
+  - quote: Gun drilling, water jet cutting, swiss machining.
+    approx_offset: 132246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0046
+  form: Heat staking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Heat staking
+    approx_offset: 77227
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0047
+  form: Hermetic Sealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Laser Welding: Airtight Hermetic Sealing and Micro-Welding'
+    approx_offset: 143768
+  - quote: Pacemaker Hermetic Sealing
+    approx_offset: 151592
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0048
+  form: Hermetic Seals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Our laser welding systems specialize in non-contact welding to create airtight, hermetic seals
+      for implantable medical devices.
+    approx_offset: 143884
+  - quote: 'Hermetic Seals: Ideal for implantable devices, our welds ensure consistent, airtight seals
+      that enhance device longevity.'
+    approx_offset: 144310
+  - quote: Our laser welding systems ensure airtight, hermetic seals for implantable medical devices such
+      as pacemakers and neurostimulators.
+    approx_offset: 150271
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0049
+  form: IQ OQ PQ
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/locations/
+  evidence:
+  - quote: Our facility in Colorado Springs, Colorado houses EPTAM PRECISION – METALS which can handle
+      all its customers’ assembly, packaging, DFM, and PPAP and IQ OQ PQ needs.
+    approx_offset: 56231
+  - quote: Our facility in Lakeville, Minnesota houses EPTAM PRECISION – MICRO-MACHINING which can handle
+      all its customers’ assembly, packaging, DFM, and PPAP and IQ OQ PQ needs.
+    approx_offset: 57775
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0050
+  form: IQ, OQ, PQ
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Design for Manufacturability (DFM), Rapid Prototyping, IQ, OQ, PQ, Process Validation and SPC
+      Review ensure your project comes out of the gate strong.
+    approx_offset: 67595
+  - quote: Rapid Prototyping, IQ, OQ, PQ, Process Validation
+    approx_offset: 108462
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0051
+  form: IQ, OQ, and PQ
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: EPTAM Precision Metals can handle all of its customers’ assembly, packaging, DFM, PPAP, IQ,
+      OQ, and PQ needs.
+    approx_offset: 131953
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0052
+  form: In-Process Inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'In-Process Inspections: Continuous monitoring during production to maintain high-quality outcomes.'
+    approx_offset: 49222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0053
+  form: In-house tooling services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/rapid-launch/
+  evidence:
+  - quote: In-house tooling services support our design for manufacturability efforts and increases client
+      success rates.
+    approx_offset: 60558
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0054
+  form: Injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 45
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics along with processes for injection
+      molding, machining, and 3D printing are where we live, every day.
+    approx_offset: 1902
+  - quote: METAL INJECTION MOLDING
+    approx_offset: 5094
+  - quote: EPTAM Is Your Metal Injection Molding Expert
+    approx_offset: 5151
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0055
+  form: LSR injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Our in-house tooling capabilities and LSR injection molding enable smooth transitions from
+      prototyping to mid-to-high-volume production, supported by automation.
+    approx_offset: 51283
+  - quote: EPTAM Silicone is equipped with LSR injection molding machines ranging from 14-120 ton and
+      compression presses ranging from 10-100 tons.
+    approx_offset: 80370
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0056
+  form: LSR molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'Industry Leadership: As leaders in LSR molding, we provide unmatched precision and flexibility
+      for complex medical applications.'
+    approx_offset: 46582
+  - quote: LSR Molding Capabilities
+    approx_offset: 47212
+  - quote: Our LSR molding capabilities include advanced techniques for producing highly accurate and
+      durable components.
+    approx_offset: 47242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0057
+  form: Laser Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+  evidence:
+  - quote: This opens the possibility of laser processing different materials of varying thicknesses that
+      respond well to utilizing laser cutting technology and a variety of laser process materials.
+    approx_offset: 11658
+  - quote: Laser Cutting
+    approx_offset: 12471
+  - quote: Our vertical integration allows to make the components using our micro machine, laser cutting,
+      laser welding, insert molding and final assembly.
+    approx_offset: 30789
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0058
+  form: Laser Engraving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168576
+  - quote: In addition to these small-scale, high-complexity manufacturing capabilities, Ingram offers
+      in-house finishing operations including Laser Engraving, and Passivation.
+    approx_offset: 171578
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0059
+  form: Laser Marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: Laser Marking and Engraving
+    approx_offset: 12056
+  - quote: Laser Marking and complex assemblies with varied components.
+    approx_offset: 67478
+  - quote: 'Laser Marking and Engraving: Permanent, Biocompatible, and FDA-Compliant'
+    approx_offset: 144432
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0060
+  form: Laser Marking and Engraving
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Laser Marking and Engraving
+    approx_offset: 12056
+  - quote: 'Laser Marking and Engraving: Permanent, Biocompatible, and FDA-Compliant'
+    approx_offset: 144432
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0061
+  form: Laser Pulse Modulation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Superb precision and accuracy through Laser Pulse Modulation (LPM) and Programmable Pulse Generator
+      (PPG)
+    approx_offset: 12523
+  - quote: This new energy generation process control uses Laser Pulse Modulation (LPM) enhanced by EPTAM’s
+      Programmable Pulse Generator (PPG) to deliver the bare minimum of laser energy required to yield
+      an accurate and precise result.
+    approx_offset: 13655
+  - quote: Using Laser Pulse Modulation (LPM) and Programmable Pulse Generator (PPG), we can cut intricate
+      shapes with micron-level precision.
+    approx_offset: 142523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0062
+  form: Laser Pulse Modulation (LPM)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Superb precision and accuracy through Laser Pulse Modulation (LPM) and Programmable Pulse Generator
+      (PPG)
+    approx_offset: 12523
+  - quote: This new energy generation process control uses Laser Pulse Modulation (LPM) enhanced by EPTAM’s
+      Programmable Pulse Generator (PPG) to deliver the bare minimum of laser energy required to yield
+      an accurate and precise result.
+    approx_offset: 13655
+  - quote: Using Laser Pulse Modulation (LPM) and Programmable Pulse Generator (PPG), we can cut intricate
+      shapes with micron-level precision.
+    approx_offset: 142523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0063
+  form: Laser Tube Cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: EPTAM Precision Solutions’ next generation of Laser Tube cutting technology will enhance micromachining
+      processes that deliver high-quality, high-precision, medical components which support devices used
+      in neurovascular, cardiovascular, and diagnostic medical procedures.
+    approx_offset: 11771
+  - quote: This facility handles millions of units per year and provides comprehensive support for medical
+      device manufacturing, including laser tube cutting, laser welding, Swiss turning, passivation, and
+      cleaning.
+    approx_offset: 147012
+  - quote: Laser Tube Cutting
+    approx_offset: 149834
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0064
+  form: Laser Welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Our vertical integration allows to make the components using our micro machine, laser cutting,
+      laser welding, insert molding and final assembly.
+    approx_offset: 30804
+  - quote: 'Laser Welding: Airtight Hermetic Sealing and Micro-Welding'
+    approx_offset: 143744
+  - quote: Our laser welding systems specialize in non-contact welding to create airtight, hermetic seals
+      for implantable medical devices.
+    approx_offset: 143808
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0065
+  form: Laser micromachining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Laser micromachining and welding for components that require tight tolerances and durability
+      in extreme environments.
+    approx_offset: 149021
+  - quote: 'Solution: Our precision laser micromachining technology allowed us to cut intricate designs
+      while maintaining the integrity and strength required in aerospace environments.'
+    approx_offset: 152014
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0066
+  form: Liquid Silicone Rubber (LSR)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Liquid Silicone Rubber (LSR)
+    approx_offset: 45396
+  - quote: Our facility in Leominster, Massachusetts specializes in plastic injection molding and Liquid
+      Silicone Rubber (LSR) molding serving the Medical Device, Molecular Diagnostics, BioPharma, Consumer
+      Electronics and Aerospace & Defense markets.
+    approx_offset: 57225
+  - quote: Liquid silicone rubber (LSR)
+    approx_offset: 77629
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0067
+  form: Low-volume production runs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Low-volume production runs.
+    approx_offset: 87881
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0068
+  form: METAL INJECTION MOLDING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: METAL INJECTION MOLDING
+    approx_offset: 5088
+  - quote: EPTAM Is Your Metal Injection Molding Expert
+    approx_offset: 5145
+  - quote: EPTAM Precision is your trusted partner for Metal Injection Molding (MIM), a revolutionary
+      technology that bridges the gap between the design flexibility of plastic injection molding and
+      the strength of metal.
+    approx_offset: 5222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0069
+  form: Manufacturing cells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Manufacturing cells and employee specialization deliver consistent quality control, ensure
+      the most efficient work flow, and permit customers’ products to run on any number of machines without
+      costly tooling changes.
+    approx_offset: 119886
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0070
+  form: Material Selection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+    - https://eptam.com/industries/medical-molecular-diagnostics/
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Material selection has a major impact on manufacturability and part performance.
+    approx_offset: 74698
+  - quote: Finding the right balance is important, but yielding even greater results in both areas through
+      unique material selection or development is even more important.
+    approx_offset: 74882
+  - quote: Material selection assistance and direct purchase from the strategic stock shape suppliers
+      to support your project.
+    approx_offset: 103165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0071
+  form: Material Selection Assistance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Material selection assistance and direct purchase from the strategic stock shape suppliers
+      to support your project.
+    approx_offset: 103165
+  - quote: Material Selection Assistance
+    approx_offset: 108493
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0072
+  form: Metal Additive Printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Metal Additive Printing
+    approx_offset: 43126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0073
+  form: Metal Injection Molding (MIM)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: EPTAM Precision is your trusted partner for Metal Injection Molding (MIM), a revolutionary
+      technology that bridges the gap between the design flexibility of plastic injection molding and
+      the strength of metal.
+    approx_offset: 5222
+  - quote: Metal Injection Molding (MIM) combines the design freedom of plastic injection molding with
+      the strength and durability of metals.
+    approx_offset: 5545
+  - quote: EPTAM has made strategic investments in advanced Metal Injection Molding (MIM) technologies,
+      process controls, and specialized talent to support the future of medical manufacturing.
+    approx_offset: 7403
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0074
+  form: Metal Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+  evidence:
+  - quote: EPTAM Precision Metal/Laser, a dedicated metal machining, assembly, pack, and laser processing
+      high volume facility, is situated in Colorado Springs.
+    approx_offset: 13900
+  - quote: Metal Machining
+    approx_offset: 43088
+  - quote: Plastic & Metal Machining
+    approx_offset: 60542
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0075
+  form: Metal Micro-Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/medical-implants/
+    - https://eptam.com/rapid-launch/
+  evidence:
+  - quote: Metal Micro-Machining
+    approx_offset: 43104
+  - quote: Metal Micro-Machining
+    approx_offset: 60510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0076
+  form: Metrology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14294
+  - quote: Cutting-Edge Metrology Technology with Fully Programmable Touch Probe CMM Vision Systems
+    approx_offset: 49108
+  - quote: We produce complex parts, and are experienced and equipped to thoroughly inspect them with
+      confidence – thanks to our full metrology lab with dedicated inspection personnel.
+    approx_offset: 60399
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0077
+  form: Microblast Deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Microblast Deburring
+    approx_offset: 43378
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0078
+  form: Multi-Axis Swiss Turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: The company utilizes state-of-the-art equipment including the latest technology to bring customers
+      the best in Multi-Axis Swiss Turning, 5-Axis Mill Turning, Prototype Machining and Advanced Inspection
+      Equipment.
+    approx_offset: 192197
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0079
+  form: NPI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Design for manufacturability (DFM) and new product introduction (NPI) processes for assured
+      success.
+    approx_offset: 103042
+  - quote: Design for Manufacturability (DFM) and New Product Introduction (NPI) processes for assured
+      success
+    approx_offset: 108748
+  - quote: NPI SERVICES
+    approx_offset: 113668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0080
+  form: NPI SERVICES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: NPI SERVICES
+    approx_offset: 113668
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0081
+  form: New Product Introduction (NPI)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Design for manufacturability (DFM) and new product introduction (NPI) processes for assured
+      success.
+    approx_offset: 103016
+  - quote: Design for Manufacturability (DFM) and New Product Introduction (NPI) processes for assured
+      success
+    approx_offset: 108722
+  - quote: Our New Product Introduction (NPI) services are designed to streamline the journey from concept
+      to commercialization, ensuring quality, efficiency, and innovation every step of the way.
+    approx_offset: 113897
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0082
+  form: Overmolding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Overmolding to metals, thermoplastics, other silicones, etc.
+    approx_offset: 77497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0083
+  form: PPAP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: Our facility in Colorado Springs, Colorado houses EPTAM PRECISION – METALS which can handle
+      all its customers’ assembly, packaging, DFM, and PPAP and IQ OQ PQ needs.
+    approx_offset: 56222
+  - quote: Our facility in Lakeville, Minnesota houses EPTAM PRECISION – MICRO-MACHINING which can handle
+      all its customers’ assembly, packaging, DFM, and PPAP and IQ OQ PQ needs.
+    approx_offset: 57766
+  - quote: EPTAM Precision Metals can handle all of its customers’ assembly, packaging, DFM, PPAP, IQ,
+      OQ, and PQ needs.
+    approx_offset: 131947
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0084
+  form: Packaging & Assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Packaging & Assembly: Complete solutions to deliver components ready for immediate application.'
+    approx_offset: 145902
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0085
+  form: Pad printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Pad printing
+    approx_offset: 77259
+  - quote: In addition, Sterling offers a wide array of secondary operations such as automated assembly,
+      pad printing, and sonic welding, amongst others.
+    approx_offset: 159900
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0086
+  form: Passivation & Cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Passivation & Cleaning: Surface treatments that make parts biocompatible and contamination-free.'
+    approx_offset: 145805
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0087
+  form: Pilot Production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Pilot Production
+    approx_offset: 114744
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0088
+  form: Plastic Additive Printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Plastic Additive Printing
+    approx_offset: 43062
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0089
+  form: Plastics Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Plastics Machining
+    approx_offset: 43017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0090
+  form: Position Synchronized Output
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: EPTAM Precision Solutions is evolving Position Synchronized Output technology combined with
+      both time-based and vector-based processing techniques.
+    approx_offset: 13497
+  - quote: Specializing in Position Synchronized Output technology combined with both time-based and vector-based
+      processing techniques, this facility uses Laser Pulse Modulation (LPM) enhanced by EPTAM’s Programmable
+      Pulse Generator (PPG) to deliver precise results with minimal energy consumption.
+    approx_offset: 146185
+  - quote: We employ Position Synchronized Output and vector-based processing techniques, combined with
+      Laser Pulse Modulation (LPM) and our proprietary Programmable Pulse Generator (PPG), to reduce energy
+      consumption while maximizing precision.
+    approx_offset: 147572
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0091
+  form: Position Synchronized Output technology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: EPTAM Precision Solutions is evolving Position Synchronized Output technology combined with
+      both time-based and vector-based processing techniques.
+    approx_offset: 13497
+  - quote: Specializing in Position Synchronized Output technology combined with both time-based and vector-based
+      processing techniques, this facility uses Laser Pulse Modulation (LPM) enhanced by EPTAM’s Programmable
+      Pulse Generator (PPG) to deliver precise results with minimal energy consumption.
+    approx_offset: 146185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0092
+  form: Post-Processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Post-Processing
+    approx_offset: 8122
+  - quote: Our post-processing services like deburring, passivation, and surface cleaning ensure components
+      are contamination-free and biocompatible.
+    approx_offset: 142043
+  - quote: 'Burr-Free, Contamination-Free Processing: Our laser cutting process leaves no oxidation, maintaining
+      the structural integrity of sensitive components and reducing the need for post-processing.'
+    approx_offset: 143119
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0093
+  form: Process Validation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: EPTAM offers a range of value added services such as process validation, design-for-manufacturing
+      cleanroom molding, and technical program management solutions.
+    approx_offset: 34114
+  - quote: Design for Manufacturability (DFM), Rapid Prototyping, IQ, OQ, PQ, Process Validation and SPC
+      Review ensure your project comes out of the gate strong.
+    approx_offset: 67607
+  - quote: Metrology and Process Validation
+    approx_offset: 79060
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0094
+  form: Process driven validation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Process driven validation, tool life monitoring, tool breakage detection and automation.
+    approx_offset: 67275
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0095
+  form: Programmable Pulse Generator
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Superb precision and accuracy through Laser Pulse Modulation (LPM) and Programmable Pulse Generator
+      (PPG)
+    approx_offset: 12556
+  - quote: This new energy generation process control uses Laser Pulse Modulation (LPM) enhanced by EPTAM’s
+      Programmable Pulse Generator (PPG) to deliver the bare minimum of laser energy required to yield
+      an accurate and precise result.
+    approx_offset: 13704
+  - quote: Using Laser Pulse Modulation (LPM) and Programmable Pulse Generator (PPG), we can cut intricate
+      shapes with micron-level precision.
+    approx_offset: 142556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0096
+  form: Programmable Pulse Generator (PPG)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Superb precision and accuracy through Laser Pulse Modulation (LPM) and Programmable Pulse Generator
+      (PPG)
+    approx_offset: 12556
+  - quote: This new energy generation process control uses Laser Pulse Modulation (LPM) enhanced by EPTAM’s
+      Programmable Pulse Generator (PPG) to deliver the bare minimum of laser energy required to yield
+      an accurate and precise result.
+    approx_offset: 13704
+  - quote: Using Laser Pulse Modulation (LPM) and Programmable Pulse Generator (PPG), we can cut intricate
+      shapes with micron-level precision.
+    approx_offset: 142556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0097
+  form: Prototype Machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: The company utilizes state-of-the-art equipment including the latest technology to bring customers
+      the best in Multi-Axis Swiss Turning, 5-Axis Mill Turning, Prototype Machining and Advanced Inspection
+      Equipment.
+    approx_offset: 192244
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0098
+  form: Rapid Prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 120
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: RAPID Prototyping
+    approx_offset: 1991
+  - quote: Rapid Prototyping (READI)
+    approx_offset: 2937
+  - quote: Rapid Prototyping
+    approx_offset: 3079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0099
+  form: SLA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: SLA printer
+    approx_offset: 88763
+  - quote: SLA Printer​
+    approx_offset: 88786
+  - quote: Expertise in multiple additive technologies which include FDM, FFF, SLA, SLS, and Binder Jet.
+    approx_offset: 107186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0100
+  form: SLS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: 3D Printing – BinderJet/FDM/SLS 3D printing metals and plastics.
+    approx_offset: 87843
+  - quote: SLS printer
+    approx_offset: 88875
+  - quote: SLS Printer​
+    approx_offset: 88899
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0101
+  form: SPC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: SPC Monitoring
+    approx_offset: 49016
+  - quote: Design for Manufacturability (DFM), Rapid Prototyping, IQ, OQ, PQ, Process Validation and SPC
+      Review ensure your project comes out of the gate strong.
+    approx_offset: 67630
+  - quote: SPC monitoring
+    approx_offset: 77843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0102
+  form: SPC Monitoring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: SPC Monitoring
+    approx_offset: 49016
+  - quote: SPC monitoring
+    approx_offset: 77843
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0103
+  form: SPC Review
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Design for Manufacturability (DFM), Rapid Prototyping, IQ, OQ, PQ, Process Validation and SPC
+      Review ensure your project comes out of the gate strong.
+    approx_offset: 67630
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0104
+  form: Secondary Support Processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14191
+  - quote: 'Secondary Support Processing: Offering a full suite of services including metrology, passivation,
+      swaging, Swiss turning, packaging, over-molding, and cleaning.'
+    approx_offset: 147371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0105
+  form: Secondary processes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Secondary processes
+    approx_offset: 77188
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0106
+  form: Super-Swiss
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131822
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0107
+  form: Swiss and Super-Swiss machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0108
+  form: Swiss machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131828
+  - quote: Gun drilling, water jet cutting, swiss machining.
+    approx_offset: 132279
+  - quote: Swiss machining
+    approx_offset: 133740
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0109
+  form: Swiss turn
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: We also offer the ultimate and most capable Swiss turn / milling multifunction turning center
+      on the market today.
+    approx_offset: 133200
+  - quote: Swiss turn mill
+    approx_offset: 134047
+  - quote: 'Swiss turn benefits: multitasking flexibility.'
+    approx_offset: 134063
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0110
+  form: Swiss turning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14327
+  - quote: This facility handles millions of units per year and provides comprehensive support for medical
+      device manufacturing, including laser tube cutting, laser welding, Swiss turning, passivation, and
+      cleaning.
+    approx_offset: 147047
+  - quote: 'Secondary Support Processing: Offering a full suite of services including metrology, passivation,
+      swaging, Swiss turning, packaging, over-molding, and cleaning.'
+    approx_offset: 147478
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0111
+  form: Tooling design
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Quick turn MUD based molds for development or short run designs, onsite metallurgical lab,
+      Tooling design, DFM services, on site sintering and molding to dial in processes
+    approx_offset: 6582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0112
+  form: Tube Cutting 3, 4, and 5-Axis
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Tube Cutting 3, 4, and 5-Axis: Handles tube diameters from 0.012” to 1.0”, with wall thicknesses
+      from 0.002” to 0.050” and lengths up to 12 feet.'
+    approx_offset: 142664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0113
+  form: Ultrasonic welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Ultrasonic welding
+    approx_offset: 77240
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0114
+  form: Wet Processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Wet Processing / Wet Bench
+    approx_offset: 119343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0115
+  form: Wet Processing / Wet Bench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Wet Processing / Wet Bench
+    approx_offset: 119343
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0116
+  form: Wire EDM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168566
+  - quote: The company utilizes state-of-the-art equipment including 5-Axis Mills, CNC Lathes, and Wire
+      EDM Machining.
+    approx_offset: 171228
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0117
+  form: anodization
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: In-house passivation and anodization line.
+    approx_offset: 67459
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0118
+  form: anodizing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: In addition to these small scale, high-precision manufacturing capabilities, Mendell offers
+      in-house finishing operations including laser marking, passivation, and anodizing, amongst others.
+    approx_offset: 192717
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0119
+  form: assembly, pack
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+  evidence:
+  - quote: EPTAM Precision Metal/Laser, a dedicated metal machining, assembly, pack, and laser processing
+      high volume facility, is situated in Colorado Springs.
+    approx_offset: 13917
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0120
+  form: automated inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: The FDA-registered, ISO 13485:2016 center also features comprehensive automated inspection.
+    approx_offset: 102377
+  - quote: This division features resources that leading medical-device companies rely on, including a
+      Class 7 clean room, automated inspection, and a validated supply chain, as well as a dedicated R&D
+      cell.
+    approx_offset: 131610
+  - quote: Automated inspection.
+    approx_offset: 132335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0121
+  form: automated inspections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Furthering EPTAM’s value to customers is our unique ability to create automated inspections
+      either post-production or in-line with live production.
+    approx_offset: 74379
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0122
+  form: automated secondary operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: Our facility in Lancaster, Massachusetts specializes in vertically integrated injection molding
+      solutions that support the entire product lifecycle with rapid prototyping, tool development, validation,
+      production molding, and automated secondary operations.
+    approx_offset: 57015
+  - quote: EPTAM supports the entire product lifecycle, with rapid prototyping, tool development, validation,
+      production molding, and automated secondary operations.
+    approx_offset: 76296
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0123
+  form: binder jet printing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+  evidence:
+  - quote: EPTAM’s binder jet printing system combined with our three sintering furnaces can cost effectively
+      produce a single part to tens of thousands of parts per year.
+    approx_offset: 107553
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0124
+  form: brazed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: MIM components are easily joined or brazed into larger assemblies, providing seamless integration
+      and enhancing the structural integrity and functionality of the final product.
+    approx_offset: 6323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0125
+  form: cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14371
+  - quote: 'Post-Molding Options: To enhance component performance, we offer additional services such
+      as post-molding annealing, cleaning, and insert molding.'
+    approx_offset: 47713
+  - quote: Our post-processing services like deburring, passivation, and surface cleaning ensure components
+      are contamination-free and biocompatible.
+    approx_offset: 142109
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0126
+  form: cleanroom assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Additionally, EPTAM offers a wide range of value-added services such as process validation,
+      design-for-assembly, cleanroom assembly, laser cutting/welding equipment and process development,
+      rapid-prototyping, and technical program management solutions.
+    approx_offset: 157535
+  - quote: Additionally, EPTAM offers a wide range of value-added services such as rapid-prototyping,
+      process development & validation, design-for-assembly, cleanroom assembly, laser cutting/welding
+      equipment development and overall technical program management.
+    approx_offset: 163515
+  - quote: The Company has expertise in polymer machining, precision metal component machining & micro-machining,
+      laser cutting & welding and plastic injection molding, and offers a range of value-added services
+      such as process validation, design-forassembly, cleanroom assembly, and technical program managemen
+    approx_offset: 169464
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0127
+  form: cleanroom molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/
+  evidence:
+  - quote: EPTAM offers a range of value added services such as process validation, design-for-manufacturing
+      cleanroom molding, and technical program management solutions.
+    approx_offset: 34159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0128
+  form: complete fabricating capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Our facility in Northfield, New Hampshire houses EPTAM PRECISION – PLASTICS offering complete
+      fabricating capabilities for CNC turning, milling, routing, sawing, and drilling.
+    approx_offset: 58025
+  - quote: EPTAM Precision Plastics also offers complete fabricating capabilities for CNC turning, Swiss,
+      milling, routing, sawing, and drilling.
+    approx_offset: 104472
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0129
+  form: comprehensive automated inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: The FDA-registered, ISO 13485:2016 center also features comprehensive automated inspection.
+    approx_offset: 102363
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0130
+  form: conditioning operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: After molding, the part undergoes conditioning operations to remove the binder (debinding)
+      and densify the powders into solid metal (sintering).
+    approx_offset: 8482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0131
+  form: debinding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: After molding, the part undergoes conditioning operations to remove the binder (debinding)
+      and densify the powders into solid metal (sintering).
+    approx_offset: 8528
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0132
+  form: deburring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Microblast Deburring
+    approx_offset: 43389
+  - quote: EPTAM's proven experience with the latest machining and deburring techniques ensure burr-free,
+      clean parts to the highest standards.
+    approx_offset: 43566
+  - quote: Our post-processing services like deburring, passivation, and surface cleaning ensure components
+      are contamination-free and biocompatible.
+    approx_offset: 142073
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0133
+  form: design for manufacturability
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/rapid-launch/
+  evidence:
+  - quote: In-house tooling services support our design for manufacturability efforts and increases client
+      success rates.
+    approx_offset: 60596
+  - quote: Design for Manufacturability (DFM), Rapid Prototyping, IQ, OQ, PQ, Process Validation and SPC
+      Review ensure your project comes out of the gate strong.
+    approx_offset: 67540
+  - quote: With 10+ probe and vision coordinate-measuring machines (CMM), EPTAM Plastics can support you
+      with metal-to-plastic conversions, material design support, and design for manufacturability using
+      FMEA practice.
+    approx_offset: 102557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0134
+  form: drilling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Our facility in Northfield, New Hampshire houses EPTAM PRECISION – PLASTICS offering complete
+      fabricating capabilities for CNC turning, milling, routing, sawing, and drilling.
+    approx_offset: 58106
+  - quote: EPTAM Plastics is the leader in complex multi-axis plastic machining using 3-, 5-, and 7-axis
+      machine centers, CNC turning, Swiss, milling, routing, sawing, and drilling.
+    approx_offset: 102768
+  - quote: EPTAM Precision Plastics also offers complete fabricating capabilities for CNC turning, Swiss,
+      milling, routing, sawing, and drilling.
+    approx_offset: 104560
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0135
+  form: dry-machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/industries/medical-implants/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: EPTAM has a dedicated medical manufacturing center housing dry-machining technology, enhanced
+      secondary capabilities, and class 7 clean rooms.
+    approx_offset: 34409
+  - quote: Dry-Machining Technology - no coolants on polymers
+    approx_offset: 44318
+  - quote: EPTAM’s Manufacturing Center employs dedicated 3, 5, and 7-axis plastics-machining capabilities,
+      along with dry-machining techniques or wet bench coolants that will not contaminate or chemically
+      attack plastic material as oil-based fluids may.
+    approx_offset: 119487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0136
+  form: dry-machining techniques
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: EPTAM’s Manufacturing Center employs dedicated 3, 5, and 7-axis plastics-machining capabilities,
+      along with dry-machining techniques or wet bench coolants that will not contaminate or chemically
+      attack plastic material as oil-based fluids may.
+    approx_offset: 119487
+  - quote: 7- and 5-axis plastics-machining capabilities employ dry-machining techniques that will not
+      contaminate or chemically attack plastic parts.
+    approx_offset: 119798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0137
+  form: dry-machining technology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: EPTAM has a dedicated medical manufacturing center housing dry-machining technology, enhanced
+      secondary capabilities, and class 7 clean rooms.
+    approx_offset: 34409
+  - quote: Dry-Machining Technology - no coolants on polymers
+    approx_offset: 44318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0138
+  form: fabricated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Plastic semiconductor components fabricated by EPTAM meet or exceed the critical requirements
+      of the semiconductor industry.
+    approx_offset: 117015
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0139
+  form: fabricating
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Our facility in Northfield, New Hampshire houses EPTAM PRECISION – PLASTICS offering complete
+      fabricating capabilities for CNC turning, milling, routing, sawing, and drilling.
+    approx_offset: 58034
+  - quote: EPTAM Precision Plastics also offers complete fabricating capabilities for CNC turning, Swiss,
+      milling, routing, sawing, and drilling.
+    approx_offset: 104481
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0140
+  form: final assembly
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Our vertical integration allows to make the components using our micro machine, laser cutting,
+      laser welding, insert molding and final assembly.
+    approx_offset: 30838
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0141
+  form: finishing operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: In addition to these small-scale, high-complexity manufacturing capabilities, Ingram offers
+      in-house finishing operations including Laser Engraving, and Passivation.
+    approx_offset: 171547
+  - quote: In addition to these small scale, high-precision manufacturing capabilities, Mendell offers
+      in-house finishing operations including laser marking, passivation, and anodizing, amongst others.
+    approx_offset: 192654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0142
+  form: hermetic seal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Challenge: Develop a reliable hermetic seal for an implantable pacemaker.'
+    approx_offset: 151639
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0143
+  form: human inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/quality-certifications/
+  evidence:
+  - quote: Some projects require manual inspection, and EPTAM is well equipped to build and automate the
+      processes surrounding human inspection.
+    approx_offset: 137326
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0144
+  form: in-house finishing operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: In addition to these small-scale, high-complexity manufacturing capabilities, Ingram offers
+      in-house finishing operations including Laser Engraving, and Passivation.
+    approx_offset: 171538
+  - quote: In addition to these small scale, high-precision manufacturing capabilities, Mendell offers
+      in-house finishing operations including laser marking, passivation, and anodizing, amongst others.
+    approx_offset: 192645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0145
+  form: in-house metrology capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: We ensure every component meets precise tolerances through our in-house metrology capabilities,
+      enabling high-quality measurements and inspections.
+    approx_offset: 141954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0146
+  form: in-house tooling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/rapid-launch/
+  evidence:
+  - quote: Our in-house tooling capabilities and LSR injection molding enable smooth transitions from
+      prototyping to mid-to-high-volume production, supported by automation.
+    approx_offset: 51249
+  - quote: In-house tooling services support our design for manufacturability efforts and increases client
+      success rates.
+    approx_offset: 60558
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0147
+  form: insert molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Our vertical integration allows to make the components using our micro machine, laser cutting,
+      laser welding, insert molding and final assembly.
+    approx_offset: 30819
+  - quote: EPTAM  provides progressive manufacturing solutions such as micro-molding, multi-material,
+      and insert molding.
+    approx_offset: 46366
+  - quote: 'Post-Molding Options: To enhance component performance, we offer additional services such
+      as post-molding annealing, cleaning, and insert molding.'
+    approx_offset: 47727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0148
+  form: laser cutting & welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: EPTAM provides advanced precision manufacturing solutions with expertise in polymer machining,
+      precision metal component machining & micro-machining, laser cutting & welding and plastic injection
+      molding.
+    approx_offset: 34005
+  - quote: The Company has expertise in polymer machining, precision metal component machining & micro-machining,
+      laser cutting & welding and plastic injection molding, and offers a range of value-added services
+      such as process validation, design-forassembly, cleanroom assembly, and technical program managemen
+    approx_offset: 169318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0149
+  form: laser cutting/welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: The Company has expertise with polymer machining, precision metal machining, injection molding,
+      laser cutting/welding and metal injection molding, which the company targets to open later this
+      year.
+    approx_offset: 157320
+  - quote: Additionally, EPTAM offers a wide range of value-added services such as process validation,
+      design-for-assembly, cleanroom assembly, laser cutting/welding equipment and process development,
+      rapid-prototyping, and technical program management solutions.
+    approx_offset: 157555
+  - quote: The Company has expertise with polymer machining, precision metal machining, injection molding,
+      liquid silicon rubber molding, laser cutting/welding, and metal injection molding.
+    approx_offset: 163317
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0150
+  form: laser processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: With our proprietary technology, EPTAM utilizes laser processing equipment to enable efficient
+      manufacturing, customization, automation, and quick adaptation to current industry trends.
+    approx_offset: 11228
+  - quote: This opens the possibility of laser processing different materials of varying thicknesses that
+      respond well to utilizing laser cutting technology and a variety of laser process materials.
+    approx_offset: 11567
+  - quote: EPTAM Precision Metal/Laser, a dedicated metal machining, assembly, pack, and laser processing
+      high volume facility, is situated in Colorado Springs.
+    approx_offset: 13937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0151
+  form: liquid silicone rubber molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/
+  evidence:
+  - quote: We offer complex metals and plastic machining solutions, precision thermoplastic injection
+      molding, and liquid silicone rubber molding serving the medical device markets.
+    approx_offset: 34663
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0152
+  form: low-volume production
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+  evidence:
+  - quote: Low-volume production runs.
+    approx_offset: 87881
+  - quote: 'Rapid Prototyping: We excel in rapid prototyping and low-volume production to bring your innovative
+      designs to life faster.'
+    approx_offset: 141631
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0153
+  form: machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 220
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Materials including plastics, metals, and thermoplastics along with processes for injection
+      molding, machining, and 3D printing are where we live, every day.
+    approx_offset: 1921
+  - quote: 'EPTAM Micro-Machining Registration Number: 3009998573'
+    approx_offset: 3433
+  - quote: Micro-Machining
+    approx_offset: 3529
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0154
+  form: manual inspection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/quality-certifications/
+  evidence:
+  - quote: Some projects require manual inspection, and EPTAM is well equipped to build and automate the
+      processes surrounding human inspection.
+    approx_offset: 137232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0155
+  form: marking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Laser Marking and Engraving
+    approx_offset: 12062
+  - quote: Marking - Whether it is serial numbers, part numbers, text, or customer-supplied-logos, marking
+      guarantees complete traceability of instruments and implants.
+    approx_offset: 43643
+  - quote: Marking - Whether it is serial numbers, part numbers, text, or customer-supplied-logos, marking
+      guarantees complete traceability of instruments and implants.
+    approx_offset: 43731
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0156
+  form: metal-to-plastic conversions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: With 10+ probe and vision coordinate-measuring machines (CMM), EPTAM Plastics can support you
+      with metal-to-plastic conversions, material design support, and design for manufacturability using
+      FMEA practice.
+    approx_offset: 102498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0157
+  form: micro-blast
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Sodium-bicarbonate-based micro-blast stations ensure critical components are "Burr Free" at
+      customer delivery.
+    approx_offset: 43424
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0158
+  form: micro-machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 123
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: 'EPTAM Micro-Machining Registration Number: 3009998573'
+    approx_offset: 3427
+  - quote: Micro-Machining
+    approx_offset: 3523
+  - quote: 'EPTAM Micro-Machining Registration Number: 3009998573'
+    approx_offset: 4472
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0159
+  form: micro-molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: EPTAM  provides progressive manufacturing solutions such as micro-molding, multi-material,
+      and insert molding.
+    approx_offset: 46331
+  - quote: EPTAM provides progressive manufacturing solutions such as micro-molding, multi-material, and
+      insert molding.
+    approx_offset: 76515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0160
+  form: micro-welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: 'Laser Welding: Airtight Hermetic Sealing and Micro-Welding'
+    approx_offset: 143789
+  - quote: 'Micro-Welding: Welds with spot sizes under 1mm, ideal for pacemakers, neurostimulators, and
+      other delicate medical components.'
+    approx_offset: 144051
+  - quote: With our micro-welding capabilities, we deliver welds with spot sizes under 1mm, ensuring structural
+      integrity and long-term durability.
+    approx_offset: 150368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0161
+  form: micromachining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Micromachining
+    approx_offset: 2987
+  - quote: EPTAM Precision Solutions’ next generation of Laser Tube cutting technology will enhance micromachining
+      processes that deliver high-quality, high-precision, medical components which support devices used
+      in neurovascular, cardiovascular, and diagnostic medical procedures.
+    approx_offset: 11814
+  - quote: This makes us leaders in laser cutting, welding, marking, and micromachining for industries
+      including medical devices, aerospace, defense, semiconductor, and more.
+    approx_offset: 140710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0162
+  form: milling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Our facility in Northfield, New Hampshire houses EPTAM PRECISION – PLASTICS offering complete
+      fabricating capabilities for CNC turning, milling, routing, sawing, and drilling.
+    approx_offset: 58076
+  - quote: Our Haas high-performance super-speed vertical machining centers  are a key part of our milling
+      department here at EPTAM.
+    approx_offset: 69655
+  - quote: The INTEGREX i-150 advanced Multi-Tasking machine from Mazak is a growing part of our milling
+      cell.
+    approx_offset: 70204
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0163
+  form: mold building
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'Unique Process and Capabilities: Experienced project, plastic, quality, and tooling engineers
+      leverage years of mold building and processing experience to support new and growing projects.'
+    approx_offset: 48269
+  - quote: Leverage years of mold building and processing experience to support new and growing projects.
+    approx_offset: 76817
+  - quote: In house Silicone prototype and production mold building capabilities.
+    approx_offset: 77601
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0164
+  form: multi-material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: EPTAM  provides progressive manufacturing solutions such as micro-molding, multi-material,
+      and insert molding.
+    approx_offset: 46346
+  - quote: EPTAM provides progressive manufacturing solutions such as micro-molding, multi-material, and
+      insert molding.
+    approx_offset: 76530
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0165
+  form: over-molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14353
+  - quote: 'Secondary Support Processing: Offering a full suite of services including metrology, passivation,
+      swaging, Swiss turning, packaging, over-molding, and cleaning.'
+    approx_offset: 147504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0166
+  form: pack
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: EPTAM Precision Metal/Laser, a dedicated metal machining, assembly, pack, and laser processing
+      high volume facility, is situated in Colorado Springs.
+    approx_offset: 13927
+  - quote: Assembly pack and clean, including complex assemblies with hundreds of components.
+    approx_offset: 103587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0167
+  form: packaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+  evidence:
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14342
+  - quote: 'Precision components: EPTAM provides precision components that are essential in the Biopharmaceutical
+      industry, such as rollers, gears, and other parts that are needed for the production and packaging
+      of Biopharmaceutical products.'
+    approx_offset: 38746
+  - quote: Our facility in Colorado Springs, Colorado houses EPTAM PRECISION – METALS which can handle
+      all its customers’ assembly, packaging, DFM, and PPAP and IQ OQ PQ needs.
+    approx_offset: 56202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0168
+  form: passivation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Deep ‘dark black’ in color and passivation compatible
+    approx_offset: 12115
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14305
+  - quote: In-house passivation and anodization line.
+    approx_offset: 67443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0169
+  form: plastic injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: EPTAM Precision is your trusted partner for Metal Injection Molding (MIM), a revolutionary
+      technology that bridges the gap between the design flexibility of plastic injection molding and
+      the strength of metal.
+    approx_offset: 5335
+  - quote: Metal Injection Molding (MIM) combines the design freedom of plastic injection molding with
+      the strength and durability of metals.
+    approx_offset: 5606
+  - quote: EPTAM provides advanced precision manufacturing solutions with expertise in polymer machining,
+      precision metal component machining & micro-machining, laser cutting & welding and plastic injection
+      molding.
+    approx_offset: 34033
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0170
+  form: plastic machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: We offer complex metals and plastic machining solutions, precision thermoplastic injection
+      molding, and liquid silicone rubber molding serving the medical device markets.
+    approx_offset: 34587
+  - quote: EPTAM Plastics is the leader in complex multi-axis plastic machining using 3-, 5-, and 7-axis
+      machine centers, CNC turning, Swiss, milling, routing, sawing, and drilling.
+    approx_offset: 102658
+  - quote: As the leader in complex multi-axis plastic machining, EPTAM offers 3-, 5-, and 7-axis centers,
+      as well as single-source capability.
+    approx_offset: 104338
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0171
+  form: polymer machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: EPTAM provides advanced precision manufacturing solutions with expertise in polymer machining,
+      precision metal component machining & micro-machining, laser cutting & welding and plastic injection
+      molding.
+    approx_offset: 33931
+  - quote: The Company has expertise with polymer machining, precision metal machining, injection molding,
+      laser cutting/welding and metal injection molding, which the company targets to open later this
+      year.
+    approx_offset: 157255
+  - quote: The Company has expertise with polymer machining, precision metal machining, injection molding,
+      liquid silicon rubber molding, laser cutting/welding, and metal injection molding.
+    approx_offset: 163221
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0172
+  form: post-molding annealing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: 'Post-Molding Options: To enhance component performance, we offer additional services such
+      as post-molding annealing, cleaning, and insert molding.'
+    approx_offset: 47689
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0173
+  form: post-processing services
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Our post-processing services like deburring, passivation, and surface cleaning ensure components
+      are contamination-free and biocompatible.
+    approx_offset: 142043
+  - quote: 'Beyond laser processing, we offer a full range of post-processing services to ensure your
+      components are ready for use:'
+    approx_offset: 145587
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0174
+  form: precision CNC machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Ingram is an ISO 13485 certified, highly-agile, component and finished device manufacturer,
+      specializing in development and short-run precision CNC machining solutions.
+    approx_offset: 170958
+  - quote: Mendell is a highly agile medical device manufacturer, specializing in precision CNC machining
+      of implantable devices.
+    approx_offset: 191886
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0175
+  form: precision injection molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: EPTAM has over 50 years experience in precision injection molding, engineering, tool development,
+      and fully supports OEMs in the healthcare, aviation and industrial fields
+    approx_offset: 78053
+  - quote: Along with precision injection molding, EPTAM offers 3D printing, dedicated engineering, tool
+      development, and a full range of value-added services.
+    approx_offset: 78334
+  - quote: Precision Injection Molding
+    approx_offset: 79104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0176
+  form: precision machining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/quality-certifications/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/heritage-portfolio-company-eptam-announces-add-on-acquisition-of-relius-medical/
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: Our modern manufacturing facilities house the latest in support-technology equipment to ensure
+      our precision machining meets or exceeds your standards and expectations.
+    approx_offset: 35783
+  - quote: EPTAM Precision Solutions proudly supports this advanced, evolving industry with the skilled
+      precision machining of components and subassemblies OEMs of robotic-assisted surgical devices and
+      surgical robotic systems count on.
+    approx_offset: 64125
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131718
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0177
+  form: precision mold making
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/locations/
+  evidence:
+  - quote: Our facility in Phillipsburg, New Jersey houses EPTAM Precision Molding which specializes in
+      precision mold making, customer injection molding, and assembly services.
+    approx_offset: 56556
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0178
+  form: production mold building capabilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: In house Silicone prototype and production mold building capabilities.
+    approx_offset: 77590
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0179
+  form: production molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: We support the entire product lifecycle, with rapid prototyping, tool development, validation,
+      production molding, and value-added operations.
+    approx_offset: 45780
+  - quote: We support the entire product lifecycle with rapid prototyping, tool development, validation,
+      production molding, and value-added operations.
+    approx_offset: 50360
+  - quote: Our production molding machines are, on average, 2 years old.
+    approx_offset: 50468
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0180
+  form: rapid-prototyping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: Additionally, EPTAM offers a wide range of value-added services such as process validation,
+      design-for-assembly, cleanroom assembly, laser cutting/welding equipment and process development,
+      rapid-prototyping, and technical program management solutions.
+    approx_offset: 157612
+  - quote: Additionally, EPTAM offers a wide range of value-added services such as rapid-prototyping,
+      process development & validation, design-for-assembly, cleanroom assembly, laser cutting/welding
+      equipment development and overall technical program management.
+    approx_offset: 163441
+  - quote: Additionally, EPTAM offers a wide range of value-added services such as process validation,
+      design-for-assembly, cleanroom assembly, laser cutting/welding equipment development, process development,
+      rapid-prototyping, and technical program management.
+    approx_offset: 184482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0181
+  form: routing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Our facility in Northfield, New Hampshire houses EPTAM PRECISION – PLASTICS offering complete
+      fabricating capabilities for CNC turning, milling, routing, sawing, and drilling.
+    approx_offset: 58085
+  - quote: EPTAM Plastics is the leader in complex multi-axis plastic machining using 3-, 5-, and 7-axis
+      machine centers, CNC turning, Swiss, milling, routing, sawing, and drilling.
+    approx_offset: 102747
+  - quote: EPTAM Precision Plastics also offers complete fabricating capabilities for CNC turning, Swiss,
+      milling, routing, sawing, and drilling.
+    approx_offset: 104539
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0182
+  form: sawing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-machining/
+  evidence:
+  - quote: Our facility in Northfield, New Hampshire houses EPTAM PRECISION – PLASTICS offering complete
+      fabricating capabilities for CNC turning, milling, routing, sawing, and drilling.
+    approx_offset: 58094
+  - quote: EPTAM Plastics is the leader in complex multi-axis plastic machining using 3-, 5-, and 7-axis
+      machine centers, CNC turning, Swiss, milling, routing, sawing, and drilling.
+    approx_offset: 102756
+  - quote: EPTAM Precision Plastics also offers complete fabricating capabilities for CNC turning, Swiss,
+      milling, routing, sawing, and drilling.
+    approx_offset: 104548
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0183
+  form: secondary operations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Our facility in Lancaster, Massachusetts specializes in vertically integrated injection molding
+      solutions that support the entire product lifecycle with rapid prototyping, tool development, validation,
+      production molding, and automated secondary operations.
+    approx_offset: 57025
+  - quote: EPTAM supports the entire product lifecycle, with rapid prototyping, tool development, validation,
+      production molding, and automated secondary operations.
+    approx_offset: 76306
+  - quote: In addition, Sterling offers a wide array of secondary operations such as automated assembly,
+      pad printing, and sonic welding, amongst others.
+    approx_offset: 159851
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0184
+  form: silicone injection tooling fabrication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Albright brings an exciting new capability into the EPTAM portfolio with their expertise in
+      silicone injection tooling fabrication and molding.
+    approx_offset: 156696
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0185
+  form: silicone molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Your Trusted Partner in Liquid Silicone Molding for Medical Devices.
+    approx_offset: 45486
+  - quote: With the acquisition of Albright in 2019, Sterling added a vertically integrated silicone molding
+      partner to its offering, allowing the company to better serve the medical, industrial, consumer,
+      and defense industries.
+    approx_offset: 160030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0186
+  form: sintering
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-binderjet/
+    - https://eptam.com/capabilities/metals-molding-mim/
+  evidence:
+  - quote: Quick turn MUD based molds for development or short run designs, onsite metallurgical lab,
+      Tooling design, DFM services, on site sintering and molding to dial in processes
+    approx_offset: 6620
+  - quote: After molding, the part undergoes conditioning operations to remove the binder (debinding)
+      and densify the powders into solid metal (sintering).
+    approx_offset: 8581
+  - quote: EPTAM’s binder jet printing system combined with our three sintering furnaces can cost effectively
+      produce a single part to tens of thousands of parts per year.
+    approx_offset: 107604
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0187
+  form: small-scale production runs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: We conduct small-scale production runs to validate manufacturing processes, ensuring consistent
+      quality and identifying potential improvements.
+    approx_offset: 114773
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0188
+  form: sonic welding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: In addition, Sterling offers a wide array of secondary operations such as automated assembly,
+      pad printing, and sonic welding, amongst others.
+    approx_offset: 159918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0189
+  form: surface cleaning
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Our post-processing services like deburring, passivation, and surface cleaning ensure components
+      are contamination-free and biocompatible.
+    approx_offset: 142101
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0190
+  form: swaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Additionally, the location provides all of the secondary support processing necessary to support
+      your Laser enabled technology and project, including metrology, passivation, swaging, Swiss turning,
+      packaging, over-molding, and cleaning.
+    approx_offset: 14318
+  - quote: 'Secondary Support Processing: Offering a full suite of services including metrology, passivation,
+      swaging, Swiss turning, packaging, over-molding, and cleaning.'
+    approx_offset: 147469
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0191
+  form: tool breakage detection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Process driven validation, tool life monitoring, tool breakage detection and automation.
+    approx_offset: 67324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0192
+  form: tool development
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: We support the entire product lifecycle, with rapid prototyping, tool development, validation,
+      production molding, and value-added operations.
+    approx_offset: 45750
+  - quote: We support the entire product lifecycle with rapid prototyping, tool development, validation,
+      production molding, and value-added operations.
+    approx_offset: 50330
+  - quote: Our facility in Lancaster, Massachusetts specializes in vertically integrated injection molding
+      solutions that support the entire product lifecycle with rapid prototyping, tool development, validation,
+      production molding, and automated secondary operations.
+    approx_offset: 56961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0193
+  form: tool life monitoring
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Process driven validation, tool life monitoring, tool breakage detection and automation.
+    approx_offset: 67302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0194
+  form: tool life monitoring, tool breakage detection
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Process driven validation, tool life monitoring, tool breakage detection and automation.
+    approx_offset: 67302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0195
+  form: water jet cutting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/metals-machining/
+  evidence:
+  - quote: On the shop floor, the precision machining includes 3-, 4-, and 5-axis CNC milling, gun drilling,
+      water jet cutting, Swiss and Super-Swiss machining, and EDM machining.
+    approx_offset: 131793
+  - quote: Gun drilling, water jet cutting, swiss machining.
+    approx_offset: 132260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0196
+  form: wet bench
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Wet Processing / Wet Bench
+    approx_offset: 119360
+  - quote: EPTAM’s Manufacturing Center employs dedicated 3, 5, and 7-axis plastics-machining capabilities,
+      along with dry-machining techniques or wet bench coolants that will not contaminate or chemically
+      attack plastic material as oil-based fluids may.
+    approx_offset: 119515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-process_caps-0197
+  form: world-class metrology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: We believe that the key to your success is combining world-class machining with our world-class
+      metrology.
+    approx_offset: 102862
+  - quote: Ingram operates out of Broomfield, CO where they offer their clients CNC Machining, Wire EDM,
+      Laser Engraving, and world-class Metrology along with numerous Finishing and Secondary Process capabilities.
+    approx_offset: 168597
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

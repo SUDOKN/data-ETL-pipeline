@@ -1,0 +1,789 @@
+subject: steelcraft.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+golden_set_version: 1
+anchored_on: search/expectations/steelcraft_com/industries.yaml
+labels:
+- id: steelcraft_com-industries-0001
+  form: Healthcare institutions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: Healthcare institutions have special requirements when creating a safe, secure and comfortable
+      environments for patients, physicians, staff and visitors.
+    approx_offset: 195227
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0002
+  form: K-12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: Commercial buildings in tornado alley as well as residential shelters, commonly new school
+      gymnasiums constructed as ICC500 compliant tornado shelters for K-12 and higher education.
+    approx_offset: 36113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0003
+  form: K12
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: It is ideal for commercial applications in tornado alley, residential shelters, and school
+      gymnasiums constructed as tornado shelters in K12 and university facilities.
+    approx_offset: 174225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0004
+  form: Retail
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/sz-series-falcon-flush-doors.html
+  evidence:
+  - quote: Retail entrances and back doors
+    approx_offset: 115257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0005
+  form: Retail entrances
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/sz-series-falcon-flush-doors.html
+  evidence:
+  - quote: Retail entrances and back doors
+    approx_offset: 115257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0006
+  form: apartment buildings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: The GRAINTECH finishes look like wood while providing the benefits of steel, making them ideal
+      for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more.
+    approx_offset: 128707
+  - quote: The GRAINTECH finishes look like wood while providing the benefits of steel, making them ideal
+      for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more.
+    approx_offset: 204317
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0007
+  form: apartments
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: As our versatile flagship door, the L Series door is supported by countless standard and custom
+      options for broad commercial applications from full glass architectural entrances to secure back
+      doors and interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      sc
+    approx_offset: 45101
+  - quote: SL doors can be used in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      schools and more.
+    approx_offset: 183213
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0008
+  form: behavioral correction facilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: Environments that require additional resistance to localized impacts and vandalism, such as
+      detention centers and behavioral correction facilities.
+    approx_offset: 52807
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0009
+  form: commercial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 55
+    pages:
+    - https://www.steelcraft.com/en/locations.html
+    - https://www.steelcraft.com/en/locations/steelcraft-main-plant.html
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames.html
+  evidence:
+  - quote: Commercial buildings in the U.S.
+    approx_offset: 2763
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full
+      line of hollow metal steel doors for virtually any wall condition or entryway requirement.
+    approx_offset: 6179
+  - quote: The SZ Series Square Edge flush doors are designed to meet requirements for commercial quality
+      full flush steel doors.
+    approx_offset: 7656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0010
+  form: data centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+  evidence:
+  - quote: Cold climates, very hot climates, or data centers where the transfer of heat is an important
+      factor in energy cost savings, occupant comfort and efficiency.
+    approx_offset: 30176
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0011
+  form: detention centers
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: Environments that require additional resistance to localized impacts and vandalism, such as
+      detention centers and behavioral correction facilities.
+    approx_offset: 52785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0012
+  form: dormitories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: The GRAINTECH finishes look like wood while providing the benefits of steel, making them ideal
+      for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more.
+    approx_offset: 128728
+  - quote: The GRAINTECH finishes look like wood while providing the benefits of steel, making them ideal
+      for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more.
+    approx_offset: 204338
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0013
+  form: education
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+    - https://www.steelcraft.com/en/support/training-center.html
+  evidence:
+  - quote: Commercial buildings in tornado alley as well as residential shelters, commonly new school
+      gymnasiums constructed as ICC500 compliant tornado shelters for K-12 and higher education.
+    approx_offset: 36129
+  - quote: Continuing Education
+    approx_offset: 176655
+  - quote: Steelcraft Product Training Continuing Education
+    approx_offset: 192589
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0014
+  form: educational facilities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: Include the INPACTTM Series in your healthcare, hospitality, multi-family, office, or educational
+      facilities for a sleek, comprehensive, and reliable solution.
+    approx_offset: 106037
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0015
+  form: food
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+    approx_offset: 220996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0016
+  form: government buildings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+  evidence:
+  - quote: These doors and frames are resoundingly popular in buildings where sound control is critical,
+      such as meeting rooms, hotels, government buildings, and buildings located near airports and highways.
+    approx_offset: 167001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0017
+  form: healthcare
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: Include the INPACTTM Series in your healthcare, hospitality, multi-family, office, or educational
+      facilities for a sleek, comprehensive, and reliable solution.
+    approx_offset: 105987
+  - quote: Healthcare
+    approx_offset: 108743
+  - quote: Healthcare
+    approx_offset: 135654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0018
+  form: higher education
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: Commercial buildings in tornado alley as well as residential shelters, commonly new school
+      gymnasiums constructed as ICC500 compliant tornado shelters for K-12 and higher education.
+    approx_offset: 36122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0019
+  form: hospitality
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: Include the INPACTTM Series in your healthcare, hospitality, multi-family, office, or educational
+      facilities for a sleek, comprehensive, and reliable solution.
+    approx_offset: 105999
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0020
+  form: hospitals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: As our versatile flagship door, the L Series door is supported by countless standard and custom
+      options for broad commercial applications from full glass architectural entrances to secure back
+      doors and interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      sc
+    approx_offset: 45113
+  - quote: The GRAINTECH finishes look like wood while providing the benefits of steel, making them ideal
+      for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more.
+    approx_offset: 128681
+  - quote: SL doors can be used in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      schools and more.
+    approx_offset: 183225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0021
+  form: hotels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: As our versatile flagship door, the L Series door is supported by countless standard and custom
+      options for broad commercial applications from full glass architectural entrances to secure back
+      doors and interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      sc
+    approx_offset: 45050
+  - quote: These doors and frames are resoundingly popular in buildings where sound control is critical,
+      such as meeting rooms, hotels, government buildings, and buildings located near airports and highways.
+    approx_offset: 166993
+  - quote: SL doors can be used in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      schools and more.
+    approx_offset: 183162
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0022
+  form: industrial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.steelcraft.com/en/locations.html
+    - https://www.steelcraft.com/en/locations/steelcraft-main-plant.html
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+  evidence:
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full
+      line of hollow metal steel doors for virtually any wall condition or entryway requirement.
+    approx_offset: 6194
+  - quote: Designed for institutional, commercial and industrial applications, Steelcraft provides an
+      impressive selection of hollow metal doors and frames for virtually any wall condition or entryway
+      requirement.
+    approx_offset: 13360
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides an impressive
+      selection of hollow metal frames for virtually any wall condition or entryway requirement.
+    approx_offset: 99104
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0023
+  form: institutional
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.steelcraft.com/en/locations.html
+    - https://www.steelcraft.com/en/locations/steelcraft-main-plant.html
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+  evidence:
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full
+      line of hollow metal steel doors for virtually any wall condition or entryway requirement.
+    approx_offset: 6164
+  - quote: Designed for institutional, commercial and industrial applications, Steelcraft provides an
+      impressive selection of hollow metal doors and frames for virtually any wall condition or entryway
+      requirement.
+    approx_offset: 13330
+  - quote: FT Series 3-sided frames and elevations are designed to meet requirements for light to maximum
+      duty applications in both commercial and institutional buildings.
+    approx_offset: 27752
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0024
+  form: laboratories
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0025
+  form: labs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+    approx_offset: 220971
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0026
+  form: motel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/sz-series-falcon-flush-doors.html
+  evidence:
+  - quote: Economy hotel and motel unit entrances
+    approx_offset: 115307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0027
+  form: multi-family
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: Include the INPACTTM Series in your healthcare, hospitality, multi-family, office, or educational
+      facilities for a sleek, comprehensive, and reliable solution.
+    approx_offset: 106012
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0028
+  form: multifamilies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: As our versatile flagship door, the L Series door is supported by countless standard and custom
+      options for broad commercial applications from full glass architectural entrances to secure back
+      doors and interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      sc
+    approx_offset: 45083
+  - quote: SL doors can be used in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      schools and more.
+    approx_offset: 183195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0029
+  form: multifamily
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0030
+  form: nursing homes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: The GRAINTECH finishes look like wood while providing the benefits of steel, making them ideal
+      for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more.
+    approx_offset: 128692
+  - quote: The GRAINTECH finishes look like wood while providing the benefits of steel, making them ideal
+      for exterior openings in schools, hospitals, nursing homes, apartment buildings, dormitories and
+      more.
+    approx_offset: 204302
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0031
+  form: office buildings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+  evidence:
+  - quote: Even traditional office buildings benefit from acoustically rated doors and frames because
+      a quieter workplace leads to higher productivity, less sick time, and higher employee retention.
+    approx_offset: 167090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0032
+  form: offices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+    - https://www.steelcraft.com/en/support/working-with-steelcraft.html
+  evidence:
+  - quote: As our versatile flagship door, the L Series door is supported by countless standard and custom
+      options for broad commercial applications from full glass architectural entrances to secure back
+      doors and interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      sc
+    approx_offset: 45058
+  - quote: ADMINISTRATIVE OFFICES
+    approx_offset: 60760
+  - quote: SL doors can be used in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      schools and more.
+    approx_offset: 183170
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0033
+  form: pharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: Industries that require sterile environments such as hospitals, labs, pharmaceutical, or food
+    approx_offset: 220977
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0034
+  form: residential shelters
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Commercial buildings in tornado alley as well as residential shelters, commonly new school
+      gymnasiums constructed as ICC500 compliant tornado shelters for K-12 and higher education.
+    approx_offset: 36007
+  - quote: It is ideal for commercial applications in tornado alley, residential shelters, and school
+      gymnasiums constructed as tornado shelters in K12 and university facilities.
+    approx_offset: 174146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0035
+  form: restaurants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: As our versatile flagship door, the L Series door is supported by countless standard and custom
+      options for broad commercial applications from full glass architectural entrances to secure back
+      doors and interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      sc
+    approx_offset: 45070
+  - quote: SL doors can be used in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      schools and more.
+    approx_offset: 183182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0036
+  form: schools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+    - https://www.steelcraft.com/en/why-steelcraft.html
+  evidence:
+  - quote: Focusing on security around the door and adjacent areas, Allegion produces a range of solutions
+      for  homes, businesses, schools and other institutions.
+    approx_offset: 14930
+  - quote: As our versatile flagship door, the L Series door is supported by countless standard and custom
+      options for broad commercial applications from full glass architectural entrances to secure back
+      doors and interior passages in hotels, offices and restaurants, multifamilies and apartments, hospitals,
+      sc
+    approx_offset: 45124
+  - quote: Focusing on security around the door and adjacent areas, Allegion produces a range of solutions
+      for  homes, businesses, schools and other institutions.
+    approx_offset: 125935
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-industries-0037
+  form: university
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: It is ideal for commercial applications in tornado alley, residential shelters, and school
+      gymnasiums constructed as tornado shelters in K12 and university facilities.
+    approx_offset: 174233
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

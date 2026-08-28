@@ -1,0 +1,406 @@
+subject: mathewsco.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+  sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+golden_set_version: 1
+anchored_on: search/expectations/mathewsco_com/conformity_attestations.yaml
+labels:
+- id: mathewsco_com-conformity_attestations-0001
+  form: 13485:2003
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies, a business of JSJ Corporation, employs over 220 people at their 115,000
+      square foot facility and is ISO 9001:2008, 13485:2003 and 14001:2004 certified.
+    approx_offset: 35315
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0002
+  form: 14001:2004
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: Hudson Technologies, a business of JSJ Corporation, employs over 220 people at their 115,000
+      square foot facility and is ISO 9001:2008, 13485:2003 and 14001:2004 certified.
+    approx_offset: 35330
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0003
+  form: AS9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=98&Itemid=165
+  evidence:
+  - quote: has gained World Class Status as a Certified ISO 9001:2015 Manufacturer as well as having an
+      AS9100 certification.
+    approx_offset: 44027
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0004
+  form: AS9100c:2009
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Precision components and assemblies - If you are looking for a company that does precision
+      machine that is AS9100c:2009/ISO9001:2008 Registered.
+    approx_offset: 25926
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0005
+  form: ASTM A4876
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25661
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0006
+  form: ASTM A536-80
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full
+      range of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 25617
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0007
+  form: Bureau VERITAS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: 'To that end, the Bureau VERITAS Certification certified our Quality Management System in 1996:'
+    approx_offset: 52348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0008
+  form: Bureau VERITAS Certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: 'To that end, the Bureau VERITAS Certification certified our Quality Management System in 1996:'
+    approx_offset: 52348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0009
+  form: DFARS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+  evidence:
+  - quote: ROHS, REACH, and DFARS Compliance
+    approx_offset: 56264
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0010
+  form: FDA approved
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber,
+      silicone materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 25288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0011
+  form: ISO 14001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: ISO 9001 and ISO 14001
+    approx_offset: 26768
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0012
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: ISO 9001
+    approx_offset: 24423
+  - quote: ISO 9001:2000 certified.
+    approx_offset: 24771
+  - quote: ISO 9001
+    approx_offset: 25159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0013
+  form: ISO 9001:2000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: ISO 9001:2000 certified.
+    approx_offset: 24771
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0014
+  form: ISO 9001:2008
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=47&Itemid=159
+  evidence:
+  - quote: Hudson Technologies, a business of JSJ Corporation, employs over 220 people at their 115,000
+      square foot facility and is ISO 9001:2008, 13485:2003 and 14001:2004 certified.
+    approx_offset: 35300
+  - quote: DimcoGray is an ISO 9001:2008 registered company specializing in the supply of commercial and
+      industrial knobs and handles to markets that demand quality products, responsive service and customer-centric
+      business solutions.
+    approx_offset: 37273
+  - quote: ISO 9001:2008
+    approx_offset: 52230
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0015
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=100&Itemid=162
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=98&Itemid=165
+  evidence:
+  - quote: has gained World Class Status as a Certified ISO 9001:2015 Manufacturer as well as having an
+      AS9100 certification.
+    approx_offset: 43979
+  - quote: We offer SPC data collection, JIT delivery scheduling, EDI capability, and we are ISO 9001:2015
+      certified.
+    approx_offset: 53863
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0016
+  form: ISO9001:2008
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=107&Itemid=170
+  evidence:
+  - quote: Precision components and assemblies - If you are looking for a company that does precision
+      machine that is AS9100c:2009/ISO9001:2008 Registered.
+    approx_offset: 25939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0017
+  form: MIL-T-27
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: No tooling charges on over 15,000 standard deep drawn shapes and sizes available in the catalog,
+      including round, square, rectangular, MIL-T-27 spec and relay cases.
+    approx_offset: 34582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0018
+  form: MIL-T-27 spec
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=113&Itemid=176
+  evidence:
+  - quote: No tooling charges on over 15,000 standard deep drawn shapes and sizes available in the catalog,
+      including round, square, rectangular, MIL-T-27 spec and relay cases.
+    approx_offset: 34582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0019
+  form: Quality Management System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=46&Itemid=158
+  evidence:
+  - quote: 'To that end, the Bureau VERITAS Certification certified our Quality Management System in 1996:'
+    approx_offset: 52391
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0020
+  form: REACH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=109&Itemid=173
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: All agencies today have the chance to reach one hundred if they adhere to these precepts.
+    approx_offset: 21573
+  - quote: ROHS, REACH, and DFARS Compliance
+    approx_offset: 56253
+  - quote: ROHS and REACH Compliance Statements
+    approx_offset: 60863
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: mathewsco_com-conformity_attestations-0021
+  form: ROHS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=95&Itemid=155
+    - http://mathewsco.com/index.php?option=com_content&view=article&id=97&Itemid=157
+  evidence:
+  - quote: ROHS, REACH, and DFARS Compliance
+    approx_offset: 56247
+  - quote: ROHS and REACH Compliance Statements
+    approx_offset: 60854
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

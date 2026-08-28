@@ -1,0 +1,3664 @@
+subject: fzemanufacturing.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+  sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+golden_set_version: 1
+anchored_on: search/expectations/fzemanufacturing_com/industries.yaml
+labels:
+- id: fzemanufacturing_com-industries-0001
+  form: ATV & motorcycles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: For more than 50 years, FZE – a preferred supplier and manufacturer for several key industries,
+      including agriculture, professional turf care, recreational marine components, hydraulics, ATV &
+      motorcycles, and many others – has acquired the equipment and developed the skills and expertise
+      to provide
+    approx_offset: 165997
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0002
+  form: ATVs & Motorcycles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: ATVs & Motorcycles
+    approx_offset: 170458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0003
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Aerospace equipment
+    approx_offset: 4879
+  - quote: This array of capabilities allows us to manufacture hydraulic parts and components for industries
+      ranging from construction and agriculture to marine, aerospace, automotive and trucking.
+    approx_offset: 6793
+  - quote: The hydraulics industry plays a crucial role in various industrial sectors, from agriculture,
+      automotive, construction, heavy truck and transportation to aerospace and beyond.
+    approx_offset: 10941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0004
+  form: Agricultural & Farming
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Agricultural & Farming
+    approx_offset: 39140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0005
+  form: Agriculture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 35
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Agriculture
+    approx_offset: 962
+  - quote: Construction & Agriculture equipment
+    approx_offset: 4721
+  - quote: This array of capabilities allows us to manufacture hydraulic parts and components for industries
+      ranging from construction and agriculture to marine, aerospace, automotive and trucking.
+    approx_offset: 6770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0006
+  form: Agriculture and Dairy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Agriculture and Dairy
+    approx_offset: 88995
+  - quote: Agriculture and Dairy
+    approx_offset: 178856
+  - quote: Agriculture and Dairy.
+    approx_offset: 237002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0007
+  form: Appliance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Appliance Architecture
+    approx_offset: 39163
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0008
+  form: Appliance Architecture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Appliance Architecture
+    approx_offset: 39163
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0009
+  form: Architectural
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+  evidence:
+  - quote: Architectural
+    approx_offset: 204225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0010
+  form: Automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Furthermore, our Lean Black Belt Sigma certification, Lights Out automation, Lean Manufacturing,
+      and Kaizen/5S-based continuous improvement processes ensure that we’re constantly looking for new
+      ways to optimize our processes, meeting demanding turnaround times without compromising final product
+      qua
+    approx_offset: 7761
+  - quote: By leveraging robotic automation and multi-axis machining, we can produce both low-volume runs
+      and large production orders without sacrificing quality.
+    approx_offset: 13322
+  - quote: Automation
+    approx_offset: 39220
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0011
+  form: Automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Automotive and Trucking equipment
+    approx_offset: 4743
+  - quote: This array of capabilities allows us to manufacture hydraulic parts and components for industries
+      ranging from construction and agriculture to marine, aerospace, automotive and trucking.
+    approx_offset: 6804
+  - quote: The hydraulics industry plays a crucial role in various industrial sectors, from agriculture,
+      automotive, construction, heavy truck and transportation to aerospace and beyond.
+    approx_offset: 10881
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0012
+  form: Automotive and Trucking equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Automotive and Trucking equipment
+    approx_offset: 4743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0013
+  form: Automotive, Motorcycles, Trucking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Automotive, Motorcycles, Trucking
+    approx_offset: 88961
+  - quote: Automotive, Motorcycles, Trucking
+    approx_offset: 178984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0014
+  form: Automotive/ Truck/ Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Automotive/ Truck/ Transportation
+    approx_offset: 39186
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0015
+  form: Biomedical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Biomedical
+    approx_offset: 39231
+  - quote: Biomedical/Biopharmaceutical
+    approx_offset: 178878
+  - quote: Biomedical and Biopharmaceutical.
+    approx_offset: 237521
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0016
+  form: Biomedical/Biopharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Biomedical/Biopharmaceutical
+    approx_offset: 178878
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0017
+  form: Biopharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Biopharmaceutical
+    approx_offset: 39242
+  - quote: Biomedical/Biopharmaceutical
+    approx_offset: 178889
+  - quote: Biomedical and Biopharmaceutical.
+    approx_offset: 237536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0018
+  form: Biotechnology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Biotechnology
+    approx_offset: 39260
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0019
+  form: Building & Construction
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Building & Construction
+    approx_offset: 39274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0020
+  form: Chemical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: This chemical treatment is essential for maintaining the longevity and integrity of parts exposed
+      to seawater.
+    approx_offset: 32831
+  - quote: Chemical
+    approx_offset: 39298
+  - quote: Although both employ chemical baths in their operations,…
+    approx_offset: 61845
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0021
+  form: Commercial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: These mighty components are pivotal in various industries, from securing equipment in the agriculture
+      and transportation industries to the completion of products and systems in the oil & gas industries,
+      consumer products, commercial industries, healthcare, household goods – the list is endless.
+    approx_offset: 16770
+  - quote: Widely used in residential, commercial, and industrial settings, copper fittings ensure efficient
+      fluid flow and maintain high-quality performance in various piping applications.
+    approx_offset: 18531
+  - quote: Commercial
+    approx_offset: 39307
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0022
+  form: Communications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Communications
+    approx_offset: 39318
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0023
+  form: Computer and Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Computer and Electronics
+    approx_offset: 39333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0024
+  form: Construction & Agriculture equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Construction & Agriculture equipment
+    approx_offset: 4706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0025
+  form: Consumer Goods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Consumer Goods
+    approx_offset: 39358
+  - quote: This allows for greater versatility and the ability to mark a variety of products, from industrial
+      components to consumer goods.
+    approx_offset: 255670
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0026
+  form: Cryogenic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Cryogenic
+    approx_offset: 39373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0027
+  form: Culinary
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: It creates highly visible, long-lasting barcodes, serial numbers, and identification information
+      for a wide variety of products and components in goods ranging from aerospace parts to culinary
+      equipment.
+    approx_offset: 246060
+  - quote: Culinary.
+    approx_offset: 246242
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0028
+  form: DOD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Defense (DOD)
+    approx_offset: 39446
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 174965
+  - quote: DOT/DOD/DOE
+    approx_offset: 178911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0029
+  form: DOE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 39418
+  - quote: Department of Energy (DOE)
+    approx_offset: 175027
+  - quote: DOT/DOD/DOE
+    approx_offset: 178915
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0030
+  form: DOT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Highway (DOT)
+    approx_offset: 39568
+  - quote: Transportation (DOT, trucking equipment)
+    approx_offset: 89192
+  - quote: Department of Transportation (DOT)
+    approx_offset: 175000
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0031
+  form: Dairy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Dairy
+    approx_offset: 39383
+  - quote: Food, beverage, and dairy.
+    approx_offset: 67204
+  - quote: Agriculture and Dairy
+    approx_offset: 89011
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0032
+  form: Dental
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Dental
+    approx_offset: 39389
+  - quote: Medical/Dental/Pharmaceutical devices and equipment
+    approx_offset: 89085
+  - quote: Dental and medical devices
+    approx_offset: 257208
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0033
+  form: Department of Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Defense (DOD)
+    approx_offset: 39423
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 174942
+  - quote: At FZE Manufacturing, we meet all industry standards for laser marking, including those set
+      by ISO, the Department of Energy, the Department of Transportation, and the Department of Defense.
+    approx_offset: 195764
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0034
+  form: Department of Defense (DOD)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Defense (DOD)
+    approx_offset: 39423
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 174942
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0035
+  form: Department of Energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 39396
+  - quote: Department of Energy (DOE)
+    approx_offset: 175005
+  - quote: At FZE Manufacturing, we meet all industry standards for laser marking, including those set
+      by ISO, the Department of Energy, the Department of Transportation, and the Department of Defense.
+    approx_offset: 195700
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0036
+  form: Department of Energy (DOE)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 39396
+  - quote: Department of Energy (DOE)
+    approx_offset: 175005
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0037
+  form: Department of Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Department of Transportation (DOT)
+    approx_offset: 174970
+  - quote: At FZE Manufacturing, we meet all industry standards for laser marking, including those set
+      by ISO, the Department of Energy, the Department of Transportation, and the Department of Defense.
+    approx_offset: 195726
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0038
+  form: Electrical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/mig-vs-tig-welding/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+  evidence:
+  - quote: Electrical Heat is applied to the surfaces to be joined.
+    approx_offset: 37519
+  - quote: Electrical
+    approx_offset: 39451
+  - quote: MIG welding creates an electrical arc between a consumable metal electrode on the welding gun
+      and the metal surface of the workpiece.
+    approx_offset: 47122
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0039
+  form: Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Computer and Electronics
+    approx_offset: 39346
+  - quote: Electronics
+    approx_offset: 39462
+  - quote: From custom parts for boats and vehicles to precision-machined components for electronics and
+      tools, machining provides the perfect way to craft professional units  that are sure to last.
+    approx_offset: 95824
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0040
+  form: Energy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 39410
+  - quote: The use of electricity in the process also means that it consumes less energy compared to other
+      mechanical polishing methods.
+    approx_offset: 66154
+  - quote: Energy Beam Welding
+    approx_offset: 150513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0041
+  form: Energy (power distribution and transmission)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: Energy (power distribution and transmission)
+    approx_offset: 252323
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0042
+  form: Engines and Motorcycles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+  evidence:
+  - quote: Engines and Motorcycles
+    approx_offset: 115792
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0043
+  form: Engines/motorcycles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+  evidence:
+  - quote: Engines/motorcycles
+    approx_offset: 204272
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0044
+  form: Fire Fighting & Safety Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+  evidence:
+  - quote: FZE Manufacturing Solutions – Fire Fighting & Safety Equipment
+    approx_offset: 122732
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0045
+  form: Fire-fighting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Fire-fighting
+    approx_offset: 48971
+  - quote: Laundry and fire-fighting apparatus
+    approx_offset: 100132
+  - quote: With all these qualities combined, FZE promises its Laundry and fire-fighting apparatus industry
+      clients peace of mind when requiring precision engineering services that are both reliable and efficient.
+    approx_offset: 100561
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0046
+  form: Firearm components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+  evidence:
+  - quote: Firearm components
+    approx_offset: 1055
+  - quote: Firearm components
+    approx_offset: 48952
+  - quote: Thanks to our highly skilled staff and our state-of-the-art quality equipment and measurement
+      instrumentation, all our inspections comply with the highest standards and regulatory requirements
+      across a variety of industries, including demanding fields such as recreational marine, firearm
+      components,
+    approx_offset: 53677
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0047
+  form: Firearms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Firearms
+    approx_offset: 39474
+  - quote: Firearms
+    approx_offset: 67729
+  - quote: Firearms
+    approx_offset: 204292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0048
+  form: Firefighting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Firefighting and Safety equipment
+    approx_offset: 1021
+  - quote: Over the years, FZE Manufacturing has had the privilege of serving clients in a variety of
+      industries, including agriculture, recreation, industrial equipment, hydraulics, oil and gas, firefighting,
+      safety, turf and lawn care, and many more.
+    approx_offset: 29592
+  - quote: Firefighting and Safety Equipment
+    approx_offset: 67738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0049
+  form: Firefighting and Safety equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Firefighting and Safety equipment
+    approx_offset: 1021
+  - quote: Firefighting and Safety Equipment
+    approx_offset: 67738
+  - quote: Firefighting and Safety Equipment
+    approx_offset: 178919
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0050
+  form: Food & Beverage
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Food & Beverage
+    approx_offset: 39483
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0051
+  form: Food and Beverage
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Food and Beverage
+    approx_offset: 89017
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0052
+  form: Food, beverage, and dairy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Food, beverage, and dairy.
+    approx_offset: 67184
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0053
+  form: Fracking
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Fracking
+    approx_offset: 39499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0054
+  form: Genetics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Genetics
+    approx_offset: 39508
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0055
+  form: Government/Municipalities
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Government/Municipalities
+    approx_offset: 39517
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0056
+  form: HVAC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Likewise, our copper fittings are essential components in plumbing and HVAC systems, prized
+      for their excellent conductivity, antimicrobial properties, and resistance to corrosion.
+    approx_offset: 18393
+  - quote: HVAC
+    approx_offset: 39573
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0057
+  form: Heavy Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Heavy Equipment
+    approx_offset: 39543
+  - quote: Heavy equipment (ball bearings, fasteners)
+    approx_offset: 252083
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0058
+  form: Heavy Machinery and Hydraulics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: Heavy Machinery and Hydraulics.
+    approx_offset: 238342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0059
+  form: Highway (DOT)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Highway (DOT)
+    approx_offset: 39559
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0060
+  form: Hydraulics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 23
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+  evidence:
+  - quote: Hydraulics (oil and gas)
+    approx_offset: 974
+  - quote: FZE Hydraulics Component Machining
+    approx_offset: 5585
+  - quote: Hydraulics Industry
+    approx_offset: 10766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0061
+  form: Hydraulics Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: Hydraulics Industry
+    approx_offset: 10766
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0062
+  form: Industrial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 37
+    pages:
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+  evidence:
+  - quote: The hydraulics industry plays a crucial role in various industrial sectors, from agriculture,
+      automotive, construction, heavy truck and transportation to aerospace and beyond.
+    approx_offset: 10843
+  - quote: Given that the strength and durability of industrial products are paramount, fasteners and
+      fittings are the unsung heroes holding the world together.
+    approx_offset: 16440
+  - quote: Widely used in residential, commercial, and industrial settings, copper fittings ensure efficient
+      fluid flow and maintain high-quality performance in various piping applications.
+    approx_offset: 18547
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0063
+  form: Industrial components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Industrial components
+    approx_offset: 97681
+  - quote: From CNC Machining to Laser Cutting, FZE can provide Industrial components solutions from start
+      to finish.
+    approx_offset: 97757
+  - quote: We pay close attention to individual design specifications and customer needs, ensuring that
+      our Industrial components are manufactured with precision and accuracy.
+    approx_offset: 97988
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0064
+  form: Industrial equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+  evidence:
+  - quote: Industrial equipment and components
+    approx_offset: 48996
+  - quote: Industrial Equipment – Custom-machined parts for manufacturing, automation, and heavy-duty
+      applications.
+    approx_offset: 83459
+  - quote: Industrial equipment
+    approx_offset: 96582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0065
+  form: Industrial equipment and components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: Industrial equipment and components
+    approx_offset: 48996
+  - quote: Currently, FZE serves a wide range of customers in industries and applications such as agriculture,
+      professional turf care, recreational marine, industrial equipment and components, precision metrology
+      components, firearm components, oil & gas, petroleum, hydraulics and more.
+    approx_offset: 180531
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0066
+  form: Injection Molding
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Injection Molding
+    approx_offset: 39600
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0067
+  form: Laboratory
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/equipment/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Laboratory
+    approx_offset: 39618
+  - quote: -Quality Laboratory
+    approx_offset: 110717
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0068
+  form: Laundry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Laundry
+    approx_offset: 39629
+  - quote: Laundry
+    approx_offset: 49032
+  - quote: Laundry and fire-fighting apparatus
+    approx_offset: 100120
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0069
+  form: Laundry and fire-fighting apparatus
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Laundry and fire-fighting apparatus
+    approx_offset: 100120
+  - quote: With all these qualities combined, FZE promises its Laundry and fire-fighting apparatus industry
+      clients peace of mind when requiring precision engineering services that are both reliable and efficient.
+    approx_offset: 100549
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0070
+  form: Lawn and Turf Care
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Lawn and Turf Care
+    approx_offset: 67772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0071
+  form: Machine Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Machine Tools
+    approx_offset: 39654
+  - quote: Machining is a broad term encompassing the manufacturing processes that use machine tools to
+      remove layers of material from a workpiece to produce the desired part or product.
+    approx_offset: 58129
+  - quote: CNC stands for Computer Numerical Control, a programmable machine that uses pre-programmed
+      computer software to control the motion and position of machine tools.
+    approx_offset: 75893
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0072
+  form: Machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 35
+    pages:
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/cnc-prototyping-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+  evidence:
+  - quote: Machinery Axis
+    approx_offset: 8528
+  - quote: For example, our hydraulic fittings are vital components in hydraulic systems, facilitating
+      the transfer of fluid power to operate machinery and equipment.
+    approx_offset: 19213
+  - quote: As an example, our stainless steel studs are crucial structural elements utilized in construction,
+      machinery, and automotive industries for their exceptional strength and corrosion resistance.
+    approx_offset: 21361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0073
+  form: Machining/manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Machining/manufacturing
+    approx_offset: 89046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0074
+  form: Manufacturers of household appliances
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Manufacturers of household appliances use electropolishing to improve the durability and aesthetic
+      appeal of their products.
+    approx_offset: 67373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0075
+  form: Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 457
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Offering Solutions-Based Machining & Manufacturing Since 1974
+    approx_offset: 158
+  - quote: FZE Manufacturing provides state-of-the-art FZE Manufacturing CNC machining services for a
+      wide variety of industries.
+    approx_offset: 384
+  - quote: FZE Manufacturing provides state-of-the-art FZE Manufacturing CNC machining services for a
+      wide variety of industries.
+    approx_offset: 428
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0076
+  form: Marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 43
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: Recreational Marine
+    approx_offset: 925
+  - quote: Marine equipment
+    approx_offset: 4777
+  - quote: This array of capabilities allows us to manufacture hydraulic parts and components for industries
+      ranging from construction and agriculture to marine, aerospace, automotive and trucking.
+    approx_offset: 6785
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0077
+  form: Marine equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Marine equipment
+    approx_offset: 4777
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0078
+  form: Material Handling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Material Handling Medical
+    approx_offset: 39699
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0079
+  form: Medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: Electropolishing is a transformative process that beautifies metal surfaces and imbues them
+      with enhanced performance characteristics, such as increased corrosion resistance and ease of sterilization—attributes
+      essential in industries like medical devices and food processing.
+    approx_offset: 23919
+  - quote: Material Handling Medical
+    approx_offset: 39717
+  - quote: We provide high-quality stainless steel electropolishing services for a wide range of industries,
+      including medical, automotive, aerospace, and more.
+    approx_offset: 62952
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0080
+  form: Medical, dental, and pharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Medical, dental, and pharmaceutical.
+    approx_offset: 67045
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0081
+  form: Medical/Dental/Pharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Medical/Dental/Pharmaceutical devices and equipment
+    approx_offset: 89077
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0082
+  form: Metrology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: Metrology
+    approx_offset: 67811
+  - quote: Working with the latest metrology gages, tools, and CMM equipment, they provide clear reporting
+      that helps customers comply with industry standards while ensuring that their manufactured parts
+      meet the required precision requirements.
+    approx_offset: 80534
+  - quote: Precision metrology components
+    approx_offset: 97201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0083
+  form: Military
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/blog/what-is-vmc-machining/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Military/Defense
+    approx_offset: 39725
+  - quote: Military & Mil-Spec
+    approx_offset: 40156
+  - quote: Military
+    approx_offset: 89129
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0084
+  form: Military & Mil-Spec
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Military & Mil-Spec
+    approx_offset: 40156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0085
+  form: Military and Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: Military and Defense.
+    approx_offset: 238760
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0086
+  form: Military/Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Military/Defense
+    approx_offset: 39725
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0087
+  form: Mining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Mining
+    approx_offset: 39742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0088
+  form: Natural Gas/LPG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Natural Gas/LPG
+    approx_offset: 39638
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0089
+  form: Oil & Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: These mighty components are pivotal in various industries, from securing equipment in the agriculture
+      and transportation industries to the completion of products and systems in the oil & gas industries,
+      consumer products, commercial industries, healthcare, household goods – the list is endless.
+    approx_offset: 16729
+  - quote: Thanks to our highly skilled staff and our state-of-the-art quality equipment and measurement
+      instrumentation, all our inspections comply with the highest standards and regulatory requirements
+      across a variety of industries, including demanding fields such as recreational marine, firearm
+      components,
+    approx_offset: 53722
+  - quote: Oil & Gas, Petroleum
+    approx_offset: 89138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0090
+  form: Oil and gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+    - https://fzemanufacturing.com/blog/high-production-swiss-machining/
+  evidence:
+  - quote: Hydraulics (oil and gas)
+    approx_offset: 986
+  - quote: Over the years, FZE Manufacturing has had the privilege of serving clients in a variety of
+      industries, including agriculture, recreation, industrial equipment, hydraulics, oil and gas, firefighting,
+      safety, turf and lawn care, and many more.
+    approx_offset: 29579
+  - quote: Oil and gas
+    approx_offset: 49040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0091
+  form: Oil, Gas & Petroleum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Oil, Gas & Petroleum
+    approx_offset: 39749
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0092
+  form: Optical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/equipment/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Optical
+    approx_offset: 39770
+  - quote: Our capabilities include dimensional verification, containment assessments, and advanced non-contact
+      inspection methods such as CMM, Optical Comparitor, borescopes, ultrasonic, penetrant, and magnetic
+      particle testing.
+    approx_offset: 52570
+  - quote: Inspection, including visual inspection, CMM, and optical monitoring
+    approx_offset: 68212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0093
+  form: Packaging
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Design Assistance, Heat Treating, Packaging, and More
+    approx_offset: 28639
+  - quote: Packaging/Converting
+    approx_offset: 39778
+  - quote: Our services include engineering assistance, prototyping, and manufacturing, machining, finishing,
+      assembly, and packaging.
+    approx_offset: 83904
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0094
+  form: Packaging/Converting
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Packaging/Converting
+    approx_offset: 39778
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0095
+  form: Paper & Pulp
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Paper & Pulp
+    approx_offset: 39799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0096
+  form: Petrochemical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Petrochemical
+    approx_offset: 39812
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0097
+  form: Pharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Pharmaceutical
+    approx_offset: 39826
+  - quote: Medical/Dental/Pharmaceutical devices and equipment
+    approx_offset: 89092
+  - quote: Pharmaceutical (pumps, fittings, and components used in manufacturing)
+    approx_offset: 252212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0098
+  form: Plumbing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Likewise, our copper fittings are essential components in plumbing and HVAC systems, prized
+      for their excellent conductivity, antimicrobial properties, and resistance to corrosion.
+    approx_offset: 18380
+  - quote: Plumbing
+    approx_offset: 39841
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0099
+  form: Pneumatics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/pneumatics-industry/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Pneumatics
+    approx_offset: 39850
+  - quote: Pneumatics Industry
+    approx_offset: 155309
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0100
+  form: Pneumatics Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/pneumatics-industry/
+  evidence:
+  - quote: Pneumatics Industry
+    approx_offset: 155309
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0101
+  form: Power Generation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Power Generation
+    approx_offset: 39861
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0102
+  form: Power Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/part-assembly-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Professional hand and power tools
+    approx_offset: 49074
+  - quote: Professional hand tools, power tools, diagnostic equipment
+    approx_offset: 94892
+  - quote: Using machining capabilities in hand tools, power tools, and diagnostic equipment allows professionals
+      to create high-quality products quickly and efficiently.
+    approx_offset: 94971
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0103
+  form: Power generation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Power generation
+    approx_offset: 89159
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0104
+  form: Precision Metrology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+  evidence:
+  - quote: Precision metrology components
+    approx_offset: 97191
+  - quote: Our manufactured products are carefully tested before shipment to ensure conformity to the
+      standard set by Precision metrology components industry specifications.
+    approx_offset: 97474
+  - quote: We strive to provide outstanding customer service throughout our production process and after-sale
+      consultation for our Precision Metrology clients.
+    approx_offset: 97651
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0105
+  form: Precision metrology components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Precision metrology components
+    approx_offset: 97191
+  - quote: Our manufactured products are carefully tested before shipment to ensure conformity to the
+      standard set by Precision metrology components industry specifications.
+    approx_offset: 97474
+  - quote: Precision Metrology Components
+    approx_offset: 115858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0106
+  form: Printing/Publishing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Printing/Publishing
+    approx_offset: 39878
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0107
+  form: Process Gases
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Process Gases
+    approx_offset: 39898
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0108
+  form: Professional Hand Tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Professional Hand Tools
+    approx_offset: 49382
+  - quote: Professional hand tools, power tools, diagnostic equipment
+    approx_offset: 94867
+  - quote: We are proficient and skilled in  manufacturing for Professional hand tools and power tools,
+      as well as the design and engineering of diagnostic equipment components.
+    approx_offset: 95396
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0109
+  form: Professional Hand Tools, Power Tools, Diagnostic Equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/hand-tools-equipment/
+  evidence:
+  - quote: Professional hand tools, power tools, diagnostic equipment
+    approx_offset: 94867
+  - quote: Professional Hand Tools, Power Tools, Diagnostic Equipment
+    approx_offset: 119025
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0110
+  form: Professional Turf & Lawn care
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+  evidence:
+  - quote: Professional Turf & Lawn care
+    approx_offset: 932
+  - quote: Professional Turf & Lawn care
+    approx_offset: 197385
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0111
+  form: Professional Turf Care
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: Professional Turf Care
+    approx_offset: 41579
+  - quote: Professional turf care requires the use of custom shafts that are machined to exact specifications.
+    approx_offset: 43218
+  - quote: Professional turf care
+    approx_offset: 49086
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0112
+  form: Professional hand and power tools
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Professional hand and power tools
+    approx_offset: 49052
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0113
+  form: Pumps
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: We manufacture a variety of individual hydraulic components and parts such as cylinder & rods,
+      components for motors, pumps, fittings and hose hardware.
+    approx_offset: 3686
+  - quote: We specialize in creating high-quality hydraulic machined parts, including fittings, valves,
+      cylinders, pistons, plungers and pumps, essential for the optimal operation of hydraulic equipment.
+    approx_offset: 11665
+  - quote: Pumps
+    approx_offset: 39912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0114
+  form: Quality Laboratory
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/equipment/
+  evidence:
+  - quote: -Quality Laboratory
+    approx_offset: 110709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0115
+  form: Railroad
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Railroad
+    approx_offset: 39918
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0116
+  form: Recreation and Marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://fzemanufacturing.com/capabilities/tig-welding-services/
+    - https://fzemanufacturing.com/industries-served/
+  evidence:
+  - quote: Recreation and Marine
+    approx_offset: 95639
+  - quote: FZE offers state-of-the-art services to meet Recreation and Marine needs, such as comprehensive
+      material inspections and engineering solutions.
+    approx_offset: 96105
+  - quote: FZE also uses its precision equipment to develop custom products to meet Recreation and Marine’s
+      specific durability  requirements.
+    approx_offset: 96277
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0117
+  form: Recreational
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 24
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+  evidence:
+  - quote: Recreational Marine
+    approx_offset: 912
+  - quote: FZE Manufacturing Solutions – Recreational Marine
+    approx_offset: 30402
+  - quote: Taking your recreational marine operations to the next level requires precision, durability,
+      and reliability.
+    approx_offset: 30435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0118
+  form: Recreational Marine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://fzemanufacturing.com/
+    - https://fzemanufacturing.com/author/doug-pribylfzemanufacturing-com/
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+  evidence:
+  - quote: Recreational Marine
+    approx_offset: 912
+  - quote: FZE Manufacturing Solutions – Recreational Marine
+    approx_offset: 30402
+  - quote: Taking your recreational marine operations to the next level requires precision, durability,
+      and reliability.
+    approx_offset: 30435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0119
+  form: Research
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/equipment/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Research
+    approx_offset: 39940
+  - quote: We conduct extensive research into every new piece of equipment we buy to see how it will benefit
+      our customers and impact our operation.
+    approx_offset: 107893
+  - quote: Not all companies offer these services, so it’s necessary to do your research before you choose
+      one.
+    approx_offset: 134177
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0120
+  form: Residential
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Residential
+    approx_offset: 39949
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0121
+  form: Restaurant
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Restaurant
+    approx_offset: 39961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0122
+  form: Retail
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Retail
+    approx_offset: 39972
+  - quote: The markings they make facilitate the tracking of goods during production and processing stages
+      and prepare finished products for retail.
+    approx_offset: 237274
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0123
+  form: Robotic Arms
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Robotic Arms
+    approx_offset: 4930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0124
+  form: Robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Robotics
+    approx_offset: 39979
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0125
+  form: Semiconductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Semiconductor
+    approx_offset: 39988
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0126
+  form: Specialty Machinery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Specialty Machinery
+    approx_offset: 40002
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0127
+  form: Telecommunications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Telecommunications
+    approx_offset: 40022
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0128
+  form: Textile
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Textile
+    approx_offset: 40041
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0129
+  form: Tool & Die
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Tool & Die
+    approx_offset: 40049
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0130
+  form: Turf & Garden
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Turf & Garden
+    approx_offset: 40060
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0131
+  form: Waste Management
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Waste Management
+    approx_offset: 40074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0132
+  form: Water & Wastewater
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/welding-services/
+  evidence:
+  - quote: Water & Wastewater
+    approx_offset: 40091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0133
+  form: Water and wastewater equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Water and wastewater equipment
+    approx_offset: 89217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0134
+  form: additive manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Fiber laser materials are found across dental, medical, electronics, aerospace, automotive,
+      additive manufacturing and several other industries.
+    approx_offset: 257443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0135
+  form: aerospace industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: The aerospace industry employs a variety of critical equipment that requires a clear indication
+      of safety information and ratings.
+    approx_offset: 236781
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0136
+  form: agriculture industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/industries-served/agriculture-industry/
+  evidence:
+  - quote: Machining Solutions for the Agriculture Industry
+    approx_offset: 69509
+  - quote: Benefits of machining in the agriculture industry
+    approx_offset: 70112
+  - quote: At FZE Manufacturing Solutions, we are the experts in CNC machining solutions for the Agriculture
+      Industry.
+    approx_offset: 72702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0137
+  form: automation and industrial manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/pneumatics-industry/
+  evidence:
+  - quote: Our advanced machining capabilities support the production of precision pneumatic machine parts
+      essential for pneumatic systems in various applications, from automation and industrial manufacturing
+      to aerospace.
+    approx_offset: 155938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0138
+  form: beverage components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/news/fze-manufacturing-solutions-llc-named-latest-made-in-wisconsin-company/
+  evidence:
+  - quote: They machine, fabricate, manufacture and assemble parts, components and end products across
+      a diverse range of markets including recreational marine markets, professional turf and lawn care,
+      hydraulics, agriculture, precision metrology, office furniture, firefighting, safety equipment,
+      beverage comp
+    approx_offset: 187694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0139
+  form: biopharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: We’ve provided laser marking solutions to companies in fields like oil and gas, hydraulics,
+      biopharmaceutical, agriculture, and aerospace, and our supply chain management services allow us
+      to offer true end-to-end solutions for all of your laser marking requirements.
+    approx_offset: 195879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0140
+  form: commercial industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: These mighty components are pivotal in various industries, from securing equipment in the agriculture
+      and transportation industries to the completion of products and systems in the oil & gas industries,
+      consumer products, commercial industries, healthcare, household goods – the list is endless.
+    approx_offset: 16770
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0141
+  form: construction and agriculture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: This array of capabilities allows us to manufacture hydraulic parts and components for industries
+      ranging from construction and agriculture to marine, aerospace, automotive and trucking.
+    approx_offset: 6753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0142
+  form: consumer products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: These mighty components are pivotal in various industries, from securing equipment in the agriculture
+      and transportation industries to the completion of products and systems in the oil & gas industries,
+      consumer products, commercial industries, healthcare, household goods – the list is endless.
+    approx_offset: 16751
+  - quote: Shafts have several important uses in the aerospace, agriculture, automotive, consumer products,
+      transportation, oil & gas, mining, and industrial manufacturing fields.
+    approx_offset: 199753
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0143
+  form: culinary equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-stainless-steel-applications/
+  evidence:
+  - quote: It creates highly visible, long-lasting barcodes, serial numbers, and identification information
+      for a wide variety of products and components in goods ranging from aerospace parts to culinary
+      equipment.
+    approx_offset: 246060
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0144
+  form: dental
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Medical, dental, and pharmaceutical.
+    approx_offset: 67054
+  - quote: Fiber laser materials are found across dental, medical, electronics, aerospace, automotive,
+      additive manufacturing and several other industries.
+    approx_offset: 257390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0145
+  form: electronics industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: While it can be applied in most industries, aluminum laser marking is especially prominent
+      in the electronics industry to etch components and pieces used in medical machinery, electronic
+      tools, cell phones, tablets, and sensitive components like computer chips and heat sinks.
+    approx_offset: 194610
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0146
+  form: fire fighting and safety
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+  evidence:
+  - quote: When every second counts, the reliability of your fire fighting and safety equipment is a matter
+      of life and death.
+    approx_offset: 122816
+  - quote: At FZE Manufacturing Solutions, we provide manufacturing services that forge the backbone of
+      dependable fire fighting and safety equipment.
+    approx_offset: 122986
+  - quote: We specialize in the production and delivery of critical components that can function flawlessly
+      under the most extreme conditions that are experienced in fire fighting and safety.
+    approx_offset: 123391
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0147
+  form: firearm component
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: With FZE’s state-of-the-art facility and expert staff, partnering with us for firearm component
+      manufacturing services provides Firearm component manufacturers with a dependable source for quality,
+      affordable firearm components.
+    approx_offset: 98752
+  - quote: With FZE’s state-of-the-art facility and expert staff, partnering with us for firearm component
+      manufacturing services provides Firearm component manufacturers with a dependable source for quality,
+      affordable firearm components.
+    approx_offset: 98802
+  - quote: Contact us today for your firearm component needs and request a quote now.
+    approx_offset: 154921
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0148
+  form: firearm manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/firearm-components/
+  evidence:
+  - quote: We also understand the importance of precision and accuracy in firearm manufacturing and meet
+      all specifications and requirements.
+    approx_offset: 151698
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0149
+  form: food processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+    - https://fzemanufacturing.com/industries-served/fire-fighting-and-safety-industry/
+  evidence:
+  - quote: Electropolishing is a transformative process that beautifies metal surfaces and imbues them
+      with enhanced performance characteristics, such as increased corrosion resistance and ease of sterilization—attributes
+      essential in industries like medical devices and food processing.
+    approx_offset: 23939
+  - quote: Electropolishing is not just for aesthetics – it’s a matter of functionality and longevity
+      in Marine and food processing equipment.
+    approx_offset: 125131
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0150
+  form: food-grade applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: At FZE Manufacturing Solutions, we have the capability to achieve finishes as low as 5 micro
+      inches Ra, making our electropolishing stainless steel services perfect for medical and food-grade
+      applications.
+    approx_offset: 64510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0151
+  form: forestry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Our custom machining ensures exact tolerances, delivering optimal performance for pumps, motors,
+      and actuators in demanding applications such as construction, forestry, and material handling.
+    approx_offset: 170424
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0152
+  form: healthcare
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: These mighty components are pivotal in various industries, from securing equipment in the agriculture
+      and transportation industries to the completion of products and systems in the oil & gas industries,
+      consumer products, commercial industries, healthcare, household goods – the list is endless.
+    approx_offset: 16793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0153
+  form: heavy equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/metal-fabrication/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: They are usually used in the construction of building frames and heavy equipment.
+    approx_offset: 135089
+  - quote: FZE’s Shafts are integral to hydraulic systems used in heavy equipment, industrial machinery,
+      and fluid power systems.
+    approx_offset: 170201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0154
+  form: household appliances
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Manufacturers of household appliances use electropolishing to improve the durability and aesthetic
+      appeal of their products.
+    approx_offset: 67390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0155
+  form: household goods
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: These mighty components are pivotal in various industries, from securing equipment in the agriculture
+      and transportation industries to the completion of products and systems in the oil & gas industries,
+      consumer products, commercial industries, healthcare, household goods – the list is endless.
+    approx_offset: 16805
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0156
+  form: hydraulic industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/hydraulic-components-machining/
+  evidence:
+  - quote: Due to the ever-present risks of corrosion, fatigue, and excessive wear; machining techniques,
+      materials, and overall product quality must meet or exceed and satisfy hydraulic industry standards
+      and specifications.
+    approx_offset: 4480
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0157
+  form: hydraulics industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/hydraulics-industry/
+  evidence:
+  - quote: The hydraulics industry plays a crucial role in various industrial sectors, from agriculture,
+      automotive, construction, heavy truck and transportation to aerospace and beyond.
+    approx_offset: 10791
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0158
+  form: industrial equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://fzemanufacturing.com/about-us/
+    - https://fzemanufacturing.com/capabilities/
+    - https://fzemanufacturing.com/capabilities/machining-inspection-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+  evidence:
+  - quote: Over the years, FZE Manufacturing has had the privilege of serving clients in a variety of
+      industries, including agriculture, recreation, industrial equipment, hydraulics, oil and gas, firefighting,
+      safety, turf and lawn care, and many more.
+    approx_offset: 29545
+  - quote: Thanks to our highly skilled staff and our state-of-the-art quality equipment and measurement
+      instrumentation, all our inspections comply with the highest standards and regulatory requirements
+      across a variety of industries, including demanding fields such as recreational marine, firearm
+      components,
+    approx_offset: 53733
+  - quote: This includes designing, forming, and assembling components for industrial equipment.
+    approx_offset: 79184
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0159
+  form: jewelry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-fiber-laser-marking/
+  evidence:
+  - quote: Marking or engraving jewelry
+    approx_offset: 257288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0160
+  form: landscaping
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Built for smooth operation and minimal downtime, our components meet the demands of high-use
+      applications, ensuring professional-grade results for golf courses, sports fields, and landscaping
+      businesses.
+    approx_offset: 169717
+  - quote: In the landscaping industry, laser marks are used to identify everything from equipment to
+      rolls of sod.
+    approx_offset: 239074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0161
+  form: landscaping businesses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+  evidence:
+  - quote: Built for smooth operation and minimal downtime, our components meet the demands of high-use
+      applications, ensuring professional-grade results for golf courses, sports fields, and landscaping
+      businesses.
+    approx_offset: 169717
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0162
+  form: landscaping industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/laser-marking-guide/
+  evidence:
+  - quote: In the landscaping industry, laser marks are used to identify everything from equipment to
+      rolls of sod.
+    approx_offset: 239074
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0163
+  form: material handling
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-passivation-services/
+  evidence:
+  - quote: Transferred molecules from machine tools, material handling equipment, storage containers,
+      etc.
+    approx_offset: 86514
+  - quote: Our custom machining ensures exact tolerances, delivering optimal performance for pumps, motors,
+      and actuators in demanding applications such as construction, forestry, and material handling.
+    approx_offset: 170438
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0164
+  form: medical device manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/aluminum-laser-marking-guide/
+  evidence:
+  - quote: Laser marking is commonly used in industries such as automotive, aerospace, electronics, and
+      medical device manufacturing to label products with key tracking info or details (e.g., traceability
+      lots, part numbers, production dates, etc.).
+    approx_offset: 193130
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0165
+  form: mining
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/shaft-manufacturing-process/
+  evidence:
+  - quote: Shafts have several important uses in the aerospace, agriculture, automotive, consumer products,
+      transportation, oil & gas, mining, and industrial manufacturing fields.
+    approx_offset: 199799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0166
+  form: office furniture
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0167
+  form: oil & gas industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/industries-served/oil-gas-industry/
+  evidence:
+  - quote: Oil & Gas Industry
+    approx_offset: 140915
+  - quote: Are you in the Oil & Gas industry looking for
+    approx_offset: 140953
+  - quote: FZE Manufacturing Solutions for the Oil & Gas industry
+    approx_offset: 144492
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0168
+  form: oil and gas industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://fzemanufacturing.com/industries-served/oil-gas-industry/
+  evidence:
+  - quote: Types of machining capabilities applicable to the oil and gas industry
+    approx_offset: 141685
+  - quote: The oil and gas industry requires precise machining capabilities to create parts or assemblies
+      with exact dimensions.
+    approx_offset: 141711
+  - quote: The above machining capabilities are essential for producing parts with the exact precision
+      and quality demanded by the oil and gas industry.
+    approx_offset: 144632
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0169
+  form: pharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/blog/electropolish-vs-passivation/
+    - https://fzemanufacturing.com/capabilities/stainless-steel-electropolishing-services/
+  evidence:
+  - quote: Medical, dental, and pharmaceutical.
+    approx_offset: 67066
+  - quote: It is commonly used to finish metals that have applications in marine, medical, pharmaceutical,
+      or food industries.
+    approx_offset: 212664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0170
+  form: plumbing and HVAC systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Likewise, our copper fittings are essential components in plumbing and HVAC systems, prized
+      for their excellent conductivity, antimicrobial properties, and resistance to corrosion.
+    approx_offset: 18380
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0171
+  form: pneumatic sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/industries-served/pneumatics-industry/
+  evidence:
+  - quote: FZE Manufacturing Solutions is a trusted leader in supply chain machining for a range of industries,
+      including the pneumatic sector.
+    approx_offset: 155445
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0172
+  form: power distribution and transmission
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/blog/what-is-stainless-steel-passivation/
+  evidence:
+  - quote: Energy (power distribution and transmission)
+    approx_offset: 252331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0173
+  form: professional turf care
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+    - https://fzemanufacturing.com/capabilities/shaft-machining-services/
+    - https://fzemanufacturing.com/capabilities/welding-fabrication-services/
+    - https://fzemanufacturing.com/industries-served/
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: As a professional turf care industry leader, FZE Manufacturing Solutions is devoted to delivering
+      state-of-the-art solutions that provide enhanced accuracy and increased productivity for all your
+      turf equipment needs.
+    approx_offset: 41788
+  - quote: Having access to CNC Horizontal Machining and Vertical Machining Services is essential for
+      the success of any professional turf care business.
+    approx_offset: 42561
+  - quote: CNC Swiss machined components offer superior quality and reliability for professional turf
+      care needs, from mower blades to irrigation systems and other specialized equipment.
+    approx_offset: 42984
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0174
+  form: railways, railcars
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/mig-welding-services/
+  evidence:
+  - quote: Components found in heavy machinery, including cranes, tractors, railways, railcars, and other
+      rolling equipment
+    approx_offset: 49334
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0175
+  form: recreational marine industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/recreational-marine/
+  evidence:
+  - quote: Handling corrosion is a crucial factor in the recreational marine industry.
+    approx_offset: 32528
+  - quote: FZE Manufacturing Solutions is the compass guiding you to excellence in the recreational marine
+      industry.
+    approx_offset: 33331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0176
+  form: residential
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/specialized-fasteners/
+  evidence:
+  - quote: Widely used in residential, commercial, and industrial settings, copper fittings ensure efficient
+      fluid flow and maintain high-quality performance in various piping applications.
+    approx_offset: 18518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0177
+  form: semiconductors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://fzemanufacturing.com/capabilities/laser-marking-services/
+  evidence:
+  - quote: Electronic components, such as semiconductors, LEDs, and ID cards
+    approx_offset: 177903
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: fzemanufacturing_com-industries-0178
+  form: turf care industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://fzemanufacturing.com/industries-served/professional-turf-care/
+  evidence:
+  - quote: As a professional turf care industry leader, FZE Manufacturing Solutions is devoted to delivering
+      state-of-the-art solutions that provide enhanced accuracy and increased productivity for all your
+      turf equipment needs.
+    approx_offset: 41801
+  - quote: FZE Manufacturing Solutions for the Turf Care Industry
+    approx_offset: 42397
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

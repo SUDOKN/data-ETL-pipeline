@@ -1,0 +1,941 @@
+subject: lucasmilhaupt.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+golden_set_version: 1
+anchored_on: search/expectations/lucasmilhaupt_com/conformity_attestations.yaml
+labels:
+- id: lucasmilhaupt_com-conformity_attestations-0001
+  form: '4185'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: 'AMS: 4185'
+    approx_offset: 212954
+  - quote: 'AMS: 4185'
+    approx_offset: 214160
+  - quote: 'AMS: 4185'
+    approx_offset: 215649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0002
+  form: AMS 3410
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: AMS 3410 and AMS 3411 stipulate that all fluxes conforming to these specifications should be
+      soluble in water at 175°F/79°C or less after brazing.
+    approx_offset: 90791
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0003
+  form: AMS 3411
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: AMS 3410 and AMS 3411 stipulate that all fluxes conforming to these specifications should be
+      soluble in water at 175°F/79°C or less after brazing.
+    approx_offset: 90804
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0004
+  form: AMS 4185
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0005
+  form: 'AMS: 4185'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: 'AMS: 4185'
+    approx_offset: 212949
+  - quote: 'AMS: 4185'
+    approx_offset: 214155
+  - quote: 'AMS: 4185'
+    approx_offset: 215644
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0006
+  form: AS 9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: 'AS 9100: Committing to the highest quality standards in Aviation, Space and Defense'
+    approx_offset: 14217
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0007
+  form: AS9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001, and IATF 16949 quality systems,
+      maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can specify
+      our products with confidence.
+    approx_offset: 4075
+  - quote: To demonstrate our commitment to continuing to surpass customer expectations, Lucas Milhaupt
+      maintains multiple quality certifications, including industry specific certifications such as IATF16949
+      and AS9100.
+    approx_offset: 13878
+  - quote: Based on the stringent ISO 9001 quality requirements, AS9100 is the single common group of
+      quality management standards for the aviation, space and defense industry.
+    approx_offset: 14060
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0008
+  form: AS9100 D
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001, and IATF 16949 quality systems,
+      maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can specify
+      our products with confidence.
+    approx_offset: 4075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0009
+  form: AS9100 certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: Vacuum tube components, metallized ceramics, applications where AS9100 certification is required
+    approx_offset: 196111
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0010
+  form: AS9100-certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Aerospace.htm
+    - https://www.lucasmilhaupt.com/Industries/Aerospace
+  evidence:
+  - quote: As an AS9100-certified, vertically integrated producer of high-purity brazing filler metals
+      and engineered brazing alloys, Lucas Milhaupt helps aerospace leaders extend component life, protect
+      system reliability, and control total cost.
+    approx_offset: 29461
+  - quote: Our AS9100-certified, vertically integrated manufacturing controls alloy chemistry and geometry
+      from the melt through custom preform fabrication, holding tolerances measured in microns for hermetic,
+      vibration-resistant joints in flight-critical hardware.
+    approx_offset: 32525
+  - quote: As an AS9100-certified, vertically integrated producer of high-purity brazing filler metals
+      and engineered brazing alloys, Lucas Milhaupt helps aerospace leaders extend component life, protect
+      system reliability, and control total cost.
+    approx_offset: 242451
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0011
+  form: AWS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: The American Welding Society (AWS) defines brazing as a group of joining processes that produce
+      coalescence of materials by heating them to the brazing temperature and by using a filler metal
+      (solder) having a liquidus above 840°F (450°C) and below the solidus of the base metals.
+    approx_offset: 51522
+  - quote: Soldering has the same AWS definition as brazing, except that the filler metal used has a liquidus
+      below 840°F (450°C) and below the solidus of the base metals.
+    approx_offset: 51797
+  - quote: 'AWS: BVAg-8 Grade 1'
+    approx_offset: 196442
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0012
+  form: 'AWS: BAlSi-4'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 212959
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 214165
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 215654
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0013
+  form: 'AWS: BVAg-8 Grade 1'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: 'AWS: BVAg-8 Grade 1'
+    approx_offset: 196442
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0014
+  form: Ag 272
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+    approx_offset: 196473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0015
+  form: Al 112
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 212983
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 214189
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 215678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0016
+  form: American Welding Society
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+  evidence:
+  - quote: The American Welding Society (AWS) defines brazing as a group of joining processes that produce
+      coalescence of materials by heating them to the brazing temperature and by using a filler metal
+      (solder) having a liquidus above 840°F (450°C) and below the solidus of the base metals.
+    approx_offset: 51496
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0017
+  form: BAlSi-4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 212964
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 214170
+  - quote: 'AWS: BAlSi-4'
+    approx_offset: 215659
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0018
+  form: BCuP-5
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Soldering
+  evidence:
+  - quote: 'The ability to remove flux residue can be an important factor such as in certain HVAC and
+      other fluid transport systems; closed loop systems which cannot be readily cleaned after joining
+      must often be brazed or soldered in vacuum or under a protective atmosphere, or a self-fluxing filler
+      metal such '
+    approx_offset: 53238
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0019
+  form: BVAg-8
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: 'AWS: BVAg-8 Grade 1'
+    approx_offset: 196447
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0020
+  form: BVAg-8 Grade 1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: 'AWS: BVAg-8 Grade 1'
+    approx_offset: 196447
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0021
+  form: DFAR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: ITAR & DFAR Certified Compliance
+    approx_offset: 14356
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0022
+  form: DFAR Certified Compliance
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: ITAR & DFAR Certified Compliance
+    approx_offset: 14356
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0023
+  form: DFARS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001, and IATF 16949 quality systems,
+      maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can specify
+      our products with confidence.
+    approx_offset: 4157
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0024
+  form: IATF 16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001, and IATF 16949 quality systems,
+      maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can specify
+      our products with confidence.
+    approx_offset: 4110
+  - quote: 'IATF 16949: Committing to Automotive Excellence'
+    approx_offset: 14301
+  - quote: Lucas Milhaupt combines IATF 16949 certified quality, vertically integrated manufacturing,
+      and hands-on engineering support to help OEMs and Tier suppliers automate brazing steps, reduce
+      scrap, and deliver cleaner, leak-free joints in aluminum and multi-metal assemblies.
+    approx_offset: 166800
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0025
+  form: IATF 16949 Certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Lucas Milhaupt Riberac holds IATF 16949 Certification for the Automotive Industry.
+    approx_offset: 170604
+  - quote: Lucas Milhaupt Riberac holds IATF 16949 Certification for the Automotive Industry.
+    approx_offset: 224664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0026
+  form: IATF 16949 certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Automotive.htm
+    - https://www.lucasmilhaupt.com/Industries/Automotive
+  evidence:
+  - quote: Lucas Milhaupt combines IATF 16949 certified quality, vertically integrated manufacturing,
+      and hands-on engineering support to help OEMs and Tier suppliers automate brazing steps, reduce
+      scrap, and deliver cleaner, leak-free joints in aluminum and multi-metal assemblies.
+    approx_offset: 166800
+  - quote: IATF 16949–Certified Quality & Traceability – Our Ribérac facility is IATF 16949 certified,
+      and we maintain industry-specific quality systems across our global footprint to meet automotive
+      requirements for process control, documentation, and continual improvement.
+    approx_offset: 167354
+  - quote: Lucas Milhaupt combines IATF 16949 certified quality, vertically integrated manufacturing,
+      and hands-on engineering support to help OEMs and Tier suppliers automate brazing steps, reduce
+      scrap, and deliver cleaner, leak-free joints in aluminum and multi-metal assemblies.
+    approx_offset: 220860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0027
+  form: IATF16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: To demonstrate our commitment to continuing to surpass customer expectations, Lucas Milhaupt
+      maintains multiple quality certifications, including industry specific certifications such as IATF16949
+      and AS9100.
+    approx_offset: 13864
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0028
+  form: ISO 14001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/About/Social-Responsibility
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001, and IATF 16949 quality systems,
+      maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can specify
+      our products with confidence.
+    approx_offset: 4095
+  - quote: ISO 9001 & ISO 14001 Certification
+    approx_offset: 14193
+  - quote: Lucas Milhaupt ISO 14001:2015 Environmental Policy
+    approx_offset: 123557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0029
+  form: ISO 14001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Social-Responsibility
+  evidence:
+  - quote: Lucas Milhaupt ISO 14001:2015 Environmental Policy
+    approx_offset: 123557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0030
+  form: ISO 14001:2015 Environmental Policy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Social-Responsibility
+  evidence:
+  - quote: Lucas Milhaupt ISO 14001:2015 Environmental Policy
+    approx_offset: 123557
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0031
+  form: ISO 17672
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+    approx_offset: 196462
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 212972
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 214178
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0032
+  form: 'ISO 17672: Ag 272'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/SILVALOY-721-VTG-GR1.htm
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+    approx_offset: 196462
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0033
+  form: 'ISO 17672: Al 112'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CONE-CORED.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-ONE-AL-CORROSIVE-CORED.htm
+  evidence:
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 212972
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 214178
+  - quote: 'ISO 17672: Al 112'
+    approx_offset: 215667
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0034
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001, and IATF 16949 quality systems,
+      maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can specify
+      our products with confidence.
+    approx_offset: 4085
+  - quote: Based on the stringent ISO 9001 quality requirements, AS9100 is the single common group of
+      quality management standards for the aviation, space and defense industry.
+    approx_offset: 14029
+  - quote: ISO 9001 & ISO 14001 Certification
+    approx_offset: 14182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0035
+  form: ISO 9001 & ISO 14001 Certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+  evidence:
+  - quote: ISO 9001 & ISO 14001 Certification
+    approx_offset: 14182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0036
+  form: ISO 9001-certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Medical.htm
+    - https://www.lucasmilhaupt.com/Industries/Medical
+  evidence:
+  - quote: 'Quality & Regulatory Compliance: We uphold rigorous quality systems (ISO 9001-certified processes)
+      and adhere to strict regulatory standards to ensure every brazing process and material meets medical
+      industry requirements.'
+    approx_offset: 25378
+  - quote: 'Quality & Regulatory Compliance: We uphold rigorous quality systems (ISO 9001-certified processes)
+      and adhere to strict regulatory standards to ensure every brazing process and material meets medical
+      industry requirements.'
+    approx_offset: 238361
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0037
+  form: ITAR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/About/Certification
+    - https://www.lucasmilhaupt.com/Industries
+  evidence:
+  - quote: Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001, and IATF 16949 quality systems,
+      maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can specify
+      our products with confidence.
+    approx_offset: 4148
+  - quote: ITAR & DFAR Certified Compliance
+    approx_offset: 14349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0038
+  form: NATE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+    - https://www.lucasmilhaupt.com/Resources
+  evidence:
+  - quote: Refresh your brazing knowledge, join a NATE certified training course, or learn where to buy
+      Sil-Fos today.
+    approx_offset: 10870
+  - quote: Lucas Milhaupt also offers NATE certified brazing courses for HVAC/R Service Technicians looking
+      to
+    approx_offset: 112134
+  - quote: If you’re looking for more information about our on-site Braze School, Braze Training, or NATE
+      Training, check out our Brazing Academy!
+    approx_offset: 128265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0039
+  form: NATE Training
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+    - https://www.lucasmilhaupt.com/Resources
+  evidence:
+  - quote: If you’re looking for more information about our on-site Braze School, Braze Training, or NATE
+      Training, check out our Brazing Academy!
+    approx_offset: 128265
+  - quote: Register for a NATE Training
+    approx_offset: 182837
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0040
+  form: NATE certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: Refresh your brazing knowledge, join a NATE certified training course, or learn where to buy
+      Sil-Fos today.
+    approx_offset: 10870
+  - quote: Lucas Milhaupt also offers NATE certified brazing courses for HVAC/R Service Technicians looking
+      to
+    approx_offset: 112134
+  - quote: Refresh your brazing knowledge, join a NATE certified training course, or learn where to buy
+      Sil-Fos today.
+    approx_offset: 219216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0041
+  form: NATE certified brazing courses
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/History
+  evidence:
+  - quote: Lucas Milhaupt also offers NATE certified brazing courses for HVAC/R Service Technicians looking
+      to
+    approx_offset: 112134
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0042
+  form: NATE certified training course
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: Refresh your brazing knowledge, join a NATE certified training course, or learn where to buy
+      Sil-Fos today.
+    approx_offset: 10870
+  - quote: Refresh your brazing knowledge, join a NATE certified training course, or learn where to buy
+      Sil-Fos today.
+    approx_offset: 219216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0043
+  form: NATE-certified
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Industries/HVACR/Service-Technician
+  evidence:
+  - quote: Sharpen your brazing skills with Lucas Milhaupt’s NATE-certified training programs.
+    approx_offset: 182609
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-conformity_attestations-0044
+  form: RoHS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Microelectronic.htm
+    - https://www.lucasmilhaupt.com/Industries/Microelectronics
+  evidence:
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800
+      is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+    approx_offset: 22861
+  - quote: Supplied as precision strips or custom preforms to fit the tinest cond pads, Premabraze 800
+      is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+    approx_offset: 234125
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

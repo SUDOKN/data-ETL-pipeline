@@ -1,0 +1,747 @@
+subject: alecmfg.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
+  sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+golden_set_version: 1
+anchored_on: search/expectations/alecmfg_com/industries.yaml
+labels:
+- id: alecmfg_com-industries-0001
+  form: EV Client
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/author/alecdev/page/2/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: '🇩🇪 German EV Client: High-Precision Aluminum Parts CNC Machining Project'
+    approx_offset: 49799
+  - quote: '🇩🇪 German EV Client: High-Precision Aluminum Parts CNC Machining Project'
+    approx_offset: 95459
+  - quote: '🇩🇪 German EV Client: High-Precision Aluminum Parts CNC Machining Project'
+    approx_offset: 113172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0002
+  form: EV battery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+  evidence:
+  - quote: Whether you are working on EV battery enclosures, aluminum gearbox housings, or complex thermal
+      management systems, we are ready to be your trusted manufacturing partner.
+    approx_offset: 65030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0003
+  form: NEVs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/author/alecdev/page/2/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: The company is a developer of custom components for new energy vehicles (NEVs), serving major
+      OEMs across Europe.
+    approx_offset: 95729
+  - quote: The company is a developer of custom components for new energy vehicles (NEVs), serving major…
+    approx_offset: 113395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0004
+  form: Oil & Gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Oil & Gas Client | Integrated Welding And CNC Machining Of Structural Frames For Offshore Skid
+      Systems
+    approx_offset: 67468
+  - quote: Oil & Gas Client | Integrated Welding And CNC Machining Of Structural Frames For Offshore Skid
+      Systems
+    approx_offset: 71257
+  - quote: Oil & Gas Client | Integrated Welding and CNC Machining of Structural Frames for Offshore Skid
+      Systems
+    approx_offset: 93807
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0005
+  form: UAV
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 29
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: 'Precision Manufacturing Case Study: Aluminum Alloy Sheet Metal Structural Housing for French
+      UAV Client'
+    approx_offset: 24648
+  - quote: In early 2025, a French UAV manufacturer contacted us during the redesign of their heavy-lift
+      drone.
+    approx_offset: 24715
+  - quote: 'Precision Manufacturing Case Study: Aluminum Alloy Sheet Metal Structural Housing For French
+      UAV Client'
+    approx_offset: 45183
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0006
+  form: aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+    - https://alecmfg.com/news-articles/
+  evidence:
+  - quote: Additionally, CNC is the preferred method when the repeatability of parts is crucial, such
+      as in the automotive or aerospace industries.
+    approx_offset: 13419
+  - quote: Lightweight and corrosion-resistant, ideal for aerospace and automotive parts.
+    approx_offset: 14042
+  - quote: Strong and lightweight, favored in aerospace and medical industries.
+    approx_offset: 14414
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0007
+  form: automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 38
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: The automation of CNC machinery reduces human error and enhances safety while allowing for
+      complex cuts and shapes that manual processes can’t replicate.
+    approx_offset: 12727
+  - quote: 🇺🇸 Ohio-Based Industrial Automation Client | Custom CNC Machining of Aluminum Mounting Brackets
+      for Robotic Gripper Assembly
+    approx_offset: 25316
+  - quote: In May 2025, we received a repeat inquiry from a long-term client based in Ohio, USA—an automation
+      integrator specializing in high-speed packaging lines for the food and personal care sectors.
+    approx_offset: 25532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0008
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/author/alecdev/page/2/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: Additionally, CNC is the preferred method when the repeatability of parts is crucial, such
+      as in the automotive or aerospace industries.
+    approx_offset: 13405
+  - quote: Lightweight and corrosion-resistant, ideal for aerospace and automotive parts.
+    approx_offset: 14056
+  - quote: The lightest structural metal, used in automotive and aerospace applications for weight reduction.
+    approx_offset: 14500
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0009
+  form: consumer electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+  evidence:
+  - quote: In the meantime, these certifications once again prove our ability to provide solutions that
+      meet customers’ strict requirements in various fields such as medical care, automobiles, and consumer
+      electronics.
+    approx_offset: 140103
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0010
+  form: drone
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: In early 2025, a French UAV manufacturer contacted us during the redesign of their heavy-lift
+      drone.
+    approx_offset: 24785
+  - quote: In early 2025, a French UAV manufacturer contacted us during the redesign of their heavy-lift
+      drone.
+    approx_offset: 45289
+  - quote: In early 2025, a French UAV manufacturer contacted us during the redesign of their heavy-lift
+      drone.
+    approx_offset: 48906
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0011
+  form: e-mobility
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+  evidence:
+  - quote: For our customers in the automotive, e-mobility, and industrial electronics sectors, this certification
+      offers an added layer of confidence that our processes meet global quality expectations.
+    approx_offset: 65236
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0012
+  form: electric truck
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/author/alecdev/page/2/
+  evidence:
+  - quote: Previous🇸🇪 SE Swedish Electric Truck Startup | Lightweight CNC Components for Power Module
+      Prototype
+    approx_offset: 104935
+  - quote: 🇸🇪 SE Swedish Electric Truck Startup | Lightweight CNC Components for Power Module Prototype
+    approx_offset: 112503
+  - quote: In early 2024, we received a collaboration request from a Swedish electric truck startup focused
+      on developing next-generation logistics vehicles for the extreme Nordic climate.
+    approx_offset: 112648
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0013
+  form: electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 19
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+    - https://alecmfg.com/author/alecdev/
+  evidence:
+  - quote: This flexibility allows for a broad application across various industries, from electronics
+      to medical devices, where material properties are pivotal to product functionality.
+    approx_offset: 13766
+  - quote: In early 2025, we were approached by a U.S.-based automation systems integrator that specializes
+      in high-speed transport systems used in semiconductor packaging and electronics final assembly,
+      particularly focusing on cnc
+    approx_offset: 25961
+  - quote: For our customers in the automotive, e-mobility, and industrial electronics sectors, this certification
+      offers an added layer of confidence that our processes meet global quality expectations.
+    approx_offset: 65263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0014
+  form: food and personal care
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: In May 2025, we received a repeat inquiry from a long-term client based in Ohio, USA—an automation
+      integrator specializing in high-speed packaging lines for the food and personal care sectors.
+    approx_offset: 25605
+  - quote: In May 2025, we received a repeat inquiry from a long-term client based in Ohio, USA—an automation
+      integrator specializing in high-speed packaging lines for the food and personal care sectors.
+    approx_offset: 46030
+  - quote: In May 2025, we received a repeat inquiry from a long-term client based in Ohio, USA—an automation
+      integrator specializing in high-speed packaging lines for the food and personal care sectors.
+    approx_offset: 49647
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0015
+  form: industrial automation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: 🇺🇸 Ohio-Based Industrial Automation Client | Custom CNC Machining of Aluminum Mounting Brackets
+      for Robotic Gripper Assembly
+    approx_offset: 25305
+  - quote: 🇺🇸 Ohio-Based Industrial Automation Client | Custom CNC Machining Of Aluminum Mounting Brackets
+      For Robotic Gripper Assembly
+    approx_offset: 45757
+  - quote: 🇺🇸 Ohio-Based Industrial Automation Client | Custom CNC Machining Of Aluminum Mounting Brackets
+      For Robotic Gripper Assembly
+    approx_offset: 46253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0016
+  form: industrial electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+  evidence:
+  - quote: For our customers in the automotive, e-mobility, and industrial electronics sectors, this certification
+      offers an added layer of confidence that our processes meet global quality expectations.
+    approx_offset: 65252
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0017
+  form: medical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+    - https://alecmfg.com/author/alecdev/page/2/
+    - https://alecmfg.com/dk-surgical-robotics-manufacturer-precision-sensor-ring-for-laparoscopic-arm-prototype/
+  evidence:
+  - quote: This flexibility allows for a broad application across various industries, from electronics
+      to medical devices, where material properties are pivotal to product functionality.
+    approx_offset: 13781
+  - quote: Highly durable and resistant to corrosion, used in medical devices and kitchen equipment.
+    approx_offset: 14144
+  - quote: Strong and lightweight, favored in aerospace and medical industries.
+    approx_offset: 14428
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0018
+  form: medical device
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://alecmfg.com/%f0%9f%87%b8%f0%9f%87%aa-se-swedish-electric-truck-startup-lightweight-cnc-components-for-power-module-prototype/
+    - https://alecmfg.com/%f0%9f%87%ba%f0%9f%87%b8-north-american-medical-device-client-high-precision-titanium-alloy-component-machining-case-study/
+    - https://alecmfg.com/alec-model-has-obtained-iso-13485-and-iso-14001-certifications/
+    - https://alecmfg.com/author/alecdev/page/2/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: 🇺🇸 North American Medical Device Client | High-Precision Titanium Alloy Component Machining
+      Case Study
+    approx_offset: 99400
+  - quote: 🇺🇸 North American Medical Device Client | High-Precision Titanium Alloy Component Machining
+      Case Study
+    approx_offset: 112829
+  - quote: In mid-2024, we received an inquiry from a North American medical device manufacturer.
+    approx_offset: 112972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0019
+  form: medical devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/services/cnc-machining/
+  evidence:
+  - quote: This flexibility allows for a broad application across various industries, from electronics
+      to medical devices, where material properties are pivotal to product functionality.
+    approx_offset: 13781
+  - quote: Highly durable and resistant to corrosion, used in medical devices and kitchen equipment.
+    approx_offset: 14144
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0020
+  form: new energy vehicles
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/author/alecdev/page/2/
+    - https://alecmfg.com/german-ev-client-high-precision-aluminum-parts-cnc-machining-project/
+  evidence:
+  - quote: The company is a developer of custom components for new energy vehicles (NEVs), serving major
+      OEMs across Europe.
+    approx_offset: 95708
+  - quote: The company is a developer of custom components for new energy vehicles (NEVs), serving major…
+    approx_offset: 113374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0021
+  form: offshore
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Oil & Gas Client | Integrated Welding And CNC Machining Of Structural Frames For Offshore Skid
+      Systems
+    approx_offset: 67549
+  - quote: Oil & Gas Client | Integrated Welding And CNC Machining Of Structural Frames For Offshore Skid
+      Systems
+    approx_offset: 71338
+  - quote: Oil & Gas Client | Integrated Welding and CNC Machining of Structural Frames for Offshore Skid
+      Systems
+    approx_offset: 93888
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0022
+  form: oil and gas
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0023
+  form: power electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/integrated-welding-cnc-copper-heat-sink-machining/
+  evidence:
+  - quote: Project Background This case study highlights our expertise in copper heat sink machining for
+      industrial power electronics.
+    approx_offset: 94017
+  - quote: Thermal Component Prototype for Power Electronics： In Q4 2024, a UK-based electronics manufacturer
+      specializing in industrial power modules and rail inverter systems reached out to us.
+    approx_offset: 94678
+  - quote: Thermal Component Prototype for Power Electronics：
+    approx_offset: 100121
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0024
+  form: rail
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://alecmfg.com/5-axis-heat-sink-solutions-advanced-cnc-machining/
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/case-studies/
+    - https://alecmfg.com/cnc-aluminum-baseplates-case-study/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: 🇫🇷 French Rail Equipment Manufacturer | Custom Aluminum Machining and Rapid Prototyping with
+      EU Compliance
+    approx_offset: 26041
+  - quote: In Q3 2024, we were approached by a rail technology manufacturer based in France—one of the
+      primary suppliers to SNCF (the French National Railway Company).
+    approx_offset: 26201
+  - quote: 🇫🇷 French Rail Equipment Manufacturer | Custom Aluminum Machining and Rapid Prototyping with
+      EU Compliance
+    approx_offset: 67749
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0025
+  form: railway
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://alecmfg.com/author/alecdev/
+    - https://alecmfg.com/case-studies/
+    - https://alecmfg.com/french-rail-aluminum-machining-prototyping-eu-compliance/
+  evidence:
+  - quote: In Q3 2024, we were approached by a rail technology manufacturer based in France—one of the
+      primary suppliers to SNCF (the French National Railway Company).
+    approx_offset: 26304
+  - quote: In Q3 2024, we were approached by a rail technology manufacturer based in France—one of the
+      primary suppliers to SNCF (the French National Railway Company).
+    approx_offset: 68033
+  - quote: In Q3 2024, we were approached by a rail technology manufacturer based in France—one of the
+      primary suppliers to SNCF (the French National Railway Company).
+    approx_offset: 93716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0026
+  form: robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: DK – Surgical Robotics Manufacturer | Precision Sensor Ring for Laparoscopic Arm Prototype
+    approx_offset: 24926
+  - quote: In Q1 2025, Danish surgical robotics developer Robovision DK initiated a redesign of their
+      3rd-generation laparoscopic system.
+    approx_offset: 25060
+  - quote: DK – Surgical Robotics Manufacturer | Precision Sensor Ring For Laparoscopic Arm Prototype
+    approx_offset: 45418
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0027
+  form: semiconductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: 'Precision Manufacturing Case Study: High-Precision Stainless Steel Valve Body for Semiconductor
+      Equipment'
+    approx_offset: 24237
+  - quote: 'Project Background: Conquering Ultra-Clean and Micron-Level Precision Challenges In early
+      2025, as a leading global semiconductor equipment manufacturer was upgrading its wafer handling
+      system, their engineering team encountered persistent quality'
+    approx_offset: 24410
+  - quote: In early 2025, we were approached by a U.S.-based automation systems integrator that specializes
+      in high-speed transport systems used in semiconductor packaging and electronics final assembly,
+      particularly focusing on cnc
+    approx_offset: 25933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0028
+  form: semiconductor equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: 'Precision Manufacturing Case Study: High-Precision Stainless Steel Valve Body for Semiconductor
+      Equipment'
+    approx_offset: 24237
+  - quote: 'Project Background: Conquering Ultra-Clean and Micron-Level Precision Challenges In early
+      2025, as a leading global semiconductor equipment manufacturer was upgrading its wafer handling
+      system, their engineering team encountered persistent quality'
+    approx_offset: 24410
+  - quote: 'Precision Manufacturing Case Study: High-Precision Stainless Steel Valve Body For Semiconductor
+      Equipment'
+    approx_offset: 44816
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0029
+  form: semiconductor manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://alecmfg.com/precision-manufacturing-case-study-high-precision-stainless-steel-valve-body-for-semiconductor-equipment/
+  evidence:
+  - quote: Existing suppliers’ 316L stainless steel components showed microscopic burrs and inconsistent
+      surface finishes, resulting in vacuum seal failures and particle contamination risks—an unacceptable
+      threat in semiconductor manufacturing.
+    approx_offset: 61224
+  - quote: This project exemplifies how integrated material science, process innovation, and quality systems
+      meet semiconductor manufacturing’s unique demands.
+    approx_offset: 62974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: alecmfg_com-industries-0030
+  form: surgical robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://alecmfg.com/429-2/
+    - https://alecmfg.com/aerospace-machining-hk-aero-expo-2025/
+    - https://alecmfg.com/alec-annual-meeting-2025/
+    - https://alecmfg.com/alec-manufacturing-officially-achieves-iatf-169492016-certification-strengthening-our-commitment-to-automotive-quality-standards/
+    - https://alecmfg.com/alec-model-expands-operations-with-new-manufacturing-facility-and-equipment-investment/
+  evidence:
+  - quote: DK – Surgical Robotics Manufacturer | Precision Sensor Ring for Laparoscopic Arm Prototype
+    approx_offset: 24917
+  - quote: In Q1 2025, Danish surgical robotics developer Robovision DK initiated a redesign of their
+      3rd-generation laparoscopic system.
+    approx_offset: 25051
+  - quote: DK – Surgical Robotics Manufacturer | Precision Sensor Ring For Laparoscopic Arm Prototype
+    approx_offset: 45409
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

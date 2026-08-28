@@ -1,0 +1,3811 @@
+subject: agstech.net
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/agstech.net.txt
+  sha256: 1bc0ba503cc3d838798442a2b98cd509bb20604d97c42c21dc206b850317fc2f
+golden_set_version: 1
+anchored_on: search/expectations/agstech_net/conformity_attestations.yaml
+labels:
+- id: agstech_net-conformity_attestations-0001
+  form: 1A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+  evidence:
+  - quote: For Inch threaded fasteners external thread classes 1A, 2A and 3A as well as internal thread
+      classes of 1B, 2B and 3B are available.
+    approx_offset: 1488870
+  - quote: 'Classes 1A and 1B: These fasteners produce the loosest fit in assembly.'
+    approx_offset: 1489040
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0002
+  form: 510(k)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: Medical devices that do not require FDA review before the devices are marketed are considered
+      ''510(k) exempt.'' These medical devices are mostly low-risk, Class I devices and some Class II
+      devices that have been determined not to require a 510(k) to provide a reasonable assurance of safety
+      and effe
+    approx_offset: 302820
+  - quote: Medical devices that do not require FDA review before the devices are marketed are considered
+      ''510(k) exempt.'' These medical devices are mostly low-risk, Class I devices and some Class II
+      devices that have been determined not to require a 510(k) to provide a reasonable assurance of safety
+      and effe
+    approx_offset: 302965
+  - quote: If a device requires premarket approval or notification before being marketed in the U.S.,
+      then the owner/operator should also provide the FDA premarket submission number (510(k), PMA, PDP,
+      HDE).
+    approx_offset: 303398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0003
+  form: 5G
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/electrical-electronic-components
+    - https://www.agstech.net/microwave-components-systems-manufa
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​
+    approx_offset: 1366569
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​​​
+    approx_offset: 1410980
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM
+    approx_offset: 1442951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0004
+  form: 5G - LTE 4G - LPWA 3G - 2G
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/electrical-electronic-components
+    - https://www.agstech.net/microwave-components-systems-manufa
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​
+    approx_offset: 1366569
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​​​
+    approx_offset: 1410980
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM
+    approx_offset: 1442951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0005
+  form: 73/23/EEC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: the machine directive 93/37/EC or the low voltage directive 73/23/EEC, the European standards
+      used, e.g.
+    approx_offset: 299712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0006
+  form: 73/26/EEC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: The LVD-directive (73/26/EEC) Safety
+    approx_offset: 301043
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0007
+  form: 89/336/EEC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: The EMC-directive (89/336/EEC) Electromagnetic Compatibility
+    approx_offset: 300634
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0008
+  form: 93/37/EC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: the machine directive 93/37/EC or the low voltage directive 73/23/EEC, the European standards
+      used, e.g.
+    approx_offset: 299674
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0009
+  form: ABS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.agstech.net/additive-and-rapid-manufacturing
+    - https://www.agstech.net/extrusions-extruded-products-dies
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+    - https://www.agstech.net/plastic-rubber-mold-molds-molding
+  evidence:
+  - quote: Some thermoform plastic materials are ABS, HIPS, HDPE, HMWPE, PP, PVC, PMMA, modified PETG.
+    approx_offset: 857184
+  - quote: Materials suitable for this technique are extruded  thermoplastic sheets such as ABS, PETG,
+      PS, PC, PVC, PP, PMMA, acrylic.
+    approx_offset: 859978
+  - quote: Our common materials processed are polyethylene, nylon, polystyrene, polyvinyl chloride, polypropylene,
+      ABS plastic, polycarbonate, acrylic.
+    approx_offset: 917860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0010
+  form: ANSI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.agstech.net/belts-chains-cable-drive-assembly
+    - https://www.agstech.net/chemical-physical-environmental-ana
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/microwave-components-systems-manufa
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards such as IEEE, ANSI.
+    approx_offset: 186672
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291786
+  - quote: EIA designated ECA to continue to develop standards for interconnect, passive and electro-mechanical
+      electronic components under the ANSI-designation of EIA standards.
+    approx_offset: 311172
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0011
+  form: ANSI Type 2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: For compliance purposes, readings with an ANSI Type 2 sound level meter and dosimeter are considered
+      to have an accuracy of ±2 dBA, whereas a Type 1 instrument has an accuracy of ±1 dBA.
+    approx_offset: 821782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0012
+  form: ANSI Type 2 sound level meter
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: For compliance purposes, readings with an ANSI Type 2 sound level meter and dosimeter are considered
+      to have an accuracy of ±2 dBA, whereas a Type 1 instrument has an accuracy of ±1 dBA.
+    approx_offset: 821782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0013
+  form: ANSI standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/belts-chains-cable-drive-assembly
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: 'The relevant ANSI standards set performance and accuracy tolerances according to three levels
+      of precision: Type 0 is used in laboratories, Type 1 is used for precision measurements in the field,
+      and Type 2 is used for general-purpose measurements.'
+    approx_offset: 821504
+  - quote: '- Sprockets: Our standard sprockets conform to ANSI standards.'
+    approx_offset: 1630807
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0014
+  form: AS 9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- AS 9100'
+    approx_offset: 291359
+  - quote: 'THE AS 9100 STANDARD: This is a widely adopted and standardized quality management system
+      for the aerospace industry.'
+    approx_offset: 294716
+  - quote: Plants manufacturing our aerospace components are certified to the AS 9100 quality standard.
+    approx_offset: 295230
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0015
+  form: AS9000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: AS9100 replaces the earlier AS9000 and fully incorporates the entirety of the current version
+      of ISO 9000, while adding requirements relating to quality and safety.
+    approx_offset: 294858
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0016
+  form: AS9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+  evidence:
+  - quote: An ISO9001, TS16949, QS9000, AS9001, ISO13485 are among the first requirements for any custom
+      manufacturer of products and/or provider of engineering services to us.
+    approx_offset: 355946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0017
+  form: AS9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/casting-and-machining-cnc-milling
+    - https://www.agstech.net/our-manufacturing-past-present
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181302
+  - quote: AS9100 replaces the earlier AS9000 and fully incorporates the entirety of the current version
+      of ISO 9000, while adding requirements relating to quality and safety.
+    approx_offset: 294830
+  - quote: Our machining capabilities reach the highest level possible and some most demanding parts are
+      manufactured at an AS9100 certified plant.
+    approx_offset: 843938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0018
+  form: ASME
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.agstech.net/joining-assembly-fastening-process
+    - https://www.agstech.net/machine-elements-manufacturing
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291705
+  - quote: 'ASME STANDARDS: American Society of Mechanical Engineers (ASME) is an engineering society,
+      a standards organization, a research and development organization, a lobbying organization, a provider
+      of training and education, and a nonprofit organization.'
+    approx_offset: 305075
+  - quote: 'ASME STANDARDS: American Society of Mechanical Engineers (ASME) is an engineering society,
+      a standards organization, a research and development organization, a lobbying organization, a provider
+      of training and education, and a nonprofit organization.'
+    approx_offset: 305133
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0019
+  form: ASTM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 22
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/chemical-physical-environmental-ana
+    - https://www.agstech.net/coating-surface-test-instruments
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+    - https://www.agstech.net/mechanical-test-instruments-testing
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181437
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291748
+  - quote: 'ASTM STANDARDS: ASTM International, (formerly known as the American Society for Testing and
+      Materials), is an international organization that develops and publishes voluntary consensus technical
+      standards for a wide range of materials, products, systems, and services.'
+    approx_offset: 313071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0020
+  form: ASTM 3299
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/tanks-containers-manufacturing
+  evidence:
+  - quote: Fiberglass tanks & containers are fabricated with contact molded laminates conforming to ASTM
+      4097 and filament wound laminates conforming to ASTM 3299.
+    approx_offset: 1678174
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0021
+  form: ASTM 4097
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/tanks-containers-manufacturing
+  evidence:
+  - quote: Fiberglass tanks & containers are fabricated with contact molded laminates conforming to ASTM
+      4097 and filament wound laminates conforming to ASTM 3299.
+    approx_offset: 1678121
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0022
+  form: ASTM C805
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mechanical-test-instruments-testing
+  evidence:
+  - quote: This test method for testing concrete is governed by ASTM C805.
+    approx_offset: 720761
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0023
+  form: ASTM D1894
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mechanical-test-instruments-testing
+  evidence:
+  - quote: ASTM D1894 is the main coefficient of friction test standard and is used by many industries
+      with different applications and products.
+    approx_offset: 730113
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0024
+  form: ASTM D2457
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: 'SADT GMS/GM60 SERIES Gloss Meters : These glossmeters are designed and manufactured according
+      to international standards ISO2813, ISO7668, ASTM D523, ASTM D2457.'
+    approx_offset: 687108
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0025
+  form: ASTM D523
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: 'SADT GMS/GM60 SERIES Gloss Meters : These glossmeters are designed and manufactured according
+      to international standards ISO2813, ISO7668, ASTM D523, ASTM D2457.'
+    approx_offset: 687097
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0026
+  form: ASTM D5873
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/mechanical-test-instruments-testing
+  evidence:
+  - quote: On the other hand, the ASTM D5873 standard describes the procedure for testing of rock.
+    approx_offset: 720795
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0027
+  form: ASTM F963
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: As an example, all toys sold in the United States must meet the safety requirements of ASTM
+      F963.
+    approx_offset: 314055
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0028
+  form: ASTMD523
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: 'SADT GT SERIES Gloss Meters : GT series gloss meters are designed and manufactured according
+      to international standards ISO2813, ASTMD523 and DIN67530.'
+    approx_offset: 686763
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0029
+  form: ATIS/ANSI HC-SDMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/microwave-components-systems-manufa
+  evidence:
+  - quote: 'Wide Area Mobile Broadband Wireless Access: MBWA protocols based on standards specifications
+      such as IEEE 802.20 or ATIS/ANSI HC-SDMA (e.g.'
+    approx_offset: 1413939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0030
+  form: American National Screw Thread
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+  evidence:
+  - quote: '- American National Screw Thread (Inch Sizes)'
+    approx_offset: 1488477
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0031
+  form: American National Standards Institute (ANSI)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: The American National Standards Institute (ANSI) specifies sound level meters as three different
+      types, namely 0, 1 and 2.
+    approx_offset: 821372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0032
+  form: BS 6241
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/seals-fittings-clamps-connections
+  evidence:
+  - quote: BS 6241 - Specifications for dimensions of housing for hydraulic seals incorporating bearing
+      rings for reciprocating applications
+    approx_offset: 1025491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0033
+  form: BS 6501
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our stainless steel annular corrugated METALLIC FLEXIBLE HOSES are manufactured in austenitic
+      steel grades ANSI 321, 316, 316L & 304 and conform to BS 6501, Part-1.
+    approx_offset: 1115201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0034
+  form: BS 6501, Part-1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our stainless steel annular corrugated METALLIC FLEXIBLE HOSES are manufactured in austenitic
+      steel grades ANSI 321, 316, 316L & 304 and conform to BS 6501, Part-1.
+    approx_offset: 1115201
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0035
+  form: BSI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291730
+  - quote: 'BSI STANDARDS: British Standards are produced by BSI Group which is incorporated and formally
+      designated as the National Standards Body (NSB) for the UK.'
+    approx_offset: 308966
+  - quote: 'BSI STANDARDS: British Standards are produced by BSI Group which is incorporated and formally
+      designated as the National Standards Body (NSB) for the UK.'
+    approx_offset: 309015
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0036
+  form: Bluetooth
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/coating-surface-test-instruments
+    - https://www.agstech.net/mechanical-test-instruments-testing
+    - https://www.agstech.net/microwave-components-systems-manufa
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: It has an appealing and user friendly design, three - angle gloss data is displayed simultaneously,
+      large memory for measurement data, latest bluetooth function and removable memory card to transmit
+      data conveniently, special gloss software to analyze data output, low battery and memory-full indicat
+    approx_offset: 687473
+  - quote: Through Internal bluetooth module and USB interface, GM gloss meters can transfer data to PC
+      or exported to printer via printing interface.
+    approx_offset: 687652
+  - quote: All test data can be stored in memory and transferred to PC by USB cable or wirelessly by Bluetooth.
+    approx_offset: 721404
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0037
+  form: British Standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: 'BSI STANDARDS: British Standards are produced by BSI Group which is incorporated and formally
+      designated as the National Standards Body (NSB) for the UK.'
+    approx_offset: 308981
+  - quote: 'The BSI Group produces British norms under the authority of the Charter, which lays down as
+      one of the BSI''s objectives to set up norms of quality for goods and services, and prepare and
+      promote the general adoption of British Standards and schedules in connection therewith and from
+      time to time to '
+    approx_offset: 309339
+  - quote: Because of the move on harmonization of standards in Europe, some British Standards have been
+      gradually superseded or replaced by the relevant European norms (EN).
+    approx_offset: 310521
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0038
+  form: C1D1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: '- Integrated purge system for C1D1 applications as well as non-purged C1D2 designs'
+    approx_offset: 1744681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0039
+  form: C1D2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: '- Integrated purge system for C1D1 applications as well as non-purged C1D2 designs'
+    approx_offset: 1744721
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0040
+  form: CAN protocol V 2.0 A and A 2.0 B
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: 'Our Full-CAN Controller for MODULbus Sockets offers the following features: Intel 82527 Full
+      CAN controller, Supports CAN protocol V 2.0 A and A 2.0 B, ISO/DIS 11898-2, 9-pin D-SUB connector,
+      Options Isolated CAN interface, Supported Operating Systems are Windows, Windows CE, Linux, QNX,
+      VxWorks.'
+    approx_offset: 1709649
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0041
+  form: CARB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120187
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0042
+  form: CE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 59
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/electrical-electronic-cable-assembl
+  evidence:
+  - quote: We sell equipment that meet recognized industry standards such as CE and UL.
+    approx_offset: 27525
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80699
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166637
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0043
+  form: CE and UL qualifications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plastic-rubber-mold-molds-molding
+  evidence:
+  - quote: We are experienced in CE and UL qualifications of plastic components for the electronic industry.
+    approx_offset: 855543
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0044
+  form: CE mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.agstech.net/electrical-power-energy-components
+    - https://www.agstech.net/our-manufacturing-past-present
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: Whenever needed or required, products are certified and affixed the UL and/or CE mark, or if
+      for medical application, they are accompanied with an FDA certification.
+    approx_offset: 181542
+  - quote: 'THE CE MARK: The European Commission allows manufacturers to circulate industrial products
+      with CE mark freely within the internal market of the EU.'
+    approx_offset: 297894
+  - quote: 'THE CE MARK: The European Commission allows manufacturers to circulate industrial products
+      with CE mark freely within the internal market of the EU.'
+    approx_offset: 297986
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0045
+  form: CIE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: High end version lux meters offer Class A status to meet CIE, graphic displays, statistical
+      analysis functions, large measurement range up to 300 klx, manual or automatic range selection,
+      USB and other outputs.
+    approx_offset: 816960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0046
+  form: CSA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291655
+  - quote: WHAT ARE THE UL, CE, EMC, FCC and CSA CERTIFICATION LISTING MARKS ?
+    approx_offset: 297022
+  - quote: 'THE CSA MARK: The Canadian Standards Association (CSA) is a nonprofit association serving
+      business, industry, government and consumers in Canada and the global marketplace.'
+    approx_offset: 302019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0047
+  form: CSA Mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: 'THE CSA MARK: The Canadian Standards Association (CSA) is a nonprofit association serving
+      business, industry, government and consumers in Canada and the global marketplace.'
+    approx_offset: 302019
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0048
+  form: CSA-US Mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: According to OSHA regulations, the CSA-US Mark qualifies as an alternative to the UL Mark.
+    approx_offset: 302390
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0049
+  form: Class A status to meet CIE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: High end version lux meters offer Class A status to meet CIE, graphic displays, statistical
+      analysis functions, large measurement range up to 300 klx, manual or automatic range selection,
+      USB and other outputs.
+    approx_offset: 816937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0050
+  form: DIN
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/electrical-electronic-components
+    - https://www.agstech.net/electrical-power-energy-components
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+    - https://www.agstech.net/hardness-testers-tester
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181448
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291693
+  - quote: 'DIN STANDARDS: DIN, the German Institute for Standardization develops norms for rationalization,
+      quality assurance, environmental protection, safety and communication in industry, technology, science,
+      government, and the public domain.'
+    approx_offset: 304096
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0051
+  form: DIN 50351
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/hardness-testers-tester
+  evidence:
+  - quote: During the automatic test cycle the applied force will be controlled by a closed loop system
+      guaranteeing a constant force on the work piece, conforming to DIN 50351 standard.
+    approx_offset: 758085
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0052
+  form: DIN 51225/1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/hardness-testers-tester
+  evidence:
+  - quote: 'SADT HBE-3000A BRINELL HARDNESS TESTER : This automatic Brinell hardness tester features a
+      wide measurement range up to 3000 Kgf with a high accuracy conforming to DIN 51225/1 standard.'
+    approx_offset: 757907
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0053
+  form: DIN67530
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: 'SADT GT SERIES Gloss Meters : GT series gloss meters are designed and manufactured according
+      to international standards ISO2813, ASTMD523 and DIN67530.'
+    approx_offset: 686776
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0054
+  form: DNV
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0055
+  form: DOT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+    - https://www.agstech.net/seals-fittings-clamps-connections
+  evidence:
+  - quote: Our adapters are manufactured to meet or exceed the industrial standards requirements of SAE,
+      ISO, DIN, DOT and JIS.
+    approx_offset: 1021644
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120110
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0056
+  form: DSRC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: '- Short-range point-to-point communication devices such as wireless microphones, remote controls,
+      IrDA, RFID (Radio Frequency Identification), Wireless USB, DSRC (Dedicated Short Range Communications),
+      EnOcean, Near Field Communication, Wireless Sensor Networks : ZigBee, EnOcean; Personal area netwo'
+    approx_offset: 1370158
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0057
+  form: Dedicated Short Range Communications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: '- Short-range point-to-point communication devices such as wireless microphones, remote controls,
+      IrDA, RFID (Radio Frequency Identification), Wireless USB, DSRC (Dedicated Short Range Communications),
+      EnOcean, Near Field Communication, Wireless Sensor Networks : ZigBee, EnOcean; Personal area netwo'
+    approx_offset: 1370164
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0058
+  form: Department of Transportation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/plastic-molds-molding-extrusion
+  evidence:
+  - quote: AGS-TECH manufactured for a customer the parts and the entire electronic assembly which meets
+      Department of Transportation requirements.
+    approx_offset: 395183
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0059
+  form: EIA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291736
+  - quote: 'EIA STANDARDS: The Electronic Industries Alliance was a standards and trade organization composed
+      as an alliance of trade associations for electronics manufacturers in the United States, which developed
+      standards to ensure the equipment of different manufacturers was compatible and interchangeable.'
+    approx_offset: 310623
+  - quote: The EIA ceased operations on February 11, 2011, but the former sectors continue to serve the
+      constituencies of EIA.
+    approx_offset: 310927
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0060
+  form: EMC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291642
+  - quote: WHAT ARE THE UL, CE, EMC, FCC and CSA CERTIFICATION LISTING MARKS ?
+    approx_offset: 297009
+  - quote: EN 50081-2:1993 for the EMC directive or EN 60950:1991 for the low voltage requirement for
+      information technology.
+    approx_offset: 299781
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0061
+  form: EMC-directive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: The EMC-directive (89/336/EEC) Electromagnetic Compatibility
+    approx_offset: 300619
+  - quote: 'The EMC-directive mentions two ways of showing compliance to the main requirements:'
+    approx_offset: 300828
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0062
+  form: EN
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: EN 50081-2:1993 for the EMC directive or EN 60950:1991 for the low voltage requirement for
+      information technology.
+    approx_offset: 299757
+  - quote: EN 50081-2:1993 for the EMC directive or EN 60950:1991 for the low voltage requirement for
+      information technology.
+    approx_offset: 299798
+  - quote: Because of the move on harmonization of standards in Europe, some British Standards have been
+      gradually superseded or replaced by the relevant European norms (EN).
+    approx_offset: 310614
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0063
+  form: EN 50081-2:1993
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: EN 50081-2:1993 for the EMC directive or EN 60950:1991 for the low voltage requirement for
+      information technology.
+    approx_offset: 299757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0064
+  form: EN 50170
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: 'To summarize: A ProfiBus DP is an open standard based on EN 50170, it is the fastest Fieldbus
+      standard to date with data rates up to 12 Mb, offers plug and play operation, enables up to 244
+      bytes of input/output data per message, up to 126 stations may connect to the bus and up to 32 stations
+      per bu'
+    approx_offset: 1713681
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0065
+  form: EN 60950:1991
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: EN 50081-2:1993 for the EMC directive or EN 60950:1991 for the low voltage requirement for
+      information technology.
+    approx_offset: 299798
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0066
+  form: EN50170
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: ProfiBus is an open standard and is recognized as the fastest FieldBus in operation today,
+      based on RS485 and the European EN50170 Electrical Specification.
+    approx_offset: 1712530
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0067
+  form: Electromagnetic Compatibility
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/post/how-to-identify-verify-vet-and-choose-new-suppliers-and-manufacturers-globally
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+    - https://www.agstech.net/searchagstechwebsite
+  evidence:
+  - quote: This European standards organization has set up the Electromagnetic Compatibility Directive.
+    approx_offset: 300087
+  - quote: The EMC-directive (89/336/EEC) Electromagnetic Compatibility
+    approx_offset: 300646
+  - quote: Similar to the above, ask your potential supplier whether they have ever sold a product that
+      has other certifications & marks such as UL, CE, FDA, RoHS compliance, Electromagnetic Compatibility…..etc.
+    approx_offset: 407716
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0068
+  form: FC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/fiber-optic-test-instruments
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: These instruments come complete with FC, SC, ST and universal adaptors.
+    approx_offset: 711310
+  - quote: '- UL, CE, FC, RoHS, MET compliances'
+    approx_offset: 1744745
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0069
+  form: FCC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.agstech.net/electrical-power-energy-components
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291647
+  - quote: WHAT ARE THE UL, CE, EMC, FCC and CSA CERTIFICATION LISTING MARKS ?
+    approx_offset: 297014
+  - quote: 'THE FCC MARK: The Federal Communications Commission (FCC) is an independent United States
+      government agency.'
+    approx_offset: 301299
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0070
+  form: FCC mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: 'THE FCC MARK: The Federal Communications Commission (FCC) is an independent United States
+      government agency.'
+    approx_offset: 301299
+  - quote: relevant products for the US market are affixed with FCC mark.
+    approx_offset: 301851
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0071
+  form: FDA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 21
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+    - https://www.agstech.net/optical-fiber-optics-optoelectronic
+    - https://www.agstech.net/our-manufacturing-past-present
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+    - https://www.agstech.net/plastic-molds-molding-extrusion
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166652
+  - quote: Whenever needed or required, products are certified and affixed the UL and/or CE mark, or if
+      for medical application, they are accompanied with an FDA certification.
+    approx_offset: 181611
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0072
+  form: FDA Listing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291680
+  - quote: WHAT IS FDA LISTING ?
+    approx_offset: 302464
+  - quote: WHICH PRODUCTS NEED FDA LISTING ?
+    approx_offset: 302498
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0073
+  form: FDA approval
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/optical-fiber-optics-optoelectronic
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166652
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0074
+  form: FDA approved
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/plastic-molds-molding-extrusion
+    - https://www.agstech.net/tanks-containers-manufacturing
+  evidence:
+  - quote: FDA approved extruded - molded plastic consumer products from AGS-TECH
+    approx_offset: 395876
+  - quote: FDA approved plastic products for food and beverage from AGS-TECH
+    approx_offset: 395948
+  - quote: For example FDA approved food grade plastic materials are important for some containers storing
+      beverages, grains, fruit juice....etc.
+    approx_offset: 1677241
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0075
+  form: FDA certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/our-manufacturing-past-present
+  evidence:
+  - quote: Whenever needed or required, products are certified and affixed the UL and/or CE mark, or if
+      for medical application, they are accompanied with an FDA certification.
+    approx_offset: 181611
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0076
+  form: FDA listed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: does market and sell some products such as implants that are FDA listed.
+    approx_offset: 303497
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0077
+  form: FDA, UL, and LE requirements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: AGS-TECH manufactures tubing to FDA, UL, and LE requirements for medical, electric & electronic,
+      industrial and other applications.
+    approx_offset: 919139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0078
+  form: FDA-listed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: A medical device is FDA-listed if the firm that manufactures or distributes the medical device
+      has successfully completed an online listing for the device through the FDA Unified Registration
+      and Listing System.
+    approx_offset: 302532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0079
+  form: GOST 14896
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/seals-fittings-clamps-connections
+  evidence:
+  - quote: GOST 14896 - Rubber U-packing seals for hydraulic devices
+    approx_offset: 1025674
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0080
+  form: GPIB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/electronic-testers-multimeters
+  evidence:
+  - quote: Other popular devices are PROGRAMMABLE POWER SUPPLIES, where voltage, current or frequency
+      can be remotely controlled through an analog input or digital interface such as an RS232 or GPIB.
+    approx_offset: 633522
+  - quote: Most modern oscilloscopes provide one or more external interfaces or buses such as GPIB, Ethernet,
+      serial port, and USB to allow remote instrument control by external software.
+    approx_offset: 647818
+  - quote: Popular interfaces on frequency counters are RS232, USB, GPIB and Ethernet similar to other
+      modern instruments.
+    approx_offset: 664643
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0081
+  form: GSM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/electronic-testers-multimeters
+    - https://www.agstech.net/microwave-components-systems-manufa
+  evidence:
+  - quote: Vector signal generators can generate signals based on industry standards such as GSM, W-CDMA
+      (UMTS) and Wi-Fi (IEEE 802.11).
+    approx_offset: 635513
+  - quote: Also some mobile phone networks, like GSM, also use lower microwave frequencies.
+    approx_offset: 1414332
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0082
+  form: German Lloyd
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120141
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0083
+  form: HEPA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.agstech.net/filters-filtration-membranes
+  evidence:
+  - quote: '- High performance clean room and HEPA filters.'
+    approx_offset: 1636521
+  - quote: HEPA Filters
+    approx_offset: 1642396
+  - quote: HEPA is a type of air filter and the abbreviation stands for High-Efficiency Particulate Arrestance
+      (HEPA).
+    approx_offset: 1642410
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0084
+  form: HEPA standard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/filters-filtration-membranes
+  evidence:
+  - quote: Filters meeting the HEPA standard have many applications in clean rooms, medical facilities,
+      automobiles, aircraft and homes.
+    approx_offset: 1642538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0085
+  form: IEC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/electrical-electronic-cable-assembl
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291742
+  - quote: 'IEC STANDARDS: The International Electrotechnical Commission (IEC) is a World organization
+      that prepares and publishes International Standards for all electrical, electronic and related technologies.'
+    approx_offset: 312032
+  - quote: 'IEC STANDARDS: The International Electrotechnical Commission (IEC) is a World organization
+      that prepares and publishes International Standards for all electrical, electronic and related technologies.'
+    approx_offset: 312094
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0086
+  form: IEEE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 18
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/electrical-electronic-cable-assembl
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/electronic-testers-multimeters
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181453
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards such as IEEE, ANSI.
+    approx_offset: 186666
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0087
+  form: IEEE 1394
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: 'IEEE 1394 Firewire : Firewire is a high speed connection widely used for digital video editing
+      and other high bandwidth requirements.'
+    approx_offset: 1705806
+  - quote: Out of these above communication types scanners mostly use USB, Parallel, SCSI, IEEE 1394/FireWire.
+    approx_offset: 1706486
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0088
+  form: IEEE 1394 Firewire
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: 'IEEE 1394 Firewire : Firewire is a high speed connection widely used for digital video editing
+      and other high bandwidth requirements.'
+    approx_offset: 1705806
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0089
+  form: IEEE 802.11
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/electronic-testers-multimeters
+    - https://www.agstech.net/microwave-components-systems-manufa
+  evidence:
+  - quote: Vector signal generators can generate signals based on industry standards such as GSM, W-CDMA
+      (UMTS) and Wi-Fi (IEEE 802.11).
+    approx_offset: 635543
+  - quote: Wireless LAN protocols, such as Bluetooth and the IEEE 802.11 specifications, also use microwaves
+      in the 2.4 GHz ISM band, although 802.11a uses ISM band and U-NII frequencies in the 5 GHz range.
+    approx_offset: 1413182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0090
+  form: IEEE 802.16
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/microwave-components-systems-manufa
+  evidence:
+  - quote: 'Metropolitan Area Networks: MAN protocols, such as WiMAX (Worldwide Interoperability for Microwave
+      Access) based in the IEEE 802.16 specification.'
+    approx_offset: 1413608
+  - quote: The IEEE 802.16 specification was designed to operate between 2 to 11 GHz frequencies.
+    approx_offset: 1413639
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0091
+  form: IEEE 802.20
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/microwave-components-systems-manufa
+  evidence:
+  - quote: 'Wide Area Mobile Broadband Wireless Access: MBWA protocols based on standards specifications
+      such as IEEE 802.20 or ATIS/ANSI HC-SDMA (e.g.'
+    approx_offset: 1413924
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0092
+  form: IP31
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/networking-communication-products-gallery
+  evidence:
+  - quote: In order to survive under harsh environment, JetNet 2005 features an industrial-grade aluminum
+      case with IP31 grade protection ability against dust and water.
+    approx_offset: 35154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0093
+  form: IP65
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/automation-intelligent-systems-iot
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/chassis-racks-mounts-for-computers
+    - https://www.agstech.net/display-touchscreen-monitor-manufac
+  evidence:
+  - quote: Catalog for Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads,
+      Medical & Military Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 226101
+  - quote: VANDAL-PROOF IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical & Military
+      Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 631871
+  - quote: -Solid metal housing (IP65)
+    approx_offset: 787156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0094
+  form: IP65/IP67/IP68
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/automation-intelligent-systems-iot
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/chassis-racks-mounts-for-computers
+    - https://www.agstech.net/display-touchscreen-monitor-manufac
+  evidence:
+  - quote: Catalog for Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads,
+      Medical & Military Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 226101
+  - quote: VANDAL-PROOF IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical & Military
+      Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 631871
+  - quote: '- Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical &
+      Military Keyboards and other similar Rugged Computer Peripherals'
+    approx_offset: 1433923
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0095
+  form: IP66
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: Our NEMA 4X (IP66) models are gasket sealed and constructed from 316 stainless steel.
+    approx_offset: 1743519
+  - quote: '- NEMA 4 (IP65) or NEMA 4X (IP66) environmental protection'
+    approx_offset: 1744132
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0096
+  form: IP67
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/automation-intelligent-systems-iot
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/chassis-racks-mounts-for-computers
+    - https://www.agstech.net/display-touchscreen-monitor-manufac
+  evidence:
+  - quote: Catalog for Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads,
+      Medical & Military Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 226106
+  - quote: VANDAL-PROOF IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical & Military
+      Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 631876
+  - quote: Various output power levels, outstanding specifications, IP67 approved, FCC / CE approvals
+    approx_offset: 1384962
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0097
+  form: IP68
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/automation-intelligent-systems-iot
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/chassis-racks-mounts-for-computers
+    - https://www.agstech.net/display-touchscreen-monitor-manufac
+  evidence:
+  - quote: Catalog for Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads,
+      Medical & Military Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 226111
+  - quote: VANDAL-PROOF IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical & Military
+      Keyboards and other similar Rugged Computer Peripherals
+    approx_offset: 631881
+  - quote: '- Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical &
+      Military Keyboards and other similar Rugged Computer Peripherals'
+    approx_offset: 1433933
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0098
+  form: IPX1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: HAIDA IPX1＆X2 Water Drip Test Chamber
+    approx_offset: 796487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0099
+  form: ISO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 31
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/electrical-electronic-cable-assembl
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+    - https://www.agstech.net/machine-elements-manufacturing
+    - https://www.agstech.net/our-manufacturing-past-present
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181443
+  - quote: '- ISO 9001'
+    approx_offset: 291315
+  - quote: '- ISO 13485'
+    approx_offset: 291373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0100
+  form: ISO 14000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- ISO 14000'
+    approx_offset: 291389
+  - quote: 'THE ISO 14000 STANDARD: This family of standards pertains to the international Environmental
+      Management Systems.'
+    approx_offset: 296273
+  - quote: The ISO 14000 standard is related more to the environment rather than quality, but still it
+      is one that many of AGS-TECH Inc.’s global production facilities are certified to.
+    approx_offset: 296727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0101
+  form: ISO 7632
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/seals-fittings-clamps-connections
+  evidence:
+  - quote: ISO 7632 - Road vehicles - elastomeric seals
+    approx_offset: 1025625
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0102
+  form: ISO 9000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: 'THE QS 9000 STANDARD: Developed by the automotive giants, this quality standard has extras
+      in addition to the ISO 9000 quality standard.'
+    approx_offset: 294464
+  - quote: All of the ISO 9000 quality standard’s clauses serve as the foundation of the QS 9000 quality
+      standard.
+    approx_offset: 294502
+  - quote: AS9100 replaces the earlier AS9000 and fully incorporates the entirety of the current version
+      of ISO 9000, while adding requirements relating to quality and safety.
+    approx_offset: 294927
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0103
+  form: ISO Metric Screw Thread
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+  evidence:
+  - quote: '- ISO Metric Screw Thread'
+    approx_offset: 1488436
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0104
+  form: ISO/DIS 11898-2
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: 'Our Full-CAN Controller for MODULbus Sockets offers the following features: Intel 82527 Full
+      CAN controller, Supports CAN protocol V 2.0 A and A 2.0 B, ISO/DIS 11898-2, 9-pin D-SUB connector,
+      Options Isolated CAN interface, Supported Operating Systems are Windows, Windows CE, Linux, QNX,
+      VxWorks.'
+    approx_offset: 1709683
+  - quote: '- Intelligent CAN Controller For MODULbus Sockets : We offer our clients local intelligence
+      with MC68332, 256 kB SRAM / 16 bit wide, 64 kB DPRAM / 16 bit wide, 512 kB flash, ISO/DIS 11898-2,
+      9-pin D-SUB connector, ICANOS firmware on-board, MODULbus+ compatible, options such as isolated
+      CAN interface'
+    approx_offset: 1710007
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0105
+  form: ISO/TS 16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: 'THE ISO/TS 16949 STANDARD: This is an ISO technical specification aimed at the development
+      of a quality management system that provides for continual improvement, emphasizing defect prevention
+      and the reduction of variation and waste in the supply chain.'
+    approx_offset: 293721
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0106
+  form: ISO13485
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/our-manufacturing-past-present
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181290
+  - quote: An ISO9001, TS16949, QS9000, AS9001, ISO13485 are among the first requirements for any custom
+      manufacturer of products and/or provider of engineering services to us.
+    approx_offset: 355954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0107
+  form: ISO14001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/optical-fiber-optics-optoelectronic
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80646
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166587
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards such as IEEE, ANSI.
+    approx_offset: 186559
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0108
+  form: ISO14969
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/post/how-to-identify-verify-vet-and-choose-new-suppliers-and-manufacturers-globally
+    - https://www.agstech.net/searchagstechwebsite
+  evidence:
+  - quote: 'HOW TO FILTER, VERIFY, VET and CHOOSE POTENTIAL SUPPLIERS: Ask potential suppliers for a copy
+      of their Quality Management Certification, such as ISO9001, QS9000, ISO14969….etc.'
+    approx_offset: 407302
+  - quote: Ask potential suppliers for a copy of their Quality Management Certification, such as ISO9001,
+      QS9000, ISO14969….etc.
+    approx_offset: 1457565
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0109
+  form: ISO2813
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: 'SADT GT SERIES Gloss Meters : GT series gloss meters are designed and manufactured according
+      to international standards ISO2813, ASTMD523 and DIN67530.'
+    approx_offset: 686754
+  - quote: 'SADT GMS/GM60 SERIES Gloss Meters : These glossmeters are designed and manufactured according
+      to international standards ISO2813, ISO7668, ASTM D523, ASTM D2457.'
+    approx_offset: 687079
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0110
+  form: ISO7668
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: 'SADT GMS/GM60 SERIES Gloss Meters : These glossmeters are designed and manufactured according
+      to international standards ISO2813, ISO7668, ASTM D523, ASTM D2457.'
+    approx_offset: 687088
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0111
+  form: ISO9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/cutting-drilling-shaping-tools-manu
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80624
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166565
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0112
+  form: ISO9001:2000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/optical-fiber-optics-optoelectronic
+    - https://www.agstech.net/our-manufacturing-past-present
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80624
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166565
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0113
+  form: ITU grid
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/active-optical-components-manufactu
+  evidence:
+  - quote: Whether your application is high power lasers for industrial cutting, drilling, welding...etc,
+      or medical lasers for surgery or diagnostics, or telecommunication lasers or detectors suitable
+      for the ITU grid, we are your one-stop source.
+    approx_offset: 1355246
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0114
+  form: IrDA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: '- Short-range point-to-point communication devices such as wireless microphones, remote controls,
+      IrDA, RFID (Radio Frequency Identification), Wireless USB, DSRC (Dedicated Short Range Communications),
+      EnOcean, Near Field Communication, Wireless Sensor Networks : ZigBee, EnOcean; Personal area netwo'
+    approx_offset: 1370099
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0115
+  form: JEDEC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: •JEDEC – JEDEC Solid State Technology Association (formerly the Joint Electron Devices Engineering
+      Councils)
+    approx_offset: 311716
+  - quote: •JEDEC – JEDEC Solid State Technology Association (formerly the Joint Electron Devices Engineering
+      Councils)
+    approx_offset: 311724
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0116
+  form: JIS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+    - https://www.agstech.net/seals-fittings-clamps-connections
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291725
+  - quote: 'JIS STANDARDS: Japanese Industrial Standards (JIS) specify the norms used for industrial activities
+      in Japan.'
+    approx_offset: 308172
+  - quote: 'JIS STANDARDS: Japanese Industrial Standards (JIS) specify the norms used for industrial activities
+      in Japan.'
+    approx_offset: 308218
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0117
+  form: JIS mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: The Industrial Standardization Law was revised in 2004 and the ''JIS mark'' (product certification)
+      was changed.
+    approx_offset: 308495
+  - quote: Starting October 1, 2005, the new JIS mark has been applied upon re-certification.
+    approx_offset: 308577
+  - quote: The use of the old mark was allowed during the three-year transition period until September
+      30, 2008; and every manufacturer obtaining new or renewing their certification under the authority's
+      approval has been able to use the new JIS mark.
+    approx_offset: 308857
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0118
+  form: JJG696-2002
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: The technical parameters conform to JJG696-2002.
+    approx_offset: 686822
+  - quote: The technical parameters also conform to JJG696-2002.
+    approx_offset: 687161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0119
+  form: Kitemark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: The Kitemark can be used to indicate certification by BSI, but only where a Kitemark scheme
+      has been set up around a particular standard.
+    approx_offset: 309912
+  - quote: The Kitemark can be used to indicate certification by BSI, but only where a Kitemark scheme
+      has been set up around a particular standard.
+    approx_offset: 309984
+  - quote: Products and services which BSI certifies as having met the requirements of specific standards
+      within designated schemes are awarded the Kitemark.
+    approx_offset: 310183
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0120
+  form: LE requirements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: AGS-TECH manufactures tubing to FDA, UL, and LE requirements for medical, electric & electronic,
+      industrial and other applications.
+    approx_offset: 919152
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0121
+  form: LTE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agstech.net/electrical-electronic-components
+    - https://www.agstech.net/microwave-components-systems-manufa
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​
+    approx_offset: 1366574
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM​​​
+    approx_offset: 1410985
+  - quote: Antenna Brochure for 5G - LTE 4G - LPWA 3G - 2G - GPS - GNSS - WLAN - BT - Combo - ISM
+    approx_offset: 1442956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0122
+  form: LVD-directive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: The LVD-directive (73/26/EEC) Safety
+    approx_offset: 301028
+  - quote: The LVD-directive describes how to show compliance to the main requirements.
+    approx_offset: 301218
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0123
+  form: MET
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: '- UL, CE, FC, RoHS, MET compliances'
+    approx_offset: 1744755
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0124
+  form: MIL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/chemical-physical-environmental-ana
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+    - https://www.agstech.net/industrial-pc-industrial-computers
+    - https://www.agstech.net/our-manufacturing-past-present
+  evidence:
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181459
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291699
+  - quote: 'MIL STANDARDS: This is a United States defense or military norm, ''''MIL-STD'''', ''''MIL-SPEC'''',
+      and is used to help achieve standardization objectives by the U.S.'
+    approx_offset: 304513
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0125
+  form: MIL-SPEC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/industrial-pc-industrial-computers
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: 'MIL STANDARDS: This is a United States defense or military norm, ''''MIL-STD'''', ''''MIL-SPEC'''',
+      and is used to help achieve standardization objectives by the U.S.'
+    approx_offset: 304593
+  - quote: In addition to one of these certifications, any custom manufacturer or engineering services
+      provider will need to present further evidence of being capable to contribute successfully to our
+      engineering and integration efforts by showing examples of products for which a CE or UL mark was
+      obtained, ev
+    approx_offset: 356489
+  - quote: '- Sealed MIL-SPEC or Circular-MIL connectors'
+    approx_offset: 1773023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0126
+  form: MIL-STD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: 'MIL STANDARDS: This is a United States defense or military norm, ''''MIL-STD'''', ''''MIL-SPEC'''',
+      and is used to help achieve standardization objectives by the U.S.'
+    approx_offset: 304580
+  - quote: There is a broad range of test specifications such as MIL-STD, SAE, ASTM to help determine
+      the most appropriate temperature humidity profile for your product.
+    approx_offset: 822942
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0127
+  form: MIL-STD, SAE, ASTM
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: There is a broad range of test specifications such as MIL-STD, SAE, ASTM to help determine
+      the most appropriate temperature humidity profile for your product.
+    approx_offset: 822942
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0128
+  form: MSHA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120135
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0129
+  form: Manufacturers declaration
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: •Manufacturers declaration (route acc.
+    approx_offset: 300913
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0130
+  form: NATO and military standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+  evidence:
+  - quote: • Custom tempered and bulletproof glass compliant with NATO and military standards
+    approx_offset: 78930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0131
+  form: NEMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+    - https://www.agstech.net/vibration-meters-tachometers
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291712
+  - quote: 'NEMA STANDARDS: The National Electrical Manufacturers Association (NEMA) is the association
+      of electrical equipment and medical imaging manufacturers in the US.'
+    approx_offset: 306144
+  - quote: 'NEMA STANDARDS: The National Electrical Manufacturers Association (NEMA) is the association
+      of electrical equipment and medical imaging manufacturers in the US.'
+    approx_offset: 306211
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0132
+  form: NEMA / IP RATED
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: We offer NEMA / IP RATED FULLY ENCLOSEDworkstations.
+    approx_offset: 1742527
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0133
+  form: NEMA 4
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+    - https://www.agstech.net/vibration-meters-tachometers
+  evidence:
+  - quote: They are designed in rugged NEMA 4 rated cases.
+    approx_offset: 608179
+  - quote: '- NEMA 4 (IP65) or NEMA 4X (IP66) environmental protection'
+    approx_offset: 1744106
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0134
+  form: NEMA 4X
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: Our NEMA 4X (IP66) models are gasket sealed and constructed from 316 stainless steel.
+    approx_offset: 1743510
+  - quote: '- NEMA 4 (IP65) or NEMA 4X (IP66) environmental protection'
+    approx_offset: 1744123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0135
+  form: NEMA 4X (IP66)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/industrial-workstations-micro-compu
+  evidence:
+  - quote: Our NEMA 4X (IP66) models are gasket sealed and constructed from 316 stainless steel.
+    approx_offset: 1743510
+  - quote: '- NEMA 4 (IP65) or NEMA 4X (IP66) environmental protection'
+    approx_offset: 1744123
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0136
+  form: NFPA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120165
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0137
+  form: NGV
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120182
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0138
+  form: NIST
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.agstech.net/fiber-optic-test-instruments
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291792
+  - quote: 'NIST REFERENCE: The National Institute of Standards and Technology (NIST), is a measurement
+      standards laboratory, which is a non-regulatory agency of the United States Department of Commerce.'
+    approx_offset: 316654
+  - quote: 'NIST REFERENCE: The National Institute of Standards and Technology (NIST), is a measurement
+      standards laboratory, which is a non-regulatory agency of the United States Department of Commerce.'
+    approx_offset: 316722
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0139
+  form: NIST traceable calibration systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fiber-optic-test-instruments
+  evidence:
+  - quote: Fiber optic power meters should be recalibrated frequently by labs with NIST traceable calibration
+      systems.
+    approx_offset: 703502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0140
+  form: NPT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/valves-pneumatics-hydraulics-vacuum
+  evidence:
+  - quote: Pipe Connection Valves allow users to plumb a system through 15,000 psi using standard NPT
+      pipe connections.
+    approx_offset: 1076747
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0141
+  form: Near Field Communication
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: '- Short-range point-to-point communication devices such as wireless microphones, remote controls,
+      IrDA, RFID (Radio Frequency Identification), Wireless USB, DSRC (Dedicated Short Range Communications),
+      EnOcean, Near Field Communication, Wireless Sensor Networks : ZigBee, EnOcean; Personal area netwo'
+    approx_offset: 1370212
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0142
+  form: OSHA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: According to OSHA regulations, the CSA-US Mark qualifies as an alternative to the UL Mark.
+    approx_offset: 302368
+  - quote: A Type 2 meter is the minimum requirement by OSHA for noise measurements, and is usually sufficient
+      for general purpose noise surveys.
+    approx_offset: 821972
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0143
+  form: PCI Local Bus standard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: CONVENTIONAL PCI (PCI stands for PERIPHERAL COMPONENT INTERCONNECT, part of the PCI Local Bus
+      standard) is a computer bus for attaching hardware devices in a computer.
+    approx_offset: 1700008
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0144
+  form: QS 9000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- QS 9000'
+    approx_offset: 291345
+  - quote: 'THE QS 9000 STANDARD: Developed by the automotive giants, this quality standard has extras
+      in addition to the ISO 9000 quality standard.'
+    approx_offset: 294358
+  - quote: All of the ISO 9000 quality standard’s clauses serve as the foundation of the QS 9000 quality
+      standard.
+    approx_offset: 294569
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0145
+  form: QS9000
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/machine-elements-manufacturing
+    - https://www.agstech.net/optical-fiber-optics-optoelectronic
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80638
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166579
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0146
+  form: RS232
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+    - https://www.agstech.net/electronic-testers-multimeters
+    - https://www.agstech.net/hardness-testers-tester
+    - https://www.agstech.net/thickness-and-flaw-gauges-detectors
+  evidence:
+  - quote: Other popular devices are PROGRAMMABLE POWER SUPPLIES, where voltage, current or frequency
+      can be remotely controlled through an analog input or digital interface such as an RS232 or GPIB.
+    approx_offset: 633513
+  - quote: Popular interfaces on frequency counters are RS232, USB, GPIB and Ethernet similar to other
+      modern instruments.
+    approx_offset: 664631
+  - quote: Connected to the included printer through an RS232 output, it’s possible to print out all results.
+    approx_offset: 749946
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0147
+  form: RS485
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/accessories-modules-carrier-boards
+  evidence:
+  - quote: ProfiBus is an open standard and is recognized as the fastest FieldBus in operation today,
+      based on RS485 and the European EN50170 Electrical Specification.
+    approx_offset: 1712507
+  - quote: A ProfiBus system uses a bus master to poll slave devices distributed in multi-drop fashion
+      on an RS485 serial bus.
+    approx_offset: 1713090
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0148
+  form: RoHS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.agstech.net/filters-filtration-membranes
+    - https://www.agstech.net/industrial-workstations-micro-compu
+    - https://www.agstech.net/joining-assembly-fastening-process
+    - https://www.agstech.net/plastic-rubber-mold-molds-molding
+    - https://www.agstech.net/post/how-to-identify-verify-vet-and-choose-new-suppliers-and-manufacturers-globally
+  evidence:
+  - quote: Similar to the above, ask your potential supplier whether they have ever sold a product that
+      has other certifications & marks such as UL, CE, FDA, RoHS compliance, Electromagnetic Compatibility…..etc.
+    approx_offset: 407699
+  - quote: Material Safety Data Sheets (MSDS), conformance reports, material certifications and other
+      documents such as ROHS compliance for our materials and products.
+    approx_offset: 865901
+  - quote: We use lead-free alloys for soldering and have RoHS compliance and for different applications
+      and requirements we have different and suitable alloys such as silver alloy.
+    approx_offset: 900082
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0149
+  form: SAE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+    - https://www.agstech.net/machine-elements-manufacturing
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- UL, CE, EMC, FCC and CSA Certification Marks, FDA Listing, DIN / MIL / ASME / NEMA / SAE
+      / JIS /BSI / EIA / IEC / ASTM / IEEE Standards, IP, Telcordia, ANSI, NIST'
+    approx_offset: 291719
+  - quote: 'SAE STANDARDS: SAE International, initially established as the Society of Automotive Engineers,
+      is a U.S.-based, globally active professional association and standards organization for engineering
+      professionals in various industries.'
+    approx_offset: 306852
+  - quote: 'SAE STANDARDS: SAE International, initially established as the Society of Automotive Engineers,
+      is a U.S.-based, globally active professional association and standards organization for engineering
+      professionals in various industries.'
+    approx_offset: 306867
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0150
+  form: Safety Standard UL 796
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pcb-pcba-sma-manufacturing-assembly
+  evidence:
+  - quote: Safety Standard UL 796 covers component safety requirements for printed wiring boards for use
+      as components in devices or appliances.
+    approx_offset: 1374934
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0151
+  form: Sealed MIL-SPEC or Circular-MIL connectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/industrial-pc-industrial-computers
+  evidence:
+  - quote: '- Sealed MIL-SPEC or Circular-MIL connectors'
+    approx_offset: 1773016
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0152
+  form: TS 16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: '- TS 16949'
+    approx_offset: 291330
+  - quote: 'THE ISO/TS 16949 STANDARD: This is an ISO technical specification aimed at the development
+      of a quality management system that provides for continual improvement, emphasizing defect prevention
+      and the reduction of variation and waste in the supply chain.'
+    approx_offset: 293725
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0153
+  form: TS16949
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/cutting-drilling-shaping-tools-manu
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80656
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166597
+  - quote: All of the factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485 or AS9100 quality
+      management systems certified and manufacture products compliant with European and American industrial
+      standards such as ASTM, ISO, DIN, IEEE, MIL.
+    approx_offset: 181281
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0154
+  form: Telcordia
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.agstech.net/
+    - https://www.agstech.net/
+    - https://www.agstech.net/optical-fiber-optics-optoelectronic
+    - https://www.agstech.net/passive-optical-components-manufact
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: Besides passive and active mechanical assembly, we take advantage of special brazing and soldering
+      materials and techniques for manufacturing products compliant to Telcordia and other industry standards.
+    approx_offset: 5544
+  - quote: Our telecommunication fiber optical products pass Telcordia standards.
+    approx_offset: 166764
+  - quote: Besides passive and active mechanical assembly, we take advantage of special brazing and soldering
+      materials and techniques for manufacturing products compliant to Telcordia and other industry standards.
+    approx_offset: 261664
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0155
+  form: Type 1 instrument
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chemical-physical-environmental-ana
+  evidence:
+  - quote: For compliance purposes, readings with an ANSI Type 2 sound level meter and dosimeter are considered
+      to have an accuracy of ±2 dBA, whereas a Type 1 instrument has an accuracy of ±1 dBA.
+    approx_offset: 821882
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0156
+  form: UL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 45
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/electrical-electronic-cable-assembl
+    - https://www.agstech.net/electrical-electronic-components
+  evidence:
+  - quote: We sell equipment that meet recognized industry standards such as CE and UL.
+    approx_offset: 27532
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80703
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166641
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0157
+  form: UL 796
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pcb-pcba-sma-manufacturing-assembly
+  evidence:
+  - quote: Safety Standard UL 796 covers component safety requirements for printed wiring boards for use
+      as components in devices or appliances.
+    approx_offset: 1374950
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0158
+  form: UL and/or CE mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/our-manufacturing-past-present
+  evidence:
+  - quote: Whenever needed or required, products are certified and affixed the UL and/or CE mark, or if
+      for medical application, they are accompanied with an FDA certification.
+    approx_offset: 181532
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0159
+  form: UL mark
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.agsoutsourcing.com/online-supplier-application-platfor
+    - https://www.agstech.net/custom-manufactured-parts-assembly
+    - https://www.agstech.net/electrical-electronics-manufacturin
+    - https://www.agstech.net/machine-elements-manufacturing
+    - https://www.agstech.net/optical-fiber-optics-optoelectronic
+  evidence:
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards.
+    approx_offset: 80703
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments,
+      possess CE, UL mark or FDA approval (when needed) and meet other industry standards.
+    approx_offset: 166641
+  - quote: Our products are manufactured in ISO9001:2000, QS9000, ISO14001, TS16949 certified environments
+      and possess CE, UL mark and meet other industry standards such as IEEE, ANSI.
+    approx_offset: 186616
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0160
+  form: UL-21
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120196
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0161
+  form: UL-21 LPG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120196
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0162
+  form: UN approved
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/tanks-containers-manufacturing
+  evidence:
+  - quote: We have powder, granules and pellets storage tanks that are UN approved for transportation
+      of hazardous products.
+    approx_offset: 1676214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0163
+  form: UN approved for transportation of hazardous products
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/tanks-containers-manufacturing
+  evidence:
+  - quote: We have powder, granules and pellets storage tanks that are UN approved for transportation
+      of hazardous products.
+    approx_offset: 1676214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0164
+  form: US government standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/filters-filtration-membranes
+  evidence:
+  - quote: To qualify as HEPA by US government standards, an air filter must remove from the air that
+      passes through 99.97% of particles that are sized 0.3 µm.
+    approx_offset: 1642791
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0165
+  form: USCG
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/pipes-tubes-hoses-bellows
+  evidence:
+  - quote: Our pneumatic and hydraulic hoses are manufactured to meet or exceed industrial specification
+      requirements of SAE, DOT, USCG, ISO, DNV, EN, MSHA, German Lloyd, ABS, FDA, NFPA, ANSI, CSA, NGV,
+      CARB and UL-21 LPG standards.
+    approx_offset: 1120115
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0166
+  form: USDA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: To give you an example, there are handheld tomato colorimeters which use an USDA approved index
+      to measure and grade the color of processed tomato products.
+    approx_offset: 683707
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0167
+  form: USDA approved index
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/coating-surface-test-instruments
+  evidence:
+  - quote: To give you an example, there are handheld tomato colorimeters which use an USDA approved index
+      to measure and grade the color of processed tomato products.
+    approx_offset: 683707
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0168
+  form: Unified National Screw Thread
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+  evidence:
+  - quote: '- Unified National Screw Thread (Inch Sizes)'
+    approx_offset: 1488527
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0169
+  form: United States Department of Energy (DOE)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/filters-filtration-membranes
+  evidence:
+  - quote: HEPA filters must satisfy certain standards of efficiency such as those set by the United States
+      Department of Energy (DOE).
+    approx_offset: 1642727
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0170
+  form: W-CDMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/electronic-testers-multimeters
+  evidence:
+  - quote: Vector signal generators can generate signals based on industry standards such as GSM, W-CDMA
+      (UMTS) and Wi-Fi (IEEE 802.11).
+    approx_offset: 635518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0171
+  form: W-CDMA (UMTS)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/electronic-testers-multimeters
+  evidence:
+  - quote: Vector signal generators can generate signals based on industry standards such as GSM, W-CDMA
+      (UMTS) and Wi-Fi (IEEE 802.11).
+    approx_offset: 635518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0172
+  form: Western Electric standard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/chassis-racks-mounts-for-computers
+  evidence:
+  - quote: Hole spacing is either on 1-inch (25 mm) centres (Western Electric standard), or the same as
+      for 19-inch (480 mm) racks (0.625 inches / 15.9 millimetres spacing).
+    approx_offset: 1791777
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0173
+  form: Wi-Fi (IEEE 802.11)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/electronic-testers-multimeters
+  evidence:
+  - quote: Vector signal generators can generate signals based on industry standards such as GSM, W-CDMA
+      (UMTS) and Wi-Fi (IEEE 802.11).
+    approx_offset: 635536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0174
+  form: Wireless USB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: '- Short-range point-to-point communication devices such as wireless microphones, remote controls,
+      IrDA, RFID (Radio Frequency Identification), Wireless USB, DSRC (Dedicated Short Range Communications),
+      EnOcean, Near Field Communication, Wireless Sensor Networks : ZigBee, EnOcean; Personal area netwo'
+    approx_offset: 1370144
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0175
+  form: ZigBee
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/rf-and-wireless-devices-manufacturi
+  evidence:
+  - quote: '- Short-range point-to-point communication devices such as wireless microphones, remote controls,
+      IrDA, RFID (Radio Frequency Identification), Wireless USB, DSRC (Dedicated Short Range Communications),
+      EnOcean, Near Field Communication, Wireless Sensor Networks : ZigBee, EnOcean; Personal area netwo'
+    approx_offset: 1370265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0176
+  form: and LE requirements
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/extrusions-extruded-products-dies
+  evidence:
+  - quote: AGS-TECH manufactures tubing to FDA, UL, and LE requirements for medical, electric & electronic,
+      industrial and other applications.
+    approx_offset: 919148
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0177
+  form: declaration of conformity
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: The manufacturer may affix the CE mark to their product after preparing a declaration of conformity,
+      the certificate which shows the product conforms to the applicable requirements.
+    approx_offset: 299410
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0178
+  form: international Rockwell standard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.agstech.net/hardness-testers-tester
+  evidence:
+  - quote: This machine uses the standard preliminary test force of 10kgf and main loads of 60/100/150
+      kilograms while conforming to the international Rockwell standard.
+    approx_offset: 747994
+  - quote: 'SADT HR-150DT MOTORIZED ROCKWELL HARDNESS TESTER : This series of hardness testers are recognized
+      for their accuracy and ease of operation, function entirely conforming to the international Rockwell
+      standard.'
+    approx_offset: 748584
+  - quote: It conforms with the international Rockwell standard.
+    approx_offset: 749285
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0179
+  form: machine directive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/quality-management-at-ags-tech-inc
+  evidence:
+  - quote: the machine directive 93/37/EC or the low voltage directive 73/23/EEC, the European standards
+      used, e.g.
+    approx_offset: 299656
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0180
+  form: standard NPT pipe connections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/valves-pneumatics-hydraulics-vacuum
+  evidence:
+  - quote: Pipe Connection Valves allow users to plumb a system through 15,000 psi using standard NPT
+      pipe connections.
+    approx_offset: 1076738
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0181
+  form: thread classes 1A, 2A and 3A
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.agstech.net/fasteners-manufacturing-screws-bolt
+  evidence:
+  - quote: For Inch threaded fasteners external thread classes 1A, 2A and 3A as well as internal thread
+      classes of 1B, 2B and 3B are available.
+    approx_offset: 1488855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: agstech_net-conformity_attestations-0182
+  form: with UL and CE Certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://www.agstech.net/automation-robotic-systems-manufact
+    - https://www.agstech.net/electrical-electronic-components
+  evidence:
+  - quote: '- Motor Starter with UL and CE Certification NS2100111-1158052'
+    approx_offset: 1433519
+  - quote: Contactors with UL and CE Certification NC1100111-1042532​
+    approx_offset: 1447358
+  - quote: Contactors with UL and CE Certification NC2100111-1044422​
+    approx_offset: 1447418
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,786 @@
+subject: ableengineering.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+  sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+golden_set_version: 1
+anchored_on: search/expectations/ableengineering_com/conformity_attestations.yaml
+labels:
+- id: ableengineering_com-conformity_attestations-0001
+  form: A1LR190N
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 2540
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 4053
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 6729
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0002
+  form: APPROVED AIRBUS HELICOPTERS MAINTENANCE & REPAIR CENTER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: APPROVED AIRBUS HELICOPTERS MAINTENANCE & REPAIR CENTER
+    approx_offset: 1637
+  - quote: APPROVED AIRBUS HELICOPTERS MAINTENANCE & REPAIR CENTER
+    approx_offset: 27635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0003
+  form: APPROVED LEONARDO HELICOPTERS MAINTENANCE SUB-CONTRACTOR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: APPROVED LEONARDO HELICOPTERS MAINTENANCE SUB-CONTRACTOR
+    approx_offset: 1737
+  - quote: APPROVED LEONARDO HELICOPTERS MAINTENANCE SUB-CONTRACTOR
+    approx_offset: 27735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0004
+  form: ARSA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: ARSA MEMBER
+    approx_offset: 1795
+  - quote: ARSA MEMBER
+    approx_offset: 27793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0005
+  form: ARSA MEMBER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: ARSA MEMBER
+    approx_offset: 1795
+  - quote: ARSA MEMBER
+    approx_offset: 27793
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0006
+  form: AS9100
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 29
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: ISO9001/AS9100 / AS9110
+    approx_offset: 1620
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 2567
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 4080
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0007
+  form: AS9110
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 29
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: ISO9001/AS9100 / AS9110
+    approx_offset: 1629
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 2576
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 4089
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0008
+  form: AUTHORIZED BELL HELICOPTER SERVICE CENTER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: AUTHORIZED BELL HELICOPTER SERVICE CENTER
+    approx_offset: 1694
+  - quote: AUTHORIZED BELL HELICOPTER SERVICE CENTER
+    approx_offset: 27692
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0009
+  form: CAA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: CAA
+    approx_offset: 1478
+  - quote: CAA
+    approx_offset: 27476
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0010
+  form: CAAC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/landing-gear/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: CAAC MAINTENANCE ORGANIZATION
+    approx_offset: 1483
+  - quote: CAAC MAINTENANCE ORGANIZATION
+    approx_offset: 27481
+  - quote: Our Boeing 737 landing gear program is FAA, EASA and CAAC approved.
+    approx_offset: 41705
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0011
+  form: CAAC MAINTENANCE ORGANIZATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: CAAC MAINTENANCE ORGANIZATION
+    approx_offset: 1483
+  - quote: CAAC MAINTENANCE ORGANIZATION
+    approx_offset: 27481
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0012
+  form: CAAT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: CAAT
+    approx_offset: 1514
+  - quote: CAAT
+    approx_offset: 27512
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0013
+  form: California Transparency in Supply Chains Act
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: California Transparency in Supply Chains Act
+    approx_offset: 2116
+  - quote: California Transparency in Supply Chains Act
+    approx_offset: 3629
+  - quote: California Transparency in Supply Chains Act
+    approx_offset: 6305
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0014
+  form: DGCA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: DGCA
+    approx_offset: 1520
+  - quote: DGCA
+    approx_offset: 27518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0015
+  form: EASA 145.4010
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 2551
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 4064
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 6740
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0016
+  form: EASA PART 145
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: EASA PART 145
+    approx_offset: 1463
+  - quote: EASA PART 145
+    approx_offset: 27461
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0017
+  form: ECAA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: ECAA
+    approx_offset: 1526
+  - quote: ECAA
+    approx_offset: 27524
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0018
+  form: FAA PART 145
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: FAA PART 145
+    approx_offset: 1440
+  - quote: FAA PART 145
+    approx_offset: 27438
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0019
+  form: FAA PMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: FAA PMA
+    approx_offset: 1454
+  - quote: FAA PMA
+    approx_offset: 27452
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0020
+  form: Green Aviation Business
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.ableaerospace.com/press/
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+  evidence:
+  - quote: ABLE AEROSPACE CERTIFIED BY NATA AS A GREEN AVIATION BUSINESS
+    approx_offset: 39301
+  - quote: ABLE AEROSPACE CERTIFIED BY NATA AS A GREEN AVIATION BUSINESS
+    approx_offset: 82709
+  - quote: (NYSE:TXT) company, an industry leader in repair, overhaul, exchange and approved replacement
+      parts for fixed- and rotor-wing customers around the world, has certified as a Green Aviation Business
+      under the National Air Transportation Association (NATA), which encourages environmental sustainability
+    approx_offset: 82982
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0021
+  form: ISO 9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0022
+  form: ISO9001
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 29
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: ISO9001/AS9100 / AS9110
+    approx_offset: 1612
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 2585
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 4098
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0023
+  form: ISO9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/contact/
+    - https://www.ableaerospace.com/fixed-wing/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/landing-gear/
+  evidence:
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 2585
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 4098
+  - quote: A1LR190N - EASA 145.4010 - AS9100 - AS9110 - ISO9001:2015 Certified
+    approx_offset: 6774
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0024
+  form: JCAB
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: JCAB
+    approx_offset: 1532
+  - quote: JCAB
+    approx_offset: 27530
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0025
+  form: NADCAP
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/processes/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: NADCAP – NDT
+    approx_offset: 1538
+  - quote: NADCAP – SURFACE ENHANCEMENT
+    approx_offset: 1552
+  - quote: NADCAP – CHEMICAL PROCESSING
+    approx_offset: 1582
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0026
+  form: NADCAP – CHEMICAL PROCESSING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: NADCAP – CHEMICAL PROCESSING
+    approx_offset: 1582
+  - quote: NADCAP – CHEMICAL PROCESSING
+    approx_offset: 27580
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0027
+  form: NADCAP – NDT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: NADCAP – NDT
+    approx_offset: 1538
+  - quote: NADCAP – NDT
+    approx_offset: 27536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0028
+  form: NADCAP – SURFACE ENHANCEMENT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: NADCAP – SURFACE ENHANCEMENT
+    approx_offset: 1552
+  - quote: NADCAP – SURFACE ENHANCEMENT
+    approx_offset: 27550
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0029
+  form: NADCAP-approved for chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/processes/
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD
+      plating and several other processes.
+    approx_offset: 5240
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0030
+  form: NATA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.ableaerospace.com/press/
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+  evidence:
+  - quote: ABLE AEROSPACE CERTIFIED BY NATA AS A GREEN AVIATION BUSINESS
+    approx_offset: 39291
+  - quote: ABLE AEROSPACE CERTIFIED BY NATA AS A GREEN AVIATION BUSINESS
+    approx_offset: 82699
+  - quote: (NYSE:TXT) company, an industry leader in repair, overhaul, exchange and approved replacement
+      parts for fixed- and rotor-wing customers around the world, has certified as a Green Aviation Business
+      under the National Air Transportation Association (NATA), which encourages environmental sustainability
+    approx_offset: 83057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0031
+  form: NATA Sustainability Standard
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-certified-by-nata-as-a-green-aviation-business/
+  evidence:
+  - quote: The NATA Sustainability Standard is a self-certification process for aviation businesses to
+      pursue flexible, cost-effective options to lower their carbon footprint.
+    approx_offset: 83893
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0032
+  form: PMA
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 136
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/fixed-wing/fixed-wing-datasheets/
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Airbus
+    - https://www.ableaerospace.com/parts/?type_search=fixed%20wing&make_search=Boeing
+  evidence:
+  - quote: FAA PMA
+    approx_offset: 1458
+  - quote: PMA
+    approx_offset: 8026
+  - quote: PMA
+    approx_offset: 8214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0033
+  form: Part 145
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.ableaerospace.com/
+    - https://www.ableaerospace.com/why-able/
+  evidence:
+  - quote: FAA PART 145
+    approx_offset: 1444
+  - quote: EASA PART 145
+    approx_offset: 1468
+  - quote: FAA PART 145
+    approx_offset: 27442
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0034
+  form: SMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-earns-faa-acceptance-for-safety-management-system-in-aircraft-and-component-maintenance/
+  evidence:
+  - quote: (NYSE:TXT) company, announced today the company has received Federal Aviation Administration
+      (FAA) acceptance of the company’s new Safety Management System (SMS) implementation plan to support
+      aircraft maintenance and aircraft component maintenance.
+    approx_offset: 76795
+  - quote: Able Aerospace’s new SMS program includes a voluntary reporting tool that allows employees
+      to anonymously report aircraft and aircraft part quality risks or hazards directly to the company’s
+      SMS Committee.
+    approx_offset: 77768
+  - quote: Able Aerospace’s new SMS program includes a voluntary reporting tool that allows employees
+      to anonymously report aircraft and aircraft part quality risks or hazards directly to the company’s
+      SMS Committee.
+    approx_offset: 77938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0035
+  form: Safety Management System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.ableaerospace.com/press/
+    - https://www.ableaerospace.com/press/able-aerospace-earns-faa-acceptance-for-safety-management-system-in-aircraft-and-component-maintenance/
+  evidence:
+  - quote: ABLE AEROSPACE EARNS FAA ACCEPTANCE FOR SAFETY MANAGEMENT SYSTEM IN AIRCRAFT AND COMPONENT
+      MAINTENANCE
+    approx_offset: 38978
+  - quote: ABLE AEROSPACE EARNS FAA ACCEPTANCE FOR SAFETY MANAGEMENT SYSTEM IN AIRCRAFT AND COMPONENT
+      MAINTENANCE
+    approx_offset: 76498
+  - quote: (NYSE:TXT) company, announced today the company has received Federal Aviation Administration
+      (FAA) acceptance of the company’s new Safety Management System (SMS) implementation plan to support
+      aircraft maintenance and aircraft component maintenance.
+    approx_offset: 76769
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: ableengineering_com-conformity_attestations-0036
+  form: authorized Airbus Service Center
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.ableaerospace.com/press/able-aerospace-continues-support-for-airbus-helicopters-with-contract-renewal/
+  evidence:
+  - quote: Able has been an authorized Airbus Service Center for more than a decade providing dynamic
+      component repair and overhaul services for multiple Airbus Helicopters platforms including AS350,
+      AS365, SA366, H120, H130, H135, H155, BK117, H145 and BO105.
+    approx_offset: 85742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

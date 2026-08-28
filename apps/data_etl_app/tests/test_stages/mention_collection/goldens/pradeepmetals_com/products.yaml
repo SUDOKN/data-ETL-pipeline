@@ -1,0 +1,1656 @@
+subject: pradeepmetals.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+golden_set_version: 1
+anchored_on: search/expectations/pradeepmetals_com/products.yaml
+labels:
+- id: pradeepmetals_com-products-0001
+  form: Activated carbon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Activated carbon from coconut shells (2006-07): This process was developed for converting
+      agricultural waste into high-cost industrial material.'
+    approx_offset: 136554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0002
+  form: Activated carbon from coconut shells
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Activated carbon from coconut shells (2006-07): This process was developed for converting
+      agricultural waste into high-cost industrial material.'
+    approx_offset: 136554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0003
+  form: Actuator
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Actuator
+    approx_offset: 259504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0004
+  form: BALL VALVE MANUFACTURERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: Pradeep Metals > Ball Valve Manufacturers
+    approx_offset: 28504
+  - quote: BALL VALVE MANUFACTURERS
+    approx_offset: 28531
+  - quote: Pradeep Metals Limited is one of the leading ball valve manufacturers and exporter from India.
+    approx_offset: 30851
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0005
+  form: BUTTERFLY VALVES
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 37
+    pages:
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: 'BUTTERFLY VALVES: AN EXERCISE IN SUPERIORITY'
+    approx_offset: 85533
+  - quote: Butterfly valves control the flow of materials along a tube or a circular pipe.
+    approx_offset: 85578
+  - quote: Butterfly valves can usually control the ...
+    approx_offset: 85658
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0006
+  form: Body
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+  evidence:
+  - quote: 'Body: The butterfly valve is usually made to fit between two pipe flanges.'
+    approx_offset: 101870
+  - quote: You can either choose the lug design or the wafer design for the body.
+    approx_offset: 102010
+  - quote: It can be bonded, locked in or pressed to the body of the valve.
+    approx_offset: 102243
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0007
+  form: CLOSED DIE FORGINGS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+  evidence:
+  - quote: Pradeep Metals > Closed Die Forgings
+    approx_offset: 71594
+  - quote: CLOSED DIE FORGINGS
+    approx_offset: 71616
+  - quote: WHAT IS CLOSED DIE FORGINGS?
+    approx_offset: 71645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0008
+  form: Cast Trunnion Mounted Ball Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Cast Trunnion Mounted Ball Valves
+    approx_offset: 29878
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0009
+  form: Ceramic plates
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Sintering of Ceramic plates for solid oxide fuel cell electrode materials
+    approx_offset: 135779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0010
+  form: Ceramic plates for solid oxide fuel cell electrode materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Sintering of Ceramic plates for solid oxide fuel cell electrode materials
+    approx_offset: 135779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0011
+  form: Custom Flanges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: '2001 – Company expands its product verticals: Valve, General Engineering, Manifolds, Custom
+      Flanges'
+    approx_offset: 36116
+  - quote: '2001 – Company expands its product verticals: Valve, General Engineering, Manifolds, Custom
+      Flanges'
+    approx_offset: 117647
+  - quote: 2001 – Firm expands its product segments to include custom flanges, manifolds, general engineering,
+      and valves
+    approx_offset: 206952
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0012
+  form: Disc
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Disc
+    approx_offset: 259494
+  - quote: Modifications in the way the disc is attached to the stem
+    approx_offset: 259816
+  - quote: How the disc and stem assembly are mounted inside the body of the butterfly valves
+    approx_offset: 259853
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0013
+  form: Double Offset Butterfly Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Double Offset Butterfly Valves
+    approx_offset: 260288
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0014
+  form: FORGED STEEL CHECK VALVE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-check-valve/
+  evidence:
+  - quote: Pradeep Metals > Forged Steel Check Valve
+    approx_offset: 81887
+  - quote: FORGED STEEL CHECK VALVE
+    approx_offset: 81914
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0015
+  form: FORGED STEEL GLOBE VALVE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-globe-valve/
+  evidence:
+  - quote: Pradeep Metals > Forged Steel Globe Valve
+    approx_offset: 82938
+  - quote: FORGED STEEL GLOBE VALVE
+    approx_offset: 82965
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0016
+  form: FORGED STEEL VALVE MANUFACTURERS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - http://www.pradeepmetals.com/valves/
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+    - https://www.pradeepmetals.com/valves
+    - https://www.pradeepmetals.com/valves/
+  evidence:
+  - quote: Pradeep Metals > Forged Steel Valve Manufacturers
+    approx_offset: 13631
+  - quote: FORGED STEEL VALVE MANUFACTURERS
+    approx_offset: 13666
+  - quote: Pradeep Metals > Forged Steel Valve Manufacturers
+    approx_offset: 160598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0017
+  form: Flanged End Ball Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Flanged End Ball Valves
+    approx_offset: 29666
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0018
+  form: Floating Ball Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Floating Ball Valves
+    approx_offset: 29012
+  - quote: The valves of floating ball valves manufactured by Pradeep Metals are widely acclaimed as top
+      in design and best in functionality.
+    approx_offset: 29047
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0019
+  form: Forged Flanges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 122
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: Forged Flanges
+    approx_offset: 821
+  - quote: Forged Flanges
+    approx_offset: 1193
+  - quote: Forged Flanges
+    approx_offset: 2736
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0020
+  form: Forged Steel Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: The Battle Between Forged Steel Valves & Casting Steel Valves
+    approx_offset: 84188
+  - quote: Forged Steel Valves- Prominent trends in the Forging Industry
+    approx_offset: 84361
+  - quote: Pradeep Metals > Blog > Forged Steel Valves- Prominent trends in the Forging Industry
+    approx_offset: 194693
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0021
+  form: Fully Welded Ball Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Fully Welded Ball Valves
+    approx_offset: 29518
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0022
+  form: GEARS & AUTOMATIVE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/gears-automative/
+    - https://www.pradeepmetals.com/gears-automative/
+    - https://www.pradeepmetals.com/products/
+  evidence:
+  - quote: GEARS & AUTOMATIVE
+    approx_offset: 92669
+  - quote: Pradeep Metals > GEARS & AUTOMATIVE
+    approx_offset: 263409
+  - quote: GEARS & AUTOMATIVE
+    approx_offset: 263430
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0023
+  form: GENERAL ENGINEERING
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 143
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 526
+  - quote: General Engineering
+    approx_offset: 845
+  - quote: General Engineering
+    approx_offset: 1067
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0024
+  form: GENERAL ENGINEERING 1
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/general-engineering/
+    - https://www.pradeepmetals.com/general-engineering
+    - https://www.pradeepmetals.com/general-engineering/
+  evidence:
+  - quote: GENERAL ENGINEERING 1
+    approx_offset: 10328
+  - quote: GENERAL ENGINEERING 1
+    approx_offset: 48316
+  - quote: GENERAL ENGINEERING 1
+    approx_offset: 51575
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0025
+  form: Gum Ghatti/Karaya
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Decontamination of food additives (2024- ongoing): This is an exploratory project to reduce
+      microbial contamination of food additive “Gum Ghatti/Karaya”, which is a natural product obtained
+      from trees.'
+    approx_offset: 137413
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0026
+  form: Inflatable Seated Butterfly Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Inflatable Seated Butterfly Valves
+    approx_offset: 260253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0027
+  form: LOW-VOLUME HIGH-MIX CUSTOMISED PARTS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-vision-strengths
+    - https://www.pradeepmetals.com/our-vision-strengths/
+  evidence:
+  - quote: LOW-VOLUME HIGH-MIX CUSTOMISED PARTS
+    approx_offset: 11719
+  - quote: LOW-VOLUME HIGH-MIX CUSTOMISED PARTS
+    approx_offset: 55484
+  - quote: LOW-VOLUME HIGH-MIX CUSTOMISED PARTS
+    approx_offset: 112821
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0028
+  form: MANIFOLDS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 133
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: Manifolds
+    approx_offset: 866
+  - quote: Manifolds
+    approx_offset: 1235
+  - quote: Manifolds
+    approx_offset: 2778
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0029
+  form: STAINLESS STEEL FORGINGS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - http://www.pradeepmetals.com/stainless-steel-forgings/
+    - https://www.pradeepmetals.com/stainless-steel-forgings/
+  evidence:
+  - quote: Pradeep Metals > Stainless Steel Forgings
+    approx_offset: 94868
+  - quote: STAINLESS STEEL FORGINGS
+    approx_offset: 94895
+  - quote: Pradeep Metals > Stainless Steel Forgings
+    approx_offset: 180398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0030
+  form: SUPER DUPLEX FORGINGS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/super-duplex-forgings/
+  evidence:
+  - quote: Pradeep Metals > Super Duplex Forgings
+    approx_offset: 56611
+  - quote: SUPER DUPLEX FORGINGS
+    approx_offset: 56635
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0031
+  form: Screwed End Ball Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Screwed End Ball Valves
+    approx_offset: 29296
+  - quote: The company has achieved an unbeatable reputation in designing and manufacturing screwed end
+      ball valves.
+    approx_offset: 29401
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0032
+  form: Seam
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Seam
+    approx_offset: 259499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0033
+  form: Seat
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: 'Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve.'
+    approx_offset: 102101
+  - quote: 'Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve.'
+    approx_offset: 102170
+  - quote: Globe Valves– Offering features such as in-suite seat arrangement, guided disk arrangement,
+      non-rotating stem, etc., globe valves require less hand wheel effort and provide better sealing.
+    approx_offset: 253599
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0034
+  form: Smart Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: Smart Valves– Operated through intelligent control systems that have networking and processing
+      capability.
+    approx_offset: 253351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0035
+  form: Stem
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: It is available in different sizes and comes with leak-tight stem sealing.
+    approx_offset: 29225
+  - quote: 'Stem: The stem of the butterfly valve can be a one-piece design or two-piece design.'
+    approx_offset: 102016
+  - quote: 'Stem: The stem of the butterfly valve can be a one-piece design or two-piece design.'
+    approx_offset: 102026
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0036
+  form: Transparent Ceramics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of Transparent Ceramics (2008-09): – This project was conducted for defense.'
+    approx_offset: 136712
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0037
+  form: Triple Offset Butterfly Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+  evidence:
+  - quote: Triple Offset Butterfly Valves
+    approx_offset: 260319
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0038
+  form: Valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 242
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: Valves
+    approx_offset: 837
+  - quote: Valves
+    approx_offset: 1208
+  - quote: Valves
+    approx_offset: 2751
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0039
+  form: automatics and gears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: Pradeep Metals manufactures forges, flanges, material grades, manifolds, automatics and gears,
+      and valves.
+    approx_offset: 205754
+  - quote: Pradeep Metals is one of the best metal forging companies in India and it manufactures flanges,
+      forges, manifolds, material grades, valves, and automatics and gears.
+    approx_offset: 231921
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0040
+  form: ball valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/butterfly-valves-exercise-superiority/
+    - https://www.pradeepmetals.com/butterfly-valves/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: The ball valves manufactured by us come with a fine finish and resist corrosion.
+    approx_offset: 28561
+  - quote: Our super-efficient quality assurance team makes sure that the ball valves are accurate in
+      its dimensions and are perfect for the required function.
+    approx_offset: 28701
+  - quote: We provide a wide range of ball valves suited for diverse industries like oil and petrochemicals,
+      mining, and more.
+    approx_offset: 28814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0041
+  form: brake liners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136347
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0042
+  form: closed-die forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 455
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 193030
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0043
+  form: commodity flanges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: Export of commodity flanges commenced
+    approx_offset: 36586
+  - quote: Export of commodity flanges commenced
+    approx_offset: 118117
+  - quote: The company commences export of commodity flanges
+    approx_offset: 206564
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0044
+  form: concrete paver blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0045
+  form: concrete pre-cast paver blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0046
+  form: copper-based brake liners
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: 'Sintering of metallic and ceramic composites (2004-07): Sintering process was attempted on
+      a copper-based brake liners (used in aviation), using microwave technology under 8% H2 + 92% N2
+      atmosphere between 920-980ºC for 3 hours.'
+    approx_offset: 136334
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0047
+  form: design, manufacture and commissioning of furnaces
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+    - https://www.pradeepmetals.com/our-team
+    - https://www.pradeepmetals.com/our-team/
+  evidence:
+  - quote: He acquired advanced training in heat treatment techniques, design, manufacture and commissioning
+      of furnaces at Degussa International, West Germany.
+    approx_offset: 22762
+  - quote: He acquired advanced training in heat treatment techniques, design, manufacture and commissioning
+      of furnaces at Degussa International, West Germany.
+    approx_offset: 129553
+  - quote: He acquired advanced training in heat treatment techniques, design, manufacture and commissioning
+      of furnaces at Degussa International, West Germany.
+    approx_offset: 153116
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0048
+  form: finished machined components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255430
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0049
+  form: flanged end
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Flanged End Ball Valves
+    approx_offset: 29666
+  - quote: No matter if you need the valve with the flanged end or butt-weld end, we can manufacture it
+      at the best rates.
+    approx_offset: 29731
+  - quote: We manufacture all types of mounted ball valves including butt-weld end, flanged end, ring-type
+      joint etc.
+    approx_offset: 30086
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0050
+  form: flanges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 131
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/aluminum-forging/
+    - http://www.pradeepmetals.com/beta/documents/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/forged-flanges/
+  evidence:
+  - quote: Forged Flanges
+    approx_offset: 828
+  - quote: Forged Flanges
+    approx_offset: 1200
+  - quote: Forged Flanges
+    approx_offset: 2743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0051
+  form: forged steel globe valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: With enhanced high sealing performance and less hand wheel effort in the manufacturing process,
+      Pradeep Metals uses state-of-the-art machinery with sophisticated tool-room equipment to manufacture
+      its forged steel globe valves.
+    approx_offset: 197374
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0052
+  form: forges
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/closed-die-forgings/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: The impact or the external force is applied from the above, which forges the material into
+      required shape.
+    approx_offset: 73289
+  - quote: The impact or the external force is applied from the above, which forges the material into
+      required shape.
+    approx_offset: 177663
+  - quote: Pradeep Metals manufactures forges, flanges, material grades, manifolds, automatics and gears,
+      and valves.
+    approx_offset: 205709
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0053
+  form: forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 52
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/closed-die-forgings/
+    - http://www.pradeepmetals.com/stainless-steel-forgings/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/about-us
+  evidence:
+  - quote: With a history of quality excellence and experienced technocrats, Pradeep Metals Limited manufactures
+      closed-die forgings for the Valve, Instrumentation, Petrochemical, and General Engineering industries
+      around the world.
+    approx_offset: 466
+  - quote: To become a strategic & preferred supplier of quality forgings for all our customers.
+    approx_offset: 11450
+  - quote: Goyal built a business to supply high quality steel forgings around the world.
+    approx_offset: 12327
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0054
+  form: gears
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - http://www.pradeepmetals.com/gears-automative/
+    - https://www.pradeepmetals.com/gears-automative/
+    - https://www.pradeepmetals.com/manifolds
+    - https://www.pradeepmetals.com/manifolds/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: GEARS & AUTOMATIVE
+    approx_offset: 92669
+  - quote: GEARS & MANIFOLDS 1
+    approx_offset: 120736
+  - quote: GEARS & MANIFOLDS 2
+    approx_offset: 120756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0055
+  form: gears and automatics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: The products by Pradeep Metals are- forged flanges, valves, gears and automatics, manifolds,
+      and material grades.
+    approx_offset: 244758
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0056
+  form: globe valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: The Growing Demand of Globe Valves
+    approx_offset: 196799
+  - quote: For overcoming the problems of the conventional globe, high-performance globe valves have been
+      gaining a lot of traction across many industries.
+    approx_offset: 196885
+  - quote: 'High-performance globe valves provide the following advantages:'
+    approx_offset: 197013
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0057
+  form: grinding wheels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 96256
+  - quote: 08 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 98315
+  - quote: 13 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 99342
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0058
+  form: high-performance globe valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: For overcoming the problems of the conventional globe, high-performance globe valves have been
+      gaining a lot of traction across many industries.
+    approx_offset: 196868
+  - quote: 'High-performance globe valves provide the following advantages:'
+    approx_offset: 196996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0059
+  form: high-strength steel forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: Pradeep Metals makes high-strength steel forgings that are utilized across the globe.
+    approx_offset: 205479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0060
+  form: industrial gases
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/corporate-governance
+    - https://www.pradeepmetals.com/corporate-governance/
+    - https://www.pradeepmetals.com/our-team
+    - https://www.pradeepmetals.com/our-team/
+  evidence:
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 22970
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 129761
+  - quote: During his three years at Air Products and Chemicals Inc., USA, he gained wide exposure to
+      international marketing of industrial gases.
+    approx_offset: 153324
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0061
+  form: liquid iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 16 A novel process of producing liquid iron using microwaves
+    approx_offset: 100071
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0062
+  form: low-volume high-mixed parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: It offers quick tool development and low-volume high-mixed parts based on the client’s specifications.
+    approx_offset: 245710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0063
+  form: machine parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/forging
+    - https://www.pradeepmetals.com/forging/
+    - https://www.pradeepmetals.com/pinnacle-metal-forging-companies-india/
+  evidence:
+  - quote: Forging is one of the most important manufacturing processes used on the industrial scale and
+      the process has been used extensively for manufacturing the machine parts since the times of Industrial
+      Revolution.
+    approx_offset: 4514
+  - quote: The final products obtained have superior grain flow, high strength and durability than the
+      machined or casted machine parts.
+    approx_offset: 6239
+  - quote: Forging is one of the most important manufacturing processes used on the industrial scale and
+      the process has been used extensively for manufacturing the machine parts since the times of Industrial
+      Revolution.
+    approx_offset: 182337
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0064
+  form: machined components
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: With the market capitalization of Pradeep Metals growing rapidly year by year, we aim to adapt
+      to the rising demand for machined components, and have taken up the initiative to set up a new machine
+      shop within the existing plant by importing some of the high-end machinery from our step-down subsidia
+    approx_offset: 196364
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0065
+  form: machined forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: In the upcoming years, Pradeep Metals will particularly focus on the development of machined
+      forgings for the Oil and Gas industry for increased turnover and ultimately, better profitability.
+    approx_offset: 197805
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0066
+  form: metal parts
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/benefits-of-forging/
+    - https://www.pradeepmetals.com/closed-die-forging-ultimate-manufacturing-technique/
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: Thanks to this, closed die forging can be used for the production of any metal parts which
+      are small or medium-sized, according to the user’s needs.
+    approx_offset: 236375
+  - quote: Through this process, the metal is rid of gas pockets and internal voids which make the metal
+      parts weak.
+    approx_offset: 239660
+  - quote: No other metalworking processes can ensure the superior strength of forged metal parts.
+    approx_offset: 248427
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0067
+  form: mounted ball valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Cast Trunnion Mounted Ball Valves
+    approx_offset: 29892
+  - quote: We manufacture all types of mounted ball valves including butt-weld end, flanged end, ring-type
+      joint etc.
+    approx_offset: 30041
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0068
+  form: multiple I.D./O.D. hollows
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: These range of special shapes include double and single hubs that come close to closed die
+      configurations, multiple I.D./O.D. hollows
+    approx_offset: 241149
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0069
+  form: paver blocks
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136921
+  - quote: Rapid curing of concrete paver blocks (2011-13):  Curing of concrete pre-cast paver blocks
+      was achieved in 3 days, as opposed to 21 days by conventional curing.
+    approx_offset: 136974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0070
+  form: producing liquid iron using microwaves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: 16 A novel process of producing liquid iron using microwaves
+    approx_offset: 100061
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0071
+  form: resin bonded grinding wheels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+    - https://www.pradeepmetals.com/imrc/projects/
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 96243
+  - quote: 08 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 98302
+  - quote: 13 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 99329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0072
+  form: shafts, simple bars and ring configurations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: In the case of forging metals, the shape design available at your disposal is similarly versatile
+      and can range from shafts, simple bars and ring configurations besides special shapes.
+    approx_offset: 240974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0073
+  form: single hubs
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/the-impact-of-forging-companies-in-india/
+  evidence:
+  - quote: These range of special shapes include double and single hubs that come close to closed die
+      configurations, multiple I.D./O.D.
+    approx_offset: 241091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0074
+  form: sponge iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/patents/
+  evidence:
+  - quote: Microwave assisted reduction of iron ore fines to manufacture sponge iron
+    approx_offset: 96150
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0075
+  form: steel forgings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - http://www.pradeepmetals.com/stainless-steel-forgings/
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+  evidence:
+  - quote: Goyal built a business to supply high quality steel forgings around the world.
+    approx_offset: 12321
+  - quote: Goyal built a business to supply high quality steel forgings around the world.
+    approx_offset: 35238
+  - quote: Pradeep Metals > Stainless Steel Forgings
+    approx_offset: 94878
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0076
+  form: steel valves
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 30
+    pages:
+    - https://www.pradeepmetals.com/battle-forged-steel-valves-casting-steel-valves/
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/closed-die-forging-tops-open-die-forging/
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+    - https://www.pradeepmetals.com/forged-steel-valves-prominent-trends-forging-industry/
+  evidence:
+  - quote: The Battle Between Forged Steel Valves & Casting Steel Valves
+    approx_offset: 84195
+  - quote: The Battle Between Forged Steel Valves & Casting Steel Valves
+    approx_offset: 84218
+  - quote: Steel valves play a prominent role in almost all industries.
+    approx_offset: 84231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0077
+  form: sub-assemblies
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/evolving-changing-landscape-ball-valve-industry/
+  evidence:
+  - quote: With India’s total GDP size expected to exceed over $3 trillion in 2019, Pradeep Metals continues
+      to enhance its machining capacity and capabilities by adding CNC Turning Centers, Vertical Machining
+      Centers (VMC) and other equipment to address the rising demand of finished machined components and
+      su
+    approx_offset: 255463
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-products-0078
+  form: welded ball valve
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/ball-valve-manufacturers/
+  evidence:
+  - quote: Let your welded ball valve requirement be of any size, we are here to manufacture it for you
+      within the desired timelines.
+    approx_offset: 29552
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

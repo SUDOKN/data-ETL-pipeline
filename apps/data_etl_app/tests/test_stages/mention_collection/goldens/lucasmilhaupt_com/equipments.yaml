@@ -1,0 +1,453 @@
+subject: lucasmilhaupt.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+  sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+golden_set_version: 1
+anchored_on: search/expectations/lucasmilhaupt_com/equipments.yaml
+labels:
+- id: lucasmilhaupt_com-equipments-0001
+  form: HVAC/R brazing equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+  evidence:
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment
+      on the market.
+    approx_offset: 184612
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment
+      on the market.
+    approx_offset: 202853
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment
+      on the market.
+    approx_offset: 208436
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0002
+  form: applicator gun
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: But as production quantities increase, it may be more effective to apply the flux by dipping
+      or dispensing a pre-measured deposit of high-viscosity dispensable flux from an applicator gun.
+    approx_offset: 70277
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0003
+  form: automated machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: There are fluxes formulated for practically every need; for example - fluxes for brazing at
+      very high temperatures (in the 2000°F/1093°C area), fluxes for metals with refractory oxides, fluxes
+      for long heating cycles, and fluxes for dispensing by automated machines.
+    approx_offset: 71146
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0004
+  form: brazing equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Products/AL-718.htm
+    - https://www.lucasmilhaupt.com/EN/Products/AL-822.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-200-Series.htm
+  evidence:
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment
+      on the market.
+    approx_offset: 184619
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment
+      on the market.
+    approx_offset: 202860
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment
+      on the market.
+    approx_offset: 208443
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0005
+  form: brazing furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: a gaseous mixture contained in an enclosed space, usually a brazing furnace).
+    approx_offset: 73949
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0006
+  form: furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-300-Series.htm
+  evidence:
+  - quote: Whether it’s furnace, induction, or vacuum brazing, our technical team will train your operators
+      in best practices to achieve dependable, long-lasting joints.
+    approx_offset: 41887
+  - quote: a gaseous mixture contained in an enclosed space, usually a brazing furnace).
+    approx_offset: 73957
+  - quote: When fixturing for furnace brazing, hold the mass of the fixture to a minimum.
+    approx_offset: 78890
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0007
+  form: furnace brazing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-400-Series.htm
+  evidence:
+  - quote: When fixturing for furnace brazing, hold the mass of the fixture to a minimum.
+    approx_offset: 78890
+  - quote: However, if you need assistance with furnace brazing, please see our furnace atmosphere blog.
+    approx_offset: 80319
+  - quote: These binders are best suited for high temperature furnace brazing application in exothermic,
+      dissociated ammonia, or vacuum atmosphere.
+    approx_offset: 209542
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0008
+  form: hand held torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: The heating method most commonly used in brazing a single assembly is the hand held torch,
+      therefore most of this guide will focus on manual brazing practices and principles.
+    approx_offset: 80181
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0009
+  form: hand-held torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: For the sake of simplicity, we'll discuss these six brazing process steps mainly in terms of
+      "manual brazing," that is, brazing with hand-held torch and hand-fed filler metal.
+    approx_offset: 55394
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0010
+  form: heating station
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Metal-Joining-Brazing-vs.-Welding
+  evidence:
+  - quote: It's possible to automate this tracing operation, moving the joint line, for example, past
+      a heating station and feeding filler wire automatically from big spools.
+    approx_offset: 164331
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0011
+  form: high precision equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Our craftsmen produce simple, compound or progressive dies, utilizing high precision equipment
+      to manufacture washers, discs, perforated strip and irregular configurations.
+    approx_offset: 153600
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0012
+  form: high speed machines
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Services/Capabilities
+  evidence:
+  - quote: Manufactured by high speed machines, rings maintain a true radius and may be partial turn,
+      full turn or multiple turn.
+    approx_offset: 154499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0013
+  form: machine tool
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/SIL-FOS
+  evidence:
+  - quote: A broken or damaged metal shaft, bearing or gear could put a vitally-needed machine tool out
+      of production.
+    approx_offset: 127143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0014
+  form: oxy-acetylene torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Oxy-acetylene Torch Safety Equipment
+    approx_offset: 81605
+  - quote: Oxy-acetylene Torch Safe Operation
+    approx_offset: 83667
+  - quote: Heating can often be accomplished in seconds with an oxy-acetylene torch.
+    approx_offset: 103257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0015
+  form: oxy-acetylene torches
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: 'When it comes to safely brazing with oxy-acetylene torches, let''s look at two important aspects:
+      safety equipment, plus procedures for safe operation.'
+    approx_offset: 81315
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0016
+  form: pilot equipment
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/Electrical.htm
+    - https://www.lucasmilhaupt.com/Industries/Electrical
+  evidence:
+  - quote: State-of-the-art analytical labs and pilot equipment accelerate alloy development, joint design
+      validation, and scale-up, so customers get to market faster with confidence built in.
+    approx_offset: 45460
+  - quote: State-of-the-art analytical labs and pilot equipment accelerate alloy development, joint design
+      validation, and scale-up, so customers get to market faster with confidence built in.
+    approx_offset: 251916
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0017
+  form: production line
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.lucasmilhaupt.com/EN/Industries/HVACR.htm
+    - https://www.lucasmilhaupt.com/Industries/HVACR
+  evidence:
+  - quote: Trust our team of brazing experts to help you improve robust processes on your production line.
+    approx_offset: 10047
+  - quote: Trust our team of brazing experts to help you improve robust processes on your production line.
+    approx_offset: 218393
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0018
+  form: soak bath
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: When using a soak bath of any kind, change the solution periodically to avoid saturating the
+      cleaning solution.
+    approx_offset: 91321
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0019
+  form: soak tank
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: Use hot water with agitation in a soak tank to remove excess flux immediately following the
+      braze operation, and then dry the assembly.
+    approx_offset: 91119
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0020
+  form: torch
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 26
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Why-Brazing
+    - https://www.lucasmilhaupt.com/EN/Industries/Oil-and-Gas.htm
+    - https://www.lucasmilhaupt.com/EN/Products/HANDY-FLO-100-Series.htm
+  evidence:
+  - quote: What is the best safety protection for torch brazing?
+    approx_offset: 13013
+  - quote: For the sake of simplicity, we'll discuss these six brazing process steps mainly in terms of
+      "manual brazing," that is, brazing with hand-held torch and hand-fed filler metal.
+    approx_offset: 55404
+  - quote: 'There are four main types of brazing heating methods: torch or manual brazing, induction brazing,
+      resistance brazing, and vacuum brazing.'
+    approx_offset: 80023
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0021
+  form: ultrasonic cleaning tank
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/Brazing-Academy/Brazing-Fundamentals
+  evidence:
+  - quote: You can use more elaborate methods of removing flux as well—an ultrasonic cleaning tank to
+      speed the action of the hot water, or live steam.
+    approx_offset: 91975
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: lucasmilhaupt_com-equipments-0022
+  form: vacuum furnace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.lucasmilhaupt.com/About/NewsEvents/Events-Detail?DataID=9684
+  evidence:
+  - quote: An overview of the different heating methods and appropriate filler metals used in brazing
+      such as torch, induction, resistance, vacuum furnace, and more
+    approx_offset: 193757
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

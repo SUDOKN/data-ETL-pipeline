@@ -1,0 +1,1985 @@
+subject: steelcraft.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+golden_set_version: 1
+anchored_on: search/expectations/steelcraft_com/products.yaml
+labels:
+- id: steelcraft_com-products-0001
+  form: 94/95 Recessed Exit
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: Includes factory-installed Von Duprin 94/95 Recessed Exit to reduce customer costs and improve
+      speed of installation at the job site
+    approx_offset: 106210
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0002
+  form: A14 Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+  evidence:
+  - quote: A14 Series Entrance Doors
+    approx_offset: 7398
+  - quote: The A14 Series is an ideal choice for high-use exterior entrances where large full glass lights
+      are required.
+    approx_offset: 7436
+  - quote: A14 SERIES DOORS
+    approx_offset: 54572
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0003
+  form: A14 Series Entrance Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+  evidence:
+  - quote: A14 Series Entrance Doors
+    approx_offset: 7398
+  - quote: A14 Series entrance doors are designed to meet the architectural requirements for exterior
+      entrance applications, for 14 gauge extra heavy duty.
+    approx_offset: 54593
+  - quote: A14 Series Entrance Doors
+    approx_offset: 170377
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0004
+  form: B Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: B SERIES FLUSH DOORS
+    approx_offset: 50264
+  - quote: B Series stiffened core doors add internal steel stiffeners, extending the full width and height
+      of the door.
+    approx_offset: 50286
+  - quote: B Series doors have a higher than normal resistance to impact damage.
+    approx_offset: 50678
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0005
+  form: B Series Flush Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: B SERIES FLUSH DOORS
+    approx_offset: 50264
+  - quote: B Series Flush Doors
+    approx_offset: 168183
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0006
+  form: B Series stiffened core doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: B Series stiffened core doors add internal steel stiffeners, extending the full width and height
+      of the door.
+    approx_offset: 50286
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0007
+  form: C & CK Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+  evidence:
+  - quote: C & CK Series Casing-Ready Frames
+    approx_offset: 99458
+  - quote: C & CK SERIES CASING-READY FRAMES
+    approx_offset: 117487
+  - quote: For more complete information on C & CK Series frames, download the Steelcraft Technical Data
+      Manual.
+    approx_offset: 120694
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0008
+  form: C Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+  evidence:
+  - quote: The C Series frames are typically welded and installed as part of the wall framing sequence
+      using wood or steel stud anchors, building the wall up to the frame.
+    approx_offset: 117888
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0009
+  form: C and CK Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+  evidence:
+  - quote: The C and CK Series drywall frames are designed for light to heavy duty applications in both
+      commercial and institutional buildings.
+    approx_offset: 99505
+  - quote: C and CK Series drywall frames are designed for light to maximum duty applications in both
+      commercial and institutional buildings.
+    approx_offset: 117522
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0010
+  form: CE Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+  evidence:
+  - quote: It is also available in CE Series panel doors, L Series flush doors, T Series temperature rise
+      doors, and H Series hurricane doors.
+    approx_offset: 127540
+  - quote: CE Series (18- and 16-gauge)
+    approx_offset: 128371
+  - quote: CE SERIES EMBOSSED PANEL DOORS
+    approx_offset: 188224
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0011
+  form: CE Series Embossed Panel Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+  evidence:
+  - quote: CE SERIES EMBOSSED PANEL DOORS
+    approx_offset: 188224
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0012
+  form: CK Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+  evidence:
+  - quote: C & CK Series Casing-Ready Frames
+    approx_offset: 99462
+  - quote: The C and CK Series drywall frames are designed for light to heavy duty applications in both
+      commercial and institutional buildings.
+    approx_offset: 99511
+  - quote: C & CK SERIES CASING-READY FRAMES
+    approx_offset: 117491
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0013
+  form: DE Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: DE Series Double-Egress Frames
+    approx_offset: 100837
+  - quote: The DE Series meets requirements for heavy- to extra heavy-duty applications in commercial
+      and industrial buildings.
+    approx_offset: 100881
+  - quote: DE SERIES DOUBLE-EGRESS FRAMES
+    approx_offset: 133257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0014
+  form: DE Series Double-Egress Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+  evidence:
+  - quote: DE Series Double-Egress Frames
+    approx_offset: 100837
+  - quote: DE SERIES DOUBLE-EGRESS FRAMES
+    approx_offset: 133257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0015
+  form: DW & K Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+  evidence:
+  - quote: DW & K SERIES DRYWALL FRAMES
+    approx_offset: 46491
+  - quote: For more complete information on DW & K Series Frames, download the Steelcraft Technical Data
+      Manual.
+    approx_offset: 49124
+  - quote: 'DW & K Series (Pages 45-52): Includes Anchors, Hardware Preps, Lights, Fire Ratings'
+    approx_offset: 49194
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0016
+  form: DW Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/mu-series-multiuse-flush-frames.html
+  evidence:
+  - quote: The DW Series Drywall frames are designed for light to maximum duty applications in both commercial
+      and institutional buildings.
+    approx_offset: 46525
+  - quote: Standard jamb compression anchors and a unique tab/lock corner design for knock-down (KD) assembly assure
+      that the DW Series and K Series drywall frames install in minutes on finished drywall construction.
+    approx_offset: 46765
+  - quote: 'DW Series: adjustable base anchors allow for attachment directly to the wall sill runner and
+      facilitate installation adjustment when the floor is not level'
+    approx_offset: 47398
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0017
+  form: DW Series Drywall frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+  evidence:
+  - quote: The DW Series Drywall frames are designed for light to maximum duty applications in both commercial
+      and institutional buildings.
+    approx_offset: 46525
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0018
+  form: Dezigner Glass Trim
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/b-series-steel-stiffened-doors.html
+  evidence:
+  - quote: Recessed Dezigner Glass Trim creates clean edge, flush with the door surface
+    approx_offset: 51828
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0019
+  form: Dezigner™ Glass Trim
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/a14-series-commercial-entry-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ce-series-embossed-panel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+  evidence:
+  - quote: Recessed Dezigner™ Glass Trim creates clean edge, flush with the door surface
+    approx_offset: 17942
+  - quote: Recessed Dezigner™ Glass Trim creates clean edge, flush with the door surface
+    approx_offset: 22833
+  - quote: Recessed Dezigner™ Glass Trim creates clean edge, flush with the door surface
+    approx_offset: 43960
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0020
+  form: F Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/fn-series-three-sided-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/mu-series-multiuse-flush-frames.html
+  evidence:
+  - quote: F Series Three-Sided Flush Frames
+    approx_offset: 100510
+  - quote: 'F Series: adjustable base anchors allow for installation adjustment when floor is not level'
+    approx_offset: 103002
+  - quote: Similar to F Series but boasts a narrow 1" face to minimize the appearance of frame for a more
+      slender, aesthetic face dimension in architectural openings.
+    approx_offset: 103937
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0021
+  form: F Series Masonry Flush Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0022
+  form: F Series Three-Sided Flush Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+  evidence:
+  - quote: F Series Three-Sided Flush Frames
+    approx_offset: 100510
+  - quote: F SERIES THREE-SIDED FLUSH FRAMES
+    approx_offset: 209545
+  - quote: The F Series three-sided flush frames meet requirements for light- to maximum-duty applications
+      for interior and exterior locations in commercial and industrial buildings.
+    approx_offset: 209584
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0023
+  form: FE Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/de-series-double-egress-frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: FE Series Double-Egress Frames
+    approx_offset: 100679
+  - quote: The FE series meets requirements for heavy- to extra heavy-duty applications in commercial
+      and industrial buildings.
+    approx_offset: 100723
+  - quote: The DE Series double egress frames meet all the design parameters of conventional FE Series
+      double egress frames and is specified when cross corridor openings have the additional requirements
+      of maximized clear opening width.
+    approx_offset: 133371
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0024
+  form: FE Series Double-Egress Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fe-series-double-egress-frames.html
+  evidence:
+  - quote: FE Series Double-Egress Frames
+    approx_offset: 100679
+  - quote: FE SERIES DOUBLE-EGRESS FRAMES
+    approx_offset: 177574
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0025
+  form: FN Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fn-series-three-sided-flush-frames.html
+  evidence:
+  - quote: FN Series Three-Sided Flush Frames
+    approx_offset: 100346
+  - quote: The FN Series frames meet requirements for light- to maximum-duty applications in commercial
+      and industrial buildings.
+    approx_offset: 100394
+  - quote: The F and FN Series frames meet requirements for light- to maximum-duty applications in commercial
+      and industrial buildings.
+    approx_offset: 100563
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0026
+  form: FN Series Three-Sided Flush Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fn-series-three-sided-flush-frames.html
+  evidence:
+  - quote: FN Series Three-Sided Flush Frames
+    approx_offset: 100346
+  - quote: FN SERIES THREE-SIDED FLUSH FRAMES
+    approx_offset: 101929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0027
+  form: FP Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: FP SERIES TORNADO SAFE FRAMES
+    approx_offset: 33889
+  - quote: For more complete information on FP Series Frames, download the Steelcraft Technical Data Manual.
+    approx_offset: 36336
+  - quote: 'FP Series: Includes Anchors, Hardware Preps, Lights, Fire Ratings'
+    approx_offset: 36402
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0028
+  form: FP Series Tornado Safe Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: FP SERIES TORNADO SAFE FRAMES
+    approx_offset: 33889
+  - quote: FP Series Tornado Safe Frames
+    approx_offset: 100128
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0029
+  form: FP14 Paladin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fp-series-tornado-safe-frames.html
+  evidence:
+  - quote: 'The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado
+      resistance to extreme effects of 250 mph winds for impact and wind load pressure, labeled by Intertek
+      signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361 (2021), as required '
+    approx_offset: 33924
+  - quote: The FP14 Paladin™ Series is designed to meet requirements of ICC500-2014 code, FEMA 361⁄320
+      guidelines, and ANSI compliance to protect against the extreme effects of tornadoes.
+    approx_offset: 100171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0030
+  form: FS Flush Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: FS Flush Series
+    approx_offset: 221114
+  - quote: Installed into existing masonry with EMA anchors, or into new masonry or stud walls as part
+      of the wall framing sequence, FS Flush Series may be specified and supplied as KD (knock-down) for
+      field assembly prior to installation or welded for installation as a complete unit.
+    approx_offset: 221253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0031
+  form: FS Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: A hybrid of FS and KS Series frames, MS Series is typically used in stud walls as part of the
+      wall framing sequence and can be supplied as KD (knock-down) or welded similar to FS Series flush
+      frames, but provides backbend returns similar to KS Series drywall frames so that drywall can more
+      easily sl
+    approx_offset: 221996
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0032
+  form: FS, KS & MS Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: FS, KS & MS SERIES FRAMES
+    approx_offset: 219907
+  - quote: The FS, KS & MS Series three-sided stainless steel frames are engineered to meet the architectural
+      requirements for stainless steel doors and frames in building applications requiring exceptional
+      sterile, corrosion resistance and design appearance.
+    approx_offset: 219938
+  - quote: For more complete information on FS, KS & MS Series Frames, download the Steelcraft Technical
+      Data Manual.
+    approx_offset: 223155
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0033
+  form: FT Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+    - https://www.steelcraft.com/en/resources.html
+    - https://www.steelcraft.com/en/resources/Literature.html
+  evidence:
+  - quote: FT SERIES THERMAL BREAK MASONRY FRAMES
+    approx_offset: 27576
+  - quote: FT Series 3-sided frames and elevations are designed to meet requirements for light to maximum
+      duty applications in both commercial and institutional buildings.
+    approx_offset: 27616
+  - quote: FT Series frames are to be installed as part of the wall framing sequence.
+    approx_offset: 27968
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0034
+  form: FT Series Thermal Break Masonry Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+  evidence:
+  - quote: FT SERIES THERMAL BREAK MASONRY FRAMES
+    approx_offset: 27576
+  - quote: FT Series Thermal Break Masonry Frames
+    approx_offset: 99814
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0035
+  form: FT frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/ft-series-thermal-break-masonry-frames.html
+  evidence:
+  - quote: FT frames provide 95% better resistance to thermal conductivity over non-thermal break frames
+    approx_offset: 28487
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0036
+  form: Falcon SZ
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/sz-series-falcon-flush-doors.html
+    - https://www.steelcraft.com/en/resources.html
+    - https://www.steelcraft.com/en/resources/Literature.html
+  evidence:
+  - quote: Falcon SZ Series
+    approx_offset: 40517
+  - quote: Falcon SZ Data Sheet
+    approx_offset: 115468
+  - quote: Falcon SZ Series
+    approx_offset: 207998
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0037
+  form: FireLite
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications.html
+    - https://www.steelcraft.com/en/products/applications/fire-rated-steel-doors-and-frames.html
+  evidence:
+  - quote: The following link will take you to Technical Glass Product's FireLite® fire-rated glass technical
+      data specifications, which list all of the maximum size limitations along with fire ratings.
+    approx_offset: 110715
+  - quote: The following link will take you to Technical Glass Product's FireLite® fire-rated glass technical
+      data specifications, which list all of the maximum size limitations along with fire ratings.
+    approx_offset: 130860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0038
+  form: FireLite®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/applications.html
+    - https://www.steelcraft.com/en/products/applications/fire-rated-steel-doors-and-frames.html
+  evidence:
+  - quote: The following link will take you to Technical Glass Product's FireLite® fire-rated glass technical
+      data specifications, which list all of the maximum size limitations along with fire ratings.
+    approx_offset: 110715
+  - quote: The following link will take you to Technical Glass Product's FireLite® fire-rated glass technical
+      data specifications, which list all of the maximum size limitations along with fire ratings.
+    approx_offset: 130860
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0039
+  form: Frame Elevations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: FRAME ELEVATIONS
+    approx_offset: 184598
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0040
+  form: Frame Hospital Stops
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: Frame Hospital Stops in various standard heights and angles allowing the door stop to terminate
+      above the floor line where cleanliness is a requirement.
+    approx_offset: 195514
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0041
+  form: Frame Lead-lining clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: Frame Lead-lining clips for easy integration of lead where radiation transmission is a concern.
+    approx_offset: 195667
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0042
+  form: GRAINTECH
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 27
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+    - https://www.steelcraft.com/en/resources.html
+    - https://www.steelcraft.com/en/resources/Literature.html
+  evidence:
+  - quote: Steelcraft’s offering includes flush, stile and rail, severe weather, acoustical, stainless
+      steel and blast resistant doors as well as the GRAINTECH™ Series of stainable steel doors that provide
+      the beauty of wood with the benefits and features of steel.
+    approx_offset: 13765
+  - quote: GRAINTECH Doors
+    approx_offset: 40534
+  - quote: Hand-stained GRAINTECH™ embossed finishes, fire rated 20 minutes to 3 hours, as well as INPACT
+      exit device finish options, provide an attractive, durable, high-quality look
+    approx_offset: 106571
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0043
+  form: GRAINTECH Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: GRAINTECH SERIES FINISHES
+    approx_offset: 126872
+  - quote: The GRAINTECH Series is available with a full range of positive pressure fire-ratings, from
+      20 minutes to three hours.
+    approx_offset: 127652
+  - quote: GRAINTECH SERIES FINISHES
+    approx_offset: 202482
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0044
+  form: GRAINTECH™ Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/why-steelcraft.html
+    - https://www.steelcraft.com/en/why-steelcraft/about-steelcraft.html
+  evidence:
+  - quote: Steelcraft’s offering includes flush, stile and rail, severe weather, acoustical, stainless
+      steel and blast resistant doors as well as the GRAINTECH™ Series of stainable steel doors that provide
+      the beauty of wood with the benefits and features of steel.
+    approx_offset: 13765
+  - quote: Steelcraft’s offering includes flush, stile and rail, severe weather, acoustical, stainless
+      steel and blast resistant doors as well as the GRAINTECH™ Series of stainable steel doors that provide
+      the beauty of wood with the benefits and features of steel.
+    approx_offset: 124770
+  - quote: Steelcraft’s GRAINTECH™ Series of stainable steel doors provides the beauty of wood with the
+      features and benefits of steel.
+    approx_offset: 126912
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0045
+  form: H Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/steel-doors/h-series-flush-hurricane-impact-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/t-series-temperature-rise-fire-rated-steel-doors.html
+  evidence:
+  - quote: H Series Hurricane Rated Flush Doors
+    approx_offset: 11465
+  - quote: 'Note: This core is also available on H Series hurricane doors, ordered as TH Series.'
+    approx_offset: 18919
+  - quote: H SERIES FLUSH DOORS
+    approx_offset: 20747
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0046
+  form: H Series Hurricane Rated Flush Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: H Series Hurricane Rated Flush Doors
+    approx_offset: 11465
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0047
+  form: HE16
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: H16 and HE16 Series
+    approx_offset: 128408
+  - quote: H16 and HE16 Series
+    approx_offset: 204018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0048
+  form: Hospital Stops
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: Frame Hospital Stops in various standard heights and angles allowing the door stop to terminate
+      above the floor line where cleanliness is a requirement.
+    approx_offset: 195520
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0049
+  form: INPACT Door System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 4
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0050
+  form: INPACT Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: INPACT Series Door Systems
+    approx_offset: 196435
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0051
+  form: INPACT System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: INPACT SYSTEM INTEGRATED DOOR SOLUTION
+    approx_offset: 105266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0052
+  form: INPACTTM Door System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0053
+  form: Integral Kerfed Frame
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/resources.html
+    - https://www.steelcraft.com/en/resources/Literature.html
+  evidence:
+  - quote: Integral Kerfed Frame
+    approx_offset: 40748
+  - quote: Integral Kerfed Frame
+    approx_offset: 208229
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0054
+  form: K Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 13
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/c-ck-series-casing-ready-frames.html
+    - https://www.steelcraft.com/en/products/frames/dw-k-series-drywall-frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/mu-series-multiuse-flush-frames.html
+  evidence:
+  - quote: DW & K SERIES DRYWALL FRAMES
+    approx_offset: 46496
+  - quote: Standard jamb compression anchors and a unique tab/lock corner design for knock-down (KD) assembly assure
+      that the DW Series and K Series drywall frames install in minutes on finished drywall construction.
+    approx_offset: 46779
+  - quote: 'K Series: sill attachment is made through the frame face, directly into the wall sill runner;
+      bottom of frame face is supplied with factory countersunk holes for screw attachment'
+    approx_offset: 47554
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0055
+  form: KS Drywall Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: KS Drywall Series
+    approx_offset: 221552
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0056
+  form: KS Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: A hybrid of FS and KS Series frames, MS Series is typically used in stud walls as part of the
+      wall framing sequence and can be supplied as KD (knock-down) or welded similar to FS Series flush
+      frames, but provides backbend returns similar to KS Series drywall frames so that drywall can more
+      easily sl
+    approx_offset: 221839
+  - quote: A hybrid of FS and KS Series frames, MS Series is typically used in stud walls as part of the
+      wall framing sequence and can be supplied as KD (knock-down) or welded similar to FS Series flush
+      frames, but provides backbend returns similar to KS Series drywall frames so that drywall can more
+      easily sl
+    approx_offset: 222061
+  - quote: Also like KS Series, the sill attachment is made through the frame face, directly into the
+      wall sill runner; bottom of frame face is supplied with factory countersunk holes for screw attachment
+    approx_offset: 222184
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0057
+  form: L Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: Hollow Metal Steel Flush Doors | Steelcraft L Series
+    approx_offset: 7222
+  - quote: The L Series is designed to meet the broadest architectural requirements with premium construction,
+      offering superior strength, stability and performance.
+    approx_offset: 7243
+  - quote: L Series Flush Doors
+    approx_offset: 11502
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0058
+  form: L Series Flush Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.steelcraft.com/en/products/applications/stc-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+  evidence:
+  - quote: L Series Flush Doors
+    approx_offset: 11502
+  - quote: L SERIES FLUSH DOORS
+    approx_offset: 42066
+  - quote: L Series flush doors are designed to meet the architectural requirements for full flush doors,
+      from light to 14 gauge maximum duty.
+    approx_offset: 42091
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0059
+  form: LM9300
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Certified Tornado assemblies include a Paladin Door & Frame with Schlage LM9300 Levers or Von
+      Duprin WS-T Exit Devices as latching hardware.
+    approx_offset: 175328
+  - quote: LM9300 Data Sheet
+    approx_offset: 176499
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0060
+  form: LS Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: LS Series Stainless Steel Doors
+    approx_offset: 7027
+  - quote: The LS Series has a sleek, aesthetic surface that provides tough defense against harsh weather
+      and corrosion.
+    approx_offset: 7071
+  - quote: LS Series Stainless Steel Doors
+    approx_offset: 170006
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0061
+  form: LS Series Stainless Steel Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/ls-series-stainless-doors.html
+  evidence:
+  - quote: LS Series Stainless Steel Doors
+    approx_offset: 7027
+  - quote: LS Series Stainless Steel Doors
+    approx_offset: 170006
+  - quote: LS Series Stainless Steel Doors
+    approx_offset: 196402
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0062
+  form: Lead-lining clips
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+  evidence:
+  - quote: Frame Lead-lining clips for easy integration of lead where radiation transmission is a concern.
+    approx_offset: 195673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0063
+  form: MS Multi-use Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: MS Multi-use Series
+    approx_offset: 221799
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0064
+  form: MS Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.steelcraft.com/en/products/applications/steel-healthcare-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/fs-ks-ms-series-multiuse-frames.html
+  evidence:
+  - quote: FS, KS, & MS Series Frames
+    approx_offset: 100019
+  - quote: FS, KS, MS Series Frames
+    approx_offset: 196471
+  - quote: FS, KS & MS SERIES FRAMES
+    approx_offset: 219916
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0065
+  form: MU Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 12
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/f-series-masonry-flush-frames.html
+    - https://www.steelcraft.com/en/products/frames/mu-series-multiuse-flush-frames.html
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: MU Series Multi-Use Flush Frames
+    approx_offset: 99635
+  - quote: The MU Series is a versatile choice that meets requirements for light- to heavy-duty applications
+      with virtually any wall construction.
+    approx_offset: 99681
+  - quote: All frame open sections feature a standard 1/2” returns except the MU Series and 5-3/4” jamb
+      depth, which feature 7/16” returns
+    approx_offset: 186930
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0066
+  form: MU Series Multi-Use Flush Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+    - https://www.steelcraft.com/en/products/frames/mu-series-multiuse-flush-frames.html
+  evidence:
+  - quote: MU Series Multi-Use Flush Frames
+    approx_offset: 99635
+  - quote: MU SERIES MULTI-USE FLUSH FRAMES
+    approx_offset: 214995
+  - quote: The MU Series multi-use flush frames meet demands for light to maximum duty applications in
+      commercial and industrial buildings.
+    approx_offset: 215033
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0067
+  form: P Series Tornado Safe Frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/applications/windstorm-doors-and-frames.html
+  evidence:
+  - quote: P Series Tornado Safe Frames
+    approx_offset: 11523
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0068
+  form: PW14 Paladin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: The PW14 Paladin™ Door System is designed and tested to withstand extreme effects of wind and
+      flying debris.
+    approx_offset: 173983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0069
+  form: Paladin Door System
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0070
+  form: Paladin PW Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+  evidence:
+  - quote: Paladin PW Series Flush Doors and Frames
+    approx_offset: 6871
+  - quote: The Paladin PW Series flush doors and frames assemble as a series to meet FEMA tornado shelter
+      standards.
+    approx_offset: 6924
+  - quote: Paladin PW Series Flush Doors and Frames
+    approx_offset: 169850
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0071
+  form: Paladin Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/index.html
+  evidence:
+  - quote: Paladin Series
+    approx_offset: 490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0072
+  form: Paladin™ PW Series flush doors and frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/index.html
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Paladin™ PW Series flush doors and frames are taking the industry by storm by providing critical
+      visibility to classroom and safe room designs.
+    approx_offset: 535
+  - quote: PALADIN™ PW SERIES FLUSH DOORS AND FRAMES
+    approx_offset: 173936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0073
+  form: Pilkington Pyrostop
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/index.html
+  evidence:
+  - quote: Available fire-rated for 90 minutes with Pilkington Pyrostop® glass
+    approx_offset: 992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0074
+  form: Pilkington Pyrostop®
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/index.html
+  evidence:
+  - quote: Available fire-rated for 90 minutes with Pilkington Pyrostop® glass
+    approx_offset: 992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0075
+  form: Pyrostop
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/index.html
+  evidence:
+  - quote: Available fire-rated for 90 minutes with Pilkington Pyrostop® glass
+    approx_offset: 1003
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0076
+  form: SL Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 9
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: SL Series Square Edge Flush Doors
+    approx_offset: 6701
+  - quote: The SL Series doors assure high resistance to impact damage while meeting architectural requirements
+      for full flush doors.
+    approx_offset: 6747
+  - quote: SL Series Square Edge Flush Doors
+    approx_offset: 169680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0077
+  form: SL Series Square Edge Flush Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sl-series-square-edge-doors.html
+  evidence:
+  - quote: SL Series Square Edge Flush Doors
+    approx_offset: 6701
+  - quote: SL Series Square Edge Flush Doors
+    approx_offset: 169680
+  - quote: SL SERIES SQUARE EDGE FLUSH DOORS
+    approx_offset: 180673
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0078
+  form: SZ Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sz-series-falcon-flush-doors.html
+    - https://www.steelcraft.com/en/resources.html
+    - https://www.steelcraft.com/en/resources/Literature.html
+  evidence:
+  - quote: SZ Series Falcon Flush Doors
+    approx_offset: 7543
+  - quote: The SZ Series Square Edge flush doors are designed to meet requirements for commercial quality
+      full flush steel doors.
+    approx_offset: 7584
+  - quote: Falcon SZ Series
+    approx_offset: 40524
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0079
+  form: SZ Series Falcon Flush Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/sz-series-falcon-flush-doors.html
+  evidence:
+  - quote: SZ Series Falcon Flush Doors
+    approx_offset: 7543
+  - quote: SZ SERIES FALCON FLUSH DOORS
+    approx_offset: 113113
+  - quote: SZ Series Falcon Flush Doors
+    approx_offset: 170522
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0080
+  form: Schlage LM9300
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Certified Tornado assemblies include a Paladin Door & Frame with Schlage LM9300 Levers or Von
+      Duprin WS-T Exit Devices as latching hardware.
+    approx_offset: 175320
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0081
+  form: Steelcraft L Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/l-series-flush-doors.html
+  evidence:
+  - quote: Hollow Metal Steel Flush Doors | Steelcraft L Series
+    approx_offset: 7211
+  - quote: Depend on the Steelcraft L Series door; depend on the strength of steel.
+    approx_offset: 45156
+  - quote: Hollow Metal Steel Flush Doors | Steelcraft L Series
+    approx_offset: 170190
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0082
+  form: T Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/applications.html
+    - https://www.steelcraft.com/en/products/applications/fire-rated-steel-doors-and-frames.html
+    - https://www.steelcraft.com/en/products/finish-options.html
+    - https://www.steelcraft.com/en/products/finish-options/graintech-wood-look.html
+  evidence:
+  - quote: T Series Flush Doors
+    approx_offset: 6557
+  - quote: The T Series has mineral board cores that resist temperature rise, maximizing emergency protection
+      in stairwells.
+    approx_offset: 6590
+  - quote: T SERIES FLUSH DOORS
+    approx_offset: 16420
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0083
+  form: T Series Flush Doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+    - https://www.steelcraft.com/en/products/steel-doors/t-series-temperature-rise-fire-rated-steel-doors.html
+  evidence:
+  - quote: T Series Flush Doors
+    approx_offset: 6557
+  - quote: T SERIES FLUSH DOORS
+    approx_offset: 16420
+  - quote: T Series Flush Doors
+    approx_offset: 169536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0084
+  form: T Series temperature rise core doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/t-series-temperature-rise-fire-rated-steel-doors.html
+  evidence:
+  - quote: The T Series temperature rise core doors, common in stairwells, control the level of heat transfer
+      to the safe side of the door, allowing occupants to pass by the door safely during a fire.
+    approx_offset: 16446
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0085
+  form: TH Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/t-series-temperature-rise-fire-rated-steel-doors.html
+  evidence:
+  - quote: 'Note: This core is also available on H Series hurricane doors, ordered as TH Series.'
+    approx_offset: 18956
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0086
+  form: Von Duprin 94/95
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/inpact-series-hospital-doors.html
+  evidence:
+  - quote: The INPACTTM Door System is available on L Series and T Series doors with factory-installed
+      Von Duprin 94/95 INPACTTM Recessed exit hardware.
+    approx_offset: 105398
+  - quote: Includes factory-installed Von Duprin 94/95 Recessed Exit to reduce customer costs and improve
+      speed of installation at the job site
+    approx_offset: 106199
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0087
+  form: Von Duprin WS-T
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Certified Tornado assemblies include a Paladin Door & Frame with Schlage LM9300 Levers or Von
+      Duprin WS-T Exit Devices as latching hardware.
+    approx_offset: 175345
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0088
+  form: WS-T Exit Devices
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-doors/paladin-pw-series-tornado-doors.html
+  evidence:
+  - quote: Certified Tornado assemblies include a Paladin Door & Frame with Schlage LM9300 Levers or Von
+      Duprin WS-T Exit Devices as latching hardware.
+    approx_offset: 175356
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0089
+  form: architectural stick systems
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: Steelcraft architectural stick systems feature lengths of component frame material called “stick
+      sections” that assemble to produce elevations, including transom, transom and sidelight, sidelight
+      and borrowed lights.
+    approx_offset: 184627
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0090
+  form: frame elevations
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: 'Typical frame elevations include:'
+    approx_offset: 185261
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0091
+  form: hollow metal doors and frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.steelcraft.com/en/index.html
+    - https://www.steelcraft.com/en/locations/west-coast-service-center.html
+    - https://www.steelcraft.com/en/why-steelcraft.html
+    - https://www.steelcraft.com/en/why-steelcraft/about-steelcraft.html
+  evidence:
+  - quote: For nearly a century, and still today—Steelcraft hollow metal doors and frames are always manufactured
+      in the United States using American steel.
+    approx_offset: 278
+  - quote: Designed for institutional, commercial and industrial applications, Steelcraft provides an
+      impressive selection of hollow metal doors and frames for virtually any wall condition or entryway
+      requirement.
+    approx_offset: 13432
+  - quote: The Steelcraft West Coast Regional Center is committed to fulfilling your hollow metal doors
+      and frames needs.
+    approx_offset: 37742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0092
+  form: hollow metal frames
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/frames.html
+  evidence:
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides an impressive
+      selection of hollow metal frames for virtually any wall condition or entryway requirement.
+    approx_offset: 99175
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0093
+  form: hollow metal steel doors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.steelcraft.com/en/products.html
+    - https://www.steelcraft.com/en/products/steel-doors.html
+  evidence:
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full
+      line of hollow metal steel doors for virtually any wall condition or entryway requirement.
+    approx_offset: 6253
+  - quote: Designed for institutional, commercial and industrial applications Steelcraft provides a full
+      line of hollow metal steel doors for virtually any wall condition or entryway requirement.
+    approx_offset: 169232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: steelcraft_com-products-0094
+  form: stick sections
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.steelcraft.com/en/products/steel-door-frame-elevations.html
+  evidence:
+  - quote: Steelcraft architectural stick systems feature lengths of component frame material called “stick
+      sections” that assemble to produce elevations, including transom, transom and sidelight, sidelight
+      and borrowed lights.
+    approx_offset: 184707
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

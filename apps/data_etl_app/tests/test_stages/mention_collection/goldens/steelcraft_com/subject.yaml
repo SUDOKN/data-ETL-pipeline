@@ -1,0 +1,206 @@
+subject: steelcraft.com
+subject_name: Steelcraft
+business_type: hollow-metal commercial steel door and frame manufacturer (Blue Ash OH); an Allegion plc brand since
+  2013. Product-series catalogue site.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/steelcraft.com.txt
+  sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+role: full_unit
+role_source: 'reused verbatim from search/expectations/steelcraft_com/subject.yaml, where the search harness assigned
+  role: full_unit. It is the only one of this batch''s four search roles that already exists in the mention vocabulary.'
+coverage: full_text
+snapshot_shape: 225,541 bytes / 4,862 lines / 56 page blocks (54 rendered pages + 2 Not Found scrape artifacts).
+  1,380 of 2,831 non-blank lines (48.7%) belong to a line that repeats 10 or more times.
+third_party_roster:
+- Allegion
+- Falcon
+- Republic
+- Schlage
+- Von Duprin
+- LCN
+- CISA
+- Interflex
+- IVES
+- Zero
+- Intertek
+- Miami-Dade
+- SDI
+- Technical Glass Products
+- UL
+- FEMA
+- ICC
+- TDI
+- Steel Door Institute
+third_party_roster_source: the first 13 names are harvested verbatim from synthesis/expectations/steelcraft_com/subject.yaml;
+  Technical Glass Products, UL, FEMA, ICC, TDI and Steel Door Institute were added by this pass after verifying
+  each occurs in the snapshot (Technical Glass 2x, UL 30x, FEMA 15x, Intertek 7x, Steel Door Institute 23x).
+voices:
+- whose_words: site
+  note: the large majority - Steelcraft catalogue, spec and application prose
+- whose_words: parent
+  note: Allegion. The copyright footer closes all 54 pages, "More from Allegion" heads a block on a Steelcraft page,
+    three sentences deflect the reader to us.allegion.com, and one sentence makes Allegion the grammatical subject
+    on a Steelcraft page.
+  quote: To support the Living Building Challenge, Allegion provides Declare labels for products. 
+- whose_words: third_party
+  note: sibling Allegion brands. Republic Doors and Frames takes the finish-paint and lead-lined referrals (2x);
+    Falcon SZ Series is carried in the Steelcraft product and literature listings (5x).
+  quote: Steelcraft offers finish painting on doors only. Please see Republic Doors and Frames for additional information
+    on finish paint products that include Frames.
+- whose_words: vendor
+  note: component suppliers named inside Steelcraft product prose - Technical Glass Product's FireLite glass, Schlage
+    and Von Duprin hardware
+  quote: Steelcraft’s fire rating capabilities include the use of ceramic glass and special glazing compounds. The
+    following link will take you to Technical Glass Product's FireLite® fire-rated glass technical data specifications,
+    which list all of the maximum size limitations along with fire ratings.
+- whose_words: standards_body
+  note: SDI / ANSI / ASTM / UL / Intertek / ICC / FEMA / TAS requirement clauses quoted as requirements the product
+    meets; the sentence is Steelcraft's but the designation and its content belong to the body
+  quote: Overall door construction exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying sizes,
+    design, materials, construction, finishing and performance for standard commercial steel doors and frames
+text_hazards:
+- hazard: heading_names_third_party
+  note: 'THE canonical location case for this whole project, and the hardest and most consequential one. Line 146
+    of the sustainability page is a standalone heading that names the PARENT, not the subject; every line under
+    it is Allegion''s, and the sentence directly beneath sends the reader off-domain. The heading itself ends in
+    a NON-BREAKING SPACE, not an ASCII space, so a byte-exact echo of it typed with a trailing plain space does
+    not match. Unique in the file (1 occurrence, approx_offset 5193). A location that reports whose_words: site
+    here is an S4 major fail; the grounding and synthesis judges are already instructed that "a heading like ''More
+    from Allegion'' is provenance".'
+  quote: More from Allegion 
+  context_quote: 'To support the Living Building Challenge, Allegion provides Declare labels for products. 
+
+
+
+    For the most updated information and documentation related to Declare Labels, see The Living Building Challenge
+    page on us.allegion.com.
+
+
+    More from Allegion 
+
+
+    Find industry affiliations, resources and more in the Sustainability section of us.allegion.com. 
+
+
+    General Sustainability Information
+
+    LEED Credits CalGreen Building Standards'
+  approx_offset: 5193
+- hazard: repeated_support_blurb
+  note: 'the "GET THE SUPPORT OF STEEL" block closes all 54 rendered pages. Its sentence occurs 54 times, byte-identical
+    - one snippet, 54 occurrences, one location to describe. It is a footer service blurb, NOT product prose, so
+    anything it is credited to inherits customer-care copy as capability evidence. NOTE FOR THE HARNESS: this is
+    the exact sentence GOLDEN_LABELS_SCHEMA.md uses as its worked example evidence quote for `doors and frames`
+    with occurrences: 14. Measured against this snapshot, `doors and frames` occurs 115 times and this quote occurs
+    54 of them; the illustrative number in the schema is not the real one.'
+  quote: Our steel doors and frames set the industry standard. We strive to do the same with our service and support.
+    Steelcraft is committed to delivering best-in-class customer care – making everything from sales to ordering
+    to delivery to installation as smooth and easy as possible. 
+- hazard: repeated_nav
+  note: 'the eight-item nav strip opens all 54 rendered pages, each label on its own line with a tab-only continuation
+    line between entries. Per-label counts in this snapshot: Resources 58, Literature 54, Contact 54, 360Portal
+    54, 360 Portal Login 54, Products 54, Why Steel 54, Locations 54, Support 54. Every one is a bare nav label
+    with no sentence context at all.'
+  quote: "Literature\n\t\nContact\n\t\n360Portal \n360 Portal Login\nProducts "
+- hazard: cookie_banner
+  note: a single ~460-character cookie-consent paragraph, 6 occurrences, ending with the link label fused onto the
+    last sentence ("...third-party partners.Steelcraft Cookie Policy"). Pure chrome; no capability content.
+  quote: This website uses cookies and similar technologies to help us provide you with a good experience when you
+    browse our site, to improve our site, and to better engage with you as you interact with the site. We also share
+    information about your use of our site with our social media, advertising, and analytics partners. By clicking
+    ACCEPT you are agreeing to the placement of cookies and similar technologies on your computer by us and our
+    third-party partners.Steelcraft Cookie Policy
+- hazard: prop65_block
+  note: the California PROP65 warning repeats on 25 product pages as three consecutive bare lines. A regulatory
+    notice, not the site describing a product.
+  quote: 'In accordance with California PROP65 -
+
+
+    WARNING: Cancer & Reproductive Harm
+
+    www.P65Warnings.ca.gov'
+- hazard: nbsp_splits_form
+  note: 'MEASURED THIS PASS: 843 NO-BREAK SPACE (U+00A0) characters, on 532 distinct lines, of which 127 sit BETWEEN
+    TWO WORD CHARACTERS and therefore split a form. Counted with python: t.count(chr(0xA0)) for the total, one line
+    per line containing it, and re.finditer(r"(?<=[A-Za-z0-9])\xa0(?=[A-Za-z0-9])", t) for the form-splitting kind.
+    The concrete cost: the designation ANSI A250.10-2011 is written 14 times with an ASCII space and 6 times with
+    an NBSP between ANSI and A250 - 20 occurrences, of which a byte-exact matcher on the ASCII spelling finds only
+    14 (a 30% undercount). Same split on ASTM D4585-D4585M-18 and on the boundaries of SDI Certified (8 NBSP copies,
+    8 ASCII copies of the same sentence). This is the trap most likely to make this instrument report a false occurrence
+    failure, so occurrence labels here must be computed with a space-elastic matcher and the label must say so.'
+  quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+- hazard: features_list_no_subject
+  note: '"FEATURES AND BENEFITS" heads 23 stacks of bare bullet lines. The bullets are subject-less fragments repeated
+    verbatim across five or more door-series pages, so an occurrence clipped to its own line cannot be attributed
+    to a series - the series name is only in the page heading tens of lines above. This is the S1 (extent) and S3
+    (belongs-to) case for this subject.'
+  quote: Standard 14 gauge inverted top and bottom channels provide excellent door stability, and is able to be
+    dressed with top and bottom caps
+- hazard: document_title_listing
+  note: the Literature page is a bare stack of document titles under one-word category headings (Doors / Frames
+    / Solutions / Service Centers / Programs), including a SIBLING BRAND's document (Falcon SZ Series) and the PARENT's
+    (Allegion EHPA Tornado Systems Data Sheet), then a run-together row of external link labels. Every line here
+    is a document_title, not prose, and two of them are third_party_named. "Steelcraft Technical Data Manual" occurs
+    46 times across the site the same way.
+  quote: 'Steelcraft Portfolio
+
+    Steelcraft Catalog
+
+    Steelcraft Tech Data Manual
+
+    Doors
+
+    Falcon SZ Series
+
+    GRAINTECH Doors
+
+    High Definition Door
+
+    Stainless Steel Data Sheet
+
+    INPACT Door Systems Brochure
+
+    INPACT Door Systems Data Sheet
+
+    Frames
+
+    Steelcraft Frame Nomenclature
+
+    Stainless Steel Data Sheet
+
+    FT Series (Thermal Break)
+
+    Integral Kerfed Frame
+
+    Solutions
+
+    Windstorm Solutions
+
+    Allegion EHPA Tornado Systems Data Sheet'
+- hazard: landing_page_duplication
+  note: seven landing pages duplicate their child pages nearly verbatim (products~steel-doors, resources~resources/Literature,
+    why-steelcraft~about-steelcraft, locations~steelcraft-main-plant, applications~fire-rated, finish-options~graintech,
+    support~support/contact). Occurrence counts are inflated by duplication, not by new information; two occurrences
+    that look like independent evidence are one sentence scraped twice.
+  quote: Steelcraft fire-rated doors and frames play a critical role in keeping people safe and minimizing property
+    damage. Doors play a very important role in the fire resistance of a building; they allow people to evacuate
+    safely from a building along with limiting the spread of fire and smoke to other areas. Fire doors must meet
+    the requirements of the International Building Code and International Fire Code, as well as NFPA 80 Standard
+    for Fire Doors and Other Opening Protectives. Fire ratings range from 20 minutes to 3 hours. Hollow metal is
+    the only door material widely available with a 3 hour label.
+- hazard: scrape_artifacts
+  note: 'four defects that reach the matcher as text: an email address fused with the following text mid-line (1x);
+    the trademark sign flattened to a literal TM inside a product name, INPACTTM (4x); a doubled conjunction, "and
+    and FEMA 320/361" (1x); and a U+2044 FRACTION SLASH inside "FEMA 361/320". Also two /en/undefined and language-masters
+    URL blocks that return "Not Found".'
+  quote: 'West Coast Service Center (Chino) - Fax: 888.485.4747 or Email: SteelcraftOrderEntryChino@allegion.t Coast
+    Service Center (Chino)'
+notes: 'The mention-stage value of this subject is location, not occurrence: it is the corpus''s only subject where
+  a heading, a footer and a referral all name a DIFFERENT company than the one whose site it is, and it carries
+  the project''s canonical whose_words case ("More from Allegion"). Its conformity_attestations field is the densest
+  (a 50-entry standards inventory) and equipments is expected empty - see search/expectations/steelcraft_com/subject.yaml.'
+provenance:
+- action: added
+  by: seed-agent-batch4
+  date: '2026-08-27'
+  source: harvested:search

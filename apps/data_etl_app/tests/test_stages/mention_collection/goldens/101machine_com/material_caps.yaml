@@ -1,0 +1,377 @@
+subject: 101machine.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/101machine.com.txt
+  sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+golden_set_version: 1
+anchored_on: search/expectations/101machine_com/material_caps.yaml
+labels:
+- id: 101machine_com-material_caps-0001
+  form: 300 & 400 series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Stainless Steel’s including: 300 & 400 series'
+    approx_offset: 3214
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0002
+  form: 3000/5000/6000/7000 Series
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Aluminum including: 3000/5000/6000/7000 Series/Tooling Plate'
+    approx_offset: 3251
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0003
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Aluminum including: 3000/5000/6000/7000 Series/Tooling Plate'
+    approx_offset: 3231
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0004
+  form: Brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Brass
+    approx_offset: 3292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0005
+  form: Bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Bronze
+    approx_offset: 3298
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0006
+  form: Carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0007
+  form: Cast Iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Cast Iron
+    approx_offset: 3305
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0008
+  form: Cold Rolled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Steel’s: Cold Rolled/Hot Rolled/Carbon/Structual/Tool'
+    approx_offset: 3140
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0009
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Copper
+    approx_offset: 3315
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0010
+  form: Hot Rolled
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Steel’s: Cold Rolled/Hot Rolled/Carbon/Structual/Tool'
+    approx_offset: 3152
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0011
+  form: Molybdenum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Molybdenum
+    approx_offset: 3322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0012
+  form: Plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Plastics including high temp
+    approx_offset: 3351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0013
+  form: Plastics including high temp
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Plastics including high temp
+    approx_offset: 3351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0014
+  form: Refractory Metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: Refractory Metals
+    approx_offset: 3333
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0015
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Stainless Steel’s including: 300 & 400 series'
+    approx_offset: 3185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0016
+  form: Stainless Steel’s
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Stainless Steel’s including: 300 & 400 series'
+    approx_offset: 3185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0017
+  form: Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Steel’s: Cold Rolled/Hot Rolled/Carbon/Structual/Tool'
+    approx_offset: 3131
+  - quote: 'Stainless Steel’s including: 300 & 400 series'
+    approx_offset: 3195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0018
+  form: Steel’s
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Steel’s: Cold Rolled/Hot Rolled/Carbon/Structual/Tool'
+    approx_offset: 3131
+  - quote: 'Stainless Steel’s including: 300 & 400 series'
+    approx_offset: 3195
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0019
+  form: Structual
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Steel’s: Cold Rolled/Hot Rolled/Carbon/Structual/Tool'
+    approx_offset: 3170
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0020
+  form: Structural steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0021
+  form: Tool steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: 101machine_com-material_caps-0022
+  form: Tooling Plate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://101machine.com/materials.html
+  evidence:
+  - quote: 'Aluminum including: 3000/5000/6000/7000 Series/Tooling Plate'
+    approx_offset: 3278
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

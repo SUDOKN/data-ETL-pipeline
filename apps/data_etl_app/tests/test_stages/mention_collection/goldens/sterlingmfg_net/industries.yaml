@@ -1,0 +1,2012 @@
+subject: sterlingmfg.net
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+  sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+golden_set_version: 1
+anchored_on: search/expectations/sterlingmfg_net/industries.yaml
+labels:
+- id: sterlingmfg_net-industries-0001
+  form: Aerospace
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 75
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1314
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1338
+  - quote: Aerospace
+    approx_offset: 3606
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0002
+  form: Aerospace & Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Mark’s background in building teams that rapidly scale manufacturing services businesses in
+      both public and private sectors supports EPTAM’s mission to become the solutions-oriented market
+      leader in high-precision metal and plastic components for the medical devices, aerospace & defense
+      and diversif
+    approx_offset: 22655
+  - quote: Our facility in Leominster, Massachusetts specializes in plastic injection molding and Liquid
+      Silicone Rubber (LSR) molding serving the Medical Device, Molecular Diagnostics, BioPharma, Consumer
+      Electronics and Aerospace & Defense markets.
+    approx_offset: 57349
+  - quote: Aerospace & Defense
+    approx_offset: 149001
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0003
+  form: Aerospace / Space / Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/policies/
+  evidence:
+  - quote: Aerospace / Space / Defense
+    approx_offset: 98593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0004
+  form: Automotive & Industrial Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Automotive & Industrial Manufacturing
+    approx_offset: 149265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0005
+  form: Bio-Pharma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Bio-Pharma
+    approx_offset: 149541
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0006
+  form: BioPharma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 79
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: BioPharma, Diagnostics
+    approx_offset: 1024
+  - quote: Medical BioPharma
+    approx_offset: 1055
+  - quote: Medical Biopharma
+    approx_offset: 3624
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0007
+  form: BioPharma, Diagnostics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/
+  evidence:
+  - quote: BioPharma, Diagnostics
+    approx_offset: 1024
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0008
+  form: Biopharmaceutical industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/industries/medical-biopharma/
+  evidence:
+  - quote: 'Biopharma expertise: EPTAM has extensive experience and knowledge in the Biopharmaceutical
+      industry, which allows them to understand the unique challenges and requirements of this industry
+      and provide solutions accordingly.'
+    approx_offset: 38181
+  - quote: 'Cleanroom manufacturing: EPTAM offers cleanroom manufacturing capabilities to meet the strict
+      cleanliness and purity requirements of the Biopharmaceutical industry, ensuring the safety and efficacy
+      of the final products.'
+    approx_offset: 38470
+  - quote: 'Precision components: EPTAM provides precision components that are essential in the Biopharmaceutical
+      industry, such as rollers, gears, and other parts that are needed for the production and packaging
+      of Biopharmaceutical products.'
+    approx_offset: 38639
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0009
+  form: Consumer Electronics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Our facility in Leominster, Massachusetts specializes in plastic injection molding and Liquid
+      Silicone Rubber (LSR) molding serving the Medical Device, Molecular Diagnostics, BioPharma, Consumer
+      Electronics and Aerospace & Defense markets.
+    approx_offset: 57324
+  - quote: Sterling is a component manufacturer headquartered in Lancaster, MA specializing in plastic
+      injection molding and Liquid Silicone Rubber (LSR) molding serving the Medical Device, Molecular
+      Diagnostics, BioPharma, Consumer Electronics and Aerospace & Defense markets.
+    approx_offset: 156263
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0010
+  form: Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1324
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1348
+  - quote: Mark’s background in building teams that rapidly scale manufacturing services businesses in
+      both public and private sectors supports EPTAM’s mission to become the solutions-oriented market
+      leader in high-precision metal and plastic components for the medical devices, aerospace & defense
+      and diversif
+    approx_offset: 22667
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0011
+  form: Diagnostics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: BioPharma, Diagnostics
+    approx_offset: 1035
+  - quote: Medical Home Diagnostics
+    approx_offset: 1078
+  - quote: Our facility in Leominster, Massachusetts specializes in plastic injection molding and Liquid
+      Silicone Rubber (LSR) molding serving the Medical Device, Molecular Diagnostics, BioPharma, Consumer
+      Electronics and Aerospace & Defense markets.
+    approx_offset: 57300
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0012
+  form: Diversified Industrials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: The company provides its custom machining solutions to leaders in the medical devices, biopharma
+      and diversified industrials sectors.
+    approx_offset: 159308
+  - quote: The company provides its custom machining solutions to leaders in the Medical Devices, BioPharma,
+      and Diversified Industrials sectors.
+    approx_offset: 166049
+  - quote: The company provides its custom machining solutions to leaders in the Medical Devices, BioPharma
+      and Diversified Industrials sectors.
+    approx_offset: 170674
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0013
+  form: Emerging Markets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/policies/
+  evidence:
+  - quote: Emerging Markets
+    approx_offset: 98621
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0014
+  form: Endoscopy
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Endoscopy Applications
+    approx_offset: 72868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0015
+  form: Endoscopy Applications
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Endoscopy Applications
+    approx_offset: 72868
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0016
+  form: General Surgery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: General Surgery
+    approx_offset: 72954
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0017
+  form: Gynecological
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Gynecological
+    approx_offset: 72929
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0018
+  form: Home Diagnostics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/industries/medical-molecular-diagnostics/
+  evidence:
+  - quote: Medical Home Diagnostics
+    approx_offset: 1073
+  - quote: Medical Home Diagnostics
+    approx_offset: 98431
+  - quote: While some Home Diagnostics have relatively low quantity requirements, many need to scale to
+      larger runs with critical supply chain deliveries.
+    approx_offset: 122485
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0019
+  form: Implants Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Implants Industry
+    approx_offset: 40787
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0020
+  form: Industrial Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+  evidence:
+  - quote: Automotive & Industrial Manufacturing
+    approx_offset: 149278
+  - quote: “Bill’s extensive background in the MedTech Contract Manufacturing and Industrial Manufacturing
+      sectors, coupled with his strategic vision and operational acumen, makes him the ideal leader to
+      drive our commercial efforts and support our mission of delivering exceptional precision manufacturing
+      solu
+    approx_offset: 164771
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0021
+  form: Interventional
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: Robotics & Minimally, Interventional
+    approx_offset: 1120
+  - quote: Med Interventional & Structural Heart
+    approx_offset: 1182
+  - quote: 'For Interventional And Structural Heart Parts:'
+    approx_offset: 32202
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0022
+  form: MEDICAL
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 340
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Medical
+    approx_offset: 1016
+  - quote: Medical BioPharma
+    approx_offset: 1047
+  - quote: Medical Home Diagnostics
+    approx_offset: 1065
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0023
+  form: MIS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/category/news/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+    - https://eptam.com/resources
+  evidence:
+  - quote: EPTAM Precision and Mendell Join Forces to Better Serve Ortho, Cardio, RAS, and MIS Customers
+    approx_offset: 54406
+  - quote: Our manufacturing operations support the Robot Assisted Surgery (RAS) and Minimally Invasive
+      Surgery (MIS) industries, as OEM’s look for partners for the future of advanced interventions.
+    approx_offset: 66608
+  - quote: Whether it’s providing tight-tolerance MIS devices and parts – including laparoscopic instrumentation
+      systems, cutting devices, and endoscopic / arthroscopic assemblies.
+    approx_offset: 72338
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0024
+  form: Med Interventional & Structural Heart
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/
+  evidence:
+  - quote: Med Interventional & Structural Heart
+    approx_offset: 1178
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0025
+  form: MedTech
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+  evidence:
+  - quote: With extensive experience in the MedTech industry, he has held various leadership roles in
+      both private equity and contract manufacturing.
+    approx_offset: 23602
+  - quote: EPTAM’s reach and industry expertise, especially in the MedTech space, combined with our world
+      class molding, tooling, and automation experience, will greatly enhance our capabilities and offerings
+      to our customers.
+    approx_offset: 158463
+  - quote: He joins the Company from LongueVue Capital Partners, where he served as an Operating Partner
+      focused on the MedTech industry.
+    approx_offset: 164052
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0026
+  form: MedTech industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+  evidence:
+  - quote: With extensive experience in the MedTech industry, he has held various leadership roles in
+      both private equity and contract manufacturing.
+    approx_offset: 23602
+  - quote: He joins the Company from LongueVue Capital Partners, where he served as an Operating Partner
+      focused on the MedTech industry.
+    approx_offset: 164052
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0027
+  form: Medical Device
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 46
+    pages:
+    - https://eptam.com/about/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: EPTAM Precision Micro-Machining is an ISO 13485:2016 certified, premier orthopedic medical
+      device manufacturer.
+    approx_offset: 16273
+  - quote: The extreme attention to detail, medical device knowledge, and vast experience in CNC and micro-machining
+      makes us a world class manufacturer of implantable devices.
+    approx_offset: 17230
+  - quote: Mark brings over 30 years of leadership experience in business development, M&A, operations,
+      supply chain and R&D, with deep expertise in the medical device space.
+    approx_offset: 22365
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0028
+  form: Medical Home Diagnostics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/policies/
+  evidence:
+  - quote: Medical Home Diagnostics
+    approx_offset: 1065
+  - quote: Medical Home Diagnostics
+    approx_offset: 98423
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0029
+  form: Medical Implants
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/capabilities/metals-machining/
+    - https://eptam.com/frazier-healthcare-partners-announces-acquisition-of-eptam-precision-solutions/
+    - https://eptam.com/heritage-portfolio-company-eptam-announces-add-on-acquisition-of-relius-medical/
+  evidence:
+  - quote: Medical Implants
+    approx_offset: 1240
+  - quote: Medical Implants
+    approx_offset: 98498
+  - quote: Operating out of a state-of-the-art, 70,000-square-foot, FDA-registered, ISO 13485:2016 facility
+      in Colorado Springs, EPTAM Precision Metals has specialized in medical implants, external fixation,
+      and instrumentation since its founding in 1982.
+    approx_offset: 131412
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0030
+  form: Medical Interventional & Structural Heart
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/policies/
+  evidence:
+  - quote: Medical Interventional & Structural Heart
+    approx_offset: 98536
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0031
+  form: Medical Minimal Invasive Surgery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/policies/
+  evidence:
+  - quote: Medical Minimal Invasive Surgery
+    approx_offset: 98465
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0032
+  form: Medical Ortho-Trauma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/policies/
+  evidence:
+  - quote: Medical Ortho-Trauma
+    approx_offset: 98515
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0033
+  form: Medical Ortho/Trauma
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/
+  evidence:
+  - quote: Medical Ortho/Trauma
+    approx_offset: 1257
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0034
+  form: Medical Orthopedic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Medical Orthopedic
+    approx_offset: 16154
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0035
+  form: Medical Robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/policies/
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: EPTAM Precision is building a one stop solution for Medical Robotics contract manufacturing.
+    approx_offset: 63492
+  - quote: Medical Robotics
+    approx_offset: 98448
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0036
+  form: Medical Robots
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 54
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Medical Robots
+    approx_offset: 1135
+  - quote: Medical Robots
+    approx_offset: 3558
+  - quote: Medical Robots
+    approx_offset: 4603
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0037
+  form: Minimal Invasive Surgery
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/about/policies/
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Medical Minimal Invasive Surgery
+    approx_offset: 98473
+  - quote: Minimal Invasive Surgery
+    approx_offset: 115841
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0038
+  form: Minimally Invasive Surgery (MIS)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: Our manufacturing operations support the Robot Assisted Surgery (RAS) and Minimally Invasive
+      Surgery (MIS) industries, as OEM’s look for partners for the future of advanced interventions.
+    approx_offset: 66580
+  - quote: The transaction allows the companies to combine complementary capabilities, providing customers
+      a one-stop shop for Orthopedic, Cardiovascular, Minimally Invasive Surgery (MIS), and Robotic-Assisted
+      Surgery (RAS) components.
+    approx_offset: 189704
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0039
+  form: Minimally Invasive Surgical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Minimally Invasive Surgical
+    approx_offset: 1150
+  - quote: James is responsible for leading the development of EPTAM’s Advanced Surgical business, which
+      includes robotic assisted surgical, minimally invasive surgical, biopharma, and molecular diagnostic
+      devices.
+    approx_offset: 24986
+  - quote: EPTAM has chosen to expand its usage of this line recognizing early the industry pivot to minimally
+      invasive surgical interventions.
+    approx_offset: 68772
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0040
+  form: Molecular Diagnostics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/industries/medical-molecular-diagnostics/
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: Our facility in Leominster, Massachusetts specializes in plastic injection molding and Liquid
+      Silicone Rubber (LSR) molding serving the Medical Device, Molecular Diagnostics, BioPharma, Consumer
+      Electronics and Aerospace & Defense markets.
+    approx_offset: 57290
+  - quote: At EPTAM Precision, our NPI process is tailored to the unique needs of industries such as biopharma,
+      molecular diagnostics, robotic assisted and minimally invasive surgical devices, interventional,
+      and orthopedics.
+    approx_offset: 115531
+  - quote: Molecular Diagnostics
+    approx_offset: 121258
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0041
+  form: Orthopedic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: Orthopedic Devices
+    approx_offset: 7032
+  - quote: These capabilities are tailored to meet the demands of OEMs in regulated sectors like orthopedic
+      and minimally invasive surgery.
+    approx_offset: 7765
+  - quote: Medical Orthopedic
+    approx_offset: 16162
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0042
+  form: RAS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/category/news/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/resources
+    - https://eptam.com/resources/
+  evidence:
+  - quote: EPTAM Precision and Mendell Join Forces to Better Serve Ortho, Cardio, RAS, and MIS Customers
+    approx_offset: 54397
+  - quote: Our manufacturing operations support the Robot Assisted Surgery (RAS) and Minimally Invasive
+      Surgery (MIS) industries, as OEM’s look for partners for the future of advanced interventions.
+    approx_offset: 66571
+  - quote: EPTAM Precision and Mendell Join Forces to Better Serve Ortho, Cardio, RAS, and MIS Customers
+    approx_offset: 85562
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0043
+  form: Robot Assisted Surgery (RAS)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Our manufacturing operations support the Robot Assisted Surgery (RAS) and Minimally Invasive
+      Surgery (MIS) industries, as OEM’s look for partners for the future of advanced interventions.
+    approx_offset: 66547
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0044
+  form: Robotic-Assisted Surgery (RAS)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+  evidence:
+  - quote: The transaction allows the companies to combine complementary capabilities, providing customers
+      a one-stop shop for Orthopedic, Cardiovascular, Minimally Invasive Surgery (MIS), and Robotic-Assisted
+      Surgery (RAS) components.
+    approx_offset: 189742
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0045
+  form: Robotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: Robotics & Minimally, Interventional
+    approx_offset: 1098
+  - quote: All facilities are designed to meet the high standards of the medical, robotics, and other
+      high-tech manufacturing industries.
+    approx_offset: 34293
+  - quote: Robotics
+    approx_offset: 62349
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0046
+  form: SEMICONDUCTOR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 16
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/heritage-portfolio-company-eptam-announces-add-on-acquisition-of-relius-medical/
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: With a proven record of providing the highest-quality, tightest-tolerance machined parts for
+      mission-critical applications, the company serves OEM leaders in the Medical Device, BioPharma,
+      Robotic-Assisted Surgeries, Semiconductor, and Aerospace/Defense industries, providing advanced
+      solutions for e
+    approx_offset: 102190
+  - quote: SEMICONDUCTOR
+    approx_offset: 116955
+  - quote: Plastic semiconductor components fabricated by EPTAM meet or exceed the critical requirements
+      of the semiconductor industry.
+    approx_offset: 116990
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0047
+  form: SPACE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1308
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1332
+  - quote: Mark brings over 30 years of leadership experience in business development, M&A, operations,
+      supply chain and R&D, with deep expertise in the medical device space.
+    approx_offset: 22380
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0048
+  form: Semi-Conductor
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 55
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/?page_id=3433
+    - https://eptam.com/about/
+    - https://eptam.com/about/careers/
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Semi-Conductor
+    approx_offset: 1278
+  - quote: Semi-Conductor
+    approx_offset: 1293
+  - quote: Semi-Conductor
+    approx_offset: 3591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0049
+  form: Semiconductor Manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: We work with a wide range of materials, including metals like stainless steel, titanium, and
+      aluminum, as well as plastics and composites, ensuring optimal results across industries such as
+      medical devices, aerospace, and semiconductor manufacturing.
+    approx_offset: 143658
+  - quote: Semiconductor Manufacturing
+    approx_offset: 149139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0050
+  form: Space/Aerospace/Defense
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/
+  evidence:
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1308
+  - quote: Space/Aerospace/Defense
+    approx_offset: 1332
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0051
+  form: Sports Medicine
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Sports Medicine
+    approx_offset: 72891
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0052
+  form: Structural Heart
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: Med Interventional & Structural Heart
+    approx_offset: 1199
+  - quote: Structural Heart
+    approx_offset: 30392
+  - quote: These parts are used across the spectrum of medical equipment, used in the vascular, congenital,
+      and structural heart devices.
+    approx_offset: 30994
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0053
+  form: Trauma Industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-ortho-trauma/
+  evidence:
+  - quote: Trauma Industry
+    approx_offset: 16173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0054
+  form: Urological
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: Urological
+    approx_offset: 72943
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0055
+  form: automotive
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: Manny brings over 25 years of global management experience leading quality, regulatory affairs,
+      and operational excellence across the medical device, biopharma, aerospace, automotive and contract
+      manufacturing industries.
+    approx_offset: 25489
+  - quote: 'Cross-Industry Expertise: From medical devices to aerospace and automotive, we tailor our
+      laser processes to meet the needs of each industry we serve.'
+    approx_offset: 141766
+  - quote: Automotive & Industrial Manufacturing
+    approx_offset: 149265
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0056
+  form: aviation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+  evidence:
+  - quote: EPTAM has over 50 years experience in precision injection molding, engineering, tool development,
+      and fully supports OEMs in the healthcare, aviation and industrial fields
+    approx_offset: 78156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0057
+  form: cardiovascular
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+    - https://eptam.com/industries/medical-minimal-invasive-surgery/
+  evidence:
+  - quote: EPTAM Precision Solutions’ next generation of Laser Tube cutting technology will enhance micromachining
+      processes that deliver high-quality, high-precision, medical components which support devices used
+      in neurovascular, cardiovascular, and diagnostic medical procedures.
+    approx_offset: 11946
+  - quote: EPTAM is a medical device manufacturer capable of machining the most complex components needed
+      for cardiovascular or endovascular surgeries and treatments.
+    approx_offset: 30508
+  - quote: Our expertise is in custom implantable components for the orthopedic, orthopedic spine, cardiovascular,
+      vascular, endovascular, and pelvic health sectors.
+    approx_offset: 66439
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0058
+  form: chemical processing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: Torlon® parts are commonly used in aerospace, chemical processing, electronics manufacturing,
+      automotive transmissions, and bearings.
+    approx_offset: 179756
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0059
+  form: commercial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/plastics-machining/
+    - https://eptam.com/category/news/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+  evidence:
+  - quote: CHIEF COMMERCIAL OFFICER
+    approx_offset: 23445
+  - quote: Bill Flaherty joined EPTAM Precision Solutions as Chief Commercial Officer in 2024.
+    approx_offset: 23541
+  - quote: His strategic vision and operational expertise are driving commercial growth and market expansion,
+      making him a valuable addition to the EPTAM team.
+    approx_offset: 23894
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0060
+  form: consumer
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/about/locations/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Since 2005, EPTAM has been a vertically integrated injection molding solutions partner in the
+      medical/healthcare, industrial, consumer, and defense industries.
+    approx_offset: 45651
+  - quote: 'Cross-Industry Expertise: Our experience spans medical devices, consumer goods, and more,
+      allowing us to tailor our processes to meet various industry needs.'
+    approx_offset: 47106
+  - quote: EPTAM has been a vertically integrated injection molding solutions partner since 2005, serving
+      the medical/healthcare, industrial, consumer, and defense industries.
+    approx_offset: 50232
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0061
+  form: consumer product
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: EPTAM Molding MA is a vertically integrated injection molding solutions partner in the consumer
+      product, healthcare, and defense industries.
+    approx_offset: 76119
+  - quote: Founded in 1968, Sterling is a vertically integrated injection molding solutions partner in
+      the consumer product, healthcare and defense industries.
+    approx_offset: 159593
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0062
+  form: contract manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/about/policies/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: Steve is a seasoned operations executive with 25+ years of global leadership in medical device
+      contract manufacturing.
+    approx_offset: 22874
+  - quote: With extensive experience in the MedTech industry, he has held various leadership roles in
+      both private equity and contract manufacturing.
+    approx_offset: 23684
+  - quote: Manny brings over 25 years of global management experience leading quality, regulatory affairs,
+      and operational excellence across the medical device, biopharma, aerospace, automotive and contract
+      manufacturing industries.
+    approx_offset: 25504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0063
+  form: diversified industrial markets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: Mark’s background in building teams that rapidly scale manufacturing services businesses in
+      both public and private sectors supports EPTAM’s mission to become the solutions-oriented market
+      leader in high-precision metal and plastic components for the medical devices, aerospace & defense
+      and diversif
+    approx_offset: 22679
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0064
+  form: diversified industrials sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: The company provides its custom machining solutions to leaders in the medical devices, biopharma
+      and diversified industrials sectors.
+    approx_offset: 159308
+  - quote: The company provides its custom machining solutions to leaders in the Medical Devices, BioPharma,
+      and Diversified Industrials sectors.
+    approx_offset: 166049
+  - quote: The company provides its custom machining solutions to leaders in the Medical Devices, BioPharma
+      and Diversified Industrials sectors.
+    approx_offset: 170674
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0065
+  form: electronics manufacturing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: Torlon® parts are commonly used in aerospace, chemical processing, electronics manufacturing,
+      automotive transmissions, and bearings.
+    approx_offset: 179777
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0066
+  form: endovascular
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/eptam-precision-and-mendell-join-forces/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: EPTAM is a medical device manufacturer capable of machining the most complex components needed
+      for cardiovascular or endovascular surgeries and treatments.
+    approx_offset: 30526
+  - quote: Our expertise is in custom implantable components for the orthopedic, orthopedic spine, cardiovascular,
+      vascular, endovascular, and pelvic health sectors.
+    approx_offset: 66465
+  - quote: Mendell is a medical component manufacturer located in Lakeville, MN that specializes in precision
+      CNC micro-machining of implantable devices for the orthopedic, structural heart, cardiovascular,
+      and endovascular markets.
+    approx_offset: 189538
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0067
+  form: gynecology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: And, EPTAM is doing our part to further how manufacturing metal and plastic parts and instruments
+      are also improving segments in urology, orthopedics, neurology, gynecology, and others.
+    approx_offset: 62994
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0068
+  form: healthcare
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 52
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/category/news/
+    - https://eptam.com/eptam-invests-in-high-performance-materials/
+  evidence:
+  - quote: His most recent position in the pharmaceutical and healthcare technology sectors saw him rise
+      from a Controller to the role of CFO, playing a pivotal role in significant industry acquisitions.
+    approx_offset: 24204
+  - quote: His depth of expertise strengthens EPTAM’s commitment to delivering high quality, safe, effective,
+      and compliant solutions for healthcare innovators.
+    approx_offset: 26003
+  - quote: Since 2005, EPTAM has been a vertically integrated injection molding solutions partner in the
+      medical/healthcare, industrial, consumer, and defense industries.
+    approx_offset: 45627
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0069
+  form: healthcare industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/eptam-precision-solutions-names-bill-flaherty-as-chief-commercial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-graham-schillmoller-as-chief-financial-officer/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+  evidence:
+  - quote: Founded in 1991, Frazier Healthcare Partners is a private equity firm focused exclusively on
+      the healthcare industry.
+    approx_offset: 166316
+  - quote: Founded in 1991, Frazier Healthcare Partners is a private equity firm focused exclusively on
+      the healthcare industry.
+    approx_offset: 176170
+  - quote: “With more than 25 years of experience in corporate accounting, financial management, and creating
+      technology solutions for the healthcare industry, Graham brings a wealth of knowledge and expertise
+      that will be instrumental in guiding EPTAM through its next phase of growth.”
+    approx_offset: 185999
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0070
+  form: healthcare sector
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: Founded in 1991, Frazier Healthcare Partners is a leading private equity firm focused exclusively
+      on the healthcare sector.
+    approx_offset: 160395
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0071
+  form: high-tech industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/eptam-precisions-acquisition-of-ingram-machining/
+  evidence:
+  - quote: Ingram is a development and short-run machining operation, specializing in components and finished
+      devices for medical, robotics and other high-tech industries.
+    approx_offset: 168460
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0072
+  form: high-tech manufacturing industries
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/
+  evidence:
+  - quote: All facilities are designed to meet the high standards of the medical, robotics, and other
+      high-tech manufacturing industries.
+    approx_offset: 34313
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0073
+  form: industrial
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 11
+    pages:
+    - https://eptam.com/about/leadership/
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/plastics-additive-manufacturing/
+    - https://eptam.com/capabilities/plastics-injection/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Mark’s background in building teams that rapidly scale manufacturing services businesses in
+      both public and private sectors supports EPTAM’s mission to become the solutions-oriented market
+      leader in high-precision metal and plastic components for the medical devices, aerospace & defense
+      and diversif
+    approx_offset: 22691
+  - quote: Since 2005, EPTAM has been a vertically integrated injection molding solutions partner in the
+      medical/healthcare, industrial, consumer, and defense industries.
+    approx_offset: 45639
+  - quote: EPTAM has been a vertically integrated injection molding solutions partner since 2005, serving
+      the medical/healthcare, industrial, consumer, and defense industries.
+    approx_offset: 50220
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0074
+  form: life sciences
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/eptam-precision-and-sterling-join-forces-to-become-the-partner-of-choice-for-medical-molding-customers/
+  evidence:
+  - quote: In addition to further bolstering EPTAM’s presence in the life sciences, biopharma and broader
+      medical device market, the transaction expands and further diversifies EPTAM’s capabilities, offering
+      customers a single partner of choice to solve their plastics manufacturing requirements.
+    approx_offset: 156376
+  - quote: We are confident this acquisition will expand EPTAM’s vast technical capabilities in servicing
+      the life sciences and medical markets.
+    approx_offset: 158859
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0075
+  form: medical device industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/eptam-precision-solutions-names-steve-cardin-as-chief-operations-officer/
+    - https://eptam.com/frazier-healthcare-partners-announces-acquisition-of-eptam-precision-solutions/
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: 'With extensive experience serving the medical device industry, we excel in producing complex
+      components for:'
+    approx_offset: 115684
+  - quote: We ensure contamination-free welds that meet the stringent requirements of the medical device
+      industry.
+    approx_offset: 144011
+  - quote: His extensive experience in the medical device industry also includes senior roles at Viant
+      Medical, Vention Medical, and ATEK Medical.
+    approx_offset: 174762
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0076
+  form: medical implant market
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-implants/
+  evidence:
+  - quote: We meet a variety of demands including the rapidly growing and high-demand medical implant
+      market.
+    approx_offset: 40938
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0077
+  form: medical industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/metals-molding-mim/
+    - https://eptam.com/industries/medical-implants/
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: At EPTAM, we specialize in creating intricate components that meet the rigorous demands of
+      the medical industry.
+    approx_offset: 6901
+  - quote: EPTAM’s market focus has long been the medical industry.
+    approx_offset: 40845
+  - quote: We have designed unique divisions within EPTAM to solely service the various medical industry
+      requirements.
+    approx_offset: 41373
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0078
+  form: medical/healthcare
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+  evidence:
+  - quote: Since 2005, EPTAM has been a vertically integrated injection molding solutions partner in the
+      medical/healthcare, industrial, consumer, and defense industries.
+    approx_offset: 45619
+  - quote: EPTAM has been a vertically integrated injection molding solutions partner since 2005, serving
+      the medical/healthcare, industrial, consumer, and defense industries.
+    approx_offset: 50200
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0079
+  form: neurology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: And, EPTAM is doing our part to further how manufacturing metal and plastic parts and instruments
+      are also improving segments in urology, orthopedics, neurology, gynecology, and others.
+    approx_offset: 62983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0080
+  form: neurovascular
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://eptam.com/capabilities/laser-old/
+    - https://eptam.com/capabilities/laser/
+  evidence:
+  - quote: EPTAM Precision Solutions’ next generation of Laser Tube cutting technology will enhance micromachining
+      processes that deliver high-quality, high-precision, medical components which support devices used
+      in neurovascular, cardiovascular, and diagnostic medical procedures.
+    approx_offset: 11931
+  - quote: Neurovascular devices, orthopedic implants, and endoscopic tools.
+    approx_offset: 148934
+  - quote: Neurovascular Stent Manufacturing
+    approx_offset: 151279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0081
+  form: orthopedics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+    - https://eptam.com/industries/npi-services/
+  evidence:
+  - quote: And, EPTAM is doing our part to further how manufacturing metal and plastic parts and instruments
+      are also improving segments in urology, orthopedics, neurology, gynecology, and others.
+    approx_offset: 62970
+  - quote: At EPTAM Precision, our NPI process is tailored to the unique needs of industries such as biopharma,
+      molecular diagnostics, robotic assisted and minimally invasive surgical devices, interventional,
+      and orthopedics.
+    approx_offset: 115632
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0082
+  form: pelvic health
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Our expertise is in custom implantable components for the orthopedic, orthopedic spine, cardiovascular,
+      vascular, endovascular, and pelvic health sectors.
+    approx_offset: 66483
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0083
+  form: pelvic health sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/capabilities/micro-machining/
+  evidence:
+  - quote: Our expertise is in custom implantable components for the orthopedic, orthopedic spine, cardiovascular,
+      vascular, endovascular, and pelvic health sectors.
+    approx_offset: 66483
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0084
+  form: pharmaceutical
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: His most recent position in the pharmaceutical and healthcare technology sectors saw him rise
+      from a Controller to the role of CFO, playing a pivotal role in significant industry acquisitions.
+    approx_offset: 24185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0085
+  form: pharmaceutical and healthcare technology sectors
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/leadership/
+  evidence:
+  - quote: His most recent position in the pharmaceutical and healthcare technology sectors saw him rise
+      from a Controller to the role of CFO, playing a pivotal role in significant industry acquisitions.
+    approx_offset: 24185
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0086
+  form: semi-conductur industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Our team is highly skilled in producing parts for the semi-conductur industry.
+    approx_offset: 118957
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0087
+  form: semiconductor industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://eptam.com/industries/semi-conductor/
+  evidence:
+  - quote: Plastic semiconductor components fabricated by EPTAM meet or exceed the critical requirements
+      of the semiconductor industry.
+    approx_offset: 117083
+  - quote: EPTAM’s clean, climate-controlled manufacturing center is the right place to produce and assemble
+      critical components for the semiconductor industry.
+    approx_offset: 117314
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0088
+  form: test kit market
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-molecular-diagnostics/
+  evidence:
+  - quote: The rapidly growing test kit market has spurred unprecedented demand on the plastic and metal
+      manufacturers.
+    approx_offset: 121346
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0089
+  form: the contract manufacturing industry
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/about/policies/
+  evidence:
+  - quote: We believe in providing our customers with the best services and products available in the
+      contract manufacturing industry.
+    approx_offset: 97974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0090
+  form: urology
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://eptam.com/industries/medical-robotics/
+  evidence:
+  - quote: And, EPTAM is doing our part to further how manufacturing metal and plastic parts and instruments
+      are also improving segments in urology, orthopedics, neurology, gynecology, and others.
+    approx_offset: 62961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: sterlingmfg_net-industries-0091
+  form: vascular
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://eptam.com/capabilities/laser/
+    - https://eptam.com/capabilities/micro-machining/
+    - https://eptam.com/capabilities/plastics-molding-silicone/
+    - https://eptam.com/industries/med-interventional-and-structural-heart/
+  evidence:
+  - quote: These parts are used across the spectrum of medical equipment, used in the vascular, congenital,
+      and structural heart devices.
+    approx_offset: 30968
+  - quote: Vascular Devices
+    approx_offset: 48615
+  - quote: Our expertise is in custom implantable components for the orthopedic, orthopedic spine, cardiovascular,
+      vascular, endovascular, and pelvic health sectors.
+    approx_offset: 66455
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

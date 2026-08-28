@@ -1,0 +1,879 @@
+subject: pradeepmetals.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+  sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+golden_set_version: 1
+anchored_on: search/expectations/pradeepmetals_com/conformity_attestations.yaml
+labels:
+- id: pradeepmetals_com-conformity_attestations-0001
+  form: AD2000-MERKBLATT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 9005
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 115047
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 119432
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0002
+  form: AD2000-MERKBLATT W0
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 9005
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 115047
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 119432
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0003
+  form: AS 9100D
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: AS 9100D
+    approx_offset: 906
+  - quote: AS 9100D
+    approx_offset: 8897
+  - quote: AS 9100D
+    approx_offset: 114939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0004
+  form: CANADIAN REGISTRATION
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: CANADIAN REGISTRATION
+    approx_offset: 9188
+  - quote: CANADIAN REGISTRATION
+    approx_offset: 115230
+  - quote: CANADIAN REGISTRATION
+    approx_offset: 119615
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0005
+  form: Central Boiler Board
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: In addition, the firm is also certified by Engineers India Ltd, the Central Boiler Board, and
+      international bodies.
+    approx_offset: 207495
+  - quote: It is also certified by the Central Boiler Board, by Engineers India Ltd, and by international
+      bodies as well.
+    approx_offset: 245408
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0006
+  form: Certificate of Incorporation
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/charter-documents/
+  evidence:
+  - quote: Certificate of Incorporation
+    approx_offset: 93768
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0007
+  form: Companies Act
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/disclosure-under-regulation-46-sebi-lodr/
+  evidence:
+  - quote: "23\tAnnual return as provided under section 92 of the Companies Act,2013 and the rules made\
+      \ there under\tView Details"
+    approx_offset: 45983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0008
+  form: Companies Act,2013
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/disclosure-under-regulation-46-sebi-lodr/
+  evidence:
+  - quote: "23\tAnnual return as provided under section 92 of the Companies Act,2013 and the rules made\
+      \ there under\tView Details"
+    approx_offset: 45983
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0009
+  form: DSIR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/imrc-introduction/
+  evidence:
+  - quote: IMRC is also recognized as a R&D Center by DSIR, Govt.
+    approx_offset: 140018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0010
+  form: ENGINEERS INDIA LTD
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: ENGINEERS INDIA LTD
+    approx_offset: 9083
+  - quote: ENGINEERS INDIA LTD
+    approx_offset: 115125
+  - quote: ENGINEERS INDIA LTD
+    approx_offset: 119510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0011
+  form: IMS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/corporate-social-responsibility
+    - https://www.pradeepmetals.com/corporate-social-responsibility/
+    - https://www.pradeepmetals.com/policies
+    - https://www.pradeepmetals.com/policies/
+  evidence:
+  - quote: IMS POLICY
+    approx_offset: 9240
+  - quote: IMS POLICY
+    approx_offset: 33638
+  - quote: Stage 1 IMS audit completed.
+    approx_offset: 65622
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0012
+  form: IMS POLICY
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/policies
+    - https://www.pradeepmetals.com/policies/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: IMS POLICY
+    approx_offset: 9240
+  - quote: IMS POLICY
+    approx_offset: 33638
+  - quote: IMS POLICY
+    approx_offset: 115282
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0013
+  form: INDIAN BOILER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: INDIAN BOILER
+    approx_offset: 9067
+  - quote: INDIAN BOILER
+    approx_offset: 115109
+  - quote: INDIAN BOILER
+    approx_offset: 119494
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0014
+  form: INDIAN DEFENSE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: INDIAN DEFENSE
+    approx_offset: 9119
+  - quote: INDIAN DEFENSE
+    approx_offset: 115161
+  - quote: INDIAN DEFENSE
+    approx_offset: 119546
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0015
+  form: INDIAN RAILWAYS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: INDIAN RAILWAYS
+    approx_offset: 9153
+  - quote: INDIAN RAILWAYS
+    approx_offset: 115195
+  - quote: INDIAN RAILWAYS
+    approx_offset: 119580
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0016
+  form: ISI
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-social-responsibility
+    - https://www.pradeepmetals.com/corporate-social-responsibility/
+  evidence:
+  - quote: Adherence to ISI standards for fire and evacuation
+    approx_offset: 65222
+  - quote: Adherence to ISI standards for fire and evacuation
+    approx_offset: 67710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0017
+  form: ISI standards
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-social-responsibility
+    - https://www.pradeepmetals.com/corporate-social-responsibility/
+  evidence:
+  - quote: Adherence to ISI standards for fire and evacuation
+    approx_offset: 65222
+  - quote: Adherence to ISI standards for fire and evacuation
+    approx_offset: 67710
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0018
+  form: ISO 140001-2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: Pradeep Metals has become one of the prominent forging companies in India thanks to certifications
+      such as ISO 140001-2015 and ISO 9001-2015.
+    approx_offset: 207392
+  - quote: It is ISO certified with ISO 9001-2015 and ISO 140001-2015 certifications.
+    approx_offset: 245348
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0019
+  form: ISO 14001-2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: ISO 14001-2015
+    approx_offset: 8924
+  - quote: ISO 14001-2015
+    approx_offset: 114966
+  - quote: ISO 14001-2015
+    approx_offset: 119351
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0020
+  form: ISO 14001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: ISO 14001:2015
+    approx_offset: 929
+  - quote: ISO 14001:2015
+    approx_offset: 193504
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0021
+  form: ISO 45001- 2018
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: ISO 45001- 2018
+    approx_offset: 8941
+  - quote: ISO 45001- 2018
+    approx_offset: 114983
+  - quote: ISO 45001- 2018
+    approx_offset: 119368
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0022
+  form: ISO 45001:2018
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: ISO 45001:2018
+    approx_offset: 944
+  - quote: ISO 45001:2018
+    approx_offset: 193519
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0023
+  form: ISO 9001-2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/trending-news-forging-company-india/
+  evidence:
+  - quote: ISO 9001-2015
+    approx_offset: 8908
+  - quote: ISO 9001-2015
+    approx_offset: 114950
+  - quote: ISO 9001-2015
+    approx_offset: 119335
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0024
+  form: ISO 9001:2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - http://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/
+  evidence:
+  - quote: ISO 9001:2015
+    approx_offset: 915
+  - quote: ISO 9001:2015
+    approx_offset: 193490
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0025
+  form: ISO certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: 1995 – ISO certification
+    approx_offset: 36382
+  - quote: 1995 – ISO certification
+    approx_offset: 117913
+  - quote: 1995 – Obtained ISO certification
+    approx_offset: 206767
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0026
+  form: MARINE CERTIFICATE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: MARINE CERTIFICATE
+    approx_offset: 9046
+  - quote: MARINE CERTIFICATE
+    approx_offset: 115088
+  - quote: MARINE CERTIFICATE
+    approx_offset: 119473
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0027
+  form: Maharashtra Energy Development Agency (MEDA)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/pradeep-metals-registration-of-the-2-10-mw-1-x-21000-kw-wind-power-project-2/
+  evidence:
+  - quote: Pradeep Metals Ltd has informed BSE that the Company has received a Letter dated February 22,
+      2016 from Maharashtra Energy Development Agency (MEDA) stating that its 2.10 MW (1 X 21000 KW)…
+    approx_offset: 257626
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0028
+  form: NORSOK
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: NORSOK
+    approx_offset: 963
+  - quote: NORSOK CERTIFIED
+    approx_offset: 9027
+  - quote: NORSOK CERTIFIED
+    approx_offset: 115069
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0029
+  form: NORSOK CERTIFIED
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: NORSOK CERTIFIED
+    approx_offset: 9027
+  - quote: NORSOK CERTIFIED
+    approx_offset: 115069
+  - quote: NORSOK CERTIFIED
+    approx_offset: 119454
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0030
+  form: NUCLEAR APPROVED SUPPLIER
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-vision-strengths
+    - https://www.pradeepmetals.com/our-vision-strengths/
+  evidence:
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 11786
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 55551
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 112888
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0031
+  form: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.pradeepmetals.com/about-us
+    - https://www.pradeepmetals.com/about-us/
+    - https://www.pradeepmetals.com/our-vision-strengths
+    - https://www.pradeepmetals.com/our-vision-strengths/
+  evidence:
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 11786
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 55551
+  - quote: NUCLEAR APPROVED SUPPLIER (USA & GERMANY)
+    approx_offset: 112888
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0032
+  form: PED
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 8
+    pages:
+    - http://www.pradeepmetals.com/
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+  evidence:
+  - quote: PED
+    approx_offset: 959
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 8989
+  - quote: 2002 – PED certification
+    approx_offset: 36138
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0033
+  form: PED 2014/68/EU
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 8989
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 115031
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 119416
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0034
+  form: PED certification
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/our-history
+    - https://www.pradeepmetals.com/our-history/
+    - https://www.pradeepmetals.com/pradeep-metals-growth-forging-industry/
+  evidence:
+  - quote: 2002 – PED certification
+    approx_offset: 36138
+  - quote: 2002 – PED certification
+    approx_offset: 117669
+  - quote: 2002 – PED certification
+    approx_offset: 207018
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0035
+  form: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - http://www.pradeepmetals.com/quality/
+    - https://www.pradeepmetals.com/quality
+    - https://www.pradeepmetals.com/quality/
+  evidence:
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 8959
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 115001
+  - quote: PRESSURE EQUIPMENT DIRECTIVE (PED 2014/68/EU),AD2000-MERKBLATT W0
+    approx_offset: 119386
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0036
+  form: REGISTRATION OF THE 2.10 MW (1 X 21000 KW) WIND POWER PROJECT
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.pradeepmetals.com/blog/
+    - https://www.pradeepmetals.com/pradeep-metals-registration-of-the-2-10-mw-1-x-21000-kw-wind-power-project-2/
+  evidence:
+  - quote: Pradeep Metals – Registration of the 2.10 MW (1 X 21000 KW) Wind Power Project…
+    approx_offset: 86691
+  - quote: Pradeep Metals > Blog > Pradeep Metals – Registration of the 2.10 MW (1 X 21000 KW) Wind Power
+      Project…
+    approx_offset: 257376
+  - quote: PRADEEP METALS – REGISTRATION OF THE 2.10 MW (1 X 21000 KW) WIND POWER PROJECT…
+    approx_offset: 257458
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0037
+  form: SEBI (LISTING OBLIGATION AND DISCLOSURE REQUIREMENTS) REGULATIONS, 2015
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/disclosure-under-regulation-46-sebi-lodr/
+  evidence:
+  - quote: DISCLOSURE PURSUANT TO REGULATION 46 OF SEBI (LISTING OBLIGATION AND DISCLOSURE REQUIREMENTS)
+      REGULATIONS, 2015
+    approx_offset: 43479
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0038
+  form: SEBI LODR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/disclosure-under-regulation-46-sebi-lodr/
+  evidence:
+  - quote: Pradeep Metals > Disclosure under Regulation 46 – SEBI LODR
+    approx_offset: 43427
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0039
+  form: Stage 1 IMS audit completed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.pradeepmetals.com/corporate-social-responsibility
+    - https://www.pradeepmetals.com/corporate-social-responsibility/
+  evidence:
+  - quote: Stage 1 IMS audit completed.
+    approx_offset: 65614
+  - quote: Stage 1 IMS audit completed.
+    approx_offset: 68102
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: pradeepmetals_com-conformity_attestations-0040
+  form: recognized as a R&D Center by DSIR
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.pradeepmetals.com/imrc/imrc-introduction/
+  evidence:
+  - quote: IMRC is also recognized as a R&D Center by DSIR, Govt.
+    approx_offset: 139988
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

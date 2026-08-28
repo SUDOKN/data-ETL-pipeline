@@ -1,0 +1,199 @@
+subject: decimal.net
+subject_name: Decimal Engineering, Inc.
+slug: decimal_net
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+role: full_unit
+role_source: 'search/expectations/decimal_net/subject.yaml assigns full_unit; the word is in the mention
+  role vocabulary too, so it is reused unchanged.'
+
+# Everyone on this site who is not Decimal Engineering. `whose_words` must be able to
+# tell these apart from the first-party capability prose that dominates the file.
+third_party_roster:
+- Loram                       # customer, named ONCE, inside a tab-separated case-study table row
+- Tiffany & Co.               # customer, named ONCE, inside a tab-separated case-study table row
+- Makino                      # machine vendor, blog + news index
+- Salvagnini / Salvagini      # machine vendor, TWO spellings of one machine
+- Bystronic                   # machine vendor (ByStar laser, Xpert 40 bending robot)
+- Beyeler                     # press-brake vendor
+- Mazak                       # laser vendor, named in a case-study row
+- Kitamura                    # machining-centre vendor, named in a case-study row
+- SFMA                        # South Florida Manufacturers Association - award body, 21 occurrences
+- unnamed NADCAP finishing suppliers   # the supplier-held-attestation trap, below
+- unnamed certified plater             # 'Plating Certified to AS9100, ISO, ITAR & NADCAP' footnote
+- ISO / AS9100 / NADCAP / ITAR / DFAR / RoHs / SVHC   # standards bodies and regimes, footer
+
+coverage: full_text
+# Advisory for the page-trim leniency: exactly one page, /privacy-policy/ (66 lines,
+# 6,378 chars), matches the pipeline's _EXCLUDED_PAGE_PATH_RE and is dropped before
+# chunking. Occurrence counts taken over this file are therefore <= the trimmed
+# expectation by whatever that page contributes.
+page_trim:
+  excluded_pages: ['https://www.decimal.net/privacy-policy/']
+  note: '66 lines / 6,378 chars dropped by the privacy|cookie|terms|legal rule'
+
+text_hazards:
+
+# ---- repeated lines -------------------------------------------------------------
+- hazard: repeated_footer
+  note: 'ALL-CAPS certifications strip, one line, on 48 of 50 pages. Six attestations share
+    a single line with no sentence around them, so nearly every ISO 9001 / AS9100 / ITAR /
+    DFAR / RoHs / SVHC occurrence in the file resolves to this identical snippet - the
+    location model sees 48 indistinguishable passages and must call every one of them a
+    site-wide footer, not a capability claim.'
+  quote: "CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant SVHC Compliant"
+
+- hazard: repeated_footer
+  note: 'the address/phone/email block repeats on all 50 pages (5 lines x 50); the copyright
+    and the sitemap line repeat 48 times each. The sitemap line carries FOUR non-breaking
+    spaces and no other content.'
+  quote: "Privacy Policy \xA0\xA0|\xA0\xA0 Sitemap"
+
+- hazard: country_dropdown
+  note: 'THE headline mention-stage hazard on this subject. /ask-alan/ and /contact-rfq/ each
+    dump a 248-entry ISO country list (lines 1754-2002 and 2142-2390) AND a 51-entry US
+    state list (1698-1748, 2086-2136). 603 of the file''s 3,587 non-blank lines - 17% of
+    the text - are one-word geography lines with NO sentence around them. Every one clips
+    to a snippet that is the bare country name. Multi-word entries collide with real
+    vocabulary: "Georgia", "Jersey", "Turkey", "Chad", "Saint Martin (French part)".'
+  quote: "Taiwan, Province of China"
+
+- hazard: country_dropdown
+  note: 'second exemplar - the ISO list uses lowercase "the" in the DRC entry, so a retyped
+    "Congo, The Democratic Republic of the" will not match. Quote, do not retype.'
+  quote: "Congo, the Democratic Republic of the"
+
+- hazard: cms_boilerplate
+  note: 'the WordPress comment form repeats on all 18 news posts; 3 lines each, 54 lines total,
+    none of it content. On at least one post (/2020-decimal-engineering-new-company-profile-video/,
+    line 2641) the comment form IS the whole page body - a stub page whose only prose is CMS
+    furniture.'
+  quote: "Your email address will not be published. Required fields are marked *"
+
+# ---- table-like structures ------------------------------------------------------
+- hazard: spec_table_cells
+  note: 'the seven service pages carry near-identical capability spec-tables rendered as a
+    tab-TERMINATED header line followed by bare one-word cells, one per line. 83% of this
+    file''s non-blank lines (2,287 of 2,755) end without terminal punctuation, so for most
+    occurrences the "sentence or line" clip degrades to the line and the snippet is a
+    context-free fragment: "Boring", "Titanium", "Delrin". A snippet label on these must
+    carry the table it came from, because the line alone carries nothing.'
+  quote: "Machining Processes\t"
+
+- hazard: table_row
+  note: 'some rows are a tab-separated header/value PAIR on one line - these clip acceptably
+    because the tab-joined line is self-describing. Contrast with the bare-cell rows above:
+    the same table mixes both shapes.'
+  quote: "Fixturing\tIn-House Fixturing & Tooling"
+
+- hazard: customer_named_in_table
+  note: 'THE most valuable location case on this subject. Loram and Tiffany & Co. each occur
+    EXACTLY ONCE in the whole file, and that single occurrence is a tab-separated cell in a
+    case-study "PROJECT HIGHLIGHTS" table - never in prose. There is no sentence to clip to;
+    the snippet is the row. belongs_to must name the case-study table, and whose_words is
+    `site` (Decimal describing work it did) even though the row names a customer - the
+    customer never speaks here.'
+  quote: "Project Description\tPower distribution locker used in locomotive application for Loram."
+
+- hazard: customer_named_in_table
+  note: 'the second, in the jewelry case study. Same shape, same single occurrence.'
+  quote: "Project Description\tCross pendant jewelry for Tiffany & Co."
+
+- hazard: fused_table_cells
+  note: 'adjacent table cells arrive concatenated with NO separator, so a form has no word
+    boundary on one side. Where a fused cell is a form''s ONLY occurrence, the snippet is a
+    line that no clean form matches; "Mill-Turn" here has no left boundary and "Milling" no
+    right one. Also: "Nickel AlloysNylon", "PipePlate", "HospitalityJewelry", "Powder
+    CoatingPTFE".'
+  quote: "MillingMill-Turn"
+
+- hazard: fused_table_cells
+  note: 'the same fusion inside an equipment row, and the machine name is misspelled here
+    ("Salvagini") relative to the blog ("Salvagnini") - two spellings of one owned machine.
+    A grouping label must decide whether they are one group.'
+  quote: "Salvagini P2L-2520 Automated Panel BenderBeyeler Press Brakes (9-Axis of control)"
+
+- hazard: bare_token_lines
+  note: 'five photo albums render captions as bare lines separated by NBSP-only lines. Each
+    caption fuses material + process + product + industry with no punctuation, so ONE line is
+    legitimate evidence for four different fields, and the clip cannot narrow it.'
+  quote: "Anodized Aluminum Airplane Seating Assembly Aerospace 01"
+
+# ---- heading styles -------------------------------------------------------------
+- hazard: heading_all_caps
+  note: '190 ALL-CAPS lines. Section headings inside the spec-table pages are standalone
+    ALL-CAPS lines with no punctuation, immediately above the table they title - the only
+    thing that tells a reader (or the location model) which table a bare cell belongs to.'
+  quote: "PRECISION MACHINING CAPABILITIES"
+
+- hazard: heading_all_caps
+  note: 'the news index reprints each post''s ALL-CAPS headline AND its opening paragraph, so
+    every equipment-acquisition announcement occurs twice - once as an index teaser truncated
+    with a bracketed ellipsis, once in the post itself with different truncation. Note the
+    apostrophe is U+2019 and the possessive is wrong in the source ("IT''S").'
+  quote: "DECIMAL ADDS THE MAKINO A71NX-571 TO IT’S ALREADY STACKED LINE UP!"
+
+- hazard: heading_names_party
+  note: 'the hero banner is an ALL-CAPS standalone line naming nine industries, split mid-line
+    by 33 consecutive non-breaking spaces. A line-clip yields all nine industries plus the
+    NBSP run in one snippet; "AUTOMOTIVE" sits after the NBSP run with no ordinary space
+    before it.'
+  quote: "SPECIALIZING IN THE AEROSPACE, DEFENSE, MEDICAL, SECURITY, TELECOMMUNICATIONS, ELECTRONICS, COMPUTER,                                                                AUTOMOTIVE & MARINE INDUSTRIES "
+
+# ---- third-party voice ----------------------------------------------------------
+- hazard: supplier_held_attestation
+  note: 'THE attribution trap on this subject, and it is subtle because the voice never
+    changes. The sentence is first-person site prose ("we work with"), so whose_words is
+    correctly `site` - but the NADCAP certification it names is held by an unnamed SUPPLIER,
+    not by Decimal. The location label cannot fix this; only a snippet label whose `carries`
+    element demands the "we work with ... suppliers" clause preserves the attribution. Clip
+    the sentence short and the evidence inverts. Same trap in the plating footnote,
+    "Plating Certified to AS9100, ISO, ITAR & NADCAP", which belongs to the plater.'
+  quote: "For NADCAP certified finishing, we work with a number of trusted suppliers who can provide full process compliance."
+
+- hazard: third_party_voice
+  note: 'the equipment-acquisition blog is first-party but promotional, and it quotes machine-
+    vendor marketing arithmetic (OEE percentages, tool-change economics) as if it were
+    Decimal''s own analysis. whose_words is `site`; belongs_to must say news post, not
+    capability page, or downstream reads a press release as a capability claim.'
+  quote: "Why did Decimal Engineering wait for the Salvagnini P2-L-2520?"
+
+# ---- character-level ------------------------------------------------------------
+- hazard: nbsp_mid_phrase
+  note: '282 non-breaking spaces on 81 lines, 24 of them mid-prose. At least one sits INSIDE
+    a machine name, so a form containing an ordinary space cannot match unless whitespace is
+    elastic - and a span that does match crosses a character the snippet must reproduce.'
+  quote: "P2L-2520 panel bender, on the other hand"
+
+- hazard: non_ascii
+  note: '19 distinct non-ASCII code points: U+00A0 (282), U+2033 double-prime in every
+    dimension (91), U+00A9 (48), U+00BB (43), U+2019 curly apostrophe (35), U+201C/U+201D
+    (28), U+2013 (12), U+00B1 (11), U+2212 true minus (8), U+2026 (8), U+00E9 (4), U+00C5 (2).
+    Tolerances mix U+2212 MINUS SIGN and ASCII hyphen for the same value.'
+  quote: "±0.0005″"
+
+notes: 'What makes decimal.net a mention-stage subject rather than a search-stage one: 83% of
+  its non-blank lines have no terminal punctuation, so the stage''s "clip to the sentence or
+  line" rule falls back to "the line" for the large majority of occurrences, and the resulting
+  snippet is a bare fragment. The file has three separate machineries for producing such
+  fragments - 603 lines of geography dropdown, the seven repeated capability spec-tables, and
+  five albums of caption lines - and one machinery for producing near-identical prose snippets,
+  the 48-page ALL-CAPS certifications footer.
+
+
+  The two location cases worth grading first are the case-study table rows (the only occurrence
+  of either named customer is a tab-separated cell, so the label must describe a row, not a
+  sentence) and the supplier-held NADCAP sentence (voice is `site`, attribution is a supplier,
+  and only the full sentence carries the difference).
+
+
+  All quotes were extracted from the snapshot by line offset and verified byte-exact against
+  it; none was retyped. Every hazard here is stage-specific: scrape defects that only affect
+  which forms get searched for are the search harness''s business and were left in
+  search/expectations/decimal_net/subject.yaml.'
+
+provenance:
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: corpus-seed}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:search'}
+- {action: added, by: 'seed-agent-batch3', date: '2026-08-27', source: 'harvested:expansion-doc'}

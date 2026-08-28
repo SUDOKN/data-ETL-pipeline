@@ -1,0 +1,2251 @@
+golden_set_version: 1
+generated: '2026-08-27'
+kind: adversarial_negatives
+anchored_on: adversarial
+notes: 'The NEGATIVE half of the mention-stage golden corpus: forms the stage must return ZERO mentions for. Two classes, both with verified live examples in this corpus. (1) SUBSTRING TRAPS - the form has no whole-word occurrence but does occur inside longer words, so a containment matcher ''finds'' it (expect.occurrences: 0 plus expect.substring_trap_inside naming one enclosing word). (2) ZERO-OCCURRENCE FORMS - the form is absent as a substring too, yet downstream stages produced tags for it (expect.must_not_occur: true). Every count in this file was measured by the author against the pinned snapshot, not copied from any prior document; where a prior claim did not survive the check it was dropped and reported as a correction instead of labelled.'
+method: 'whole-word counts: _shared.text_matching.flexible_pattern(form, case_sensitive=...).findall(normalize_spaces(text)) - the same matcher the eval uses, so these numbers are the harness''s numbers; forms of 3 characters or fewer are forced to case-sensitive matching by that module (SHORT_FORM_MAX_LENGTH), which is the rule these labels exercise. naive-substring counts: normalize_spaces(text).lower().count(form.lower()). Quotes are verbatim contiguous substrings of the snapshot (long lines clipped outward to whitespace); approx_offset is advisory and indexes the untrimmed snapshot.'
+status_policy: confirmed = an independent prior pass claimed the form (the expansion doc or a search-stage false_friend entry) AND this pass re-measured it and agrees - two passes, per GOLDEN_LABELS_SCHEMA.md. candidate = found only by this pass's own short-form probe and still owed a second reader.
+subjects:
+  101machine_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/101machine.com.txt
+      sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+    labels:
+    - id: 101machine_com-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Evans
+      evidence:
+      - quote: 1937 Evans Rd
+        approx_offset: 1078
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 15 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Evans'' x10, ''develop'' x2, ''Everything'' x1, ''Chevalier'' x1, +1 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: 101machine_com-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: quality
+      evidence:
+      - quote: 101 Machine has become a recognized name for high quality work and superior customer service.
+        approx_offset: 175
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 36 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''quality'' x4, ''materials'' x3, ''Materials'' x3, ''ideal'' x2, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: 101machine_com-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: possible
+      evidence:
+      - quote: When requesting a quote please provide a PDF of the print and a .step file or Parasolid if possible. In the machinist world the print is the final word.
+        approx_offset: 3641
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 4 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''possible'' x2, ''Stainless'' x1, ''Brass'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: 101machine_com-neg-0004
+      form: Lead
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: leads
+      evidence:
+      - quote: for your unique manufacturing needs. Our ability to personalize the job to your specifications leads to a precision solution in a timely manner.
+        approx_offset: 521
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''leads'' x2; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  ableengineering_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/ableengineering.com.txt
+      sha256: ffc5c3234c4dff2387887d61903a00d5320905f296fcff4b731c3f8d76529eb9
+    labels:
+    - id: ableengineering_com-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: SLEEVE
+      evidence:
+      - quote: BEARING, SLEEVE
+        approx_offset: 17405
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 36 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''SLEEVE'' x10, ''every'' x6, ''device'' x3, ''several'' x3, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: ableengineering_com-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: California
+      evidence:
+      - quote: California Transparency in Supply Chains Act
+        approx_offset: 2116
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 218 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''California'' x27, ''quality'' x19, ''All'' x17, ''Sales'' x11, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: ableengineering_com-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: ASSY
+      evidence:
+      - quote: AFT IB TRACK ASSY
+        approx_offset: 16177
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 258 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''ASSY'' x34, ''Assembly'' x30, ''Processes'' x28, ''Press'' x27, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: ableengineering_com-neg-0004
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: investigates
+      evidence:
+      - quote: the company’s SMS Committee. This committee evaluates the risk based on the information provided, investigates the cause and plans a response. Based on the findings and solutions, processes and
+        approx_offset: 77924
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''investigates'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: ableengineering_com-neg-0005
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: Able’s component and assembly repairs are FAA-approved and offer a competitive cost solution. Our team has developed 10,000+ repairs for a wide range of components
+        approx_offset: 36524
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x2; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: ableengineering_com-neg-0006
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: MILITARY
+      evidence:
+      - quote: MILITARY
+        approx_offset: 121
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 34 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''MILITARY'' x28, ''military'' x4, ''Military'' x1, ''militaries'' x1; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: ableengineering_com-neg-0007
+      form: Lead
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: leading
+      evidence:
+      - quote: Able Aerospace is an industry-leading provider of repair and overhaul for fixed and rotor wing customers around the world. A full-service
+        approx_offset: 251
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 9 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''leading'' x3, ''LEADER'' x2, ''leader'' x2, ''LEADING'' x1, +1 more distinct words; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  acimachine_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/acimachine.com.txt
+      sha256: 05596bd29027f7aed570e5ace0df4d9efab7349f4420dba38ab96570e265d12b
+    labels:
+    - id: acimachine_com-neg-0001
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Vertical
+      evidence:
+      - quote: Vertical Machining Centers
+        approx_offset: 277
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 46675 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Vertical'' x12286, ''All'' x12201, ''CHEVALIER'' x5265, ''Horizontal'' x3571, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 1; the 1 case-insensitive whole-word hit is a truncated English word in a clipped product blurb (''when grinding larger pieces al...''), not the aluminium symbol; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: acimachine_com-neg-0002
+      form: ABS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: absolute
+      evidence:
+      - quote: your personal information. While we strive to protect your information, we cannot guarantee its absolute security.
+        approx_offset: 27085
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 24 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''absolute'' x7, ''absorbs'' x6, ''Absolute'' x4, ''absorbing'' x4, +1 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: acimachine_com-neg-0003
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tight
+      evidence:
+      - quote: protect the sanding surface from heat damage. Whether you are a hobbyist or a craftsman who is just tight on shop space, this workhorse is sure to solve your sanding needs.
+        approx_offset: 230944
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 12 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tight'' x7, ''fatigue'' x5; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: acimachine_com-neg-0004
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: might
+      evidence:
+      - quote: equally superior results. A fully machined, balanced disc eliminates vibration, and the defects that might otherwise occur. Achieve plain and compound mitering for unique finishes. Professionals take
+        approx_offset: 2738100
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 4 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''might'' x4; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: acimachine_com-neg-0005
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: The Hurco Horizontal Boring Mill has a small footprint, especially considering the large work envelope, and is heavier than competitive boring mills in its c...
+        approx_offset: 449526
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 39 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x19, ''repetitive'' x5, ''competition'' x5, ''competitor'' x3, +3 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  agstech_net:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/agstech.net.txt
+      sha256: 1bc0ba503cc3d838798442a2b98cd509bb20604d97c42c21dc206b850317fc2f
+    labels:
+    - id: agstech_net-neg-0001
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Military
+      evidence:
+      - quote: Catalog for Vandal-Proof IP65/IP67/IP68 Keyboards, Keypads, Pointing Devices, ATM Pinpads, Medical & Military Keyboards and other similar Rugged Computer Peripherals
+        approx_offset: 226076
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 27 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Military'' x15, ''military'' x11, ''sanitary'' x1; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  alecmfg_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/alecmfg.com.txt
+      sha256: f192654eaafbb44b699ffb23865174c401a604f230364fdf8d21a28c2cc245d8
+    labels:
+    - id: alecmfg_com-neg-0001
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Alec
+      evidence:
+      - quote: Shenzhen Alec Model Co., Ltd.
+        approx_offset: 6671
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1441 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Alec'' x100, ''alecmfg'' x74, ''quality'' x50, ''Aluminum'' x45, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: alecmfg_com-neg-0002
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: process
+      evidence:
+      - quote: from Instagram, Twitter, Facebook and LinkedIn and places cookies. This content might store and process certain information for personalized advertising.
+        approx_offset: 2519
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 370 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''process'' x29, ''across'' x24, ''Assembly'' x17, ''assembly'' x16, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: alecmfg_com-neg-0003
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tight
+      evidence:
+      - quote: Die casting is your go-to for high-volume production of metal parts with superior strength and tight tolerances. Our precision die casting process allows for intricate designs and consistent
+        approx_offset: 9434
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 25 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tight'' x14, ''Tight'' x6, ''prestigious'' x2, ''investigation'' x1, +2 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: alecmfg_com-neg-0004
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: might
+      evidence:
+      - quote: with code derived from Instagram, Twitter, Facebook and LinkedIn and places cookies. This content might store and process certain information for personalized advertising.
+        approx_offset: 2501
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''might'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: alecmfg_com-neg-0005
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: Discover how our advanced manufacturing capabilities, competitive direct-from-China pricing, and incredibly short lead times can transform your projects.
+        approx_offset: 18426
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  anchor-mfg_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/anchor-mfg.com.txt
+      sha256: e34daaa48321c56889764574c1e98456e927bf1c02b9eeb88f867ec0a1471b1f
+    labels:
+    - id: anchor-mfg_com-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: event
+      evidence:
+      - quote: Code as enacted in the State of Ohio in the goods sold until payment in full has been made. In the event of default by Buyer under this Agreement, Seller shall have all the rights and remedies of
+        approx_offset: 9439
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 58 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''event'' x5, ''level'' x4, ''every'' x4, ''Rev'' x4, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: anchor-mfg_com-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Portal
+      evidence:
+      - quote: Customer Portal
+        approx_offset: 80
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 439 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Portal'' x77, ''all'' x54, ''shall'' x28, ''metal'' x16, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: anchor-mfg_com-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: assemblies
+      evidence:
+      - quote: 'Anchor is a world class supplier of metal stampings, welded assemblies, fabricated parts and tooling with proven expertise in the following industries:'
+        approx_offset: 317
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 182 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''assemblies'' x12, ''Class'' x6, ''Press'' x6, ''possession'' x6, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: anchor-mfg_com-neg-0004
+      form: ABS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: absorbing
+      evidence:
+      - quote: excelled at producing safety related metal assemblies for steering columns, brakes, chassis, energy absorbing structural supports, and other safety related components. With 350,000 square feet of
+        approx_offset: 2314
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''absorbing'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: anchor-mfg_com-neg-0005
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: military
+      evidence:
+      - quote: and comprehensive quality assurance systems allows our products to meet the specifications of the military industry.
+        approx_offset: 23209
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''military'' x2; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: anchor-mfg_com-neg-0006
+      form: Lead
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: leadership
+      evidence:
+      - quote: Fred’s “hands-on” leadership is evident in day to day operations of Anchor Manufacturing Group, Inc. He strategically
+        approx_offset: 4167
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 7 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''leadership'' x3, ''leader'' x1, ''leads'' x1, ''leading'' x1, +1 more distinct words; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  austinelectricservices_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/austinelectricservices.com.txt
+      sha256: 26d3b2d8c2d57c0219a2c12e0727aeca1bbf2da11f0d1142bae3a58adaabd118
+    labels:
+    - id: austinelectricservices_com-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Achieve
+      evidence:
+      - quote: Achieve production goals and meet quality standards.
+        approx_offset: 36140
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 91 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Achieve'' x11, ''levantar'' x10, ''nueva'' x6, ''nuevas'' x6, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: austinelectricservices_com-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: residential
+      evidence:
+      - quote: Austin Electric Services provides residential electric wiring and service for new construction tract homes, multi-family units, build to rent units, as well as custom homes and remodels.
+        approx_offset: 191
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1046 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''residential'' x62, ''All'' x52, ''instalación'' x38, ''Referral'' x33, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 41; 41 case-insensitive whole-word hits are all the Spanish preposition ''al'' on the Spanish-language pages (''se debe al talento''), never the aluminium symbol. This is precisely what the short-form case rule is for; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: austinelectricservices_com-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: messages
+      evidence:
+      - quote: By providing your mobile phone number, you consent to receive SMS messages from Austin Companies including but not limited to appointment reminders, service updates,
+        approx_offset: 3316
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 141 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''messages'' x16, ''business'' x16, ''messaging'' x8, ''Business'' x8, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: austinelectricservices_com-neg-0004
+      form: ABS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: slabs
+      evidence:
+      - quote: Our ability to source form boards from top lumber suppliers helps us by having clean forms that translates positive results to your finished foundation slabs.
+        approx_offset: 77571
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''slabs'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: austinelectricservices_com-neg-0005
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: hormigón
+      evidence:
+      - quote: Somos líderes en la industria del hormigón
+        approx_offset: 20265
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 3 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''hormigón'' x3; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: austinelectricservices_com-neg-0006
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: met. Candidate must EPA 608 certification and be willing to attend regular trainings. We offer a competitive benefits package with weekly pay.
+        approx_offset: 35916
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 28 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x12, ''competitivo'' x11, ''respetados'' x2, ''respeto'' x2, +1 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: austinelectricservices_com-neg-0007
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: universitario
+      evidence:
+      - quote: para Arizona, antes de asumir su puesto actual como Gerente de Operaciones. Troy es un luchador universitario miembro del Salón de la Fama y un líder nato, cuyos años como entrenador de lucha
+        approx_offset: 112591
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 5 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''universitario'' x4, ''facilitar'' x1; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  blackadvtech_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/blackadvtech.com.txt
+      sha256: cf1b9015df24bc7839f887e729c3408b761b970f78773e999c724227129fb9fb
+    labels:
+    - id: blackadvtech_com-neg-0001
+      form: Hemming
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; CORRECTION to the expansion doc, which reads ''"Hemming" was a substring hit on the HEM Saw brand (51 hits)''. Re-measured here: the form ''Hemming'' has 0 whole-word AND 0 naive-substring hits - it is a pure fabrication, not a substring hit. The 51 belongs to the THREE-CHARACTER form ''HEM'', which I measure at 55 naive-substring hits and 4 case-insensitive whole-word hits; 55 - 4 = 51 false positives, sitting inside ''them'' x27, ''chemical(s)'' x16, ''hems'' x4, ''Mathematical'' x2 and 2 URL slugs. ''HEM'' itself is NOT a negative: it genuinely occurs 3x uppercase as the band-saw brand (''HEM Saw Auto Feed Programmable Jobs'', ''HEM CNC vertical Band Saw'', ''HEM Saw VT100HLA-60 CTS'') plus once lowercase in ''Our hem guidelines''. So the two forms carry OPPOSITE labels and the doc conflated them. The hemming CONCEPT is described in the blog text (''uses hems to create folds in sheet metal''), which is what makes the missing -ing form a realistic fabrication; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: blackadvtech_com-neg-0002
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Revolutionizing
+      evidence:
+      - quote: 'The Rise of Robotics in Welding: Revolutionizing the Industry'
+        approx_offset: 46061
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 290 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Revolutionizing'' x28, ''Prev'' x24, ''PREVIOUS'' x24, ''achieve'' x19, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: blackadvtech_com-neg-0003
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: metal
+      evidence:
+      - quote: Our team is continuously developing and improving custom sheet metal fabrication processes to exceed customer expectations.
+        approx_offset: 875
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2078 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''metal'' x383, ''Metal'' x98, ''material'' x78, ''METAL'' x61, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: blackadvtech_com-neg-0004
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: process
+      evidence:
+      - quote: fabrication for industrial manufacturing. We take the dirty work out of your hands and simplify the process – providing durable solutions without obstacles or complexities.
+        approx_offset: 3196
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 763 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''process'' x131, ''thickness'' x84, ''processes'' x50, ''press'' x31, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: blackadvtech_com-neg-0005
+      form: ABS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: saved_tabs
+      evidence:
+      - quote: background_repeat="repeat" background_layout="dark" module_alignment="left" use_border_color="off" global_module="28736" saved_tabs="all" global_colors_info="{}"]
+        approx_offset: 57225
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 10 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''saved_tabs'' x6, ''absorption'' x1, ''absence'' x1, ''absolute'' x1, +1 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: blackadvtech_com-neg-0006
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: vehicle by using thinner materials, and speed up production cycles—all critical factors in today’s competitive automotive market.
+        approx_offset: 137223
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x1, ''repetitive'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: blackadvtech_com-neg-0007
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: military
+      evidence:
+      - quote: We’ve designed winning products for many industries including transportation, marine construction, military, industrial, scientific, and more.
+        approx_offset: 1263
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 45 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''military'' x25, ''MILITARY'' x16, ''Military'' x4; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  decimal_net:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+      sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+    labels:
+    - id: decimal_net-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Previous
+      evidence:
+      - quote: Previous
+        approx_offset: 82967
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 105 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Previous'' x35, ''Revision'' x6, ''even'' x5, ''achieve'' x4, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: decimal_net-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Decimal
+      evidence:
+      - quote: creativity has turned more than 99% of our first-time jobs into long-term partnerships. Take the Decimal Challenge to find out how we can add value to your business today!
+        approx_offset: 1232
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1275 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Decimal'' x192, ''decimal'' x157, ''Coral'' x112, ''DECIMAL'' x65, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: decimal_net-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: address
+      evidence:
+      - quote: information to us by sending an Email or by filling out a “contact” form, we may save your Email address as well as any other information you provide on website forms submitted to us. This information
+        approx_offset: 35838
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 286 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''address'' x21, ''process'' x20, ''Assembly'' x20, ''Stainless'' x13, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: decimal_net-neg-0004
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: are able to provide customers with premium quality machined components while remaining very price competitive.
+        approx_offset: 5428
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 5 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x3, ''competition'' x1, ''competed'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  fzemanufacturing_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/fzemanufacturing.com.txt
+      sha256: ff11844d0540b8e65c7c4c7f8f7614c3e36c192b093940bb99b8140eb5aace1e
+    labels:
+    - id: fzemanufacturing_com-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: every
+      evidence:
+      - quote: At FZE, our goal is to provide every customer with dynamic machining and manufacturing services and solutions while maintaining
+        approx_offset: 1783
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 227 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''every'' x36, ''several'' x20, ''achieve'' x17, ''level'' x16, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: fzemanufacturing_com-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: metal
+      evidence:
+      - quote: manufacturing hydraulic systems. Using advanced CNC machines, precise cuts can be made on various metal components used in these systems. This precision allows for higher pressure ratings and increases
+        approx_offset: 5053
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1993 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''metal'' x146, ''quality'' x122, ''material'' x82, ''materials'' x72, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: fzemanufacturing_com-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: process
+      evidence:
+      - quote: comprehensive inspection processes, which include dimensional checks, material certification, and in-process inspections. This attention to detail guarantees that our customers receive machined parts
+        approx_offset: 12748
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1159 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''process'' x138, ''processes'' x85, ''stainless'' x85, ''Swiss'' x76, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: fzemanufacturing_com-neg-0004
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: needs. Our commitment to quality and productivity sets us apart, ensuring that our customers stay competitive in a rapidly evolving market.
+        approx_offset: 11144
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 16 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x4, ''compete'' x2, ''Petroleum'' x2, ''competition'' x2, +5 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: fzemanufacturing_com-neg-0005
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Military
+      evidence:
+      - quote: Military/Defense
+        approx_offset: 39725
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 9 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Military'' x6, ''military'' x2, ''sanitary'' x1; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  howcogroup_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/howcogroup.com.txt
+      sha256: 5e8b364e3ddcdacc1482566d012646b6d9d3947825d95c3108276f576df7046b
+    labels:
+    - id: howcogroup_com-neg-0001
+      form: Teflon
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''Teflon/LDPE/Acrylic/Polypropylene/PCB = ZERO occurrences each''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~53452: "Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0002
+      form: LDPE
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''Teflon/LDPE/Acrylic/Polypropylene/PCB = ZERO occurrences each''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~53452: "Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0003
+      form: Acrylic
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''Teflon/LDPE/Acrylic/Polypropylene/PCB = ZERO occurrences each''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~53452: "Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0004
+      form: Polypropylene
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''Teflon/LDPE/Acrylic/Polypropylene/PCB = ZERO occurrences each''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~53452: "Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0005
+      form: PCB
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: ''Teflon/LDPE/Acrylic/Polypropylene/PCB = ZERO occurrences each''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~53452: "Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0006
+      form: CE
+      kind: occurrence
+      status: confirmed
+      expect:
+        occurrences: 0
+        substring_trap_inside: Office
+      evidence:
+      - quote: 'Registered Office:'
+        approx_offset: 3604
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1080 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Office'' x101, ''Crescent'' x101, ''Certified'' x100, ''resistance'' x34, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: ''my brief''s guesses were WRONG -- CE, UKCA, PED, ATEX, Achilles, FPAL all have ZERO occurrences''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0007
+      form: UKCA
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''my brief''s guesses were WRONG -- CE, UKCA, PED, ATEX, Achilles, FPAL all have ZERO occurrences''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0008
+      form: PED
+      kind: occurrence
+      status: confirmed
+      expect:
+        occurrences: 0
+        substring_trap_inside: developed
+      evidence:
+      - quote: Alloy 718, a nickel based superalloy, developed initially for use in rotating parts in aerospace and gas turbine applications, has become
+        approx_offset: 84740
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 15 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''developed'' x3, ''equipped'' x2, ''stepped'' x2, ''helped'' x2, +5 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: ''my brief''s guesses were WRONG -- CE, UKCA, PED, ATEX, Achilles, FPAL all have ZERO occurrences''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0009
+      form: ATEX
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''my brief''s guesses were WRONG -- CE, UKCA, PED, ATEX, Achilles, FPAL all have ZERO occurrences''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0010
+      form: Achilles
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''my brief''s guesses were WRONG -- CE, UKCA, PED, ATEX, Achilles, FPAL all have ZERO occurrences''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0011
+      form: FPAL
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''my brief''s guesses were WRONG -- CE, UKCA, PED, ATEX, Achilles, FPAL all have ZERO occurrences''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: howcogroup_com-neg-0012
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: levels
+      evidence:
+      - quote: is a low alloy steel containing nominally 0.4% C, 0.8% Cr, 0.25% Mo and 1.8% Ni. Higher strength levels up to 150 KSI 0.2% PS may be achieved by suitable heat treatment. Often used in preference
+        approx_offset: 15137
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 252 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''levels'' x22, ''event'' x16, ''even'' x14, ''everyone'' x13, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: howcogroup_com-neg-0013
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Stress
+      evidence:
+      - quote: "0.2% Proof Stress\t105 KSI Min\t(724 N/mm2)"
+        approx_offset: 5525
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 473 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Stress'' x36, ''across'' x36, ''business'' x23, ''STAINLESS'' x22, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: howcogroup_com-neg-0014
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: might
+      evidence:
+      - quote: When you think of Dubai, cricket might not be the first sport that comes to mind—but at our Emirati office, it's a clear favourite!
+        approx_offset: 24930
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 5 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''might'' x5; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: howcogroup_com-neg-0015
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competition
+      evidence:
+      - quote: past three years, our annual Howco Inter-Cricket Tournament has sparked friendly inter-company competition, and this year was no...
+        approx_offset: 25070
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 22 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competition'' x9, ''competitive'' x4, ''petrochemical'' x3, ''competitions'' x3, +3 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  lucasmilhaupt_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/lucasmilhaupt.com.txt
+      sha256: d92eed67ef99d67a791896d0467d78dc0c60bf7a96e2ec6f99926618da193236
+    labels:
+    - id: lucasmilhaupt_com-neg-0001
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: process
+      evidence:
+      - quote: decades of materials science expertise, Lucas Milhaupt develops custom joining solutions that improve process efficiency and extend the life of products.
+        approx_offset: 510
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 726 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''process'' x116, ''assemblies'' x60, ''assembly'' x60, ''Address'' x36, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: lucasmilhaupt_com-neg-0002
+      form: ABS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: absorbs
+      evidence:
+      - quote: joint area guards the surfaces from the air, preventing oxide formation. It also dissolves and absorbs any oxides that form throughout heating or that were not completely removed in the cleaning
+        approx_offset: 69612
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 10 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''absorbs'' x4, ''absolutely'' x3, ''labs'' x2, ''absorption'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: lucasmilhaupt_com-neg-0003
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tight
+      evidence:
+      - quote: cutting, EDM, and precision stamping, to produce custom preforms and components with extremely tight tolerances. We have achieved wire diameters as small as 0.006″ and stamped foils down to 0.001″
+        approx_offset: 17038
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 40 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tight'' x11, ''leak-tight'' x8, ''pressure-tight'' x4, ''airtight'' x2, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: lucasmilhaupt_com-neg-0004
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: might
+      evidence:
+      - quote: 'paramount, a single joint failure can leave people without power or critical equipment offline. Brazing might be a small part of manufacturing an electrical component, but its quality has outsized impact:'
+        approx_offset: 39873
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 4 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''might'' x4; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: lucasmilhaupt_com-neg-0005
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: material joining solutions, we ensure our customers benefit from the latest advancements and remain competitive in the industry.
+        approx_offset: 6250
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 13 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x6, ''competition'' x6, ''Competitive'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  mathewsco_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/mathewsco.com.txt
+      sha256: f1a1ace7c17205dc4906f4f87eb1844cefd0661483e58b3f5d6538d30b33b15b
+    labels:
+    - id: mathewsco_com-neg-0001
+      form: PET
+      kind: occurrence
+      status: confirmed
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: against off shore manufacturer by offering quick turnaround lead times, medium to high volume runs, competitive tooling pricing and producing high quality parts. We look forward to working with you
+        approx_offset: 24540
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 7 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x2, ''competitors'' x1, ''compete'' x1, ''Competitive'' x1, +2 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: mathewsco ''not-found/fabricated (PET, Zinc Alloy, Bronze, Blanking, Cold Isostatics Pressing)''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: mathewsco_com-neg-0002
+      form: Zinc Alloy
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: mathewsco ''not-found/fabricated (PET, Zinc Alloy, Bronze, Blanking, Cold Isostatics Pressing)''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~24435: "Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself to compete against off shore"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: mathewsco_com-neg-0003
+      form: Bronze
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: mathewsco ''not-found/fabricated (PET, Zinc Alloy, Bronze, Blanking, Cold Isostatics Pressing)''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~24435: "Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself to compete against off shore"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: mathewsco_com-neg-0004
+      form: Blanking
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: mathewsco ''not-found/fabricated (PET, Zinc Alloy, Bronze, Blanking, Cold Isostatics Pressing)''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~24435: "Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself to compete against off shore"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: mathewsco_com-neg-0005
+      form: Cold Isostatics Pressing
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: mathewsco ''not-found/fabricated (PET, Zinc Alloy, Bronze, Blanking, Cold Isostatics Pressing)''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); there is not even a BAIT for this one: ''isostatic'' and ''powder metal'' both have zero occurrences anywhere in the file'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: mathewsco_com-neg-0006
+      form: Cold Isostatic Pressing
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; the corrected spelling of the doc''s ''Cold Isostatics Pressing''; checked because a normalizer might repair the plural before the scan. Also zero; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); there is not even a BAIT for this one: ''isostatic'' and ''powder metal'' both have zero occurrences anywhere in the file'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: mathewsco_com-neg-0007
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: However
+      evidence:
+      - quote: However, a few years earlier, Bill Hughson had become the world's first Ford automobile dealer in
+        approx_offset: 11150
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 26 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''However'' x3, ''Nevada'' x3, ''several'' x2, ''sleeves'' x1, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: mathewsco_com-neg-0008
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: California
+      evidence:
+      - quote: California Office
+        approx_offset: 90
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 487 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''California'' x130, ''commercial'' x30, ''Industrial'' x28, ''Medical'' x27, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: mathewsco_com-neg-0009
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: business
+      evidence:
+      - quote: Bill Hughson had become the world's first Ford automobile dealer in addition to running his other business. It seems that Bill had met Henry Ford at a bicycle show in 1903, and the two had hit it
+        approx_offset: 11180
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 109 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''business'' x16, ''Missouri'' x14, ''Pressed'' x11, ''processes'' x5, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: mathewsco_com-neg-0010
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Military
+      evidence:
+      - quote: Military
+        approx_offset: 1173
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 29 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Military'' x27, ''military'' x2; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  med-tekinc_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/med-tekinc.com.txt
+      sha256: f1b1f156176cb3c86757d25176c0c27f9d6d704a021a47bdc0bfdcd662c4717c
+    labels:
+    - id: med-tekinc_com-neg-0001
+      form: Flame Hardening
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''PROVEN FABRICATION: "Flame Hardening" has ZERO occurrences in the file''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~2892: "Salt Bath Hardening"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: med-tekinc_com-neg-0002
+      form: medical
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''BEST TRAP: the domain "MED-TEK" reads as medical technology; grep -i medical = 0 hits''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: med-tekinc_com-neg-0003
+      form: CNC
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; search-stage false_friend: ''zero occurrences of CNC, lathe, press brake or machining center''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: med-tekinc_com-neg-0004
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: every
+      evidence:
+      - quote: Our Rockwell Hardness Machines are certified every six months and accuracy-verified against the standard block at the start of every shift to
+        approx_offset: 1598
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 5 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''every'' x2, ''even'' x1, ''Relieving'' x1, ''Levels'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: med-tekinc_com-neg-0005
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: All
+      evidence:
+      - quote: © 2025, MED-TEK, INC. All Rights Reserved.
+        approx_offset: 2291
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 39 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''All'' x5, ''Salt'' x4, ''Central'' x3, ''metallurgy'' x2, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: med-tekinc_com-neg-0006
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Necessary
+      evidence:
+      - quote: 'Saturday – Sunday: As Necessary'
+        approx_offset: 2237
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 17 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Necessary'' x6, ''Message'' x2, ''Address'' x2, ''possible'' x1, +6 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: med-tekinc_com-neg-0007
+      form: Lead
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: LEADING
+      evidence:
+      - quote: A LEADING PLAYER IN HEAT TREATING TECHNOLOGY
+        approx_offset: 118
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''LEADING'' x1, ''Leading'' x1; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  pradeepmetals_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/pradeepmetals.com.txt
+      sha256: d3b7875e2769b8347084c18df480028cf319fc9595695734c21041dff6961bc0
+    labels:
+    - id: pradeepmetals_com-neg-0001
+      form: HDPE
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''4 GREP-VERIFIABLE FABRICATIONS: HDPE, LDPE, Teflon, Bronze = ZERO occurrences in 10,412 lines''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~102101: "Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve. It can be bonded, locked in or pressed to the body of the valve."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: pradeepmetals_com-neg-0002
+      form: LDPE
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''4 GREP-VERIFIABLE FABRICATIONS: HDPE, LDPE, Teflon, Bronze = ZERO occurrences in 10,412 lines''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~102101: "Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve. It can be bonded, locked in or pressed to the body of the valve."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: pradeepmetals_com-neg-0003
+      form: Teflon
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''4 GREP-VERIFIABLE FABRICATIONS: HDPE, LDPE, Teflon, Bronze = ZERO occurrences in 10,412 lines''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~102101: "Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve. It can be bonded, locked in or pressed to the body of the valve."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: pradeepmetals_com-neg-0004
+      form: Bronze
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''4 GREP-VERIFIABLE FABRICATIONS: HDPE, LDPE, Teflon, Bronze = ZERO occurrences in 10,412 lines''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~102101: "Seat: Different types of polymers or elastomers are used to make the seat in a butterfly valve. It can be bonded, locked in or pressed to the body of the valve."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: pradeepmetals_com-neg-0005
+      form: ABS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: absolutely
+      evidence:
+      - quote: applied from the above, which forges the material into required shape. This type of casting is absolutely suitable for all kinds of materials like steel, brass and aluminium.
+        approx_offset: 73259
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''absolutely'' x2; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: pradeepmetals_com-neg-0006
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tightness
+      evidence:
+      - quote: Very high in strength and tightness
+        approx_offset: 72370
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 7 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tightness'' x2, ''tight'' x2, ''leak-tight'' x1, ''fatiguing'' x1, +1 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: pradeepmetals_com-neg-0007
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: might
+      evidence:
+      - quote: "No wastage of the core material\tThe core material might be wasted due to the molten steel being cast into molds"
+        approx_offset: 210721
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''might'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: pradeepmetals_com-neg-0008
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Competitive
+      evidence:
+      - quote: 'Competitive Pricing: Our manufacturing process is designed in such a way to provide supreme products at economical rates for our clients.'
+        approx_offset: 30429
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 14 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Competitive'' x5, ''Petrochemical'' x2, ''competitive'' x2, ''petrochemicals'' x1, +4 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  steelcraft_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/steelcraft.com.txt
+      sha256: c10c1a3e4a24ade49fc7af157e8eb1f8975a371e7ae5e3dc081172790e6728b0
+    labels:
+    - id: steelcraft_com-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: everything
+      evidence:
+      - quote: service and support. Steelcraft is committed to delivering best-in-class customer care – making everything from sales to ordering to delivery to installation as smooth and easy as possible.
+        approx_offset: 1224
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 187 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''everything'' x54, ''level'' x12, ''device'' x8, ''Beveled'' x7, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: steelcraft_com-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Allegion
+      evidence:
+      - quote: © Allegion plc, 2025
+        approx_offset: 1508
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2005 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Allegion'' x172, ''Personal'' x141, ''installation'' x109, ''Technical'' x74, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: steelcraft_com-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: possible
+      evidence:
+      - quote: care – making everything from sales to ordering to delivery to installation as smooth and easy as possible.
+        approx_offset: 1306
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 637 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''possible'' x60, ''best-in-class'' x54, ''pressure'' x50, ''access'' x27, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: steelcraft_com-neg-0004
+      form: ABS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tabs
+      evidence:
+      - quote: jamb insure an attractive, tight and closed mitered connection. The miter includes four corner tabs designed with concealed connection eliminating the need for continuous profile welding
+        approx_offset: 29089
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 11 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tabs'' x9, ''Tabs'' x1, ''labs'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: steelcraft_com-neg-0005
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tight
+      evidence:
+      - quote: 'Die-mitered corner connections: Die-mitered corner connection at the head and jamb insure an attractive, tight and closed mitered connection. The miter includes four corner tabs designed with concealed'
+        approx_offset: 29011
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 23 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tight'' x13, ''tighter'' x6, ''litigation'' x1, ''investigations'' x1, +2 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: steelcraft_com-neg-0006
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: might
+      evidence:
+      - quote: Your choices. You can always choose not to provide information, even though it might be needed to take advantage of certain functionality or services.  You can also choose to
+        approx_offset: 81331
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 2 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''might'' x2; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: steelcraft_com-neg-0007
+      form: PET
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: competent
+      evidence:
+      - quote: Information violates legal requirements, you may also have the right to lodge a complaint with a competent data protection supervisory authority, depending on applicable laws. If the Personal Information
+        approx_offset: 80856
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 3 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competent'' x2, ''competition'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  sterlingmfg_net:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/sterlingmfg.net.txt
+      sha256: f42c4b74d9eefaa7461fe85ed30745ce9465330ba86e7099f728423deb498cc5
+    labels:
+    - id: sterlingmfg_net-neg-0001
+      form: Plexiglas
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''sterlingmfg: Plexiglas/LDPE/PVC/Epoxy/Bronze/Carbon Steel all zero-occurrence''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~1820: "Materials including plastics, metals, and thermoplastics along with processes for injection molding, machining, and 3D printing are where we live, every day."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: sterlingmfg_net-neg-0002
+      form: LDPE
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''sterlingmfg: Plexiglas/LDPE/PVC/Epoxy/Bronze/Carbon Steel all zero-occurrence''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~1820: "Materials including plastics, metals, and thermoplastics along with processes for injection molding, machining, and 3D printing are where we live, every day."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: sterlingmfg_net-neg-0003
+      form: PVC
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: ''sterlingmfg: Plexiglas/LDPE/PVC/Epoxy/Bronze/Carbon Steel all zero-occurrence''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~1820: "Materials including plastics, metals, and thermoplastics along with processes for injection molding, machining, and 3D printing are where we live, every day."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: sterlingmfg_net-neg-0004
+      form: Epoxy
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''sterlingmfg: Plexiglas/LDPE/PVC/Epoxy/Bronze/Carbon Steel all zero-occurrence''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~1820: "Materials including plastics, metals, and thermoplastics along with processes for injection molding, machining, and 3D printing are where we live, every day."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: sterlingmfg_net-neg-0005
+      form: Bronze
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''sterlingmfg: Plexiglas/LDPE/PVC/Epoxy/Bronze/Carbon Steel all zero-occurrence''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~1820: "Materials including plastics, metals, and thermoplastics along with processes for injection molding, machining, and 3D printing are where we live, every day."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: sterlingmfg_net-neg-0006
+      form: Carbon Steel
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''sterlingmfg: Plexiglas/LDPE/PVC/Epoxy/Bronze/Carbon Steel all zero-occurrence''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~1820: "Materials including plastics, metals, and thermoplastics along with processes for injection molding, machining, and 3D printing are where we live, every day."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: sterlingmfg_net-neg-0007
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: development
+      evidence:
+      - quote: Our technical expertise is unmatched. Years of proven innovation and process development have illustrated our team pushing the envelope. Simply put, we perform better – from
+        approx_offset: 141
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 420 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''development'' x53, ''devices'' x53, ''Events'' x52, ''device'' x43, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: sterlingmfg_net-neg-0008
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Medical
+      evidence:
+      - quote: Medical
+        approx_offset: 1016
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1820 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Medical'' x232, ''medical'' x98, ''All'' x68, ''quality'' x64, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: sterlingmfg_net-neg-0009
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tight
+      evidence:
+      - quote: Customers come to us for out technical expertise, machining talents, and productivity. Our tight-knit company accommodates changes quickly and easily. We work with your engineers to enhance
+        approx_offset: 60696
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 21 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tight'' x8, ''airtight'' x4, ''Antigua'' x2, ''tightest-tolerance'' x2, +4 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  superiortech_org:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/superiortech.org.txt
+      sha256: 96bf25a3e1f14d03fd06d8743ed8a1cbe3ed3d72169d96fbe2c81300bf03951f
+    labels:
+    - id: superiortech_org-neg-0001
+      form: PET
+      kind: occurrence
+      status: confirmed
+      expect:
+        occurrences: 0
+        substring_trap_inside: competitive
+      evidence:
+      - quote: on-time volume production. With solutions that will exceed your quality expectations, are cost competitive, and meet production timing.
+        approx_offset: 1617
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 9 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''competitive'' x9; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: ''superiortech `PET` <- "com*pet*itive" (9x)''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0002
+      form: ITAR
+      kind: occurrence
+      status: confirmed
+      expect:
+        occurrences: 0
+        substring_trap_inside: Military
+      evidence:
+      - quote: Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment, Military, Power Tool, Robotics and Automation Industries
+        approx_offset: 19112
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 9 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Military'' x9; expansion doc: ''superiortech `ITAR` <- "M*ilitar*y" (9x)''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0003
+      form: Iron
+      kind: occurrence
+      status: confirmed
+      expect:
+        occurrences: 0
+        substring_trap_inside: environment
+      evidence:
+      - quote: goals are meet. Our experience knows that we live in a fast paced and ever changing manufacturing environment, and it is our superior flexibility that allow delivery timing to be meet
+        approx_offset: 7397
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 7 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''environment'' x5, ''environmental'' x2; search-stage false_friend: ''NEWLY CONFIRMED substring trap, same shape as PET and ITAR''; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0004
+      form: Nylon
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0005
+      form: PEEK
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0006
+      form: Delrin
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0007
+      form: Acetal
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0008
+      form: PTFE
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0009
+      form: Teflon
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0010
+      form: Polycarbonate
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0011
+      form: PVC
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0012
+      form: Polypropylene
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0013
+      form: Polyethylene
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0014
+      form: ABS
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0015
+      form: UHMW
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0016
+      form: Acrylic
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: ''superiortech "plastics" -> 13 specific polymers, all zero-occurrence''; one of those 13. The only polymer reference in the file is the bare plural on the materials line; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~16355: "carbon & stainless steels, aluminum alloys, super alloys (such as Titanium and Inconel, Hastalloy), brass & copper alloys, plastics, castings, forgings, and all materials in between."'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: superiortech_org-neg-0017
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: achieve
+      evidence:
+      - quote: CNC External Precision Grinding up to 9″ Diameter x 24″ Long we can achieve tolerance of ±0.0001”. Surface Grinding and lapping up to 36” x 18” x 12” with to down 0.00002”
+        approx_offset: 14471
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 34 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''achieve'' x7, ''believe'' x4, ''development'' x4, ''every'' x3, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: superiortech_org-neg-0018
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: All
+      evidence:
+      - quote: Copyright © 2025 Superior Technology, Inc. All Rights Reserved.
+        approx_offset: 3141
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 434 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''All'' x37, ''quality'' x28, ''allow'' x26, ''all'' x24, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: superiortech_org-neg-0019
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: process
+      evidence:
+      - quote: founding, we secure the future of our company by exceeding customer’s expectations. Through continuous process improvement, a proactive approach to quality, and leading edge technology, we are committed
+        approx_offset: 2716
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 165 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''process'' x24, ''assemblies'' x15, ''assembly'' x13, ''Processes'' x11, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  tanfel_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/tanfel.com.txt
+      sha256: 4942d992128752abeace6e11e1235e9e55f4737a21b51d3778cb2f818667bf9b
+    labels:
+    - id: tanfel_com-neg-0001
+      form: ISO 16949
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: tanfel ''invented "ISO 16949" AND double-counted it as IATF 16949''. The text writes ''ISO/TS 16949:2009'', ''TS 16949'' and ''TS16949'' - never this form; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~28763: "ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev. C"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: tanfel_com-neg-0002
+      form: IATF 16949
+      kind: occurrence
+      status: confirmed
+      expect:
+        must_not_occur: true
+      evidence: []
+      notes: 'ZERO OCCURRENCE: 0 whole-word AND 0 naive-substring hits - the form is absent from the text in every casing and as a bare substring, so no matcher of any strictness can find it; expansion doc: tanfel ''invented "ISO 16949" AND double-counted it as IATF 16949''. The text writes ''ISO/TS 16949:2009'', ''TS 16949'' and ''TS16949'' - never this form; counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower()); nearest BAIT in the text (context that primed the fabrication, NOT an occurrence), at ~28763: "ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev. C"'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: corpus-seed
+    - id: tanfel_com-neg-0003
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: every
+      evidence:
+      - quote: them toward a solutions that is best suited to their specific business needs. And we back them every step of the way with our unmatched service and support.
+        approx_offset: 5566
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 109 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''every'' x16, ''achieve'' x14, ''level'' x12, ''development'' x8, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: tanfel_com-neg-0004
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: process
+      evidence:
+      - quote: ideal surface, become the identifying factors of an object’s surface finish. The casting finishing process occurs as pre-molded and cooled cast assemblies are ground down or otherwise altered to
+        approx_offset: 20705
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 519 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''process'' x71, ''message'' x61, ''processes'' x33, ''business'' x24, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: tanfel_com-neg-0005
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: tight
+      evidence:
+      - quote: As the process is based on injection, very complex parts with tight tolerances and a density of more than 98% can be considered. It is easy to produce large numbers
+        approx_offset: 30328
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 15 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''tight'' x8, ''tighter'' x3, ''investigation'' x3, ''litigation'' x1; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: tanfel_com-neg-0006
+      form: ITAR
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: Military
+      evidence:
+      - quote: Government / Military
+        approx_offset: 60859
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 6 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''Military'' x5, ''military'' x1; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+  taylordunn_com:
+    snapshot:
+      file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/taylordunn.com.txt
+      sha256: dbf6cfcd2de35d5052df8d9b1e45530d25519aad8f62628716e2bedbb7c81113
+    labels:
+    - id: taylordunn_com-neg-0001
+      form: EV
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: device
+      evidence:
+      - quote: pages of this website and stored by your browser on the hard drive of your computer or another device. The information stored therein may be returned to our servers or to the servers of the relevant
+        approx_offset: 789
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 342 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''device'' x62, ''relevant'' x31, ''several'' x31, ''retrieved'' x31, +7 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: taylordunn_com-neg-0002
+      form: AL
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: personal
+      evidence:
+      - quote: statement of these social networks (which can change regularly) to read what they do with your (personal) data which they process using these cookies. The data that is retrieved is anonymized
+        approx_offset: 2828
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 1495 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''personal'' x248, ''Functional'' x155, ''all'' x93, ''Dealer'' x93, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: taylordunn_com-neg-0003
+      form: SS
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: process
+      evidence:
+      - quote: derived from Facebook, LinkedIn and Instagram and places cookies. This content might store and process certain information for personalized advertising.
+        approx_offset: 2650
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 559 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''process'' x93, ''access'' x93, ''express'' x62, ''processing'' x62, +8 more distinct words; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: taylordunn_com-neg-0004
+      form: TIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: investigation
+      evidence:
+      - quote: Purpose pending investigation
+        approx_offset: 4164
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 31 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''investigation'' x31; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe
+    - id: taylordunn_com-neg-0005
+      form: MIG
+      kind: occurrence
+      status: candidate
+      expect:
+        occurrences: 0
+        substring_trap_inside: might
+      evidence:
+      - quote: embedded with code derived from Facebook, LinkedIn and Instagram and places cookies. This content might store and process certain information for personalized advertising.
+        approx_offset: 2631
+      notes: 'SUBSTRING TRAP: 0 whole-word occurrences vs 31 naive-substring hits - the gap is the false-positive load a containment matcher would carry. Enclosing words: ''might'' x31; short form (<=3 chars): the matcher forces case-sensitive matching. Case-INSENSITIVE whole-word count is 0; probed because it is one of the corpus''s classic short-form traps (EV/AL/SS/ABS/TIG/MIG/CNC/PVC/PET/ITAR/CMM/Lead); counts measured 2026-08-27 on the sha256-pinned snapshot: whole-word with _shared.text_matching.flexible_pattern(...).findall(normalize_spaces(text)) (the harness''s own matcher; forms <=3 chars forced case-sensitive), naive substring with normalize_spaces(text).lower().count(form.lower())'
+      provenance:
+      - action: added
+        by: negative-label-agent
+        date: '2026-08-27'
+        source: classic-short-form-probe

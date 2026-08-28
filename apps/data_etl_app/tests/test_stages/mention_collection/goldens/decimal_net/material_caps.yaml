@@ -1,0 +1,2349 @@
+subject: decimal.net
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/decimal.net.txt
+  sha256: 7d0abda71e487643dff25037df3637c71c99a3c83f7e12a698277fe3710eadfb
+golden_set_version: 1
+anchored_on: search/expectations/decimal_net/material_caps.yaml
+labels:
+- id: decimal_net-material_caps-0001
+  form: 430 Bright annealed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: 430 Bright annealed
+    approx_offset: 56592
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0002
+  form: 6061-T6
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+  evidence:
+  - quote: Aluminum 6061-T6 Block
+    approx_offset: 80381
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0003
+  form: 6061-T651
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machine, we fabricated each servo body with a
+      diameter of 8.263″ x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed
+      to QQ-A-250/11F specifications.
+    approx_offset: 42611
+  - quote: "Material Used\t6061-T651"
+    approx_offset: 43896
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0004
+  form: 6061-T651 Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: Using our Mori Seiki NT3150 9-axis Mill/Turn machine, we fabricated each servo body with a
+      diameter of 8.263″ x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed
+      to QQ-A-250/11F specifications.
+    approx_offset: 42611
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0005
+  form: A2 Tool Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/wire-edm-machining/
+  evidence:
+  - quote: A2 Tool Steel Wire EDM Block
+    approx_offset: 82219
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0006
+  form: AKDQ
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: The part was to be made of AKDQ Steel with 2b material finish, sized at ¼” x 3/8″, with tolerances
+      of +/− 0.005″.
+    approx_offset: 11287
+  - quote: "Material Used\tAKDQ Steel"
+    approx_offset: 12750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0007
+  form: AKDQ Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/project-gallery/household-hot-water-heater/
+  evidence:
+  - quote: The part was to be made of AKDQ Steel with 2b material finish, sized at ¼” x 3/8″, with tolerances
+      of +/− 0.005″.
+    approx_offset: 11287
+  - quote: "Material Used\tAKDQ Steel"
+    approx_offset: 12750
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0008
+  form: Acrylic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Acrylic
+    approx_offset: 7989
+  - quote: Acrylic
+    approx_offset: 20886
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75667
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0009
+  form: Aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 34
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/project-gallery/servo-body-military/
+  evidence:
+  - quote: Aluminum (All Alloys)
+    approx_offset: 7997
+  - quote: Aluminum (All Alloys)
+    approx_offset: 20894
+  - quote: Up to 1.18″ Aluminum
+    approx_offset: 25992
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0010
+  form: Aluminum (All Alloys)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Aluminum (All Alloys)
+    approx_offset: 7997
+  - quote: Aluminum (All Alloys)
+    approx_offset: 20894
+  - quote: Aluminum (All Alloys)
+    approx_offset: 26139
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0011
+  form: Aluminum 6061-T6 Block
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+  evidence:
+  - quote: Aluminum 6061-T6 Block
+    approx_offset: 80372
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0012
+  form: Angle
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/decimal-engineering-adds-to-its-already-world-class-quality-department/
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Angle
+    approx_offset: 8200
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75633
+  - quote: The IM-8000 can handle standard measurements, such as OD/ID, length, and angle with
+    approx_offset: 104855
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0013
+  form: Any conductive material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Any conductive material can be machined via EDM, with hard metals greatly benefiting from electrical
+      discharge machining.
+    approx_offset: 29537
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0014
+  form: Armor Plate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Armor Plate
+    approx_offset: 20916
+  - quote: Armor Plate
+    approx_offset: 26161
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0015
+  form: Bar Stock
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Bar Stock
+    approx_offset: 8206
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0016
+  form: Beryllium Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Beryllium Copper
+    approx_offset: 31074
+  - quote: Beryllium Copper
+    approx_offset: 56669
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0017
+  form: Black Chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Black Chrome
+    approx_offset: 8728
+  - quote: Black Chrome
+    approx_offset: 21803
+  - quote: Black Chrome
+    approx_offset: 26790
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0018
+  form: Brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Brass
+    approx_offset: 8019
+  - quote: Brass
+    approx_offset: 20928
+  - quote: Brass
+    approx_offset: 26173
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0019
+  form: Bright Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Bright Nickel
+    approx_offset: 8753
+  - quote: Bright Nickel
+    approx_offset: 21828
+  - quote: Bright Nickel
+    approx_offset: 26815
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0020
+  form: Bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Bronze
+    approx_offset: 8025
+  - quote: Bronze
+    approx_offset: 20934
+  - quote: Bronze
+    approx_offset: 26179
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0021
+  form: CARC
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: CARC Painted Aluminum Marine Display Military
+    approx_offset: 81254
+  - quote: Steel CARC Painted Ammo Box Defense
+    approx_offset: 107385
+  - quote: Steel CARC Painted Stairs Defense
+    approx_offset: 107423
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0022
+  form: CARC Painted
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: CARC Painted Aluminum Marine Display Military
+    approx_offset: 81254
+  - quote: Steel CARC Painted Ammo Box Defense
+    approx_offset: 107385
+  - quote: Steel CARC Painted Stairs Defense
+    approx_offset: 107423
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0023
+  form: CRS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 8140
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 21094
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 26329
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0024
+  form: Cadmium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Cadmium
+    approx_offset: 8780
+  - quote: Cadmium
+    approx_offset: 21855
+  - quote: Cadmium
+    approx_offset: 26842
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0025
+  form: Carbon Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+  evidence:
+  - quote: Up to 1.18″ Stainless SteelUP to 0.47″ CopperUp to 1.18 Carbon Steel
+    approx_offset: 26057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0026
+  form: Castings
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Castings
+    approx_offset: 8216
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0027
+  form: Chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 15
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Black Chrome
+    approx_offset: 8734
+  - quote: Chrome
+    approx_offset: 8851
+  - quote: Hard Chrome
+    approx_offset: 8917
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0028
+  form: Clear Acrylic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 2
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0029
+  form: Cold Rolled Sheet Metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Cold Rolled Sheet Metal
+    approx_offset: 76881
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0030
+  form: Copper
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 17
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/wire-edm-machining/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Copper
+    approx_offset: 8039
+  - quote: Copper
+    approx_offset: 8858
+  - quote: Copper
+    approx_offset: 20941
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0031
+  form: Copper Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Copper Nickel
+    approx_offset: 31104
+  - quote: Copper Nickel
+    approx_offset: 56706
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0032
+  form: Delrin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Delrin
+    approx_offset: 8032
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0033
+  form: Electroless Nickel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Electroless Nickel
+    approx_offset: 8874
+  - quote: Electroless Nickel
+    approx_offset: 21949
+  - quote: Electroless Nickel
+    approx_offset: 26936
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0034
+  form: Expanded Metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Expanded Metal
+    approx_offset: 20948
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0035
+  form: Extrusions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/faqs/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Does Decimal Engineering work with raw aluminum extrusions?
+    approx_offset: 2267
+  - quote: Extrusions
+    approx_offset: 8225
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0036
+  form: G10
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: G10
+    approx_offset: 8046
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0037
+  form: Galvanized
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Galvanized (G30 – G90)
+    approx_offset: 56720
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0038
+  form: Galvanized (G30 – G90)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Galvanized (G30 – G90)
+    approx_offset: 56720
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0039
+  form: Galvannealed
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Galvannealed (G30 – G90)
+    approx_offset: 20989
+  - quote: Galvannealed (G30 – G90)
+    approx_offset: 26230
+  - quote: Galvannealed (G30 – G90)
+    approx_offset: 56743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0040
+  form: Galvannealed (G30 – G90)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Galvannealed (G30 – G90)
+    approx_offset: 20989
+  - quote: Galvannealed (G30 – G90)
+    approx_offset: 26230
+  - quote: Galvannealed (G30 – G90)
+    approx_offset: 56743
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0041
+  form: Gold
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 7
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Gold
+    approx_offset: 8907
+  - quote: Gold
+    approx_offset: 21982
+  - quote: Gold
+    approx_offset: 26969
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0042
+  form: Gold Plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Gold Plated Turned Copper Spool
+    approx_offset: 80506
+  - quote: Gold Plated Stamped Brass Clip
+    approx_offset: 102981
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0043
+  form: HRPO
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 8145
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 21099
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 26334
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0044
+  form: HRS
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 8152
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 21106
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 26341
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0045
+  form: Hard Chrome
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Hard Chrome
+    approx_offset: 8912
+  - quote: Hard Chrome
+    approx_offset: 21987
+  - quote: Hard Chrome
+    approx_offset: 26974
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0046
+  form: Hipernik
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0047
+  form: HipernikKovar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: HipernikKovar
+    approx_offset: 56768
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0048
+  form: Kovar
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0049
+  form: Lexan
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Lexan
+    approx_offset: 8050
+  - quote: Lexan
+    approx_offset: 21014
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0050
+  form: Nickel Alloys
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Nickel Alloys
+    approx_offset: 56782
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0051
+  form: Nickel AlloysNylon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Nickel AlloysNylon
+    approx_offset: 8056
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0052
+  form: Nickel Plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Stamped Nickel Plated Steel Arm Connector
+    approx_offset: 103266
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0053
+  form: Nickel Silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Nickel Silver
+    approx_offset: 56796
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0054
+  form: Nylon
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0055
+  form: PTFE
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: PTFE
+    approx_offset: 57848
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0056
+  form: Perforated Metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Perforated Metal
+    approx_offset: 21020
+  - quote: Perforated Metal
+    approx_offset: 26255
+  - quote: Perforated Metal
+    approx_offset: 56810
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0057
+  form: Perforated Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+  evidence:
+  - quote: Perforated Steel Grill Audio
+    approx_offset: 103014
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0058
+  form: Phenolic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Phenolic
+    approx_offset: 8075
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0059
+  form: Phosphorous Bronze
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Phosphorous Bronze
+    approx_offset: 31152
+  - quote: Phosphorous Bronze
+    approx_offset: 56827
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0060
+  form: Pipe
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0061
+  form: PipePlate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: PipePlate
+    approx_offset: 8236
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0062
+  form: Plastics (Various)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Plastics (Various)
+    approx_offset: 8084
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0063
+  form: Plate
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Armor Plate
+    approx_offset: 20922
+  - quote: Armor Plate
+    approx_offset: 26167
+  - quote: Stamped Anodized Aluminum Plate
+    approx_offset: 103156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0064
+  form: Prepainted Material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+  evidence:
+  - quote: Prepainted Material
+    approx_offset: 21037
+  - quote: Prepainted Material
+    approx_offset: 26272
+  - quote: Prepainted Material
+    approx_offset: 56846
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0065
+  form: Rhodium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Rhodium
+    approx_offset: 8976
+  - quote: Rhodium
+    approx_offset: 22051
+  - quote: Rhodium
+    approx_offset: 27038
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0066
+  form: Rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Rubber Gaskets for Weatherproofing
+    approx_offset: 76951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0067
+  form: Rubber Gaskets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Rubber Gaskets for Weatherproofing
+    approx_offset: 76951
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0068
+  form: Sheet
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 25
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/ask-alan/
+  evidence:
+  - quote: Sheet Metal
+    approx_offset: 117
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 272
+  - quote: Sheet
+    approx_offset: 8253
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0069
+  form: Sheet Metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 20
+    pages:
+    - https://www.decimal.net/
+    - https://www.decimal.net/about/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/albums/
+    - https://www.decimal.net/ask-alan/
+  evidence:
+  - quote: Sheet Metal
+    approx_offset: 117
+  - quote: PROVIDING PRECISION SHEET METAL FABRICATION, CNC MACHINING, LASER CUTTING, LASER MARKING, STAMPING,
+      SCREW MACHINING & WIRE EDM SERVICES
+    approx_offset: 272
+  - quote: Over the years, Decimal has grown from a small sheet metal “job shop” to a full-service manufacturing
+      facility.
+    approx_offset: 15514
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0070
+  form: Silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 10
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Silver
+    approx_offset: 8984
+  - quote: Silver Soldering
+    approx_offset: 20383
+  - quote: Silver
+    approx_offset: 22059
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0071
+  form: Spring Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Spring Steel
+    approx_offset: 31171
+  - quote: Spring Steel
+    approx_offset: 56866
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0072
+  form: Square Wire
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: Square Wire
+    approx_offset: 56879
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0073
+  form: Stainless
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 14
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6702
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 8103
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 21057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0074
+  form: Stainless Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 8103
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 21057
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 26292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0075
+  form: 'Stainless Steel (2B, #3 & #8)'
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 8103
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 21057
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 26292
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0076
+  form: Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 37
+    pages:
+    - https://www.decimal.net/album/assembly/
+    - https://www.decimal.net/album/cnc-machining/
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+    - https://www.decimal.net/album/wire-edm-machining/
+  evidence:
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 8113
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 8133
+  - quote: Tool Steel
+    approx_offset: 8171
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0077
+  form: Steel (CRS, HRPO & HRS)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 8133
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 21087
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 26322
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0078
+  form: Steel Tubing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Steel Tubing/Angles and ChannelsClear Acrylic
+    approx_offset: 76905
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0079
+  form: Steel Tubing/Angles and Channels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 0
+    must_not_occur: true
+    naive_substring_hits: 1
+  evidence: []
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0080
+  form: Structural Shapes
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Structural Shapes
+    approx_offset: 8259
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0081
+  form: Tin
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Tin
+    approx_offset: 8991
+  - quote: Tin
+    approx_offset: 22066
+  - quote: Tin
+    approx_offset: 27053
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0082
+  form: Titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Titanium
+    approx_offset: 8157
+  - quote: Titanium
+    approx_offset: 31238
+  - quote: "Material Used\tTitanium and Silver"
+    approx_offset: 79725
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0083
+  form: Tool Steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/album/wire-edm-machining/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Tool Steel
+    approx_offset: 8166
+  - quote: Tool Steel
+    approx_offset: 31247
+  - quote: A2 Tool Steel Wire EDM Block
+    approx_offset: 82222
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0084
+  form: Tubing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Tubing
+    approx_offset: 8246
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75625
+  - quote: Steel Tubing/Angles and ChannelsClear Acrylic
+    approx_offset: 76911
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0085
+  form: Ultem
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: Ultem
+    approx_offset: 8177
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0086
+  form: Zinc (Clear, Yellow or Black)
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 8995
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 22070
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 27057
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0087
+  form: Zinc Cobalt
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/metal-stamping/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/services/sheet-metal-fabrication/
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Zinc Cobalt
+    approx_offset: 9064
+  - quote: Zinc Cobalt
+    approx_offset: 22139
+  - quote: Zinc Cobalt
+    approx_offset: 27126
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0088
+  form: Zinc Plated
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 5
+    pages:
+    - https://www.decimal.net/album/metal-stamping/
+    - https://www.decimal.net/album/sheet-metal-fabrication/
+  evidence:
+  - quote: Zinc Plated Steel Bracket Electronics
+    approx_offset: 81696
+  - quote: Zinc Plated Steel Chassis with Card Guides
+    approx_offset: 81736
+  - quote: Clear Zinc Plated Stamped Caster Leveler Foot
+    approx_offset: 102939
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0089
+  form: aluminum
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 4
+    pages:
+    - https://www.decimal.net/faqs/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: Does Decimal Engineering work with raw aluminum extrusions?
+    approx_offset: 2258
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6685
+  - quote: The maximum allowable sheet thickness will vary depending on the material and ranges from 1.18″
+      for aluminum to 1.18″ for carbon steel.
+    approx_offset: 24510
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0090
+  form: angle iron
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75633
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0091
+  form: brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: The part required solid brass with a diameter of 4.015″ x 1.473″ at +/− .002″ tolerances with
+      a brushed finish.
+    approx_offset: 60279
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0092
+  form: carbon steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 2
+    pages:
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: The maximum allowable sheet thickness will vary depending on the material and ranges from 1.18″
+      for aluminum to 1.18″ for carbon steel.
+    approx_offset: 24532
+  - quote: The maximum allowable sheet thickness will vary depending on the material and ranges from 1.18″
+      for aluminum to 1.18″ for carbon steel.
+    approx_offset: 91961
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0093
+  form: clear acrylic
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75661
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0094
+  form: cold rolled sheet metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75594
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0095
+  form: conductive material
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Any conductive material can be machined via EDM, with hard metals greatly benefiting from electrical
+      discharge machining.
+    approx_offset: 29541
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0096
+  form: engineered plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6744
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0097
+  form: exotic materials
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: We offer a full range of machining processes designed to work with precious metals or exotic
+      materials.
+    approx_offset: 78041
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0098
+  form: exotics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6735
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0099
+  form: ferrous and non-ferrous metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: Most any material, including ferrous and non-ferrous metals, can be cut with an accuracy of
+      ±0.005″.
+    approx_offset: 24337
+  - quote: Most any material, including ferrous and non-ferrous metals, can be cut with an accuracy of
+      ±0.005″.
+    approx_offset: 50335
+  - quote: Most any material, including ferrous and non-ferrous metals, can be cut with an accuracy of
+      ±0.005″.
+    approx_offset: 91767
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0100
+  form: hard metal
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: When precision tolerances on hard metal are required, EDM can offer significant advantages
+      over traditional milling.
+    approx_offset: 29688
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0101
+  form: hard metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/wire-edm/
+  evidence:
+  - quote: Any conductive material can be machined via EDM, with hard metals greatly benefiting from electrical
+      discharge machining.
+    approx_offset: 29591
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0102
+  form: non-ferrous metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 3
+    pages:
+    - https://www.decimal.net/news/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: Most any material, including ferrous and non-ferrous metals, can be cut with an accuracy of
+      ±0.005″.
+    approx_offset: 24349
+  - quote: Most any material, including ferrous and non-ferrous metals, can be cut with an accuracy of
+      ±0.005″.
+    approx_offset: 50347
+  - quote: Most any material, including ferrous and non-ferrous metals, can be cut with an accuracy of
+      ±0.005″.
+    approx_offset: 91779
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0103
+  form: precious metals
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: We offer a full range of machining processes designed to work with precious metals or exotic
+      materials.
+    approx_offset: 78022
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0104
+  form: raw aluminum extrusions
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/faqs/
+  evidence:
+  - quote: Does Decimal Engineering work with raw aluminum extrusions?
+    approx_offset: 2254
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0105
+  form: rubber
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0106
+  form: rubber gaskets
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75680
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0107
+  form: silver
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: A local area vendor of pendants, rings, and bracelets, required the manufacture of titanium
+      and silver cross pendants with an overall part dimension of 0.125″ thick x 0.5″ x 0.75″ at tolerances
+      of +/− 0.0005″ in one pass (+/- 0.0001″ with multiple passes).The cross design possessed extremely
+      small d
+    approx_offset: 78156
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0108
+  form: solid brass
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/spray-shower-tester-scientific-measuring/
+  evidence:
+  - quote: The part required solid brass with a diameter of 4.015″ x 1.473″ at +/− .002″ tolerances with
+      a brushed finish.
+    approx_offset: 60273
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0109
+  form: some plastics
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/metal-stamping/
+  evidence:
+  - quote: We stamp all metals and some plastics.
+    approx_offset: 54509
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0110
+  form: stainless steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/services/precision-machining/
+  evidence:
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6702
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0111
+  form: steel
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 6
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+    - https://www.decimal.net/services/laser-cutting/
+    - https://www.decimal.net/services/precision-machining/
+    - https://www.decimal.net/we-upgraded-our-laser-from-6000-to-12000/
+  evidence:
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6695
+  - quote: The flexibility of our precision machining service are augmented by the wide range of materials
+      that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more.
+    approx_offset: 6712
+  - quote: The maximum allowable sheet thickness will vary depending on the material and ranges from 1.18″
+      for aluminum to 1.18″ for carbon steel.
+    approx_offset: 24539
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0112
+  form: steel channels
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75645
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0113
+  form: steel tubing
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/locomotive-power-conversion-locker/
+  evidence:
+  - quote: Using cold rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and
+      rubber gaskets for waterproofing, we produced 13 units within 6 weeks after initial engineering
+      design.
+    approx_offset: 75619
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window
+- id: decimal_net-material_caps-0114
+  form: titanium
+  kind: occurrence
+  status: candidate
+  expect:
+    occurrences: 1
+    pages:
+    - https://www.decimal.net/project-gallery/cross-pendant-jewelry/
+  evidence:
+  - quote: A local area vendor of pendants, rings, and bracelets, required the manufacture of titanium
+      and silver cross pendants with an overall part dimension of 0.125″ thick x 0.5″ x 0.75″ at tolerances
+      of +/− 0.0005″ in one pass (+/- 0.0001″ with multiple passes).The cross design possessed extremely
+      small d
+    approx_offset: 78143
+  notes: ''
+  provenance:
+  - action: added
+    by: occurrence-generator
+    date: '2026-08-27'
+    source: computed:collect_window

@@ -1,0 +1,74 @@
+subject: 101machine.com
+slug: 101machine_com
+subject_name: 101 Machine, Inc.
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_texts/101machine.com.txt
+  sha256: b7a95be543431822edc4873b4d66c97468ca0d02253d52cdb5e182e535c61770
+role: inventory_subject
+role_source: kept verbatim from search/expectations/101machine_com/subject.yaml; not re-derived by this pass
+business_type: prototype / short-run CNC job shop, Cary NC
+harvested_from:
+- apps/data_etl_app/tests/test_stages/search/expectations/101machine_com/subject.yaml
+- apps/data_etl_app/tests/test_stages/grounding/expectations/101machine_com/subject.yaml
+- apps/data_etl_app/tests/test_stages/synthesis/expectations/101machine_com/subject.yaml
+third_party_roster:
+- Chevalier
+shape:
+  pages: 9
+  total_lines: 213
+  nonblank_lines: 167
+  boilerplate_nonblank_lines: 58
+  boilerplate_share_of_nonblank_lines: 35%
+  longest_line_chars: 565
+  median_nonblank_line_chars: 16
+  nonascii_lines: 4
+  nbsp_count: 0
+  note: boilerplate = 9 nav lines + 40 footer lines (4 lines x 10 blocks; the contact page carries the footer twice) + 9 page separators, counted against 167 non-blank lines
+text_hazards:
+- hazard: bare_list_lines
+  note: the Turning Services and Milling Services blocks are one process per line with no verb, no subject and no sentence. A clip on any of ~25 process forms yields the bare token alone, so the snippet carries no evidence that 101 Machine performs it - the only thing that does is the section heading two to fifteen lines above. This is the dominant snippet risk on this subject.
+  quote: Counter Boring
+- hazard: heading_only_line
+  note: section headings sit alone on their own line, so the heading is both a candidate form itself and the only context the bare list beneath it has; approx line 64
+  quote: Milling Services
+- hazard: slash_delimited_material_line
+  note: one line carries five distinct material forms (Cold Rolled, Hot Rolled, Carbon, Structual [sic], Tool); every one of them clips to this identical non-sentence, so five different mentions share one snippet. Note the curly apostrophe U+2019 in Steel’s - a form spelled with an ASCII apostrophe cannot match, and the form Steel matches INSIDE it (an inheritance case). approx line 96
+  quote: 'Steel’s: Cold Rolled/Hot Rolled/Carbon/Structual/Tool'
+- hazard: negation_sentence
+  note: the only negative capability statement in the file. The clip must keep the negation or the snippet asserts the opposite of the text; the preceding sentence on the same line is about cleanliness, so a sentence-level clip is correct here and a line-level clip is misleadingly wide. approx line 125
+  quote: We DO NOT machine automobile parts!
+- hazard: duplicate_page
+  note: https://101machine.com/index.html duplicates https://101machine.com/ verbatim, so every form on the homepage has exactly 2 occurrences rather than 1. This quote occurs exactly twice (lines 11 and 168) and is the cheapest probe for whether an occurrence count is real repetition or scrape duplication.
+  quote: What began in a garage in 2004 has grown through a reputation of excellence.
+- hazard: repeated_nav
+  note: identical nav line on all 9 pages; 9 of 167 non-blank lines
+  quote: 101 Machine Capabilities Contact Us FAQ NEW
+- hazard: repeated_footer
+  note: the 4-line address/phone footer repeats 10 times (once per page, twice on contact.html); 40 of 167 non-blank lines
+  quote: 1937 Evans Rd
+- hazard: own_name_substring
+  note: the company name contains the ordinary word Machine. '101 Machine' occurs 30 times, 19 of them inside the repeated nav and footer, so any form containing Machine or Machining inherits boilerplate occurrences from the company's own name.
+  quote: 101 Machine, Inc
+- hazard: en_dash_in_list_item
+  note: U+2013 EN DASH, not a hyphen; and the same list item is spelled 'Hexs' on the turning page (line 40) and 'Hexes' on the milling page (line 74). Two spellings of one thing, one character apart - a grouping case, and both source typos must be quoted uncorrected.
+  quote: Broaching – Hexs and Square
+- hazard: sparse_nonascii
+  note: only 4 lines in the whole file hold a non-ASCII character (U+2013 twice, U+2019 twice) and there is not one NBSP. This subject is the corpus's clean control for encoding hazards.
+  quote: 'Stainless Steel’s including: 300 & 400 series'
+third_party_voice:
+- speaker: Chevalier (machine-tool builder)
+  whose_words: site
+  note: 'the only third party named anywhere in the file, and it is named in the site''s own voice on a one-paragraph news page announcing a purchase. Nothing on this site is written by anyone but the site: there are no testimonials, no parent-company block, no vendor brochure copy and no standards-body text. Every location label on this subject should carry whose_words: site, which makes it the corpus''s control against a model that over-predicts third_party.'
+  quote: Chevalier EM2040L
+- speaker: an unnamed 101 Machine employee (informal staff voice)
+  whose_words: site
+  note: the New page drops into first-name, joking register mid-page. Still the site's words, but the surrounding sentences read nothing like the rest of the brochure copy, so kind_of_text is a news/announcement post, not a capability page. approx line 190
+  quote: Brandon clearly loves his new toy
+coverage: full_text
+coverage_note: read line-for-line, all 213 lines / 9 pages / 7,083 bytes; no sampling
+notes: 'Smallest text in the corpus and the cleanest one. Its value to THIS stage is the bare-list snippet problem in isolation: roughly 25 of its ~40 extractable forms occur only as a one-word line inside a Services block, so nearly every snippet label here is the question ''is a bare list item enough evidence?'' with no other hazard confounding it. search/expectations marks conformity_attestations and products expected_empty and equipments sparse (one named machine).'
+provenance:
+- action: added
+  by: seed-agent-batch1
+  date: '2026-08-27'
+  source: harvested:search + corpus-seed
