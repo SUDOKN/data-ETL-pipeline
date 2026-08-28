@@ -12,8 +12,8 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
 )
 from core.models.extraction_schemas.grounding import (
     RecordGroundingResults,
@@ -152,7 +152,7 @@ class LLMPhraseInitialGroundingNode(
         mention_map: dict[BatchRequestIDType, GPTBatchRequest],
         synthesis_map: dict[BatchRequestIDType, GPTBatchRequest],
         subject_text: str,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         timestamp: datetime,
     ) -> dict[str, dict[str, Any]]:
         """The chunk's group_id → payload map: every SYNTHESIZED group (a
@@ -176,7 +176,7 @@ class LLMPhraseInitialGroundingNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         chunked_request_map: ConceptExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -340,7 +340,7 @@ class LLMPhraseInitialGroundingNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         group_payload: dict[str, dict[str, Any]],
         retry_index: int | None = None,
     ) -> BatchRequestIDType:
@@ -363,7 +363,7 @@ class LLMPhraseInitialGroundingNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         chunked_request_map: ConceptExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -483,7 +483,7 @@ class LLMPhraseInitialGroundingNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

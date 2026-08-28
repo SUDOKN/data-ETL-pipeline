@@ -5,8 +5,8 @@ from typing import TYPE_CHECKING
 from llm_providers.db_models.gpt_batch_request import (
     GPTBatchRequest,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes import PipelineContext
@@ -62,7 +62,7 @@ class ContractProductRecursiveSearchNode(KeywordRecursiveSearchNode):
         chunk_bounds: str,
         sub_bounds: str,
         round_index: int,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         return KeywordRecursiveSearchNode.get_request_custom_id(
             subject_unique_id=subject_unique_id,

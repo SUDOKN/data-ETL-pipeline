@@ -301,6 +301,17 @@ def hold_response_to_sent_phrases(
     """
     sent_phrases = sent_phrases_from_user_message(user_message)
     if sent_phrases is None:
+        # No block means a foreign or malformed request, and skipping the
+        # hold is the documented choice. Skipping it SILENTLY is not: every
+        # request we build carries a block, dummies included, so a fence the
+        # renderer stopped emitting would switch this guard off across every
+        # stage with nothing in the log to show for it. This line firing means
+        # the contract is broken, not the response (added 2026-08-27).
+        logger.warning(
+            f"{where}: request carries no sent-phrases block; the phrase hold is "
+            f"SKIPPED and {len(response_by_phrase)} response key(s) pass through "
+            f"unvalidated"
+        )
         return response_by_phrase
 
     reconciliation = reconcile_response_phrases(sent_phrases, response_by_phrase)
@@ -457,6 +468,17 @@ def hold_response_to_sent_record_ids(
     """
     sent_ids = sent_record_ids_from_user_message(user_message)
     if sent_ids is None:
+        # No block means a foreign or malformed request, and skipping the
+        # hold is the documented choice. Skipping it SILENTLY is not: every
+        # request we build carries a block, dummies included, so a fence the
+        # renderer stopped emitting would switch this guard off across every
+        # stage with nothing in the log to show for it. This line firing means
+        # the contract is broken, not the response (added 2026-08-27).
+        logger.warning(
+            f"{where}: request carries no sent-record-ids block; the record hold is "
+            f"SKIPPED and {len(response_by_record_id)} response id(s) pass through "
+            f"unvalidated"
+        )
         return response_by_record_id
 
     sent_records = sent_records_from_user_message(user_message)
@@ -595,6 +617,17 @@ def hold_response_to_sent_mention_ids(
     """
     sent_ids = sent_mention_ids_from_user_message(user_message)
     if sent_ids is None:
+        # No block means a foreign or malformed request, and skipping the
+        # hold is the documented choice. Skipping it SILENTLY is not: every
+        # request we build carries a block, dummies included, so a fence the
+        # renderer stopped emitting would switch this guard off across every
+        # stage with nothing in the log to show for it. This line firing means
+        # the contract is broken, not the response (added 2026-08-27).
+        logger.warning(
+            f"{where}: request carries no sent-mention-ids block; the mention hold "
+            f"is SKIPPED and {len(response_by_mention_id)} response id(s) pass "
+            f"through unvalidated"
+        )
         return response_by_mention_id
 
     sent_mentions = sent_mentions_from_user_message(user_message)

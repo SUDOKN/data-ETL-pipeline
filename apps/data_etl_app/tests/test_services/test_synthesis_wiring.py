@@ -15,7 +15,7 @@ from core.models.chunking_strat import (
     MATERIAL_CAP_CHUNKING_STRAT,
     PRODUCT_CHUNKING_STRAT,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     BatchedSynthesisNodeMetadata,
 )
 from core.models.extraction_schemas.synthesis import (

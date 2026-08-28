@@ -26,8 +26,8 @@ from core.models.chunking_strat import (
 from core.models.deferred_extraction.deferred_keyword_extraction import (
     KeywordExtractionRequestBundle,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    KeywordExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    KeywordExtractionMetadata,
 )
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
     KeywordPhraseSearchNode,
@@ -86,7 +86,7 @@ def _make_prompt(name: str) -> Prompt:
     )
 
 
-def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetadataV2:
+def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetadata:
     """The real metadata the equipment pipeline builds, so the id segments under
     test are the ones the factory actually plumbs through."""
     prefill = ExtractionPipelineFactory.create_equipment_extraction_pipeline(
@@ -109,7 +109,7 @@ def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetad
         created_at=TIMESTAMP,
         max_recursive_search_rounds=max_recursive_rounds,
     )
-    return KeywordExtractionMetadataV2(
+    return KeywordExtractionMetadata(
         created_at=TIMESTAMP,
         chunk_strat=prefill.chunk_strategy,
         ontology_version_id="test-ontology-version",

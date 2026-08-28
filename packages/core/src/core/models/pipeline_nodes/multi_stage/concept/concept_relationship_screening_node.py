@@ -19,7 +19,7 @@ from core.models.skos_concept import Concept
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     get_record_grounding_result,
 )
-from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+from core.services.pipeline_nodes.multi_stage.stage_derivations import (
     candidates_for_screening,
 )
 from core.services.rule_catalog_registry import get_rule_catalog

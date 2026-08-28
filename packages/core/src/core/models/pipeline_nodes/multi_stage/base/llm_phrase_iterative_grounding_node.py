@@ -19,11 +19,11 @@ from core.models.extraction_schemas.iterative_tagging import (
 )
 from core.models.extraction_schemas.synthesis import GroupRecords
 from llm_providers.models.file_objects.prompt import Prompt
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     ExtractionNodeMetadata,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
 )
 from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
@@ -238,7 +238,7 @@ class LLMPhraseIterativeGroundingNode(
         completed_recursive_grounding_req_map: dict[
             BatchRequestIDType, GPTBatchRequest
         ],
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         timestamp: datetime,
     ) -> BatchRequestIDType:
         """The node's request id, digest included — derived from the same
@@ -307,7 +307,7 @@ class LLMPhraseIterativeGroundingNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         chunked_request_map: ConceptExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -532,17 +532,19 @@ class LLMPhraseIterativeGroundingNode(
                             f"parent_itr:{parent_itr.name} is missing in completed_recursive_grounding_req_map."
                         )
 
-                    parent_itr_results = (
-                        await parse_recursive_grounding_batch_request_result(
-                            subject_unique_id=subject_unique_id,
-                            field_type=self.field_type,
-                            chunk_bounds=chunk_bounds,
-                            descend_req_id=parent_itr.descend_req_id,
-                            completed_request_map=completed_recursive_grounding_req_map,
-                            deferred_at=timestamp,
-                        )
+                    parent_answer = await parse_recursive_grounding_batch_request_result(
+                        subject_unique_id=subject_unique_id,
+                        field_type=self.field_type,
+                        chunk_bounds=chunk_bounds,
+                        descend_req_id=parent_itr.descend_req_id,
+                        completed_request_map=completed_recursive_grounding_req_map,
+                        deferred_at=timestamp,
                     )
-                    for child_tr in parent_itr_results:
+                    # The declined half is not consulted here: this walk creates
+                    # the CHILD nodes a response named, and a declination names
+                    # none. It is placed on the parent node itself, by
+                    # `get_itp_from_itr` when the results are read back.
+                    for child_tr in parent_answer.tagging_results:
                         child_concept = self.match_label_to_concept_map.get(
                             child_tr.group_id
                         )
@@ -637,7 +639,7 @@ class LLMPhraseIterativeGroundingNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         chunked_request_map: ConceptExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -721,7 +723,7 @@ class LLMPhraseIterativeGroundingNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

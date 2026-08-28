@@ -17,10 +17,10 @@ from core.models.chunking_strat import CONFORMITY_ATTESTATION_CHUNKING_STRAT
 from core.models.extraction_results.concept_extraction_results import (
     BatchedInitialGroundingNodeMetadata,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
-)
 from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
+)
+from core.models.extraction_results.extraction_node_metadata import (
     BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
     ExtractionNodeMetadata,
@@ -70,7 +70,7 @@ def _metadata(
         catalog_version=catalog_version,
         created_at=metadata_init_at,
     )
-    return ConceptExtractionMetadataV2(
+    return ConceptExtractionMetadata(
         created_at=metadata_init_at,
         chunk_strat=CONFORMITY_ATTESTATION_CHUNKING_STRAT,
         ontology_version_id=ontology_version_id,

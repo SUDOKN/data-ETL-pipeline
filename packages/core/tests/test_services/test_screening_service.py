@@ -18,7 +18,7 @@ from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_se
     hold_candidates_to_sent_records,
     parse_record_screening_result,
 )
-from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+from core.services.pipeline_nodes.multi_stage.stage_derivations import (
     candidates_for_screening,
     candidates_that_passed,
     descent_seed_tagging_results,

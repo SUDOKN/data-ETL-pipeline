@@ -3,7 +3,7 @@ level over the records that evidence them.
 
 The descent runs POST-SCREENING (fork F10): its seed is every in-vocab
 candidate that passed screening, grouped tag-major by
-``pipeline_v2_derivations.descent_seed_tagging_results`` — the same
+``stage_derivations.descent_seed_tagging_results`` — the same
 ``TaggingResult`` shape the v1 machinery consumed, with record ids where
 phrases used to be. Descent requests carry record payloads (mentions +
 synthesis from the masked relationship results) plus the parent's children as
@@ -26,6 +26,7 @@ import asyncio
 import json
 import logging
 import traceback
+from dataclasses import dataclass
 from datetime import datetime
 from typing import Any, Optional
 
@@ -45,8 +46,8 @@ from core.models.extraction_schemas.iterative_tagging import (
     PhraseTrail,
 )
 from core.models.extraction_schemas.synthesis import GroupRecords
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
 )
 from core.models.rule_catalog import (
     STAGE_INITIAL_GROUNDING,
@@ -97,7 +98,7 @@ from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_se
     get_record_screening_result,
     screening_catalog_for,
 )
-from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+from core.services.pipeline_nodes.multi_stage.stage_derivations import (
     descent_seed_tagging_results,
 )
 from core.services.rule_catalog_registry import get_rule_catalog
@@ -152,20 +153,55 @@ async def get_descent_seed_tagging_results(
     return descent_seed_tagging_results(in_vocab_results, screening_results)
 
 
-def get_tagging_results_from_record_groundings(
+@dataclass(frozen=True)
+class DescentAnswer:
+    """One descent request's parsed answer, both halves.
+
+    ``tagging_results`` is what the walk consumes: the children the response
+    named, regrouped tag-major. ``declined_records`` is the other half — the
+    records that answered an empty ``options`` array with a reason (the
+    empty-options stop). It used to be dropped here, which is why a node whose
+    records all declined was indistinguishable from a node nobody asked about.
+    """
+
+    tagging_results: list[TaggingResult]
+    declined_records: dict[str, str]
+
+
+def get_descent_answer_from_record_groundings(
     groundings: RecordGroundingResults,
-) -> list[TaggingResult]:
-    """A record-keyed grounding result regrouped tag-major — the shape the
-    descent walk consumes. Declined records (empty tags) contribute nothing:
-    that is the empty-options stop."""
+) -> DescentAnswer:
+    """Split a record-keyed descent response into children and declinations.
+
+    A record contributes to exactly one side: the stored entry's validator
+    already guarantees tags XOR a declination explanation, so the two maps
+    partition the answered records.
+    """
     tag_to_tr_map: dict[str, TaggingResult] = {}
+    declined: dict[str, str] = {}
     for record_id, entry in groundings.items():
+        if not entry.tags:
+            # Non-null by RecordGroundingEntry's validator whenever tags are
+            # empty; the guard keeps this total rather than trusting it.
+            if entry.explanation:
+                declined[record_id] = entry.explanation
+            continue
         for tag, applied_rules in entry.tags.items():
             tr = tag_to_tr_map.setdefault(
                 tag, TaggingResult(group_id=tag, phrase_rules_map={})
             )
             tr.phrase_rules_map[record_id] = applied_rules
-    return list(tag_to_tr_map.values())
+    return DescentAnswer(
+        tagging_results=list(tag_to_tr_map.values()), declined_records=declined
+    )
+
+
+def get_tagging_results_from_record_groundings(
+    groundings: RecordGroundingResults,
+) -> list[TaggingResult]:
+    """The children half alone — the seed path, which has no declinations to
+    place (a declined seed record simply carries no candidate)."""
+    return get_descent_answer_from_record_groundings(groundings).tagging_results
 
 
 def get_tcs_and_oov_trs_from_trs(
@@ -228,7 +264,7 @@ async def parse_recursive_grounding_batch_request_result(
     descend_req_id: BatchRequestIDType,
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     deferred_at: datetime,
-) -> list[TaggingResult]:
+) -> DescentAnswer:
     if not descend_req_id:
         raise ValueError(
             f"phrase_recursive_grounding_node.parse_batch_request_result: phrase_recursive_grounding_request_id is None for chunk bounds {chunk_bounds} in {subject_unique_id}:{field_type.name}"
@@ -276,7 +312,7 @@ async def parse_recursive_grounding_batch_request_result(
         on_missing="drop",
     )
 
-    return get_tagging_results_from_record_groundings(recursive_grounding_result)
+    return get_descent_answer_from_record_groundings(recursive_grounding_result)
 
 
 async def get_all_recursive_grounding_results(
@@ -456,6 +492,36 @@ def get_phrase_trails(
                 phrase_trail.lvl_by_lvl_itps[lvl].add(matching_itp)
                 retval_dict[i_phrase] = phrase_trail
 
+            # The record's own half of the node's declinations, attached to the
+            # ITP the two loops above already built for it. Never CREATES one:
+            # a declined record is by construction part of the node's evidence
+            # (`descent_evidence_record_ids` is what the request was built
+            # from), so it has an ITP here. Inventing one would put a group_id
+            # into a record's trail on the strength of a declination, which
+            # `get_deepest_concepts_and_oov` would then read as a finding.
+            for record_id, explanation in itp_group.declined_records.items():
+                phrase_trail = retval_dict.get(record_id)
+                matching_itp = (
+                    next(
+                        (
+                            itp
+                            for itp in phrase_trail.lvl_by_lvl_itps.get(lvl, set())
+                            if itp.group_id == itp_group.group_id
+                            and itp.parent_group_id == itp_group.parent_group_id
+                        ),
+                        None,
+                    )
+                    if phrase_trail is not None
+                    else None
+                )
+                if matching_itp is None:
+                    logger.warning(
+                        f"get_phrase_trails: record {record_id!r} declined under "
+                        f"l{lvl}>{itp_group.group_id} but has no trail node there"
+                    )
+                    continue
+                matching_itp.declined = explanation
+
     return list(retval_dict.values())
 
 
@@ -572,7 +638,7 @@ async def get_itp_from_itr(
         )
 
     if parent_itr:
-        tagged_children_trs = await parse_recursive_grounding_batch_request_result(
+        parent_answer = await parse_recursive_grounding_batch_request_result(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
             chunk_bounds=chunk_bounds,
@@ -580,7 +646,7 @@ async def get_itp_from_itr(
             completed_request_map=completed_recursive_grounding_req_map,
             deferred_at=timestamp,
         )
-        for child_tr in tagged_children_trs:
+        for child_tr in parent_answer.tagging_results:
             if (child_tr.group_id == it_req.name) or (
                 (concept := match_label_to_concept_map.get(child_tr.group_id))
                 and concept.name == it_req.name
@@ -592,6 +658,37 @@ async def get_itp_from_itr(
                     itp.iterative_phrases_to_og_tag_w_rules[record_id] = {
                         child_tr.group_id: applied_rules
                     }
+
+    # This node's OWN descent: the records it asked about that answered an
+    # empty options array. Read from `it_req.descend_req_id` (the request that
+    # asks "what specific type of <this node> does the record evidence?"), so
+    # the declination lands on the node that asked. Absent from the completed
+    # map means the node was never descendable and no request was ever created
+    # — not a declination, and not an error.
+    if it_req.descend_req_id in completed_recursive_grounding_req_map:
+        own_answer = await parse_recursive_grounding_batch_request_result(
+            subject_unique_id=subject_unique_id,
+            field_type=field_type,
+            chunk_bounds=chunk_bounds,
+            descend_req_id=it_req.descend_req_id,
+            completed_request_map=completed_recursive_grounding_req_map,
+            deferred_at=timestamp,
+        )
+        evidence = descent_evidence_record_ids(itp)
+        for record_id, explanation in own_answer.declined_records.items():
+            # A declination for a record this node has no evidence for cannot
+            # be placed: the request is built from the evidence set, so this
+            # would mean the response answered for something never sent — which
+            # the hold already raises on. Logged rather than stored, so the
+            # node's map keeps its documented subset invariant.
+            if record_id not in evidence:
+                logger.warning(
+                    f"recursive grounding: declination for record {record_id!r} that "
+                    f"is not evidence of l{it_req.level}>{it_req.name} in chunk "
+                    f"{chunk_bounds} for {subject_unique_id}:{field_type.name}"
+                )
+                continue
+            itp.declined_records[record_id] = explanation
 
     return itp
 
@@ -638,7 +735,7 @@ async def create_missing_phrase_recursive_grounding_requests(
     mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     synthesis_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     subject_text: str,
-    metadata: ConceptExtractionMetadataV2,
+    metadata: ConceptExtractionMetadata,
     completed_in_vocab_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],
     completed_screening_req_map: dict[BatchRequestIDType, GPTBatchRequest],
     completed_recursive_grounding_req_map: dict[BatchRequestIDType, GPTBatchRequest],

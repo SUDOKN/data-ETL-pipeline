@@ -1,10 +1,14 @@
-"""Pure derivations between pipeline v2's stages.
+"""Pure derivations between the phrase pipeline's stages.
 
 Each stage's input is a function of upstream STORED shapes and nothing else, so
-these live apart from the node services: the flip's orchestration calls them,
-the reconcile node calls them, and the tests pin them without any request
-machinery. They are the v2 halves of phases 2.7/2.8 — the descent loop and the
-reconcile node that consume them arrive with the flip.
+these live apart from the node services: the orchestration calls them, the
+reconcile node calls them, and the tests pin them without any request
+machinery.
+
+Introduced as the v2 halves of PIPELINE_V2_PLAN.md phases 2.7/2.8, alongside the
+descent loop and reconcile node that consume them. The module was called
+``pipeline_v2_derivations`` until 2026-08-27; there is no other set of stage
+derivations for the name to distinguish it from.
 """
 
 from __future__ import annotations

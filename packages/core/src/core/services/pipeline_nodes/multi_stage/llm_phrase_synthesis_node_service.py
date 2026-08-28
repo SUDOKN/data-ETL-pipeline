@@ -71,11 +71,11 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     BatchedSynthesisNodeMetadata,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from core.models.extraction_schemas.synthesis import (
     DUMMY_SYNTHESIS_RESPONSE_CONTENT,
@@ -106,7 +106,7 @@ logger = logging.getLogger(__name__)
 
 
 def require_synthesis_metadata(
-    metadata: LLMPhraseExtractionMetadataV2,
+    metadata: LLMPhraseExtractionMetadata,
 ) -> BatchedSynthesisNodeMetadata:
     """The synthesis node's metadata, which a v3 chain always carries. None means
     the pipeline was built without it — a factory wiring error, not a run state."""

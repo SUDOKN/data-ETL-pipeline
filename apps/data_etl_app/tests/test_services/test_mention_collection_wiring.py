@@ -11,7 +11,7 @@ from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 
 from core.models.chunking_strat import MATERIAL_CAP_CHUNKING_STRAT
 from core.models.extraction_schemas.mention_collection import MentionWireItem
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     BatchedMentionCollectionNodeMetadata,
 )
 from core.models.pipeline_nodes import ConceptMentionCollectionNode

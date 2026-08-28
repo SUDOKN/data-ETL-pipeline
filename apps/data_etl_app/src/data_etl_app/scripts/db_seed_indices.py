@@ -266,6 +266,35 @@ class DatabaseIndexSeeder:
         for index in indexes:
             self._create_index_if_missing(collection, index["keys"], index["options"])
 
+    def create_extraction_run_indexes(self):
+        """Create indexes for extraction_runs collection."""
+        collection = self.db.extraction_runs
+
+        indexes = [
+            {
+                # One document per (subject, field, run) — what the reconcile
+                # node upserts on, so a re-entrant reconcile updates rather
+                # than duplicates.
+                "keys": [
+                    ("subject_unique_id", 1),
+                    ("field_name", 1),
+                    ("run_timestamp", 1),
+                ],
+                "options": {
+                    "name": "extraction_runs_subject_field_run_unique_idx",
+                    "unique": True,
+                },
+            },
+            {
+                # "what ran most recently", across subjects.
+                "keys": [("run_timestamp", -1)],
+                "options": {"name": "extraction_runs_recent_idx"},
+            },
+        ]
+
+        for index in indexes:
+            self._create_index_if_missing(collection, index["keys"], index["options"])
+
     def create_mep_request_indexes(self):
         """No custom indexes needed for mep_requests yet; _id_ is sufficient."""
         pass
@@ -346,6 +375,7 @@ class DatabaseIndexSeeder:
             self.create_api_key_bundle_indexes()
             self.create_place_indexes()
             self.create_out_of_vocab_labels_indexes()
+            self.create_extraction_run_indexes()
             self.create_mep_request_indexes()
             self.create_scraping_error_indexes()
             self.create_extraction_error_indexes()

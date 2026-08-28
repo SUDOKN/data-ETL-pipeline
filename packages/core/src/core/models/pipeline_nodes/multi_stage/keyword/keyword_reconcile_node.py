@@ -14,10 +14,10 @@ from core.models.deferred_extraction.deferred_keyword_extraction import (
 from core.models.extraction_results.concept_extraction_results import (
     ConceptsFound,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    KeywordExtractionResultsV2,
-    KeywordExtractionStatsMapV2,
-    KeywordExtractionStatsV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    KeywordExtractionResults,
+    KeywordExtractionStatsMap,
+    KeywordExtractionStats,
     partition_records_by_search_round,
 )
 from core.models.field_types import ExtractionFieldType
@@ -49,7 +49,7 @@ from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_se
     get_record_screening_result,
     screening_catalog_for,
 )
-from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+from core.services.pipeline_nodes.multi_stage.stage_derivations import (
     candidates_that_passed,
 )
 from core.services.rule_catalog_registry import get_rule_catalog
@@ -59,6 +59,11 @@ from core.utils.extraction_dump_util import (
     build_run_provenance,
     write_extraction_dump,
 )
+from core.models.extraction_schemas.run_provenance import (
+    build_run_provenance_record,
+)
+from core.models.extraction_schemas.stored_fold import build_stored_fold
+from core.services.extraction_run_service import save_extraction_run
 from core.utils.fold_dump_util import build_fold_dump
 from core.utils.synthesis_dump_util import build_synthesis_dump
 
@@ -160,7 +165,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
         screening_catalog = screening_catalog_for(self.field_type.name)
 
         all_keywords: set[str] = set()
-        chunk_stats: KeywordExtractionStatsMapV2 = {}
+        chunk_stats: KeywordExtractionStatsMap = {}
         chunked_dump_contents: dict[str, dict[str, object]] = {}
         for (
             chunk_bounds,
@@ -267,6 +272,15 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 )
                 fold_dump = None
 
+            # The persisted twin of that same fold (2026-08-27). NOT guarded
+            # like the dump blocks above: this one is a stored result, and a
+            # window whose bounds do not describe its own text would give
+            # offsets that resolve to the wrong passage. Fail the run instead.
+            stored_fold = build_stored_fold(
+                synthesis_result.fold,
+                text_version_id=scraped_text_file.s3_version_id,
+            )
+
             chunked_dump_contents[chunk_bounds] = {
                 "rows": build_keyword_group_rows(
                     synthesis_result=synthesis_result,
@@ -279,10 +293,11 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 "synthesis": synthesis_dump,
             }
 
-            chunk_stats[chunk_bounds] = KeywordExtractionStatsV2(
+            chunk_stats[chunk_bounds] = KeywordExtractionStats(
                 results=ConceptsFound(
                     in_vocab=set(), out_of_vocab=grounded_keywords
                 ),
+                aggregation_fold=stored_fold,
                 llm_phrase_search=llm_search_results,
                 llm_phrase_synthesis=partition_records_by_search_round(
                     group_records, focal_by_group, llm_search_results
@@ -295,6 +310,15 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 ),
             )
             all_keywords.update(grounded_keywords)
+
+        # The stored twin of the dump's run header. Built once, after the chunk
+        # loop, and used by BOTH sinks: the results model beside `metadata`,
+        # and the run-keyed history document.
+        stored_run_provenance = build_run_provenance_record(
+            run_timestamp=timestamp,
+            scraped_text_file=scraped_text_file,
+            page_exclusion=pipeline_context.page_exclusion,
+        )
 
         write_extraction_dump(
             subject_unique_id=subject.subject_unique_id,
@@ -318,8 +342,9 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
             ),
         )
 
-        final_extraction_result = KeywordExtractionResultsV2(
+        final_extraction_result = KeywordExtractionResults(
             metadata=extraction_requests.metadata,
+            run_provenance=stored_run_provenance,
             # Freehand grounding mints candidates independently per chunk, so
             # the union carries case and singular/plural variants of one label;
             # per-chunk stats keep them raw.
@@ -328,6 +353,17 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 out_of_vocab=dedupe_equivalent_keywords(all_keywords),
             ),
             chunked_extraction_stats=chunk_stats,
+        )
+
+        # The RECORD first, the subject's CACHE of it second — see
+        # ``core.db_models.extraction_run``.
+        await save_extraction_run(
+            subject_unique_id=subject.subject_unique_id,
+            field_name=self.field_type.name,
+            field_family="keyword",
+            run_timestamp=timestamp,
+            run_provenance=stored_run_provenance,
+            results=final_extraction_result,
         )
 
         setattr(subject, self.field_type.name, final_extraction_result)

@@ -2,8 +2,8 @@ from __future__ import annotations
 import logging
 from typing import TYPE_CHECKING
 
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_phrase_search_node import (
@@ -56,7 +56,7 @@ class ContractProductPhraseSearchNode(KeywordPhraseSearchNode):
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         sub_bounds: str,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
     ) -> BatchRequestIDType:
         # Deliberately ignore the passed field_type and use the shared "products"
         # identity so this phase's custom_id matches the pure-product branch's.

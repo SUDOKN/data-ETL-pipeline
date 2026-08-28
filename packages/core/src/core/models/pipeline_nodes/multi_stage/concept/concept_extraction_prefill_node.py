@@ -10,10 +10,10 @@ from typing import Optional
 from core.models.extraction_results.concept_extraction_results import (
     BatchedInitialGroundingNodeMetadata,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
-)
 from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
+)
+from core.models.extraction_results.extraction_node_metadata import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedRelationshipNodeMetadata,
@@ -41,7 +41,7 @@ from core.models.chunking_strat import (
     chunk_break_predicate,
     derive_search_sub_bounds,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     AggregationFoldMetadata,
     BatchedMentionCollectionNodeMetadata,
     BatchedSynthesisNodeMetadata,
@@ -142,7 +142,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         # The text this chain chunks and reads: excluded pages dropped first when
         # the strategy says so (every run — bounds are offsets into this text).
         scraped_text_file = self.apply_page_exclusion(scraped_text_file, pipeline_context)
-        latest_concept_extraction_metadata = ConceptExtractionMetadataV2(
+        latest_concept_extraction_metadata = ConceptExtractionMetadata(
             created_at=timestamp,
             chunk_strat=self.chunk_strategy,
             ontology_version_id=self.ontology.s3_version_id,

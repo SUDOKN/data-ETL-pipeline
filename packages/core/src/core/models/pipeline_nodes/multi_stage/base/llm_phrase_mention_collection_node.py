@@ -34,8 +34,8 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from core.models.extraction_schemas.mention_collection import MentionWireItem
 from core.models.field_types import ExtractionFieldType
@@ -105,7 +105,7 @@ class LLMPhraseMentionCollectionNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -283,7 +283,7 @@ class LLMPhraseMentionCollectionNode(
         chunk_bounds: str,
         sub_bounds: str,
         group_index: int,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         group_items: list[MentionWireItem],
         retry_index: int | None = None,
     ) -> BatchRequestIDType:
@@ -306,7 +306,7 @@ class LLMPhraseMentionCollectionNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -382,7 +382,7 @@ class LLMPhraseMentionCollectionNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

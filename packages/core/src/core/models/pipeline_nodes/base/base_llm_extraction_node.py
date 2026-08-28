@@ -31,10 +31,10 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     DeferredConceptExtractionRequests,
     ConceptExtractionRequestBundle,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
-    KeywordExtractionMetadataV2,
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
+    KeywordExtractionMetadata,
+    LLMPhraseExtractionMetadata,
 )
 from core.models.deferred_extraction.deferred_single_stage_extraction_requests import (
     SingleStageExtractionRequestMap,
@@ -93,9 +93,9 @@ ExtractionRequestBundle = Union[
     SingleStageExtractionRequestBundle,
 ]
 ExtractionMetadata = Union[
-    LLMPhraseExtractionMetadataV2,
-    ConceptExtractionMetadataV2,
-    KeywordExtractionMetadataV2,
+    LLMPhraseExtractionMetadata,
+    ConceptExtractionMetadata,
+    KeywordExtractionMetadata,
     LLMSingleStageExtractionMetadata,
 ]
 

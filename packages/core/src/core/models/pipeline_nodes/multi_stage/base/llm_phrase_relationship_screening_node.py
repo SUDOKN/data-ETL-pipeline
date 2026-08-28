@@ -13,8 +13,8 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from core.models.extraction_schemas.screening import (
     RecordScreeningResults,
@@ -163,7 +163,7 @@ class LLMPhraseRelationshipScreeningNode(
         extraction_bundle: LLMPhraseExtractionRequestBundle,
         pipeline_context: PipelineContext,
         subject_text: str,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         timestamp: datetime,
     ) -> dict[str, dict[str, Any]]:
         group_records = await get_chunk_group_records(
@@ -194,7 +194,7 @@ class LLMPhraseRelationshipScreeningNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -353,7 +353,7 @@ class LLMPhraseRelationshipScreeningNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         group_payload: dict[str, dict[str, Any]],
         retry_index: int | None = None,
     ) -> BatchRequestIDType:
@@ -376,7 +376,7 @@ class LLMPhraseRelationshipScreeningNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -484,7 +484,7 @@ class LLMPhraseRelationshipScreeningNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

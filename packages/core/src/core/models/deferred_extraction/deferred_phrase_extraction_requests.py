@@ -2,8 +2,8 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from llm_providers.field_types import BatchRequestIDType
 
@@ -99,5 +99,5 @@ LLMPhraseExtractionRequestMap = dict[str, LLMPhraseExtractionRequestBundle]
 
 
 class DeferredLLMPhraseExtractionRequests(BaseModel):
-    metadata: LLMPhraseExtractionMetadataV2
+    metadata: LLMPhraseExtractionMetadata
     chunked_request_map: LLMPhraseExtractionRequestMap

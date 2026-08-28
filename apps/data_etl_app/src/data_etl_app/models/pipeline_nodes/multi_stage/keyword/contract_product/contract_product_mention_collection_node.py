@@ -20,8 +20,8 @@ from core.models.pipeline_nodes.multi_stage.keyword.keyword_mention_collection_n
 )
 from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from core.models.field_types import ExtractionFieldType
 
@@ -67,7 +67,7 @@ class ContractProductMentionCollectionNode(KeywordMentionCollectionNode):
         chunk_bounds: str,
         sub_bounds: str,
         group_index: int,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         group_items: list[MentionWireItem],
         retry_index: int | None = None,
     ) -> BatchRequestIDType:

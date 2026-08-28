@@ -8,8 +8,8 @@ from core.models.extraction_schemas.grounding import (
     StopReason,
     TagToPhraseAndRulesMap,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
 )
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     DeferredLLMPhraseExtractionRequests,
@@ -152,5 +152,5 @@ ConceptExtractionRequestMap = dict[str, ConceptExtractionRequestBundle]
 
 
 class DeferredConceptExtractionRequests(DeferredLLMPhraseExtractionRequests):
-    metadata: ConceptExtractionMetadataV2
+    metadata: ConceptExtractionMetadata
     chunked_request_map: ConceptExtractionRequestMap

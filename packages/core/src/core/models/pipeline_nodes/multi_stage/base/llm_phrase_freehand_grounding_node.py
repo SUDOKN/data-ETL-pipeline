@@ -16,8 +16,8 @@ from core.models.extraction_schemas.grounding import (
 from llm_providers.models.open_ai.gpt_batch_response_blob import (
     GPTBatchResponse,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    KeywordExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    KeywordExtractionMetadata,
 )
 from core.models.rule_catalog import STAGE_FREEHAND_GROUNDING, RuleCatalog
 from llm_providers.models.file_objects.prompt import Prompt
@@ -131,7 +131,7 @@ class LLMPhraseFreehandGroundingNode(
         mention_map: dict[BatchRequestIDType, GPTBatchRequest],
         synthesis_map: dict[BatchRequestIDType, GPTBatchRequest],
         subject_text: str,
-        metadata: KeywordExtractionMetadataV2,
+        metadata: KeywordExtractionMetadata,
         timestamp: datetime,
     ) -> dict[str, dict[str, Any]]:
         """The chunk's group_id → payload map: every SYNTHESIZED group (a
@@ -155,7 +155,7 @@ class LLMPhraseFreehandGroundingNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: KeywordExtractionMetadataV2,
+        metadata: KeywordExtractionMetadata,
         chunked_request_map: KeywordExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -306,7 +306,7 @@ class LLMPhraseFreehandGroundingNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: KeywordExtractionMetadataV2,
+        metadata: KeywordExtractionMetadata,
         group_payload: dict[str, dict[str, Any]],
         retry_index: int | None = None,
     ) -> BatchRequestIDType:
@@ -328,7 +328,7 @@ class LLMPhraseFreehandGroundingNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: KeywordExtractionMetadataV2,
+        metadata: KeywordExtractionMetadata,
         chunked_request_map: KeywordExtractionRequestMap,
         timestamp: datetime,
         pipeline_context: PipelineContext,
@@ -436,7 +436,7 @@ class LLMPhraseFreehandGroundingNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: KeywordExtractionMetadataV2,
+        metadata: KeywordExtractionMetadata,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,

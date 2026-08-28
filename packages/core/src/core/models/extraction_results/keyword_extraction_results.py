@@ -1,4 +1,4 @@
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     ExtractionNodeMetadata,
 )
 

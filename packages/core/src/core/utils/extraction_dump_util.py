@@ -111,10 +111,45 @@ def _origin(direct: dict, iterative: dict) -> str:
     return "initial_grounding"
 
 
+def _mark_unexplained_stops(levels: dict[int, list[dict[str, object]]]) -> None:
+    """Flag every trail node that ends for no stated reason.
+
+    A node with no children has exactly three legitimate explanations, and
+    since 2026-08-27 all three are recorded: ``stop_reason`` (it should never
+    have been descended), ``declined`` (this record was asked and evidenced
+    nothing more specific), or it was never descendable at all — a leaf of the
+    ontology, which has no request and no reason to give.
+
+    What is left over is the defect: a node that WAS asked, answered neither
+    with a child nor with a declination — thinned by the response hold, or a
+    bug. Before the declination fields existed this was indistinguishable from
+    a legitimate stop, which is how 76% of descent requests on run
+    20260825T194457 came to be silent. Present only on violation, like every
+    lint field.
+    """
+    parents_by_level: dict[int, set[str]] = {}
+    for lvl, nodes in levels.items():
+        for node in nodes:
+            parent = node.get("parent_group_id")
+            if isinstance(parent, str):
+                parents_by_level.setdefault(lvl, set()).add(parent)
+    for lvl, nodes in levels.items():
+        children = parents_by_level.get(lvl + 1, set())
+        for node in nodes:
+            if not node.get("descendable"):
+                continue  # never asked; a leaf owes no reason
+            if node.get("stop_reason") or node.get("declined"):
+                continue
+            if str(node.get("group_id")) in children:
+                continue
+            node["unexplained_stop"] = True
+
+
 def _sorted_levels(
     levels: dict[int, list[dict[str, object]]],
 ) -> dict[int, list[dict[str, object]]]:
     """Stable output: levels ascending, nodes ordered by (group, parent)."""
+    _mark_unexplained_stops(levels)
     return {
         lvl: sorted(
             levels[lvl],
@@ -311,6 +346,12 @@ def build_concept_record_rows(
                     )
                     node["source"] = _SOURCE_TRAIL
                     node["in_vocab"] = itp.group_id in match_label_to_concept_map
+                    # Whether the descent gate would have asked about this node
+                    # at all: same rule as `get_descendable_concept` — a leaf
+                    # renders an empty option list, so it is never descended and
+                    # owes no reason for having no children.
+                    concept = match_label_to_concept_map.get(itp.group_id)
+                    node["descendable"] = bool(concept and concept.children)
                     levels.setdefault(lvl, []).append(node)
         if levels:
             row["lvl_by_lvl_itps"] = _sorted_levels(levels)
@@ -538,6 +579,12 @@ def build_concept_group_rows(
                     )
                     node["source"] = _SOURCE_TRAIL
                     node["in_vocab"] = itp.group_id in match_label_to_concept_map
+                    # Whether the descent gate would have asked about this node
+                    # at all: same rule as `get_descendable_concept` — a leaf
+                    # renders an empty option list, so it is never descended and
+                    # owes no reason for having no children.
+                    concept = match_label_to_concept_map.get(itp.group_id)
+                    node["descendable"] = bool(concept and concept.children)
                     levels.setdefault(lvl, []).append(node)
         if levels:
             row["lvl_by_lvl_itps"] = _sorted_levels(levels)

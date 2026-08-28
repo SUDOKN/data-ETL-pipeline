@@ -2,8 +2,8 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     DeferredLLMPhraseExtractionRequests,
     LLMPhraseExtractionRequestBundle,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    KeywordExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    KeywordExtractionMetadata,
 )
 from llm_providers.field_types import BatchRequestIDType
 from pydantic import Field
@@ -31,5 +31,5 @@ KeywordExtractionRequestMap = dict[str, KeywordExtractionRequestBundle]
 
 
 class DeferredKeywordExtractionRequests(DeferredLLMPhraseExtractionRequests):
-    metadata: KeywordExtractionMetadataV2
+    metadata: KeywordExtractionMetadata
     chunked_request_map: KeywordExtractionRequestMap

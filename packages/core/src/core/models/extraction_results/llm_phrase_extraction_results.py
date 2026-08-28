@@ -1,145 +1,204 @@
+"""The stored stats and metadata shapes of the phrase pipeline.
+
+These are THE canonical shapes, and the only ones: the v1 stats/metadata
+classes were deleted at the phase-2.9 flip (PIPELINE_V2_PLAN.md), and the
+per-stage node-metadata classes they shared a file with now live in
+``extraction_node_metadata`` under the name that describes what they are.
+
+The ``V2`` suffix these classes carried until 2026-08-27 is gone with them.
+It marked a migration that finished, and once nothing on the other side of it
+survived, the suffix only implied a v1 the reader would go looking for. Version
+talk belongs in the notes below, where it explains a decision — not in a name.
+
+Two deliberate departures from v1:
+
+- **Keywords adopt ``ConceptsFound``** with ``in_vocab`` empty by construction
+  (keyword fields have no vocabulary), so all seven phrase fields share one
+  results shape and one reader.
+- **One stats-map field name for both families** (``chunked_extraction_stats``)
+  — the v1 concept/keyword naming split (``chunked_extraction_stats`` vs
+  ``chunk_stats``) bought nothing and cost every consumer a branch.
+
+The upstream-content digest (fork F12) is NOT here: it rides request-id
+CONSTRUCTION (the ``|ud=`` segment every downstream ``get_request_custom_id``
+appends), which knows the upstream results — node metadata is fixed before
+they exist.
+"""
+
 from __future__ import annotations
 
-from pydantic import BaseModel
-from datetime import datetime
-from typing import Optional
+from typing import Optional, TypeVar
 
+from pydantic import BaseModel, Field
 
-from core.field_types import (
-    OntologyVersionIDType,
+from core.models.extraction_results.concept_extraction_results import (
+    BatchedInitialGroundingNodeMetadata,
+    ConceptsFound,
 )
-from infra.field_types import (
-    S3FileVersionIDType,
+from core.models.extraction_results.keyword_extraction_results import (
+    BatchedFreehandGroundingNodeMetadata,
 )
-from llm_providers.models.llm_model import LLM_Model
-from core.models.chunking_strat import ChunkingStrategy
-from llm_providers.models.open_ai.gpt_model_params import (
-    GPTModelParams,
+from core.models.extraction_results.extraction_node_metadata import (
+    AggregationFoldMetadata,
+    BaseExtractionMetadata,
+    BatchedMentionCollectionNodeMetadata,
+    BatchedSynthesisNodeMetadata,
+    BatchedRelationshipNodeMetadata,
+    BatchedScreeningNodeMetadata,
+    ExtractionNodeMetadata,
+    RecursiveSearchNodeMetadata,
 )
-
-class BaseExtractionMetadata(BaseModel):
-    created_at: datetime
-    chunk_strat: ChunkingStrategy
-    ontology_version_id: OntologyVersionIDType
-
-
-class ExtractionNodeMetadata(BaseModel):
-    llm_model: LLM_Model
-    model_params: GPTModelParams
-    prompt_name: str
-    prompt_version_id: S3FileVersionIDType
-    # Which rule catalog produced this prompt. Stored alongside the S3 version so
-    # an applied_rule record can be joined back to the rule text that asked for
-    # it, even after the catalog has since been edited. None for prompts that
-    # have no catalog (search, relationship, single-stage).
-    catalog_version: Optional[str] = None
-    created_at: datetime
-
-    def to_custom_id_segment(self) -> str:
-        """Model, non-default params, and the pinned prompt version — e.g.
-        ``gpt-4.1|temperature=0.0|pv=<s3-version-id>``. The prompt version makes
-        the prompt part of request identity: without it, a re-run after a prompt
-        edit finds the old requests complete and replays responses the old
-        prompt produced.
-
-        Everything that decides what a request *contains* belongs in this segment,
-        for that same reason. Batched stages append their group size (``|gs=50``)
-        on top: it decides which phrases share a request, so the same group index
-        at a different cap is a different question with a different answer."""
-        return (
-            f"{self.model_params.to_custom_id_segment(self.llm_model.name)}"
-            f"|pv={self.prompt_version_id}"
-        )
+from core.models.extraction_schemas.grounding import RecordGroundingResults
+from core.models.extraction_schemas.run_provenance import RunProvenance
+from core.models.extraction_schemas.stored_fold import StoredFold
+from core.models.extraction_schemas.iterative_tagging import (
+    IterativeGroundingResult,
+)
+from core.models.extraction_schemas.relationship import (
+    MaskedLLMPhraseRelationshipResults,
+)
+from core.models.extraction_schemas.synthesis import GroupRecords
+from core.models.extraction_schemas.screening import RecordScreeningResults
+from core.models.extraction_schemas.search import LLMSearchResults
 
 
-class RecursiveSearchNodeMetadata(ExtractionNodeMetadata):
-    # Hard cap on the number of recursive search rounds (beyond the first search).
-    # Recursion also stops early when a round yields no new phrases.
-    max_rounds: int
+_T = TypeVar("_T")
 
 
-class BatchedRelationshipNodeMetadata(ExtractionNodeMetadata):
-    # Hard cap on the number of candidate phrases sent to the LLM in a single
-    # relationship request. The full candidate list for a chunk is split into
-    # ceil(num_phrases / max_phrases_per_request) groups, each described
-    # independently — against the same full chunk text — and merged back into one
-    # flat result. Unit is phrases, not pairs: relationship is what *produces* the
-    # phrase→description pairs the screening stage then batches.
-    max_phrases_per_request: int
+def partition_records_by_search_round(
+    flat_results: dict[str, _T],
+    phrase_by_record_id: dict[str, str],
+    search_rounds: dict[int, "LLMSearchResults"],
+) -> dict[int, dict[str, _T]]:
+    """Assign each RECORD-keyed result to its phrase's earliest search round.
 
-    def to_custom_id_segment(self) -> str:
-        return f"{super().to_custom_id_segment()}|gs={self.max_phrases_per_request}"
+    The v2 twin of ``partition_by_search_round``: stage results are keyed by
+    record_id while search rounds speak phrases, so the split reads each
+    record's phrase through the masked relationship join
+    (``phrase_by_record_id``). A record whose phrase is absent from every round
+    falls back to round 0, the same defensive default as v1; round 0 stays
+    present even when empty so consumers can index it unconditionally.
+    """
+    phrase_to_round: dict[str, int] = {}
+    for round_idx in sorted(search_rounds.keys()):
+        for phrase in search_rounds[round_idx]:
+            if phrase not in phrase_to_round:
+                phrase_to_round[phrase] = round_idx
 
-
-class BatchedMentionCollectionNodeMetadata(ExtractionNodeMetadata):
-    # v3 mention collection (PIPELINE_V3_PLAN.md D4–D7, as amended 2026-08-22).
-    # The unit is MENTIONS: code collects a search sub-window's mentions and the
-    # window's distinct snippets are split into
-    # ceil(num_snippets / max_mentions_per_request) location-request groups,
-    # each asked against the same window text; the aggregation fold merges the
-    # groups back. Like every batched cap, part of request identity.
-    max_mentions_per_request: int
-    # The collector's snippet clip dial (user knob, 2026-08-22): 0 = the
-    # sentence-within-line clip every run so far used; r > 0 = the occurrence's
-    # sentence unit(s) plus r units of context each side, within its page
-    # (``core.utils.aggregation_fold``, B). The snippet hash IS the mention id
-    # the Location wire and the fold are keyed by, so this is request identity:
-    # the segment carries ``|rad=r`` whenever r > 0 — and NOT at 0, so the
-    # default leaves every stored id exactly as it was (the knob was added after
-    # five runs; the metadata drift check still sees the field either way).
-    snippet_radius: int = 0
-
-    def to_custom_id_segment(self) -> str:
-        radius = f"|rad={self.snippet_radius}" if self.snippet_radius else ""
-        return f"{super().to_custom_id_segment()}|gs={self.max_mentions_per_request}{radius}"
+    rounds: dict[int, dict[str, _T]] = {}
+    for record_id, value in flat_results.items():
+        phrase = phrase_by_record_id.get(record_id)
+        round_idx = phrase_to_round.get(phrase, 0) if phrase is not None else 0
+        rounds.setdefault(round_idx, {})[record_id] = value
+    rounds.setdefault(0, {})
+    return rounds
 
 
-class BatchedSynthesisNodeMetadata(ExtractionNodeMetadata):
-    # v3 synthesis (PIPELINE_V3_PLAN.md D15 as amended 2026-08-22, D16; Phase
-    # 3.2). The unit is ENTRIES (a record's distinct snippets): a chunk's
-    # records are packed in bundle order into requests of at most
-    # `max_entries_per_request` entries — SOFT cutoff: a record is never split,
-    # and a record larger than the cap travels alone. Part of request identity.
-    max_entries_per_request: int
-    # The A/B arm (user decision 2026-08-22): True = entries carry
-    # {location, snippet}; False = {snippet} alone. Different wire content, so
-    # part of request identity (`|loc=1` / `|loc=0`) — the two arms coexist.
-    include_location: bool
+class InitialGroundingStats(BaseModel):
+    """The two-pass grounding block. ``out_of_vocab`` waits on ``in_vocab`` for
+    concepts and stays empty when the OOV pass is toggled off — which is run
+    config reflected in metadata (``llm_phrase_oov_grounding: None``), never a
+    StageToggle (those are hard-stop by locked decision)."""
 
-    def to_custom_id_segment(self) -> str:
-        return (
-            f"{super().to_custom_id_segment()}|gs={self.max_entries_per_request}"
-            f"|loc={1 if self.include_location else 0}"
-        )
+    # round → {record_id: entry} — each record assigned to its phrase's earliest
+    # search round; a declined record keeps its explanation (see
+    # RecordGroundingEntry).
+    in_vocab: dict[int, RecordGroundingResults]
+    out_of_vocab: dict[int, RecordGroundingResults]
 
 
-class AggregationFoldMetadata(BaseModel):
-    """Run identity of the pure-code aggregation fold (v3 substep 2.3,
-    ``core.utils.aggregation_fold``). The fold issues no request, so it has no
-    model or prompt; what it carries is exactly what changes its output: the
-    normalizer version (D10 — the grouping rule set plus the pinned lemmatizer
-    dictionary) and the per-field verb-fold dial (L2, process/material only).
-    Recorded so a dump names the grouping that produced it, and so a resumed
-    subject cannot silently regroup under a bumped normalizer
-    (``PrefillNode.raise_if_metadata_is_stale``). Editing fold RULES without
-    bumping the version leaves this unchanged on purpose: that is the cheap
-    iteration loop the design promises."""
+class LLMPhraseExtractionStats(BaseModel):
+    # round -> phrases found independently that round (NOT cumulative); round 0
+    # reserved for brute survivors, empty for keyword fields.
+    llm_phrase_search: dict[int, LLMSearchResults]
+    # v3 (2026-08-27): the chunk's aggregation fold, persisted. Which mention
+    # landed in which group is rule-dependent intermediary data no stored
+    # result reproduces — recomputing it after a rules change answers a
+    # different question. Offsets, not passages; see `stored_fold`. Inline here
+    # (as well as in the run-keyed `extraction_runs` collection) so reading one
+    # manufacturer needs no second lookup.
+    aggregation_fold: StoredFold
+    # v2's relationship stage, RETIRED by v3 (3.3): populated only on results
+    # written before the re-key; new runs leave it empty. round →
+    # {record_id: {phrase, record}}.
+    llm_phrase_relationship: dict[int, MaskedLLMPhraseRelationshipResults] = Field(
+        default_factory=dict
+    )
+    # v3 (3.3, D16): round → {group_id: {focal_form, synthesis}} — the
+    # per-group records every downstream verdict keys against; the
+    # id→focal-form join every later stage reads through lives HERE. Empty on
+    # results written before the re-key.
+    llm_phrase_synthesis: dict[int, GroupRecords] = Field(default_factory=dict)
+    # round → {record_id: {candidate: verdict}} — every candidate judged.
+    llm_phrase_screening: dict[int, RecordScreeningResults]
 
-    normalizer_version: str
-    verb_fold: bool
-    # D21 (2026-08-27): whether a group that is nothing but a coordination of
-    # sibling groups is skipped by synthesis. Request identity, not a lint —
-    # it decides which records exist at all, and synthesis custom_ids digest
-    # the records. Defaulted so documents persisted before the dial loads.
-    collapse_compounds: bool = False
+
+class ConceptExtractionStats(LLMPhraseExtractionStats):
+    # in_vocab = passed screening then deepened by recursive descent
+    # (post-recursive); out_of_vocab = OOV candidates that passed screening.
+    results: ConceptsFound
+    brute_search: set[str]  # regex search survivors
+    llm_phrase_initial_grounding: InitialGroundingStats
+    llm_phrase_recursive_grounding: IterativeGroundingResult
 
 
-class BatchedScreeningNodeMetadata(ExtractionNodeMetadata):
-    # Hard cap on the number of phrase-relationship pairs sent to the LLM in a
-    # single screening request. The full set of pairs for a chunk is split into
-    # ceil(num_pairs / max_pairs_per_request) groups, each screened independently
-    # and merged back into one flat result.
-    max_pairs_per_request: int
+class KeywordExtractionStats(LLMPhraseExtractionStats):
+    # Uniform shape: in_vocab is empty by construction (no vocabulary).
+    results: ConceptsFound
+    # round → {record_id: entry} — minted candidates as the entry's tags.
+    llm_phrase_freehand_grounding: dict[int, RecordGroundingResults]
 
-    def to_custom_id_segment(self) -> str:
-        return f"{super().to_custom_id_segment()}|gs={self.max_pairs_per_request}"
+
+ConceptExtractionStatsMap = dict[str, ConceptExtractionStats]  # "0:1000" -> stats
+KeywordExtractionStatsMap = dict[str, KeywordExtractionStats]
+
+
+class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
+    llm_phrase_search: ExtractionNodeMetadata
+    llm_phrase_recursive_search: RecursiveSearchNodeMetadata
+    # v2 relationship — RETIRED at v3 3.3 (out of every chain since 3.1).
+    # Optional so every stored pre-3.3 run identity still loads; new runs
+    # carry None and no node reads it.
+    llm_phrase_relationship: Optional[BatchedRelationshipNodeMetadata] = None
+    llm_phrase_relationship_screening: BatchedScreeningNodeMetadata
+    # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector and the
+    # aggregation fold's identity. Optional so every stored v2 document still
+    # loads; a v3 chain always sets both, and the prefill staleness check turns
+    # None-vs-set into the standard re-defer.
+    llm_phrase_mention_collection: Optional[BatchedMentionCollectionNodeMetadata] = None
+    aggregation_fold: Optional[AggregationFoldMetadata] = None
+    # v3 Phase 3.2: the synthesis stage's identity (cap + location arm). Same
+    # Optional-for-loading, always-set-by-the-factory contract as the two above.
+    llm_phrase_synthesis: Optional[BatchedSynthesisNodeMetadata] = None
+
+
+class ConceptExtractionMetadata(LLMPhraseExtractionMetadata):
+    # In-vocab pass. Reuses the batched grounding node shape: the group cap
+    # decides which records share a request, exactly as before.
+    llm_phrase_initial_grounding: BatchedInitialGroundingNodeMetadata
+    # None = the OOV discovery pass is off for this run. Optional HERE is what
+    # makes a run without it a distinct run identity while old and new metadata
+    # both load.
+    llm_phrase_oov_grounding: Optional[BatchedInitialGroundingNodeMetadata] = None
+    llm_phrase_recursive_grounding: ExtractionNodeMetadata
+
+
+class KeywordExtractionMetadata(LLMPhraseExtractionMetadata):
+    llm_phrase_freehand_grounding: BatchedFreehandGroundingNodeMetadata
+
+
+class ConceptExtractionResults(BaseModel):
+    metadata: ConceptExtractionMetadata
+    # BESIDE metadata, never inside it: the prefill staleness check compares
+    # stored metadata against the live configuration, and a run timestamp in
+    # there would make every resume read as drift.
+    run_provenance: RunProvenance
+    results: ConceptsFound
+    chunked_extraction_stats: ConceptExtractionStatsMap
+
+
+class KeywordExtractionResults(BaseModel):
+    metadata: KeywordExtractionMetadata
+    run_provenance: RunProvenance
+    results: ConceptsFound
+    chunked_extraction_stats: KeywordExtractionStatsMap

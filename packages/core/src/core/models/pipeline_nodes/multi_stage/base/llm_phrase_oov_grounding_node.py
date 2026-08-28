@@ -12,8 +12,8 @@ from core.models.deferred_extraction.deferred_concept_extraction import (
     ConceptExtractionRequestBundle,
     ConceptExtractionRequestMap,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionMetadata,
 )
 from core.models.extraction_schemas.grounding import (
     RecordGroundingResults,
@@ -168,7 +168,7 @@ class LLMPhraseOovGroundingNode(
         synthesis_map: dict[BatchRequestIDType, GPTBatchRequest],
         upstream_in_vocab_map: dict[BatchRequestIDType, GPTBatchRequest],
         subject_text: str,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         timestamp: datetime,
     ) -> dict[str, dict[str, Any]]:
         """Every synthesized group record (3.3, D16), each carrying the labels
@@ -209,7 +209,7 @@ class LLMPhraseOovGroundingNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         chunked_request_map: ConceptExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -367,7 +367,7 @@ class LLMPhraseOovGroundingNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         group_payload: dict[str, dict[str, Any]],
         retry_index: int | None = None,
     ) -> BatchRequestIDType:
@@ -396,7 +396,7 @@ class LLMPhraseOovGroundingNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
         chunked_request_map: ConceptExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -526,7 +526,7 @@ class LLMPhraseOovGroundingNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: ConceptExtractionMetadataV2,
+        metadata: ConceptExtractionMetadata,
     ) -> GPTBatchResponse:
         oov_metadata = metadata.llm_phrase_oov_grounding
         if oov_metadata is None:

@@ -18,13 +18,17 @@ confuse — ``groups`` (all of them), ``empty_groups`` and ``collapsed_groups``
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any, Mapping, Optional
 
+from core.models.extraction_schemas.stored_fold import (
+    WindowBoundsMismatch,
+    window_base_offset,
+)
 from core.utils.aggregation_fold import FoldResult, FoldedMention, MentionBundle, WindowFold
 from core.utils.subject_name_lint import count_own_name_hits
 
 
-def _mention_row(m: FoldedMention) -> dict[str, Any]:
+def _mention_row(m: FoldedMention, base: Optional[int] = None) -> dict[str, Any]:
     row: dict[str, Any] = {
         "form": m.form,
         "record_id": m.record_id,
@@ -38,10 +42,20 @@ def _mention_row(m: FoldedMention) -> dict[str, Any]:
     }
     if m.is_discovered_casing:
         row["sent_form"] = m.sent_form
+    # The document-absolute span, when the window's base offset is known — the
+    # join between this row and the same mention in `StoredFold`, which stores
+    # only absolute offsets. Absent rather than null when the base could not be
+    # read, so a present `doc_span` always means something.
+    if base is not None:
+        row["doc_span"] = [base + m.start, base + m.end]
     return row
 
 
-def _bundle_row(b: MentionBundle, subject_name: Optional[str]) -> dict[str, Any]:
+def _bundle_row(
+    b: MentionBundle,
+    subject_name: Optional[str],
+    bases: Optional[Mapping[int, int]] = None,
+) -> dict[str, Any]:
     row: dict[str, Any] = {
         "group_id": b.group_id,
         "key": b.key,
@@ -49,7 +63,10 @@ def _bundle_row(b: MentionBundle, subject_name: Optional[str]) -> dict[str, Any]
         "status": b.status,
         "mention_count": len(b.mentions),
         "distinct_snippets": len(b.synthesis_entries()),
-        "mentions": [_mention_row(m) for m in b.mentions],
+        "mentions": [
+            _mention_row(m, bases.get(m.window_index) if bases else None)
+            for m in b.mentions
+        ],
     }
     # Present only when it happened, like every lint field: the sibling groups
     # this compound collapsed into (D21).
@@ -82,8 +99,25 @@ def _window_row(w: WindowFold) -> dict[str, Any]:
     }
 
 
+def _window_bases(result: FoldResult) -> dict[int, int]:
+    """Each window's document-absolute base, best effort.
+
+    The dump is a witness, not a result: a window whose id is not the
+    sub-window bounds simply gets no absolute spans, where the stored fold —
+    which has nothing but offsets — refuses to be built at all.
+    """
+    bases: dict[int, int] = {}
+    for window in result.windows:
+        try:
+            bases[window.window_index] = window_base_offset(window)
+        except WindowBoundsMismatch:
+            continue
+    return bases
+
+
 def build_fold_dump(result: FoldResult, *, subject_name: Optional[str] = None) -> dict[str, Any]:
     windows = result.windows
+    bases = _window_bases(result)
     # Entries are what synthesis actually reads, so their distribution is the
     # standing watch on decentralization's known cost (D8 reversed 2026-08-27):
     # a generic head noun now inherits every specific mention, and `door` went
@@ -120,6 +154,6 @@ def build_fold_dump(result: FoldResult, *, subject_name: Optional[str] = None) -
                 1 for w in windows if w.collection.excluded_pages
             ),
         },
-        "groups": [_bundle_row(b, subject_name) for b in result.bundles],
+        "groups": [_bundle_row(b, subject_name, bases) for b in result.bundles],
         "windows": [_window_row(w) for w in windows],
     }

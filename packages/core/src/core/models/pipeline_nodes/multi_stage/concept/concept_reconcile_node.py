@@ -11,10 +11,10 @@ from core.models.extraction_subject import (
 from core.models.extraction_results.concept_extraction_results import (
     ConceptsFound,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    ConceptExtractionResultsV2,
-    ConceptExtractionStatsMapV2,
-    ConceptExtractionStatsV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    ConceptExtractionResults,
+    ConceptExtractionStatsMap,
+    ConceptExtractionStats,
     InitialGroundingStats,
     partition_records_by_search_round,
 )
@@ -79,7 +79,7 @@ from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service im
     get_phrase_trails,
     get_deepest_concepts_and_oov,
 )
-from core.services.pipeline_nodes.multi_stage.pipeline_v2_derivations import (
+from core.services.pipeline_nodes.multi_stage.stage_derivations import (
     candidates_that_passed,
 )
 from core.services.rule_catalog_registry import get_rule_catalog
@@ -93,6 +93,11 @@ from core.utils.extraction_dump_util import (
     build_run_provenance,
     write_extraction_dump,
 )
+from core.models.extraction_schemas.run_provenance import (
+    build_run_provenance_record,
+)
+from core.models.extraction_schemas.stored_fold import build_stored_fold
+from core.services.extraction_run_service import save_extraction_run
 from core.utils.fold_dump_util import build_fold_dump
 from core.utils.synthesis_dump_util import build_synthesis_dump
 
@@ -162,7 +167,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
 
         all_in_vocab_results: set[str] = set()
         all_out_of_vocab_results: set[str] = set()
-        chunk_stats: ConceptExtractionStatsMapV2 = {}
+        chunk_stats: ConceptExtractionStatsMap = {}
         chunked_dump_contents: dict[str, dict[str, object]] = {}
         for (
             chunk_bounds,
@@ -326,6 +331,15 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 )
                 fold_dump = None
 
+            # The persisted twin of that same fold (2026-08-27). NOT guarded
+            # like the dump blocks above: this one is a stored result, and a
+            # window whose bounds do not describe its own text would give
+            # offsets that resolve to the wrong passage. Fail the run instead.
+            stored_fold = build_stored_fold(
+                synthesis_result.fold,
+                text_version_id=scraped_text_file.s3_version_id,
+            )
+
             chunked_dump_contents[chunk_bounds] = {
                 "rows": build_concept_group_rows(
                     synthesis_result=synthesis_result,
@@ -341,12 +355,13 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 "synthesis": synthesis_dump,
             }
 
-            chunk_stats[chunk_bounds] = ConceptExtractionStatsV2(
+            chunk_stats[chunk_bounds] = ConceptExtractionStats(
                 results=ConceptsFound(
                     in_vocab={c.name for c in recognized_tagged_concepts},
                     out_of_vocab={uc for uc in unrecognized_tagged_concepts},
                 ),
                 brute_search=bundle.brute,
+                aggregation_fold=stored_fold,
                 llm_phrase_search=llm_search_results,
                 llm_phrase_synthesis=partition_records_by_search_round(
                     group_records, focal_by_group, llm_search_results
@@ -367,6 +382,15 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
 
             all_in_vocab_results.update(c.name for c in recognized_tagged_concepts)
             all_out_of_vocab_results.update(unrecognized_tagged_concepts)
+
+        # The stored twin of the dump's run header. Built once, after the chunk
+        # loop, and used by BOTH sinks: the results model beside `metadata`,
+        # and the run-keyed history document.
+        stored_run_provenance = build_run_provenance_record(
+            run_timestamp=timestamp,
+            scraped_text_file=scraped_text_file,
+            page_exclusion=pipeline_context.page_exclusion,
+        )
 
         write_extraction_dump(
             subject_unique_id=subject.subject_unique_id,
@@ -392,8 +416,9 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             ),
         )
 
-        final_extraction_result = ConceptExtractionResultsV2(
+        final_extraction_result = ConceptExtractionResults(
             metadata=extraction_requests.metadata,
+            run_provenance=stored_run_provenance,
             results=ConceptsFound(
                 in_vocab=all_in_vocab_results,
                 # Chunks propose out-of-vocab labels independently, so the union
@@ -401,6 +426,18 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 out_of_vocab=dedupe_case_insensitive(all_out_of_vocab_results),
             ),
             chunked_extraction_stats=chunk_stats,
+        )
+
+        # The RECORD first, the subject's CACHE of it second: a crash between
+        # the two leaves a record with a stale cache, which the next run
+        # repairs, rather than a cache with no record, which nothing can.
+        await save_extraction_run(
+            subject_unique_id=subject.subject_unique_id,
+            field_name=self.field_type.name,
+            field_family="concept",
+            run_timestamp=timestamp,
+            run_provenance=stored_run_provenance,
+            results=final_extraction_result,
         )
 
         setattr(subject, self.field_type.name, final_extraction_result)

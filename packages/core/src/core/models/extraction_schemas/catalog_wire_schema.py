@@ -432,17 +432,17 @@ def build_screening_response_model_v2(
     prefix = _model_prefix(catalog)
     candidate = build_entry_model(
         catalog,
-        name=f"{prefix}JudgedCandidateV2",
+        name=f"{prefix}JudgedCandidate",
         own_fields={"candidate": (str, ...)},
     )
     entry = create_model(
-        f"{prefix}RecordEntryV2",
+        f"{prefix}RecordEntry",
         __base__=WireEntry,
         record_id=(str, ...),
         candidates=(list[candidate], ...),  # type: ignore[valid-type]
     )
     return create_model(
-        f"{prefix}ResponseV2",
+        f"{prefix}Response",
         __base__=ScreeningWireResponse,
         screenings=(list[entry], ...),  # type: ignore[valid-type]
     )
@@ -462,18 +462,18 @@ def build_record_grounding_response_model(
     prefix = _model_prefix(catalog)
     unit = build_entry_model(
         catalog,
-        name=f"{prefix}{unit_key.capitalize()}UnitV2",
+        name=f"{prefix}{unit_key.capitalize()}Unit",
         own_fields={unit_key: (str, ...)},
     )
     entry = create_model(
-        f"{prefix}RecordEntryV2",
+        f"{prefix}RecordEntry",
         __base__=WireEntry,
         record_id=(str, ...),
         **{units_key: (list[unit], ...)},  # type: ignore[arg-type]
         explanation=(Optional[str], ...),
     )
     return create_model(
-        f"{prefix}ResponseV2",
+        f"{prefix}Response",
         __base__=GroundingWireResponse,
         groundings=(list[entry], ...),  # type: ignore[valid-type]
     )

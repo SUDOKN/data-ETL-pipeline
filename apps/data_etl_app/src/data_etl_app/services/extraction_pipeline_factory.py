@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Optional
 
 from llm_providers.models.llm_model import LLM_Model
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     AggregationFoldMetadata,
     BatchedMentionCollectionNodeMetadata,
     BatchedSynthesisNodeMetadata,

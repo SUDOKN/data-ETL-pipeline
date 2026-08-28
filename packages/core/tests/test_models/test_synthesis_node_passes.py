@@ -18,7 +18,7 @@ from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestBundle,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     AggregationFoldMetadata,
     BatchedMentionCollectionNodeMetadata,
     BatchedSynthesisNodeMetadata,

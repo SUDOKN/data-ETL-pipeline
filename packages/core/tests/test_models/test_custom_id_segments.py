@@ -9,7 +9,7 @@ from core.models.extraction_results.concept_extraction_results import (
 from core.models.extraction_results.keyword_extraction_results import (
     BatchedFreehandGroundingNodeMetadata,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     BatchedMentionCollectionNodeMetadata,
     BatchedRelationshipNodeMetadata,
     BatchedSynthesisNodeMetadata,

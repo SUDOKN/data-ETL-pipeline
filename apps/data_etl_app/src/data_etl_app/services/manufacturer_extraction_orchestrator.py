@@ -274,18 +274,41 @@ class ManufacturerExtractionOrchestrator:
                     f"mfg=[{mfg.etld1}] ❌ Missing data for field '{field_type.name}'. Processing pipeline..."
                 )
                 _t0 = time.perf_counter()
-                await pipeline.execute(
-                    subject=mfg,
-                    deferred_subject=deferred_mfg,
-                    scraped_text_file=scraped_text_file,
-                    timestamp=timestamp,
-                    pipeline_context=PipelineContext(
-                        subject_name=mfg.business_desc.result.name,
-                        stage_toggles=self.stage_toggles,
-                        subject_text=scraped_text_file.text,
-                    ),
-                    eager=eager,
-                )
+                try:
+                    await pipeline.execute(
+                        subject=mfg,
+                        deferred_subject=deferred_mfg,
+                        scraped_text_file=scraped_text_file,
+                        timestamp=timestamp,
+                        pipeline_context=PipelineContext(
+                            subject_name=mfg.business_desc.result.name,
+                            stage_toggles=self.stage_toggles,
+                            subject_text=scraped_text_file.text,
+                        ),
+                        eager=eager,
+                    )
+                except Exception as e:
+                    # The three prerequisite fields above each record an
+                    # ExtractionError naming themselves. This loop recorded
+                    # nothing until 2026-08-27, so a failure in any of the nine
+                    # real extraction fields reached the bot as one bare
+                    # "general_processing" row and the field that actually died
+                    # could not be read back off the record.
+                    #
+                    # Recorded and RE-RAISED: which field failed is now on the
+                    # row, and the subject still stops exactly where it did
+                    # before. Isolating the fields from each other is a
+                    # separate decision, not this one.
+                    logger.error(f"{mfg.etld1}.{field_type.name} errored:{e}")
+                    await ExtractionError.insert_one(
+                        ExtractionError(
+                            created_at=timestamp,
+                            error=str(e),
+                            field=field_type.name,
+                            subject_unique_id=mfg.etld1,
+                        )
+                    )
+                    raise
                 field_timings[field_type.name] = time.perf_counter() - _t0
             else:
                 logger.info(

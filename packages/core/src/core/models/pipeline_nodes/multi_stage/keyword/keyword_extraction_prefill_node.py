@@ -8,7 +8,7 @@ from core.models.extraction_subject import (
     AbstractExtractionSubject,
     AbstractDeferredExtractionSubject,
 )
-from core.models.extraction_results.llm_phrase_extraction_results import (
+from core.models.extraction_results.extraction_node_metadata import (
     AggregationFoldMetadata,
     BatchedMentionCollectionNodeMetadata,
     BatchedSynthesisNodeMetadata,
@@ -20,8 +20,8 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
 from core.models.extraction_results.keyword_extraction_results import (
     BatchedFreehandGroundingNodeMetadata,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    KeywordExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    KeywordExtractionMetadata,
 )
 from core.models.deferred_extraction.deferred_keyword_extraction import (
     DeferredKeywordExtractionRequests,
@@ -113,7 +113,7 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         # The text this chain chunks and reads: excluded pages dropped first when
         # the strategy says so (every run — bounds are offsets into this text).
         scraped_text_file = self.apply_page_exclusion(scraped_text_file, pipeline_context)
-        latest_keyword_extraction_metadata = KeywordExtractionMetadataV2(
+        latest_keyword_extraction_metadata = KeywordExtractionMetadata(
             created_at=timestamp,
             chunk_strat=self.chunk_strategy,
             ontology_version_id=self.ontology_version_id,

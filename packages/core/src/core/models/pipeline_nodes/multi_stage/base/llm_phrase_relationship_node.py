@@ -14,8 +14,8 @@ from core.models.deferred_extraction.deferred_phrase_extraction_requests import 
     LLMPhraseExtractionRequestBundle,
     LLMPhraseExtractionRequestMap,
 )
-from core.models.extraction_results.llm_phrase_extraction_results_v2 import (
-    LLMPhraseExtractionMetadataV2,
+from core.models.extraction_results.llm_phrase_extraction_results import (
+    LLMPhraseExtractionMetadata,
 )
 from core.models.extraction_schemas.relationship import (
     MaskedLLMPhraseRelationshipResults,
@@ -96,7 +96,7 @@ class LLMPhraseRelationshipNode(
         self,
         subject_unique_id: str,
         pipeline_context: PipelineContext,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         timestamp: datetime,
     ):
@@ -179,7 +179,7 @@ class LLMPhraseRelationshipNode(
         field_type: ExtractionFieldType,
         chunk_bounds: str,
         group_index: int,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         group_phrases: list[str],
     ) -> BatchRequestIDType:
         # `|ud=` (fork F12) makes the group's own candidate phrases part of
@@ -198,7 +198,7 @@ class LLMPhraseRelationshipNode(
         subject_unique_id: str,
         scraped_text_file: ScrapedTextFile,
         missing_request_ids: set[BatchRequestIDType],
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
         chunked_request_map: LLMPhraseExtractionRequestMap,
         pipeline_context: PipelineContext,
         timestamp: datetime,
@@ -259,7 +259,7 @@ class LLMPhraseRelationshipNode(
     async def dispatch_batch_request(
         self,
         gpt_batch_request: GPTBatchRequest,
-        metadata: LLMPhraseExtractionMetadataV2,
+        metadata: LLMPhraseExtractionMetadata,
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,
