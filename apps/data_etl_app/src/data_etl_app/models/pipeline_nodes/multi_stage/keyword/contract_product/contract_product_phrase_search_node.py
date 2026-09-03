@@ -43,11 +43,13 @@ class ContractProductPhraseSearchNode(KeywordPhraseSearchNode):
         field_type: KeywordTypeEnum,
         search_prompt: Prompt,
         next_node: ContractProductRecursiveSearchNode,
+        search_union_pass: bool = False,
     ):
         super().__init__(
             field_type=field_type,
             search_prompt=search_prompt,
             next_node=next_node,
+            search_union_pass=search_union_pass,
         )
 
     @staticmethod
@@ -57,13 +59,16 @@ class ContractProductPhraseSearchNode(KeywordPhraseSearchNode):
         chunk_bounds: str,
         sub_bounds: str,
         metadata: LLMPhraseExtractionMetadata,
+        pass_index: int | None = None,
     ) -> BatchRequestIDType:
         # Deliberately ignore the passed field_type and use the shared "products"
-        # identity so this phase's custom_id matches the pure-product branch's.
+        # identity so this phase's custom_id matches the pure-product branch's —
+        # pass 2 (retry-and-union) included, so both branches share both passes.
         return KeywordPhraseSearchNode.get_request_custom_id(
             subject_unique_id=subject_unique_id,
             field_type=KeywordTypeEnum.products,
             chunk_bounds=chunk_bounds,
             sub_bounds=sub_bounds,
             metadata=metadata,
+            pass_index=pass_index,
         )

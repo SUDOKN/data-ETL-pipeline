@@ -222,6 +222,78 @@ async def parse_search_sub_request_result(
         raise
 
 
+def window_pass_request_ids(
+    extraction_bundle: LLMPhraseExtractionRequestBundle, index: int
+) -> list[BatchRequestIDType]:
+    """ONE sub-window's search request ids across the passes it has: pass 1
+    always, pass 2 when embedded (a pre-cutover stored doc has none)."""
+    ids = [extraction_bundle.llm_phrase_search_req_ids[index]]
+    if index < len(extraction_bundle.llm_phrase_search_pass2_req_ids):
+        ids.append(extraction_bundle.llm_phrase_search_pass2_req_ids[index])
+    return ids
+
+
+async def parse_search_window_union(
+    subject_unique_id: str,
+    field_type: ExtractionFieldType,
+    window_request_ids: list[BatchRequestIDType],
+    all_phrase_search_req_responses_map: dict[BatchRequestIDType, GPTBatchRequest],
+    deferred_at: datetime,
+) -> LLMSearchResults:
+    """Union of ONE sub-window's parseable passes (retry-and-union,
+    2026-09-03). A missing request or response is STATE, not output — it
+    raises immediately. A parse failure is tolerated per pass (recorded on
+    its own request by the sub parser) as long as at least one pass parses;
+    this is also what absorbs a repetition-loop degeneration, which the
+    window's other pass usually escapes. Every pass failing re-raises the
+    first parse error — a window never goes silently empty."""
+    union: set[str] = set()
+    parsed_any = False
+    first_error: Optional[Exception] = None
+    for request_id in window_request_ids:
+        request = all_phrase_search_req_responses_map.get(request_id)
+        if not request:
+            raise ValueError(
+                f"search_node.parse_search_window_union: missing GPTBatchRequest "
+                f"for search request ID {request_id} in "
+                f"{subject_unique_id}:{field_type.name}"
+            )
+        if not request.response:
+            if request.response_parse_errors:
+                # A recorded parse failure: record_response_parse_error NULLED
+                # the response so the request re-dispatches on a later entry.
+                # For this read it is a failed pass — tolerable when a sibling
+                # parses, fatal below when nothing does. Without this branch a
+                # tolerated failure on one read would crash every LATER read
+                # (dumps, stats) as "missing response".
+                if first_error is None:
+                    first_error = ValueError(
+                        f"search request {request_id} has a recorded parse "
+                        f"failure and its response was cleared for re-dispatch"
+                    )
+                continue
+            raise ValueError(
+                f"search_node.parse_search_window_union: GPTBatchRequest "
+                f"{request_id} has no response in "
+                f"{subject_unique_id}:{field_type.name}"
+            )
+        try:
+            union |= await parse_search_sub_request_result(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                llm_phrase_search_request_id=request_id,
+                all_phrase_search_req_responses_map=all_phrase_search_req_responses_map,
+                deferred_at=deferred_at,
+            )
+            parsed_any = True
+        except Exception as error:  # recorded against its request by the sub parser
+            if first_error is None:
+                first_error = error
+    if not parsed_any and first_error is not None:
+        raise first_error
+    return union
+
+
 async def parse_batch_request_result(
     subject_unique_id: str,
     field_type: ExtractionFieldType,
@@ -232,7 +304,8 @@ async def parse_batch_request_result(
     ],
     deferred_at: datetime,
 ) -> LLMSearchResults:
-    """Union of first-search phrases across the chunk's sub-windows.
+    """Union of first-search phrases across the chunk's sub-windows and, per
+    sub-window, across its passes (retry-and-union, 2026-09-03).
 
     This is THE chunk-level view of the first search — every downstream consumer
     (relationship candidates, grounding, stats, dumps) reads through here, which
@@ -244,11 +317,11 @@ async def parse_batch_request_result(
         )
 
     llm_search_results: set[str] = set()
-    for llm_phrase_search_request_id in extraction_bundle.llm_phrase_search_req_ids:
-        llm_search_results |= await parse_search_sub_request_result(
+    for index in range(len(extraction_bundle.llm_phrase_search_req_ids)):
+        llm_search_results |= await parse_search_window_union(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
-            llm_phrase_search_request_id=llm_phrase_search_request_id,
+            window_request_ids=window_pass_request_ids(extraction_bundle, index),
             all_phrase_search_req_responses_map=all_phrase_search_req_responses_map,
             deferred_at=deferred_at,
         )
@@ -279,21 +352,27 @@ async def create_missing_phrase_search_requests(
         chunk_bounds,
         extraction_bundle,
     ) in chunked_request_map.items():
-        for sub_bounds, search_req_id in zip(
-            extraction_bundle.search_sub_bounds,
+        # Pass 2 (retry-and-union, 2026-09-03) sends the SAME window text under
+        # its own id — the per-request nonce is what perturbs the sample.
+        for pass_req_ids in (
             extraction_bundle.llm_phrase_search_req_ids,
+            extraction_bundle.llm_phrase_search_pass2_req_ids,
         ):
-            if search_req_id in missing_search_req_ids:
-                start = sub_bounds.split(":")[0]
-                end = sub_bounds.split(":")[1]
-                # Excluded (legal / privacy / cookie / terms) pages are omitted
-                # from what search reads — see ``floor_scan.wire_window_text``.
-                chunk_items.append(
-                    (
-                        search_req_id,
-                        wire_window_text(subject_text, int(start), int(end)),
+            for sub_bounds, search_req_id in zip(
+                extraction_bundle.search_sub_bounds,
+                pass_req_ids,
+            ):
+                if search_req_id in missing_search_req_ids:
+                    start = sub_bounds.split(":")[0]
+                    end = sub_bounds.split(":")[1]
+                    # Excluded (legal / privacy / cookie / terms) pages are omitted
+                    # from what search reads — see ``floor_scan.wire_window_text``.
+                    chunk_items.append(
+                        (
+                            search_req_id,
+                            wire_window_text(subject_text, int(start), int(end)),
+                        )
                     )
-                )
 
     # Process chunks in batches to yield control periodically
     for i in range(0, len(chunk_items), BATCH_SIZE):

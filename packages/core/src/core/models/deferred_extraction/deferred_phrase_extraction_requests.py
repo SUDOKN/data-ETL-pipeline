@@ -18,6 +18,16 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
     # One first-search request per sub-window, index-aligned with
     # search_sub_bounds.
     llm_phrase_search_req_ids: list[BatchRequestIDType] = Field(default_factory=list)
+    # The OPT-IN second search pass over the same sub-windows (2026-09-03,
+    # Phase B retry-and-union; user decision: DEFAULT OFF, enabled per run via
+    # the node's `search_union_pass` knob): index-aligned like the first, same
+    # window text, its own request ids (`>pass>2>` in the id). When present,
+    # the chunk view unions the passes — the measured A/A churn means a second
+    # identical read adds ~11-13% distinct forms, and a window whose first
+    # pass degenerated (repetition loop) is carried by its second. Empty on
+    # default-off runs and pre-cutover docs; whatever a union-enabled run
+    # embedded stays honored on every later read.
+    llm_phrase_search_pass2_req_ids: list[BatchRequestIDType] = Field(default_factory=list)
     # Per sub-window (keyed by its search_sub_bounds entry): the ordered list of
     # recursive search rounds (round 1 == index 0). Each round re-searches the
     # sub-window while excluding the compounding union of phrases found there by

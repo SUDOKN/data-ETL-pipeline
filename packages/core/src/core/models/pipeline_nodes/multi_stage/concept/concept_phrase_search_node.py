@@ -27,9 +27,11 @@ class ConceptPhraseSearchNode(LLMPhraseSearchNode[ConceptFieldType]):
         concept_type: ConceptFieldType,
         next_node: ConceptRecursiveSearchNode,
         search_prompt: Prompt,
+        search_union_pass: bool = False,
     ):
         super().__init__(
             field_type=concept_type,
             phrase_search_prompt=search_prompt,
             next_node=next_node,
+            search_union_pass=search_union_pass,
         )

@@ -751,6 +751,9 @@ def _safe_path_segment(value: str) -> str:
 # The descent tree, which is neither a single id nor a flat list.
 _TAGGING_TREE_FIELD = "llm_phrase_recursive_tagging_reqs"
 _SEARCH_FIELD = "llm_phrase_search_req_ids"
+# Retry-and-union (2026-09-03): the second search pass, index-aligned like the
+# first; dumped with the same sub_bounds + phrases enrichment.
+_SEARCH_PASS2_FIELD = "llm_phrase_search_pass2_req_ids"
 _RECURSIVE_SEARCH_FIELD = "llm_phrase_recursive_search_req_ids"
 # v3: per sub-window -> that sub-window's mention-collection group requests
 _MENTION_COLLECTION_FIELD = "llm_phrase_mention_req_ids"
@@ -966,7 +969,7 @@ def build_chunk_requests(
                     for sub_bounds, retry_req_ids in sorted(by_sub_window.items())
                 }
             continue
-        if field_name == _SEARCH_FIELD:
+        if field_name in (_SEARCH_FIELD, _SEARCH_PASS2_FIELD):
             # index-aligned with the bundle's search_sub_bounds; each entry
             # names its sub-window and carries the phrases its response returned
             request_ids = getattr(bundle, field_name, None)
@@ -979,7 +982,12 @@ def build_chunk_requests(
                         entry["sub_bounds"] = sub_bounds[index]
                     _attach_response_phrases(entry, request_id, completed_requests)
                     entries.append(entry)
-                requests["llm_phrase_search"] = entries
+                stage_key = (
+                    "llm_phrase_search"
+                    if field_name == _SEARCH_FIELD
+                    else "llm_phrase_search_pass2"
+                )
+                requests[stage_key] = entries
             continue
         if field_name.endswith("_req_id"):
             request_id = getattr(bundle, field_name, None)

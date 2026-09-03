@@ -24,9 +24,11 @@ class EquipmentPhraseSearchNode(KeywordPhraseSearchNode):
         field_type: KeywordTypeEnum,
         search_prompt: Prompt,
         next_node: EquipmentRecursiveSearchNode,
+        search_union_pass: bool = False,
     ):
         super().__init__(
             field_type=field_type,
             search_prompt=search_prompt,
             next_node=next_node,
+            search_union_pass=search_union_pass,
         )

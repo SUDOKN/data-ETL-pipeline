@@ -25,9 +25,11 @@ class KeywordPhraseSearchNode(LLMPhraseSearchNode[ExtractionFieldType]):
         field_type: ExtractionFieldType,
         search_prompt: Prompt,
         next_node: KeywordRecursiveSearchNode,
+        search_union_pass: bool = False,
     ):
         super().__init__(
             field_type=field_type,
             phrase_search_prompt=search_prompt,
             next_node=next_node,
+            search_union_pass=search_union_pass,
         )

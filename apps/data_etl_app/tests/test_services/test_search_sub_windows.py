@@ -122,11 +122,14 @@ def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetad
 
 
 def _bundle(
-    sub_bounds: list[str], search_req_ids: list[str] | None = None
+    sub_bounds: list[str],
+    search_req_ids: list[str] | None = None,
+    pass2_req_ids: list[str] | None = None,
 ) -> KeywordExtractionRequestBundle:
     return KeywordExtractionRequestBundle(
         search_sub_bounds=sub_bounds,
         llm_phrase_search_req_ids=search_req_ids or [],
+        llm_phrase_search_pass2_req_ids=pass2_req_ids or [],
         llm_phrase_recursive_search_req_ids={},
         llm_phrase_relationship_req_ids=[],
         llm_phrase_relationship_screening_req_ids=[],
@@ -283,9 +286,66 @@ async def test_embed_writes_one_first_search_request_per_sub_window():
     assert len(bundle.llm_phrase_search_req_ids) == 2
     assert ">sub>0:493>" in bundle.llm_phrase_search_req_ids[0]
     assert ">sub>493:1000>" in bundle.llm_phrase_search_req_ids[1]
+    # retry-and-union is OPT-IN and DEFAULT OFF (user decision 2026-09-03):
+    # a default node embeds no second pass
+    assert bundle.llm_phrase_search_pass2_req_ids == []
     assert node.get_embedded_request_ids(
         subject_unique_id=SUBJECT, chunked_request_map={"0:1000": bundle}
     ) == set(bundle.llm_phrase_search_req_ids)
+
+
+@pytest.mark.asyncio
+async def test_union_pass_flag_embeds_a_second_pass_per_sub_window():
+    node = KeywordPhraseSearchNode(
+        field_type=KeywordTypeEnum.equipments,
+        search_prompt=_make_prompt("equipment_phrase_search"),
+        next_node=cast(Any, None),
+        search_union_pass=True,
+    )
+    bundle = _bundle(["0:493", "493:1000"])
+    await node.embed_request_ids(
+        subject_unique_id=SUBJECT,
+        pipeline_context=cast(Any, None),
+        metadata=_equipment_metadata(),
+        chunked_request_map={"0:1000": bundle},
+        timestamp=TIMESTAMP,
+    )
+    # the pass segment sits AFTER the sub bounds so >-split readers of the
+    # chunk/sub positions are undisturbed; pass 1 keeps its original shape
+    assert len(bundle.llm_phrase_search_pass2_req_ids) == 2
+    assert ">sub>0:493>pass>2>" in bundle.llm_phrase_search_pass2_req_ids[0]
+    assert ">sub>493:1000>pass>2>" in bundle.llm_phrase_search_pass2_req_ids[1]
+    assert ">pass>" not in bundle.llm_phrase_search_req_ids[0]
+    assert node.get_embedded_request_ids(
+        subject_unique_id=SUBJECT, chunked_request_map={"0:1000": bundle}
+    ) == set(bundle.llm_phrase_search_req_ids) | set(
+        bundle.llm_phrase_search_pass2_req_ids
+    )
+
+
+@pytest.mark.asyncio
+async def test_a_union_enabled_runs_second_pass_stays_honored_under_a_flag_off_node():
+    """Ids a union-enabled run embedded are bundle state: a later default-off
+    entry neither re-embeds nor abandons them."""
+    node = KeywordPhraseSearchNode(
+        field_type=KeywordTypeEnum.equipments,
+        search_prompt=_make_prompt("equipment_phrase_search"),
+        next_node=cast(Any, None),
+    )
+    bundle = _bundle(
+        ["0:1000"], search_req_ids=["req>p1"], pass2_req_ids=["req>p2"]
+    )
+    await node.embed_request_ids(
+        subject_unique_id=SUBJECT,
+        pipeline_context=cast(Any, None),
+        metadata=_equipment_metadata(),
+        chunked_request_map={"0:1000": bundle},
+        timestamp=TIMESTAMP,
+    )
+    assert bundle.llm_phrase_search_pass2_req_ids == ["req>p2"]
+    assert node.get_embedded_request_ids(
+        subject_unique_id=SUBJECT, chunked_request_map={"0:1000": bundle}
+    ) == {"req>p1", "req>p2"}
 
 
 @pytest.mark.asyncio
@@ -445,6 +505,200 @@ async def test_chunk_level_search_result_is_the_union_across_sub_windows():
 
 
 # ---------------------------------------------------------------------------
+# Retry-and-union (2026-09-03): the second pass and its resilience rules
+# ---------------------------------------------------------------------------
+
+
+def _degenerate_search_request(custom_id: str) -> GPTBatchRequest:
+    """A completed request whose response never parses — the repetition-loop
+    shape (truncated mid-string, invalid JSON)."""
+    request = _completed_search_request(custom_id, [])
+    request.response = get_dummy_gpt_batch_response(
+        deferred_at=TIMESTAMP,
+        request_custom_id=custom_id,
+        dummy_chat_completion_id="dummy_completion_id",
+        chat_completion_choice_message=ChatCompletionChoiceMessage(
+            role="assistant",
+            content='no json here, the loop ate the braces entirely',
+        ),
+    )
+    return request
+
+
+@pytest.fixture()
+def _no_parse_error_writes(monkeypatch):
+    """Parse-error recording writes to Mongo; these tests run offline."""
+
+    async def _noop(**_kwargs):
+        return None
+
+    import core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service as svc
+
+    monkeypatch.setattr(svc, "record_response_parse_error_capped", _noop)
+
+
+@pytest.mark.asyncio
+async def test_missing_pass2_requests_carry_the_same_window_text():
+    subject_text = "A" * 400 + "B" * 600
+    bundle = _bundle(
+        ["0:400", "400:1000"],
+        search_req_ids=["req>sub-a", "req>sub-b"],
+        pass2_req_ids=["req>sub-a>pass>2", "req>sub-b>pass>2"],
+    )
+    batch_requests = await create_missing_phrase_search_requests(
+        deferred_at=TIMESTAMP,
+        field_type=KeywordTypeEnum.equipments,
+        missing_search_req_ids={"req>sub-b", "req>sub-b>pass>2"},
+        chunked_request_map={"0:1000": bundle},
+        subject_unique_id=SUBJECT,
+        subject_text=subject_text,
+        search_prompt=_make_prompt("equipment_phrase_search"),
+        llm_model=GPT_4o_mini,
+        model_params=GPTModelParams.with_defaults(),
+        eager=False,
+    )
+    by_id = {r.request.custom_id: r for r in batch_requests}
+    assert set(by_id) == {"req>sub-b", "req>sub-b>pass>2"}
+    for request in by_id.values():
+        assert "B" * 600 in request.request.body.messages[-1]["content"]
+
+
+@pytest.mark.asyncio
+async def test_chunk_level_result_unions_both_passes_of_a_window():
+    bundle = _bundle(
+        ["0:1000"], search_req_ids=["req>p1"], pass2_req_ids=["req>p2"]
+    )
+    completed = {
+        "req>p1": _completed_search_request("req>p1", ["cnc machining", "steel"]),
+        "req>p2": _completed_search_request("req>p2", ["steel", "orbital riveter"]),
+    }
+    result = await parse_batch_request_result(
+        subject_unique_id=SUBJECT,
+        field_type=KeywordTypeEnum.equipments,
+        chunk_bounds="0:1000",
+        extraction_bundle=bundle,
+        all_phrase_search_req_responses_map=completed,
+        deferred_at=TIMESTAMP,
+    )
+    assert result == {"cnc machining", "steel", "orbital riveter"}
+
+
+@pytest.mark.asyncio
+async def test_a_degenerate_pass_is_carried_by_the_windows_other_pass(
+    _no_parse_error_writes,
+):
+    """The repetition-loop remedy: one pass truncates into unparseable output,
+    the sibling pass carries the window — no raise, the union is the good
+    pass's phrases."""
+    bundle = _bundle(["0:1000"], search_req_ids=["req>p1"], pass2_req_ids=["req>p2"])
+    completed = {
+        "req>p1": _degenerate_search_request("req>p1"),
+        "req>p2": _completed_search_request("req>p2", ["salt spray chamber"]),
+    }
+    result = await parse_batch_request_result(
+        subject_unique_id=SUBJECT,
+        field_type=KeywordTypeEnum.equipments,
+        chunk_bounds="0:1000",
+        extraction_bundle=bundle,
+        all_phrase_search_req_responses_map=completed,
+        deferred_at=TIMESTAMP,
+    )
+    assert result == {"salt spray chamber"}
+
+
+@pytest.mark.asyncio
+async def test_a_window_with_no_parseable_pass_still_raises(_no_parse_error_writes):
+    bundle = _bundle(["0:1000"], search_req_ids=["req>p1"], pass2_req_ids=["req>p2"])
+    completed = {
+        "req>p1": _degenerate_search_request("req>p1"),
+        "req>p2": _degenerate_search_request("req>p2"),
+    }
+    with pytest.raises(Exception):
+        await parse_batch_request_result(
+            subject_unique_id=SUBJECT,
+            field_type=KeywordTypeEnum.equipments,
+            chunk_bounds="0:1000",
+            extraction_bundle=bundle,
+            all_phrase_search_req_responses_map=completed,
+            deferred_at=TIMESTAMP,
+        )
+
+
+@pytest.mark.asyncio
+async def test_a_missing_pass_request_is_state_and_raises_even_with_a_good_sibling():
+    bundle = _bundle(["0:1000"], search_req_ids=["req>p1"], pass2_req_ids=["req>p2"])
+    completed = {
+        "req>p1": _completed_search_request("req>p1", ["cnc machining"]),
+        # req>p2 absent entirely — incomplete state, never tolerated
+    }
+    with pytest.raises(ValueError, match="missing GPTBatchRequest"):
+        await parse_batch_request_result(
+            subject_unique_id=SUBJECT,
+            field_type=KeywordTypeEnum.equipments,
+            chunk_bounds="0:1000",
+            extraction_bundle=bundle,
+            all_phrase_search_req_responses_map=completed,
+            deferred_at=TIMESTAMP,
+        )
+
+
+@pytest.mark.asyncio
+async def test_a_nulled_failed_pass_is_tolerated_when_the_sibling_parsed():
+    """After a tolerated parse failure the recorder NULLS the response (for
+    re-dispatch); a LATER read of the same window must still succeed on the
+    sibling instead of crashing on 'missing response'."""
+    nulled = _completed_search_request("req>p1", [])
+    nulled.response = None
+    nulled.response_parse_errors = [{"timestamp": "t", "error_message": "boom"}]
+    bundle = _bundle(["0:1000"], search_req_ids=["req>p1"], pass2_req_ids=["req>p2"])
+    completed = {
+        "req>p1": nulled,
+        "req>p2": _completed_search_request("req>p2", ["salt spray chamber"]),
+    }
+    result = await parse_batch_request_result(
+        subject_unique_id=SUBJECT,
+        field_type=KeywordTypeEnum.equipments,
+        chunk_bounds="0:1000",
+        extraction_bundle=bundle,
+        all_phrase_search_req_responses_map=completed,
+        deferred_at=TIMESTAMP,
+    )
+    assert result == {"salt spray chamber"}
+
+
+@pytest.mark.asyncio
+async def test_a_nulled_failed_pass_with_no_sibling_still_raises():
+    nulled = _completed_search_request("req>p1", [])
+    nulled.response = None
+    nulled.response_parse_errors = [{"timestamp": "t", "error_message": "boom"}]
+    bundle = _bundle(["0:1000"], search_req_ids=["req>p1"])
+    with pytest.raises(ValueError, match="recorded parse failure"):
+        await parse_batch_request_result(
+            subject_unique_id=SUBJECT,
+            field_type=KeywordTypeEnum.equipments,
+            chunk_bounds="0:1000",
+            extraction_bundle=bundle,
+            all_phrase_search_req_responses_map={"req>p1": nulled},
+            deferred_at=TIMESTAMP,
+        )
+
+
+@pytest.mark.asyncio
+async def test_a_pre_cutover_bundle_without_pass2_still_reads():
+    bundle = _bundle(["0:1000"], search_req_ids=["req>p1"])
+    completed = {"req>p1": _completed_search_request("req>p1", ["steel"])}
+    result = await parse_batch_request_result(
+        subject_unique_id=SUBJECT,
+        field_type=KeywordTypeEnum.equipments,
+        chunk_bounds="0:1000",
+        extraction_bundle=bundle,
+        all_phrase_search_req_responses_map=completed,
+        deferred_at=TIMESTAMP,
+    )
+    assert result == {"steel"}
+
+
+# ---------------------------------------------------------------------------
 # Factory override
 # ---------------------------------------------------------------------------
 
@@ -482,3 +736,29 @@ def test_chunk_strategy_override_applies_only_to_its_field():
         pipelines[ConceptTypeEnum.material_caps].chunk_strategy
         == MATERIAL_CAP_CHUNKING_STRAT
     )
+
+
+def _search_node_of(prefill) -> Any:
+    node = prefill.next_node
+    while node is not None and not isinstance(node, KeywordPhraseSearchNode):
+        if type(node).__name__.endswith("PhraseSearchNode"):
+            break
+        node = getattr(node, "next_node", None)
+    return node
+
+
+def test_search_union_pass_threads_from_create_pipelines_and_defaults_off():
+    kwargs = dict(
+        prompt_service=cast(Any, _PromptBox()),
+        ontology=cast(Any, _OntologyStub()),
+        llm_model=GPT_4o_mini,
+        model_params=GPTModelParams.with_defaults(),
+        created_at=TIMESTAMP,
+    )
+    default_pipelines = ExtractionPipelineFactory.create_pipelines(**kwargs)
+    union_pipelines = ExtractionPipelineFactory.create_pipelines(
+        **kwargs, search_union_pass=True
+    )
+    for field in (KeywordTypeEnum.equipments, ConceptTypeEnum.material_caps):
+        assert _search_node_of(default_pipelines[field]).search_union_pass is False
+        assert _search_node_of(union_pipelines[field]).search_union_pass is True

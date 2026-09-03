@@ -122,6 +122,8 @@ def get_embedded_gpt_request_ids(
             ) in extraction_field.chunked_request_map.items():
                 for search_req_id in bundle.llm_phrase_search_req_ids:
                     custom_ids.add(search_req_id)
+                for search_req_id in bundle.llm_phrase_search_pass2_req_ids:
+                    custom_ids.add(search_req_id)
                 for round_req_ids in bundle.llm_phrase_recursive_search_req_ids.values():
                     custom_ids.update(round_req_ids)
                 for relationship_req_id in bundle.llm_phrase_relationship_req_ids:

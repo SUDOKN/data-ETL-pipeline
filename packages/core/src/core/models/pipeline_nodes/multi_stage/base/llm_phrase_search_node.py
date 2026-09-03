@@ -68,12 +68,21 @@ class LLMPhraseSearchNode(
         field_type: LLMExtractedFieldTypeVar,
         next_node: BaseLLMExtractionNode | ReconcileNode,
         phrase_search_prompt: Prompt,
+        search_union_pass: bool = False,
     ):
         super().__init__(
             field_type=field_type,
             next_node=next_node,
         )
         self.phrase_search_prompt = phrase_search_prompt
+        # Retry-and-union (2026-09-03, user decision: OPT-IN, DEFAULT OFF).
+        # On: every sub-window is read twice and the chunk view unions the
+        # passes (~11-13% more distinct forms per the A/A churn, at ~2x the
+        # search stage's input tokens). Off: one read per window, and a failed
+        # parse retries through the existing parse-error re-dispatch
+        # (record_response_parse_error nulls the response, so the request is
+        # re-created on a later entry, RESPONSE_PARSE_ERROR_CAP attempts).
+        self.search_union_pass = search_union_pass
 
     async def embed_request_ids(  # prefill folded into this function
         self,
@@ -111,6 +120,26 @@ class LLMPhraseSearchNode(
                     )
                     for sub_bounds in extraction_request_bundle.search_sub_bounds
                 ]
+            # Retry-and-union (2026-09-03; opt-in, default off — see __init__).
+            # Embedded separately so a doc from a union-enabled run keeps its
+            # second pass honored even under a later flag-off entry (the ids
+            # are already in the bundle and the read side unions whatever is
+            # there), while pass 1's replay ids are never disturbed.
+            if (
+                self.search_union_pass
+                and not extraction_request_bundle.llm_phrase_search_pass2_req_ids
+            ):
+                extraction_request_bundle.llm_phrase_search_pass2_req_ids = [
+                    self.get_request_custom_id(
+                        subject_unique_id=subject_unique_id,
+                        field_type=self.field_type,
+                        chunk_bounds=chunk_bounds,
+                        sub_bounds=sub_bounds,
+                        metadata=metadata,
+                        pass_index=2,
+                    )
+                    for sub_bounds in extraction_request_bundle.search_sub_bounds
+                ]
 
     def get_embedded_request_ids(
         self,
@@ -129,6 +158,7 @@ class LLMPhraseSearchNode(
                 )
 
             llm_search_req_ids.update(extraction_bundle.llm_phrase_search_req_ids)
+            llm_search_req_ids.update(extraction_bundle.llm_phrase_search_pass2_req_ids)
         return llm_search_req_ids
 
     @staticmethod
@@ -138,11 +168,16 @@ class LLMPhraseSearchNode(
         chunk_bounds: str,
         sub_bounds: str,
         metadata: LLMPhraseExtractionMetadata,
+        pass_index: int | None = None,
     ) -> BatchRequestIDType:
+        # The pass segment sits AFTER the sub bounds so every `>`-split reader
+        # of the id's chunk/sub positions is undisturbed; pass 1 keeps the
+        # original shape (and its replay cache).
+        pass_segment = f"pass>{pass_index}>" if pass_index is not None else ""
         return (
             f"{subject_unique_id}>{field_type.name}"
             f">{STAGE_REQUEST_ID_TOKEN[PipelineStage.phrase_search]}"
-            f">chunk>{chunk_bounds}>sub>{sub_bounds}>"
+            f">chunk>{chunk_bounds}>sub>{sub_bounds}>{pass_segment}"
             f"{metadata.llm_phrase_search.to_custom_id_segment()}"
         )
 

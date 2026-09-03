@@ -115,6 +115,13 @@ class ExtractionPipelineFactory:
     DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS = 0
 
     SEARCH_MAX_COMPLETION_TOKENS = 4000
+    # Retry-and-union (2026-09-03, user decision): the second search pass is
+    # OPT-IN per run and DEFAULT OFF — enabling it reads every sub-window
+    # twice and unions the passes (~11-13% more distinct forms at ~2x the
+    # search stage's input tokens). Off, a failed parse still retries through
+    # the parse-error re-dispatch (response nulled, request re-created, up to
+    # RESPONSE_PARSE_ERROR_CAP attempts).
+    DEFAULT_SEARCH_UNION_PASS = False
     # Both search stages answer with a short JSON array of phrases: across the
     # 2026-08-16 alecmfg run the largest first-search response was 657 output
     # tokens (mean 229) and the largest recursive round 2,734 (mean 107), while
@@ -364,6 +371,7 @@ class ExtractionPipelineFactory:
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_initial_grounding_pairs_per_request: int = DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST,
         max_oov_grounding_pairs_per_request: int = DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST,
+        search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> ConceptExtractionPrefillNode:
         synthesis_prompt = ExtractionPipelineFactory._require_synthesis_prompt(
             phrase_synthesis_prompt, concept_type
@@ -435,6 +443,7 @@ class ExtractionPipelineFactory:
             next_node=ConceptPhraseSearchNode(
                 concept_type=concept_type,
                 search_prompt=search_prompt,
+                search_union_pass=search_union_pass,
                 next_node=ConceptRecursiveSearchNode(
                     concept_type=concept_type,
                     second_search_prompt=recursive_search_prompt,
@@ -514,6 +523,7 @@ class ExtractionPipelineFactory:
         synthesis_include_location: bool = DEFAULT_SYNTHESIS_INCLUDE_LOCATION,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
+        search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> KeywordExtractionPrefillNode:
         """Builds the contract-manufacturing product-extraction pipeline.
 
@@ -577,6 +587,7 @@ class ExtractionPipelineFactory:
             next_node=ContractProductPhraseSearchNode(
                 field_type=keyword_type,
                 search_prompt=search_prompt,
+                search_union_pass=search_union_pass,
                 next_node=ContractProductRecursiveSearchNode(
                     field_type=keyword_type,
                     second_search_prompt=recursive_search_prompt,
@@ -631,6 +642,7 @@ class ExtractionPipelineFactory:
         synthesis_include_location: bool = DEFAULT_SYNTHESIS_INCLUDE_LOCATION,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
+        search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> KeywordExtractionPrefillNode:
         """Builds the equipment (machinery/tools a manufacturer operates, owns,
         uses, or otherwise has access to) extraction pipeline.
@@ -691,6 +703,7 @@ class ExtractionPipelineFactory:
             next_node=EquipmentPhraseSearchNode(
                 field_type=keyword_type,
                 search_prompt=search_prompt,
+                search_union_pass=search_union_pass,
                 next_node=EquipmentRecursiveSearchNode(
                     field_type=keyword_type,
                     second_search_prompt=recursive_search_prompt,
@@ -832,6 +845,7 @@ class ExtractionPipelineFactory:
         synthesis_include_location: bool = DEFAULT_SYNTHESIS_INCLUDE_LOCATION,
         max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
+        search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> KeywordExtractionPrefillNode:
         """Builds the pure-product (own/sell own products) extraction pipeline."""
         keyword_type = KeywordTypeEnum.products
@@ -887,6 +901,7 @@ class ExtractionPipelineFactory:
             next_node=PureProductPhraseSearchNode(
                 field_type=keyword_type,
                 search_prompt=search_prompt,
+                search_union_pass=search_union_pass,
                 next_node=PureProductRecursiveSearchNode(
                     field_type=keyword_type,
                     second_search_prompt=recursive_search_prompt,
@@ -933,6 +948,7 @@ class ExtractionPipelineFactory:
         synthesis_include_location: bool = DEFAULT_SYNTHESIS_INCLUDE_LOCATION,
         mention_collection_snippet_radius: int = DEFAULT_MENTION_COLLECTION_SNIPPET_RADIUS,
         max_synthesis_entries_per_request: int = DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST,
+        search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> dict[ExtractionFieldType, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
@@ -968,35 +984,36 @@ class ExtractionPipelineFactory:
 
         return {
             # Single-stage extractions
-            BasicFieldTypeEnum.addresses: ExtractionPipelineFactory.create_address_pipeline(
-                prompt=prompt_service.extract_any_address_prompt,
-                llm_model=llm_model,
-                ontology=ontology,
-                created_at=created_at,
-                model_params=model_params,
-            ),
-            BinaryClassificationTypeEnum.is_product_manufacturer: ExtractionPipelineFactory.create_binary_classification_pipeline(
-                binary_field_type=BinaryClassificationTypeEnum.is_product_manufacturer,
-                prompt=prompt_service.is_product_manufacturer_prompt,
-                llm_model=llm_model,
-                ontology=ontology,
-                created_at=created_at,
-                model_params=model_params,
-            ),
-            BinaryClassificationTypeEnum.is_contract_manufacturer: ExtractionPipelineFactory.create_binary_classification_pipeline(
-                binary_field_type=BinaryClassificationTypeEnum.is_contract_manufacturer,
-                prompt=prompt_service.is_contract_manufacturer_prompt,
-                llm_model=llm_model,
-                ontology=ontology,
-                created_at=created_at,
-                model_params=model_params,
-            ),
+            # BasicFieldTypeEnum.addresses: ExtractionPipelineFactory.create_address_pipeline(
+            #     prompt=prompt_service.extract_any_address_prompt,
+            #     llm_model=llm_model,
+            #     ontology=ontology,
+            #     created_at=created_at,
+            #     model_params=model_params,
+            # ),
+            # BinaryClassificationTypeEnum.is_product_manufacturer: ExtractionPipelineFactory.create_binary_classification_pipeline(
+            #     binary_field_type=BinaryClassificationTypeEnum.is_product_manufacturer,
+            #     prompt=prompt_service.is_product_manufacturer_prompt,
+            #     llm_model=llm_model,
+            #     ontology=ontology,
+            #     created_at=created_at,
+            #     model_params=model_params,
+            # ),
+            # BinaryClassificationTypeEnum.is_contract_manufacturer: ExtractionPipelineFactory.create_binary_classification_pipeline(
+            #     binary_field_type=BinaryClassificationTypeEnum.is_contract_manufacturer,
+            #     prompt=prompt_service.is_contract_manufacturer_prompt,
+            #     llm_model=llm_model,
+            #     ontology=ontology,
+            #     created_at=created_at,
+            #     model_params=model_params,
+            # ),
             KeywordTypeEnum.products: ExtractionPipelineFactory.create_pure_product_extraction_pipeline(
                 chunk_strategy=chunk_strat_for(
                     KeywordTypeEnum.products, PRODUCT_CHUNKING_STRAT
                 ),
                 search_prompt=prompt_service.product_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
+                search_union_pass=search_union_pass,
                 phrase_mention_collection_prompt=prompt_service.product_phrase_mention_collection_prompt,
                 phrase_synthesis_prompt=prompt_service.product_phrase_synthesis_prompt,
                 synthesis_include_location=synthesis_include_location,
@@ -1016,6 +1033,7 @@ class ExtractionPipelineFactory:
                 ontology_version_id=ontology.s3_version_id,
                 search_prompt=prompt_service.product_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.product_phrase_recursive_search_prompt,
+                search_union_pass=search_union_pass,
                 phrase_mention_collection_prompt=prompt_service.product_phrase_mention_collection_prompt,
                 phrase_synthesis_prompt=prompt_service.product_phrase_synthesis_prompt,
                 synthesis_include_location=synthesis_include_location,
@@ -1034,6 +1052,7 @@ class ExtractionPipelineFactory:
                 ontology_version_id=ontology.s3_version_id,
                 search_prompt=prompt_service.equipment_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.equipment_phrase_recursive_search_prompt,
+                search_union_pass=search_union_pass,
                 phrase_mention_collection_prompt=prompt_service.equipment_phrase_mention_collection_prompt,
                 phrase_synthesis_prompt=prompt_service.equipment_phrase_synthesis_prompt,
                 synthesis_include_location=synthesis_include_location,
@@ -1055,6 +1074,7 @@ class ExtractionPipelineFactory:
                 ontology=ontology,
                 search_prompt=prompt_service.conformity_attestation_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.conformity_attestation_phrase_recursive_search_prompt,
+                search_union_pass=search_union_pass,
                 phrase_mention_collection_prompt=prompt_service.conformity_attestation_phrase_mention_collection_prompt,
                 phrase_synthesis_prompt=prompt_service.conformity_attestation_phrase_synthesis_prompt,
                 synthesis_include_location=synthesis_include_location,
@@ -1083,6 +1103,7 @@ class ExtractionPipelineFactory:
                 ontology=ontology,
                 search_prompt=prompt_service.industry_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.industry_phrase_recursive_search_prompt,
+                search_union_pass=search_union_pass,
                 phrase_mention_collection_prompt=prompt_service.industry_phrase_mention_collection_prompt,
                 phrase_synthesis_prompt=prompt_service.industry_phrase_synthesis_prompt,
                 synthesis_include_location=synthesis_include_location,
@@ -1109,6 +1130,7 @@ class ExtractionPipelineFactory:
                 ontology=ontology,
                 search_prompt=prompt_service.process_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.process_cap_phrase_recursive_search_prompt,
+                search_union_pass=search_union_pass,
                 phrase_mention_collection_prompt=prompt_service.process_cap_phrase_mention_collection_prompt,
                 phrase_synthesis_prompt=prompt_service.process_cap_phrase_synthesis_prompt,
                 synthesis_include_location=synthesis_include_location,
@@ -1135,6 +1157,7 @@ class ExtractionPipelineFactory:
                 ontology=ontology,
                 search_prompt=prompt_service.material_cap_phrase_search_prompt,
                 recursive_search_prompt=prompt_service.material_cap_phrase_recursive_search_prompt,
+                search_union_pass=search_union_pass,
                 phrase_mention_collection_prompt=prompt_service.material_cap_phrase_mention_collection_prompt,
                 phrase_synthesis_prompt=prompt_service.material_cap_phrase_synthesis_prompt,
                 synthesis_include_location=synthesis_include_location,
