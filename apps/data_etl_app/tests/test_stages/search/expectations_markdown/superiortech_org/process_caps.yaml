@@ -329,19 +329,21 @@ entries:
     source: markdown-cutover
 - id: superiortech_org-process_caps-0013
   name: DFM (Design for Manufacturing)
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - DFM (Design for Manufacturing)
   - DFM
   evidence:
   - quote: which starts with DFM (Design for Manufacturing) assistance
     approx_offset: 1459
-  notes: DISPUTED — design-for-manufacture consulting is an ENGINEERING SERVICE delivered before production, not
-    'an operation performed on materials, parts, or products'. It is kept because the clause's span runs 'from raw
-    material through to finished goods' and a reader could argue DFM sits at the front of that span; on the narrow
-    reading it does not touch the work at all. | DFM (Design for Manufacturing) assistance is design/engineering
+  notes: 'DISPUTED — design-for-manufacture consulting is an ENGINEERING SERVICE delivered before production, not
+    ''an operation performed on materials, parts, or products''. It is kept because the clause''s span runs ''from
+    raw material through to finished goods'' and a reader could argue DFM sits at the front of that span; on the
+    narrow reading it does not touch the work at all. | DFM (Design for Manufacturing) assistance is design/engineering
     advice given before anything is cut. Nothing is performed on materials, parts or products, which is what the
-    clause's em-dash defines an operation as. Arguable because the clause's headline also says 'capability'.
+    clause''s em-dash defines an operation as. Arguable because the clause''s headline also says ''capability''.
+    | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability
+    family)'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -357,6 +359,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: superiortech_org-process_caps-0014
   name: Prototyping
   status: confirmed
@@ -412,9 +418,10 @@ entries:
   evidence:
   - quote: CNC programming, manufacturing engineering
     approx_offset: 37375
-  notes: CNC programming is an office/engineering function -- it is listed on the careers page among 'all facets
-    of manufacturing including customer service, project management, CNC programming, ... logistics specialists',
-    i.e. among staff roles. No material is acted on.
+  notes: 'CNC programming is an office/engineering function -- it is listed on the careers page among ''all facets
+    of manufacturing including customer service, project management, CNC programming, ... logistics specialists'',
+    i.e. among staff roles. No material is acted on. | RULING 2026-09-03 (R6-bio-jobad-out): careers-page anchoring;
+    NOTE the entity class itself is now IN under R5 — re-promotable if shop-capability evidence is found'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -430,9 +437,13 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: dispute-upheld
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: superiortech_org-process_caps-0017
   name: Manufacturing engineering
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - manufacturing engineering
   evidence:
@@ -440,7 +451,8 @@ entries:
     approx_offset: 37392
   notes: 'Manufacturing engineering, same clause and same list as CNC programming: a staff function named among
     ''customer service, project management, CNC programming, manufacturing engineering, journeyman machinists...'',
-    not an operation performed on the work.'
+    not an operation performed on the work. | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled
+    IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -456,6 +468,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: superiortech_org-process_caps-0018
   name: Deburring
   status: confirmed

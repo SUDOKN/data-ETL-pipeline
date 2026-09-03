@@ -641,7 +641,8 @@ entries:
   notes: 'historical narrative about the founder''s Ford dealership, not a served market | Both occurrences are
     1900s biography rather than a served market: "the world''s first Ford automobile dealer" and "stock in his budding
     automobile company". The car-making sector is already seeded as industries-0025 (automotive) from Ellwood''s
-    real customer list; this entry adds only a retail/biographical mention.'
+    real customer list; this entry adds only a retail/biographical mention. | RULING 2026-09-03 (R6-bio-jobad-out):
+    bio-derived sector'
   provenance:
   - action: added
     by: seed-agent-mathewsco-com
@@ -657,6 +658,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: dispute-upheld
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: mathewsco_com-industries-0029
   name: aviation
   status: confirmed

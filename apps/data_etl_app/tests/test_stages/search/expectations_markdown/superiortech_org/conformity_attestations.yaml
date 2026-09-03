@@ -93,7 +93,8 @@ entries:
     on line 97 is the closest thing to a real apprenticeship credential in the file. | A job title, not a certification.
     Both quotes are staffing text: ''Quality Inspector'' is a line in ''Current Positions Available'' on the careers
     page, and the other is ''quality inspector, maintenance technicians'' in a list of roles. SEEDING_BRIEF section
-    4 names staff job titles as a seed-disputed class.'
+    4 names staff job titles as a seed-disputed class. | RULING 2026-09-03 (R6-bio-jobad-out): job title from a
+    careers page'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -109,6 +110,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: dispute-upheld
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: superiortech_org-conformity_attestations-0004
   name: Made in The USA
   status: disputed

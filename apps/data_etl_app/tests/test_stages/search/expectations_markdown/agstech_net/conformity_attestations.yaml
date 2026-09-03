@@ -1348,14 +1348,15 @@ entries:
     source: markdown-cutover
 - id: agstech_net-conformity_attestations-0055
   name: JEDEC
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - JEDEC
   evidence:
   - quote: JEDEC – JEDEC Solid State Technology Association (formerly the Joint
     approx_offset: 99778
   actor: unknown
-  notes: named as an EIA sector in explainer prose.
+  notes: 'named as an EIA sector in explainer prose. | RULING 2026-09-03 (R8-standards-body-out): names the standards
+    organization itself, not a certification/standard held or met'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1368,6 +1369,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R8-standards-body-out
 - id: agstech_net-conformity_attestations-0056
   name: IEC standards
   status: confirmed
@@ -2287,7 +2292,7 @@ entries:
     source: markdown-cutover
 - id: agstech_net-conformity_attestations-0094
   name: ANSI (American National Standards Institute)
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - American National Standards Institute (ANSI)
   - ANSI
@@ -2295,7 +2300,8 @@ entries:
   - quote: The American National Standards Institute (ANSI) specifies sound level meters as three different types,
     approx_offset: 937265
   actor: unknown
-  notes: explainer prose naming the body that classifies sound level meters
+  notes: 'explainer prose naming the body that classifies sound level meters | RULING 2026-09-03 (R8-standards-body-out):
+    names the standards organization itself, not a certification/standard held or met'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -2308,6 +2314,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R8-standards-body-out
 - id: agstech_net-conformity_attestations-0095
   name: ANSI Type 1 / Type 2 sound level meter
   status: confirmed

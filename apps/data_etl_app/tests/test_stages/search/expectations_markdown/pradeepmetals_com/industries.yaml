@@ -714,7 +714,7 @@ entries:
     source: markdown-cutover
 - id: pradeepmetals_com-industries-0029
   name: electrical and electronics
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - Electrical and Electronics Industry
   evidence:
@@ -722,7 +722,8 @@ entries:
     approx_offset: 91429
   actor: unknown
   notes: 'CAPABILITY BAIT FROM A CV: fifty years of an independent director''s career at Crompton Greaves. Nothing
-    to do with this company''s markets'
+    to do with this company''s markets | RULING 2026-09-03 (R6-bio-jobad-out): sole evidence is a job advertisement
+    / personal biography, not the subject''s own offering'
   provenance:
   - action: added
     by: seed-agent-pradeepmetals-com
@@ -735,9 +736,13 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: pradeepmetals_com-industries-0030
   name: BFSI, FMCG, hospitality, retail pharma, media and advertising
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - BFSI, engineering, automotive, retail pharma, FMCG, hospitality, media and advertising
   - BFSI
@@ -748,7 +753,8 @@ entries:
   actor: unknown
   notes: 'CAPABILITY BAIT FROM A CV: these are the sectors a non-executive director''s MANAGEMENT CONSULTING projects
     covered, printed in one sentence alongside Tata Motors, AF Ferguson and PWC. Recall-first keeps them; the attribution
-    is what makes them a trap'
+    is what makes them a trap | RULING 2026-09-03 (R6-bio-jobad-out): sole evidence is a job advertisement / personal
+    biography, not the subject''s own offering'
   provenance:
   - action: added
     by: seed-agent-pradeepmetals-com
@@ -761,6 +767,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: pradeepmetals_com-industries-0031
   name: agriculture
   status: disputed
@@ -954,7 +964,7 @@ entries:
     source: markdown-cutover
 - id: pradeepmetals_com-industries-0039
   name: metallurgical industries
-  status: candidate
+  status: disputed
   acceptable_forms:
   - metallurgical industries
   - non-ferrous metallurgical industries
@@ -962,8 +972,10 @@ entries:
   - quote: innovative applications of gases in ferrous and non-ferrous metallurgical industries
     approx_offset: 84509
   actor: unknown
-  notes: named as an industry in the founder's biography (his prior work applying gases in them); absent from the
-    packet, which took 'industrial gases' from the same sentence into material_caps and products but no industry.
+  notes: 'named as an industry in the founder''s biography (his prior work applying gases in them); absent from
+    the packet, which took ''industrial gases'' from the same sentence into material_caps and products but no industry.
+    | RULING 2026-09-03 (R6-bio-jobad-out): sole evidence is a job advertisement / personal biography, not the subject''s
+    own offering'
   provenance:
   - action: added
     by: verify-agent-pradeepmetals
@@ -973,6 +985,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: pradeepmetals_com-industries-0040
   name: heavy engine parts
   status: candidate

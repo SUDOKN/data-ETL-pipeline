@@ -188,3 +188,42 @@ something its prompt excludes — keep the entry, set it `disputed`, and say so
 in the notes. It then never gates, but it is on the record as a boundary
 question for the user, and it can be re-promoted in one edit if the boundary
 moves. Deleting it would lose the argument.
+
+## The eight boundary rulings of 2026-09-03 (user; adopted per assistant recommendation)
+
+Applied to the markdown set the same day (16 promotions, 19 disputes, 10
+dispute-upholds, each with a `user-boundary-ruling-2026-09-03:*` provenance
+row). Seed to these boundaries:
+
+1. **Tooling is NOT equipment** (dies, punches, jigs, fixtures, molds, end
+   mills — what a machine holds, guides, or acts through). SUDOKN has no
+   tooling-as-equipment concept; making or designing tooling is a PROCESS
+   capability (DieMaking/MoldMaking/ToolDesign...), tooling sold is a
+   product. Machines NAMED after tooling processes (punch press, die-casting
+   machine, die hammer) are machines and stay in.
+2. **Software is NOT equipment** (CAD/CAM/ERP names).
+3. **Plant and material handling stay OUT of equipments** (the prompt's
+   powers/conditions/moves/stores/carries clause stands). A furnace or oven
+   that treats the WORK is production equipment and stays in.
+4. **Merchandise machines are IN by nature**: a production machine qualifies
+   whether the subject uses it or sells it (actor flags carry the
+   relationship). Non-machine components a subject sells (valves, sensors)
+   are products, never equipments.
+5. **Engineering and design work IS a process capability** (SUDOKN
+   EngineeringCapability / EngineeringDesignCapability / ToolDesign /
+   RapidPrototyping / ReverseEngineering...). The search static now carries
+   the inclusion sentence. DFM, process design, simulation, analysis,
+   programming, prototyping: in-field.
+6. **Job-ad and biography evidence does not attest the subject's
+   capabilities**: an entry whose ONLY evidence is a hiring ad, a
+   director's/founder's biography, or a personal credential is `disputed`
+   (the entity class may be fine — re-promote on shop-capability evidence).
+7. **Self-published governance/ESG/legal-compliance documents are NOT
+   conformity attestations** (charters, policies, codes of conduct, modern
+   slavery / transparency / Section 172 statements, GDPR-page items).
+   Third-party certifications, registrations and product-standard
+   compliances stay.
+8. **A standards BODY's name is not an attestation** (ISO/ANSI/JEDEC/GEIA as
+   organizations, association memberships). A certification, approval, or
+   standard designation ISSUED by a body stays in (`SDI Certification`,
+   `CAAC Maintenance Organization` approval, `ITU grid`, `AISI 304`).

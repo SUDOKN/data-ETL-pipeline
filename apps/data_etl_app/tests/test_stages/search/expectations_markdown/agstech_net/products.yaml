@@ -5727,7 +5727,7 @@ entries:
     source: markdown-cutover
 - id: agstech_net-products-0255
   name: DWDM components
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - DWDM
   evidence:
@@ -5735,7 +5735,8 @@ entries:
       beamsplitters, optical fiber amplifiers, fiber optic components assembly, quality control, test and
     approx_offset: 52679
   actor: unknown
-  notes: named in a job advertisement
+  notes: 'named in a job advertisement | RULING 2026-09-03 (R6-bio-jobad-out): sole evidence is a job advertisement
+    / personal biography, not the subject''s own offering'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -5748,9 +5749,13 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: agstech_net-products-0256
   name: beamsplitters
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - beamsplitters
   evidence:
@@ -5758,7 +5763,8 @@ entries:
       fiber amplifiers, fiber optic components assembly, quality control, test and
     approx_offset: 52695
   actor: unknown
-  notes: named in a job advertisement
+  notes: 'named in a job advertisement | RULING 2026-09-03 (R6-bio-jobad-out): sole evidence is a job advertisement
+    / personal biography, not the subject''s own offering'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -5771,9 +5777,13 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: agstech_net-products-0257
   name: spectrum analyzers
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - spectrum analyzers
   evidence:
@@ -5781,8 +5791,9 @@ entries:
       analyzers used in fiber optics.'
     approx_offset: 52852
   actor: unknown
-  notes: A measuring/inspection instrument, which the equipments clause explicitly excludes; it is a made artifact
-    AGS-TECH sells, so it belongs here. Named in a job advertisement.
+  notes: 'A measuring/inspection instrument, which the equipments clause explicitly excludes; it is a made artifact
+    AGS-TECH sells, so it belongs here. Named in a job advertisement. | RULING 2026-09-03 (R6-bio-jobad-out): sole
+    evidence is a job advertisement / personal biography, not the subject''s own offering'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -5795,6 +5806,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: agstech_net-products-0258
   name: bicycle frames
   status: confirmed

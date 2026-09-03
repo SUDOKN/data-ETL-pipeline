@@ -602,7 +602,7 @@ entries:
     source: markdown-cutover
 - id: fzemanufacturing_com-process_caps-0027
   name: Reverse engineering
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Reverse Engineering
   - reverse engineering
@@ -610,7 +610,8 @@ entries:
   - quote: Reverse Engineering
     approx_offset: 110846
   notes: 'reverse engineering cuts both ways: it is pre-production engineering (outside the clause), but it proceeds
-    by measuring an existing part, and the clause admits measurement performed on the work'
+    by measuring an existing part, and the clause admits measurement performed on the work | RULING 2026-09-03 (R5-engineering-in):
+    engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-fzemanufacturing-com
@@ -625,6 +626,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: fzemanufacturing_com-process_caps-0028
   name: Bending
   status: confirmed

@@ -1850,7 +1850,7 @@ entries:
     source: markdown-cutover
 - id: decimal_net-process_caps-0079
   name: process simulation / virtual manufacturing
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Process Simulation
   - Virtual Machining
@@ -1864,7 +1864,8 @@ entries:
     a Process and it is a real production-prep capability | not an operation performed on materials, parts or products:
     the process_caps clause defines all three of ''process, operation, or capability'' as ''an operation performed
     on materials, parts, or products at any stage of production''. virtual manufacturing/process simulation runs
-    on a model - the page says explicitly it happens ''before any physical part is formed'''
+    on a model - the page says explicitly it happens ''before any physical part is formed'' | RULING 2026-09-03
+    (R5-engineering-in): engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-decimal-net
@@ -1881,6 +1882,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: decimal_net-process_caps-0080
   name: dimensional inspection
   status: confirmed
@@ -2535,7 +2540,7 @@ entries:
     source: markdown-cutover
 - id: decimal_net-process_caps-0114
   name: design for manufacturability
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Design for Manufacturability
   - design for manufacturability
@@ -2548,7 +2553,9 @@ entries:
     approx_offset: 58541
   notes: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
     of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
-    stage of production''. design for manufacturability is a design service delivered on the customer''s drawing'
+    stage of production''. design for manufacturability is a design service delivered on the customer''s drawing
+    | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability
+    family)'
   provenance:
   - action: added
     by: seed-agent-decimal-net
@@ -2564,6 +2571,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: decimal_net-process_caps-0132
   name: screw machining
   status: confirmed
@@ -2638,7 +2649,7 @@ entries:
     source: markdown-cutover
 - id: decimal_net-process_caps-0115
   name: parallel engineering
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Parallel Engineering (Design Support)
   - Parallel Engineering
@@ -2647,7 +2658,8 @@ entries:
     approx_offset: 60575
   notes: 'DISPUTE STANDS: reanchored to the precision-machining Design Support Services table (now cleanly delimited,
     was ''Parallel Engineering (Design Support)Reverse Engineering'' fused before). Still not an operation performed
-    on materials, parts or products under the process_caps clause -- it is a design activity.'
+    on materials, parts or products under the process_caps clause -- it is a design activity. | RULING 2026-09-03
+    (R5-engineering-in): engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: corpus-seed
@@ -2657,9 +2669,13 @@ entries:
     by: repair-agent-decimal-net
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: decimal_net-process_caps-0116
   name: value engineering
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Value Engineering
   - value engineering
@@ -2668,7 +2684,8 @@ entries:
     approx_offset: 60681
   notes: 'not an operation performed on materials, parts or products: the process_caps clause defines all three
     of ''process, operation, or capability'' as ''an operation performed on materials, parts, or products at any
-    stage of production''. value engineering is a design/cost activity'
+    stage of production''. value engineering is a design/cost activity | RULING 2026-09-03 (R5-engineering-in):
+    engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-decimal-net
@@ -2684,6 +2701,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: decimal_net-process_caps-0117
   name: cost analysis
   status: disputed

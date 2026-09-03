@@ -1079,9 +1079,9 @@ entries:
   - quote: Robot Palletizing Workstation
     approx_offset: 47403
   actor: reseller_inventory
-  notes: palletizing stacks finished goods, i.e. it 'moves, stores, or carries what it makes', which the equipment
+  notes: 'palletizing stacks finished goods, i.e. it ''moves, stores, or carries what it makes'', which the equipment
     clause excludes. (The palletizing operation is still sound under process_caps-0260, whose clause carries no
-    handling exclusion.)
+    handling exclusion.) | RULING 2026-09-03 (R3-plant-handling-out): material handling stays OUT of equipments'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1097,6 +1097,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: dispute-upheld
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R3-plant-handling-out
 - id: agstech_net-equipments-0051
   name: robotic laser welding workstation
   status: confirmed

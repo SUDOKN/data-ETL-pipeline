@@ -73,7 +73,7 @@ entries:
     source: markdown-cutover
 - id: howcogroup_com-conformity_attestations-0001
   name: UK Modern Slavery Act statement
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - Modern Slavery and Human Trafficking Statement
   - Modern Slavery Transparency Statement
@@ -83,7 +83,8 @@ entries:
   - quote: Slavery and Human Trafficking Statement
     approx_offset: 10320
   notes: 'DISPUTED: statutory-compliance DOCUMENTS rather than a certification. In the footer of all 97 pages plus
-    a dedicated page listing four fiscal years'
+    a dedicated page listing four fiscal years | RULING 2026-09-03 (R7-governance-out): self-published governance/ESG/legal-compliance
+    document, not a third-party conformity attestation'
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -96,6 +97,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R7-governance-out
 - id: howcogroup_com-conformity_attestations-0007
   name: ASTM B-series nickel alloy standards
   status: confirmed
@@ -166,7 +171,7 @@ entries:
     source: markdown-cutover
 - id: howcogroup_com-conformity_attestations-0009
   name: GDPR
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - GDPR Privacy Notice & Retention Policy
   - GDPR
@@ -175,7 +180,8 @@ entries:
     approx_offset: 23207
   notes: 'DISPUTED: a data-protection regulation a company must comply with, so it fits the clause''s ''compliance
     ... with an identity of its own'', but it is not a manufacturing or product conformity. Single occurrence, on
-    the ESG page'
+    the ESG page | RULING 2026-09-03 (R7-governance-out): self-published governance/ESG/legal-compliance document,
+    not a third-party conformity attestation'
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -188,16 +194,21 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R7-governance-out
 - id: howcogroup_com-conformity_attestations-0010
   name: Conflict minerals statement
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - Statement on Conflict Minerals during Steel Production
   - Conflict Minerals Policy
   evidence:
   - quote: Statement on Conflict Minerals during Steel Production
     approx_offset: 23281
-  notes: 'DISPUTED: a supply-chain compliance policy document; footer link on 97 pages'
+  notes: 'DISPUTED: a supply-chain compliance policy document; footer link on 97 pages | RULING 2026-09-03 (R7-governance-out):
+    self-published governance/ESG/legal-compliance document, not a third-party conformity attestation'
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -210,16 +221,22 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R7-governance-out
 - id: howcogroup_com-conformity_attestations-0011
   name: Norwegian Transparency Act report
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - Report on the Norwegian Transparency Act
   - Norwegian Transparency Act
   evidence:
   - quote: Report on the Norwegian Transparency Act for 2023/24
     approx_offset: 23636
-  notes: 'DISPUTED: statutory compliance document, tied to the Figgjo, Norway site. Footer link on 97 pages'
+  notes: 'DISPUTED: statutory compliance document, tied to the Figgjo, Norway site. Footer link on 97 pages | RULING
+    2026-09-03 (R7-governance-out): self-published governance/ESG/legal-compliance document, not a third-party conformity
+    attestation'
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -232,15 +249,21 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R7-governance-out
 - id: howcogroup_com-conformity_attestations-0012
   name: Section 172 statement
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - Section 172 Statement
   evidence:
   - quote: Section 172 Statement For the Year Ended March 2023
     approx_offset: 23721
-  notes: 'DISPUTED: UK Companies Act 2006 s.172 director-duty statement; a statutory document, not a certificate'
+  notes: 'DISPUTED: UK Companies Act 2006 s.172 director-duty statement; a statutory document, not a certificate
+    | RULING 2026-09-03 (R7-governance-out): self-published governance/ESG/legal-compliance document, not a third-party
+    conformity attestation'
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -253,6 +276,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R7-governance-out
 - id: howcogroup_com-conformity_attestations-0013
   name: Streamlined Energy and Carbon Reporting (SECR)
   status: confirmed

@@ -79,7 +79,7 @@ entries:
     source: markdown-cutover
 - id: blackadvtech_com-process_caps-0014
   name: engineering
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - engineering
   - ENGINEERING
@@ -87,8 +87,9 @@ entries:
   evidence:
   - quote: Engineering
     approx_offset: 1108
-  notes: listed as one of the shop's own service lines | 'engineering' names a department/service (ENGINEERING nav
-    item, /engineering/ page, job-board category), not an operation on the work.
+  notes: 'listed as one of the shop''s own service lines | ''engineering'' names a department/service (ENGINEERING
+    nav item, /engineering/ page, job-board category), not an operation on the work. | RULING 2026-09-03 (R5-engineering-in):
+    engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-blackadvtech-com
@@ -103,6 +104,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: blackadvtech_com-process_caps-0003
   name: punching
   status: candidate

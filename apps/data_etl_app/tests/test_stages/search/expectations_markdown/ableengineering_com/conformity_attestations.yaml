@@ -639,7 +639,7 @@ entries:
     source: corpus-seed
 - id: ableengineering_com-conformity_attestations-0031
   name: National Air Transportation Association (NATA)
-  status: candidate
+  status: disputed
   acceptable_forms:
   - National Air Transportation Association
   - NATA
@@ -647,11 +647,17 @@ entries:
   - quote: National Air Transportation Association (NATA), which encourages environmental sustainability within
       the industry.
     approx_offset: 111256
+  notes: 'RULING 2026-09-03 (R8-standards-body-out): names the standards organization itself, not a certification/standard
+    held or met'
   provenance:
   - action: added
     by: seed-agent-ableengineering-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R8-standards-body-out
 - id: ableengineering_com-conformity_attestations-0032
   name: Safety Management System (SMS)
   status: candidate

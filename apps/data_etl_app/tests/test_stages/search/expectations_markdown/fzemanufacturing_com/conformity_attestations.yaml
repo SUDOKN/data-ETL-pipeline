@@ -509,18 +509,23 @@ entries:
     source: corpus-seed
 - id: fzemanufacturing_com-conformity_attestations-0022
   name: International Organization for Standardization
-  status: candidate
+  status: disputed
   acceptable_forms:
   - International Organization for Standardization
   evidence:
   - quote: International Organization for Standardization
     approx_offset: 191991
-  notes: '''Industry Standards'' spec block, welding-fabrication-services page (expansion of ISO)'
+  notes: '''Industry Standards'' spec block, welding-fabrication-services page (expansion of ISO) | RULING 2026-09-03
+    (R8-standards-body-out): names the standards organization itself, not a certification/standard held or met'
   provenance:
   - action: added
     by: seed-agent-fzemanufacturing-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R8-standards-body-out
 - id: fzemanufacturing_com-conformity_attestations-0023
   name: Made In Wisconsin WEDC certification
   status: candidate

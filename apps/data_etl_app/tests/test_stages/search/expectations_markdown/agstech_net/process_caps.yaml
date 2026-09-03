@@ -97,14 +97,15 @@ entries:
     source: markdown-cutover
 - id: agstech_net-process_caps-0008
   name: engineering integration
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Engineering Integration
   evidence:
   - quote: Engineering Integration​
     approx_offset: 1050
-  notes: site-wide nav boilerplate | 'Engineering Integration' is an engineering/business service; nothing is performed
-    on the work
+  notes: 'site-wide nav boilerplate | ''Engineering Integration'' is an engineering/business service; nothing is
+    performed on the work | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled IN for process_caps
+    (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -118,16 +119,21 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: agstech_net-process_caps-0009
   name: engineering services
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Engineering Services
   evidence:
   - quote: Engineering Services
     approx_offset: 1077
-  notes: site-wide nav boilerplate | 'Engineering Services' = design, analysis, drawings, consulting (L369 spells
-    this out); not an operation on materials
+  notes: 'site-wide nav boilerplate | ''Engineering Services'' = design, analysis, drawings, consulting (L369 spells
+    this out); not an operation on materials | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled
+    IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -142,6 +148,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: agstech_net-process_caps-0010
   name: sheet metal fabrication
   status: confirmed
@@ -1903,7 +1913,7 @@ entries:
     source: markdown-cutover
 - id: agstech_net-process_caps-0182
   name: fiber optic splicing
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - splicing tools
   evidence:
@@ -1911,7 +1921,9 @@ entries:
       splicing tools, spectrum analyzers used in fiber optics.
     approx_offset: 52833
   actor: unknown
-  notes: named inside a job advertisement listing techniques a candidate must know, not a stated shop capability
+  notes: 'named inside a job advertisement listing techniques a candidate must know, not a stated shop capability
+    | RULING 2026-09-03 (R6-bio-jobad-out): sole evidence is a job advertisement / personal biography, not the subject''s
+    own offering'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1924,6 +1936,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: agstech_net-process_caps-0291
   name: technical ceramic manufacturing
   status: confirmed
@@ -2793,18 +2809,23 @@ entries:
     source: markdown-cutover
 - id: agstech_net-process_caps-1255
   name: Concurrent Engineering
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - Concurrent Engineering
   evidence:
   - quote: '- Concurrent Engineering'
     approx_offset: 80759
-  notes: Product-development integration approach, not a literal operation on the work.
+  notes: 'Product-development integration approach, not a literal operation on the work. | RULING 2026-09-03 (R5-engineering-in):
+    engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-agstech-net
     date: '2026-08-27'
     source: corpus-seed
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: agstech_net-process_caps-1256
   name: Flexible Manufacturing
   status: candidate
@@ -2935,7 +2956,7 @@ entries:
     source: markdown-cutover
 - id: agstech_net-process_caps-0266
   name: manufacturing process simulation
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - COMPUTER SIMULATIONS of MANUFACTURING PROCESSES
   - process simulation
@@ -2944,7 +2965,8 @@ entries:
     approx_offset: 118459
   notes: 'DISPUTED: an analysis tool used when quoting, not an operation performed on materials. | same argument
     as process_caps-0174: a simulation of a manufacturing operation is performed on a model, not on materials, parts
-    or products.'
+    or products. | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled IN for process_caps (SUDOKN
+    EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -2959,6 +2981,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: agstech_net-process_caps-0267
   name: die forging
   status: confirmed
@@ -6183,7 +6209,7 @@ entries:
     source: markdown-cutover
 - id: agstech_net-process_caps-0174
   name: process simulation / finite-element analysis
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - COMPUTER SIMULATION of MANUFACTURING PROCESSES
   - finite-element analysis (FEA)
@@ -6192,8 +6218,9 @@ entries:
   evidence:
   - quote: 'COMPUTER SIMULATION of MANUFACTURING PROCESSES and SYSTEMS:'
     approx_offset: 263571
-  notes: FEA / process simulation is run on a computer model, not on the work. The clause admits inspection, testing
-    and measurement only when 'performed on the work'.
+  notes: 'FEA / process simulation is run on a computer model, not on the work. The clause admits inspection, testing
+    and measurement only when ''performed on the work''. | RULING 2026-09-03 (R5-engineering-in): engineering/design
+    work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -6208,6 +6235,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: agstech_net-process_caps-0175
   name: pressworking
   status: confirmed
@@ -9069,7 +9100,7 @@ entries:
     source: markdown-cutover
 - id: agstech_net-process_caps-0897
   name: microelectronics package modeling and simulation
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - modeling and simulation of microelectronic packages
   evidence:
@@ -9077,7 +9108,8 @@ entries:
     approx_offset: 367155
   notes: '''modeling and simulation of microelectronic packages'' is a design/engineering service performed on a
     computer model, not an operation performed on materials, parts or products; process_caps requires an operation
-    on the work (''at any stage of production''). Real activity, arguable field membership.'
+    on the work (''at any stage of production''). Real activity, arguable field membership. | RULING 2026-09-03
+    (R5-engineering-in): engineering/design work ruled IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -9093,6 +9125,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: agstech_net-process_caps-0898
   name: surface-mount technology
   status: confirmed
@@ -10720,17 +10756,18 @@ entries:
     source: markdown-cutover
 - id: agstech_net-process_caps-1105
   name: engineering
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - we engineer, design and manufacture products
   evidence:
   - quote: Please note that we engineer, design and manufacture products to your needs and specifications. We can
       either manufacture products according to your specifications or, If desired, we can help you in
     approx_offset: 444809
-  notes: design/engineering services sit before the work on materials begins; the clause scopes process_caps to
-    operations 'from raw material through to finished goods'. Also the sole acceptable form is a sentence fragment
-    ('we engineer, design and manufacture products') that no search output would reproduce, so even on the generous
-    reading it can essentially never credit.
+  notes: 'design/engineering services sit before the work on materials begins; the clause scopes process_caps to
+    operations ''from raw material through to finished goods''. Also the sole acceptable form is a sentence fragment
+    (''we engineer, design and manufacture products'') that no search output would reproduce, so even on the generous
+    reading it can essentially never credit. | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled
+    IN for process_caps (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -10747,6 +10784,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: agstech_net-process_caps-1249
   name: rotational moulding
   status: candidate

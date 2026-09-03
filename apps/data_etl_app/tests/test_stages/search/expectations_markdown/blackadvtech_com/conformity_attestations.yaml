@@ -307,7 +307,7 @@ entries:
     source: markdown-cutover
 - id: blackadvtech_com-conformity_attestations-0016
   name: AISI
-  status: confirmed
+  status: disputed
   acceptable_forms:
   - American Iron and Steel Institute (AISI)
   - AISI
@@ -315,7 +315,8 @@ entries:
   - quote: the American Iron and Steel Institute (AISI) took part to standardize a numbering system for steels.
     approx_offset: 171992
   actor: unknown
-  notes: BLOG-ONLY
+  notes: 'BLOG-ONLY | RULING 2026-09-03 (R8-standards-body-out): names the standards organization itself, not a
+    certification/standard held or met'
   provenance:
   - action: added
     by: seed-agent-blackadvtech-com
@@ -328,6 +329,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R8-standards-body-out
 - id: blackadvtech_com-conformity_attestations-0017
   name: UNS
   status: confirmed
@@ -572,7 +577,7 @@ entries:
     source: corpus-seed
 - id: blackadvtech_com-conformity_attestations-0028
   name: American Iron and Steel Institute (AISI)
-  status: candidate
+  status: disputed
   acceptable_forms:
   - American Iron and Steel Institute
   - AISI
@@ -581,12 +586,18 @@ entries:
       for steels.
     approx_offset: 171975
   actor: unknown
-  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  notes: 'generic industry-background mention in a blog/educational article, not stated as Blackstone''s own claim
+    | RULING 2026-09-03 (R8-standards-body-out): names the standards organization itself, not a certification/standard
+    held or met'
   provenance:
   - action: added
     by: seed-agent-blackadvtech-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R8-standards-body-out
 - id: blackadvtech_com-conformity_attestations-0029
   name: unified numbering system (UNS)
   status: candidate

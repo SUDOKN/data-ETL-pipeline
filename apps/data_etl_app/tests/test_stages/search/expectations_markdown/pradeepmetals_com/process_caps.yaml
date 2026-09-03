@@ -358,7 +358,7 @@ entries:
     source: markdown-cutover
 - id: pradeepmetals_com-process_caps-0026
   name: DEFORM simulation and CIMATRON tool path generation
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - DEFORM™ simulation to optimize yield and die-design
   - CIMATRON Tool Path Generation for accurate die tooling
@@ -370,12 +370,13 @@ entries:
     approx_offset: 50110
   - quote: 3-D modeling using Siemens NX™ (Unigraphics)
     approx_offset: 50009
-  notes: named software steps (AutoCAD, Siemens NX / Unigraphics, DEFORM, CIMATRON - note the ™ characters) on the
-    Design & Engineering page. Toolpath generation arguably IS the first step of die manufacture; simulation and
-    modelling are not. Disputed | DEFORM simulation, CIMATRON tool-path generation and Siemens NX 3-D modelling
-    are CAD/CAM/simulation software used before the work exists. The clause wants 'an operation performed on materials,
-    parts, or products'; none of these is performed on the work. Separately, all three forms are whole design-engineering
-    lines rather than phrases.
+  notes: 'named software steps (AutoCAD, Siemens NX / Unigraphics, DEFORM, CIMATRON - note the ™ characters) on
+    the Design & Engineering page. Toolpath generation arguably IS the first step of die manufacture; simulation
+    and modelling are not. Disputed | DEFORM simulation, CIMATRON tool-path generation and Siemens NX 3-D modelling
+    are CAD/CAM/simulation software used before the work exists. The clause wants ''an operation performed on materials,
+    parts, or products''; none of these is performed on the work. Separately, all three forms are whole design-engineering
+    lines rather than phrases. | RULING 2026-09-03 (R5-engineering-in): engineering/design work ruled IN for process_caps
+    (SUDOKN EngineeringCapability family)'
   provenance:
   - action: added
     by: seed-agent-pradeepmetals-com
@@ -392,6 +393,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: promoted
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R5-engineering-in
 - id: pradeepmetals_com-process_caps-0032
   name: rapid curing (microwave)
   status: confirmed

@@ -503,7 +503,8 @@ entries:
     material-grade table prints ''DIN1.2714'' and ''DIN1.2713'' - real Deutsches Institut fuer Normung tool-steel
     grades. Ten DIN: numbers, all people. Disputed as an attestation; the grade forms belong to material_caps |
     a DIN is a registry identifier issued to a PERSON (a director), the same class as the CIN at 0007 and the D-U-N-S
-    example in SEEDING_BRIEF section 4. It attests nothing about the company, its sites or its products.'
+    example in SEEDING_BRIEF section 4. It attests nothing about the company, its sites or its products. | RULING
+    2026-09-03 (R6-bio-jobad-out): personal identifier from a director listing'
   provenance:
   - action: added
     by: seed-agent-pradeepmetals-com
@@ -518,6 +519,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: dispute-upheld
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: pradeepmetals_com-conformity_attestations-0029
   name: Member of Bar Association of West Bengal
   status: disputed
@@ -526,10 +531,11 @@ entries:
   evidence:
   - quote: He is a Member of Bar Association of West Bengal
     approx_offset: 93607
-  notes: a professional licence/membership held by an independent DIRECTOR, in his personal capacity, not by the
+  notes: 'a professional licence/membership held by an independent DIRECTOR, in his personal capacity, not by the
     company or its sites. Actor is the person, not the firm. Disputed | a trade-association membership held by a
-    non-executive director - exactly the class SEEDING_BRIEF section 4 says to seed disputed ('Trade-association
-    memberships ... have repeatedly been argued either way').
+    non-executive director - exactly the class SEEDING_BRIEF section 4 says to seed disputed (''Trade-association
+    memberships ... have repeatedly been argued either way''). | RULING 2026-09-03 (R6-bio-jobad-out): personal
+    membership from a biography'
   provenance:
   - action: added
     by: seed-agent-pradeepmetals-com
@@ -544,6 +550,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: dispute-upheld
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: pradeepmetals_com-conformity_attestations-0030
   name: DSIR R&D Centre recognition
   status: confirmed
@@ -754,7 +764,7 @@ entries:
     source: markdown-cutover
 - id: pradeepmetals_com-conformity_attestations-0017
   name: IMS Policy
-  status: candidate
+  status: disputed
   acceptable_forms:
   - IMS Policy
   - IMS POLICY
@@ -766,7 +776,9 @@ entries:
     Railways / Canadian Registration APPROVED SUPPLIER entries) and again in the /policies download list next to
     CSR Policy and Whistle Blower Policy; ''Stage 1 IMS audit completed'' line also still present. Same dispute
     as before: names the company''s own internal policy document, not a third-party attestation. Left as reanchor
-    (not dispute) since prior pass already recorded status=confirmed and the argument is preserved in these notes'
+    (not dispute) since prior pass already recorded status=confirmed and the argument is preserved in these notes
+    | RULING 2026-09-03 (R7-governance-out): self-published governance/ESG/legal-compliance document, not a third-party
+    conformity attestation'
   provenance:
   - action: added
     by: corpus-seed
@@ -776,6 +788,10 @@ entries:
     by: repair-agent-pradeepmetals-com
     date: '2026-08-29'
     source: markdown-cutover
+  - action: disputed
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R7-governance-out
 - id: pradeepmetals_com-conformity_attestations-0028
   name: granted patents (numbered IP registrations)
   status: disputed

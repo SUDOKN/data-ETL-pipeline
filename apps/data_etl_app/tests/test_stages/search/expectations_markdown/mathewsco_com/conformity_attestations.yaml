@@ -80,11 +80,12 @@ entries:
   evidence:
   - quote: Bob's an instrument rated private pilot with more than 5000 hours
     approx_offset: 29825
-  notes: DISPUTED - an instrument rating is a genuine airman certificate held by a person and issued by a named
-    authority, which fits the clause's wording; it has nothing to do with manufacturing conformity. A high-value
-    trap for the judged pass. | A personal aviation rating in a biography paragraph ("Bob's an instrument rated
+  notes: 'DISPUTED - an instrument rating is a genuine airman certificate held by a person and issued by a named
+    authority, which fits the clause''s wording; it has nothing to do with manufacturing conformity. A high-value
+    trap for the judged pass. | A personal aviation rating in a biography paragraph ("Bob''s an instrument rated
     private pilot with more than 5000 hours in the air"). Held by a person, so arguable under "its people", but
-    it attests nothing about the company, its sites or its products.
+    it attests nothing about the company, its sites or its products. | RULING 2026-09-03 (R6-bio-jobad-out): personal
+    credential from a biography'
   provenance:
   - action: added
     by: seed-agent-mathewsco-com
@@ -100,6 +101,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: dispute-upheld
+    by: assistant
+    date: '2026-09-03'
+    source: user-boundary-ruling-2026-09-03:R6-bio-jobad-out
 - id: mathewsco_com-conformity_attestations-0004
   name: 100 RMS
   status: disputed
