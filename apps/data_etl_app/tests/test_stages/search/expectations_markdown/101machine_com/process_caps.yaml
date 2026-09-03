@@ -1,0 +1,571 @@
+subject: 101machine.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
+  sha256: 6e351d8fdc5317848d99f37551218329a4a0a6359267213bcec847e6b44aaa40
+eval_set_version: 2
+expected_empty: false
+notes: 'Bulk of the field comes from the two Services lists (turning: 13 items, milling: 18 items) which overlap
+  heavily; overlapping items are merged into single entities with spec_table evidence. Both lists sit between a
+  repeated nav bar and a repeated address footer.'
+entries:
+- id: 101machine_com-process_caps-0001
+  name: CNC turning
+  status: confirmed
+  acceptable_forms:
+  - CNC turning
+  - Turning
+  - Turning Services
+  - CNC turning services
+  evidence:
+  - quote: CNC turning
+    approx_offset: 4489
+  - quote: Turning Services
+    approx_offset: 4944
+  notes: turning page prose + list heading; 'Turning' also appears in page headings
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0002
+  name: CNC milling
+  status: confirmed
+  acceptable_forms:
+  - CNC milling
+  - Milling
+  - Milling Services
+  evidence:
+  - quote: CNC milling
+    approx_offset: 3576
+  - quote: Milling Services
+    approx_offset: 4068
+  - quote: Our CNC Milling offers machining services
+    approx_offset: 3606
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0003
+  name: CNC machining
+  status: confirmed
+  acceptable_forms:
+  - CNC machining
+  - Precision Machining
+  - machining services
+  evidence:
+  - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts
+    approx_offset: 2878
+  - quote: Precision Machining / Milling / Turning
+    approx_offset: 4445
+  notes: the shop's core capability; 'Precision Machining' heading variant folded in
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0004
+  name: Manual machining
+  status: confirmed
+  acceptable_forms:
+  - Manual Machining
+  evidence:
+  - quote: Manual Machining / Milling / Turning
+    approx_offset: 3535
+  notes: 'distinct from CNC: manual capability named in the milling page heading'
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0005
+  name: Drilling
+  status: confirmed
+  acceptable_forms:
+  - Drilling
+  evidence:
+  - quote: Drilling
+    approx_offset: 4088
+  notes: listed under both Turning Services and Milling Services
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0006
+  name: Tapping
+  status: confirmed
+  acceptable_forms:
+  - Tapping
+  evidence:
+  - quote: Tapping
+    approx_offset: 4099
+  notes: both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0007
+  name: Form Tapping
+  status: confirmed
+  acceptable_forms:
+  - Form Tapping
+  evidence:
+  - quote: Form Tapping
+    approx_offset: 4311
+  notes: distinct operation from cut tapping; both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0008
+  name: Reaming
+  status: confirmed
+  acceptable_forms:
+  - Reaming
+  evidence:
+  - quote: Reaming
+    approx_offset: 4127
+  notes: both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0009
+  name: Boring
+  status: confirmed
+  acceptable_forms:
+  - Boring
+  evidence:
+  - quote: Boring
+    approx_offset: 4189
+  notes: both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0010
+  name: Counter Boring
+  status: confirmed
+  acceptable_forms:
+  - Counter Boring
+  evidence:
+  - quote: Counter Boring
+    approx_offset: 4198
+  notes: both service lists; distinct from Boring and Countersinking
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0011
+  name: Broaching
+  status: confirmed
+  acceptable_forms:
+  - Broaching
+  - Broaching – Hexs and Square
+  - Broaching – Hexes and Square
+  evidence:
+  - quote: Broaching – Hexs and Square
+    approx_offset: 5021
+  - quote: Broaching – Hexes and Square
+    approx_offset: 4216
+  notes: hex and square broaching; source spells 'Hexs' on the turning page, 'Hexes' on the milling page (en dash
+    U+2013 in both)
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0012
+  name: Facing
+  status: confirmed
+  acceptable_forms:
+  - Facing
+  evidence:
+  - quote: Facing
+    approx_offset: 4247
+  notes: both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0013
+  name: Spot Facing
+  status: confirmed
+  acceptable_forms:
+  - Spot Facing
+  evidence:
+  - quote: Spot Facing
+    approx_offset: 4284
+  notes: milling list only; distinct operation from Facing and Spotting
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0014
+  name: Spotting
+  status: confirmed
+  acceptable_forms:
+  - Spotting
+  evidence:
+  - quote: Spotting
+    approx_offset: 4273
+  notes: both service lists (spot drilling)
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0015
+  name: Countersinking
+  status: confirmed
+  acceptable_forms:
+  - Countersinking
+  evidence:
+  - quote: Countersinking
+    approx_offset: 4256
+  notes: both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0016
+  name: Chamfering
+  status: confirmed
+  acceptable_forms:
+  - Chamfering
+  evidence:
+  - quote: Chamfering
+    approx_offset: 4298
+  notes: both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0017
+  name: Profiling
+  status: confirmed
+  acceptable_forms:
+  - Profiling
+  evidence:
+  - quote: Profiling
+    approx_offset: 4344
+  notes: both service lists
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0018
+  name: Single Point Threading
+  status: confirmed
+  acceptable_forms:
+  - Single Point Threading
+  evidence:
+  - quote: Single Point Threading
+    approx_offset: 5129
+  notes: turning list only
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0019
+  name: Solid Surfacing
+  status: confirmed
+  acceptable_forms:
+  - Solid Surfacing
+  evidence:
+  - quote: Solid Surfacing
+    approx_offset: 4109
+  notes: milling list only; operation on solid-surface material - a material-side return could also be defensible
+    under the substance-implied keep-rule
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0020
+  name: ID Thread Milling
+  status: confirmed
+  acceptable_forms:
+  - ID Thread Milling
+  evidence:
+  - quote: ID Thread Milling
+    approx_offset: 4137
+  notes: milling list only; kept separate from OD Thread Milling (internal vs external threading are distinct capabilities,
+    not wording variants)
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0021
+  name: OD Thread Milling
+  status: confirmed
+  acceptable_forms:
+  - OD Thread Milling
+  evidence:
+  - quote: OD Thread Milling
+    approx_offset: 4157
+  notes: milling list only; see ID Thread Milling note
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0022
+  name: Engraving
+  status: confirmed
+  acceptable_forms:
+  - Engraving
+  evidence:
+  - quote: Engraving
+    approx_offset: 4177
+  notes: milling list only
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0023
+  name: Angular Milling
+  status: confirmed
+  acceptable_forms:
+  - Angular Milling
+  evidence:
+  - quote: Angular Milling
+    approx_offset: 4326
+  notes: milling list only
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-process_caps-0024
+  name: Machining
+  status: candidate
+  acceptable_forms:
+  - Machining
+  - machining
+  - machined
+  evidence:
+  - quote: Our company receives acclaim from our customers for producing the finest custom machined solutions.
+    approx_offset: 330
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: 101machine_com-process_caps-0025
+  name: Milling
+  status: candidate
+  acceptable_forms:
+  - Milling
+  - milling
+  evidence:
+  - quote: '## CNC Machining / Milling / Turning'
+    approx_offset: 2799
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: 101machine_com-process_caps-0026
+  name: Turning
+  status: candidate
+  acceptable_forms:
+  - Turning
+  - turning
+  evidence:
+  - quote: '## CNC Machining / Milling / Turning'
+    approx_offset: 2799
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Design consultation
+  reason: advisory service ('Machining and Design consultation services are available.'), not an operation performed
+    on the work
+- form: Shipping and Receiving
+  reason: FAQ logistics-hours line; business activity (code Z), not a process capability
+- form: production
+  reason: generic - 'prototype or production run' prose (code G)
+- form: manufacturing
+  reason: generic - 'your unique manufacturing needs' (code G)
+- form: Shipping
+  reason: logistics/receiving hours ('Shipping and Receiving Hours 9a-11a...'), not a manufacturing operation performed
+    on the work.

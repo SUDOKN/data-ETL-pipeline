@@ -1,0 +1,513 @@
+subject: anchor-mfg.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/anchor-mfg.com.txt
+  sha256: 3e85dd05ab75ae6deb3ff745a338b4cf9cb90484da8146f321b3f0ac99c91845
+eval_set_version: 3
+expected_empty: false
+notes: Rich field. The same 7-industry list appears on four surfaces (home, /capabilities-services/, /industries-served/,
+  /Anchor/industries-served/) and each industry also gets a prose paragraph on the two (duplicated) industries pages
+  - expect every one of the 7 to be found, likely in several windows. All are sectors Anchor serves (actor own throughout).
+  VERIFIER 2026-08-26 - independent pass - all 7 entries confirmed, all 14 quotes verbatim. expected_empty false
+  AGREED. The 7 sectors are exactly the subject's own Industries Served list and no eighth sector claim exists in
+  the file. 'Industrial' (0007) is the weakest - heading-only and close to the generic G code - but it is an explicit
+  list item, so it stands.
+entries:
+- id: anchor-mfg_com-industries-0001
+  name: Automotive
+  status: candidate
+  acceptable_forms:
+  - Automotive
+  - automotive
+  evidence:
+  - quote: Anchor has extensive expertise in the automotive and heavy vehicle industry but also services non-automotive
+      industries.
+    approx_offset: 743
+  notes: legacy 'automotive industry'/'Automotive' heading did not survive; the word 'automotive' still occurs repeatedly
+    (home, design-and-tooling, fabrication, powder-coating pages) so re-anchored on the home page's industries sentence
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-industries-0004
+  name: Commercial Vehicle
+  status: confirmed
+  acceptable_forms:
+  - Commercial Vehicle
+  - commercial vehicles
+  - Class 8 heavy trucks
+  evidence:
+  - quote: Commercial Vehicle
+    approx_offset: 2519
+  notes: the prose under this heading never repeats 'commercial vehicle' - its in-window designation is the segment
+    'Class 8 heavy trucks' (accepted as a form, borderline B); school/transit buses and road coaches from the same
+    sentence are the customers' end vehicles, not sector names VERIFIER 2026-08-26 - flagged form - 'Class 8 heavy
+    trucks' is listed as a products false friend (code C, the customer's end vehicle); as an industries form it
+    is defensible per-field, but it lets a run that never names the sector take sector credit.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-industries-0003
+  name: Agricultural
+  status: confirmed
+  acceptable_forms:
+  - Agricultural
+  - Agriculture
+  evidence:
+  - quote: Agricultural
+    approx_offset: 2540
+  notes: the prose paragraph is pure marketing filler ('without agriculture, there is no culture'); the served-industry
+    claim rests on the list membership and the closing sentence quoted here
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-industries-0005
+  name: Consumer Products
+  status: confirmed
+  acceptable_forms:
+  - Consumer Products
+  - Consumer Product
+  evidence:
+  - quote: Consumer Products
+    approx_offset: 3563
+  notes: singular on the home list and the industries-page prose heading, plural on the capabilities and industries
+    list surfaces - merged as trivial variants
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-industries-0002
+  name: Appliance
+  status: confirmed
+  acceptable_forms:
+  - Appliance
+  - home appliance
+  evidence:
+  - quote: Appliance
+    approx_offset: 3583
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-industries-0006
+  name: Defense
+  status: candidate
+  acceptable_forms:
+  - Defense
+  - defense industry
+  evidence:
+  - quote: Anchor has been a trusted strategic supplier to the defense industry for many years.
+    approx_offset: 4418
+  notes: the 2026-08-27 quote is gone but the /home Defense block was rewritten, not dropped -- 'defense industry'
+    still occurs twice on the same page; dropped 'military industry' from acceptable_forms since the new prose never
+    puts 'military' immediately before 'industry' (only 'military vehicles' / 'military specifications')
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-industries-0007
+  name: Industrial
+  status: confirmed
+  acceptable_forms:
+  - Industrial
+  evidence:
+  - quote: Industrial
+    approx_offset: 40063
+  notes: heading-only designation in the 7-industry list; its prose is generic ('many industries and across a variety
+    of market segments'), so the only anchoring form is the bare heading
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-industries-0008
+  name: heavy vehicle industry
+  status: candidate
+  acceptable_forms:
+  - heavy vehicle industry
+  evidence:
+  - quote: Anchor has extensive expertise in the automotive and heavy vehicle industry but also services non-automotive
+      industries.
+    approx_offset: 743
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0009
+  name: consumer product & appliance
+  status: candidate
+  acceptable_forms:
+  - consumer product & appliance
+  evidence:
+  - quote: These include consumer product & appliance, food service, construction, agricultural, defense, solar
+      and general industrial industries.
+    approx_offset: 864
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0010
+  name: food service
+  status: candidate
+  acceptable_forms:
+  - food service
+  evidence:
+  - quote: These include consumer product & appliance, food service, construction, agricultural, defense, solar
+      and general industrial industries.
+    approx_offset: 864
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0011
+  name: construction
+  status: candidate
+  acceptable_forms:
+  - construction
+  evidence:
+  - quote: These include consumer product & appliance, food service, construction, agricultural, defense, solar
+      and general industrial industries.
+    approx_offset: 864
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0012
+  name: solar
+  status: candidate
+  acceptable_forms:
+  - solar
+  evidence:
+  - quote: These include consumer product & appliance, food service, construction, agricultural, defense, solar
+      and general industrial industries.
+    approx_offset: 864
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0013
+  name: general industrial
+  status: candidate
+  acceptable_forms:
+  - general industrial
+  evidence:
+  - quote: These include consumer product & appliance, food service, construction, agricultural, defense, solar
+      and general industrial industries.
+    approx_offset: 864
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0014
+  name: commercial vehicles
+  status: candidate
+  acceptable_forms:
+  - commercial vehicles
+  evidence:
+  - quote: Many of our stampings and assemblies are integral to the manufacturing of commercial vehicles and agricultural
+      equipment.
+    approx_offset: 2554
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0015
+  name: agricultural equipment
+  status: candidate
+  acceptable_forms:
+  - agricultural equipment
+  evidence:
+  - quote: Many of our stampings and assemblies are integral to the manufacturing of commercial vehicles and agricultural
+      equipment.
+    approx_offset: 2554
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0016
+  name: HVAC
+  status: candidate
+  acceptable_forms:
+  - HVAC
+  evidence:
+  - quote: kitchen appliances, lighting, medical applications, garage tools, cabinets, HVAC and other consumer products.
+    approx_offset: 3794
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0017
+  name: medical applications
+  status: candidate
+  acceptable_forms:
+  - medical applications
+  evidence:
+  - quote: kitchen appliances, lighting, medical applications, garage tools, cabinets, HVAC and other consumer products.
+    approx_offset: 3794
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0018
+  name: kitchen appliances
+  status: candidate
+  acceptable_forms:
+  - kitchen appliances
+  evidence:
+  - quote: kitchen appliances, lighting, medical applications, garage tools, cabinets, HVAC and other consumer products.
+    approx_offset: 3794
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0019
+  name: garage tools
+  status: candidate
+  acceptable_forms:
+  - garage tools
+  evidence:
+  - quote: kitchen appliances, lighting, medical applications, garage tools, cabinets, HVAC and other consumer products.
+    approx_offset: 3794
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0020
+  name: cabinets
+  status: candidate
+  acceptable_forms:
+  - cabinets
+  evidence:
+  - quote: kitchen appliances, lighting, medical applications, garage tools, cabinets, HVAC and other consumer products.
+    approx_offset: 3794
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0021
+  name: lighting
+  status: candidate
+  acceptable_forms:
+  - lighting
+  evidence:
+  - quote: kitchen appliances, lighting, medical applications, garage tools, cabinets, HVAC and other consumer products.
+    approx_offset: 3794
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0022
+  name: military vehicles
+  status: candidate
+  acceptable_forms:
+  - military vehicles
+  evidence:
+  - quote: Anchor has produced assemblies for the MRAP vehicles, heater assemblies for tank engines and complex
+      engine cradles for military vehicles.
+    approx_offset: 4503
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0023
+  name: industrial controls
+  status: candidate
+  acceptable_forms:
+  - industrial controls
+  evidence:
+  - quote: Industries served include appliance & food service, industrial controls, enclosures, off-road vehicles,
+      agriculture, medical, HVAC and low volume automotive.
+    approx_offset: 24560
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0024
+  name: off-road vehicles
+  status: candidate
+  acceptable_forms:
+  - off-road vehicles
+  evidence:
+  - quote: Industries served include appliance & food service, industrial controls, enclosures, off-road vehicles,
+      agriculture, medical, HVAC and low volume automotive.
+    approx_offset: 24560
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0025
+  name: agriculture
+  status: candidate
+  acceptable_forms:
+  - agriculture
+  evidence:
+  - quote: Industries served include appliance & food service, industrial controls, enclosures, off-road vehicles,
+      agriculture, medical, HVAC and low volume automotive.
+    approx_offset: 24560
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0026
+  name: lawn and garden products
+  status: candidate
+  acceptable_forms:
+  - lawn and garden products
+  evidence:
+  - quote: kitchen appliances, automotive painting, lawn and garden products, architectural, construction products
+      and medical.
+    approx_offset: 39886
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0027
+  name: architectural
+  status: candidate
+  acceptable_forms:
+  - architectural
+  evidence:
+  - quote: kitchen appliances, automotive painting, lawn and garden products, architectural, construction products
+      and medical.
+    approx_offset: 39886
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0028
+  name: automotive painting
+  status: candidate
+  acceptable_forms:
+  - automotive painting
+  evidence:
+  - quote: kitchen appliances, automotive painting, lawn and garden products, architectural, construction products
+      and medical.
+    approx_offset: 39886
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0029
+  name: construction products
+  status: candidate
+  acceptable_forms:
+  - construction products
+  evidence:
+  - quote: kitchen appliances, automotive painting, lawn and garden products, architectural, construction products
+      and medical.
+    approx_offset: 39886
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-industries-0030
+  name: medical
+  status: candidate
+  acceptable_forms:
+  - medical
+  evidence:
+  - quote: Our protective coatings are used across a wide range of industries including medical and other essential
+      services.
+    approx_offset: 40619
+  notes: protective-coatings customer industries; also 'medical applications' line35
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Metal Stamping
+  reason: the subject's OWN process presented as capability headings and self-description ('As a metal stamper')
+    - returned as an industry it is code O (own activity as sector)
+- form: Tool & Die
+  reason: own business line ('a stand-alone tool and die business') and own-name footer ('Anchor Tool & Die Co.'
+    on all 15 pages) - code O as an industry
+- form: Manufacturing
+  reason: generic (code G) - 'Anchor Manufacturing', 'manufacturing space', 'Tier I and Tier II manufacturers';
+    never a sector-served designation
+- form: Food
+  reason: word-association (code W) from agriculture marketing filler ('the food we eat', 'food chain'); no food-industry-served
+    claim anywhere
+- form: Transportation
+  reason: word-association (code W) from 'popular means of transport' in the commercial-vehicle prose; transportation
+    is never named as a served sector
+- form: OEM
+  reason: customer tier, not an industry - 'North American, European, and Asian OEM's' names who Anchor sells to
+    across sectors
+- form: Tier I and Tier II
+  reason: customer tiers ('Tier I and Tier II manufacturers'), not a sector designation
+- form: enclosures
+  reason: on the fabrication page this names a product Anchor makes, not a market it serves

@@ -1,0 +1,978 @@
+subject: taylordunn.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
+  sha256: 973bd30712ecbd8754d31aef6041a5b07356215a7425214d0330074b59bba489
+eval_set_version: 2
+expected_empty: false
+notes: 'This file also serves the contract_products field: the text contains zero contract-manufacturing prose,
+  so ANY contract_products yield is junk-minting signal; the products expectation is only the four nav-label vehicle
+  lines below. All evidence is nav/footer menu labels repeated identically on all 31 page blocks (offsets are for
+  the first block and advisory only). "Tow Tractors" is deliberately NOT an entry: it occurs only as the URL slug
+  /tow-tractors/, never as text. Any sizable yield beyond these four labels is junk minted from cookie-consent boilerplate.'
+entries:
+- id: taylordunn_com-products-0001
+  name: Utility Vehicles
+  status: confirmed
+  acceptable_forms:
+  - Utility Vehicles
+  evidence:
+  - quote: Utility Vehicles
+    approx_offset: 667
+  notes: footer VEHICLES menu label; product-line/category designation (family-level, B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-products-0002
+  name: Bigfoot Burden Carriers
+  status: confirmed
+  acceptable_forms:
+  - Bigfoot Burden Carriers
+  - Bigfoot
+  evidence:
+  - quote: Bigfoot Burden Carriers
+    approx_offset: 3176
+  notes: footer VEHICLES menu label; the Bigfoot family also appears as header CTA 'BUILD A BIGFOOT' and footer
+    link 'Build a Bigfoot' -- the closest thing to a branded product name in the text
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-products-0003
+  name: Stockchasers
+  status: confirmed
+  acceptable_forms:
+  - Stockchasers
+  evidence:
+  - quote: Stockchasers
+    approx_offset: 912
+  notes: footer VEHICLES menu label; distinctive branded category name for the subject's stock-picking vehicles
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-products-0004
+  name: Personnel Carriers
+  status: confirmed
+  acceptable_forms:
+  - Personnel Carriers
+  evidence:
+  - quote: Personnel Carriers
+    approx_offset: 1166
+  notes: footer VEHICLES menu label; product-line/category designation (family-level, B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-products-0005
+  name: SS-536
+  status: candidate
+  acceptable_forms:
+  - SS-536
+  evidence:
+  - quote: SS-536
+    approx_offset: 24608
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0006
+  name: SS-546
+  status: candidate
+  acceptable_forms:
+  - SS-546
+  evidence:
+  - quote: SS-546
+    approx_offset: 24615
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0007
+  name: C-432
+  status: candidate
+  acceptable_forms:
+  - C-432
+  evidence:
+  - quote: C-432
+    approx_offset: 91043
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0008
+  name: BT-280
+  status: candidate
+  acceptable_forms:
+  - BT-280
+  evidence:
+  - quote: 'BT-280 36/48V (Starting Serial # 205963)'
+    approx_offset: 92177
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0009
+  name: RE-380
+  status: candidate
+  acceptable_forms:
+  - RE-380
+  evidence:
+  - quote: 'RE-380 36/48V Sevcon DC (Starting Serial # 207500)'
+    approx_offset: 92218
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0010
+  name: R0-380
+  status: candidate
+  acceptable_forms:
+  - R0-380
+  evidence:
+  - quote: 'R0-380 36V Curtis DC (Starting Serial # 207315)'
+    approx_offset: 92269
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0011
+  name: SC-100
+  status: candidate
+  acceptable_forms:
+  - SC-100
+  evidence:
+  - quote: SC-100
+    approx_offset: 92463
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0012
+  name: C-425
+  status: candidate
+  acceptable_forms:
+  - C-425
+  evidence:
+  - quote: 'C-425, Sevcon DC (Starting Serial # 204740)'
+    approx_offset: 92596
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0013
+  name: E-451
+  status: candidate
+  acceptable_forms:
+  - E-451
+  evidence:
+  - quote: 'E-451 / E-457 (Starting Serial # 206900)'
+    approx_offset: 92684
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0014
+  name: E-457
+  status: candidate
+  acceptable_forms:
+  - E-457
+  evidence:
+  - quote: 'E-451 / E-457 (Starting Serial # 206900)'
+    approx_offset: 92684
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0015
+  name: E-455
+  status: candidate
+  acceptable_forms:
+  - E-455
+  evidence:
+  - quote: 'E-455 24/36V Sevcon DC (Starting Serial # 207800)'
+    approx_offset: 92725
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0016
+  name: Tiger
+  status: candidate
+  acceptable_forms:
+  - Tiger
+  evidence:
+  - quote: Tiger
+    approx_offset: 92829
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0017
+  name: Tiger TC-50E
+  status: candidate
+  acceptable_forms:
+  - Tiger TC-50E
+  evidence:
+  - quote: 'Tiger TC-50E (Starting Serial # 198576)'
+    approx_offset: 92829
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0018
+  name: Tiger Cub TC-30-60C
+  status: candidate
+  acceptable_forms:
+  - Tiger Cub TC-30-60C
+  evidence:
+  - quote: 'Tiger Cub TC-30-60C (Starting Serial # 194055)'
+    approx_offset: 92869
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0019
+  name: Tiger TC-30-60
+  status: candidate
+  acceptable_forms:
+  - Tiger TC-30-60
+  evidence:
+  - quote: 'Tiger TC-30-60 (Starting Serial # 210000)'
+    approx_offset: 92916
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0020
+  name: Tiger TC-080-120
+  status: candidate
+  acceptable_forms:
+  - Tiger TC-080-120
+  evidence:
+  - quote: 'Tiger TC-080-120 (Starting Serial # 210316)'
+    approx_offset: 92958
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0021
+  name: TT-316
+  status: candidate
+  acceptable_forms:
+  - TT-316
+  evidence:
+  - quote: TT-316
+    approx_offset: 93002
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0022
+  name: Bigfoot XL/3000
+  status: candidate
+  acceptable_forms:
+  - Bigfoot XL/3000
+  evidence:
+  - quote: 'Bigfoot XL/3000 48V (Starting Serial # 204000)'
+    approx_offset: 93141
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0023
+  name: G-1500
+  status: candidate
+  acceptable_forms:
+  - G-1500
+  evidence:
+  - quote: 'G-1500 (Starting Serial # 209617)'
+    approx_offset: 93188
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0024
+  name: G-100
+  status: candidate
+  acceptable_forms:
+  - G-100
+  evidence:
+  - quote: G-100 (2018 Model)
+    approx_offset: 93290
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0025
+  name: B-150
+  status: candidate
+  acceptable_forms:
+  - B-150
+  evidence:
+  - quote: 'B-150 and MX-1600 (Starting Serial # 203801)'
+    approx_offset: 93309
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0026
+  name: MX-1600
+  status: candidate
+  acceptable_forms:
+  - MX-1600
+  evidence:
+  - quote: 'B-150 and MX-1600 (Starting Serial # 203801)'
+    approx_offset: 93309
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0027
+  name: B-200
+  status: candidate
+  acceptable_forms:
+  - B-200
+  evidence:
+  - quote: 'B-200 and B-210 Sevcon DC (Starting Serial # 207700)'
+    approx_offset: 93395
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0028
+  name: B-210
+  status: candidate
+  acceptable_forms:
+  - B-210
+  evidence:
+  - quote: 'B-200 and B-210 Sevcon DC (Starting Serial # 207700)'
+    approx_offset: 93395
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0029
+  name: TAT
+  status: candidate
+  acceptable_forms:
+  - TAT
+  evidence:
+  - quote: TAT and TB4 Operator (Maintenance and Parts, All Years)
+    approx_offset: 93519
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0030
+  name: TB4
+  status: candidate
+  acceptable_forms:
+  - TB4
+  evidence:
+  - quote: TAT and TB4 Operator (Maintenance and Parts, All Years)
+    approx_offset: 93519
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0031
+  name: MX-600
+  status: candidate
+  acceptable_forms:
+  - MX-600
+  evidence:
+  - quote: MX-600
+    approx_offset: 96947
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0032
+  name: cargo box
+  status: candidate
+  acceptable_forms:
+  - cargo boxes
+  - cargo box
+  evidence:
+  - quote: Taylor-Dunn vehicles can be equipped with ladder racks, cargo boxes, tool chests, dump beds, and various
+      other options that make them ideal for any maintenance application.
+    approx_offset: 127475
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0033
+  name: ladder rack
+  status: candidate
+  acceptable_forms:
+  - ladder racks
+  - ladder rack
+  evidence:
+  - quote: Taylor-Dunn vehicles can be equipped with ladder racks, cargo boxes, tool chests, dump beds, and various
+      other options that make them ideal for any maintenance application.
+    approx_offset: 127475
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0034
+  name: tool chest
+  status: candidate
+  acceptable_forms:
+  - tool chests
+  - tool chest
+  evidence:
+  - quote: Taylor-Dunn vehicles can be equipped with ladder racks, cargo boxes, tool chests, dump beds, and various
+      other options that make them ideal for any maintenance application.
+    approx_offset: 127475
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0035
+  name: dump bed
+  status: candidate
+  acceptable_forms:
+  - dump beds
+  - dump bed
+  evidence:
+  - quote: Taylor-Dunn vehicles can be equipped with ladder racks, cargo boxes, tool chests, dump beds, and various
+      other options that make them ideal for any maintenance application.
+    approx_offset: 127475
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0036
+  name: Bigfoot
+  status: candidate
+  acceptable_forms:
+  - BIGFOOT
+  - Bigfoot
+  evidence:
+  - quote: BIGFOOT
+    approx_offset: 142184
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0037
+  name: Bigfoot S
+  status: candidate
+  acceptable_forms:
+  - BIGFOOT S
+  - Bigfoot S
+  evidence:
+  - quote: BIGFOOT S
+    approx_offset: 142184
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0038
+  name: E-450
+  status: candidate
+  acceptable_forms:
+  - E-450
+  evidence:
+  - quote: INTRODUCTION OF THE E-450
+    approx_offset: 144263
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0039
+  name: Trident
+  status: candidate
+  acceptable_forms:
+  - Trident
+  evidence:
+  - quote: Taylor-Dunn releases the model “R” Trident three-wheel neighborhood electric cart complete with headlights,
+      taillights, and turn signals.
+    approx_offset: 144730
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0040
+  name: Taylorcar
+  status: candidate
+  acceptable_forms:
+  - Taylorcar
+  - PG” Taylorcar
+  evidence:
+  - quote: Taylor-Dunn released its first three-wheeled golf cart in 1955—the model “PG” Taylorcar. In 1961, Taylor-Dunn
+      introduced their second golf cart line, the “Tee-Bird.”
+    approx_offset: 144964
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0041
+  name: Tee-Bird
+  status: candidate
+  acceptable_forms:
+  - Tee-Bird
+  evidence:
+  - quote: Taylor-Dunn released its first three-wheeled golf cart in 1955—the model “PG” Taylorcar. In 1961, Taylor-Dunn
+      introduced their second golf cart line, the “Tee-Bird.”
+    approx_offset: 144964
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0042
+  name: Bigfoot Lithium-Ion Battery
+  status: candidate
+  acceptable_forms:
+  - BIGFOOT LITHIUM-ION BATTERY
+  - Bigfoot lithium-ion battery
+  evidence:
+  - quote: BIGFOOT LITHIUM-ION BATTERY
+    approx_offset: 148348
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0043
+  name: Tiger Li-Ion
+  status: candidate
+  acceptable_forms:
+  - Tiger Li-Ion
+  evidence:
+  - quote: Tiger Li-Ion
+    approx_offset: 150148
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0044
+  name: Baggage Truck
+  status: candidate
+  acceptable_forms:
+  - Baggage Truck
+  evidence:
+  - quote: Baggage Truck
+    approx_offset: 156380
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0045
+  name: Lavatory Service Truck
+  status: candidate
+  acceptable_forms:
+  - Lavatory Service Truck
+  evidence:
+  - quote: Lavatory Service Truck
+    approx_offset: 156958
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0046
+  name: Potable Water Service Truck
+  status: candidate
+  acceptable_forms:
+  - Potable Water Service Truck
+  evidence:
+  - quote: Potable Water Service Truck
+    approx_offset: 157376
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0047
+  name: GEM e2
+  status: candidate
+  acceptable_forms:
+  - GEM e2
+  evidence:
+  - quote: GEM e2
+    approx_offset: 157923
+  actor: parent_sibling
+  notes: GEM is a sibling Waev brand's low-speed vehicle, listed alongside Taylor-Dunn's own security-truck lineup.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0048
+  name: Mobile Workshop
+  status: candidate
+  acceptable_forms:
+  - Mobile Workshop
+  evidence:
+  - quote: Mobile Workshop
+    approx_offset: 158136
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0049
+  name: R-380
+  status: candidate
+  acceptable_forms:
+  - R-380
+  - R-380 36V
+  - R380
+  evidence:
+  - quote: R-380 36V
+    approx_offset: 159031
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0050
+  name: Bigfoot XL
+  status: candidate
+  acceptable_forms:
+  - BIGFOOT XL
+  - Bigfoot XL
+  evidence:
+  - quote: BIGFOOT XL
+    approx_offset: 166248
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0051
+  name: pintle hitch
+  status: candidate
+  acceptable_forms:
+  - pintle hitch
+  evidence:
+  - quote: Optional Accessories fold-away seats, second row seats, eco cab with vinyl doors, strobe light pole,
+      battery watering system, non-marking tires, pintle hitch, stake sides, and aluminum drop sides.
+    approx_offset: 166724
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0052
+  name: steel cab
+  status: candidate
+  acceptable_forms:
+  - steel cab
+  evidence:
+  - quote: Optional Accessories fold-away seats, second row seats, eco cab with vinyl doors, deluxe steel cab with
+      steel doors, strobe light pole, battery watering system, non-marking tires, pintle hitch,
+    approx_offset: 167410
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0053
+  name: steel box
+  status: candidate
+  acceptable_forms:
+  - steel box
+  evidence:
+  - quote: pintle hitch, rear steel box with doors, diamond plate deckboard, stake sides, and aluminum drop sides.
+    approx_offset: 167590
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0054
+  name: diamond plate deckboard
+  status: candidate
+  acceptable_forms:
+  - diamond plate deckboard
+  evidence:
+  - quote: pintle hitch, rear steel box with doors, diamond plate deckboard, stake sides, and aluminum drop sides.
+    approx_offset: 167590
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0055
+  name: SC-90
+  status: candidate
+  acceptable_forms:
+  - SC-90
+  evidence:
+  - quote: SC-90 and SC-100
+    approx_offset: 175899
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0056
+  name: Huskey C-426
+  status: candidate
+  acceptable_forms:
+  - Huskey C-426
+  - C-426
+  - C426
+  evidence:
+  - quote: Huskey C-426
+    approx_offset: 186502
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0057
+  name: B5-440-36
+  status: candidate
+  acceptable_forms:
+  - B5-440-36
+  evidence:
+  - quote: The information in this article applies to standard Bigfoot and Bigfoot XL vehicles – model numbers B5-440-36,
+      B5-440-48, B5-540-48XL and BF-030-48. Note that vehicle customization may cause
+    approx_offset: 233979
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0058
+  name: B5-440-48
+  status: candidate
+  acceptable_forms:
+  - B5-440-48
+  evidence:
+  - quote: The information in this article applies to standard Bigfoot and Bigfoot XL vehicles – model numbers B5-440-36,
+      B5-440-48, B5-540-48XL and BF-030-48. Note that vehicle customization may cause
+    approx_offset: 233979
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0059
+  name: B5-540-48XL
+  status: candidate
+  acceptable_forms:
+  - B5-540-48XL
+  evidence:
+  - quote: The information in this article applies to standard Bigfoot and Bigfoot XL vehicles – model numbers B5-440-36,
+      B5-440-48, B5-540-48XL and BF-030-48. Note that vehicle customization may cause
+    approx_offset: 233979
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0060
+  name: BF-030-48
+  status: candidate
+  acceptable_forms:
+  - BF-030-48
+  evidence:
+  - quote: The information in this article applies to standard Bigfoot and Bigfoot XL vehicles – model numbers B5-440-36,
+      B5-440-48, B5-540-48XL and BF-030-48. Note that vehicle customization may cause
+    approx_offset: 233979
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0061
+  name: Bigfoot XL Industrial Liftgate Truck
+  status: candidate
+  acceptable_forms:
+  - BIGFOOT XL INDUSTRIAL LIFTGATE TRUCK
+  evidence:
+  - quote: BIGFOOT XL INDUSTRIAL LIFTGATE TRUCK
+    approx_offset: 235691
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0062
+  name: Tommy Gate G2
+  status: candidate
+  acceptable_forms:
+  - Tommy Gate G2
+  evidence:
+  - quote: Waev factory‑integrated a Tommy Gate G2 Series hydraulic liftgate directly into the proven Bigfoot XL
+      chassis
+    approx_offset: 236214
+  actor: supplier
+  notes: Third-party hydraulic liftgate integrated by Waev/Taylor-Dunn into the Bigfoot XL.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0063
+  name: work bench
+  status: candidate
+  acceptable_forms:
+  - Work bench
+  evidence:
+  - quote: Work bench and vise
+    approx_offset: 249816
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0064
+  name: vise
+  status: candidate
+  acceptable_forms:
+  - vise
+  evidence:
+  - quote: Work bench and vise
+    approx_offset: 249816
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0065
+  name: SS-534
+  status: candidate
+  acceptable_forms:
+  - SS-534
+  evidence:
+  - quote: 'SS-534: 500 lb (227 kg)'
+    approx_offset: 365990
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-products-0066
+  name: C-342
+  status: candidate
+  acceptable_forms:
+  - C-342
+  evidence:
+  - quote: C-342
+    approx_offset: 366255
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Elementor
+  reason: WordPress page-builder plugin; appears only in the 'Placed cookies' vendor table ('Consent to service
+    elementor'); third-party ad-tech software, not a subject product
+- form: WordPress
+  reason: CMS named in the cookie vendor table; website infrastructure, not a product made or sold
+- form: WPForms
+  reason: form-builder plugin in the cookie vendor table
+- form: Complianz
+  reason: cookie-consent plugin vendor whose table this whole page is; not a product
+- form: Google Adsense
+  reason: third-party ad service in the cookie vendor table
+- form: Google Fonts
+  reason: third-party font service in the cookie vendor table
+- form: Google reCAPTCHA
+  reason: third-party anti-bot service in the cookie vendor table
+- form: Google Maps
+  reason: third-party map service in the cookie vendor table
+- form: Google Ads
+  reason: third-party ad service in the cookie vendor table
+- form: YouTube
+  reason: social/video platform named in cookie boilerplate and footer icon links
+- form: Facebook
+  reason: social network named in cookie-policy section 5.4 and footer icon links
+- form: LinkedIn
+  reason: social network named in cookie-policy section 5.4 and footer icon links
+- form: Instagram
+  reason: social network named in cookie-policy section 5.4
+- form: shopping cart
+  reason: hypothetical example inside generic cookie-explainer prose ('the items remain in your shopping cart');
+    the site has no store
+- form: web beacon
+  reason: tracking technology defined in cookie-policy section 4, not a product
+- form: pixel tag
+  reason: tracking technology defined in cookie-policy section 4, not a product
+- form: 2114 W Ball Rd
+  reason: Waev Inc. (parent company) privacy legal-notice address; a location string in legal boilerplate, not a
+    product designation and not a subject facility claim

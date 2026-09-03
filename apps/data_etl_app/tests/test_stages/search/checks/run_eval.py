@@ -107,10 +107,10 @@ def main() -> None:
         append_history(sc)
         scorecards.append(sc)
         v = metrics["verdict"]
-        print(
-            f"{fr.subject:28} {fr.field:26} {v['status']:4} "
-            f"{('; '.join(v['reds']) if v['reds'] else '')}"
-        )
+        notes = "; ".join(v["reds"]) if v["reds"] else ""
+        if v.get("warnings"):
+            notes = (notes + "  " if notes else "") + "warn: " + "; ".join(v["warnings"])
+        print(f"{fr.subject:28} {fr.field:26} {v['status']:4} {notes}")
 
     summary = write_summary(args.run, scorecards)
     print(f"\nwrote {len(scorecards)} scorecards; summary: {summary}")

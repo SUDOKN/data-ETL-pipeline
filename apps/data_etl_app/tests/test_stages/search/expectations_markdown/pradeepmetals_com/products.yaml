@@ -1,0 +1,1071 @@
+subject: pradeepmetals.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/pradeepmetals.com.txt
+  sha256: 7a36ae8691171d311de2a755a3a7d14f4e70d85c4b2ed90a3271b389de048586
+eval_set_version: 3
+expected_empty: false
+notes: This file doubles as the contract_products expectation. The company's five product categories (Forged Flanges,
+  Valves, Gears & Automative, Manifolds, General Engineering) are named on the nav strip, the Products page and
+  in the footer of 112 pages - but four of the five category PAGES are either photo-caption stubs ('Valve1'..'Valve6',
+  'GENERAL ENGINEERING 1'..'4') or 'Coming Soon'. The real product detail is in three long valve explainers (ball,
+  butterfly, globe) whose types are entries. The dominant junk pressure is the ~24 pages of INVESTOR-RELATIONS DOCUMENTS
+  - Annual Reports, AGM Notices, Proxy Forms, Scrutinizer's Reports, Postal Ballot Forms, Voting Results - which
+  the products clause explicitly excludes ('awards, memberships, training, documents'), together with the 28-row
+  directorship register of company names, which it also explicitly excludes.
+entries:
+- id: pradeepmetals_com-products-0002
+  name: Forged Flanges
+  status: confirmed
+  acceptable_forms:
+  - Forged Flanges
+  - Custom Flanges
+  - commodity flanges
+  - flanges
+  evidence:
+  - quote: Forged Flanges
+    approx_offset: 279
+  - quote: Export of commodity flanges commenced
+    approx_offset: 35825
+  notes: the founding product line; exported since 1989. The /forged-flanges page body is two image captions, 'Forged
+    Flanges1' and 'Forged Flanges2'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0003
+  name: Forged Steel Valves
+  status: confirmed
+  acceptable_forms:
+  - FORGED STEEL VALVE MANUFACTURERS
+  - Forged Steel Valves
+  - steel valves
+  - Valves
+  evidence:
+  - quote: Valves
+    approx_offset: 296
+  notes: the /valves page body is six image captions, 'Valve1'..'Valve6'; the substance is in the blog explainers
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0004
+  name: Manifolds
+  status: confirmed
+  acceptable_forms:
+  - MANIFOLDS
+  evidence:
+  - quote: MANIFOLDS
+    approx_offset: 32345
+  - quote: Manifolds
+    approx_offset: 427
+  notes: a named product vertical since 2001; the page body is four image captions, all of them reading 'GEARS &
+    MANIFOLDS 1'..'4' rather than manifolds
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0008
+  name: Material Grades (category label)
+  status: disputed
+  acceptable_forms:
+  - Material Grades
+  - MATERIAL GRADES
+  - material grades
+  evidence:
+  - quote: ' Material Grades'
+    approx_offset: 439
+  notes: 'still the sixth tile under the OUR PRODUCTS page (Valves, Gears & Automative, Manifolds, Forged Flanges,
+    General Engineering, Material Grades) and still the page title of /material-grades/ (''# Material Grades Used'');
+    same dispute carries forward: a grade is a specification/input, not ''a made artifact ... that comes out of
+    manufacturing work'' -- the grades themselves belong in material_caps, not here'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: dispute
+    by: repair-agent-pradeepmetals-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0001
+  name: closed-die forgings / steel forgings
+  status: confirmed
+  acceptable_forms:
+  - closed-die forgings
+  - CLOSED DIE FORGINGS
+  - steel forgings
+  - high-strength steel forgings
+  - forgings
+  - forges
+  evidence:
+  - quote: manufactures closed-die forgings for the Valve
+    approx_offset: 1469
+  - quote: supply high quality steel forgings around the world
+    approx_offset: 4266
+  notes: the artifact the company actually ships, as distinct from the closed-die-forging PROCESS that makes it
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: entity stands. Adding 'forges', which the site uses as a PRODUCT noun in two product lists ('Pradeep
+      Metals manufactures forges, flanges, material grades, manifolds' and 'it manufactures flanges, forges, manifolds,
+      material grades, valves') and twice more as 'metal forges' in the sales copy. 4 of its 5 word-bounded occurrences
+      are the noun; only one is the verb.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0007
+  name: low-volume high-mix customised parts
+  status: confirmed
+  acceptable_forms:
+  - LOW-VOLUME HIGH-MIX CUSTOMISED PARTS
+  - low-volume high-mixed parts
+  evidence:
+  - quote: LOW-VOLUME HIGH-MIX CUSTOMISED PARTS
+    approx_offset: 3673
+  - quote: low-volume high-mixed parts based on the client’s specifications
+    approx_offset: 193333
+  notes: listed under CORE STRENGHTS on three duplicate pages; the blog retelling garbles 'high-mix' to 'high-mixed'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0017
+  name: Super Duplex Forgings
+  status: candidate
+  acceptable_forms:
+  - Super Duplex Forgings
+  evidence:
+  - quote: '# Super Duplex Forgings'
+    approx_offset: 9027
+  notes: page heading unchanged; unlike the check-valve/stainless-steel-forgings stubs this page body is NOT 'Coming
+    Soon' -- it now carries several paragraphs of generic duplex-steel metallurgy prose ('What is super duplex forging?',
+    'Super Duplex Forging Process:', 'Benefits of Super Duplex Forging:') but still names no specific part, size,
+    or grade, matching the original judgment
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-pradeepmetals-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0021
+  name: Butterfly Valves
+  status: confirmed
+  acceptable_forms:
+  - BUTTERFLY VALVES
+  evidence:
+  - quote: BUTTERFLY VALVES
+    approx_offset: 14191
+  - quote: Butterfly valves are quarter-turn valves that are used to start or stop the flow
+    approx_offset: 44533
+  notes: a full page plus a blog
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0023
+  name: Stainless Steel Forgings
+  status: candidate
+  acceptable_forms:
+  - Stainless Steel Forgings
+  evidence:
+  - quote: '# Stainless Steel Forgings'
+    approx_offset: 18482
+  notes: page heading only; body is still exactly 'Coming Soon….' at https://www.pradeepmetals.com/stainless-steel-forgings/
+    -- identical to the legacy snapshot
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-pradeepmetals-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0006
+  name: General Engineering (product category)
+  status: confirmed
+  acceptable_forms:
+  - GENERAL ENGINEERING 1
+  - GENERAL ENGINEERING
+  evidence:
+  - quote: GENERAL ENGINEERING 1
+    approx_offset: 22532
+  - quote: GENERAL ENGINEERING
+    approx_offset: 22532
+  notes: a product category whose page body is four image captions; also an industry in the INDUSTRIES WE SERVE
+    strip
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0022
+  name: Gears & Automative
+  status: confirmed
+  acceptable_forms:
+  - GEARS & AUTOMATIVE
+  - gears and automatics
+  - automatics and gears
+  - gears
+  evidence:
+  - quote: GEARS & AUTOMATIVE
+    approx_offset: 32304
+  - quote: gears and automatics
+    approx_offset: 192384
+  - quote: automatics and gears
+    approx_offset: 242919
+  notes: '''AUTOMATIVE'' is the site''s own misspelling of automotive and is the only form used in the nav and page
+    headings; both /gears-automative fetches are ''Coming Soon!..'' stubs'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0027
+  name: valve body / disc / stem / seat / actuator
+  status: confirmed
+  acceptable_forms:
+  - Body
+  - Disc
+  - Seam
+  - Actuator
+  - Stem
+  - Seat
+  evidence:
+  - quote: Body
+    approx_offset: 44767
+  - quote: Disc
+    approx_offset: 252700
+  - quote: Seam
+    approx_offset: 252707
+  - quote: Actuator
+    approx_offset: 252714
+  - quote: Stem
+    approx_offset: 44915
+  actor: unknown
+  notes: the butterfly-valve blog lists five components one per line ('Body','Disc','Seam','Actuator','Stem') and
+    the butterfly PAGE names four more in prose ('Body:','Stem:','Seat:','Disk:'). 'Seam' looks like a typo for
+    'Seat'. These are parts of a product the company makes, so they qualify - but every form here is a common English
+    word and will collide widely
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0040
+  name: gearbox
+  status: candidate
+  acceptable_forms:
+  - gearbox
+  evidence:
+  - quote: The function can further be simplified by using a gearbox which can be attached to the stem of the valve
+    approx_offset: 46168
+  actor: unknown
+  notes: a valve accessory named on both butterfly-valve pages; the packet seeded the other valve components (body,
+    disc, seam, actuator, stem, seat at products-0027) but not this one.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0025
+  name: resin bonded grinding wheels
+  status: confirmed
+  acceptable_forms:
+  - resin bonded grinding wheels
+  - grinding wheels
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 60493
+  - quote: 08 Rapid Curing of Resin Bonded Grinding Wheels using Microwave Heating
+    approx_offset: 128269
+  actor: lab
+  notes: an IMRC research workpiece, not a company product. It is also the ONLY place the word 'grinding' occurs
+    in the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0028
+  name: ceramic plates for solid oxide fuel cell electrodes
+  status: confirmed
+  acceptable_forms:
+  - Ceramic plates for solid oxide fuel cell electrode materials
+  - Ceramic plates
+  evidence:
+  - quote: Sintering of Ceramic plates for solid oxide fuel cell electrode materials
+    approx_offset: 60903
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0029
+  name: copper-based brake liners
+  status: confirmed
+  acceptable_forms:
+  - copper-based brake liners
+  - brake liners
+  evidence:
+  - quote: a copper-based brake liners (used in aviation)
+    approx_offset: 61482
+  actor: lab
+  notes: IMRC sintering research; 'cured friction material' in the patent list is the same family
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0030
+  name: activated carbon
+  status: confirmed
+  acceptable_forms:
+  - Activated carbon from coconut shells
+  - Activated carbon
+  evidence:
+  - quote: Activated carbon from coconut shells
+    approx_offset: 61706
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0031
+  name: transparent ceramics (AlON, spinels)
+  status: confirmed
+  acceptable_forms:
+  - Transparent Ceramics
+  evidence:
+  - quote: Sintering of Transparent Ceramics
+    approx_offset: 61853
+  actor: lab
+  notes: sintered for a defence project
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0032
+  name: concrete pre-cast paver blocks
+  status: confirmed
+  acceptable_forms:
+  - concrete pre-cast paver blocks
+  - concrete paver blocks
+  - paver blocks
+  evidence:
+  - quote: Curing of concrete pre-cast paver blocks was achieved in 3 days
+    approx_offset: 62101
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0033
+  name: Gum Ghatti / Karaya
+  status: confirmed
+  acceptable_forms:
+  - Gum Ghatti/Karaya
+  evidence:
+  - quote: “Gum Ghatti/Karaya”
+    approx_offset: 62568
+  actor: lab
+  notes: '''a natural product obtained from trees'' - harvested, not manufactured. Disputed'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0018
+  name: PPE
+  status: disputed
+  acceptable_forms:
+  - PPE
+  evidence:
+  - quote: Check list for PPE , department wise prepared and displayed in the factory
+    approx_offset: 64513
+  notes: safety equipment the company BUYS for its workers. Three-character short form. Disputed - it is a made
+    artifact, just not one that comes out of this company's work. Note the stray space before the comma in the source
+    | PPE is personal protective equipment used in the factory ('Check list for PPE , department wise prepared and
+    displayed in the factory'), under the health-and-safety heading. It does not come out of this company's work,
+    and the clause separates products from the equipment the work is done with.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: PPE is personal protective equipment used in the factory ('Check list for PPE , department wise prepared
+      and displayed in the factory'), under the health-and-safety heading. It does not come out of this company's
+      work, and the clause separates products from the equipment the work is done with.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0009
+  name: furnaces
+  status: confirmed
+  acceptable_forms:
+  - design, manufacture and commissioning of furnaces
+  evidence:
+  - quote: design, manufacture and commissioning of furnaces at Degussa International, West Germany
+    approx_offset: 84168
+  actor: unknown
+  notes: 'CAPABILITY BAIT FROM A CV: furnaces the chairman was TRAINED on at Degussa International in the 1970s.
+    The company buys furnaces; it does not make them'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0010
+  name: industrial gases
+  status: confirmed
+  acceptable_forms:
+  - industrial gases
+  evidence:
+  - quote: international marketing of industrial gases
+    approx_offset: 84349
+  actor: unknown
+  notes: 'CAPABILITY BAIT FROM A CV: Air Products and Chemicals Inc.''s products, not this company''s'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0019
+  name: Forged Steel Check Valve
+  status: candidate
+  acceptable_forms:
+  - Forged Steel Check Valve
+  evidence:
+  - quote: '# Forged Steel Check Valve'
+    approx_offset: 105305
+  notes: page heading only; body is still exactly 'Coming Soon….' (four-dot ellipsis preserved) at https://www.pradeepmetals.com/forged-steel-check-valve/
+    -- identical to the legacy snapshot
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-pradeepmetals-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0005
+  name: machine parts
+  status: confirmed
+  acceptable_forms:
+  - machine parts
+  - metal parts
+  evidence:
+  - quote: used extensively for manufacturing the machine parts since the times of Industrial Revolution
+    approx_offset: 122273
+  - quote: the production of any metal parts which are small or medium-sized
+    approx_offset: 181563
+  actor: unknown
+  notes: generic explainer prose
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0024
+  name: sponge iron
+  status: confirmed
+  acceptable_forms:
+  - sponge iron
+  evidence:
+  - quote: to manufacture sponge iron
+    approx_offset: 126032
+  actor: lab
+  notes: the output of a patented IMRC microwave reduction process
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0026
+  name: liquid iron
+  status: confirmed
+  acceptable_forms:
+  - producing liquid iron using microwaves
+  - liquid iron
+  evidence:
+  - quote: A novel process of producing liquid iron using microwaves
+    approx_offset: 130077
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0011
+  name: Ball Valves
+  status: confirmed
+  acceptable_forms:
+  - BALL VALVE MANUFACTURERS
+  - ball valves
+  evidence:
+  - quote: The ball valves manufactured by us come with a fine finish and resist corrosion
+    approx_offset: 148285
+  notes: a full page plus a blog; the most-detailed product on the site
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0012
+  name: Floating Ball Valves
+  status: confirmed
+  acceptable_forms:
+  - Floating Ball Valves
+  evidence:
+  - quote: Floating Ball Valves
+    approx_offset: 148744
+  notes: one of five ball-valve types named on /ball-valve-manufacturers
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0013
+  name: Screwed End Ball Valves
+  status: confirmed
+  acceptable_forms:
+  - Screwed End Ball Valves
+  evidence:
+  - quote: Screwed End Ball Valves
+    approx_offset: 149033
+  notes: ball-valve type list
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0014
+  name: Fully Welded Ball Valves
+  status: confirmed
+  acceptable_forms:
+  - Fully Welded Ball Valves
+  - welded ball valve
+  evidence:
+  - quote: Fully Welded Ball Valves
+    approx_offset: 149260
+  - quote: Let your welded ball valve requirement be of any size
+    approx_offset: 149286
+  notes: ball-valve type list
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0015
+  name: Flanged End Ball Valves
+  status: confirmed
+  acceptable_forms:
+  - Flanged End Ball Valves
+  - flanged end
+  evidence:
+  - quote: Flanged End Ball Valves
+    approx_offset: 149413
+  notes: ball-valve type list
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0016
+  name: Cast Trunnion Mounted Ball Valves
+  status: confirmed
+  acceptable_forms:
+  - Cast Trunnion Mounted Ball Valves
+  - mounted ball valves
+  evidence:
+  - quote: Cast Trunnion Mounted Ball Valves
+    approx_offset: 149629
+  - quote: all types of mounted ball valves including butt-weld end, flanged end, ring-type joint
+    approx_offset: 149780
+  notes: ball-valve type list; the only product on the site whose name contains 'Cast'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0035
+  name: shafts, bars, rings and hollows
+  status: confirmed
+  acceptable_forms:
+  - shafts, simple bars and ring configurations
+  - multiple I.D./O.D. hollows
+  - single hubs
+  evidence:
+  - quote: can range from shafts, simple bars and ring configurations besides special shapes
+    approx_offset: 210512
+  - quote: multiple I.D./O.D. hollows
+    approx_offset: 210702
+  actor: unknown
+  notes: generic open-die-forging shape list in a blog; the company does not offer these
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0020
+  name: Globe Valves
+  status: confirmed
+  acceptable_forms:
+  - FORGED STEEL GLOBE VALVE
+  - globe valves
+  - forged steel globe valves
+  - high-performance globe valves
+  evidence:
+  - quote: sophisticated tool-room equipment to manufacture its forged steel globe valves
+    approx_offset: 226566
+  - quote: High-performance globe valves provide the following advantages
+    approx_offset: 226232
+  notes: the /forged-steel-globe-valve page is a 'Coming Soon' stub; the product survives in the heading and two
+    blogs
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0034
+  name: machined forgings / machined components
+  status: confirmed
+  acceptable_forms:
+  - machined forgings
+  - machined components
+  - finished machined components
+  - sub-assemblies
+  evidence:
+  - quote: the development of machined forgings for the Oil and Gas industry
+    approx_offset: 227031
+  - quote: the rising demand of finished machined components and sub-assemblies
+    approx_offset: 232259
+  notes: the declared growth product; 'sub-assemblies' is the only assembly-level artifact named anywhere in the
+    file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0036
+  name: Smart Valves
+  status: confirmed
+  acceptable_forms:
+  - Smart Valves
+  evidence:
+  - quote: Smart Valves– Operated through intelligent control systems
+    approx_offset: 230199
+  actor: unknown
+  notes: a market TREND the blog says valve manufacturers should be aware of, not a catalogued product. Note there
+    is no space before the en dash
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0037
+  name: Inflatable Seated Butterfly Valves
+  status: confirmed
+  acceptable_forms:
+  - Inflatable Seated Butterfly Valves
+  evidence:
+  - quote: Inflatable Seated Butterfly Valves
+    approx_offset: 253482
+  notes: one of three rarer butterfly types listed in the blog
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0038
+  name: Double Offset Butterfly Valves
+  status: confirmed
+  acceptable_forms:
+  - Double Offset Butterfly Valves
+  evidence:
+  - quote: Double Offset Butterfly Valves
+    approx_offset: 253519
+  notes: rarer butterfly type list
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0039
+  name: Triple Offset Butterfly Valves
+  status: confirmed
+  acceptable_forms:
+  - Triple Offset Butterfly Valves
+  evidence:
+  - quote: Triple Offset Butterfly Valves
+    approx_offset: 253552
+  notes: rarer butterfly type list
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-products-0041
+  name: friction material
+  status: candidate
+  acceptable_forms:
+  - friction material
+  evidence:
+  - quote: Continuous process for baking of cured friction material using electromagnetic energy
+    approx_offset: 60558
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-products-0042
+  name: brake liners
+  status: candidate
+  acceptable_forms:
+  - brake liners
+  evidence:
+  - quote: attempted on a copper-based brake liners (used in aviation), using microwave technology
+    approx_offset: 61469
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-products-0043
+  name: concrete paver blocks
+  status: candidate
+  acceptable_forms:
+  - concrete paver blocks
+  evidence:
+  - quote: 'Rapid curing of concrete paver blocks (2011-13): Curing of concrete pre-cast paver blocks was achieved
+      in 3 days'
+    approx_offset: 62052
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Annual Report
+  reason: witnessed and EXCLUDED BY THE CLAUSE ('documents'). '34th Annual Report 2016-17', 'Annual Report 2014-15',
+    'ANNUAL REPORT_NAMI CAPITAL 2021-22' and a 20-row Financial Reports grid - the single largest repeated non-product
+    string in the file
+- form: AGM Notice
+  reason: 'witnessed and excluded: a document, printed 20+ times across two duplicate AGM/EOGM page fetches'
+- form: Proxy Form
+  reason: 'witnessed and excluded: a document'
+- form: Postal Ballot Form
+  reason: 'witnessed and excluded: a document'
+- form: Scrutinizer's Report
+  reason: 'witnessed and excluded: a document'
+- form: Voting Results
+  reason: 'witnessed and excluded: a document, and the largest single -ing family in the file'
+- form: Certificate of Incorporation
+  reason: 'witnessed and excluded: a document (it is seeded disputed under conformity_attestations, where the argument
+    belongs)'
+- form: Memorandum of Association
+  reason: 'witnessed and excluded: a charter document'
+- form: Articles of Association
+  reason: 'witnessed and excluded: a charter document'
+- form: Equity Shares
+  reason: 'witnessed and excluded: a security, not an artifact. ''Issuance of Letter of Confirmation for transfer
+    of Equity Shares in Physical Mode'''
+- form: IEPF FY 2023-24
+  reason: 'witnessed and excluded: eleven rows of dividend-transfer filings'
+- form: Rosemount Strategic Supplier Award
+  reason: 'witnessed and excluded: the clause names AWARDS explicitly'
+- form: Star Performer Shield
+  reason: 'witnessed and excluded: an award'
+- form: Dimensional Machine Works
+  reason: 'witnessed and excluded: the clause names COMPANIES explicitly. It is the Houston step-down subsidiary,
+    and its marketing copy sits under an ''INDIA FACILITIES'' heading'
+- form: Forgexel Enterprises
+  reason: 'witnessed and excluded: a company name from the directorship register - and the one most likely to be
+    read as a forging product line'
+- form: NRB Bearings
+  reason: 'witnessed and excluded: a company name that reads as a bearings product'
+- form: Nami Capital
+  reason: 'witnessed and excluded: a company name, and the amalgamation counterparty'
+- form: Orient Cement
+  reason: 'witnessed and excluded: a company name that reads as a product'
+- form: Maini Materials Movement
+  reason: 'witnessed and excluded: a company name that reads as handling equipment'
+- form: HAAS ST-20
+  reason: 'witnessed and excluded: the clause separates artifacts from THE MACHINERY the work is done with. All
+    eight HAAS models are equipment'
+- form: AutoCAD
+  reason: 'witnessed and excluded: design software (with a ™), not a made artifact. Same for Siemens NX, Unigraphics,
+    DEFORM and CIMATRON'
+- form: forging dies
+  reason: 'witnessed and excluded: the clause separates artifacts from TOOLING. ''the forging dies are precision
+    machined'''
+- form: Wind Mill
+  reason: 'witnessed and excluded: a captive energy asset the company owns and consumes from, not something it makes
+    or sells'
+- form: sheet metal
+  reason: 'witnessed: the workpiece of a generic fabrication explainer - a material, seeded under material_caps'
+- form: hdsjkfhsjkd
+  reason: 'witnessed: the literal CMS placeholder that stands where the Clientele page''s client list should be.
+    Any in-field reading of it is fabrication'

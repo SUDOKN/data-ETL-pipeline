@@ -1,0 +1,57 @@
+subject: taylordunn.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
+  sha256: 973bd30712ecbd8754d31aef6041a5b07356215a7425214d0330074b59bba489
+eval_set_version: 2
+expected_empty: true
+notes: No machine, tool, or shop-equipment designation appears. Word-boundary greps for CNC/lathe/mill/welder/press/robot
+  and forklift/crane/conveyor/ grinder/drill/saw/tooling return zero hits across the whole file (verified 2026-08-26).
+  The equipment-shaped strings present are all IT/ad-tech (software plugins, servers, hard drive) in cookie boilerplate,
+  plus the subject's own vehicle product lines in the nav -- the known product-vs-equipment confusion (D code).
+  Any yield here is junk.
+entries:
+- id: taylordunn_com-equipments-0001
+  name: laser cutter
+  status: candidate
+  acceptable_forms:
+  - laser cutter
+  evidence:
+  - quote: brought in a German built precision laser cutter and an engineering software to allow for rapid prototyping
+      of engineered drawings for the highly
+    approx_offset: 143895
+  notes: From the 1990 company-history entry (Goodwin era); text says it and the software 'are still used today'.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Elementor
+  reason: WordPress page-builder plugin in the cookie vendor table; software, T-code bait, not shop equipment
+- form: WordPress
+  reason: CMS in the cookie vendor table; software, not equipment
+- form: WPForms
+  reason: form-builder plugin in the cookie vendor table; software
+- form: Complianz
+  reason: cookie-consent plugin in the vendor table; software
+- form: Google reCAPTCHA
+  reason: third-party anti-bot service; software
+- form: web beacon
+  reason: tracking technology defined in cookie-policy section 4, not a physical tool
+- form: pixel tag
+  reason: tracking technology defined in cookie-policy section 4
+- form: hard drive
+  reason: generic consumer IT hardware in cookie-explainer prose ('stored by your browser on the hard drive of your
+    computer'), not production equipment
+- form: servers
+  reason: IT infrastructure in cookie prose ('returned to our servers'), not shop equipment
+- form: Utility Vehicles
+  reason: subject's own product line (nav label); a good made and sold, not equipment the subject uses -- D-code
+    confusion
+- form: Bigfoot Burden Carriers
+  reason: subject's own product line (nav label); D-code confusion
+- form: Stockchasers
+  reason: subject's own product line (nav label); D-code confusion
+- form: Personnel Carriers
+  reason: subject's own product line (nav label); D-code confusion

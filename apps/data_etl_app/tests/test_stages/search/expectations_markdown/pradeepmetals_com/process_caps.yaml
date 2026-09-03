@@ -1,0 +1,2421 @@
+subject: pradeepmetals.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/pradeepmetals.com.txt
+  sha256: 7a36ae8691171d311de2a755a3a7d14f4e70d85c4b2ed90a3271b389de048586
+eval_set_version: 4
+expected_empty: false
+notes: 'The densest field on this subject, and the one with the widest gap between what the text NAMES and what
+  the plant DOES. Three sources: (1) the Manufacturing page''s real process chain (cutting, forging, heat treatment,
+  post-forging, testing); (2) a TYPES OF FORGING list of eleven forging variants printed on four duplicate page
+  fetches and again in a blog - most of them list-only, with Open Die Forging being the explicitly REJECTED comparator
+  of a blog titled HOW CLOSED DIE FORGING TOPS OPEN DIE FORGING; (3) the IMRC research centre''s microwave processes,
+  which are concluded lab research rather than production. All three are entries under recall-first, with the grounding
+  status recorded in notes. Inspection, testing and measurement qualify here by the clause''s own second sentence,
+  which is where the CMM / Spectrometer / Tensile Tester / Microscopy block belongs.'
+entries:
+- id: pradeepmetals_com-process_caps-0001
+  name: closed die forging
+  status: confirmed
+  acceptable_forms:
+  - closed-die forgings
+  - Closed die forging
+  - CLOSED DIE FORGINGS
+  evidence:
+  - quote: Pradeep Metals Limited manufactures closed-die forgings
+    approx_offset: 1446
+  - quote: Closed die forging
+    approx_offset: 13854
+  notes: the company's actual core process, equipment-grounded by the mechanical presses and die hammers on the
+    Manufacturing page
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0002
+  name: laboratory testing
+  status: confirmed
+  acceptable_forms:
+  - laboratory testing
+  evidence:
+  - quote: design, die tooling, laboratory testing, cutting
+    approx_offset: 1674
+  notes: the homepage's own summary of the integrated plant
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0003
+  name: tool and die development
+  status: confirmed
+  acceptable_forms:
+  - TOOL & DIE DEVELOPMENT
+  - die tooling
+  - tool and die development
+  - die and tool development
+  - QUICK TOOL DEVELOPMENT
+  evidence:
+  - quote: design, die tooling, laboratory testing
+    approx_offset: 1674
+  - quote: tool and die development
+    approx_offset: 192659
+  - quote: QUICK TOOL DEVELOPMENT
+    approx_offset: 3648
+  notes: the /tool-die-development page is a 'Coming Soon' stub on both fetches, but die-making is claimed on the
+    homepage, in CORE STRENGHTS and in two blogs, and the die-steel column of the grade table is its material evidence
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0004
+  name: cutting
+  status: confirmed
+  acceptable_forms:
+  - CUTTING
+  evidence:
+  - quote: CUTTING
+    approx_offset: 135059
+  - quote: laboratory testing, cutting, forging
+    approx_offset: 1695
+  notes: a heading of the real process chain, with a shear and two saw types under it
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0005
+  name: forging (general)
+  status: confirmed
+  acceptable_forms:
+  - FORGING
+  - metal forging
+  - Metal Forge
+  evidence:
+  - quote: FORGING
+    approx_offset: 135150
+  - quote: cutting, forging, heat-treating, and machining
+    approx_offset: 1715
+  - quote: What is Metal Forge or Forging?
+    approx_offset: 240594
+  notes: 'broad: 363 occurrences. It is a substring of most siblings above, so its recall number carries no independent
+    information - kept because it is the FORGING heading of the real process chain on the Manufacturing page'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0006
+  name: machining
+  status: confirmed
+  acceptable_forms:
+  - MACHINING
+  - CNC machining
+  - in-house CNC machining
+  - machined
+  evidence:
+  - quote: https://www.pradeepmetals.com/manufacturing
+    approx_offset: 133754
+  - quote: 2005 – In-house CNC machining installed
+    approx_offset: 35246
+  - quote: cutting, forging, heat-treating, and machining
+    approx_offset: 1715
+  - quote: 2011 – Expanded in-house CNC machining capacity
+    approx_offset: 34855
+  notes: 'a real, equipment-grounded capability: eight HAAS machines, in-house CNC since 2005, expanded 2011'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: entity stands. The first evidence quote is the page URL 'https://www.pradeepmetals.com/manufacturing',
+      which contains no acceptable form (it is the manufacturing page, not the machining page) - it is verbatim
+      in the file, so the machine check passes, but it evidences nothing. Replaced with a real machining line.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0007
+  name: heat treatment
+  status: confirmed
+  acceptable_forms:
+  - HEAT TREATMENT
+  - heat-treating
+  evidence:
+  - quote: HEAT TREATMENT
+    approx_offset: 135288
+  - quote: heat-treating
+    approx_offset: 1733
+  - quote: Effect of Microwave Heat Treatment on Steel Components
+    approx_offset: 127634
+  notes: a real block of the process chain with austenitizing and tempering furnaces under it
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0027
+  name: super duplex forging / duplex forging
+  status: confirmed
+  acceptable_forms:
+  - SUPER DUPLEX FORGING
+  - duplex forging
+  evidence:
+  - quote: the forging process carried on the duplex steel is dubbed as duplex forging
+    approx_offset: 9713
+  notes: a dedicated page, but its body is generic metallurgy prose rather than a capability claim
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0028
+  name: stainless steel forging
+  status: confirmed
+  acceptable_forms:
+  - stainless steel forging
+  - STAINLESS STEEL FORGINGS
+  evidence:
+  - quote: the most commonly forged metal is the stainless steel forging process
+    approx_offset: 9995
+  - quote: Growth of Stainless Steel Forging in India
+    approx_offset: 224770
+  notes: the /stainless-steel-forgings page itself is a 'Coming Soon' stub on both fetches; the phrase survives
+    only in the heading and in blog prose
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0020
+  name: casting
+  status: confirmed
+  acceptable_forms:
+  - Casting Steel Valves
+  - the process of casting
+  - casting
+  - casted
+  evidence:
+  - quote: the process of casting involves melting the steel
+    approx_offset: 184730
+  - quote: Casting Steel Valves
+    approx_offset: 12351
+  - quote: the machined or casted machine parts
+    approx_offset: 124038
+  actor: unknown
+  notes: COMPARATOR ONLY. Casting appears exclusively as the process the site argues AGAINST - 'The Battle Between
+    Forged Steel Valves & Casting Steel Valves' - plus one 'Cast Trunnion Mounted Ball Valves' product name. The
+    company does not cast. Recall-first keeps it because the text names the process
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0010
+  name: open die forging
+  status: confirmed
+  acceptable_forms:
+  - Open die drop forging
+  - Open Die Forging
+  evidence:
+  - quote: Open die drop forging
+    approx_offset: 123374
+  - quote: Open Die Forging
+    approx_offset: 12555
+  notes: 'REJECTED COMPARATOR: this is the losing side of a blog headed ''HOW CLOSED DIE FORGING TOPS OPEN DIE FORGING'',
+    and it also appears list-only in the TYPES OF FORGING list as ''Open die drop forging''. The company does not
+    claim it. Still an entry - search is recall-first and the text names the process'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0024
+  name: lean manufacturing
+  status: confirmed
+  acceptable_forms:
+  - LEAN manufacturing practices
+  - lean manufacturing processes
+  - lean process layout
+  evidence:
+  - quote: Initiated LEAN manufacturing practices
+    approx_offset: 35288
+  - quote: Started lean manufacturing processes
+    approx_offset: 248150
+  - quote: creating a lean process layout
+    approx_offset: 225903
+  notes: a production METHODOLOGY, not an operation performed on the work. Disputed
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0029
+  name: machining to .0005 tolerance
+  status: confirmed
+  acceptable_forms:
+  - machining difficult parts to .0005 tolerance
+  evidence:
+  - quote: machining difficult parts to .0005 tolerance
+    approx_offset: 37234
+  actor: parent_sibling
+  notes: 'ENTITY TRAP: this is Dimensional Machine Works, LLC (Houston) marketing copy sitting under an ''INDIA
+    FACILITIES'' heading. Wrong legal entity, wrong continent. Recall-first keeps it as an entry; actor records
+    the mis-attribution'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0026
+  name: DEFORM simulation and CIMATRON tool path generation
+  status: disputed
+  acceptable_forms:
+  - DEFORM™ simulation to optimize yield and die-design
+  - CIMATRON Tool Path Generation for accurate die tooling
+  - 3-D modeling using Siemens NX™ (Unigraphics)
+  evidence:
+  - quote: DEFORM™ simulation to optimize yield and die-design
+    approx_offset: 50056
+  - quote: CIMATRON Tool Path Generation for accurate die tooling
+    approx_offset: 50110
+  - quote: 3-D modeling using Siemens NX™ (Unigraphics)
+    approx_offset: 50009
+  notes: named software steps (AutoCAD, Siemens NX / Unigraphics, DEFORM, CIMATRON - note the ™ characters) on the
+    Design & Engineering page. Toolpath generation arguably IS the first step of die manufacture; simulation and
+    modelling are not. Disputed | DEFORM simulation, CIMATRON tool-path generation and Siemens NX 3-D modelling
+    are CAD/CAM/simulation software used before the work exists. The clause wants 'an operation performed on materials,
+    parts, or products'; none of these is performed on the work. Separately, all three forms are whole design-engineering
+    lines rather than phrases.
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: DEFORM simulation, CIMATRON tool-path generation and Siemens NX 3-D modelling are CAD/CAM/simulation
+      software used before the work exists. The clause wants 'an operation performed on materials, parts, or products';
+      none of these is performed on the work. Separately, all three forms are whole design-engineering lines rather
+      than phrases.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0032
+  name: rapid curing (microwave)
+  status: confirmed
+  acceptable_forms:
+  - Rapid curing of resin bonded grinding wheels
+  - Rapid curing of concrete paver blocks
+  - Rapid Curing
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 60493
+  - quote: Rapid curing of concrete paver blocks
+    approx_offset: 62052
+  actor: lab
+  notes: 'IMRC''s most-patented process (granted in US, Japan, China and India). NOTE: the word ''grinding'' occurs
+    in this file ONLY inside ''grinding wheels'' - it is never a machining operation here'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0033
+  name: baking of cured friction material
+  status: confirmed
+  acceptable_forms:
+  - Continuous process for baking of cured friction material using electromagnetic energy
+  - baking of cured friction material
+  evidence:
+  - quote: Continuous process for baking of cured friction material using electromagnetic energy
+    approx_offset: 60558
+  actor: lab
+  notes: IMRC patent granted in India 2023
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0040
+  name: pre-treatment of coal with microwaves
+  status: confirmed
+  acceptable_forms:
+  - Pre-treatment of coal with microwaves
+  evidence:
+  - quote: Pre-treatment of coal with microwaves
+    approx_offset: 60676
+  actor: lab
+  notes: IMRC project 2011-15
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0031
+  name: pre-treatment of heavy petroleum bottom stocks
+  status: confirmed
+  acceptable_forms:
+  - Batch or Continuous Process for Pre-treatment of Heavy Petrol Bottom Stocks
+  - Pretreatment of Heavy Petro Bottom Stocks
+  evidence:
+  - quote: Batch or Continuous Process for Pre-treatment of Heavy Petrol Bottom Stocks
+    approx_offset: 125837
+  - quote: Batch or Continuous Process for Pretreatment of Heavy Petro Bottom Stocks
+    approx_offset: 60734
+  actor: lab
+  notes: IMRC patent, granted in India 2016; the projects page spells it 'Petro', the patents page 'Petrol'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0041
+  name: disinfestation of food grains
+  status: confirmed
+  acceptable_forms:
+  - Disinfestation of food grains (rice, wheat)
+  - Disinfestation of food grains
+  evidence:
+  - quote: Disinfestation of food grains (rice, wheat)
+    approx_offset: 60832
+  actor: lab
+  notes: IMRC project, 2018 - ongoing. Entirely outside the metal-forging domain
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0035
+  name: sintering
+  status: confirmed
+  acceptable_forms:
+  - Microwave Sintering
+  - Sintering of powder metals
+  - Sintering
+  evidence:
+  - quote: '01 Microwave Sintering: A New Promising Option in PM'
+    approx_offset: 126951
+  - quote: Sintering of powder metals
+    approx_offset: 60999
+  - quote: Sintering process was attempted on a copper-based brake liners
+    approx_offset: 61447
+  actor: lab
+  notes: 'CONCLUDED LAB RESEARCH, not production: the sintering projects are dated 2004-07, 2006-09 and 2006-10
+    on the IMRC projects page. Ten occurrences'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0042
+  name: smelting-reduction of iron ore
+  status: confirmed
+  acceptable_forms:
+  - Smelting-reduction of iron ore
+  - Smelting-reduction
+  evidence:
+  - quote: Smelting-reduction of iron ore (Microwave Composite Heating Furnace)
+    approx_offset: 61125
+  actor: lab
+  notes: IMRC project, 2006 ongoing; paired with the patented Microwave Composite Heating Furnace
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0043
+  name: recycling of forging scale to low alloy steel
+  status: confirmed
+  acceptable_forms:
+  - converting Industrial metallic waste like forging scales to low alloy steel
+  evidence:
+  - quote: converting Industrial metallic waste like forging scales to low alloy steel
+    approx_offset: 61251
+  actor: lab
+  notes: IMRC project dated 2023; the one IMRC project whose input actually comes from the forge
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0044
+  name: decontamination of food additives
+  status: confirmed
+  acceptable_forms:
+  - Decontamination of food additives
+  evidence:
+  - quote: Decontamination of food additives (2024- ongoing)
+    approx_offset: 62435
+  actor: lab
+  notes: IMRC exploratory project on Gum Ghatti/Karaya; outside the metal domain
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0037
+  name: microwave processing
+  status: confirmed
+  acceptable_forms:
+  - Microwave Processing of Metallic Materials
+  - microwave processing of materials
+  - microwave assisted processes
+  - Microwave Heating
+  evidence:
+  - quote: 03 Microwave Processing of Metallic Materials
+    approx_offset: 127316
+  - quote: microwave processing of materials
+    approx_offset: 96026
+  - quote: microwave assisted processes
+    approx_offset: 95849
+  actor: lab
+  notes: the IMRC's whole subject; 20 occurrences of 'processing'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0030
+  name: impression die forging
+  status: confirmed
+  acceptable_forms:
+  - Impression die forgings
+  - impression dies forging
+  - impression forging
+  evidence:
+  - quote: Closed die forgings which are often referred to as Impression die forgings
+    approx_offset: 118408
+  - quote: Also referred to as impression forging
+    approx_offset: 203393
+  - quote: impression die forgings
+    approx_offset: 174646
+  notes: the site's own synonym for closed die forging, printed three different ways
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0008
+  name: precision forging
+  status: confirmed
+  acceptable_forms:
+  - precision forging
+  - Precision machine forging
+  evidence:
+  - quote: forging machine is used to ensure the precision forging
+    approx_offset: 122466
+  - quote: Precision machine forging gives an excellent surface finish
+    approx_offset: 242288
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0009
+  name: drop forging
+  status: confirmed
+  acceptable_forms:
+  - Drop forging
+  evidence:
+  - quote: Drop forging
+    approx_offset: 123359
+  - quote: Drop Forging
+    approx_offset: 242248
+  - quote: for the drop forging, the material is heated above the recrystallization temperature
+    approx_offset: 124176
+  notes: list-only plus one explainer sentence; equipment-INFERABLE from the 6T/1T/3T die hammers but never claimed
+    as a capability
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0011
+  name: press forging
+  status: confirmed
+  acceptable_forms:
+  - Press Forging
+  evidence:
+  - quote: Press Forging
+    approx_offset: 123419
+  - quote: Press forging
+    approx_offset: 242187
+  notes: list-only in the TYPES OF FORGING list, but it is the one list item that IS equipment-grounded, by the
+    2500T/1250T/700T mechanical presses and the trimming presses
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0012
+  name: upset forging
+  status: confirmed
+  acceptable_forms:
+  - Upset forging
+  evidence:
+  - quote: Upset forging
+    approx_offset: 123435
+  - quote: Upset Forging
+    approx_offset: 242171
+  notes: list-only; no equipment or claim anywhere else in the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0013
+  name: roll forging
+  status: confirmed
+  acceptable_forms:
+  - Roll forging
+  evidence:
+  - quote: Roll forging
+    approx_offset: 123451
+  - quote: Roll Forging
+    approx_offset: 242156
+  notes: list-only; no equipment or claim anywhere else in the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0014
+  name: net shape and near shape forging
+  status: confirmed
+  acceptable_forms:
+  - Net shape and near shape forging
+  - Near shape and net shape forging
+  - net shape or near net shape
+  evidence:
+  - quote: Net shape and near shape forging
+    approx_offset: 123466
+  - quote: Near shape and net shape forging
+    approx_offset: 242121
+  - quote: net shape or near net shape
+    approx_offset: 180759
+  notes: list-only in the type lists; the closed-die blog separately claims near-net-shape output
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0015
+  name: automated hot forging
+  status: confirmed
+  acceptable_forms:
+  - Automated hot forging
+  evidence:
+  - quote: Automated hot forging
+    approx_offset: 123501
+  - quote: Automated hot forging
+    approx_offset: 123501
+  notes: list-only
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0016
+  name: cold forging
+  status: confirmed
+  acceptable_forms:
+  - Cold forging
+  evidence:
+  - quote: Cold forging
+    approx_offset: 123525
+  - quote: Cold Forging
+    approx_offset: 242082
+  - quote: cold forging
+    approx_offset: 174614
+  notes: list-only in two TYPES OF FORGING lists plus one blog sentence listing 'the commonly distinguishable forging
+    types'; never claimed and no cold-forging equipment named
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0017
+  name: multidirectional forging
+  status: confirmed
+  acceptable_forms:
+  - Multidirectional forging
+  evidence:
+  - quote: Multidirectional forging
+    approx_offset: 123540
+  - quote: Multidirectional forging
+    approx_offset: 123540
+  notes: list-only
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0018
+  name: induction forging
+  status: confirmed
+  acceptable_forms:
+  - Induction forging
+  evidence:
+  - quote: Induction forging
+    approx_offset: 123567
+  - quote: Induction forging
+    approx_offset: 123567
+  notes: list-only as a forging type, though induction furnaces ARE named on the Manufacturing page
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0019
+  name: aluminium forging
+  status: confirmed
+  acceptable_forms:
+  - ALUMINIUM FORGING
+  evidence:
+  - quote: From aluminium forging, steel to brass
+    approx_offset: 123823
+  notes: the /aluminium-forging and /aluminum-forging pages are both 'Coming Soon' stubs; only the heading and one
+    explainer clause carry the phrase
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0021
+  name: direct reduction of iron ore
+  status: confirmed
+  acceptable_forms:
+  - DIRECT REDUCTION
+  - Microwave assisted reduction of iron ore fines
+  evidence:
+  - quote: PROTOTYPE MICROWAVE-ASSISTED PLANT FOR DIRECT REDUCTION
+    approx_offset: 141275
+  - quote: Microwave assisted reduction of iron ore fines to manufacture sponge iron
+    approx_offset: 125985
+  actor: lab
+  notes: the patented sponge-iron route; a prototype plant, not production
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0034
+  name: processing of goethite ore
+  status: confirmed
+  acceptable_forms:
+  - Processing of Goethite ore using microwave
+  evidence:
+  - quote: Processing of Goethite ore using microwave
+    approx_offset: 126525
+  actor: lab
+  notes: IMRC patent granted in India 2022
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0036
+  name: powder metallurgy
+  status: disputed
+  acceptable_forms:
+  - Powder Metallurgy Short Course
+  - Powder Metallurgy Association of India
+  - Powder Metallurgy
+  evidence:
+  - quote: Powder Metallurgy Short Course –2006, ARCI, Hyderabad, November 27 – December 01, 2006
+    approx_offset: 127006
+  - quote: Powder Metallurgy Association of India
+    approx_offset: 129260
+  actor: lab
+  notes: 'WITNESSED-BUT-INDIRECT: the phrase occurs only inside a course title and an association name, never as
+    work performed. Still an entry because the clause is ''names, states or implies a manufacturing process''; the
+    indirectness is the finding | ''Powder Metallurgy'' occurs exactly twice, both times inside a proper name -
+    ''Powder Metallurgy Short Course -2006, ARCI, Hyderabad'' and ''Powder Metallurgy Association of India''. It
+    is never named as an operation the work undergoes; the actual process is already carried by 0035 (''Sintering
+    of powder metals''). Same shape as the HEM Saw / hemming false friend.'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: '''Powder Metallurgy'' occurs exactly twice, both times inside a proper name - ''Powder Metallurgy Short
+      Course -2006, ARCI, Hyderabad'' and ''Powder Metallurgy Association of India''. It is never named as an operation
+      the work undergoes; the actual process is already carried by 0035 (''Sintering of powder metals''). Same shape
+      as the HEM Saw / hemming false friend.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0038
+  name: steelmaking / ironmaking
+  status: confirmed
+  acceptable_forms:
+  - Novel Process of Steelmaking
+  - Ironmaking and Steelmaking
+  - microwave assisted steel making
+  - Low-carbon footprint iron making process
+  evidence:
+  - quote: 14 Novel Process of Steelmaking
+    approx_offset: 129549
+  - quote: Microwave assisted steel making from low grade iron ores
+    approx_offset: 128859
+  - quote: 18 Low-carbon footprint iron making process
+    approx_offset: 130442
+  actor: lab
+  notes: IMRC conference papers, not a plant capability
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0046
+  name: coordinate measuring (CMM)
+  status: confirmed
+  acceptable_forms:
+  - CMM
+  evidence:
+  - quote: CMM
+    approx_offset: 135008
+  notes: heads the Manufacturing page's TESTING block. This QUALIFIES here - the clause says inspection, testing
+    and measurement performed on the work are operations - and is EXCLUDED from equipments, where a plain reading
+    of 'equipment' would wrongly put it. 3-character short form, matched case-sensitively on word boundaries
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0047
+  name: spectrometry
+  status: confirmed
+  acceptable_forms:
+  - Spectrometer
+  evidence:
+  - quote: Spectrometer
+    approx_offset: 135014
+  notes: TESTING block; the instrument name implies the measurement operation
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0048
+  name: tensile testing
+  status: confirmed
+  acceptable_forms:
+  - Tensile Tester
+  evidence:
+  - quote: Tensile Tester
+    approx_offset: 135029
+  notes: TESTING block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0049
+  name: microscopy
+  status: confirmed
+  acceptable_forms:
+  - Microscopy
+  evidence:
+  - quote: Microscopy
+    approx_offset: 135046
+  notes: TESTING block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0050
+  name: trimming
+  status: confirmed
+  acceptable_forms:
+  - Trimming Presses
+  evidence:
+  - quote: Trimming Presses
+    approx_offset: 135236
+  notes: the operation is named only through the machine name
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0051
+  name: induction heating
+  status: confirmed
+  acceptable_forms:
+  - Induction & Gas-fired furnaces
+  evidence:
+  - quote: Induction & Gas-fired furnaces
+    approx_offset: 135255
+  notes: the billet-heating operation is named ONLY through the furnace line in the FORGING block; the phrase 'induction
+    heating' never occurs. Kept separate from the 'induction forging' entry, which is a list-only forging type
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0052
+  name: austenitizing
+  status: confirmed
+  acceptable_forms:
+  - Austentizing furnaces
+  - Austentizing
+  evidence:
+  - quote: Austentizing furnaces
+    approx_offset: 135326
+  notes: the site misspells it 'Austentizing'; that misspelling is the only form in the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0053
+  name: tempering
+  status: confirmed
+  acceptable_forms:
+  - Electric Tempering furnace
+  - Tempering
+  evidence:
+  - quote: Electric Tempering furnace
+    approx_offset: 135350
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0054
+  name: shot blasting
+  status: confirmed
+  acceptable_forms:
+  - Shot blasting
+  evidence:
+  - quote: Shot blasting
+    approx_offset: 135434
+  notes: POST FORGING block of the Manufacturing page
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0055
+  name: coining
+  status: confirmed
+  acceptable_forms:
+  - Coining
+  evidence:
+  - quote: Coining
+    approx_offset: 135450
+  notes: POST FORGING block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0056
+  name: stamping
+  status: confirmed
+  acceptable_forms:
+  - Stamping
+  evidence:
+  - quote: Stamping
+    approx_offset: 135460
+  - quote: machining, folding, stamping, and rotary bending
+    approx_offset: 237073
+  notes: POST FORGING block (part marking sense), and separately in the sheet-metal explainer (forming sense)
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0057
+  name: rust-prevention
+  status: confirmed
+  acceptable_forms:
+  - Rust-prevention
+  evidence:
+  - quote: Rust-prevention
+    approx_offset: 135471
+  notes: POST FORGING block; a protective treatment, no chemistry named
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0058
+  name: marking
+  status: confirmed
+  acceptable_forms:
+  - Marking
+  evidence:
+  - quote: Marking
+    approx_offset: 135489
+  notes: POST FORGING block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0059
+  name: ultrasonic cleaning
+  status: confirmed
+  acceptable_forms:
+  - Ultrasonic Cleaning
+  evidence:
+  - quote: Ultrasonic Cleaning
+    approx_offset: 135499
+  notes: POST FORGING block
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0060
+  name: packing
+  status: confirmed
+  acceptable_forms:
+  - Packing
+  evidence:
+  - quote: Packing
+    approx_offset: 135521
+  notes: the last step of the POST FORGING block; the clause runs 'through to finished goods ready to ship', which
+    packing is
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0085
+  name: mineral comminution
+  status: candidate
+  acceptable_forms:
+  - MINERAL COMMINUTION
+  - comminution
+  evidence:
+  - quote: MINERAL COMMINUTION SYSTEMS
+    approx_offset: 141610
+  notes: the IMRC amenities line was seeded into equipments (0014) as a system, but comminution is itself a size-reduction
+    operation on material and belongs in process_caps too.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0087
+  name: magnetic susceptibility measurement
+  status: candidate
+  acceptable_forms:
+  - SUSCEPTIBILITY MEASURING SYSTEM
+  evidence:
+  - quote: SUSCEPTIBILITY MEASURING SYSTEM
+    approx_offset: 141759
+  notes: IMRC amenities; measurement performed on material, which qualifies here. Correctly kept out of equipments
+    (measuring only), but then dropped entirely.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0086
+  name: carbon and sulphur analysis
+  status: candidate
+  acceptable_forms:
+  - CONVENTIONAL C & S ANALYSER
+  - C & S ANALYSER
+  evidence:
+  - quote: CONVENTIONAL C & S ANALYSER
+    approx_offset: 141794
+  notes: last line of the IMRC amenities list; a compositional test, and this field's clause says testing and measurement
+    qualify. Absent from all six field inventories.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0022
+  name: quality assurance
+  status: confirmed
+  acceptable_forms:
+  - quality assurance
+  evidence:
+  - quote: Our super-efficient quality assurance team
+    approx_offset: 148366
+  notes: named as a team rather than an operation, but it states inspection of the work
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    reason: entity stands (dimensional inspection of ball valves, and inspection qualifies under this field's clause).
+      But the only form is 'quality assurance team' - the word 'team' is people, not the operation, and a returned
+      phrase 'quality assurance' would not contain the form. 'quality assurance' occurs once in the file, in the
+      same quote.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0023
+  name: welding
+  status: confirmed
+  acceptable_forms:
+  - welding
+  - Fully Welded Ball Valves
+  - fully welded
+  evidence:
+  - quote: welding, brazing, riveting, and adhesives
+    approx_offset: 237335
+  - quote: Fully Welded Ball Valves
+    approx_offset: 149260
+  actor: unknown
+  notes: named once in the generic sheet-metal explainer and once inside a ball-valve product name; no welding equipment
+    in the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0088
+  name: injecting emergency sealants
+  status: candidate
+  acceptable_forms:
+  - injecting emergency sealants
+  evidence:
+  - quote: This variety is best suited for industries that require processes like injecting emergency sealants
+    approx_offset: 149664
+  actor: client
+  notes: named as a process on the ball-valve page; the sentence calls it a process explicitly.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0045
+  name: drying (turmeric rhizome)
+  status: candidate
+  acceptable_forms:
+  - Turmeric rhizome drying
+  - Turmeric Rhizome Drying
+  evidence:
+  - quote: shown keen interest in Turmeric rhizome drying.
+    approx_offset: 171067
+  actor: lab
+  notes: named only in a photo caption about a visiting MP; the new crawl lowercases 'rhizome drying'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-pradeepmetals-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0078
+  name: machine forging
+  status: confirmed
+  acceptable_forms:
+  - machine forging
+  evidence:
+  - quote: different types of machine forging processes applied in the manufacturing industry
+    approx_offset: 174483
+  - quote: What is Machine Forging?
+    approx_offset: 241189
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0079
+  name: seamless rolled ring forging
+  status: confirmed
+  acceptable_forms:
+  - seamless rolled ring forging
+  evidence:
+  - quote: seamless rolled ring forging
+    approx_offset: 174674
+  notes: named once, in a blog sentence listing forging types generally
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0080
+  name: die machining
+  status: confirmed
+  acceptable_forms:
+  - the forging dies are precision machined
+  evidence:
+  - quote: the forging dies are precision machined
+    approx_offset: 180662
+  notes: making the tooling is itself an operation on material; the dies produced are tooling and are excluded from
+    equipments and products
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0062
+  name: melting and moulding (casting sub-steps)
+  status: confirmed
+  acceptable_forms:
+  - melting the steel, and then molding into the required shapes
+  - molding
+  evidence:
+  - quote: melting the steel, and then molding into the required shapes
+    approx_offset: 184762
+  actor: unknown
+  notes: the casting comparator's own sub-steps; same status as the casting entry
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0025
+  name: design and engineering
+  status: confirmed
+  acceptable_forms:
+  - DESIGN & ENGINEERING
+  - design and engineering
+  - engineering and design
+  evidence:
+  - quote: design and engineering
+    approx_offset: 192635
+  - quote: engineering and design
+    approx_offset: 247022
+  notes: 'the clause requires an operation performed ON MATERIALS, PARTS OR PRODUCTS, and design is performed on
+    drawings. Disputed rather than dropped: the site lists Design & Engineering as one of its five facilities, and
+    the toolpath and simulation steps below it feed straight into die manufacture'
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0039
+  name: testing and validation
+  status: confirmed
+  acceptable_forms:
+  - TESTING & VALIDATION
+  - testing and validation
+  - testing procedures, and validation
+  - testing practices, and validation
+  evidence:
+  - quote: machining, and testing and validation
+    approx_offset: 192694
+  - quote: testing procedures, and validation
+    approx_offset: 247092
+  notes: the /testing-validation page is a 'Coming Soon' stub on both fetches; the capability survives only as a
+    heading and in blog retellings
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0061
+  name: hammering / pounding
+  status: confirmed
+  acceptable_forms:
+  - hammering it into the required shape
+  - Pounding and squeezing metals
+  - hammered or pounded
+  evidence:
+  - quote: forging involves heating up the metal and hammering it into the required shape
+    approx_offset: 240803
+  - quote: Pounding and squeezing metals to create robust and sturdy products
+    approx_offset: 202874
+  - quote: it is hammered or pounded around through rigorous movements
+    approx_offset: 203829
+  actor: unknown
+  notes: generic explainer verbs for the forging deformation step
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0081
+  name: rolling
+  status: confirmed
+  acceptable_forms:
+  - rolled in rolling mills
+  evidence:
+  - quote: rolled in rolling mills
+    approx_offset: 208077
+  actor: unknown
+  notes: generic iron-and-steel explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0089
+  name: metalworking
+  status: candidate
+  acceptable_forms:
+  - metalworking
+  - processes of metalworking
+  - methods of metalworking
+  evidence:
+  - quote: the structural integrity that it gains is unmatched by other processes of metalworking
+    approx_offset: 209031
+  actor: unknown
+  notes: named four times as a process family in the forging-benefits blogs; the packet has the specific operations
+    but not this generic, which a recall-first search would plausibly return.
+  provenance:
+  - action: added
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0082
+  name: sawing
+  status: confirmed
+  acceptable_forms:
+  - sawing
+  evidence:
+  - quote: secondary processes like sawing, torch cutting, and machining
+    approx_offset: 210825
+  actor: unknown
+  notes: named in a generic open-die-forging explainer, though the plant does own circular and band saws
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0083
+  name: torch cutting
+  status: confirmed
+  acceptable_forms:
+  - torch cutting
+  evidence:
+  - quote: torch cutting
+    approx_offset: 210858
+  actor: unknown
+  notes: same generic explainer sentence as sawing
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0084
+  name: turning
+  status: confirmed
+  acceptable_forms:
+  - CNC Turning Centers
+  - Turning Centers
+  evidence:
+  - quote: CNC Turning Centers
+    approx_offset: 232174
+  notes: the operation is named only inside a machine name; the word 'turning' never appears on its own
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0063
+  name: sheet metal fabrication
+  status: confirmed
+  acceptable_forms:
+  - Sheet Metal Fabrication
+  - Metal Fabrication
+  - fabricating sheet metal
+  evidence:
+  - quote: more commonly known as Sheet Metal Fabrication
+    approx_offset: 234837
+  - quote: 'Metal Fabrication: As the name suggests, this is where the metal is fabricated'
+    approx_offset: 235524
+  actor: unknown
+  notes: an entire blog post equates 'precision metal manufacturing' with sheet metal fabrication. The company forges;
+    it does not fabricate sheet metal, and no sheet-metal equipment is named. Recall-first keeps it
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0064
+  name: surface finishing
+  status: confirmed
+  acceptable_forms:
+  - custom surface finishes
+  - Finishing
+  - smoothening of edges
+  evidence:
+  - quote: other custom surface finishes
+    approx_offset: 237647
+  - quote: smoothening of edges
+    approx_offset: 235771
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0065
+  name: shearing
+  status: confirmed
+  acceptable_forms:
+  - shearing
+  - Cutting with Shear
+  - Shear
+  evidence:
+  - quote: 'Cutting with Shear: Shear is when a tangential force is applied on the sheet metal'
+    approx_offset: 236504
+  - quote: shearing (for large parts)
+    approx_offset: 236634
+  notes: the OPERATION; the 1600T Shear machine is the equipments entry. The explainer sentence is generic sheet-metal
+    prose
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0066
+  name: punching
+  status: confirmed
+  acceptable_forms:
+  - punching
+  evidence:
+  - quote: punching (making holes)
+    approx_offset: 236662
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0067
+  name: blanking
+  status: confirmed
+  acceptable_forms:
+  - blanking
+  evidence:
+  - quote: blanking (cutting part perimeters)
+    approx_offset: 236691
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0068
+  name: laser cutting
+  status: confirmed
+  acceptable_forms:
+  - laser cutting
+  evidence:
+  - quote: laser cutting, plasma cutting, and waterjet cutting
+    approx_offset: 236845
+  actor: unknown
+  notes: generic sheet-metal explainer listing three cutting methods the company does not claim; no laser equipment
+    anywhere in the file
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0069
+  name: plasma cutting
+  status: confirmed
+  acceptable_forms:
+  - plasma cutting
+  evidence:
+  - quote: plasma cutting
+    approx_offset: 236860
+  actor: unknown
+  notes: same generic explainer sentence as laser cutting
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0070
+  name: waterjet cutting
+  status: confirmed
+  acceptable_forms:
+  - waterjet cutting
+  evidence:
+  - quote: waterjet cutting
+    approx_offset: 236880
+  actor: unknown
+  notes: same generic explainer sentence as laser cutting
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0071
+  name: bending
+  status: confirmed
+  acceptable_forms:
+  - Bending and Forming
+  - rotary bending
+  - bent
+  evidence:
+  - quote: Bending and Forming
+    approx_offset: 236900
+  - quote: rotary bending
+    approx_offset: 237107
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0072
+  name: folding
+  status: confirmed
+  acceptable_forms:
+  - folding
+  evidence:
+  - quote: folding
+    approx_offset: 237084
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0073
+  name: brazing
+  status: confirmed
+  acceptable_forms:
+  - brazing
+  evidence:
+  - quote: brazing
+    approx_offset: 237344
+  actor: unknown
+  notes: generic sheet-metal explainer only
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0074
+  name: riveting
+  status: confirmed
+  acceptable_forms:
+  - riveting
+  evidence:
+  - quote: riveting
+    approx_offset: 237353
+  actor: unknown
+  notes: generic sheet-metal explainer only
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0075
+  name: polishing
+  status: confirmed
+  acceptable_forms:
+  - polishing the surface
+  evidence:
+  - quote: polishing the surface, silk screening, paint coating
+    approx_offset: 237589
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0076
+  name: silk screening
+  status: confirmed
+  acceptable_forms:
+  - silk screening
+  evidence:
+  - quote: silk screening
+    approx_offset: 237612
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0077
+  name: paint coating
+  status: confirmed
+  acceptable_forms:
+  - paint coating
+  evidence:
+  - quote: paint coating
+    approx_offset: 237628
+  actor: unknown
+  notes: generic sheet-metal explainer
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-pradeepmetals
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: pradeepmetals_com-process_caps-0090
+  name: 3-D modeling
+  status: candidate
+  acceptable_forms:
+  - 3-D modeling
+  evidence:
+  - quote: 3-D modeling using Siemens NX™ (Unigraphics)
+    approx_offset: 50009
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0091
+  name: curing (resin bonded grinding wheels)
+  status: candidate
+  acceptable_forms:
+  - Rapid curing
+  - curing
+  evidence:
+  - quote: Rapid curing of resin bonded grinding wheels
+    approx_offset: 60493
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0092
+  name: baking (friction material)
+  status: candidate
+  acceptable_forms:
+  - baking
+  evidence:
+  - quote: Continuous process for baking of cured friction material using electromagnetic energy
+    approx_offset: 60558
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0093
+  name: pre-treatment / pretreatment
+  status: candidate
+  acceptable_forms:
+  - Pre-treatment
+  - Pretreatment
+  evidence:
+  - quote: Pre-treatment of coal with microwaves
+    approx_offset: 60676
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0094
+  name: pretreatment (alt spelling)
+  status: candidate
+  acceptable_forms:
+  - Pretreatment
+  evidence:
+  - quote: Batch or Continuous Process for Pretreatment of Heavy Petro Bottom Stocks
+    approx_offset: 60734
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0095
+  name: disinfestation
+  status: candidate
+  acceptable_forms:
+  - Disinfestation
+  evidence:
+  - quote: Disinfestation of food grains (rice, wheat)
+    approx_offset: 60832
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0096
+  name: sintering (ceramic plates)
+  status: candidate
+  acceptable_forms:
+  - Sintering
+  evidence:
+  - quote: Sintering of Ceramic plates for solid oxide fuel cell electrode materials
+    approx_offset: 60903
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0097
+  name: sintering (powder metals)
+  status: candidate
+  acceptable_forms:
+  - Sintering
+  evidence:
+  - quote: Sintering of powder metals components made from SS, refractory metals (tungsten), composites of Cu+Cr
+      etc
+    approx_offset: 60999
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0098
+  name: smelting-reduction
+  status: candidate
+  acceptable_forms:
+  - Smelting-reduction
+  evidence:
+  - quote: Smelting-reduction of iron ore (Microwave Composite Heating Furnace)
+    approx_offset: 61125
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0099
+  name: curing (concrete paver blocks)
+  status: candidate
+  acceptable_forms:
+  - Rapid curing
+  - Curing
+  evidence:
+  - quote: 'Rapid curing of concrete paver blocks (2011-13): Curing of concrete pre-cast paver blocks was achieved
+      in 3 days'
+    approx_offset: 62052
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0100
+  name: decontamination
+  status: candidate
+  acceptable_forms:
+  - Decontamination
+  - decontamination process
+  evidence:
+  - quote: 'Decontamination of food additives (2024- ongoing): This is an exploratory project'
+    approx_offset: 62435
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0101
+  name: open die drop forging
+  status: candidate
+  acceptable_forms:
+  - Open die drop forging
+  evidence:
+  - quote: '- Open die drop forging'
+    approx_offset: 123372
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0102
+  name: CMM inspection
+  status: candidate
+  acceptable_forms:
+  - CMM
+  evidence:
+  - quote: '- CMM'
+    approx_offset: 135006
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0103
+  name: stamping (post-forging)
+  status: candidate
+  acceptable_forms:
+  - Stamping
+  evidence:
+  - quote: '- Stamping'
+    approx_offset: 135458
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0104
+  name: drying (microwave R&D project)
+  status: candidate
+  acceptable_forms:
+  - drying
+  evidence:
+  - quote: appreciated & shown keen interest in Turmeric rhizome drying.
+    approx_offset: 171053
+  actor: lab
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0105
+  name: molding
+  status: candidate
+  acceptable_forms:
+  - molding
+  evidence:
+  - quote: and then molding into the required shapes by putting it into molds.
+    approx_offset: 184781
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: pradeepmetals_com-process_caps-0106
+  name: rotary bending
+  status: candidate
+  acceptable_forms:
+  - rotary bending
+  evidence:
+  - quote: Some forms of bending include machining, folding, stamping, and rotary bending.
+    approx_offset: 237043
+  provenance:
+  - action: added
+    by: seed-agent-pradeepmetals-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: grinding
+  reason: 'witnessed: ''grinding'' occurs four times and EVERY ONE of them is inside ''resin bonded grinding wheels''
+    - an IMRC research workpiece. The company grinds nothing; there is no grinder in the file. This is the Hemming/HEM-Saw
+    pattern'
+- form: 3D printing
+  reason: 'anticipatory: zero occurrences'
+- form: additive manufacturing
+  reason: 'anticipatory: zero occurrences'
+- form: anodizing
+  reason: 'anticipatory: zero occurrences, despite an aluminium-forging page title'
+- form: plating
+  reason: 'anticipatory: zero occurrences; the only surface work named is shot blasting, rust-prevention and the
+    explainer''s paint coating'
+- form: injection molding
+  reason: 'anticipatory: zero occurrences; ''molds''/''molding'' occur only in the casting comparator'
+- form: extrusion
+  reason: 'anticipatory: zero occurrences'
+- form: broaching
+  reason: 'anticipatory: zero occurrences'
+- form: non-destructive testing
+  reason: 'anticipatory: zero occurrences of NDT, ultrasonic testing, dye penetrant or magnetic particle - the only
+    ''Ultrasonic'' in the file is ''Ultrasonic Cleaning'', a POST FORGING cleaning step, not an inspection'
+- form: voting
+  reason: 'witnessed: 32 occurrences of ''-ing'' voting words (Voting Results, e-voting, Remote E-Voting) from the
+    AGM pages - the single largest -ing family in the file and entirely investor-relations'
+- form: trading
+  reason: 'witnessed: ''Closure of Trading Window'', ''CODE FOR INSIDER TRADING'' - securities language'
+- form: shipping
+  reason: 'witnessed: ''Minister of Shipping'' (the founder''s cabinet post) and ''We ship products'' - never a
+    logistics or marine capability'
+- form: consulting
+  reason: 'witnessed: nine occurrences, all from directors'' CVs (management consulting, HR consulting, technology
+    consultant)'
+- form: screening
+  reason: 'witnessed: occurs only inside ''silk screening'''
+- form: mining
+  reason: witnessed as an INDUSTRY served by ball valves, and inside 'determining'; never an operation the company
+    performs
+- form: harvesting
+  reason: 'witnessed: ''Rain water harvesting'', a site sustainability measure'
+- form: roofing
+  reason: 'witnessed: ''asbestos roofing sheets'' being replaced on the factory - building work, not production'

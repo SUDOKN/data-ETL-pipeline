@@ -1,0 +1,1268 @@
+subject: steelcraft.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/steelcraft.com.txt
+  sha256: 177da18fbba7968e733d2de9701d1b82b82d9d4e3ccf7cbef93cd44317cc6434
+eval_set_version: 3
+expected_empty: false
+notes: 'SHARED OUTPUT NOTE: products and contract_products share one search output; this file serves as the expectation
+  set for BOTH fields. Catalogue-product manufacturer organized as a product-series catalogue: series designations
+  are the natural entities (door series T/SL/L/B/H/CE/LS/SZ/A14/PW/GRAINTECH/INPACT; frame series FT/FP/FN/F/FE/DE/C/CK/DW/K/MU/FS/KS/MS).
+  Judgment calls: (1) series sharing a page (C&CK, DW&K, FS/KS/MS) are SPLIT per the distinct-series rule since
+  each gets its own install-profile prose; (2) supplier hardware/glazing with concrete model designations (Von Duprin
+  94/95, Schlage LM9300, WS-T, Pyrostop, FireLite) are seeded with actor supplier per recall-first; brand+generic
+  mentions (LCN Closers, IVES Hinges, Zero thresholds, Glynn-Johnson) are deliberately NOT seeded - designation
+  content too thin to gate recall on; (3) contract_products: zero contract-manufacturing prose in the text, so any
+  contract_products yield is junk-minting signal. VERIFICATION PASS 2026-08-26 (verify-agent-steelcraft, second
+  independent read): all 37 entries confirmed; 0 disputed; 0 quote failures (all evidence byte-exact verbatim).
+  Agreed with all three judgment calls, including splitting C/CK, DW/K and FS/KS/MS (each genuinely carries its
+  own install-profile prose) and seeding the five supplier hardware/glazing designations with actor: supplier per
+  recall-first. FALSE FRIENDS: agreed as written. SERIES-FORM CONTAINMENT COLLISIONS are this file''s real hazard
+  and are flagged per entry - because matching is containment-either-way, the single-letter series forms are substrings
+  of other seeded series: ''T Series'' is inside ''FT Series'' (0001 credited by 0013), ''L Series'' is inside ''SL
+  Series'' (0003 credited by 0002), and ''K Series'' is inside ''CK Series'' (0022 credited by 0020). A judged pass
+  must attribute these by window, not by form alone. OBSERVED GAPS (recorded, NOT added): ''kwik-pak doors'' (Express
+  Stock program prose) and ''WS Strikes'' (named in the Grouting/Installing WS Strikes download titles) are product
+  designations with no entry.'
+entries:
+- id: steelcraft_com-products-0032
+  name: Hollow metal steel doors and frames (umbrella family)
+  status: confirmed
+  acceptable_forms:
+  - hollow metal steel doors
+  - hollow metal doors and frames
+  - hollow metal frames
+  evidence:
+  - quote: Steelcraft provides a full line of hollow metal steel doors for virtually any wall condition or entryway
+      requirement
+    approx_offset: 41979
+  - quote: Steelcraft hollow metal doors and frames are always manufactured in the United States using American
+      steel
+    approx_offset: 178
+  notes: 'category-level umbrella designation; the series entries above are the real granularity - this entry exists
+    so a category-only return still maps to something | VERIFY 2026-08-26: agreed as a family-level (B) designation,
+    with the caveat that this entry converts a category-only return (''hollow metal doors and frames'') into a recall
+    hit; the series entries carry the real granularity.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0010
+  name: Paladin PW Series tornado doors and frames
+  status: confirmed
+  acceptable_forms:
+  - Paladin PW Series
+  - Paladin™ PW Series flush doors and frames
+  - PW14 Paladin
+  - Paladin Series
+  - Paladin Door System
+  evidence:
+  - quote: Paladin™ PW Series flush doors and frames are taking the industry by storm by providing critical visibility
+      to classroom and safe room designs.
+    approx_offset: 444
+  - quote: The PW14 Paladin™ Door System is designed and tested to withstand extreme effects of wind and flying
+      debris.
+    approx_offset: 18496
+  notes: 'door+frame tornado system; variants merged: ''Paladin™ Series Glass light steel tornado doors'', ''Paladin
+    Door Systems'''
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0036
+  name: Pilkington Pyrostop glass
+  status: confirmed
+  acceptable_forms:
+  - Pilkington Pyrostop®
+  - Pilkington Pyrostop
+  - Pyrostop
+  evidence:
+  - quote: Available fire-rated for 90 minutes with Pilkington Pyrostop® glass
+    approx_offset: 884
+  actor: supplier
+  notes: third-party fire-rated glazing offered inside Paladin doors
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0002
+  name: SL Series square edge flush doors
+  status: confirmed
+  acceptable_forms:
+  - SL Series
+  - SL Series Square Edge Flush Doors
+  evidence:
+  - quote: The SL Series "Square L" flush doors are square edge and designed to meet the architectural requirements
+      for full flush doors, from light to 18ga heavy duty.
+    approx_offset: 1304
+  notes: door series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0028
+  name: Dezigner Glass Trim
+  status: confirmed
+  acceptable_forms:
+  - Dezigner™ Glass Trim
+  - Dezigner Glass Trim
+  evidence:
+  - quote: Recessed Dezigner™ Glass Trim creates clean edge, flush with the door surface
+    approx_offset: 2880
+  notes: branded door component/option (B); appears 7x with ™ and once without
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0017
+  name: FE Series double-egress frames
+  status: confirmed
+  acceptable_forms:
+  - FE Series
+  - FE Series Double-Egress Frames
+  evidence:
+  - quote: The FE Series double egress frames are designed to meet requirements for heavy to maximum duty applications
+      in both commercial and institutional buildings.
+    approx_offset: 4701
+  notes: frame series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0023
+  name: MU Series multi-use flush frames
+  status: confirmed
+  acceptable_forms:
+  - MU Series
+  - MU Series Multi-Use Flush Frames
+  evidence:
+  - quote: The MU Series multi-use flush frames meet demands for light to maximum duty applications in commercial
+      and industrial buildings.
+    approx_offset: 7265
+  notes: frame series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0009
+  name: A14 Series entrance doors
+  status: confirmed
+  acceptable_forms:
+  - A14 Series
+  - A14 Series Entrance Doors
+  evidence:
+  - quote: A14 Series entrance doors are designed to meet the architectural requirements for exterior entrance applications,
+      for 14 gauge extra heavy duty.
+    approx_offset: 12018
+  notes: door series; FG/FG2/FG3 full-glass configurations kept as notes, not forms
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0034
+  name: Schlage LM9300 levers
+  status: confirmed
+  acceptable_forms:
+  - Schlage LM9300
+  - LM9300
+  evidence:
+  - quote: Certified Tornado assemblies include a Paladin Door & Frame with Schlage LM9300 Levers or Von Duprin
+      WS-T Exit Devices as latching hardware.
+    approx_offset: 19815
+  actor: supplier
+  notes: sibling-brand latching hardware in certified tornado assemblies
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0035
+  name: Von Duprin WS-T exit devices
+  status: confirmed
+  acceptable_forms:
+  - Von Duprin WS-T
+  - WS-T Exit Devices
+  evidence:
+  - quote: Certified Tornado assemblies include a Paladin Door & Frame with Schlage LM9300 Levers or Von Duprin
+      WS-T Exit Devices as latching hardware.
+    approx_offset: 19815
+  actor: supplier
+  notes: sibling-brand latching hardware; related 'WS Strikes' appear in download titles (Grouting WS Strikes, Installing
+    WS Strikes)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0016
+  name: F Series three-sided flush (masonry) frames
+  status: confirmed
+  acceptable_forms:
+  - F Series
+  - F Series Masonry Flush Frames
+  - F Series Three-Sided Flush Frames
+  evidence:
+  - quote: The F Series three-sided flush frames meet requirements for light- to maximum-duty applications for interior
+      and exterior locations in commercial and industrial buildings.
+    approx_offset: 21874
+  notes: 'frame series; F/MU named together as approved hurricane frame series | VERIFY 2026-08-26: agreed. Note
+    the form ''F Series Masonry Flush Frames'' does not occur in prose - it is derived from the page URL slug (f-series-masonry-flush-frames.html),
+    which IS in the snapshot; the prose heading is ''F SERIES THREE-SIDED FLUSH FRAMES''. Harmless as an output-side
+    form.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0012
+  name: INPACT Door System
+  status: confirmed
+  acceptable_forms:
+  - INPACT Door System
+  - INPACTTM Door System
+  - INPACT Series
+  - INPACT System
+  evidence:
+  - quote: The INPACTTM Door System is available on L Series and T Series doors with factory-installed Von Duprin
+      94/95 INPACTTM Recessed exit hardware.
+    approx_offset: 34173
+  notes: integrated door+hardware assembly; scrape flattened ™ to literal 'TM' -> 'INPACTTM' (4x); hardware components
+    are Allegion sibling brands
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0033
+  name: Von Duprin 94/95 INPACT Recessed exit device
+  status: confirmed
+  acceptable_forms:
+  - Von Duprin 94/95
+  - 94/95 Recessed Exit
+  evidence:
+  - quote: Includes factory-installed Von Duprin 94/95 Recessed Exit to reduce customer costs and improve speed
+      of installation at the job site
+    approx_offset: 35049
+  actor: supplier
+  notes: Allegion sibling-brand hardware factory-installed in INPACT systems; in-text product designation, wrong-actor
+    flagged downstream
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0008
+  name: SZ Series Falcon flush doors
+  status: confirmed
+  acceptable_forms:
+  - SZ Series
+  - Falcon SZ
+  - SZ Series Falcon Flush Doors
+  evidence:
+  - quote: The SZ Series Flush doors are square edge doors, designed to meet the architectural requirements for
+      full flush 18ga heavy duty doors.
+    approx_offset: 84529
+  - quote: Falcon SZ Series
+    approx_offset: 40955
+  notes: door series; economy/stock line under the Falcon name (Falcon is another Allegion brand name attached to
+    this Steelcraft-marketed series)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0029
+  name: Integral Kerfed Frame
+  status: confirmed
+  acceptable_forms:
+  - Integral Kerfed Frame
+  evidence:
+  - quote: Integral Kerfed Frame
+    approx_offset: 41218
+  notes: 'named ONLY as a literature-list title (2x) - a frame type designation with no prose description; weakest
+    entry here, kept because the designation is real and in-text | VERIFY 2026-08-26: agreed, narrowly. Independently
+    checked: ''Integral Kerfed Frame'' occurs only twice, both inside the Literature list, where its list-neighbours
+    are a mix of doc titles (''Steelcraft Frame Nomenclature'', ''Stainless Steel Data Sheet'') and genuine series
+    designations (''FT Series (Thermal Break)''). It reads as a frame-type designation used as a link label rather
+    than a document title, so it stays in-field - but it and products-0032 are the two entries most likely to be
+    re-litigated.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: doc_title
+- id: steelcraft_com-products-0001
+  name: T Series temperature rise flush doors
+  status: confirmed
+  acceptable_forms:
+  - T Series Flush Doors
+  - T Series
+  - T Series temperature rise core doors
+  evidence:
+  - quote: The T Series has mineral board cores that resist temperature rise, maximizing emergency protection in
+      stairwells.
+    approx_offset: 42436
+  - quote: The T Series temperature rise core doors, common in stairwells, control the level of heat transfer to
+      the safe side of the door
+    approx_offset: 101099
+  notes: 'door series; mineral board temperature-rise core; T16 gauge variant named on GRAINTECH page | VERIFY 2026-08-26:
+    agreed. FORM COLLISION FLAG: the form ''T Series'' is a substring of ''FT Series'' (products-0013), so a return
+    naming only the FT thermal-break FRAME series also credits this DOOR entry under containment matching.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0007
+  name: LS Series stainless steel doors
+  status: candidate
+  acceptable_forms:
+  - LS Series
+  - LS Series Stainless Steel Doors
+  evidence:
+  - quote: The LS Series has a sleek, aesthetic surface that provides tough defense against harsh weather and corrosion.
+    approx_offset: 43083
+  notes: re-anchored on the products.html catalog tile description, not on the 'LS SERIES STAINLESS STEEL DOORS'
+    discontinued-notice page (https://.../ls-series-stainless-doors.html), which now only says Steelcraft no longer
+    takes LS Series orders directly (moved to Next Door Company). The product is still named and described on the
+    main catalog listing, so this is a clean reanchor rather than a retire.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-steelcraft-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0019
+  name: C Series casing-ready frames
+  status: confirmed
+  acceptable_forms:
+  - C Series
+  - C & CK Series
+  - C and CK Series
+  evidence:
+  - quote: The C Series frames are typically welded and installed as part of the wall framing sequence using wood
+      or steel stud anchors, building the wall up to the frame.
+    approx_offset: 47400
+  notes: frame series; marketed on one page with CK but installed differently (stud anchors, wall built up to frame)
+    - split per distinct-series rule
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0020
+  name: CK Series casing-ready frames
+  status: confirmed
+  acceptable_forms:
+  - CK Series
+  - C & CK Series
+  - C and CK Series
+  evidence:
+  - quote: The CK Series frames are installed in rough openings after the wall has been constructed and finished.
+    approx_offset: 47702
+  notes: frame series; compression-anchor rough-opening install distinguishes it from C Series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0004
+  name: B Series steel stiffened flush doors
+  status: confirmed
+  acceptable_forms:
+  - B Series
+  - B Series Flush Doors
+  - B Series stiffened core doors
+  evidence:
+  - quote: B Series stiffened core doors add internal steel stiffeners, extending the full width and height of the
+      door.
+    approx_offset: 52607
+  notes: door series; STC-Stiffened core variant for sound doors
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0011
+  name: GRAINTECH Series stainable steel doors
+  status: confirmed
+  acceptable_forms:
+  - GRAINTECH
+  - GRAINTECH™ Series
+  - GRAINTECH Series
+  evidence:
+  - quote: Steelcraft’s GRAINTECH™ Series of stainable steel doors provides the beauty of wood with the features
+      and benefits of steel.
+    approx_offset: 56332
+  notes: wood-look finish series marketed as a door series; applies to CE/H16/HE16/L/T constructions
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0021
+  name: DW Series drywall frames
+  status: confirmed
+  acceptable_forms:
+  - DW Series
+  - DW & K Series
+  - DW Series Drywall frames
+  evidence:
+  - quote: The DW Series Drywall frames are designed for light to maximum duty applications in both commercial and
+      institutional buildings.
+    approx_offset: 58987
+  notes: frame series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0022
+  name: K Series drywall frames
+  status: confirmed
+  acceptable_forms:
+  - K Series
+  - DW & K Series
+  evidence:
+  - quote: 'K Series: sill attachment is made through the frame face, directly into the wall sill runner'
+    approx_offset: 60049
+  notes: 'frame series; face-attached sill distinguishes it from DW Series | VERIFY 2026-08-26: agreed. FORM COLLISION
+    FLAG: the form ''K Series'' is a substring of ''CK Series'' (products-0020), so a CK-only return also credits
+    this entry, and vice versa via the shared ''C & CK Series'' / ''C and CK Series'' forms.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0013
+  name: FT Series thermal break masonry frames
+  status: confirmed
+  acceptable_forms:
+  - FT Series
+  - FT Series Thermal Break Masonry Frames
+  - FT frames
+  evidence:
+  - quote: FT Series 3-sided frames and elevations are designed to meet requirements for light to maximum duty applications
+      in both commercial and institutional buildings.
+    approx_offset: 63480
+  notes: frame series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0005
+  name: H Series hurricane flush doors
+  status: confirmed
+  acceptable_forms:
+  - H Series
+  - H Series Hurricane Rated Flush Doors
+  - TH Series
+  - HE16
+  evidence:
+  - quote: H Series Hurricane Rated Flush Doors
+    approx_offset: 69263
+  - quote: 'Note: This core is also available on H Series hurricane doors, ordered as TH Series.'
+    approx_offset: 103576
+  - quote: 'Approved Door series: H / HE (embossed) / TH (temperature rise)'
+    approx_offset: 81350
+  notes: 'door series; sub-variants HE (embossed hurricane), TH (temperature-rise hurricane), H16/HE16 gauges merged
+    here as trivial variants; bare ''HE'' deliberately NOT an acceptable form (substring chaos) | VERIFY 2026-08-26:
+    agreed. Two flags: (a) the third evidence quote (''Approved Door series: H / HE (embossed) / TH (temperature
+    rise)'') contains NO acceptable form - it writes ''TH (temperature rise)'', not ''TH Series'' - so it is context,
+    not a valid window anchor; (b) ''HE16'' is a 4-char form naming the embossed 16-gauge sibling variant, so a
+    return of ''H16 and HE16 Series'' credits this H Series entry - intended per the note, recorded here as a leniency.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0014
+  name: FP Series tornado safe frames
+  status: confirmed
+  acceptable_forms:
+  - FP Series
+  - FP14 Paladin
+  - FP Series Tornado Safe Frames
+  - P Series Tornado Safe Frames
+  evidence:
+  - quote: The FP14 Paladin™ Series 3 Sided flush frames are assembly tested and approved showing tornado resistance
+      to extreme effects of 250 mph winds
+    approx_offset: 90460
+  - quote: P Series Tornado Safe Frames
+    approx_offset: 69325
+  notes: frame series; the windstorm application page's 'P Series Tornado Safe Frames' merged here as a variant
+    naming of the same series
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0015
+  name: FN Series three-sided flush frames
+  status: confirmed
+  acceptable_forms:
+  - FN Series
+  - FN Series Three-Sided Flush Frames
+  evidence:
+  - quote: The FN Series 3 sided flush narrow 1" (25 mm) face frames are designed to meet the requirements for light
+      to maximum duty applications
+    approx_offset: 69727
+  notes: frame series; narrow 1" face profile
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0003
+  name: L Series flush doors
+  status: confirmed
+  acceptable_forms:
+  - L Series
+  - L Series Flush Doors
+  - Steelcraft L Series
+  evidence:
+  - quote: L Series flush doors are designed to meet the architectural requirements for full flush doors, from light
+      to 14 gauge maximum duty.
+    approx_offset: 72646
+  notes: 'flagship door series (''our versatile flagship door''); L16 gauge variant named on GRAINTECH page | VERIFY
+    2026-08-26: agreed. FORM COLLISION FLAG: the form ''L Series'' is a substring of ''SL Series'' (products-0002),
+    so an SL-only return also credits this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0006
+  name: CE Series embossed panel doors
+  status: confirmed
+  acceptable_forms:
+  - CE Series
+  - CE Series Embossed Panel Doors
+  evidence:
+  - quote: CE Series embossed doors are designed to meet the architectural requirements for embossed panel doors,
+      from light to 16 gauge extra heavy duty.
+    approx_offset: 87200
+  notes: door series; embossment designs E6, E6TL, HD2, HD2A ('High Definition') kept as notes, not forms - too
+    short/collision-prone
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0030
+  name: Hospital Stops
+  status: confirmed
+  acceptable_forms:
+  - Hospital Stops
+  - Frame Hospital Stops
+  evidence:
+  - quote: Frame Hospital Stops in various standard heights and angles allowing the door stop to terminate above
+      the floor line where cleanliness is a requirement.
+    approx_offset: 94368
+  notes: 'frame option/component for healthcare (B: component/option)'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0031
+  name: Lead-lining clips
+  status: confirmed
+  acceptable_forms:
+  - Lead-lining clips
+  - Frame Lead-lining clips
+  evidence:
+  - quote: Frame Lead-lining clips for easy integration of lead where radiation transmission is a concern.
+    approx_offset: 94523
+  notes: frame option/component (B); the genuine metal-lead context in this corpus - see material_caps
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0018
+  name: DE Series double-egress frames
+  status: confirmed
+  acceptable_forms:
+  - DE Series
+  - DE Series Double-Egress Frames
+  evidence:
+  - quote: The DE Series double egress frames meet all the design parameters of conventional FE Series double egress
+      frames
+    approx_offset: 136630
+  notes: frame series; swing-clear-hinge variant of FE
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0037
+  name: FireLite fire-rated glass
+  status: confirmed
+  acceptable_forms:
+  - FireLite®
+  - FireLite
+  evidence:
+  - quote: Technical Glass Product's FireLite® fire-rated glass technical data specifications
+    approx_offset: 140617
+  actor: supplier
+  notes: Technical Glass Products (TGP) glazing referenced for fire-rating capability; TGP also appears as 'Supplied
+    by TGP' on the Paladin page
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0024
+  name: FS Series stainless steel flush frames
+  status: candidate
+  acceptable_forms:
+  - FS Series
+  - FS Flush Series
+  - FS, KS & MS Series
+  evidence:
+  - quote: FS, KS & MS Series Stainless Steel Frames Update
+    approx_offset: 142474
+  notes: the FS/KS/MS frame family is now presented ONLY as a merged discontinued-notice page ('FS, KS & MS Series
+    Stainless Steel Frames Update' / 'FS, KS & MS Series stainless steel frames are now available exclusively through
+    ... Next Door Company'); no distinct 'FS Series' or 'FS Flush Series' string occurs standalone anymore. Reanchored
+    on the existing 'FS, KS & MS Series' acceptable_form, which is still literally present and was already in this
+    entry's form list before the repair.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-steelcraft-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0026
+  name: MS Series stainless steel multi-use frames
+  status: candidate
+  acceptable_forms:
+  - MS Series
+  evidence:
+  - quote: Steelcraft is no longer taking orders for FS, KS & MS Series stainless steel frames.
+    approx_offset: 142702
+  notes: unlike KS, the literal substring 'MS Series' does still occur (inside '...& MS Series stainless steel frames'),
+    so this one is a genuine (if generic) reanchor rather than a fabricated form. The distinguishing 'hybrid of
+    FS and KS Series frames, used in stud walls' sentence is gone -- MS is now named only inside the merged discontinued-notice
+    paragraph. Dropped 'MS Multi-use Series' from acceptable_forms; that phrase no longer occurs.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-steelcraft-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0027
+  name: Frame elevations (architectural stick systems)
+  status: confirmed
+  acceptable_forms:
+  - architectural stick systems
+  - stick sections
+  - Frame Elevations
+  - frame elevations
+  evidence:
+  - quote: Steelcraft architectural stick systems feature lengths of component frame material called “stick sections”
+      that assemble to produce elevations
+    approx_offset: 176180
+  notes: 'product family: transom / sidelight / borrowed-light elevation assemblies built from stick sections; family-level
+    (B-leaning)'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0025
+  name: KS Series stainless steel drywall frames
+  status: retired
+  acceptable_forms:
+  - KS Series
+  - KS Drywall Series
+  evidence:
+  - quote: KS Drywall Series
+  notes: 'retired at the markdown cutover: searched ''KS Series'' and ''KS Drywall Series'': zero occurrences as
+    a distinct string. ''KS'' only survives as a letter-pair inside the merged discontinued-notice phrase ''FS,
+    KS & MS Series'' (e.g. ''FS, KS & MS Series Stainless Steel Frames Update''); the site no longer names a standalone
+    KS product or describes its drywall install profile anywhere. Reusing the merged ''FS, KS & MS Series'' string
+    as this entry''s evidence would just be gaming a shared form onto three different entries (FS, KS, MS) off one
+    compound label, which is the kind of un-missable, meaning-free match the brief warns against — retiring instead.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-steelcraft-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-products-0038
+  name: Paladin PW Series Flush Doors and Frames
+  status: candidate
+  acceptable_forms:
+  - Paladin
+  - Paladin PW Series
+  evidence:
+  - quote: PALADIN™ PW SERIES FLUSH DOORS AND FRAMES
+    approx_offset: 18372
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0039
+  name: Glass Light Kits
+  status: candidate
+  acceptable_forms:
+  - Glass Light Kits
+  evidence:
+  - quote: Factory installed Glass Light Kits
+    approx_offset: 19621
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0040
+  name: FS, KS & MS Series stainless steel frames
+  status: candidate
+  acceptable_forms:
+  - FS, KS & MS Series
+  - FS, KS, MS Series Frames
+  evidence:
+  - quote: Stainless steel frames are now available exclusively through our stainless steel door and frame manufacturer
+      Next Door Company. Steelcraft is no longer taking orders for FS, KS & MS Series
+    approx_offset: 32332
+  notes: Steelcraft DISCONTINUED this line in this crawl -- 'no longer taking orders', now sold exclusively via
+    Next Door Company. Recorded as an entity per recall-first; not a live own-capability claim.
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0041
+  name: INPACT Series Door Systems
+  status: candidate
+  acceptable_forms:
+  - INPACT
+  - INPACT Series
+  evidence:
+  - quote: INPACT SYSTEM INTEGRATED DOOR SOLUTION
+    approx_offset: 34075
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0042
+  name: Zero Thresholds and Gasketing
+  status: candidate
+  acceptable_forms:
+  - Zero Thresholds and Gasketing
+  evidence:
+  - quote: and Zero Thresholds and Gasketing.
+    approx_offset: 34522
+  actor: parent_sibling
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0043
+  name: Von Duprin 94/95 exit hardware
+  status: candidate
+  acceptable_forms:
+  - Von Duprin 94/95
+  evidence:
+  - quote: Includes factory-installed Von Duprin 94/95 Recessed Exit to reduce customer costs and improve speed
+      of installation at the job site
+    approx_offset: 35049
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0044
+  name: LCN Closers
+  status: candidate
+  acceptable_forms:
+  - LCN Closers
+  evidence:
+  - quote: including LCN Closers, IVES Hinges, and LCN SEM Wall magnet Hold-opens
+    approx_offset: 35293
+  actor: parent_sibling
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0045
+  name: IVES Hinges
+  status: candidate
+  acceptable_forms:
+  - IVES Hinges
+  evidence:
+  - quote: including LCN Closers, IVES Hinges, and LCN SEM Wall magnet Hold-opens
+    approx_offset: 35293
+  actor: parent_sibling
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0046
+  name: LCN SEM Wall magnet Hold-opens
+  status: candidate
+  acceptable_forms:
+  - Hold-opens
+  evidence:
+  - quote: and LCN SEM Wall magnet Hold-opens
+    approx_offset: 35329
+  actor: parent_sibling
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0047
+  name: System Set Matrix (INPACT)
+  status: candidate
+  acceptable_forms:
+  - System Set Matrix
+  evidence:
+  - quote: System Set Matrix of 12 pre-configured assembly solutions
+    approx_offset: 36310
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0048
+  name: GRAINTECH wood-look finish doors
+  status: candidate
+  acceptable_forms:
+  - GRAINTECH
+  evidence:
+  - quote: the GRAINTECH™ Series of stainable steel doors that provide the beauty of wood with the benefits and
+      features of steel. Steelcraft has set the standard for performance, reliability and style. As
+    approx_offset: 39127
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0049
+  name: kwik-pak doors and frames
+  status: candidate
+  acceptable_forms:
+  - kwik-pak doors and frames
+  evidence:
+  - quote: 48-hour shipping on kwik-pak doors and frames and stock package small parts to meet quick-turn deadlines.
+    approx_offset: 51845
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0050
+  name: Dezigner trim flush lite kits
+  status: candidate
+  acceptable_forms:
+  - Dezigner™ trim flush lite kits
+  evidence:
+  - quote: Dezigner™ trim flush lite kits, stained to match the door
+    approx_offset: 57440
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0051
+  name: FireLite fire-rated glass (product)
+  status: candidate
+  acceptable_forms:
+  - FireLite
+  evidence:
+  - quote: FireLite® fire-rated glass technical data specifications, which list all of the maximum size limitations
+      along with fire ratings.
+    approx_offset: 140643
+  actor: supplier
+  notes: fire-rated glass product from Technical Glass Products used in Steelcraft doors
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0052
+  name: stainless steel wicket doors
+  status: candidate
+  acceptable_forms:
+  - Stainless steel wicket doors
+  evidence:
+  - quote: Stainless steel wicket doors
+    approx_offset: 143029
+  notes: named in the Next Door Company discontinuation notice for the FS/KS/MS stainless frame line; Steelcraft
+    no longer takes orders for these, sold now via Next Door Company
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0053
+  name: custom stainless steel configurations
+  status: candidate
+  acceptable_forms:
+  - Custom stainless steel configurations
+  evidence:
+  - quote: Custom stainless steel configurations
+    approx_offset: 143094
+  notes: named in the Next Door Company discontinuation notice; Steelcraft no longer takes orders, sold now via
+    Next Door Company
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0054
+  name: oversized stainless steel doors
+  status: candidate
+  acceptable_forms:
+  - Oversized stainless steel door
+  evidence:
+  - quote: Oversized stainless steel door
+    approx_offset: 175620
+  notes: named in the Next Door Company discontinuation notice for the LS Series stainless door line; Steelcraft
+    no longer takes orders for these, sold now via Next Door Company
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0055
+  name: Steelcraft Frame Elevations (stick system)
+  status: candidate
+  acceptable_forms:
+  - stick sections
+  - stick system
+  evidence:
+  - quote: Steelcraft architectural stick systems feature lengths of component frame material called “stick sections”
+      that assemble to produce elevations, including transom, transom and sidelight,
+    approx_offset: 176180
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0056
+  name: transom frame elevation
+  status: candidate
+  acceptable_forms:
+  - 'Transom:'
+  evidence:
+  - quote: 'Transom: door frame with transom bar and glass, panel or louver above door opening'
+    approx_offset: 176857
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0057
+  name: sidelight frame elevation
+  status: candidate
+  acceptable_forms:
+  - 'Sidelight:'
+  evidence:
+  - quote: 'Sidelight: door frame with glass openings attached to one or both sides of door opening.'
+    approx_offset: 177447
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-products-0058
+  name: borrowed light frame elevation
+  status: candidate
+  acceptable_forms:
+  - 'Borrowed light:'
+  evidence:
+  - quote: 'Borrowed light: four-sided frame without door opening, prepared for glass installation in the field'
+    approx_offset: 177746
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Steelcraft Technical Data Manual
+  reason: document title (code D) - floods the Downloads block on nearly every product page (~30x)
+- form: Steelcraft Catalog
+  reason: document title (code D) in resources/downloads lists
+- form: Data Sheet
+  reason: document-title fragment (D); many downloads end in it (WS-T Data Sheet, Falcon SZ Data Sheet, ...)
+- form: 5-Day Express Doors
+  reason: shipping/lead-time program, not a product designation (S); same for 3-Day Express Frames and 2-Day Express
+    Stock
+- form: Order Entry Works
+  reason: electronic ordering software (OEW), not a product
+- form: 360 Portal
+  reason: customer web portal in the nav on every page (U/S)
+- form: RAPID program
+  reason: stock ordering program, not a product
+- form: Overtur
+  reason: Allegion specification software ('specification supported by Overtur'), not a product of the subject
+- form: Literature
+  reason: nav menu label repeated on all pages (U)
+- form: Republic Doors and Frames
+  reason: sibling Allegion brand the text refers readers to (finish-painted frames, lead-lined doors) - a company
+    name, not a product designation
+- form: Allegion hardware
+  reason: generic parent-brand hardware reference ('assembly approved with Allegion hardware') - generic + parent
+    bleed

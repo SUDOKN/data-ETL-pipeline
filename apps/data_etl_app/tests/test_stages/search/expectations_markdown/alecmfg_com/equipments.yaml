@@ -1,0 +1,523 @@
+subject: alecmfg.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/alecmfg.com.txt
+  sha256: 1b7016ecac0a734538029b6e2fed1c6ba60473d7dd9c9dc0ef73a5e670c900ae
+eval_set_version: 2
+expected_empty: false
+notes: 'Honest sparse-but-nonempty set: mostly generic machine categories; the only named
+  models are the Zeiss CONTURA G2 CMM and the Taiwan Hashuo HS-V55LS VMCs. Cookie-policy software
+  names and clients'' machines are the junk pressure.'
+entries:
+- id: alecmfg_com-equipments-0001
+  name: multi-axis CNC machines
+  status: confirmed
+  acceptable_forms:
+  - multi-axis CNC machines
+  - CNC machines
+  evidence:
+  - quote: including SLS and SLA rapid prototyping machines, as well as multi-axis CNC machines
+      and lathes
+    approx_offset: 24413
+  notes: 'borderline (B): generic-but-machine category'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0002
+  name: lathes
+  status: confirmed
+  acceptable_forms:
+  - lathes
+  - lathe
+  evidence:
+  - quote: including SLS and SLA rapid prototyping machines, as well as multi-axis CNC machines
+      and lathes
+    approx_offset: 24413
+  notes: 'borderline (B): generic-but-machine category'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0003
+  name: SLS/SLA rapid prototyping machines
+  status: confirmed
+  acceptable_forms:
+  - rapid prototyping machines
+  - SLS and SLA rapid prototyping machines
+  evidence:
+  - quote: including SLS and SLA rapid prototyping machines, as well as multi-axis CNC machines
+      and lathes
+    approx_offset: 24413
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0004
+  name: Zeiss CONTURA G2 CMM
+  status: confirmed
+  acceptable_forms:
+  - Zeiss CONTURA G2
+  - Zeiss
+  evidence:
+  - quote: Zeiss CONTURA G2 CMM
+    approx_offset: 79803
+  notes: 'OUT OF THE FIELD''S DEFINED SCOPE (corrected 2026-08-27): the equipment search prompt''s
+    What-qualifies clause excludes this explicitly - a production machine ''acts on the work
+    itself, which is what separates it from equipment that only measures, inspects, or tests
+    the work ... and from tooling, which is what a machine holds, guides, or acts through''.
+    This entry is metrology, so search correctly did NOT return it; seeding it as a must-find
+    made correct restraint read as a recall miss and fired a false RED. Kept, not deleted:
+    it IS equipment in the plain sense, so if the field boundary is ever widened to include
+    metrology, re-promote it to confirmed. | UN-DISPUTED by user ruling 2026-09-02: metrology
+    IS in-field for equipments; the prompt''s measure/inspect/test exclusion is the defect,
+    not this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: disputed
+    by: assistant-scope-correction
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  - date: '2026-09-02'
+    by: user ruling via assistant
+    action: disputed -> confirmed (metrology-in-equipments ruling)
+- id: alecmfg_com-equipments-0005
+  name: CMM (coordinate measuring machine)
+  status: confirmed
+  acceptable_forms:
+  - CMM
+  evidence:
+  - quote: Full English CMM reports, raw material certificates, and packaging validation photos
+    approx_offset: 72677
+  - quote: inspected via CMM for hole concentricity
+    approx_offset: 74974
+  notes: 'borderline (B) machine category; the Zeiss entry is the one specific instance |
+    OUT OF THE FIELD''S DEFINED SCOPE (corrected 2026-08-27): the equipment search prompt''s
+    What-qualifies clause excludes this explicitly - a production machine ''acts on the work
+    itself, which is what separates it from equipment that only measures, inspects, or tests
+    the work ... and from tooling, which is what a machine holds, guides, or acts through''.
+    This entry is metrology, so search correctly did NOT return it; seeding it as a must-find
+    made correct restraint read as a recall miss and fired a false RED. Kept, not deleted:
+    it IS equipment in the plain sense, so if the field boundary is ever widened to include
+    metrology, re-promote it to confirmed. | UN-DISPUTED by user ruling 2026-09-02: metrology
+    IS in-field for equipments; the prompt''s measure/inspect/test exclusion is the defect,
+    not this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: disputed
+    by: assistant-scope-correction
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  - date: '2026-09-02'
+    by: user ruling via assistant
+    action: disputed -> confirmed (metrology-in-equipments ruling)
+- id: alecmfg_com-equipments-0006
+  name: laser interferometer
+  status: confirmed
+  acceptable_forms:
+  - Laser Interferometer
+  evidence:
+  - quote: Laser Interferometer
+    approx_offset: 79875
+  notes: 'single-cell evidence from the DK case''s flattened validation table (Equipment Used
+    column) | OUT OF THE FIELD''S DEFINED SCOPE (corrected 2026-08-27): the equipment search
+    prompt''s What-qualifies clause excludes this explicitly - a production machine ''acts
+    on the work itself, which is what separates it from equipment that only measures, inspects,
+    or tests the work ... and from tooling, which is what a machine holds, guides, or acts
+    through''. This entry is metrology, so search correctly did NOT return it; seeding it
+    as a must-find made correct restraint read as a recall miss and fired a false RED. Kept,
+    not deleted: it IS equipment in the plain sense, so if the field boundary is ever widened
+    to include metrology, re-promote it to confirmed. | UN-DISPUTED by user ruling 2026-09-02:
+    metrology IS in-field for equipments; the prompt''s measure/inspect/test exclusion is
+    the defect, not this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: disputed
+    by: assistant-scope-correction
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  - date: '2026-09-02'
+    by: user ruling via assistant
+    action: disputed -> confirmed (metrology-in-equipments ruling)
+- id: alecmfg_com-equipments-0007
+  name: Hashuo HS-V55LS vertical machining centers
+  status: confirmed
+  acceptable_forms:
+  - HS-V55LS
+  - Taiwan Hashuo
+  evidence:
+  - quote: three new vertical machining centers, the HS-V55LS models from Taiwan Hashuo, have
+      already arrived at our new facility
+    approx_offset: 165861
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0008
+  name: vertical machining centers
+  status: confirmed
+  acceptable_forms:
+  - vertical machining centers
+  - vertical machining center
+  evidence:
+  - quote: plans to add 10 vertical machining centers to boost production capacity
+    approx_offset: 165429
+  notes: category entry; the HS-V55LS entry is the named model
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0009
+  name: Renishaw probe
+  status: confirmed
+  acceptable_forms:
+  - Renishaw
+  evidence:
+  - quote: using Renishaw probing to set datums and align bores
+    approx_offset: 122901
+  notes: 'OUT OF THE FIELD''S DEFINED SCOPE (corrected 2026-08-27): the equipment search prompt''s
+    What-qualifies clause excludes this explicitly - a production machine ''acts on the work
+    itself, which is what separates it from equipment that only measures, inspects, or tests
+    the work ... and from tooling, which is what a machine holds, guides, or acts through''.
+    This entry is metrology, so search correctly did NOT return it; seeding it as a must-find
+    made correct restraint read as a recall miss and fired a false RED. Kept, not deleted:
+    it IS equipment in the plain sense, so if the field boundary is ever widened to include
+    metrology, re-promote it to confirmed. | UN-DISPUTED by user ruling 2026-09-02: metrology
+    IS in-field for equipments; the prompt''s measure/inspect/test exclusion is the defect,
+    not this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: disputed
+    by: assistant-scope-correction
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  - date: '2026-09-02'
+    by: user ruling via assistant
+    action: disputed -> confirmed (metrology-in-equipments ruling)
+- id: alecmfg_com-equipments-0010
+  name: double-column CNC center
+  status: confirmed
+  acceptable_forms:
+  - double-column CNC center
+  - double-column CNC
+  evidence:
+  - quote: Final precision machining was done in our double-column CNC center using Renishaw
+      probing
+    approx_offset: 122834
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0011
+  name: CNC plasma cutter
+  status: confirmed
+  acceptable_forms:
+  - CNC plasma
+  evidence:
+  - quote: cut and pre-machined in-house from ASTM A36 using CNC plasma and mill
+    approx_offset: 122565
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0012
+  name: vacuum fixture
+  status: disputed
+  acceptable_forms:
+  - vacuum fixture
+  evidence:
+  - quote: Custom vacuum fixture for finish-pass setup
+    approx_offset: 79266
+  - quote: Custom vacuum fixture designed for 420 × 285 × 16 mm plate
+    approx_offset: 89549
+  notes: 'T-ambiguous (fixture/tooling); custom-built by the subject | OUT OF THE FIELD''S
+    DEFINED SCOPE (corrected 2026-08-27): the equipment search prompt''s What-qualifies clause
+    excludes this explicitly - a production machine ''acts on the work itself, which is what
+    separates it from equipment that only measures, inspects, or tests the work ... and from
+    tooling, which is what a machine holds, guides, or acts through''. This entry is tooling/workholding,
+    so search correctly did NOT return it; seeding it as a must-find made correct restraint
+    read as a recall miss and fired a false RED. Kept, not deleted: it IS equipment in the
+    plain sense, so if the field boundary is ever widened to include tooling/workholding,
+    re-promote it to confirmed.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: disputed
+    by: assistant-scope-correction
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0013
+  name: PowerMill
+  status: disputed
+  acceptable_forms:
+  - PowerMill
+  evidence:
+  - quote: Toolpaths generated in PowerMill with adaptive roughing and high-feed finishing
+      strategies
+    approx_offset: 89611
+  notes: 'T-ambiguous: CAM software, not a machine. DISPUTED (verify-agent-alecmfg 2026-08-26):
+    PowerMill is CAM software, not a machine/tool designation for the equipments field; the
+    taxonomy codes software T, which does not roll up to in_field, so a confirmed must-find
+    here would gate recall on a form the judged side does not count as in-field.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0014
+  name: bending molds
+  status: disputed
+  acceptable_forms:
+  - bending molds
+  evidence:
+  - quote: Utilized custom high-precision bending molds
+    approx_offset: 74484
+  notes: 'T-ambiguous tooling | OUT OF THE FIELD''S DEFINED SCOPE (corrected 2026-08-27):
+    the equipment search prompt''s What-qualifies clause excludes this explicitly - a production
+    machine ''acts on the work itself, which is what separates it from equipment that only
+    measures, inspects, or tests the work ... and from tooling, which is what a machine holds,
+    guides, or acts through''. This entry is tooling/workholding, so search correctly did
+    NOT return it; seeding it as a must-find made correct restraint read as a recall miss
+    and fired a false RED. Kept, not deleted: it IS equipment in the plain sense, so if the
+    field boundary is ever widened to include tooling/workholding, re-promote it to confirmed.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: disputed
+    by: assistant-scope-correction
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-equipments-0015
+  name: CNC machines
+  status: candidate
+  acceptable_forms:
+  - CNC machines
+  evidence:
+  - quote: including SLS and SLA rapid prototyping machines, as well as multi-axis CNC machines
+      and lathes, to enhance our production capabilities and optimize our processes.
+    approx_offset: 24413
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-equipments-0016
+  name: SLS rapid prototyping machines
+  status: candidate
+  acceptable_forms:
+  - SLS
+  evidence:
+  - quote: including SLS and SLA rapid prototyping machines, as well as multi-axis CNC machines
+      and lathes, to enhance our production capabilities and optimize our processes.
+    approx_offset: 24413
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-equipments-0017
+  name: SLA rapid prototyping machines
+  status: candidate
+  acceptable_forms:
+  - SLA
+  evidence:
+  - quote: including SLS and SLA rapid prototyping machines, as well as multi-axis CNC machines
+      and lathes, to enhance our production capabilities and optimize our processes.
+    approx_offset: 24413
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-equipments-0018
+  name: 3-axis machining center
+  status: candidate
+  acceptable_forms:
+  - 3-axis center
+  evidence:
+  - quote: Machined with HSK toolholders on 3-axis center
+    approx_offset: 84368
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-equipments-0019
+  name: HS-V55LS vertical machining center
+  status: candidate
+  acceptable_forms:
+  - HS-V55LS
+  evidence:
+  - quote: Recently, three new vertical machining centers, the HS-V55LS models from Taiwan
+      Hashuo, have already arrived at our new facility.
+    approx_offset: 165851
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-equipments-0020
+  name: MAZAK VCN-430 machining center
+  status: candidate
+  acceptable_forms:
+  - MAZAK VCN-430
+  evidence:
+  - quote: We used the MAZAK VCN-430 4-axis machining center in a temperature-controlled zone
+      (±0.5°C) and paired it with Renishaw tool setting and automatic zeroing systems.
+    approx_offset: 181487
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: equipment
+  reason: generic (G)
+- form: machinery
+  reason: 'generic (G): ''CNC machinery'', ''industrial machinery'''
+- form: machines
+  reason: 'generic (G): ''machines maintained'' etc.'
+- form: production lines
+  reason: 'generic facility phrase: ''toured our production lines'', ''All production lines
+    are running'''
+- form: robotic gripper
+  reason: the Ohio client's end product (D confusion); the subject only machined a bracket
+    for it
+- form: toolchanger
+  reason: client-side interface the bracket mounts to, not shop equipment
+- form: etching equipment
+  reason: machines belonging to the semiconductor client's world; subject only made components
+    for them
+- form: wafer handling system
+  reason: the semiconductor client's own system
+- form: assembly jig
+  reason: the UAV client's jig ('parts fitted into their assembly jig')
+- form: Google Analytics
+  reason: cookie-policy services table on the scraped homepage (junk U)
+- form: WordPress
+  reason: cookie-policy services table (junk U)
+- form: Elementor
+  reason: cookie-policy services table (junk U)
+- form: Intercom Messenger
+  reason: cookie-policy services table (junk U)
+- form: LiteSpeed
+  reason: cookie-policy services table (junk U)
+- form: Google reCAPTCHA
+  reason: cookie-policy services table (junk U)
+- form: 1020 mm × 720 mm × 460 mm
+  reason: dimensional spec string (S), not equipment; same for the other size lines

@@ -1,0 +1,2432 @@
+subject: fzemanufacturing.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/fzemanufacturing.com.txt
+  sha256: 29f9da1f8d601d220cf801bb8a496ba1e873febead70176f1f431a667253e773
+eval_set_version: 2
+expected_empty: false
+notes: 'Extremely dense. Two sources dominate: the homepage/about market lists (first-party, actor own) and a single
+  68-row ''Industry Focus'' table on the welding-services page (a Thomas-directory boilerplate sector menu - recorded
+  in full because the text names them, but they are a directory checklist, not evidenced service history).'
+entries:
+- id: fzemanufacturing_com-industries-0001
+  name: Recreational Marine
+  status: confirmed
+  acceptable_forms:
+  - Recreational Marine
+  - recreational marine industry
+  - Recreation and Marine
+  - Recreational
+  evidence:
+  - quote: Recreational Marine
+    approx_offset: 3953
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0002
+  name: Professional Turf & Lawn Care
+  status: confirmed
+  acceptable_forms:
+  - Professional Turf & Lawn care
+  - Professional Turf Care
+  - professional turf care
+  - Lawn and Turf Care
+  - Turf & Garden
+  - turf care industry
+  evidence:
+  - quote: Professional Turf & Lawn care
+    approx_offset: 4038
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0003
+  name: Hydraulics
+  status: confirmed
+  acceptable_forms:
+  - Hydraulics
+  - Hydraulics Industry
+  - hydraulics industry
+  - hydraulic industry
+  evidence:
+  - quote: Hydraulics (oil and gas)
+    approx_offset: 4103
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0004
+  name: Firefighting and Safety Equipment
+  status: confirmed
+  acceptable_forms:
+  - Firefighting and Safety equipment
+  - Fire Fighting & Safety Equipment
+  - Fire-fighting
+  - fire fighting and safety
+  - Firefighting
+  evidence:
+  - quote: Firefighting and Safety equipment
+    approx_offset: 4213
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0005
+  name: Firearms
+  status: confirmed
+  acceptable_forms:
+  - Firearm components
+  - Firearms
+  - firearm component
+  - firearm manufacturing
+  evidence:
+  - quote: Firearm components
+    approx_offset: 4289
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0006
+  name: Pumps
+  status: confirmed
+  acceptable_forms:
+  - Pumps
+  evidence:
+  - quote: of individual hydraulic components and parts such as cylinder & rods, components for motors, pumps, fittings
+      and hose hardware. Our range of secondary services, including anodizing, heat treating,
+    approx_offset: 157853
+  - quote: Pumps
+    approx_offset: 11848
+  actor: unknown
+  notes: listed as a sector row in the Industry Focus table; also occurs many times as a PART (hydraulic pumps)
+    - see the products inventory
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the pumps INDUSTRY is real (standalone item in the welding page's Industry Focus list, line 801), but
+      the packet's quote is the hydraulic-parts sentence where 'pumps' is a product FZE machines, not a sector;
+      re-anchored on the Industry Focus line
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0007
+  name: Construction
+  status: confirmed
+  acceptable_forms:
+  - Construction & Agriculture equipment
+  - Building & Construction
+  - construction and agriculture
+  evidence:
+  - quote: Construction & Agriculture equipment
+    approx_offset: 159120
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0008
+  name: Automotive / Truck / Transportation
+  status: confirmed
+  acceptable_forms:
+  - Automotive/ Truck/ Transportation
+  - Automotive
+  - Automotive, Motorcycles, Trucking
+  - Automotive and Trucking equipment
+  evidence:
+  - quote: Automotive and Trucking equipment
+    approx_offset: 159159
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0009
+  name: Marine
+  status: confirmed
+  acceptable_forms:
+  - Marine
+  - Marine equipment
+  evidence:
+  - quote: Marine equipment
+    approx_offset: 159195
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0010
+  name: Aerospace
+  status: confirmed
+  acceptable_forms:
+  - Aerospace
+  - aerospace industry
+  evidence:
+  - quote: Aerospace equipment
+    approx_offset: 159305
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0011
+  name: Automation
+  status: confirmed
+  acceptable_forms:
+  - Automation
+  - automation and industrial manufacturing
+  evidence:
+  - quote: Furthermore, our Lean Black Belt Sigma certification, Lights Out automation, Lean Manufacturing, and
+      Kaizen/5S-based continuous improvement processes ensure that we’re
+    approx_offset: 162256
+  - quote: Automation
+    approx_offset: 11108
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the quote's 'Lights Out automation' is FZE's own production practice, not the automation sector; 'Automation'
+      is a standalone Industry Focus list item (line 751) and that is what the entry means
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0012
+  name: Commercial
+  status: confirmed
+  acceptable_forms:
+  - Commercial
+  - commercial industries
+  evidence:
+  - quote: to the completion of products and systems in the oil & gas industries, consumer products, commercial
+      industries, healthcare, household goods – the list is endless.
+    approx_offset: 63932
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0013
+  name: Healthcare
+  status: confirmed
+  acceptable_forms:
+  - healthcare
+  evidence:
+  - quote: of products and systems in the oil & gas industries, consumer products, commercial industries, healthcare,
+      household goods – the list is endless.
+    approx_offset: 63950
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0014
+  name: Plumbing
+  status: confirmed
+  acceptable_forms:
+  - Plumbing
+  - plumbing and HVAC systems
+  evidence:
+  - quote: connections in demanding environments. Likewise, our copper fittings are essential components in plumbing
+      and HVAC systems, prized for their excellent conductivity, antimicrobial properties, and
+    approx_offset: 65636
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0015
+  name: HVAC
+  status: confirmed
+  acceptable_forms:
+  - HVAC
+  evidence:
+  - quote: demanding environments. Likewise, our copper fittings are essential components in plumbing and HVAC systems,
+      prized for their excellent conductivity, antimicrobial properties, and resistance to
+    approx_offset: 65651
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0016
+  name: Residential
+  status: confirmed
+  acceptable_forms:
+  - Residential
+  - residential
+  evidence:
+  - quote: excellent conductivity, antimicrobial properties, and resistance to corrosion. Widely used in residential,
+      commercial, and industrial settings, copper fittings ensure efficient fluid flow and maintain
+    approx_offset: 65777
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0017
+  name: Chemical
+  status: confirmed
+  acceptable_forms:
+  - Chemical
+  evidence:
+  - quote: surfaces to combat the relentless marine conditions, protecting them against corrosion. This chemical
+      treatment is essential for maintaining the longevity and integrity of parts exposed to seawater.
+    approx_offset: 155312
+  - quote: Chemical
+    approx_offset: 11191
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the quote matches 'Chemical' only inside 'This chemical treatment' (a description of passivation), not
+      the chemical industry; 'Chemical' is a standalone Industry Focus list item (line 756)
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0018
+  name: Electrical
+  status: confirmed
+  acceptable_forms:
+  - Electrical
+  evidence:
+  - quote: heating the stud and arcing between them, welding arcs connect the workpiece to the stud. Electrical
+      Heat is applied to the surfaces to be joined. Then, they are pressed together under low pressure,
+    approx_offset: 9326
+  - quote: Electrical
+    approx_offset: 9416
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the quote matches 'Electrical' only inside 'Electrical Heat is applied', an adjective about stud welding,
+      not the electrical sector; 'Electrical' is a standalone Industry Focus list item (line 766)
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0019
+  name: Appliance Architecture
+  status: confirmed
+  acceptable_forms:
+  - Appliance Architecture
+  - Architectural
+  evidence:
+  - quote: Appliance Architecture
+    approx_offset: 11049
+  actor: unknown
+  notes: a directory cell that reads as two merged sectors (Appliance / Architecture); 'Architectural' also appears
+    on its own in the Swiss-machining blog
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0020
+  name: Biomedical
+  status: confirmed
+  acceptable_forms:
+  - Biomedical
+  - Biomedical/Biopharmaceutical
+  evidence:
+  - quote: Biomedical
+    approx_offset: 11120
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0021
+  name: Biopharmaceutical
+  status: confirmed
+  acceptable_forms:
+  - Biopharmaceutical
+  - biopharmaceutical
+  evidence:
+  - quote: Biopharmaceutical
+    approx_offset: 11132
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0022
+  name: Biotechnology
+  status: confirmed
+  acceptable_forms:
+  - Biotechnology
+  evidence:
+  - quote: Biotechnology
+    approx_offset: 11151
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0023
+  name: Communications / Telecommunications
+  status: confirmed
+  acceptable_forms:
+  - Communications
+  - Telecommunications
+  evidence:
+  - quote: Communications
+    approx_offset: 11213
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0024
+  name: Electronics
+  status: confirmed
+  acceptable_forms:
+  - Electronics
+  - Computer and Electronics
+  - electronics industry
+  evidence:
+  - quote: Computer and Electronics
+    approx_offset: 11229
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0025
+  name: Consumer Goods
+  status: confirmed
+  acceptable_forms:
+  - Consumer Goods
+  - consumer products
+  evidence:
+  - quote: Consumer Goods
+    approx_offset: 11255
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0026
+  name: Cryogenic
+  status: confirmed
+  acceptable_forms:
+  - Cryogenic
+  evidence:
+  - quote: Cryogenic
+    approx_offset: 11271
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0027
+  name: Department of Energy (DOE)
+  status: confirmed
+  acceptable_forms:
+  - Department of Energy (DOE)
+  - Department of Energy
+  - DOE
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 11297
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0028
+  name: Department of Defense (DOD)
+  status: confirmed
+  acceptable_forms:
+  - Department of Defense (DOD)
+  - Department of Defense
+  - DOD
+  evidence:
+  - quote: Department of Defense (DOD)
+    approx_offset: 11325
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0029
+  name: Fracking
+  status: confirmed
+  acceptable_forms:
+  - Fracking
+  evidence:
+  - quote: Fracking
+    approx_offset: 11406
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0030
+  name: Genetics
+  status: confirmed
+  acceptable_forms:
+  - Genetics
+  evidence:
+  - quote: Genetics
+    approx_offset: 11416
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0031
+  name: Government / Municipalities
+  status: confirmed
+  acceptable_forms:
+  - Government/Municipalities
+  evidence:
+  - quote: Government/Municipalities
+    approx_offset: 11426
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0032
+  name: Heavy Equipment
+  status: confirmed
+  acceptable_forms:
+  - Heavy Equipment
+  - Heavy Machinery and Hydraulics
+  - heavy equipment
+  evidence:
+  - quote: Heavy Equipment
+    approx_offset: 11453
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0033
+  name: Highway (DOT)
+  status: confirmed
+  acceptable_forms:
+  - Highway (DOT)
+  - Department of Transportation
+  - DOT
+  evidence:
+  - quote: Highway (DOT)
+    approx_offset: 11470
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0034
+  name: Injection Molding
+  status: confirmed
+  acceptable_forms:
+  - Injection Molding
+  evidence:
+  - quote: Injection Molding
+    approx_offset: 11515
+  actor: unknown
+  notes: listed as a SECTOR inside the Industry Focus table, not as a capability - FZE does not claim injection
+    molding anywhere in the text
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0035
+  name: Laboratory
+  status: confirmed
+  acceptable_forms:
+  - Laboratory
+  - Quality Laboratory
+  evidence:
+  - quote: Laboratory
+    approx_offset: 11534
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0036
+  name: Laundry
+  status: confirmed
+  acceptable_forms:
+  - Laundry
+  - Laundry and fire-fighting apparatus
+  evidence:
+  - quote: Laundry
+    approx_offset: 11546
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0037
+  name: Natural Gas / LPG
+  status: confirmed
+  acceptable_forms:
+  - Natural Gas/LPG
+  evidence:
+  - quote: Natural Gas/LPG
+    approx_offset: 11555
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0038
+  name: Machine Tools
+  status: confirmed
+  acceptable_forms:
+  - Machine Tools
+  evidence:
+  - quote: Machine Tools
+    approx_offset: 11572
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0039
+  name: Material Handling
+  status: confirmed
+  acceptable_forms:
+  - Material Handling
+  - material handling
+  evidence:
+  - quote: Material Handling Medical
+    approx_offset: 11621
+  actor: unknown
+  notes: 'the Industry Focus table lost a line break here: ''Material Handling'' and ''Medical'' arrive as one cell
+    ''Material Handling Medical'''
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0040
+  name: Military / Defense
+  status: confirmed
+  acceptable_forms:
+  - Military/Defense
+  - Military & Mil-Spec
+  - Military and Defense
+  - Military
+  evidence:
+  - quote: Military/Defense
+    approx_offset: 11648
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0041
+  name: Mining
+  status: confirmed
+  acceptable_forms:
+  - Mining
+  - mining
+  evidence:
+  - quote: Mining
+    approx_offset: 11666
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0042
+  name: Optical
+  status: confirmed
+  acceptable_forms:
+  - Optical
+  evidence:
+  - quote: Optical
+    approx_offset: 11696
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0043
+  name: Packaging / Converting
+  status: confirmed
+  acceptable_forms:
+  - Packaging/Converting
+  - Packaging
+  evidence:
+  - quote: Packaging/Converting
+    approx_offset: 11705
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0044
+  name: Paper & Pulp
+  status: confirmed
+  acceptable_forms:
+  - Paper & Pulp
+  evidence:
+  - quote: Paper & Pulp
+    approx_offset: 11727
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0045
+  name: Petrochemical
+  status: confirmed
+  acceptable_forms:
+  - Petrochemical
+  evidence:
+  - quote: Petrochemical
+    approx_offset: 11741
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0046
+  name: Power Generation
+  status: confirmed
+  acceptable_forms:
+  - Power Generation
+  - Power generation
+  - power distribution and transmission
+  evidence:
+  - quote: Power Generation
+    approx_offset: 11794
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0047
+  name: Printing / Publishing
+  status: confirmed
+  acceptable_forms:
+  - Printing/Publishing
+  evidence:
+  - quote: Printing/Publishing
+    approx_offset: 11812
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0048
+  name: Process Gases
+  status: confirmed
+  acceptable_forms:
+  - Process Gases
+  evidence:
+  - quote: Process Gases
+    approx_offset: 11833
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0049
+  name: Railroad
+  status: confirmed
+  acceptable_forms:
+  - Railroad
+  - railways, railcars
+  evidence:
+  - quote: Railroad
+    approx_offset: 11855
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0050
+  name: Research
+  status: confirmed
+  acceptable_forms:
+  - Research
+  evidence:
+  - quote: Research
+    approx_offset: 11879
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0051
+  name: Restaurant
+  status: confirmed
+  acceptable_forms:
+  - Restaurant
+  evidence:
+  - quote: Restaurant
+    approx_offset: 11902
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0052
+  name: Retail
+  status: confirmed
+  acceptable_forms:
+  - Retail
+  evidence:
+  - quote: Retail
+    approx_offset: 11914
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0053
+  name: Robotics
+  status: confirmed
+  acceptable_forms:
+  - Robotics
+  - Robotic Arms
+  evidence:
+  - quote: Robotics
+    approx_offset: 11922
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0054
+  name: Semiconductor
+  status: confirmed
+  acceptable_forms:
+  - Semiconductor
+  - semiconductors
+  evidence:
+  - quote: Semiconductor
+    approx_offset: 11932
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0055
+  name: Machinery
+  status: confirmed
+  acceptable_forms:
+  - Machinery
+  - Specialty Machinery
+  evidence:
+  - quote: Specialty Machinery
+    approx_offset: 11947
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0056
+  name: Textile
+  status: confirmed
+  acceptable_forms:
+  - Textile
+  evidence:
+  - quote: Textile
+    approx_offset: 11988
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0057
+  name: Tool & Die
+  status: confirmed
+  acceptable_forms:
+  - Tool & Die
+  evidence:
+  - quote: Tool & Die
+    approx_offset: 11997
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0058
+  name: Water & Wastewater
+  status: confirmed
+  acceptable_forms:
+  - Water & Wastewater
+  - Water and wastewater equipment
+  - Waste Management
+  evidence:
+  - quote: Water & Wastewater
+    approx_offset: 12042
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0059
+  name: Industrial equipment
+  status: confirmed
+  acceptable_forms:
+  - Industrial equipment and components
+  - Industrial equipment
+  - industrial equipment
+  evidence:
+  - quote: Industrial equipment and components
+    approx_offset: 117120
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0060
+  name: Professional hand tools, power tools, diagnostic equipment
+  status: confirmed
+  acceptable_forms:
+  - Professional hand and power tools
+  - Professional Hand Tools
+  - Professional Hand Tools, Power Tools, Diagnostic Equipment
+  - Power Tools
+  evidence:
+  - quote: Professional hand and power tools
+    approx_offset: 117182
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0061
+  name: Medical
+  status: confirmed
+  acceptable_forms:
+  - Medical
+  - medical device manufacturing
+  - Medical/Dental/Pharmaceutical
+  evidence:
+  - quote: stainless steel electropolishing services for a wide range of industries, including medical, automotive,
+      aerospace, and more.
+    approx_offset: 33243
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0062
+  name: Dental
+  status: confirmed
+  acceptable_forms:
+  - Dental
+  - Medical, dental, and pharmaceutical
+  - dental
+  evidence:
+  - quote: Medical, dental, and pharmaceutical. These industries use electropolishing for manufacturing sanitary
+      and corrosion resistant instruments.
+    approx_offset: 37598
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0063
+  name: Pharmaceutical
+  status: confirmed
+  acceptable_forms:
+  - Pharmaceutical
+  - pharmaceutical
+  evidence:
+  - quote: Medical, dental, and pharmaceutical. These industries use electropolishing for manufacturing sanitary
+      and corrosion resistant instruments.
+    approx_offset: 37598
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0064
+  name: Food & Beverage
+  status: confirmed
+  acceptable_forms:
+  - Food & Beverage
+  - Food and Beverage
+  - Food, beverage, and dairy
+  - food processing
+  - food-grade applications
+  evidence:
+  - quote: Food, beverage, and dairy. Electropolishing stainless steel facilitates the sterilization of tools and
+      equipment used in these industries with ongoing effective sanitation before each use.
+    approx_offset: 37739
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0065
+  name: Dairy
+  status: confirmed
+  acceptable_forms:
+  - Dairy
+  - Agriculture and Dairy
+  evidence:
+  - quote: Food, beverage, and dairy. Electropolishing stainless steel facilitates the sterilization of tools and
+      equipment used in these industries with ongoing effective sanitation before each use.
+    approx_offset: 37739
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0066
+  name: Household appliances
+  status: confirmed
+  acceptable_forms:
+  - Manufacturers of household appliances
+  - household appliances
+  - household goods
+  - Appliance
+  evidence:
+  - quote: Manufacturers of household appliances use electropolishing to improve the durability and aesthetic appeal
+      of their products.
+    approx_offset: 37930
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0067
+  name: Agriculture
+  status: confirmed
+  acceptable_forms:
+  - Agriculture
+  - Agricultural & Farming
+  - agriculture industry
+  - Agriculture and Dairy
+  evidence:
+  - quote: Machining Solutions for the Agriculture Industry
+    approx_offset: 44405
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0068
+  name: Manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Manufacturing
+  - Machining/manufacturing
+  evidence:
+  - quote: Machining/manufacturing
+    approx_offset: 103726
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0069
+  name: Precision metrology
+  status: confirmed
+  acceptable_forms:
+  - Precision metrology components
+  - Metrology
+  - Precision Metrology
+  evidence:
+  - quote: Precision metrology components
+    approx_offset: 78259
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0070
+  name: Industrial
+  status: confirmed
+  acceptable_forms:
+  - Industrial
+  - Industrial components
+  evidence:
+  - quote: Industrial components
+    approx_offset: 78763
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0071
+  name: Oil & Gas
+  status: confirmed
+  acceptable_forms:
+  - Oil and gas
+  - Oil & Gas
+  - Oil, Gas & Petroleum
+  - oil & gas industry
+  - oil and gas industry
+  evidence:
+  - quote: Oil & Gas Industry
+    approx_offset: 24841
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0072
+  name: Pneumatics
+  status: confirmed
+  acceptable_forms:
+  - Pneumatics
+  - Pneumatics Industry
+  - pneumatic sector
+  evidence:
+  - quote: Pneumatics Industry
+    approx_offset: 39858
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0073
+  name: Forestry
+  status: confirmed
+  acceptable_forms:
+  - forestry
+  evidence:
+  - quote: performance for pumps, motors, and actuators in demanding applications such as construction, forestry,
+      and material handling.
+    approx_offset: 203330
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0074
+  name: ATVs & Motorcycles
+  status: confirmed
+  acceptable_forms:
+  - ATVs & Motorcycles
+  - ATV & motorcycles
+  - Engines and Motorcycles
+  - Engines/motorcycles
+  evidence:
+  - quote: ATVs & Motorcycles
+    approx_offset: 203461
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0075
+  name: Office furniture
+  status: confirmed
+  acceptable_forms:
+  - office furniture
+  evidence:
+  - quote: markets, professional turf and lawn care, hydraulics, agriculture, precision metrology, office furniture,
+      firefighting, safety equipment, beverage components and firearm components.
+    approx_offset: 269251
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0076
+  name: Beverage components
+  status: confirmed
+  acceptable_forms:
+  - beverage components
+  evidence:
+  - quote: hydraulics, agriculture, precision metrology, office furniture, firefighting, safety equipment, beverage
+      components and firearm components.
+    approx_offset: 269293
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0077
+  name: Landscaping
+  status: confirmed
+  acceptable_forms:
+  - landscaping industry
+  - landscaping businesses
+  - landscaping
+  evidence:
+  - quote: Professional Turf and Lawn Care. In the landscaping industry, laser marks are used to identify everything
+      from equipment to rolls of sod.
+    approx_offset: 216236
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0078
+  name: Culinary
+  status: confirmed
+  acceptable_forms:
+  - Culinary
+  - culinary equipment
+  evidence:
+  - quote: Culinary. Laser marking creates product labels, branding, and component identification for stainless
+      steel knives, cookware, and appliances.
+    approx_offset: 245656
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0079
+  name: Energy
+  status: confirmed
+  acceptable_forms:
+  - Energy (power distribution and transmission)
+  - Energy
+  evidence:
+  - quote: Energy (power distribution and transmission)
+    approx_offset: 266396
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0080
+  name: Jewelry
+  status: confirmed
+  acceptable_forms:
+  - jewelry
+  evidence:
+  - quote: Marking or engraving jewelry
+    approx_offset: 255408
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0081
+  name: Additive manufacturing
+  status: confirmed
+  acceptable_forms:
+  - additive manufacturing
+  evidence:
+  - quote: Fiber laser materials are found across dental, medical, electronics, aerospace, automotive, additive
+      manufacturing and several other industries. Its high precision and speed make it an ideal
+    approx_offset: 255495
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-industries-0082
+  name: Recreational
+  status: candidate
+  acceptable_forms:
+  - Recreational
+  evidence:
+  - quote: Recreational
+    approx_offset: 3953
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0083
+  name: Agricultural & Farming
+  status: candidate
+  acceptable_forms:
+  - Agricultural & Farming
+  evidence:
+  - quote: Agricultural & Farming
+    approx_offset: 11025
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0084
+  name: Appliance
+  status: disputed
+  acceptable_forms:
+  - Appliance
+  evidence:
+  - quote: Appliance Architecture
+    approx_offset: 11049
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632) — this line reads 'Appliance Architecture' with no separator; seeded as two
+    industries since the source list otherwise has one item per line, but this could be a rendering artifact of
+    a lost bullet/newline.
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0085
+  name: Architecture
+  status: disputed
+  acceptable_forms:
+  - Architecture
+  evidence:
+  - quote: Appliance Architecture
+    approx_offset: 11049
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632) — see notes on the sibling 'Appliance' entry from the same run-together line.
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0086
+  name: Automotive/Truck/Transportation
+  status: candidate
+  acceptable_forms:
+  - Automotive/ Truck/ Transportation
+  - Automotive
+  evidence:
+  - quote: Automotive/ Truck/ Transportation
+    approx_offset: 11073
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0087
+  name: Transportation
+  status: candidate
+  acceptable_forms:
+  - Transportation
+  evidence:
+  - quote: Transportation
+    approx_offset: 11092
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0088
+  name: Building & Construction
+  status: candidate
+  acceptable_forms:
+  - Building & Construction
+  evidence:
+  - quote: Building & Construction
+    approx_offset: 11166
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0089
+  name: Communications
+  status: candidate
+  acceptable_forms:
+  - Communications
+  evidence:
+  - quote: Communications
+    approx_offset: 11213
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0090
+  name: Computer and Electronics
+  status: candidate
+  acceptable_forms:
+  - Computer and Electronics
+  evidence:
+  - quote: Computer and Electronics
+    approx_offset: 11229
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0091
+  name: Government/Municipalities
+  status: candidate
+  acceptable_forms:
+  - Government/Municipalities
+  - Municipalities
+  evidence:
+  - quote: Government/Municipalities
+    approx_offset: 11426
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0092
+  name: Government
+  status: candidate
+  acceptable_forms:
+  - Government
+  evidence:
+  - quote: Government
+    approx_offset: 11426
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0093
+  name: Natural Gas/LPG
+  status: candidate
+  acceptable_forms:
+  - Natural Gas/LPG
+  - LPG
+  evidence:
+  - quote: Natural Gas/LPG
+    approx_offset: 11555
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0094
+  name: Natural Gas
+  status: candidate
+  acceptable_forms:
+  - Natural Gas
+  evidence:
+  - quote: Natural Gas
+    approx_offset: 11555
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0095
+  name: Military/Defense
+  status: candidate
+  acceptable_forms:
+  - Military/Defense
+  evidence:
+  - quote: Military/Defense
+    approx_offset: 11648
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0096
+  name: Military
+  status: candidate
+  acceptable_forms:
+  - Military
+  evidence:
+  - quote: Military
+    approx_offset: 11648
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0097
+  name: Oil, Gas & Petroleum
+  status: candidate
+  acceptable_forms:
+  - Oil, Gas & Petroleum
+  evidence:
+  - quote: Oil, Gas & Petroleum
+    approx_offset: 11674
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0098
+  name: Packaging/Converting
+  status: candidate
+  acceptable_forms:
+  - Packaging/Converting
+  evidence:
+  - quote: Packaging/Converting
+    approx_offset: 11705
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0099
+  name: Packaging
+  status: candidate
+  acceptable_forms:
+  - Packaging
+  evidence:
+  - quote: Packaging
+    approx_offset: 11705
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0100
+  name: Printing/Publishing
+  status: candidate
+  acceptable_forms:
+  - Printing/Publishing
+  evidence:
+  - quote: Printing/Publishing
+    approx_offset: 11812
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0101
+  name: Printing
+  status: candidate
+  acceptable_forms:
+  - Printing
+  evidence:
+  - quote: Printing
+    approx_offset: 11812
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0102
+  name: Specialty Machinery
+  status: candidate
+  acceptable_forms:
+  - Specialty Machinery
+  evidence:
+  - quote: Specialty Machinery
+    approx_offset: 11947
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0103
+  name: Telecommunications
+  status: candidate
+  acceptable_forms:
+  - Telecommunications
+  evidence:
+  - quote: Telecommunications
+    approx_offset: 11968
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0104
+  name: Turf & Garden
+  status: candidate
+  acceptable_forms:
+  - Turf & Garden
+  evidence:
+  - quote: Turf & Garden
+    approx_offset: 12009
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0105
+  name: Waste Management
+  status: candidate
+  acceptable_forms:
+  - Waste Management
+  evidence:
+  - quote: Waste Management
+    approx_offset: 12024
+  notes: recurring 'Industry Focus' spec block, repeated verbatim on multiple capability pages (e.g. also at lines
+    1077-1149, 2162-2234, 3560-3632)
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0106
+  name: Wastewater
+  status: candidate
+  acceptable_forms:
+  - Wastewater
+  evidence:
+  - quote: Wastewater
+    approx_offset: 12050
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0107
+  name: Metrology
+  status: candidate
+  acceptable_forms:
+  - Metrology
+  evidence:
+  - quote: '- Metrology'
+    approx_offset: 38382
+  notes: listed among industries FZE serves, on the electropolishing-services page
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0108
+  name: Advertising
+  status: candidate
+  acceptable_forms:
+  - Advertising
+  evidence:
+  - quote: Advertising
+    approx_offset: 190741
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0109
+  name: Alternative Energy
+  status: candidate
+  acceptable_forms:
+  - Alternative Energy
+  evidence:
+  - quote: Alternative Energy (see Power Generation)
+    approx_offset: 190778
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0110
+  name: Defense Industry
+  status: candidate
+  acceptable_forms:
+  - Defense Industry
+  evidence:
+  - quote: Defense Industry
+    approx_offset: 190891
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0111
+  name: Food Production
+  status: candidate
+  acceptable_forms:
+  - Food Production
+  evidence:
+  - quote: Food Production
+    approx_offset: 191009
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0112
+  name: Food Processing
+  status: candidate
+  acceptable_forms:
+  - Food Processing
+  evidence:
+  - quote: Food Processing
+    approx_offset: 191026
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0113
+  name: Ice Making
+  status: candidate
+  acceptable_forms:
+  - Ice Making
+  evidence:
+  - quote: Ice Making
+    approx_offset: 191111
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0114
+  name: Material Handling & Processing
+  status: candidate
+  acceptable_forms:
+  - Material Handling & Processing
+  evidence:
+  - quote: Material Handling & Processing
+    approx_offset: 191237
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0115
+  name: Medical Devices
+  status: candidate
+  acceptable_forms:
+  - Medical Devices
+  evidence:
+  - quote: Medical Devices
+    approx_offset: 191269
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0116
+  name: Nuclear
+  status: candidate
+  acceptable_forms:
+  - Nuclear
+  evidence:
+  - quote: Nuclear (see Power Generation)
+    approx_offset: 191304
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0117
+  name: Oil Field
+  status: candidate
+  acceptable_forms:
+  - Oil Field
+  evidence:
+  - quote: Oil Field
+    approx_offset: 191336
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0118
+  name: Paper Mill
+  status: candidate
+  acceptable_forms:
+  - Paper Mill
+  evidence:
+  - quote: Paper Mill
+    approx_offset: 191436
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0119
+  name: Power Generation Nuclear
+  status: candidate
+  acceptable_forms:
+  - Power Generation Nuclear
+  evidence:
+  - quote: Power Generation Nuclear
+    approx_offset: 191503
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0120
+  name: Power Generation Alternative
+  status: candidate
+  acceptable_forms:
+  - Power Generation Alternative
+  evidence:
+  - quote: Power Generation Alternative
+    approx_offset: 191529
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0121
+  name: Power Generation Solar
+  status: candidate
+  acceptable_forms:
+  - Power Generation Solar
+  evidence:
+  - quote: Power Generation Solar
+    approx_offset: 191559
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0122
+  name: Power Generation Wind
+  status: candidate
+  acceptable_forms:
+  - Power Generation Wind
+  evidence:
+  - quote: Power Generation Wind
+    approx_offset: 191583
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0123
+  name: Power Generation Coal
+  status: candidate
+  acceptable_forms:
+  - Power Generation Coal
+  evidence:
+  - quote: Power Generation Coal
+    approx_offset: 191606
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0124
+  name: Pulp Manufacturing
+  status: candidate
+  acceptable_forms:
+  - Pulp Manufacturing
+  evidence:
+  - quote: Pulp Manufacturing
+    approx_offset: 191697
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-industries-0125
+  name: Universities & Learning Institutions
+  status: candidate
+  acceptable_forms:
+  - Universities & Learning Institutions
+  evidence:
+  - quote: Universities & Learning Institutions
+    approx_offset: 191844
+  notes: '''Industry Focus (Edit list as needed)'' spec block on the welding & fabrication services page'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Wisconsin
+  reason: a US state and the Made In Wisconsin program name, not an industry; occurs 30+ times
+- form: Kanban
+  reason: a scheduling method named in the equipment roster's Finished Goods Inventory line, not a sector
+- form: Cookout
+  reason: occurs only in the video title 'FZE - Employee Appreciation Cookout'
+- form: Cookware
+  reason: a culinary ARTIFACT named in the laser-marking blog (knives, cookware, appliances), not a sector
+- form: Real Estate
+  reason: 'anticipatory: word-association from ''Building & Construction'' / ''Residential'' / ''Commercial'' rows;
+    does not occur'
+- form: Shipbuilding
+  reason: 'anticipatory: word-association from ''Marine'' / ''Recreational Marine''; does not occur'

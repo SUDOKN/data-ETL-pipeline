@@ -118,8 +118,16 @@ apps/data_etl_app/tests/test_stages/*/**/raw/**
 !apps/data_etl_app/tests/test_stages/*/history/runs/
 !apps/data_etl_app/tests/test_stages/*/history/runs/*/
 !apps/data_etl_app/tests/test_stages/*/history/runs/*/*.md
+# analyses one level deeper (e.g. a run's table_ab/ experiment notes) are
+# tracked the same way; their data files stay ignored
+!apps/data_etl_app/tests/test_stages/*/history/runs/*/*/
+!apps/data_etl_app/tests/test_stages/*/history/runs/*/*/*.md
 
 # The sample scraped-text corpus: 4.7M of verbatim site text (acimachine.com
 # alone is 3.9M). It was untracked but NOT ignored, so any `git add -A` would
 # have committed the whole corpus. Same class of data as the run evidence.
 apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/
+# same class: the markdown_v2 reseeded corpus (14M of scraped site text) and
+# the 24M scraper output-format sample — pinned locally, never in git
+apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/
+pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/

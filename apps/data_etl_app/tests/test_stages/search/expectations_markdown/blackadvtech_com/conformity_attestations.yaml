@@ -1,0 +1,626 @@
+subject: blackadvtech.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/blackadvtech.com.txt
+  sha256: 63354af5b4bd0925a7cd54d773d6677fcc24a25a7c262ac35fa3b99a22afb9ad
+eval_set_version: 3
+expected_empty: false
+notes: 'One real registered certification (ISO 9001:2015) with a CONTRADICTORY registrar between pages, a woman-owned
+  business certification, four AWS welder/inspector credentials and an ASQC-CQE. The business-registry identifiers
+  (CAGE Code, NAICS Codes) and the personnel credentials are seeded but flagged in notes as the arguable ones the
+  brief says to record rather than drop. Four standards bodies (SAE, AISI, UNS, ABYC) appear only inside blog prose
+  and carry actor: unknown.'
+entries:
+- id: blackadvtech_com-conformity_attestations-0001
+  name: ISO 9001:2015
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2015
+  - ISO 9001
+  evidence:
+  - quote: ISO 9001:2015
+    approx_offset: 492
+  notes: stated on the home page, /quality/ and /work-with-blackstone/
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0002
+  name: Preferred Registrar Group, Inc.
+  status: confirmed
+  acceptable_forms:
+  - Preferred Registrar Group, Inc.
+  - Preferred Registrar Group
+  evidence:
+  - quote: certified by Preferred Registrar Group, Inc.
+    approx_offset: 506
+  notes: the issuing body named on three pages
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0003
+  name: Quality Management System
+  status: candidate
+  acceptable_forms:
+  - Quality Management System
+  - quality management system
+  - comprehensive Quality Management System
+  evidence:
+  - quote: We have a comprehensive Quality Management System.
+    approx_offset: 551
+  notes: a named management system rather than a numbered standard; arguable under the 'identity of its own' test
+    but it is always stated as the thing backing the ISO registration | a quality management system is the thing
+    ISO 9001 certifies, not itself a certification, accreditation, registration or standard with an identity of
+    its own - the text never names it by a number, mark or issuing body ('we have a comprehensive Quality Management
+    System'). ISO 9001:2015 at 0001 is the attestation. Membership arguable.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0004
+  name: certified woman-owned business
+  status: candidate
+  acceptable_forms:
+  - CERTIFIED WOMAN-OWNED BUSINESS
+  - certified woman-owned business
+  - woman-owned business
+  evidence:
+  - quote: We're proud to be a woman-owned business.
+    approx_offset: 1196
+  notes: a business-diversity certification; the certifying body is never named
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0005
+  name: NAICS Codes
+  status: disputed
+  acceptable_forms:
+  - 'NAICS Codes: 332116, 332312, 332313, 332322, 332439, 332999, 336399, 336413, 336991'
+  - 'NAICS Code: 332116, 332312, 332313, 332322, 332439, 332999, 336399, 336413, 336991'
+  - NAICS Codes
+  - '332116'
+  evidence:
+  - quote: 'NAICS Codes: 332116, 332312, 332313, 332322, 332439, 332999, 336399, 336413, 336991'
+    approx_offset: 3205
+  - quote: 'NAICS Code: 332116, 332312, 332313, 332322, 332439, 332999, 336399, 336413, 336991'
+    approx_offset: 6121
+  notes: 'DISPUTED-STYLE: an industry classification registration rather than a conformity attestation. Nine codes
+    in every page footer. Arguably belongs in industries instead; recorded here with the argument. | NAICS codes
+    are an industry classification a company is described by, not something it holds, meets or follows; SEEDING_BRIEF
+    4 puts business-registry identifiers in the disputed bucket. (Contrast the CAGE code at 0006, which is a registration
+    issued to and held by the company.) The string also appears inside the Divi shortcode dump on /capabilities/vmi-program/,
+    but it appears on ~40 healthy pages too, so the entry does not depend on the degraded page.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: NAICS codes are an industry classification a company is described by, not something it holds, meets
+      or follows; SEEDING_BRIEF 4 puts business-registry identifiers in the disputed bucket. (Contrast the CAGE
+      code at 0006, which is a registration issued to and held by the company.) The string also appears inside the
+      Divi shortcode dump on /capabilities/vmi-program/, but it appears on ~40 healthy pages too, so the entry does
+      not depend on the degraded page.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0006
+  name: CAGE Code 71XE8
+  status: confirmed
+  acceptable_forms:
+  - 'CAGE Code: 71XE8'
+  - 'CAGE CODE: 71XE8'
+  - CAGE Code
+  - 71XE8
+  evidence:
+  - quote: 'CAGE Code: 71XE8'
+    approx_offset: 3290
+  - quote: 'CAGE CODE: 71XE8'
+    approx_offset: 6204
+  notes: 'DISPUTED-STYLE: a US-government contractor registry identifier, in the footer of all 48 page blocks. The
+    brief names business-registry identifiers (D-U-N-S) as arguable either way; recorded here with the argument
+    rather than dropped.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0007
+  name: AWS certified welders
+  status: confirmed
+  acceptable_forms:
+  - AWS certified welders
+  - AWS Certified & Qualified Welders
+  - AWS-certified welding experts
+  evidence:
+  - quote: AWS Certified & Qualified Welders
+    approx_offset: 78684
+  notes: American Welding Society welder qualification, claimed on three pages
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0008
+  name: AWS Certified Welding Inspector
+  status: confirmed
+  acceptable_forms:
+  - AWS Certified WELD Inspectors
+  - AWS CERTIFIED WELDING INSPECTOR ON SITE
+  evidence:
+  - quote: AWS Certified WELD Inspectors
+    approx_offset: 78721
+  notes: AWS CWI. Note the /work-with-blackstone/ heading has the woman-owned paragraph pasted under it.
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0009
+  name: Former General Dynamics Source Inspector
+  status: disputed
+  acceptable_forms:
+  - Former General Dynamics Source Inspector
+  evidence:
+  - quote: Former General Dynamics Source Inspector
+    approx_offset: 78754
+  notes: 'DISPUTED-STYLE: a staff member''s prior employer qualification rather than a certification the company
+    holds. Kept as an entry per the brief''s rule that the argument survives on the record; the brief lists staff
+    job titles as a repeatedly-argued case. | ''Former General Dynamics Source Inspector'' is a staff member''s
+    employment history, not a certification, accreditation or registration with an identity of its own; SEEDING_BRIEF
+    4 puts job titles in the disputed bucket.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''Former General Dynamics Source Inspector'' is a staff member''s employment history, not a certification,
+      accreditation or registration with an identity of its own; SEEDING_BRIEF 4 puts job titles in the disputed
+      bucket.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0010
+  name: ASQC-CQE
+  status: confirmed
+  acceptable_forms:
+  - ASQC-CQE
+  evidence:
+  - quote: ASQC-CQE
+    approx_offset: 78798
+  notes: American Society for Quality Control - Certified Quality Engineer; a personnel credential listed among
+    the shop's quality resources
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0014
+  name: ABYC
+  status: confirmed
+  acceptable_forms:
+  - American Boat and Yacht Council (ABYC)
+  - ABYC
+  evidence:
+  - quote: The American Boat and Yacht Council (ABYC) have a set of recommendations;
+    approx_offset: 127315
+  actor: unknown
+  notes: 'BLOG-ONLY: standards body whose aluminum fuel-tank grade recommendations the marine-fuel-tank article
+    quotes'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0015
+  name: SAE numbering system
+  status: confirmed
+  acceptable_forms:
+  - unified standard alloy numbering system (SAE)
+  - SAE
+  evidence:
+  - quote: All metals fall under a unified standard alloy numbering system (SAE).
+    approx_offset: 171904
+  actor: unknown
+  notes: 'BLOG-ONLY: a standards body named in the metals-numbering article, not a credential Blackstone holds'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0016
+  name: AISI
+  status: confirmed
+  acceptable_forms:
+  - American Iron and Steel Institute (AISI)
+  - AISI
+  evidence:
+  - quote: the American Iron and Steel Institute (AISI) took part to standardize a numbering system for steels.
+    approx_offset: 171992
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0017
+  name: UNS
+  status: confirmed
+  acceptable_forms:
+  - unified numbering system (UNS)
+  - UNS
+  - universal numbering system
+  evidence:
+  - quote: Modern-day steel quotes are referenced to the unified numbering system (UNS).
+    approx_offset: 172094
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0018
+  name: Manufacturer's Standard Gauge for Sheet Steel
+  status: confirmed
+  acceptable_forms:
+  - The Manufacturer’s Standard Gauge for Sheet Steel
+  - Manufacturer’s Standard Gauge for Sheet Steel
+  evidence:
+  - quote: The Manufacturer’s Standard Gauge for Sheet Steel is 41.82 pounds per square foot.
+    approx_offset: 226494
+  actor: unknown
+  notes: 'BLOG-ONLY: a named gauge standard in the thickness article'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0019
+  name: U.S Standard gauge for sheet steel
+  status: confirmed
+  acceptable_forms:
+  - U.S Standard gauge for sheet steel
+  evidence:
+  - quote: While referring to the U.S Standard gauge for sheet steel
+    approx_offset: 226713
+  actor: unknown
+  notes: BLOG-ONLY; note the missing period in 'U.S'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0011
+  name: ATSM 81011
+  status: retired
+  acceptable_forms:
+  - ATSM 81011 steel
+  - ATSM 81011
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+  notes: 'retired at the markdown cutover: searched ''ATSM 81011 steel'', ''ATSM 81011''; absent as this specific
+    grade — only a generic, unrelated reference to the ASTM standards body survives (''Adherence to industry standards
+    (ASTM, ASME)''), which does not name this designation.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0012
+  name: AMTEC Registries
+  status: retired
+  acceptable_forms:
+  - AMTEC Registries
+  evidence:
+  - quote: We are ISO 9001:2015 certified by AMTEC Registries
+  notes: 'retired at the markdown cutover: searched ''AMTEC Registries''; absent — the new snapshot names a DIFFERENT
+    ISO 9001:2015 registrar (''ISO 9001:2015 certified by Preferred Registrar Group, Inc.''), so the specific old
+    registrar body is gone, not merely renamed with confidence.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0013
+  name: OSHA
+  status: retired
+  acceptable_forms:
+  - OSHA
+  evidence:
+  - quote: Ensure all welding operations comply with OSHA, company, and industry safety standards.
+  notes: 'retired at the markdown cutover: searched OSHA; absent from the new snapshot; only generic ''safety policies''
+    and PPE language survive, never the OSHA name itself.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-conformity_attestations-0020
+  name: AWS Certified Weld Inspector (CWI)
+  status: candidate
+  acceptable_forms:
+  - AWS Certified Weld Inspector
+  - CWI
+  evidence:
+  - quote: Full-time AWS Certified Weld Inspector (CWI) on staff
+    approx_offset: 2139
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0021
+  name: AWS standards
+  status: candidate
+  acceptable_forms:
+  - AWS standards
+  evidence:
+  - quote: Robotic welding cells built to AWS standards
+    approx_offset: 2197
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0022
+  name: CAGE Code
+  status: disputed
+  acceptable_forms:
+  - CAGE Code
+  evidence:
+  - quote: 'BLACKSTONE ADVANCED TECHNOLOGIES NAICS Codes: 332116, 332312, 332313, 332322, 332439, 332999, 336399,
+      336413, 336991, CAGE Code: 71XE8 86 BLACKSTONE AVE JAMESTOWN NY'
+    approx_offset: 3172
+  notes: business-registry identifier, argued either way per brief
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0023
+  name: ASTM
+  status: candidate
+  acceptable_forms:
+  - ASTM
+  evidence:
+  - quote: Adherence to industry standards (ASTM, ASME) and custom specifications
+    approx_offset: 28361
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0024
+  name: ASME
+  status: candidate
+  acceptable_forms:
+  - ASME
+  evidence:
+  - quote: Adherence to industry standards (ASTM, ASME) and custom specifications
+    approx_offset: 28361
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0025
+  name: ASME B31.1
+  status: candidate
+  acceptable_forms:
+  - ASME B31.1
+  evidence:
+  - quote: For example, ASME B31.1 specifies tolerances for piping in high-pressure systems
+    approx_offset: 28691
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0026
+  name: AWS Certified & Qualified Welders
+  status: candidate
+  acceptable_forms:
+  - AWS Certified & Qualified Welders
+  evidence:
+  - quote: AWS Certified & Qualified Welders
+    approx_offset: 78684
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0027
+  name: American Boat and Yacht Council (ABYC)
+  status: candidate
+  acceptable_forms:
+  - American Boat and Yacht Council
+  - ABYC
+  evidence:
+  - quote: The American Boat and Yacht Council (ABYC) have a set of recommendations;
+    approx_offset: 127315
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0028
+  name: American Iron and Steel Institute (AISI)
+  status: candidate
+  acceptable_forms:
+  - American Iron and Steel Institute
+  - AISI
+  evidence:
+  - quote: Both the SAE and the American Iron and Steel Institute (AISI) took part to standardize a numbering system
+      for steels.
+    approx_offset: 171975
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-conformity_attestations-0029
+  name: unified numbering system (UNS)
+  status: candidate
+  acceptable_forms:
+  - unified numbering system
+  - UNS
+  evidence:
+  - quote: Modern-day steel quotes are referenced to the unified numbering system (UNS).
+    approx_offset: 172094
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: AS9100
+  reason: never occurs; a military/marine shop with a CAGE code invites it
+- form: NADCAP
+  reason: never occurs; the finishing and welding capability pages invite it
+- form: ITAR
+  reason: 'SECOND SUBSTRING TRAP. ''ITAR'' occurs 16 times and every single one is inside the word MILITARY. Standalone
+    ITAR: zero. The Navy/Marines/Coast Guard content makes it a very likely fabrication, and a naive substring matcher
+    would score it as present 16 times.'
+- form: ISO 13485
+  reason: never occurs; the blog's one 'medical device manufacturing' mention invites it
+- form: IATF 16949
+  reason: never occurs; the RAIL & AUTOMOBILE page invites it
+- form: AWS D1.1
+  reason: never occurs; only the bare phrase 'AWS certified welders' is claimed, never a code
+- form: ISO 14001
+  reason: never occurs
+- form: Equal opportunity employer
+  reason: a hiring policy statement on the careers page, not an attestation with an issuing body
+- form: 401(k)
+  reason: an employee benefit in the careers list; the parenthesised code makes it look like a standard number

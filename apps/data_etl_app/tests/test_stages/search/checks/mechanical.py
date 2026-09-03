@@ -24,7 +24,7 @@ from masking import normalize_spaces  # noqa: E402
 from _shared.text_matching import (  # noqa: E402
     collapse_whitespace,
     flexible_pattern,
-    forms_overlap,
+    form_covers,
 )
 from loading import FieldRun, WindowRecord, is_live  # noqa: E402
 
@@ -144,16 +144,35 @@ def degeneration_metrics(windows: list[WindowRecord]) -> dict[str, Any]:
 
 # --------------------------------------------------------------- window health
 
+# The smoke alarm (user request 2026-09-02): a window that answers with almost
+# nothing despite holding a full page of text. `empty_windows` only sees an
+# exactly-empty list, which let howcogroup's skipped ESG page (17.5k chars,
+# 1 phrase returned, 10 census misses) pass unremarked. A flag, NEVER a red:
+# a thin answer can be correct (lucasmilhaupt's equipments windows are legit
+# zero), so this names windows for a reader, it does not gate.
+LOW_YIELD_TEXT_FLOOR = 8_000  # chars of wire text
+LOW_YIELD_MAX_PHRASES = 2
+
+
 def window_metrics(windows: list[WindowRecord]) -> dict[str, Any]:
     first = [w for w in windows if w.round_index is None]
     with_phrases = [w for w in first if w.phrases is not None]
     counts = [len(w.phrases or []) for w in with_phrases]
     empty = [w.sub_bounds for w in with_phrases if not w.phrases]
+    low_yield = [
+        {"window": w.sub_bounds, "phrases": len(w.phrases or []),
+         "text_chars": len(w.wire_text)}
+        for w in with_phrases
+        if w.wire_text is not None
+        and len(w.wire_text) >= LOW_YIELD_TEXT_FLOOR
+        and len(w.phrases or []) <= LOW_YIELD_MAX_PHRASES
+    ]
     return {
         "first_search_windows": len(first),
         "recursive_requests": len(windows) - len(first),
         "windows_with_response": len(with_phrases),
         "empty_windows": empty,
+        "low_yield_windows": low_yield,
         "phrases_per_window": {
             "min": min(counts) if counts else None,
             "median": sorted(counts)[len(counts) // 2] if counts else None,
@@ -298,9 +317,11 @@ def _collapse(text: str) -> str:
 
 def _form_covers(acceptable: str, returned: str) -> bool:
     """Does a returned search form cover an expected acceptable form?
-    Shared implementation — whitespace-tolerant, and word-boundary +
-    case-sensitive for short forms (TIG must not match "tight")."""
-    return forms_overlap(acceptable, returned)
+    Shared implementation — whitespace-tolerant, word-boundary-anchored at every
+    length, and DIRECTIONAL: the expected designation must occur inside what was
+    returned, never the reverse (trap 5, measured at 8.0% false credit on
+    2026-08-28). Was `forms_overlap` until then."""
+    return form_covers(acceptable, returned)
 
 
 def expectation_metrics(
@@ -473,6 +494,7 @@ def cross_field_overlap(
     if not own:
         return None
     overlaps: dict[str, Any] = {}
+    every_other: set[str] = set()
     for other_field, windows in sorted(subject_runs.items()):
         if other_field == field_name:
             continue
@@ -485,16 +507,24 @@ def cross_field_overlap(
         if not other:
             continue
         shared = own & other
+        every_other |= other
         overlaps[other_field] = {
             "shared_forms": len(shared),
             "share_of_own": round(len(shared) / len(own), 4),
+            "union_forms": len(own | other),
             "examples": sorted(shared)[:10],
         }
     worst = max(
         overlaps.items(), key=lambda kv: kv[1]["share_of_own"], default=None
     )
+    # `shared_with_any` is NOT the sum of the per-pair counts — a form claimed by
+    # two siblings is one collision, not two — so it has to be counted here, and
+    # it is what the corpus rollup in SUMMARY.md sums.
+    claimed = own & every_other
     return {
         "distinct_forms": len(own),
+        "shared_with_any": len(claimed),
+        "share_claimed_by_any": round(len(claimed) / len(own), 4),
         "by_field": overlaps,
         "worst_field": worst[0] if worst else None,
         "worst_share": worst[1]["share_of_own"] if worst else None,
@@ -549,4 +579,11 @@ def verdict(metrics: dict[str, Any], thresholds: dict[str, Any]) -> dict[str, An
     lengths = metrics.get("lengths")
     if lengths and lengths.get("line_break_crossers"):
         reds.append(f"line_break_crossers:{lengths['line_break_crossers']}")
-    return {"status": "RED" if reds else "OK", "reds": reds}
+    warnings: list[str] = []
+    wh = metrics.get("window_health") or {}
+    if wh.get("low_yield_windows"):
+        warnings.append(f"low_yield_windows:{len(wh['low_yield_windows'])}")
+    out = {"status": "RED" if reds else "OK", "reds": reds}
+    if warnings:  # absent key when clean, so stored verdicts stay byte-stable
+        out["warnings"] = warnings
+    return out

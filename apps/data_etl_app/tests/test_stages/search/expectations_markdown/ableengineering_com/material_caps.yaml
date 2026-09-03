@@ -1,0 +1,233 @@
+subject: ableengineering.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/ableengineering.com.txt
+  sha256: 7f2e8d7e059f38f53fc2e3ce92499369e9099f8ae550e6d0177284e3850258c7
+eval_set_version: 3
+expected_empty: false
+notes: 'Sparse by design: only cold-spray substrates (aluminum, magnesium) and plating substances (chrome, nickel,
+  cadmium) are named. No steel/titanium anywhere. SECOND-PASS VERIFICATION 2026-08-26 (verify-agent-ableengineering):
+  all 5 entries confirmed, all quotes verbatim. The whole field rests on two sentences (the COLD SPRAY line and
+  the chrome/nickel/CAD plating lines), so it is a near-single-window measurement. All 5 false friends checked and
+  agreed - ''Lead'' was re-verified as having zero metal sense (all 9 hits are inside LEADER/LEADING/industry-leading)
+  and ''Carbon'' occurs once inside ''carbon footprint''. Red Oil and Skydrol are correctly excluded as service
+  fluids of the components worked on rather than worked materials.'
+entries:
+- id: ableengineering_com-material_caps-0001
+  name: Aluminum
+  status: confirmed
+  acceptable_forms:
+  - aluminum
+  evidence:
+  - quote: Able’s innovative, additive manufacturing capability for repairing aluminum and magnesium components.
+    approx_offset: 25450
+  notes: 'cold-spray repair of aluminum components | VERIFY 2026-08-26 (second pass): ''additive manufacturing capability
+    for repairing aluminum and magnesium components'' - single occurrence, worked substrate, subject''s own capability.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-material_caps-0002
+  name: Magnesium
+  status: confirmed
+  acceptable_forms:
+  - magnesium
+  evidence:
+  - quote: Able’s innovative, additive manufacturing capability for repairing aluminum and magnesium components.
+    approx_offset: 25450
+  notes: 'cold-spray repair of magnesium components | VERIFY 2026-08-26 (second pass): same cold-spray sentence;
+    single occurrence, worked substrate.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-material_caps-0003
+  name: Chrome (chromium)
+  status: confirmed
+  acceptable_forms:
+  - chrome
+  - chromium
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating and
+      several other processes.
+    approx_offset: 24758
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 26904
+  notes: 'plating substance; qualifies per locked keep-rule (process named after a substance) | VERIFY 2026-08-26
+    (second pass): ''NADCAP-approved for chrome'' plus ''Plating - Chrome, Nickel, CAD''. A plating deposit rather
+    than stock material, which keeps under the locked substance keep-rule. ''chromium'' never occurs in the file
+    - alias only, not evidence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-material_caps-0004
+  name: Nickel
+  status: confirmed
+  acceptable_forms:
+  - nickel
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating and
+      several other processes.
+    approx_offset: 24758
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 26904
+  notes: 'plating substance | VERIFY 2026-08-26 (second pass): both quotes verbatim; 2 occurrences, both the plating
+    sense.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-material_caps-0005
+  name: Cadmium (CAD)
+  status: confirmed
+  acceptable_forms:
+  - CAD plating
+  - cadmium
+  - CAD
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating and
+      several other processes.
+    approx_offset: 24758
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 26904
+  notes: 'polyseme: ''CAD'' in this text is cadmium plating, never computer-aided design | VERIFY 2026-08-26 (second
+    pass): 2 word-bounded ''CAD'' occurrences, both cadmium plating (''CAD plating'', ''Plating - Chrome, Nickel,
+    CAD''); ''cadmium'' never occurs verbatim and is an alias only. Flag: the bare 3-letter form is a polyseme magnet
+    - a model returning CAD in the computer-aided-design sense would be silently credited, and case-insensitive
+    containment also hits ''decade'' (4x). The seed''s polyseme note is correct for the TEXT, not for the returned
+    form.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-material_caps-0006
+  name: Red Oil
+  status: candidate
+  acceptable_forms:
+  - Red Oil
+  evidence:
+  - quote: Able’s in-house hydraulics team provides services for both rotor wing and fixed wing aircraft for Red
+      Oil and Skydrol components.
+    approx_offset: 25279
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-material_caps-0007
+  name: Skydrol
+  status: candidate
+  acceptable_forms:
+  - Skydrol
+  evidence:
+  - quote: Able’s in-house hydraulics team provides services for both rotor wing and fixed wing aircraft for Red
+      Oil and Skydrol components.
+    approx_offset: 25279
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-material_caps-0008
+  name: Chrome
+  status: candidate
+  acceptable_forms:
+  - Chrome
+  evidence:
+  - quote: Plating – Chrome, Nickel, CAD
+    approx_offset: 26904
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-material_caps-0009
+  name: Silver
+  status: candidate
+  acceptable_forms:
+  - Silver
+  evidence:
+  - quote: '- Silver: Enhances electrical conductivity and lubricity'
+    approx_offset: 89074
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-material_caps-0010
+  name: stainless steel
+  status: candidate
+  acceptable_forms:
+  - stainless steel
+  evidence:
+  - quote: capabilities to include stainless steel powder and
+    approx_offset: 79213
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-material_caps-0011
+  name: helium
+  status: candidate
+  acceptable_forms:
+  - helium
+  evidence:
+  - quote: include stainless steel powder and helium, processed
+    approx_offset: 79229
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Lead
+  reason: occurs only inside LEADER/LEADING/'industry-leading'; no metal sense anywhere in the file
+- form: Carbon
+  reason: single occurrence, inside 'carbon footprint' in the NATA sustainability press release
+- form: Paint
+  reason: consumable/coating (taxonomy C); belongs to process_caps painting, not a worked material
+- form: titanium
+  reason: anticipatory - plausible word association for aerospace materials, but 'titanium' does not occur anywhere
+    in this text

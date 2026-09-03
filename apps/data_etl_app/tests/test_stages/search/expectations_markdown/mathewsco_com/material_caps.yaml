@@ -1,0 +1,1221 @@
+subject: mathewsco.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/mathewsco.com.txt
+  sha256: 7eb730c3267b62e56f228475f8f78451a801c769432b2bd78bdc5c9a14ec428e
+eval_set_version: 2
+expected_empty: false
+notes: Mathews works in no material. Everything here is a principal's material list; grade designations (Aluminum
+  319/356/A357, ASTM A536-80 ductile) come from the anonymous Kansas sand-casting principal whose paragraph opens
+  with the AGENCY'S name.
+entries:
+- id: mathewsco_com-material_caps-0001
+  name: molding resins
+  status: confirmed
+  acceptable_forms:
+  - molding resins
+  - resins
+  evidence:
+  - quote: high performance molding resins
+    approx_offset: 22286
+  actor: supplier
+  notes: Sun Microstamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0002
+  name: plastic
+  status: confirmed
+  acceptable_forms:
+  - Plastic
+  - plastic
+  evidence:
+  - quote: Plastic Molding
+    approx_offset: 15327
+  - quote: plastic knobs and handles
+    approx_offset: 4128
+  actor: supplier
+  notes: DimcoGray / Sun Microstamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0003
+  name: alloy steel
+  status: confirmed
+  acceptable_forms:
+  - Alloy Steel
+  - alloy, stainless
+  evidence:
+  - quote: carbon steel, Alloy Steel, Stainless Steel
+    approx_offset: 21389
+  - quote: from carbon, alloy, stainless, tool steels
+    approx_offset: 17582
+  actor: supplier
+  notes: anonymous Kansas cold-heading principal; Ellwood City Forge. A bare 'alloy' form is deliberately NOT seeded
+    - it is a substring of 'nickel alloys', 'brass alloys' and of any minted 'Zinc Alloy', so it could never independently
+    miss.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0004
+  name: tool steels
+  status: confirmed
+  acceptable_forms:
+  - tool steels
+  evidence:
+  - quote: carbon, alloy, stainless, tool steels, aluminum and nickel alloys
+    approx_offset: 17587
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0005
+  name: aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum
+  - aluminum
+  evidence:
+  - quote: tool steels, aluminum and nickel alloys
+    approx_offset: 17613
+  - quote: Stainless Steel, Aluminum, CRS and HRPO
+    approx_offset: 19660
+  - quote: all stainless grades, brass, aluminum, Monel
+    approx_offset: 36010
+  actor: supplier
+  notes: several principals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0006
+  name: nickel alloys
+  status: confirmed
+  acceptable_forms:
+  - nickel alloys
+  - nickel
+  evidence:
+  - quote: aluminum and nickel alloys in weights up to 70,000 pounds
+    approx_offset: 17626
+  - quote: Mu metal, nickel, cupro nickel and more
+    approx_offset: 11593
+  actor: supplier
+  notes: Ellwood City Forge; Hudson
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0007
+  name: Vespel
+  status: confirmed
+  acceptable_forms:
+  - Vespel
+  evidence:
+  - quote: DuPontâ€“Vespel Parts & Shapes
+    approx_offset: 15144
+  - quote: Vespel® Parts and Shapes
+    approx_offset: 8443
+  actor: supplier
+  notes: DuPont polyimide trade name; the line-506 span sits immediately after a mojibake en dash and the line-1405
+    occurrence is followed by a registered-trademark sign
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0008
+  name: Ductile iron
+  status: confirmed
+  acceptable_forms:
+  - Ductile (Full range of ASTM A536-80)
+  - Ductile Gray Castings
+  - Ductile
+  evidence:
+  - quote: Ductile (Full range of ASTM A536-80) and Gray Irons
+    approx_offset: 20356
+  - quote: Ductile Gray Castings
+    approx_offset: 15441
+  actor: unknown
+  notes: sand-casting principal; line-card row
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0009
+  name: ferrous and non-ferrous materials
+  status: confirmed
+  acceptable_forms:
+  - ferrous and non-ferrous materials
+  - non-ferrous metals
+  - non-ferrous
+  evidence:
+  - quote: in a number of ferrous and non-ferrous materials
+    approx_offset: 18977
+  - quote: Stainless Steel and a number of non-ferrous metals
+    approx_offset: 21416
+  actor: unknown
+  notes: anonymous Kansas investment-casting and cold-heading principals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0010
+  name: cast metal
+  status: confirmed
+  acceptable_forms:
+  - cast metal
+  evidence:
+  - quote: rapid prototype in a cast metal in a couple of weeks
+    approx_offset: 19043
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0011
+  name: stainless steel
+  status: confirmed
+  acceptable_forms:
+  - Stainless Steel
+  - stainless steel
+  - stainless grades
+  - stainless
+  evidence:
+  - quote: A large range of materials; Stainless Steel, Aluminum, CRS and HRPO
+    approx_offset: 19632
+  - quote: including stainless steel and titanium
+    approx_offset: 11480
+  - quote: all stainless grades, brass, aluminum, Monel
+    approx_offset: 36010
+  actor: supplier
+  notes: several principals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0012
+  name: CRS
+  status: confirmed
+  acceptable_forms:
+  - CRS
+  evidence:
+  - quote: Stainless Steel, Aluminum, CRS and HRPO
+    approx_offset: 19660
+  actor: unknown
+  notes: 'cold rolled steel, abbreviated. 3-character form: matches case-sensitively on word boundaries.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0013
+  name: HRPO
+  status: confirmed
+  acceptable_forms:
+  - HRPO
+  evidence:
+  - quote: Aluminum, CRS and HRPO
+    approx_offset: 19677
+  actor: unknown
+  notes: hot rolled pickled and oiled steel, abbreviated
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0014
+  name: elastomeric rubber
+  status: confirmed
+  acceptable_forms:
+  - elastomeric rubber
+  evidence:
+  - quote: being a distributor of elastomeric rubber, silicone materials
+    approx_offset: 19982
+  actor: unknown
+  notes: anonymous Kansas rubber principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0015
+  name: silicone
+  status: confirmed
+  acceptable_forms:
+  - silicone materials
+  - silicone
+  evidence:
+  - quote: elastomeric rubber, silicone materials, FDA approved Buna
+    approx_offset: 20005
+  actor: unknown
+  notes: anonymous Kansas rubber principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0016
+  name: Buna
+  status: confirmed
+  acceptable_forms:
+  - Buna
+  evidence:
+  - quote: FDA approved Buna, Cellular foam material
+    approx_offset: 20045
+  actor: unknown
+  notes: nitrile rubber trade name
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0017
+  name: Cellular foam material
+  status: confirmed
+  acceptable_forms:
+  - Cellular foam material
+  evidence:
+  - quote: FDA approved Buna, Cellular foam material
+    approx_offset: 20045
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0018
+  name: Pressure Sensitive Adhesives
+  status: confirmed
+  acceptable_forms:
+  - Pressure Sensitive Adhesives
+  evidence:
+  - quote: We can apply Pressure Sensitive Adhesives on most materials
+    approx_offset: 20197
+  actor: unknown
+  notes: an adhesive is a substance the work is made from / performed in
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0019
+  name: Aluminum 319
+  status: confirmed
+  acceptable_forms:
+  - Aluminum (319, 356 and A357)
+  - '319'
+  evidence:
+  - quote: a large range of Aluminum (319, 356 and A357)
+    approx_offset: 20309
+  actor: unknown
+  notes: 'casting-alloy grade designation, which the material clause admits explicitly. ''319'' is a 3-character
+    form: case-sensitive word-boundary matching.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0020
+  name: Aluminum 356
+  status: confirmed
+  acceptable_forms:
+  - '356'
+  evidence:
+  - quote: Aluminum (319, 356 and A357)
+    approx_offset: 20326
+  actor: unknown
+  notes: casting-alloy grade designation; 3-character form
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0021
+  name: Aluminum A357
+  status: confirmed
+  acceptable_forms:
+  - A357
+  evidence:
+  - quote: (319, 356 and A357)
+    approx_offset: 20335
+  actor: unknown
+  notes: casting-alloy grade designation
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0022
+  name: Gray Irons
+  status: confirmed
+  acceptable_forms:
+  - Gray Irons
+  evidence:
+  - quote: and Gray Irons (Full range of ASTM A4876) Castings
+    approx_offset: 20393
+  actor: unknown
+  notes: deliberately NOT seeding a bare 'Gray' form - it is a case-insensitive substring of the principal name
+    'DimcoGray' and would credit itself on a company name
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0023
+  name: carbon steel
+  status: confirmed
+  acceptable_forms:
+  - carbon steel
+  evidence:
+  - quote: They product fasteners in carbon steel, Alloy Steel
+    approx_offset: 21363
+  - quote: STADCO produces parts of carbon steel, all stainless grades
+    approx_offset: 35971
+  actor: supplier
+  notes: anonymous Kansas cold-heading principal; Stadco Precision. Ellwood City Forge names it as bare 'carbon'
+    in 'from carbon, alloy, stainless, tool steels' (line 311); a bare 'carbon' form is deliberately NOT seeded
+    because it is a case-insensitive substring of 'polycarbonate' and of any other minted carbon-bearing plastic.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0024
+  name: high performance metals
+  status: confirmed
+  acceptable_forms:
+  - high performance metals
+  evidence:
+  - quote: expertise with a variety of high performance metals
+    approx_offset: 11427
+  actor: supplier
+  notes: Hudson
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0025
+  name: titanium
+  status: confirmed
+  acceptable_forms:
+  - titanium
+  evidence:
+  - quote: including stainless steel and titanium
+    approx_offset: 11480
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0026
+  name: aluminized steel
+  status: confirmed
+  acceptable_forms:
+  - aluminized steel
+  evidence:
+  - quote: along with aluminum, aluminized steel, cold rolled steel
+    approx_offset: 11520
+  actor: supplier
+  notes: Hudson
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0027
+  name: cold rolled steel
+  status: confirmed
+  acceptable_forms:
+  - cold rolled steel
+  evidence:
+  - quote: aluminized steel, cold rolled steel, brass, copper
+    approx_offset: 11541
+  actor: supplier
+  notes: Hudson
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0028
+  name: brass
+  status: confirmed
+  acceptable_forms:
+  - brass alloys
+  - brass
+  evidence:
+  - quote: cold rolled steel, brass, copper, Mu metal
+    approx_offset: 11559
+  - quote: also aluminum and brass alloys, with profiles
+    approx_offset: 36238
+  actor: supplier
+  notes: Hudson; Stadco; Carey
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0029
+  name: copper
+  status: confirmed
+  acceptable_forms:
+  - copper
+  evidence:
+  - quote: brass, copper, Mu metal, nickel
+    approx_offset: 11578
+  actor: supplier
+  notes: Hudson
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0030
+  name: Mu metal
+  status: confirmed
+  acceptable_forms:
+  - Mu metal
+  evidence:
+  - quote: copper, Mu metal, nickel, cupro nickel
+    approx_offset: 11585
+  actor: supplier
+  notes: Hudson Technologies - a nickel-iron magnetic shielding alloy
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0031
+  name: cupro nickel
+  status: confirmed
+  acceptable_forms:
+  - cupro nickel
+  evidence:
+  - quote: nickel, cupro nickel and more
+    approx_offset: 11603
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0032
+  name: synthetic
+  status: disputed
+  acceptable_forms:
+  - synthetic
+  evidence:
+  - quote: five complete vacuum systems with synthetic, graphite fortified
+    approx_offset: 7109
+  actor: supplier
+  notes: 'DISPUTED: names a class of lubricant base rather than a substance the work is made from; kept because
+    the impregnation medium ends up inside the sintered part | "synthetic" is an adjective inside a compound modifier
+    - "with synthetic, graphite fortified, petroleum-based lubricants" - and names no substance on its own. The
+    substance actually named there is the lubricant, seeded as material_caps-0034, with graphite as material_caps-0033.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: '"synthetic" is an adjective inside a compound modifier - "with synthetic, graphite fortified, petroleum-based
+      lubricants" - and names no substance on its own. The substance actually named there is the lubricant, seeded
+      as material_caps-0034, with graphite as material_caps-0033.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0033
+  name: graphite
+  status: confirmed
+  acceptable_forms:
+  - graphite fortified
+  - graphite
+  evidence:
+  - quote: with synthetic, graphite fortified, petroleum-based lubricants
+    approx_offset: 7138
+  actor: supplier
+  notes: Missouri Pressed Metals - impregnation media
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0034
+  name: petroleum-based lubricants
+  status: confirmed
+  acceptable_forms:
+  - petroleum-based lubricants
+  - petroleum-based
+  evidence:
+  - quote: graphite fortified, petroleum-based lubricants, food grade oils
+    approx_offset: 7154
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0035
+  name: food grade oils
+  status: confirmed
+  acceptable_forms:
+  - food grade oils
+  evidence:
+  - quote: petroleum-based lubricants, food grade oils and Gulf Plastic Petroleum E
+    approx_offset: 7174
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0036
+  name: Gulf Plastic Petroleum E
+  status: confirmed
+  acceptable_forms:
+  - Gulf Plastic Petroleum E
+  evidence:
+  - quote: food grade oils and Gulf Plastic Petroleum E
+    approx_offset: 7202
+  actor: supplier
+  notes: Missouri Pressed Metals - a named impregnation medium (trade name)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0037
+  name: oil
+  status: confirmed
+  acceptable_forms:
+  - Oil Impregnation
+  - Oil Dip Coating
+  - Oil
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating
+    approx_offset: 7628
+  - quote: Oil Impregnation - makes bearings self-lubricate
+    approx_offset: 7796
+  actor: supplier
+  notes: 'seeded under the material clause''s own rule: ''A process or treatment named after a substance it deposits
+    on or diffuses into the work does imply that substance, and qualifies.'' ''Oil'' is a 3-character form and matches
+    case-sensitively on word boundaries.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0038
+  name: Monel
+  status: confirmed
+  acceptable_forms:
+  - Monel
+  evidence:
+  - quote: brass, aluminum, Monel, Teflon and Delrin
+    approx_offset: 36032
+  actor: supplier
+  notes: Stadco Precision
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0039
+  name: Teflon
+  status: confirmed
+  acceptable_forms:
+  - Teflon
+  evidence:
+  - quote: Monel, Teflon and Delrin
+    approx_offset: 36049
+  actor: supplier
+  notes: Stadco Precision
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0040
+  name: Delrin
+  status: confirmed
+  acceptable_forms:
+  - Delrin
+  evidence:
+  - quote: Teflon and Delrin
+    approx_offset: 36056
+  actor: supplier
+  notes: Stadco Precision
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0041
+  name: bar stock
+  status: confirmed
+  acceptable_forms:
+  - bar stock
+  - barstock
+  evidence:
+  - quote: '"Near net" bar stock is often specified'
+    approx_offset: 36075
+  - quote: This special barstock is available in carbon steel
+    approx_offset: 36165
+  actor: supplier
+  notes: Stadco Precision; both spellings occur on the same line
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0042
+  name: wire
+  status: disputed
+  acceptable_forms:
+  - wire forms
+  - Wire Forms
+  - Wire Form
+  evidence:
+  - quote: happens to make custom springs and wire forms
+    approx_offset: 39346
+  - quote: Wire Forms
+    approx_offset: 40636
+  actor: supplier
+  notes: Fox Valley Spring - the stock the forms are made from | Every acceptable form is the product name "wire
+    form(s)"; the text never names wire as a material on its own. The material is inferable only from an artifact
+    name, which is the dispute case VERIFY_BRIEF section 2 describes. The artifact itself is correctly seeded as
+    products-0060.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: Every acceptable form is the product name "wire form(s)"; the text never names wire as a material on
+      its own. The material is inferable only from an artifact name, which is the dispute case VERIFY_BRIEF section
+      2 describes. The artifact itself is correctly seeded as products-0060.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0043
+  name: Flat Steel
+  status: confirmed
+  acceptable_forms:
+  - Flat Steel
+  evidence:
+  - quote: Flat Steel
+    approx_offset: 40663
+  actor: supplier
+  notes: Fox Valley Spring lists it among 'Spring Type of Choice' - flat spring steel stock
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0044
+  name: steel
+  status: confirmed
+  acceptable_forms:
+  - steel
+  evidence:
+  - quote: Our materials include aluminum, brass, steel, and stainless steel
+    approx_offset: 41632
+  actor: supplier
+  notes: Carey; broad umbrella form, a substring of most of its siblings
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0045
+  name: black oxide
+  status: candidate
+  acceptable_forms:
+  - Black Oxidizing
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating - is useful for corrosion resistance
+    approx_offset: 7628
+  actor: supplier
+  notes: The material_caps clause says a treatment named after a substance it deposits on the work implies that
+    substance and qualifies; Black Oxidizing deposits black oxide. The packet has the operation (process_caps-0054)
+    and the oil (material_caps-0037) but not this substance.
+  provenance:
+  - action: added
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0046
+  name: powder coat
+  status: candidate
+  acceptable_forms:
+  - powder coat
+  evidence:
+  - quote: We also offer a powder coat finish in more than 50 colors and textures
+    approx_offset: 41737
+  actor: supplier
+  notes: 'Same clause as the black-oxide miss: powder coating deposits a coating material on the work. The packet
+    carries the finishing operation (process_caps-0064) but no corresponding material.'
+  provenance:
+  - action: added
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-material_caps-0047
+  name: carbon
+  status: candidate
+  acceptable_forms:
+  - carbon
+  evidence:
+  - quote: We manufacture concentric and eccentric contoured forgings and single cross-section products from carbon,
+      alloy, stainless, tool steels, aluminum and nickel alloys
+    approx_offset: 17489
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-material_caps-0048
+  name: silicone materials
+  status: candidate
+  acceptable_forms:
+  - silicone materials
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber, silicone
+      materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 19928
+  actor: supplier
+  notes: Kansas product-line principal (rubber fabrication)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-material_caps-0049
+  name: Cellular foam
+  status: candidate
+  acceptable_forms:
+  - Cellular foam
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing and being a distributor of elastomeric rubber, silicone
+      materials, FDA approved Buna, Cellular foam material.
+    approx_offset: 19928
+  actor: supplier
+  notes: Kansas product-line principal (rubber fabrication)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-material_caps-0050
+  name: Ductile
+  status: candidate
+  acceptable_forms:
+  - Ductile
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full range
+      of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 20275
+  actor: supplier
+  notes: Kansas product-line principal (sand casting)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-material_caps-0051
+  name: Aluminum 319/356/A357
+  status: candidate
+  acceptable_forms:
+  - '319'
+  - '356'
+  - A357
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum (319, 356 and A357), Ductile (Full range
+      of ASTM A536-80) and Gray Irons (Full range of ASTM A4876) Castings.
+    approx_offset: 20275
+  actor: supplier
+  notes: Kansas product-line principal aluminum casting grades
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-material_caps-0052
+  name: brass alloys
+  status: candidate
+  acceptable_forms:
+  - brass alloys
+  evidence:
+  - quote: This special barstock is available in carbon steel and stainless grades, also aluminum and brass alloys,
+      with profiles including hex, square, triangular, grooved and splined.
+    approx_offset: 36165
+  actor: supplier
+  notes: Stadco Precision
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: lead
+  reason: 'the documented substring trap, live on this site: occurs only in ''quick turnaround lead times'', ''a
+    7 working day lead-time'', ''various lead generating companies'', ''a leader in their industry'' and ''a leading
+    U.S. green manufacturer'' - never the metal'
+- form: Air
+  reason: occurs only in the product name 'Heaters & Air Conditioning units' and in 'more than 5000 hours in the
+    air' (the founder's pilot log); never a work material
+- form: Steam
+  reason: occurs only as the process name 'Steam Treating'; the treatment deposits an oxide, not steam, so the deposits-clause
+    does not mint a 'steam' material
+- form: PET
+  reason: reported fabricated by an earlier pipeline run; word-boundary grep confirms zero occurrences - word-association
+    from the plastic molding pages
+- form: Zinc Alloy
+  reason: reported fabricated by an earlier pipeline run; zero occurrences - word-association from die casting
+- form: Bronze
+  reason: reported fabricated by an earlier pipeline run; zero occurrences - word-association from the foundry/casting
+    pages
+- form: Inconel
+  reason: word-association from 'nickel alloys' and aerospace; never occurs
+- form: magnesium
+  reason: word-association from die casting; never occurs
+- form: ABS
+  reason: word-association from the plastic molding pages; never occurs. 3-character form, so it must not be credited
+    by 'absolute' or similar
+- form: nylon
+  reason: word-association from the plastic molding pages; never occurs
+- form: polycarbonate
+  reason: word-association from the plastic molding pages; never occurs

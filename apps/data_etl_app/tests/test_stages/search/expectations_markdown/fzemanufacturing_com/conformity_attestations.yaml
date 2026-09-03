@@ -1,0 +1,561 @@
+subject: fzemanufacturing.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/fzemanufacturing.com.txt
+  sha256: 29f9da1f8d601d220cf801bb8a496ba1e873febead70176f1f431a667253e773
+eval_set_version: 2
+expected_empty: false
+notes: One real certification (ISO 9001:2015, named 16 times) plus a cluster of methodologies and programs that
+  sit in the same sentences and read like certifications - Six Sigma Black Belt, Lean, Kaizen/5S, Lights Out. Six
+  Sigma Black Belt is seeded as an entry (a certification people hold, and the text calls it one); Lean/Kaizen/Lights
+  Out are seeded DISPUTED because they are practices with no issuing body or identity of their own. The Made In
+  Wisconsin(R) registration and the Thomas Verified supplier mark are the two non-quality registrations.
+entries:
+- id: fzemanufacturing_com-conformity_attestations-0001
+  name: Lean manufacturing
+  status: disputed
+  acceptable_forms:
+  - Lean Manufacturing
+  - Lean manufacturing
+  - Lean
+  evidence:
+  - quote: Furthermore, our Lean Black Belt Sigma certification, Lights Out automation, Lean Manufacturing, and
+      Kaizen/5S-based continuous improvement processes ensure that we’re constantly looking
+    approx_offset: 162256
+  notes: 'DISPUTED: listed under ''Efficiency'' beside a real certification and inside sentences that call the whole
+    group ''certifications'', but Lean has no issuing body, number or mark of its own | Lean manufacturing is a
+    production methodology, not a certification, accreditation, registration or standard with an identity of its
+    own that a company could hold. The argument on the other side is the site''s own framing - it lists ''Lean manufacturing''
+    under ''certifications'' - which is exactly why this is arguable rather than settled'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: Lean manufacturing is a production methodology, not a certification, accreditation, registration or
+      standard with an identity of its own that a company could hold. The argument on the other side is the site's
+      own framing - it lists 'Lean manufacturing' under 'certifications' - which is exactly why this is arguable
+      rather than settled
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0002
+  name: Kaizen / 5S
+  status: disputed
+  acceptable_forms:
+  - Kaizen/5S
+  - Kiazen/5S
+  - Kaizen
+  evidence:
+  - quote: our Lean Black Belt Sigma certification, Lights Out automation, Lean Manufacturing, and Kaizen/5S-based
+      continuous improvement processes ensure that we’re constantly looking for new ways
+    approx_offset: 162269
+  notes: 'DISPUTED: same reading as Lean - a continuous-improvement methodology, not an attestation. Note the site
+    misspells it ''Kiazen/5S'' in two spec tables | Kaizen/5S is a continuous-improvement methodology with no issuing
+    body, number or mark; the site lists it under ''certifications'', which is the whole of the case for it'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: Kaizen/5S is a continuous-improvement methodology with no issuing body, number or mark; the site lists
+      it under 'certifications', which is the whole of the case for it
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0003
+  name: Made In Wisconsin registration
+  status: confirmed
+  acceptable_forms:
+  - Made In Wisconsin
+  - Made in Wisconsin
+  - Made In Wisconsin®
+  - Made in Wisconsin program
+  - Made In Wisconsin WEDC certification
+  evidence:
+  - quote: one of the state’s only manufacturers to be approved by, registered and trademarked with the Made in
+      Wisconsin program. This program was introduced in 2012 by the Wisconsin Economic
+    approx_offset: 168260
+  notes: a state registration and trademark issued by the Wisconsin Economic Development Corporation; the news post
+    calls it 'our Made In Wisconsin WEDC certification and registration'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0004
+  name: Department of Energy standards
+  status: confirmed
+  acceptable_forms:
+  - Department of Energy
+  - DOE
+  evidence:
+  - quote: Department of Energy (DOE)
+    approx_offset: 11297
+  - quote: At FZE Manufacturing, we meet all industry standards for laser marking, including those set by ISO, the
+      Department of Energy, the Department of Transportation, and the Department of Defense. We’ve
+    approx_offset: 197255
+  notes: named among the laser-marking standards FZE says it meets
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: the packet's quote 'Department of Energy (DOE)' is the string as it appears in the welding page's Industry
+      Focus list, where DOE is a customer sector, not a standard. Re-anchored on the laser marking sentence that
+      names DOE as a standards-setter, which is what this entry claims
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0005
+  name: ISO 9001:2015
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2015
+  - ISO 9001-2015
+  - ISO 9001
+  - ISO 9001:2015 Certified
+  - ISO 9001:2015 certified
+  evidence:
+  - quote: ISO 9001:2015 Certified
+    approx_offset: 12086
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0006
+  name: Mil-Spec
+  status: confirmed
+  acceptable_forms:
+  - Mil-Spec
+  - Military & Mil-Spec
+  - Mil-Spec/Department of Defense (DOD)
+  evidence:
+  - quote: Military & Mil-Spec
+    approx_offset: 12111
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0007
+  name: Six Sigma Black Belt certification
+  status: confirmed
+  acceptable_forms:
+  - Six Sigma Certification
+  - Lean Black Belt Six Sigma certification
+  - Lean Six Sigma (Black Belt)
+  - Six-Sigma (Black Belt)
+  - Six Sigma-Black Belt
+  - Black Belt
+  evidence:
+  - quote: Six Sigma Certification – Black Belt
+    approx_offset: 12148
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0008
+  name: Lights Out / Unmanned manufacturing
+  status: disputed
+  acceptable_forms:
+  - Lights Out Manufacturing
+  - Lights Out / Unmanned Manufacturing
+  - Lights-Out Manufacturing
+  - Lights Out automation
+  evidence:
+  - quote: Lights Out Manufacturing
+    approx_offset: 12186
+  notes: 'DISPUTED: listed under the ''Efficiency'' table header beside Six Sigma Certification, but it is an operating
+    practice with no issuing body | Lights Out / Unmanned manufacturing is a way of running the plant, not something
+    a company holds, meets or follows; it appears under an ''Efficiency'' heading alongside Six Sigma, which is
+    where the confusion comes from'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+    reason: Lights Out / Unmanned manufacturing is a way of running the plant, not something a company holds, meets
+      or follows; it appears under an 'Efficiency' heading alongside Six Sigma, which is where the confusion comes
+      from
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0009
+  name: ISO 9001:2015-certified quality management system
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2015-certified quality management system
+  - quality management system
+  - quality-management systems
+  evidence:
+  - quote: ISO 9001:2015-certified quality management system
+    approx_offset: 118344
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0010
+  name: UL
+  status: confirmed
+  acceptable_forms:
+  - UL
+  evidence:
+  - quote: quality assurance inspections ensure that machined components adhere to regulatory guidelines (such as
+      those written by UL or ASTM). It also guarantees it meets company requirements for cost,
+    approx_offset: 83113
+  actor: unknown
+  notes: named as an example standards body in a generic sentence about why inspection matters, not as something
+    FZE holds
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0011
+  name: PPAP
+  status: confirmed
+  acceptable_forms:
+  - PPAP
+  evidence:
+  - quote: assurance services for machined parts. With extensive PPAP and APQP experience in pre-production to post-production
+      First Articles and ISIR inspection services, the machining inspection & quality
+    approx_offset: 124879
+  notes: 'DISPUTED: an AIAG production-part approval standard the company claims experience with; it is a named
+    standard with an identity, but it is a submission process rather than something held'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0012
+  name: APQP
+  status: confirmed
+  acceptable_forms:
+  - APQP
+  evidence:
+  - quote: assurance services for machined parts. With extensive PPAP and APQP experience in pre-production to post-production
+      First Articles and ISIR inspection services, the machining inspection & quality
+    approx_offset: 124879
+  notes: 'DISPUTED: same reading as PPAP - a named AIAG planning standard, claimed as experience'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0013
+  name: ISIR
+  status: confirmed
+  acceptable_forms:
+  - ISIR
+  evidence:
+  - quote: assurance services for machined parts. With extensive PPAP and APQP experience in pre-production to post-production
+      First Articles and ISIR inspection services, the machining inspection & quality
+    approx_offset: 124879
+  notes: 'DISPUTED: Initial Sample Inspection Report - a submission document type rather than a held certification'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0014
+  name: Thomas Verified supplier
+  status: confirmed
+  acceptable_forms:
+  - Thomas Verified supplier
+  - Thomas Verified
+  evidence:
+  - quote: ensuring that our products meet or exceed our customers’ expectations. In addition, we are a Thomas Verified
+      supplier, so be confident you’re getting quality products at a fair price.
+    approx_offset: 137116
+  notes: a directory verification mark with an issuing body (Thomasnet); arguably closer to a membership than a
+    certification, but the text states it as something FZE holds
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0015
+  name: Department of Defense standards
+  status: confirmed
+  acceptable_forms:
+  - Department of Defense
+  - DOD
+  evidence:
+  - quote: Mil-Spec/Department of Defense (DOD)
+    approx_offset: 57887
+  notes: named among the laser-marking standards FZE says it meets
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0016
+  name: Department of Transportation standards
+  status: confirmed
+  acceptable_forms:
+  - Department of Transportation
+  - DOT
+  evidence:
+  - quote: Department of Transportation (DOT)
+    approx_offset: 57926
+  notes: named among the laser-marking standards FZE says it meets
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0017
+  name: FDA UDI requirement
+  status: confirmed
+  acceptable_forms:
+  - UDIs
+  - unique device identifiers
+  - FDA guidelines
+  - the FDA requires
+  evidence:
+  - quote: Unique device identifiers (UDIs) for medical devices, per FDA guidelines
+    approx_offset: 60775
+  actor: unknown
+  notes: a product compliance obligation named in the laser-marking applications list, describing what customers
+    need marked - not something FZE itself holds
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0018
+  name: ISO (laser marking standards)
+  status: confirmed
+  acceptable_forms:
+  - ISO
+  evidence:
+  - quote: FZE Manufacturing, we meet all industry standards for laser marking, including those set by ISO, the
+      Department of Energy, the Department of Transportation, and the Department of Defense. We’ve
+    approx_offset: 197258
+  notes: the laser-marking page lists a bare 'ISO' among the standards it meets, separately from the ISO 9001:2015
+    quality registration
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0019
+  name: ASTM
+  status: confirmed
+  acceptable_forms:
+  - ASTM
+  evidence:
+  - quote: verification of the effectiveness of the passivation process and certifies compliance with ASTM, Mil-Spec,
+      and other various industry standards.
+    approx_offset: 265503
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-fzemanufacturing
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: fzemanufacturing_com-conformity_attestations-0020
+  name: Thomas Verified
+  status: candidate
+  acceptable_forms:
+  - Thomas Verified
+  evidence:
+  - quote: we are a Thomas Verified supplier, so be confident you’re getting quality products
+    approx_offset: 137200
+  notes: firearm-components industries-served page
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-conformity_attestations-0021
+  name: Made In Wisconsin
+  status: candidate
+  acceptable_forms:
+  - Made In Wisconsin
+  - Made in Wisconsin
+  evidence:
+  - quote: '## Made In Wisconsin Program'
+    approx_offset: 168199
+  notes: about-us page
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-conformity_attestations-0022
+  name: International Organization for Standardization
+  status: candidate
+  acceptable_forms:
+  - International Organization for Standardization
+  evidence:
+  - quote: International Organization for Standardization
+    approx_offset: 191991
+  notes: '''Industry Standards'' spec block, welding-fabrication-services page (expansion of ISO)'
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: fzemanufacturing_com-conformity_attestations-0023
+  name: Made In Wisconsin WEDC certification
+  status: candidate
+  acceptable_forms:
+  - Made In Wisconsin WEDC certification
+  evidence:
+  - quote: We are very pleased to receive our Made In Wisconsin WEDC certification and registration
+    approx_offset: 269858
+  notes: news release page
+  provenance:
+  - action: added
+    by: seed-agent-fzemanufacturing-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Machinist
+  reason: a job posting title on the careers page, not a certification or licence
+- form: Machine Operators
+  reason: a job posting title on the careers page, not a certification
+- form: Blanket Orders
+  reason: a commercial ordering arrangement in the Production Volume table, not a standard
+- form: SolidWorks
+  reason: 'a CAD file format the shop accepts (File Formats table: AutoCAD, DXF, IGES, STEP, SolidWorks) - a format,
+    not a standard the company holds'
+- form: IGES
+  reason: a CAD interchange format in the File Formats table; formats are not attestations
+- form: STEP
+  reason: a CAD interchange format in the File Formats table; formats are not attestations
+- form: AS9100
+  reason: 'anticipatory: the obvious aerospace companion to ISO 9001 that a model may mint from ''Aerospace'' +
+    ''ISO 9001:2015''; it does not occur anywhere in the text'
+- form: ITAR
+  reason: 'anticipatory: word-association from ''Firearms'' + ''Military/Defense'' + ''Mil-Spec''; does not occur'
+- form: NADCAP
+  reason: 'anticipatory: word-association from aerospace + special processes (heat treating, passivation); does
+    not occur'
+- form: ISO 13485
+  reason: 'anticipatory: word-association from the medical/dental/pharmaceutical industry lists; does not occur'

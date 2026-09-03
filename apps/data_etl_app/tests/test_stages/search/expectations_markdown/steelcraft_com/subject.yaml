@@ -1,0 +1,69 @@
+subject: steelcraft.com
+role: full_unit
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/steelcraft.com.txt
+  sha256: 177da18fbba7968e733d2de9701d1b82b82d9d4e3ccf7cbef93cd44317cc6434
+scrape_hazards:
+- hazard: 'parent brand bleed: Allegion copyright footer on every page (54x) and brand-family prose'
+  quote: © Allegion plc, 2025
+- hazard: sibling brand roster in About prose - CISA/Interflex/LCN/Schlage/Von Duprin are Allegion brands, not subject
+    products
+  quote: CISA®, Interflex®, LCN®, Schlage® and Von Duprin®
+- hazard: 'sibling brand referral: finish-painted frames and lead-lined doors are deflected to Republic Doors and
+    Frames'
+  quote: Please see Republic Doors and Frames for additional information
+- hazard: 'approvals filed under parent legal entity: FBC/Miami-Dade/TDI listings are under ''Schlage Lock Co.''
+    names'
+  quote: Note that Steelcraft/Allegion approvals are listed under Schlage Lock Co.
+- hazard: 'third-party component brands as features: supplier hardware and glazing named inside product prose'
+  quote: Doors available with Schlage® or Von Duprin® hardware
+- hazard: 'certification-body/lab mentions everywhere: SDI, Intertek, UL, FEMA, ICC, Miami-Dade, TDI - not all are
+    subject-held certs'
+  quote: Tested and Intertek labeled showing compliance with ICC500-2014 and FEMA 320/361
+- hazard: nav boilerplate on all ~54 rendered pages (Literature/Contact/360Portal/Products/Why Steel/Resources/Locations/Support)
+  quote: 360 Portal Login
+- hazard: support blurb repeated on every page (54x)
+  quote: GET THE SUPPORT OF STEEL
+- hazard: California PROP65 warning block repeated on product pages (25x)
+  quote: 'WARNING: Cancer & Reproductive Harm'
+- hazard: cookie-consent banner text repeated on many pages
+  quote: This website uses cookies and similar technologies
+- hazard: 'legal boilerplate mass: privacy-policy + terms-of-use + cookie-policy pages (~lines 1703-3216) carry
+    word-association traps (CCPA, DMCA, trade union membership, Recruitment)'
+  quote: California Consumer Privacy Act
+- hazard: 843 NBSP (U+00A0) characters embedded mid-phrase - evidence quotes in this expectation set are byte-exact
+    against them
+  quote: Salt spray testing in accordance with ASTM B117-18
+- hazard: 'scrape artifact: /en/undefined URL block returns ''Not Found'''
+  quote: https://www.steelcraft.com/en/undefined
+- hazard: 'scrape artifact: truncated CMS path block (''language-masters'') returns ''Not Found'''
+  quote: https://www.steelcraft.com/content/steelcraft/language-masters/en/support/working-with-steelcraft.
+- hazard: 'scrape artifact: email address fused with following text mid-line'
+  quote: SteelcraftOrderEntryChino@allegion.t Coast Service Center
+- hazard: 'scrape artifact: ™ flattened to literal ''TM'' on the INPACT page (4x ''INPACTTM'')'
+  quote: INPACTTM
+- hazard: 'source typos preserved verbatim: ''and and'', ''USL-10C'', ''Galvanealled'', and a U+2044 fraction slash
+    in ''FEMA 361⁄320'''
+  quote: and and FEMA 320/361
+- hazard: heavy marketing fluff around designations
+  quote: taking the industry by storm
+sampling_notes: read exhaustively - 225,541 bytes, 56 page blocks (54 rendered pages + 2 Not Found artifacts); catalogue-product
+  manufacturer (hollow metal steel doors and frames, Blue Ash OH; Allegion brand since 2013) organized as a product-series
+  catalogue. Landing pages duplicate their child pages nearly verbatim (products.html~steel-doors.html, resources.html~resources/Literature.html,
+  why-steelcraft.html~about-steelcraft.html, locations.html~steelcraft-main-plant.html, applications.html~fire-rated
+  page, finish-options.html~graintech page, support.html~support/contact.html) - designation counts are inflated
+  by duplication, not by new information.
+notes: conformity_attestations is this subject's most important field (50-entry standards inventory; the TAS 201/202/203
+  + ASTM E1886/E1996 windstorm family is verbatim in-text - a prior run lost it, noted per entry). equipments is
+  expected_empty (no machines named; prior run returned 68/75 product groups there). products.yaml also serves contract_products
+  (shared search output).
+provenance:
+- action: added
+  by: seed-agent-steelcraft
+  date: '2026-08-26'
+  source: corpus-seed
+- action: ported
+  by: port_corpus.py
+  date: '2026-08-29'
+  source: markdown-cutover
+eval_set_version: 1

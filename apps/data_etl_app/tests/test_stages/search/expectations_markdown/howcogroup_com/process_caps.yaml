@@ -1,0 +1,2502 @@
+subject: howcogroup.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
+  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+eval_set_version: 2
+expected_empty: false
+entries:
+- id: howcogroup_com-process_caps-0001
+  name: tempering
+  status: confirmed
+  acceptable_forms:
+  - tempering
+  - Tempered
+  - Hardened and Double Tempered
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 107043
+  - quote: 'Condition: Hardened and Double Tempered'
+    approx_offset: 20733
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0002
+  name: impact / CVN testing
+  status: confirmed
+  acceptable_forms:
+  - CVN Impacts
+  - Impact.
+  - Tensile. Impact. Hardness.
+  evidence:
+  - quote: Tensile. Impact. Hardness.
+    approx_offset: 9640
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0003
+  name: cold working
+  status: confirmed
+  acceptable_forms:
+  - cold working
+  - Cold Worked
+  - cold worked
+  evidence:
+  - quote: alloy cannot be hardened by heat-treatment, but enhanced mechanical properties can be obtained by cold
+      working, especially in sour well tubing strings, and
+    approx_offset: 103695
+  - quote: 'Condition: UNS N08825 Cold Worked'
+    approx_offset: 68300
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0004
+  name: first stage machining
+  status: confirmed
+  acceptable_forms:
+  - FIRST STAGE MACHINING
+  - first stage machining
+  evidence:
+  - quote: Howco’s global first stage machining capabilities utilise both conventional and CNC machinery. Our worldwide
+    approx_offset: 57801
+  - quote: WORLD WIDE FIRST STAGE MACHINING RESOURCES
+    approx_offset: 57757
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0005
+  name: near net shape production
+  status: confirmed
+  acceptable_forms:
+  - near net shape component
+  - near net shape
+  evidence:
+  - quote: 'Supplying a near net shape component provides :'
+    approx_offset: 58258
+  - quote: Nickel Alloys, Stainless Steel and Low Alloy from raw ingot through to fully heat treated near net shape
+      components.
+    approx_offset: 52246
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0006
+  name: turnkey manufacturing
+  status: confirmed
+  acceptable_forms:
+  - TURNKEY MANUFACTURING
+  - turnkey manufacturing
+  evidence:
+  - quote: TURNKEY MANUFACTURING
+    approx_offset: 66130
+  - quote: Howco provides turnkey manufacturing of parts, either by machining or additive manufacturing processes
+    approx_offset: 100629
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0007
+  name: hot isostatic pressing (HIP)
+  status: confirmed
+  acceptable_forms:
+  - Hot Isostatic Pressing
+  - HIP
+  evidence:
+  - quote: AS9100 approved for Manufacture of Additively Manufactured Parts including Machining, Heat Treatment,
+      Testing and Hot Isostatic Pressing.
+    approx_offset: 77820
+  - quote: supply chain partners we can to provide you with turnkey components, including HIP and post machining.
+    approx_offset: 35780
+  actor: unknown
+  notes: line 835 says HIP comes 'With our supply chain partners'; line 1900 lists it inside Howco's own AS9100
+    scope. The two statements conflict
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0008
+  name: sawing
+  status: confirmed
+  acceptable_forms:
+  - SAWING
+  - band sawing
+  - metal sawing
+  - sawing
+  evidence:
+  - quote: WORLDWIDE LEADER IN METAL SAWING CAPABILITIES
+    approx_offset: 53508
+  - quote: In the metals industry, band sawing is one of the primary methods used to cut metal materials. Technological
+      advancements have equipped
+    approx_offset: 53555
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0009
+  name: bundle cutting
+  status: confirmed
+  acceptable_forms:
+  - Bundle cutting
+  evidence:
+  - quote: Bundle cutting for large quantities for all sections – round, squares and flats
+    approx_offset: 54157
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0010
+  name: rolling
+  status: confirmed
+  acceptable_forms:
+  - Forged and Rolled Round Bar
+  - Rolled Ring Forgings
+  - Rolled
+  evidence:
+  - quote: Forged and Rolled Round Bar
+    approx_offset: 46576
+  - quote: Rolled Ring Forgings
+    approx_offset: 47501
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0011
+  name: coating and finishing
+  status: confirmed
+  acceptable_forms:
+  - COATING & FINISHING
+  - coating and finishing services
+  - coating facility
+  evidence:
+  - quote: established supply chain partners, Howco provides a comprehensive range of coating and finishing services
+      to our customers who operate in the most challenging
+    approx_offset: 101495
+  notes: the Irvine site page (1420-1453) describes an owned modern coating facility in the first person; the Capabilities
+    page (4156) says the same services come 'Through our established supply chain partners'. The two pages contradict
+    each other on the actor
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0012
+  name: phosphating
+  status: confirmed
+  acceptable_forms:
+  - Phospating process
+  - Phosphate dip process
+  evidence:
+  - quote: Phospating process – M-ZN 4333
+    approx_offset: 65426
+  - quote: Phosphate dip process
+    approx_offset: 65748
+  notes: the site misspells it 'Phospating' at 1440 (no h); 'Phosphate dip process' at 1449 is the correctly-spelled
+    sibling
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0013
+  name: shot blasting
+  status: confirmed
+  acceptable_forms:
+  - Shot blasting
+  - shot blasting
+  evidence:
+  - quote: Shot blasting (aluminium 60-80)
+    approx_offset: 65459
+  - quote: Large shot blasting chamber
+    approx_offset: 65686
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0014
+  name: spray painting
+  status: confirmed
+  acceptable_forms:
+  - Spray painters
+  - spray booths
+  - spray booth
+  evidence:
+  - quote: Spray painters I Cats trained
+    approx_offset: 65654
+  - quote: X 2 medium spray booths
+    approx_offset: 65604
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0015
+  name: alkaline degreasing
+  status: confirmed
+  acceptable_forms:
+  - Alkaline degreasing
+  evidence:
+  - quote: Alkaline degreasing equipment
+    approx_offset: 65716
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0016
+  name: curing
+  status: confirmed
+  acceptable_forms:
+  - curing ovens
+  evidence:
+  - quote: 5 curing ovens
+    approx_offset: 65772
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0017
+  name: weld cladding / weld overlay
+  status: confirmed
+  acceptable_forms:
+  - Weld Cladding & Overlay
+  - Weld overlay cladding
+  - Weld cladding
+  - cladding
+  - weld overlay
+  evidence:
+  - quote: Weld Cladding & Overlay Facility.
+    approx_offset: 85569
+  - quote: Weld overlay cladding applied to either prolong the life of new process or pipeline components or refurbish
+    approx_offset: 101967
+  actor: unknown
+  notes: '4164 makes the partner attribution explicit: ''Howco''s partners have a wide range of qualified procedures
+    in place for cladding'''
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0018
+  name: GTAW welding
+  status: confirmed
+  acceptable_forms:
+  - GTAW build-up
+  - automated GTAW butt Welds
+  - GTAW
+  evidence:
+  - quote: supply chain partners are designed to perform fully-automated GTAW build-up of corrosion-resistant alloy
+      welding on engineered components for the oil & gas,
+    approx_offset: 85685
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds. The use of automation
+      gives improved quality control
+    approx_offset: 85909
+  actor: unknown
+  notes: explicitly the cladding systems 'of our established supply chain partners'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0019
+  name: butt welding
+  status: confirmed
+  acceptable_forms:
+  - butt Welds
+  - BUTT WELDING STATIONS
+  - Butt Welding
+  evidence:
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds. The use of automation
+      gives improved quality control
+    approx_offset: 85909
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0020
+  name: stress relieving
+  status: confirmed
+  acceptable_forms:
+  - Stress relieving
+  - STRESS RELIEVING
+  - stress relief
+  evidence:
+  - quote: Stress relieving
+    approx_offset: 107131
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0021
+  name: post weld heat treatment (PWHT)
+  status: confirmed
+  acceptable_forms:
+  - Post Weld Heat Treatment
+  - PWHT
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment of welded
+      components
+    approx_offset: 86117
+  actor: unknown
+  notes: on the Welding & Cladding page, whose opening sentence attributes the cladding systems to 'our established
+    supply chain partners' (1721); the PWHT paragraph itself carries no actor
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0022
+  name: additive manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Additive manufacturing
+  - additive manufacturing
+  - metal 3D printing
+  - AM
+  evidence:
+  - quote: 'Additive manufacturing:'
+    approx_offset: 73864
+  - quote: produced in days, rather than weeks or months. With our cutting-edge metal 3D printing capabilities,
+      you can create complex geometries, achieve intricate
+    approx_offset: 74065
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0023
+  name: laser powder bed fusion
+  status: confirmed
+  acceptable_forms:
+  - powder bed fusion
+  - laser powder bed fusion
+  evidence:
+  - quote: We have the latest powder bed fusion technology, with high volume capacity.
+    approx_offset: 76541
+  - quote: advancement, Howco AM has quickly established itself as an industry expert in laser powder bed fusion
+      processes, setting new standards and redefining possibilities
+    approx_offset: 360842
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0024
+  name: reverse engineering
+  status: confirmed
+  acceptable_forms:
+  - REVERSE ENGINEERING
+  - reverse engineering
+  evidence:
+  - quote: REVERSE ENGINEERING
+    approx_offset: 76970
+  - quote: With our high resolution scanner and in-house CMM, we can produce new parts by reverse engineering your
+      existing components.
+    approx_offset: 76991
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0025
+  name: 3D scanning
+  status: confirmed
+  acceptable_forms:
+  - 3D scanning
+  evidence:
+  - quote: technology and advanced algorithms, the HandySCAN Black Elite delivers fast and accurate 3D scanning,
+      even on complex surfaces and shiny or dark materials.
+    approx_offset: 107901
+  - quote: Additionally, our in-house capabilities include 3D scanning for reverse engineering and inspection purposes.
+    approx_offset: 363218
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0026
+  name: non-destructive testing
+  status: confirmed
+  acceptable_forms:
+  - NON DESTRUCTIVE TESTS
+  - non-destructive testing
+  - Non-destructive testing
+  - TESTING & NDT
+  - NDT
+  evidence:
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 107493
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0027
+  name: failure analysis
+  status: confirmed
+  acceptable_forms:
+  - failure analysis
+  evidence:
+  - quote: available which covers materials selection, application and performance testing as well as failure analysis.
+    approx_offset: 8784
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0028
+  name: destructive testing
+  status: confirmed
+  acceptable_forms:
+  - both destructive testing
+  evidence:
+  - quote: We apply a combination of both destructive testing and non-destructive testing methods to metals to determine
+      their potential
+    approx_offset: 8894
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'SUBSTRING ARTEFACT: forms_overlap is bare case-insensitive containment for forms over 3 chars, so the
+      form ''destructive testing'' is contained in ''non-destructive testing'' and in ''NONDESTRUCTIVE TESTING''
+      (the accreditations page). Every return of NDT would silently credit this entry. ''both destructive testing''
+      is verbatim in the evidence quote, still credits a plain returned ''destructive testing'' by containment,
+      and no longer credits ''non-destructive testing''.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0029
+  name: metallurgical testing
+  status: confirmed
+  acceptable_forms:
+  - METALLURGICAL TESTS
+  - metallurgical testing
+  - Micro Examination
+  - Macro Examination
+  evidence:
+  - quote: 'METALLURGICAL TESTS:'
+    approx_offset: 9478
+  - quote: Grain Size. Ferrite Count. Cleanliness Test. Corrosion Test. Micro Examination (including API 6A CRA).
+      Macro Examination.
+    approx_offset: 9499
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0030
+  name: grain size and ferrite count
+  status: confirmed
+  acceptable_forms:
+  - Grain Size. Ferrite Count.
+  - Ferrite Count
+  - Grain Size
+  evidence:
+  - quote: Grain Size. Ferrite Count. Cleanliness Test. Corrosion Test. Micro Examination (including API 6A CRA).
+      Macro Examination.
+    approx_offset: 9499
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0031
+  name: corrosion testing
+  status: confirmed
+  acceptable_forms:
+  - Corrosion Test
+  - Corrosion testing
+  evidence:
+  - quote: Corrosion testing
+    approx_offset: 107473
+  - quote: Grain Size. Ferrite Count. Cleanliness Test. Corrosion Test. Micro Examination (including API 6A CRA).
+      Macro Examination.
+    approx_offset: 9499
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0032
+  name: mechanical testing
+  status: confirmed
+  acceptable_forms:
+  - MECHANICAL TESTS
+  - Tensile. Impact. Hardness.
+  - mechanical testing
+  - mechanical and metallurgical testing
+  evidence:
+  - quote: 'MECHANICAL TESTS:'
+    approx_offset: 9622
+  - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
+    approx_offset: 107400
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0033
+  name: weld procedure and welder qualification testing
+  status: confirmed
+  acceptable_forms:
+  - WELDING TESTS
+  - Fillet weld fracture
+  - Nick-break
+  - welder qualification
+  evidence:
+  - quote: 'WELDING TESTS:'
+    approx_offset: 9668
+  - quote: 'Bend : Fillet weld fracture : Hardness : Impact : Nick-break. Macro examination in accordance with specific
+      welding codes.'
+    approx_offset: 9683
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0034
+  name: phased array ultrasonic testing
+  status: confirmed
+  acceptable_forms:
+  - Phased Array Ultrasonic testing
+  - phased array
+  evidence:
+  - quote: scan plan writing in all disciplines. PCN Level II Operators. Phased Array Ultrasonic testing. Ultrasonic
+      Testing (UT) – Forgings / Wrought Products & the
+    approx_offset: 9890
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 107493
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0035
+  name: ultrasonic testing
+  status: confirmed
+  acceptable_forms:
+  - Ultrasonic Testing (UT)
+  - Ultrasonic testing
+  - ultrasonic
+  evidence:
+  - quote: Level II Operators. Phased Array Ultrasonic testing. Ultrasonic Testing (UT) – Forgings / Wrought Products
+      & the Weld sector. Magnetic Particle Inspection
+    approx_offset: 9932
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0036
+  name: magnetic particle inspection
+  status: confirmed
+  acceptable_forms:
+  - Magnetic Particle Inspection (MT)
+  - Magnetic Particle Inspection
+  - magnetic particle
+  evidence:
+  - quote: Testing (UT) – Forgings / Wrought Products & the Weld sector. Magnetic Particle Inspection (MT). Dye
+      Penetrant Inspection (PT). Positive Material Inspection
+    approx_offset: 9996
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0037
+  name: dye penetrant inspection
+  status: confirmed
+  acceptable_forms:
+  - Dye Penetrant Inspection (PT)
+  - Dye Penetrant Inspection
+  - dye penetrant
+  - LPI
+  evidence:
+  - quote: Products & the Weld sector. Magnetic Particle Inspection (MT). Dye Penetrant Inspection (PT). Positive
+      Material Inspection (PMI). Visual Inspection (VT).
+    approx_offset: 10030
+  - quote: PCN NDE Level II Non-destructive Testing MT, LPI, UT
+    approx_offset: 35349
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0038
+  name: positive material identification
+  status: confirmed
+  acceptable_forms:
+  - Positive Material Inspection (PMI)
+  - Positive Material Inspection
+  - PMI
+  evidence:
+  - quote: Particle Inspection (MT). Dye Penetrant Inspection (PT). Positive Material Inspection (PMI). Visual Inspection
+      (VT).
+    approx_offset: 10067
+  notes: the site calls it 'Positive Material Inspection'; the industry-standard expansion 'Positive Material Identification'
+    occurs ZERO times
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0039
+  name: visual inspection
+  status: confirmed
+  acceptable_forms:
+  - Visual Inspection (VT)
+  - Visual Inspection
+  evidence:
+  - quote: Penetrant Inspection (PT). Positive Material Inspection (PMI). Visual Inspection (VT).
+    approx_offset: 10097
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0040
+  name: forging
+  status: confirmed
+  acceptable_forms:
+  - FORGING
+  - forging
+  - forged
+  evidence:
+  - quote: WORLD CLASS EXPERTS IN FORGING
+    approx_offset: 51685
+  - quote: everything from supplying raw materials, through its processing, forging and machining into finished
+      or semi-finished components.
+    approx_offset: 13054
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0041
+  name: vacuum remelt
+  status: confirmed
+  acceptable_forms:
+  - vacuum remelt process
+  evidence:
+  - quote: and crevice corrosion resistance is also excellent. The alloy is produced by a vacuum remelt process.
+    approx_offset: 41952
+  actor: supplier
+  notes: mill practice for Alloy 925, not a Howco operation
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0042
+  name: electromechanical assembly
+  status: confirmed
+  acceptable_forms:
+  - Electromechanical Assembly
+  - electromechanical assemblies
+  evidence:
+  - quote: Electromechanical Assembly
+    approx_offset: 66562
+  - quote: turnkey manufacturing requirements. We provide turnkey electromechanical assemblies and sub-assemblies
+      to customer drawings/designs/specifications.
+    approx_offset: 66350
+  notes: 'TRAP: this is the phrase the old pipeline fabricated ''PCB Assembly'' from. ''PCB'' occurs ZERO times
+    in the file'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0043
+  name: precision fabrication
+  status: confirmed
+  acceptable_forms:
+  - PRECISION FABRICATION
+  - fabrication services
+  - General Fabrications
+  evidence:
+  - quote: fabrication and welding capabilities – providing fabrication services via our established supply chain
+      partners to our customers worldwide. Our fabrication
+    approx_offset: 34136
+  actor: unknown
+  notes: see the welding entry - first person and outsourcing in the same sentence
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0044
+  name: welding
+  status: confirmed
+  acceptable_forms:
+  - WELDING & FABRICATION CAPABILITIES
+  - welding capabilities
+  - welding
+  evidence:
+  - quote: Integral to Howco’s operations is its fabrication and welding capabilities – providing fabrication services
+      via our established supply
+    approx_offset: 34098
+  actor: unknown
+  notes: 'SUPPLY-CHAIN AMBIGUITY: the same paragraph says ''Integral to Howco''s operations is its fabrication and
+    welding capabilities - providing fabrication services via our established supply chain partners''. First person
+    and outsourcing in one sentence; unresolvable from the text'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0045
+  name: FCAW welding
+  status: confirmed
+  acceptable_forms:
+  - FCAW
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities with a suite
+      of welding procedures & welder qualification
+    approx_offset: 34725
+  actor: unknown
+  notes: attributed to 'Our established supply chain partners'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0046
+  name: TIG welding
+  status: confirmed
+  acceptable_forms:
+  - TiG
+  - TiG welding
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities with a suite
+      of welding procedures & welder qualification
+    approx_offset: 34725
+  actor: unknown
+  notes: 'CASING: the text prints ''TiG'' (capital T, lower i, capital G), never ''TIG''. A 3-character form is
+    matched case-sensitively, so ''TIG'' would NOT credit this entry'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: '''TiG'' is 3 chars, so the matcher forces case-SENSITIVE word-boundary matching: a model returning
+      the conventional ''TIG welding'' would NOT credit this entry (only a bare ''TIG'' credits, via the casefold-equality
+      shortcut). Adding the longer ''TiG welding'' restores that return, since forms over 3 chars match case-insensitively.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0047
+  name: MMA welding
+  status: confirmed
+  acceptable_forms:
+  - MMA
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities with a suite
+      of welding procedures & welder qualification
+    approx_offset: 34725
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0048
+  name: submerged arc welding
+  status: confirmed
+  acceptable_forms:
+  - Sub Arc welding
+  - Sub Arc
+  evidence:
+  - quote: Our established supply chain partners provide FCAW, TiG, MMA & Sub Arc welding capabilities with a suite
+      of welding procedures & welder qualification
+    approx_offset: 34725
+  actor: unknown
+  notes: printed as 'Sub Arc'; the full form 'submerged arc' occurs ZERO times
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0049
+  name: quality control inspection
+  status: confirmed
+  acceptable_forms:
+  - QUALITY CONTROL INSPECTION
+  - Quality control system
+  - inspected for compliance both in-process and on completion
+  evidence:
+  - quote: All manufactured parts are inspected for compliance both in-process and on completion using modern equipment
+      to measure all 2D and 3D
+    approx_offset: 255735
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0050
+  name: CMM dimensional inspection
+  status: confirmed
+  acceptable_forms:
+  - CMM
+  - measure all 2D and 3D dimensions
+  evidence:
+  - quote: for compliance both in-process and on completion using modern equipment to measure all 2D and 3D dimensions
+      with a high degree of accuracy. Our Quality control
+    approx_offset: 255772
+  - quote: CMM – LK Evolution 3000 x 2000 x 1500mm
+    approx_offset: 256078
+  notes: 'BOUNDARY: a coordinate measuring machine is explicitly EXCLUDED from `equipments` (it only measures the
+    work), so the capability is recorded here, where ''Inspection, testing, and measurement performed on the work
+    are operations, and qualify'''
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0051
+  name: hardness testing
+  status: confirmed
+  acceptable_forms:
+  - Hardness testing (HBW, HRC, HRB)
+  - Hardness inspection
+  - Hardness testing
+  evidence:
+  - quote: Hardness testing (HBW, HRC, HRB)
+    approx_offset: 256294
+  - quote: Hardness inspection
+    approx_offset: 107353
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0052
+  name: deep hole boring
+  status: confirmed
+  acceptable_forms:
+  - DEEP HOLE BORING
+  - deep hole boring
+  - deep hole drilling
+  evidence:
+  - quote: AT THE FOREFRONT OF DEEP HOLE DRILLING TOOLING
+    approx_offset: 63447
+  - quote: Deep hole drilling is the most accurate method for precision hole drilling of single holes in components.
+    approx_offset: 63495
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0053
+  name: solid, counter and pull boring
+  status: confirmed
+  acceptable_forms:
+  - solid, counter and pull boring techniques
+  - counter and pull boring
+  - pull boring
+  evidence:
+  - quote: are able to machine an extensive range of products using solid, counter and pull boring techniques, as
+      well as offering skiving and honing as finishing
+    approx_offset: 64241
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: the bare form 'counter' is not a process and is grossly over-broad - it credits any returned phrase
+      containing the letters 'counter'. Replaced with the contiguous span from the text.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0054
+  name: skiving
+  status: confirmed
+  acceptable_forms:
+  - skiving
+  evidence:
+  - quote: solid, counter and pull boring techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 64298
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0055
+  name: honing
+  status: confirmed
+  acceptable_forms:
+  - honing
+  - honed
+  - Bored / Honed Bar
+  evidence:
+  - quote: counter and pull boring techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 64305
+  - quote: The polished bore receptacle (PBR) is a precision-engineered honed tubular, produced with extremely tight
+      manufacturing tolerances to
+    approx_offset: 315867
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0056
+  name: vacuum induction melting / vacuum arc remelting
+  status: confirmed
+  acceptable_forms:
+  - vacuum induction melting
+  - VIM/VAR
+  - vacuum arc remelting
+  - double vacuum melt
+  evidence:
+  - quote: using a ‘double vacuum melt’ process – either VIM/VAR (vacuum induction melting, followed by vacuum arc
+      remelting), or VIM/ESR (vacuum induction melting,
+    approx_offset: 49857
+  actor: supplier
+  notes: mill melting practice for Alloy 718, described on a stocked-grade datasheet; Howco buys the bar, it does
+    not melt
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0057
+  name: electro slag refining (ESR)
+  status: confirmed
+  acceptable_forms:
+  - electro slag refining
+  - VIM/ESR
+  - ESR
+  evidence:
+  - quote: melting, followed by vacuum arc remelting), or VIM/ESR (vacuum induction melting, followed by electro
+      slag refining), though an air melt and double VAR melting
+    approx_offset: 49929
+  actor: supplier
+  notes: mill melting practice, same datasheet paragraph
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0058
+  name: quenching
+  status: confirmed
+  acceptable_forms:
+  - Quench media
+  - Water Quenched
+  - automatic gas quenching
+  evidence:
+  - quote: 'Condition: Solution Annealed and Water Quenched'
+    approx_offset: 31266
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0059
+  name: heat treatment
+  status: confirmed
+  acceptable_forms:
+  - HEAT TREATMENT
+  - heat treatment
+  - heat treating
+  evidence:
+  - quote: THE UK’S LARGEST CAPACITY HEAT TREATMENT FACILITY
+    approx_offset: 106519
+  - quote: largest capacity heat treatment facilities in the UK, specialising in the heat treatment of Nickel Alloys,
+      Stainless and Low Alloy steels.
+    approx_offset: 106614
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0060
+  name: annealing
+  status: confirmed
+  acceptable_forms:
+  - Annealing
+  - annealing
+  - Annealed
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 107043
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0061
+  name: normalising
+  status: confirmed
+  acceptable_forms:
+  - normalising
+  - Normalised
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 107043
+  - quote: 'Condition: Normalised, Hardened and Tempered to 75 KSI'
+    approx_offset: 109383
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0062
+  name: age and precipitation hardening
+  status: confirmed
+  acceptable_forms:
+  - age & precipitation hardening
+  - age hardening
+  - Age Hardened
+  - precipitation hardening
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 107043
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress relief, solution
+      annealing and age hardening.
+    approx_offset: 47995
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0063
+  name: solution annealing
+  status: confirmed
+  acceptable_forms:
+  - Solution annealing
+  - solution annealing
+  - Solution Annealed
+  evidence:
+  - quote: Solution annealing
+    approx_offset: 107110
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress relief, solution
+      annealing and age hardening.
+    approx_offset: 47995
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0064
+  name: straightening
+  status: confirmed
+  acceptable_forms:
+  - Straightening
+  evidence:
+  - quote: Straightening to commercial tolerances up to 14” diameter / 350mm
+    approx_offset: 107218
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0065
+  name: CNC machining
+  status: confirmed
+  acceptable_forms:
+  - CNC MACHINING
+  - CNC machining
+  - specialist precision machining
+  - precision machining
+  evidence:
+  - quote: WORLD CLASS SPECIALIST PRECISION MACHINING
+    approx_offset: 72624
+  - quote: At Howco we are proud to offer specialist precision machining to a range of industries where quality
+      and reliability is of paramount importance.
+    approx_offset: 72668
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0066
+  name: 5 axis machining
+  status: confirmed
+  acceptable_forms:
+  - 5 axis machining
+  evidence:
+  - quote: capabilities of our machine tools including features such as; 5 axis machining, Facing & Contouring Heads,
+      Multi – Angled Milling Heads and Outfacing
+    approx_offset: 73417
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0067
+  name: semi-finish machining
+  status: confirmed
+  acceptable_forms:
+  - SEMI-FINISH MACHINING
+  - semi-finished components, supplied cut, rough machined, bored and honed
+  - rough machined
+  evidence:
+  - quote: SEMI-FINISH MACHINING
+    approx_offset: 100152
+  - quote: Howco provides semi-finished components, supplied cut, rough machined, bored and honed, which not only
+      improves throughput times and enables
+    approx_offset: 100175
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0068
+  name: cleanroom assembly
+  status: confirmed
+  acceptable_forms:
+  - Cleanroom technology (Class 10,000)
+  - clean room facility
+  - Cleanroom technology
+  evidence:
+  - quote: Cleanroom technology (Class 10,000)
+    approx_offset: 66524
+  - quote: Howco’s clean room facility is fully equipped with the latest manufacturing equipment, and staffed
+    approx_offset: 102934
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0069
+  name: assembly and pressure testing
+  status: confirmed
+  acceptable_forms:
+  - ASSEMBLY AND PRESSURE TESTING
+  - Assembly and Pressure Test
+  - pressure testing
+  evidence:
+  - quote: ASSEMBLY AND PRESSURE TESTING
+    approx_offset: 45573
+  - quote: 2 x 550 m² Assembly and Pressure Test Facilities.
+    approx_offset: 45884
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0070
+  name: hydrostatic pressure testing
+  status: confirmed
+  acceptable_forms:
+  - Hydrostatic Pressure Testing
+  - HYDROSTATIC AND GAS TESTING
+  - Hydrostatic
+  evidence:
+  - quote: Hydrostatic Pressure Testing up to 23,000 psi.
+    approx_offset: 45970
+  - quote: IN HOUSE HYDROSTATIC AND GAS TESTING FACILITIES
+    approx_offset: 45673
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0071
+  name: gas testing
+  status: confirmed
+  acceptable_forms:
+  - Gas Testing
+  - Gas testing
+  evidence:
+  - quote: Gas Testing up to 20,000 psi.
+    approx_offset: 46019
+  - quote: Approved Hydrostatic and Gas testing facilities in-house, complete with full electronic data recording
+    approx_offset: 45722
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0072
+  name: aqueous UHV cleaning
+  status: confirmed
+  acceptable_forms:
+  - Aqueous UHV cleaning
+  evidence:
+  - quote: Aqueous UHV cleaning
+    approx_offset: 66501
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0073
+  name: helium leak checking
+  status: confirmed
+  acceptable_forms:
+  - Helium leak checking
+  evidence:
+  - quote: Helium leak checking (Min. detectable leak rate < 5 x 10-12 mbarL/s)
+    approx_offset: 66591
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0074
+  name: direct metal laser melting (DMLM)
+  status: confirmed
+  acceptable_forms:
+  - direct metal laser melting
+  - DMLM
+  evidence:
+  - quote: machining, heat treatment, cladding, and welding. We specialise in direct metal laser melting, or DMLM;
+      a process which uses high-precision lasers to apply
+    approx_offset: 362779
+  notes: 'TRAP: this - not ''Selective Laser Melting'' - is the process name the text uses. ''Selective Laser Melting''
+    occurs ZERO times; only the machine brand ''SLM'' does'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0075
+  name: grinding
+  status: confirmed
+  acceptable_forms:
+  - grinding
+  evidence:
+  - quote: opens a realm of possibilities for complex machining operations. From grinding and milling to 90-degree
+      drilling, tapping, boring, U-drilling, regular drilling
+    approx_offset: 349955
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0076
+  name: milling
+  status: confirmed
+  acceptable_forms:
+  - milling
+  - Milling Heads
+  evidence:
+  - quote: of possibilities for complex machining operations. From grinding and milling to 90-degree drilling, tapping,
+      boring, U-drilling, regular drilling and
+    approx_offset: 349969
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0077
+  name: tapping
+  status: confirmed
+  acceptable_forms:
+  - tapping
+  evidence:
+  - quote: complex machining operations. From grinding and milling to 90-degree drilling, tapping, boring, U-drilling,
+      regular drilling and turning – each Vertical CNC
+    approx_offset: 349990
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0078
+  name: drilling
+  status: confirmed
+  acceptable_forms:
+  - drilling, tapping, boring, U-drilling, regular drilling and turning
+  - U-drilling
+  - 90-degree drilling
+  evidence:
+  - quote: operations. From grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling
+      and turning – each Vertical CNC Turning Centre can
+    approx_offset: 350008
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0079
+  name: turning
+  status: confirmed
+  acceptable_forms:
+  - regular drilling and turning
+  - turning
+  evidence:
+  - quote: grinding and milling to 90-degree drilling, tapping, boring, U-drilling, regular drilling and turning
+      – each Vertical CNC Turning Centre can seamlessly execute
+    approx_offset: 350025
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0080
+  name: solution treatment
+  status: candidate
+  acceptable_forms:
+  - solution treatment
+  - solution treated
+  - Solution Treated
+  evidence:
+  - quote: be applied to the alloy to two of the several available. NACE MR0175 only permits solution treatment,
+      followed by double aging to either the H1150M condition 760°C (1400°F) / 620°C
+    approx_offset: 78908
+  - quote: 'Condition: Solution Treated and Age Hardened'
+    approx_offset: 42758
+  notes: a distinct surface form from process_caps-0063 'solution annealing' - none of that entry's forms contain
+    'solution treat', so a return of 'solution treatment' or 'Solution Treated' credits nothing today.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0081
+  name: cleanliness testing
+  status: candidate
+  acceptable_forms:
+  - Cleanliness Test
+  evidence:
+  - quote: Grain Size. Ferrite Count. Cleanliness Test. Corrosion Test. Micro Examination (including API 6A CRA).
+      Macro Examination.
+    approx_offset: 9499
+  notes: listed as its own metallurgical test; grain size and ferrite count from the same line got their own entry
+    (process_caps-0030) but cleanliness did not, and process_caps-0029's forms do not contain it.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0082
+  name: API thread measurement
+  status: candidate
+  acceptable_forms:
+  - API thread measurement
+  - Thread profiles and contours
+  evidence:
+  - quote: Gage Maker measuring equipment for API thread measurement and taper seals
+    approx_offset: 256205
+  - quote: Shadow Graph ( Thread profiles and contours)
+    approx_offset: 256158
+  notes: measurement performed on the work, which the process_caps clause explicitly admits. The devices (Gage Maker,
+    Shadow Graph) are metrology and correctly absent from equipments, but the operation itself is unclaimed by any
+    packet entry.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0083
+  name: powder sieving
+  status: candidate
+  acceptable_forms:
+  - automatic sieving
+  - sieving
+  evidence:
+  - quote: The SLM 280 is a dual laser machine offers high productivity with automatic sieving. The automatic sieving
+      minimizes exposure of the powder to oxygen, reducing contamination
+    approx_offset: 95160
+  notes: an operation performed on the metal powder feedstock, stated three times on the printing page; no packet
+    entry covers it.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0084
+  name: hot working
+  status: candidate
+  acceptable_forms:
+  - hot working
+  evidence:
+  - quote: Grade 420 generally has better hot working characteristics than 410, and is less susceptible to cracking
+      at heat treatment.
+    approx_offset: 20283
+  notes: named as a forming operation on the Grade 420 Modified page; process_caps-0003 covers cold working only.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0085
+  name: high temperature forming
+  status: candidate
+  acceptable_forms:
+  - high temp forming
+  evidence:
+  - quote: clinking, and to avoid deleterious intermetallics within the microstructure; special high temp forming
+      and heat treatment control practices must be followed during processing.
+    approx_offset: 30609
+  notes: a named forming practice on the S32760/F55 page, unclaimed by any packet entry.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0086
+  name: facing and contouring
+  status: candidate
+  acceptable_forms:
+  - Facing & Contouring
+  evidence:
+  - quote: full capabilities of our machine tools including features such as; 5 axis machining, Facing & Contouring
+      Heads, Multi – Angled Milling Heads and Outfacing Bars.
+    approx_offset: 73412
+  notes: the heads themselves are tooling (rightly excluded from equipments), but the phrase names/implies facing
+    and contouring as machining operations, which process_caps admits. Sits beside the grinding/milling/tapping/drilling/turning
+    entries the seed did take from the other machining line.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0087
+  name: air melting
+  status: candidate
+  acceptable_forms:
+  - air melt
+  evidence:
+  - quote: or VIM/ESR (vacuum induction melting, followed by electro slag refining), though an air melt and double
+      VAR melting practice is also permitted by many material specifications.
+    approx_offset: 49973
+  notes: a melting practice named alongside VIM/VAR and VIM/ESR, both of which have entries (process_caps-0056,
+    -0057); neither of their forms contains 'air melt'.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-process_caps-0088
+  name: cast analysis
+  status: candidate
+  acceptable_forms:
+  - cast analysis
+  evidence:
+  - quote: With targeted cast analysis and Howco’s heat treatment control, the increased, demanding requirements
+      of 10”ER QTCs per API 6A 21st edition can be satisfied.
+    approx_offset: 7798
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0089
+  name: Hardened and Tempered
+  status: candidate
+  acceptable_forms:
+  - Hardened and Tempered
+  evidence:
+  - quote: 'Condition: Hardened and Tempered to 22 HRC max.'
+    approx_offset: 8286
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0090
+  name: vacuum remelt process
+  status: candidate
+  acceptable_forms:
+  - vacuum remelt
+  evidence:
+  - quote: The alloy is produced by a vacuum remelt process, but can be supplied using an air melt single consumable
+      electrode (VAR or ESR) practice if the material specification allows.
+    approx_offset: 11489
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0091
+  name: Solution Annealed and Age Hardened
+  status: candidate
+  acceptable_forms:
+  - Solution Annealed and Age Hardened
+  evidence:
+  - quote: 'Condition: Solution Annealed and Age Hardened'
+    approx_offset: 12386
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0092
+  name: Precipitation Hardened
+  status: candidate
+  acceptable_forms:
+  - Precipitation Hardened
+  - precipitation hardening
+  evidence:
+  - quote: 'Condition: Precipitation Hardened'
+    approx_offset: 29287
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0093
+  name: Solution Annealed and Water Quenched
+  status: candidate
+  acceptable_forms:
+  - Solution Annealed and Water Quenched
+  evidence:
+  - quote: 'Condition: Solution Annealed and Water Quenched'
+    approx_offset: 31266
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0094
+  name: FCAW, TiG, MMA & Sub Arc welding capabilities
+  status: candidate
+  acceptable_forms:
+  - FCAW
+  - TiG
+  - MMA
+  - Sub Arc welding
+  evidence:
+  - quote: FCAW, TiG, MMA & Sub Arc welding capabilities with a suite of welding procedures & welder qualification
+      covering Carbon, Stainless and Duplex materials in our dedicated Fabrication & Welding facility.
+    approx_offset: 34771
+  actor: supplier
+  notes: welding capabilities of Howco's supply chain partners
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0095
+  name: Solution Treated and Age Hardened
+  status: candidate
+  acceptable_forms:
+  - Solution Treated and Age Hardened
+  evidence:
+  - quote: 'Condition: Solution Treated and Age Hardened'
+    approx_offset: 42758
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0096
+  name: VIM/VAR (vacuum induction melting, followed by vacuum arc remelting)
+  status: candidate
+  acceptable_forms:
+  - vacuum induction melting
+  - vacuum arc remelting
+  evidence:
+  - quote: either VIM/VAR (vacuum induction melting, followed by vacuum arc remelting), or VIM/ESR (vacuum induction
+      melting,
+    approx_offset: 49896
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0097
+  name: electro slag refining
+  status: candidate
+  acceptable_forms:
+  - electro slag refining
+  evidence:
+  - quote: VIM/ESR (vacuum induction melting, followed by electro slag refining), though an air melt and double
+      VAR melting practice is also permitted by many material specifications.
+    approx_offset: 49976
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0098
+  name: band sawing
+  status: candidate
+  acceptable_forms:
+  - band sawing
+  evidence:
+  - quote: In the metals industry, band sawing is one of the primary methods used to cut metal materials.
+    approx_offset: 53555
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0099
+  name: Deep hole drilling
+  status: candidate
+  acceptable_forms:
+  - Deep hole drilling
+  - deep hole boring
+  evidence:
+  - quote: Deep hole drilling is the most accurate method for precision hole drilling of single holes in components.
+    approx_offset: 63495
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0100
+  name: counter and pull boring techniques
+  status: candidate
+  acceptable_forms:
+  - counter
+  - pull boring
+  - boring techniques
+  evidence:
+  - quote: As a result, we are able to machine an extensive range of products using solid, counter and pull boring
+      techniques, as well as offering skiving and honing as finishing processes.
+    approx_offset: 64225
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0101
+  name: Phosphate dip process
+  status: candidate
+  acceptable_forms:
+  - Phosphate dip process
+  evidence:
+  - quote: Phosphate dip process
+    approx_offset: 65748
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0102
+  name: Cold Worked
+  status: candidate
+  acceptable_forms:
+  - Cold Worked
+  evidence:
+  - quote: 'Condition: UNS N08825 Cold Worked'
+    approx_offset: 68300
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0103
+  name: powder bed fusion technology
+  status: candidate
+  acceptable_forms:
+  - powder bed fusion
+  evidence:
+  - quote: We have the latest powder bed fusion technology, with high volume capacity.
+    approx_offset: 76541
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0104
+  name: Hot Isostatic Pressing
+  status: candidate
+  acceptable_forms:
+  - Hot Isostatic Pressing
+  evidence:
+  - quote: AS9100 approved for Manufacture of Additively Manufactured Parts including Machining, Heat Treatment,
+      Testing and Hot Isostatic Pressing.
+    approx_offset: 77820
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0105
+  name: fully-automated GTAW build-up
+  status: candidate
+  acceptable_forms:
+  - GTAW
+  evidence:
+  - quote: designed to perform fully-automated GTAW build-up of corrosion-resistant alloy welding on engineered
+      components for the oil & gas, petrochemical and engineering sectors.
+    approx_offset: 85711
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0106
+  name: automated GTAW butt Welds
+  status: candidate
+  acceptable_forms:
+  - GTAW butt Welds
+  evidence:
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds. The use of automation
+      gives improved quality control and repeatability for batches of components.
+    approx_offset: 85909
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0107
+  name: Post Weld Heat Treatment & Stress Relieving
+  status: candidate
+  acceptable_forms:
+  - Post Weld Heat Treatment
+  - Stress Relieving
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment of welded
+      components to industry standards / requirements
+    approx_offset: 86117
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0108
+  name: automatic sieving
+  status: candidate
+  acceptable_forms:
+  - automatic sieving
+  evidence:
+  - quote: The SLM 280 is a dual laser machine offers high productivity with automatic sieving. The automatic sieving
+      minimizes exposure of the powder to oxygen, reducing contamination.
+    approx_offset: 95160
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0109
+  name: Weld overlay cladding
+  status: candidate
+  acceptable_forms:
+  - Weld overlay cladding
+  - Weld cladding
+  evidence:
+  - quote: Weld overlay cladding applied to either prolong the life of new process or pipeline components or refurbish
+      parts that have corroded or become worn.
+    approx_offset: 101967
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0110
+  name: assembly and testing the products
+  status: candidate
+  acceptable_forms:
+  - testing the products
+  evidence:
+  - quote: which includes sourcing the components, manufacture, assembly and testing the products to our customer’s
+      exacting specifications.
+    approx_offset: 102803
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0111
+  name: Annealing, normalising, age & precipitation hardening, tempering
+  status: candidate
+  acceptable_forms:
+  - Annealing
+  - normalising
+  - precipitation hardening
+  - tempering
+  evidence:
+  - quote: Annealing, normalising, age & precipitation hardening, tempering
+    approx_offset: 107043
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0112
+  name: Straightening to commercial tolerances
+  status: candidate
+  acceptable_forms:
+  - Straightening
+  evidence:
+  - quote: Straightening to commercial tolerances up to 14” diameter / 350mm
+    approx_offset: 107218
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0113
+  name: Hardness inspection
+  status: candidate
+  acceptable_forms:
+  - Hardness inspection
+  evidence:
+  - quote: Hardness inspection
+    approx_offset: 107353
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0114
+  name: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+  status: candidate
+  acceptable_forms:
+  - Non-destructive testing
+  evidence:
+  - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
+    approx_offset: 107493
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0115
+  name: Normalised
+  status: candidate
+  acceptable_forms:
+  - Normalised
+  evidence:
+  - quote: 'Condition: Normalised, Hardened and Tempered to 75 KSI'
+    approx_offset: 109383
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0116
+  name: laser powder bed fusion processes
+  status: candidate
+  acceptable_forms:
+  - laser powder bed fusion
+  evidence:
+  - quote: in laser powder bed fusion processes, setting new standards and redefining possibilities to offer clients
+      a wide range of pioneering metal additive manufacturing solutions.
+    approx_offset: 360917
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-process_caps-0117
+  name: direct metal laser melting, or DMLM
+  status: candidate
+  acceptable_forms:
+  - direct metal laser melting
+  - DMLM
+  evidence:
+  - quote: We specialise in direct metal laser melting, or DMLM; a process which uses high-precision lasers to apply
+      fine metal powders in a meticulous, accurate, and virtually error-free manner.
+    approx_offset: 362829
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Selective Laser Melting
+  reason: ZERO occurrences. The old pipeline minted this process out of the machine model name 'SLM280'/'SLM500'
+    (lines 285-293). The process the text actually names is 'direct metal laser melting, or DMLM' (6527)
+- form: Casting
+  reason: ZERO occurrences. No casting operation is described anywhere; 'cast' appears only as 'targeted cast analysis'
+    (1778, 1958, 5207, 5346), a chemistry-selection practice, and as 'cast live votes' in a CSR post
+- form: Stamping
+  reason: zero occurrences
+- form: Extrusion
+  reason: zero occurrences
+- form: Broaching
+  reason: zero occurrences; pulled by the dense deep-hole/boring/skiving vocabulary
+- form: Anodizing
+  reason: zero occurrences; pulled by the coating-facility page, whose real processes are phosphating, shot blasting
+    and resin/PTFE spray coatings
+- form: Material Handling
+  reason: '''Material Handling up to 26,000kgs'' (1099) is a crane/lifting CAPACITY figure on the sawing page, not
+    an operation performed on the work'
+- form: Inventory Management
+  reason: '''INVENTORY MANAGEMENT'' (4122) is a commercial consignment-stock service, not an operation performed
+    on materials or parts'

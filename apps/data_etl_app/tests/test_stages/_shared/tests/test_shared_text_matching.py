@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from _shared.text_matching import (  # noqa: E402
     collapse_whitespace,
     flexible_pattern,
+    form_covers,
     forms_overlap,
     is_short_form,
     normalize_spaces,
@@ -64,6 +65,55 @@ def test_short_forms_are_case_sensitive_even_when_asked_otherwise():
     assert is_short_form("ABS") and not is_short_form("ABSOLUTE")
     assert not occurs_in("ABS", "abs values", case_sensitive=False)
     assert occurs_in("ABS", "ABS plastic", case_sensitive=False)
+
+
+# --- trap 5: containment in the wrong direction (biases to FALSE CREDIT) ---
+
+def test_a_returned_fragment_does_not_cover_the_designation():
+    """The 2026-08-28 finding: every one of these was an AWARDED credit that a
+    blind judge overturned. The bare word is not the designation."""
+    assert not form_covers("titanium fusion cages", "titanium")
+    assert not form_covers("steel front panel for speaker", "steel")
+    assert not form_covers("Vespel Parts & Shapes", "parts")
+    assert not form_covers("laser cutting", "Cutting")
+    assert not form_covers("Semiconductor Manufacturing", "manufacturing")
+    assert not form_covers("sheet metal", "metal")
+    assert not form_covers("metal industries", "industries")
+    assert not form_covers("earth science & engineering", "engineering")
+    assert not form_covers("Engine Mounting Systems", "Engine Mounting System")
+
+
+def test_the_returned_form_may_be_longer_than_the_designation():
+    """The direction that IS a find: the model returned at least the thing."""
+    assert form_covers("stainless steel", "304 stainless steel bar")
+    assert form_covers("brazing", "vacuum brazing")  # the deliberate shadowing
+    assert form_covers("ASTM D4585", "ASTM D4585-D4585M-18")
+    assert form_covers("laser cutting", "CNC laser cutting")
+
+
+def test_the_left_word_boundary_holds_above_the_short_form_threshold():
+    """"Stem" is four characters, so the trap-4 guard never saw it, and a lab
+    microwave scored a point for a valve stem. The LEFT edge is what stops it;
+    the right edge must stay open for inflections, which is why this is not
+    simply `occurs_in`."""
+    assert not form_covers("Stem", "GRT- S5 MICROWAVE SYSTEM")
+    assert form_covers("Stem", "valve stem")
+    assert not form_covers("Nylon", "Nickel Alloys")
+    assert form_covers("shear", "Shearing")            # right edge open
+    assert form_covers("press brake", "CNC 7 Axis Press Brakes")
+    assert not form_covers("EMS", "quality assurance systems")  # trap 4 intact
+
+
+def test_nesting_that_form_covers_cannot_settle_is_left_to_the_reader():
+    """Documented residue, not a bug: these still credit, and only a human can
+    say they are different things."""
+    assert form_covers("steel", "stainless steel")
+    assert form_covers("Miller syncrowave 350", "Miller Syncrowave 350 LX")
+
+
+def test_forms_overlap_is_the_symmetric_question_and_not_recall_credit():
+    assert forms_overlap("titanium fusion cages", "titanium")   # symmetric: yes
+    assert not form_covers("titanium fusion cages", "titanium")  # credit: no
 
 
 # --- ordinary behaviour still works ----------------------------------------

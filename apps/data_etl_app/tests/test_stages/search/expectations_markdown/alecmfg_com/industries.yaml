@@ -1,0 +1,542 @@
+subject: alecmfg.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/alecmfg.com.txt
+  sha256: 1b7016ecac0a734538029b6e2fed1c6ba60473d7dd9c9dc0ef73a5e670c900ae
+eval_set_version: 2
+expected_empty: false
+notes: Sectors are named almost entirely through client case studies (actor concerns downstream); the certification-statistics
+  table and material explainer blurbs are the word-association traps.
+entries:
+- id: alecmfg_com-industries-0001
+  name: semiconductor
+  status: confirmed
+  acceptable_forms:
+  - semiconductor
+  - semiconductor equipment
+  - semiconductor manufacturing
+  evidence:
+  - quote: a leading global semiconductor equipment manufacturer was upgrading its wafer handling system
+    approx_offset: 26822
+  - quote: high-speed transport systems used in semiconductor packaging and electronics final assembly
+    approx_offset: 28361
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0002
+  name: aerospace
+  status: confirmed
+  acceptable_forms:
+  - aerospace
+  evidence:
+  - quote: such as in the automotive or aerospace industries
+    approx_offset: 16649
+  - quote: enhance its visibility in the aerospace industry and build new connections
+    approx_offset: 93947
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0003
+  name: automotive
+  status: confirmed
+  acceptable_forms:
+  - automotive
+  evidence:
+  - quote: the most rigorous and internationally recognized quality management standard in the automotive industry
+    approx_offset: 100646
+  - quote: fully qualified to support Tier 1 and Tier 2 automotive suppliers across Europe, North America, and Australia
+    approx_offset: 101167
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0004
+  name: medical devices
+  status: confirmed
+  acceptable_forms:
+  - medical devices
+  - medical device
+  - medical
+  evidence:
+  - quote: an inquiry from a North American medical device manufacturer
+    approx_offset: 149748
+  - quote: from electronics to medical devices
+    approx_offset: 17030
+  - quote: ISO 13485:2016 for quality management systems in the medical device industry
+    approx_offset: 172580
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0005
+  name: UAV / drones
+  status: confirmed
+  acceptable_forms:
+  - UAV
+  - drone
+  evidence:
+  - quote: a French UAV manufacturer contacted us during the redesign of their heavy-lift drone
+    approx_offset: 27144
+  - quote: support UAV innovators with both agility and reliability
+    approx_offset: 76722
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0006
+  name: robotics
+  status: confirmed
+  acceptable_forms:
+  - robotics
+  - surgical robotics
+  evidence:
+  - quote: Danish surgical robotics developer Robovision DK initiated a redesign
+    approx_offset: 27491
+  - quote: With our experience in CNC machining for precision robotics and our reliable turnaround times
+    approx_offset: 85783
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0007
+  name: rail
+  status: confirmed
+  acceptable_forms:
+  - rail
+  - railway
+  evidence:
+  - quote: a rail technology manufacturer based in France—one of the primary suppliers to SNCF
+    approx_offset: 28673
+  - quote: industrial power modules and rail inverter systems
+    approx_offset: 118442
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0008
+  name: oil & gas
+  status: confirmed
+  acceptable_forms:
+  - Oil & Gas
+  - oil and gas
+  - offshore
+  evidence:
+  - quote: U.S. Oil & Gas Client | Integrated Welding and CNC Machining of Structural Frames for Offshore Skid Systems
+    approx_offset: 69740
+  notes: 'offshore/subsea context: ''Subsea control module platform'' table cell belongs to this client'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0009
+  name: electronics
+  status: confirmed
+  acceptable_forms:
+  - electronics
+  - consumer electronics
+  - industrial electronics
+  evidence:
+  - quote: a UK-based electronics manufacturer specializing in industrial power modules
+    approx_offset: 118390
+  - quote: medical care, automobiles, and consumer electronics
+    approx_offset: 173618
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0010
+  name: electric vehicles / e-mobility
+  status: confirmed
+  acceptable_forms:
+  - e-mobility
+  - new energy vehicles
+  - NEVs
+  - electric truck
+  - EV Client
+  - EV battery
+  evidence:
+  - quote: The company is a developer of custom components for new energy vehicles (NEVs), serving major OEMs across
+      Europe.
+    approx_offset: 143476
+  - quote: our customers in the automotive, e-mobility, and industrial electronics sectors
+    approx_offset: 101478
+  - quote: a collaboration request from a Swedish electric truck startup
+    approx_offset: 149395
+  notes: 'bare form ''EV'' deliberately NOT listed: 2-char containment would false-credit words like ''developer'''
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0011
+  name: industrial automation
+  status: confirmed
+  acceptable_forms:
+  - industrial automation
+  - automation
+  evidence:
+  - quote: Ohio-Based Industrial Automation Client | Custom CNC Machining of Aluminum Mounting Brackets
+    approx_offset: 27748
+  - quote: an automation integrator specializing in high-speed packaging lines for the food and personal care sectors
+    approx_offset: 27985
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0012
+  name: food and personal care
+  status: confirmed
+  acceptable_forms:
+  - food and personal care
+  evidence:
+  - quote: an automation integrator specializing in high-speed packaging lines for the food and personal care sectors
+    approx_offset: 27985
+  actor: client
+  notes: 'second-order: the Ohio client''s customers'' sectors; borderline (B) customer-segment entry'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0013
+  name: power electronics
+  status: confirmed
+  acceptable_forms:
+  - power electronics
+  evidence:
+  - quote: your technical manufacturing partner for power electronics and high-performance thermal systems
+    approx_offset: 135216
+  - quote: copper heat sink machining for industrial power electronics
+    approx_offset: 117610
+  notes: application domain more than a sector; borderline (B)
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0014
+  name: marine
+  status: disputed
+  acceptable_forms:
+  - marine
+  evidence:
+  - quote: making it perfect for aerospace and marine environments where extreme conditions prevail
+    approx_offset: 18635
+  - quote: Blasted + epoxy coated (offshore marine coating)
+    approx_offset: 121257
+  notes: 'borderline: one Inconel explainer blurb + one offshore-coating spec cell; no marine client page. DISPUTED
+    (verify-agent-alecmfg 2026-08-26): both occurrences are attribute/environment usages - marine environments in
+    the Inconel material blurb (the same word-association pattern as the infrastructure/plumbing false friends)
+    and offshore marine coating naming a coating grade; the text never names marine as a sector served. Offshore
+    work is already covered by the oil & gas entry.'
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-alecmfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: alecmfg_com-industries-0015
+  name: surgical robotics
+  status: candidate
+  acceptable_forms:
+  - surgical robotics
+  evidence:
+  - quote: In Q1 2025, Danish surgical robotics developer Robovision DK initiated a redesign of their 3rd-generation
+      laparoscopic system.
+    approx_offset: 27479
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0016
+  name: food and personal care sectors
+  status: candidate
+  acceptable_forms:
+  - food and personal care sectors
+  evidence:
+  - quote: high-speed packaging lines for the food and personal care sectors.
+    approx_offset: 28026
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0017
+  name: rail technology
+  status: candidate
+  acceptable_forms:
+  - rail technology manufacturer
+  evidence:
+  - quote: a rail technology manufacturer based in France—one of the primary suppliers to SNCF (the French National
+      Railway Company).
+    approx_offset: 28673
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0018
+  name: semiconductor manufacturing
+  status: candidate
+  acceptable_forms:
+  - semiconductor manufacturing
+  evidence:
+  - quote: particle contamination risks—an unacceptable threat in semiconductor manufacturing.
+    approx_offset: 59395
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0019
+  name: semiconductor packaging
+  status: candidate
+  acceptable_forms:
+  - semiconductor packaging
+  evidence:
+  - quote: high-speed transport systems used in semiconductor packaging and electronics final assembly, particularly
+      focusing on cnc machined aluminum baseplates.
+    approx_offset: 87935
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0020
+  name: e-mobility
+  status: candidate
+  acceptable_forms:
+  - e-mobility
+  evidence:
+  - quote: For our customers in the automotive, e-mobility, and industrial electronics sectors, this certification
+      offers an added layer of confidence
+    approx_offset: 101474
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0021
+  name: industrial electronics sectors
+  status: candidate
+  acceptable_forms:
+  - industrial electronics sectors
+  evidence:
+  - quote: For our customers in the automotive, e-mobility, and industrial electronics sectors, this certification
+      offers an added layer of confidence
+    approx_offset: 101474
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0022
+  name: rail inverter systems
+  status: candidate
+  acceptable_forms:
+  - rail inverter systems
+  evidence:
+  - quote: In Q4 2024, a UK-based electronics manufacturer specializing in industrial power modules and rail inverter
+      systems reached out to us.
+    approx_offset: 118378
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0023
+  name: offshore
+  status: candidate
+  acceptable_forms:
+  - offshore
+  evidence:
+  - quote: '| Surface Treatment | Blasted + epoxy coated (offshore marine coating) |'
+    approx_offset: 121235
+  actor: client
+  notes: offshore marine coating on structural steel frames made for a subsea control module platform client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0024
+  name: electric truck
+  status: candidate
+  acceptable_forms:
+  - Electric Truck Startup
+  evidence:
+  - quote: SE Swedish Electric Truck Startup | Lightweight CNC Components for Power Module Prototype
+    approx_offset: 135683
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0025
+  name: new energy vehicles
+  status: candidate
+  acceptable_forms:
+  - new energy vehicles
+  evidence:
+  - quote: The company is a developer of custom components for new energy vehicles (NEVs), serving major OEMs across
+      Europe.
+    approx_offset: 143476
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: alecmfg_com-industries-0026
+  name: medical device industry
+  status: candidate
+  acceptable_forms:
+  - medical device industry
+  evidence:
+  - quote: ISO 13485:2016 for quality management systems in the medical device industry and ISO 14001:2015 for environmental
+      management systems.
+    approx_offset: 172580
+  provenance:
+  - action: added
+    by: seed-agent-alecmfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: CNC machining
+  reason: the subject's own service; returned as an industry it is the O code (own activity presented as sector)
+- form: Manufacturing
+  reason: 'generic (G): ''precision manufacturing'', ''Overall Manufacturing Industry'' stats header'
+- form: Mold Industry
+  reason: certification-statistics table column header (industry-wide adoption rates), not a sector the subject
+    serves
+- form: Precision Machining Industry
+  reason: certification-statistics table column header; also O-code own-activity (verbatim form carries a non-breaking
+    space U+00A0 between the last two words)
+- form: kitchen equipment
+  reason: 'word-association: stainless steel explainer blurb ''used in medical devices and kitchen equipment'''
+- form: plumbing
+  reason: 'word-association: brass explainer blurb ''commonly used for plumbing fixtures and decorative items'''
+- form: infrastructure
+  reason: 'word-association: mild steel explainer blurb ''ideal for infrastructure and automotive parts'''
+- form: Packaging
+  reason: dominant senses are protective shipment packaging and a client's packaging-line machinery; never a sector
+    served
+- form: logistics
+  reason: appears as 'international logistics' (shipping) and a client's 'logistics vehicles'; not a served sector
+    designation

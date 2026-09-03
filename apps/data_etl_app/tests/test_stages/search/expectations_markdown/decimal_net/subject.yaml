@@ -1,0 +1,76 @@
+subject: decimal.net
+slug: decimal_net
+role: full_unit
+business_type: contract manufacturer; structured capability spec-tables and tabular case studies naming customers
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/decimal.net.txt
+  sha256: ba4fce9db47e08d89fb6bfa97546a93fa70d2544931101547fbd57aecf982d99
+eval_set_version: 1
+context: 'Decimal Engineering, Inc. (decimal.net) - a 75,000-80,000 sq ft, 135-employee contract manufacturer in
+  Coral Springs, FL, founded 1967. Seven service lines (precision/CNC machining, sheet metal fabrication, metal
+  stamping, wire EDM, laser cutting, laser marking, screw machining) plus design-for-manufacturability. 51 pages:
+  8 service pages carrying near-identical structured CAPABILITY SPEC-TABLES, 5 tabular case studies that name customers
+  (Tiffany & Co., Loram), 5 photo albums of part captions, and an equipment-acquisition news blog.'
+scrape_hazards:
+- hazard: 'SPEC-TABLE CELL FUSION: adjacent table cells arrive concatenated with NO separator, so the second designation
+    has no left word boundary and the first has no right one (''MillingMill-Turn'', ''Nickel AlloysNylon'', ''Powder
+    CoatingPTFE'', ''HospitalityJewelry'', ''Laser CuttingLouvering'', ''GTAW (TIG)Micro Spot Welding'', ''Hardness
+    TestersMaster Gauge Blocks'', ''ISO 9001:2008 Certified (#12912)ITAR Registered (M23878)''). Where a fused cell
+    was the only occurrence, the evidence quote here is the fused line and the entry says so.'
+  quote: Salvagini P2L-2520 Automated Panel BenderBeyeler Press Brakes (9-Axis of control)
+- hazard: 'COUNTRY/STATE DROPDOWN GEO POISON: /ask-alan/ and /contact-rfq/ each dump the full 50-state list AND
+    the ~240-name ISO country list into the text - roughly 580 of the file''s 3,587 lines. None of it is an industry,
+    market or material.'
+  quote: Taiwan, Province of China
+- hazard: 'The five capability spec-tables are near-duplicates of one another: the Plating Services, Finishing Services,
+    Coating Services, Inventory Management, Industry Focus, Industry Standards and File Formats blocks repeat almost
+    verbatim 4-5 times, so most designations occur in many windows.'
+  quote: Plating Certified to AS9100, ISO, ITAR & NADCAP
+- hazard: A 'CERTIFICATIONS' footer repeats on all 51 pages; ITAR/RoHs/SVHC/DFAR/AS9100/ISO 9001 each occur 49-64
+    times, almost all of them in that footer.
+  quote: CERTIFICATIONS AS9100 Certified ISO 9001 Certified ITAR Registered DFAR Compliant RoHs Compliant SVHC Compliant
+- hazard: 'SUPPLIER-HELD NADCAP: three service pages say NADCAP-certified finishing comes from outside suppliers,
+    and the plating footnote likewise belongs to the plater. Recall-first keeps both as entries with actor: supplier.'
+  quote: For NADCAP certified finishing, we work with a number of trusted suppliers who can provide full process
+    compliance
+- hazard: 'Two spellings of the same owned machine: ''Salvagini P2L-2520'' in the capability table, ''Salvagnini
+    P2-L-2520'' and ''P2-2520'' in the blog post.'
+  quote: Why did Decimal Engineering wait for the Salvagnini P2-L-2520?
+- hazard: 'Site typos that must be copied verbatim: ''Cyllinder'', ''Powdercaoted'', ''Graining Brushed Finish)'',
+    ''Phosphate Pretreat)'', ''Bystronic ByStar 12,000 Fiber Laser Laser'', ''ISO 9000:2008''.'
+  quote: Powdercaoted Steel Key Storage Drawer Security
+- hazard: News posts carry NON-BREAKING SPACES mid-phrase, including inside a machine name ('The P2L-2520 panel
+    bender'); 282 NBSPs in the file.
+  quote: P2L-2520 panel bender, on the other hand
+- hazard: The news index page reprints every post's opening paragraph, so the machine-acquisition announcements
+    each occur twice (index + post) with slightly different truncation.
+  quote: DECIMAL ADDS THE MAKINO A71NX-571 TO IT’S ALREADY STACKED LINE UP!
+- hazard: Album captions fuse material + process + part + industry into one line with no punctuation ('Anodized
+    Aluminum Airplane Seating Assembly Aerospace 01'), so a single caption is legitimate evidence for a material,
+    a process, a product AND an industry.
+  quote: Welded Painted Tubular Aluminum Rack Assembly Defense
+sampling_notes: 'Read EXHAUSTIVELY - all 3,587 lines / 111,898 bytes / 51 pages, in sed slices (1-120, 120-350,
+  347-460, 460-680, 676-870, 870-1080, 1080-1290, 1290-1560, 1559-1680, 1680-1780, 1780-1950 [country list, scanned
+  by grep only], 1950-2110, 2110-2370 [state+country list, scanned by grep only], 2370-2560, 2555-2720, 2715-2960,
+  2960-3290, 3284-3587). Lines 1780-1950 and 2110-2370 are pure ISO-country/US-state dropdown runs and were swept
+  with a keyword grep rather than read line by line - a grep for every manufacturing keyword returned only ''Saint
+  Martin (French part)'' and ''Sint Maarten (Dutch part)''. Then targeted grep sweeps for: standards bodies (ISO/AS/ASTM/ANSI/AMS/NADCAP/IEC/GB/MIL/QQ-A/P.S./D1.x/CWI/WPS/PQR),
+  machine and software brand names, alloy and grade patterns, every -ing word in the file (ranked by frequency),
+  and all non-ASCII characters.'
+notes: 'All six fields are non-empty. products.yaml doubles as the contract_products expectation. The subject is
+  a pure build-to-print contract manufacturer: it names NO own-brand catalogue product, so nearly every products
+  entry carries actor: client - they are customer parts from the five photo albums and five case studies. Two attributions
+  worth carrying downstream: NADCAP finishing and certified plating are explicitly SUPPLIER-held, and the IEC/GB/P.S./QQ-A/MIL
+  specs are CUSTOMER-imposed job standards. The equipments set was seeded strictly to the equipment prompt''s ''acts
+  on the work itself'' clause: the quality department''s CMMs, laser scanners, comparators, gauges and testers,
+  the fixturing/tooling rows, the AirAgas tank, the 19-position storage tower and the box truck are all EXCLUDED
+  there and recorded as false_friends, with the inspection operations kept in process_caps instead.'
+provenance:
+- action: added
+  by: seed-agent-decimal-net
+  date: '2026-08-27'
+  source: corpus-seed
+- action: ported
+  by: port_corpus.py
+  date: '2026-08-29'
+  source: markdown-cutover

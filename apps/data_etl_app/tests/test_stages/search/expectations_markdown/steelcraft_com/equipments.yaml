@@ -1,0 +1,71 @@
+subject: steelcraft.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/steelcraft.com.txt
+  sha256: 177da18fbba7968e733d2de9701d1b82b82d9d4e3ccf7cbef93cd44317cc6434
+eval_set_version: 2
+expected_empty: true
+notes: 'expected_empty: the text names NO machines, shop equipment, or tooling anywhere - verified by full read
+  and by targeted probes (machin*/CNC/press/brake/laser/lathe/mill/robot/saw/punch/shear/stamp/grind/conveyor/tooling/fixture/equipment
+  all absent or false-positive: ''press'' hits are only pressure/express, ''mill'' only ''rolled mill finish'' and
+  a person named Miller, ''robot'' only the terms-of-use scraping clause). The 553,000 sq ft plant is described
+  with zero machine designations. Prior measured failure mode: search returned 68/75 PRODUCT groups under equipments
+  - the false-friend list below is that confusion class. Any sizable yield here is junk-minting signal. VERIFICATION
+  PASS 2026-08-26 (verify-agent-steelcraft): expected_empty: true INDEPENDENTLY CONFIRMED - not flipped, and I agree
+  with it. I re-ran my own probes over the full snapshot rather than trusting the seed''s: machin*/CNC/brake/laser/lathe/saw/punch/shear/stamp/grind/conveyor/tooling/fixture/equipment/welder/forklift/crane/kiln/furnace/router/plasma/turret/''roll
+  form'' all return ZERO hits; ''press'' (105) is entirely pressure/express/impression, ''mill'' (5) is only ''1
+  Million Cycles'' and ''#2B - Smooth, rolled mill finish'', ''oven'' (8) is only the word ''proven'', ''robot''
+  (1) and ''automat'' (2) are the terms-of-use anti-scraping clause. The 553,000 sq ft Blue Ash plant and both service
+  centers are described purely by capability verbs (welding, anchor preps, modifications, labeling, crating) with
+  no machine named. FALSE FRIENDS: agreed as written; they correctly enumerate the measured 68/75 product-under-equipments
+  confusion class.'
+entries: []
+false_friends:
+- form: doors
+  reason: the PRODUCT (code D) - the measured steelcraft confusion returned 68/75 product groups under equipments;
+    door/frame product terms are not shop machinery
+- form: frames
+  reason: the product (code D)
+- form: hollow metal doors
+  reason: product family (code D)
+- form: steel doors and frames
+  reason: product family (code D)
+- form: flush doors
+  reason: product type (code D)
+- form: T Series
+  reason: product series designation (code D) - every door/frame series name (T/SL/L/B/H/CE/LS/SZ/A14/PW, FT/FP/FN/F/FE/DE/C/CK/DW/K/MU/FS/KS/MS)
+    is a products entry, never equipment
+- form: hinges
+  reason: door hardware component sold/installed on the product (D), not shop machinery
+- form: exit devices
+  reason: door hardware component (D)
+- form: closers
+  reason: door closers - architectural door hardware ('LCN Closers'), not machines
+- form: anchors
+  reason: frame installation component (D)
+- form: silencers
+  reason: frame component (D)
+- form: louvers
+  reason: door component (D)
+- form: Glass Light Kits
+  reason: door component kit (D)
+- form: stick sections
+  reason: frame component material (D)
+- form: hardware
+  reason: generic door hardware, not shop equipment (G)
+- form: Excel
+  reason: file format of lookup downloads ('Anchor Lookup Tool (Excel)') - software/format (T/U)
+- form: Anchor Lookup Tool
+  reason: spreadsheet lookup aid (T software/tooling), not a machine
+- form: Order Entry Works
+  reason: ordering software (T)
+- form: 360 Portal
+  reason: customer web portal (T/U)
+- form: Overtur
+  reason: specification software (T)
+- form: chat bots
+  reason: privacy-boilerplate software mention ('through chat bots') - T/U
+- form: Custom crates
+  reason: shipping packaging, not equipment (S)
+- form: rolled mill finish
+  reason: stainless finish designation ('#2B - Smooth, rolled mill finish') - a surface finish, not a mill machine

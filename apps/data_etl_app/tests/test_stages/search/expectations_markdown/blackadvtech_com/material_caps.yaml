@@ -1,0 +1,2021 @@
+subject: blackadvtech.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/blackadvtech.com.txt
+  sha256: 63354af5b4bd0925a7cd54d773d6677fcc24a25a7c262ac35fa3b99a22afb9ad
+eval_set_version: 3
+expected_empty: false
+notes: 'Sheet metal, steel, stainless and aluminum are the shop''s declared working materials, with hard thickness
+  limits on the laser page. Everything beyond those four comes from the blogs: the metals-numbering, sheet-vs-plate
+  and thickness articles list a dozen metals as generic metallurgy, and the marine-fuel-tank article gives real
+  5xxx aluminum grade designations. Per the field clause, treatments named after the substance they deposit (iron
+  phosphate, zinc coating) are material entries too. Blog-sourced materials carry actor: unknown.'
+entries:
+- id: blackadvtech_com-material_caps-0002
+  name: sheet metal
+  status: candidate
+  acceptable_forms:
+  - sheet metal
+  - Sheet metal
+  - SHEET METAL
+  - sheet metals
+  - metal sheet
+  evidence:
+  - quote: Sheet metal, shaped to intent.
+    approx_offset: 276
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0007
+  name: steel
+  status: candidate
+  acceptable_forms:
+  - steel
+  - Steel
+  - STEEL
+  evidence:
+  - quote: Fiber precision in steel, stainless and aluminum. Clean edges, light tolerances.
+    approx_offset: 779
+  notes: very broad; the distinctive siblings (stainless, mild, carbon, galvanized, 11 gauge) carry the measurable
+    signal
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0024
+  name: aluminum
+  status: candidate
+  acceptable_forms:
+  - aluminum
+  - Aluminum
+  - ALUMINUM
+  evidence:
+  - quote: Fiber precision in steel, stainless and aluminum. Clean edges, light tolerances.
+    approx_offset: 779
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0005
+  name: tube and pipe
+  status: candidate
+  acceptable_forms:
+  - TUBE & PIPE
+  - tube and pipe
+  - tube
+  evidence:
+  - quote: Dragon A400 Plasma — tube & pipe operations
+    approx_offset: 1725
+  notes: '''TUBE & PIPE'' is a facility-list section heading naming a stock shape, not a substance. The clause asks
+    for ''a substance that the work is made from or performed in''; tube and pipe name a form factor with no material
+    word in them (contrast ''sheet metal''/''plate metal''/''aluminum extrusions'', which do carry one).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0004
+  name: iron phosphate
+  status: candidate
+  acceptable_forms:
+  - Iron Phosphate
+  - phosphate
+  - anticorrosive phosphate solution
+  evidence:
+  - quote: 5-stage iron phosphate bonderizer pre-treatment
+    approx_offset: 2446
+  notes: a conversion coating named after the substance it deposits on the work, so it qualifies here as well as
+    under process_caps
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0014
+  name: stainless steel
+  status: candidate
+  acceptable_forms:
+  - stainless steel
+  - Stainless Steel
+  - Stainless steel
+  - stainless
+  evidence:
+  - quote: '### Steel or Stainless Steel: What is the Most Durable Sheet Metal?'
+    approx_offset: 49678
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0027
+  name: powder
+  status: confirmed
+  acceptable_forms:
+  - fine powder
+  - dry powder
+  - powder
+  evidence:
+  - quote: It involves applying a fine powder made of a combination of resin, pigment, and other additives
+    approx_offset: 109172
+  notes: the powder-coat consumable
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0071
+  name: pigments
+  status: candidate
+  acceptable_forms:
+  - pigments
+  - pigment
+  evidence:
+  - quote: It consists of a liquid paint formulation that contains pigments, binders, solvents, and additives.
+    approx_offset: 113574
+  notes: a constituent substance of paint named in the powder-coat-or-wet-paint article; no entry covers it.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0062
+  name: paint (liquid/solvent-based)
+  status: candidate
+  acceptable_forms:
+  - semi-gloss solvent based paint
+  - solvent based paint
+  - liquid paint
+  - Wet paint
+  - wet paint
+  evidence:
+  - quote: It consists of a liquid paint formulation
+    approx_offset: 113574
+  notes: paint is a substance deposited on the work and the packet has 'powder' (0027) but no paint entry. Bare
+    'paint' is deliberately NOT proposed as a form - it would credit on every powder-coating page.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0028
+  name: wood
+  status: confirmed
+  acceptable_forms:
+  - wood
+  evidence:
+  - quote: such as certain types of plastics or wood
+    approx_offset: 116184
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0053
+  name: coils
+  status: disputed
+  acceptable_forms:
+  - the coils you see hauling in trucks
+  - coils
+  evidence:
+  - quote: From the coils you see hauling in trucks
+    approx_offset: 121856
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works. | ''coils'' names
+    the form the sheet arrives in, not a substance - same argument as 0005/0019.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''coils'' names the form the sheet arrives in, not a substance - same argument as 0005/0019.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0066
+  name: coolant
+  status: candidate
+  acceptable_forms:
+  - coolant
+  evidence:
+  - quote: Oil is the primary metal coolant and sticks on the surface after the cooling process.
+    approx_offset: 122512
+  notes: a substance the XSharp grinding process is performed in, named four times on /capabilities/tool-sharpening/.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0072
+  name: solvents
+  status: candidate
+  acceptable_forms:
+  - solvents
+  - special solvents
+  - liquid solvents
+  evidence:
+  - quote: Effective degreasing involves the use of special solvents known as degreasing agents.
+    approx_offset: 122836
+  notes: the substance degreasing (process_caps-0099) is performed in; named on the sheet-metal-finishing article.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0054
+  name: pickle liquor
+  status: confirmed
+  acceptable_forms:
+  - pickle liquor
+  evidence:
+  - quote: Pickling involves the use of an acidic solution known as pickle liquor
+    approx_offset: 124303
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: those two spans name the acids a pickle liquor may contain; they are separate substances, not surface
+      forms of 'pickle liquor'. Kept as their own candidate misses.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0069
+  name: sulphuric and hydrochloric acids
+  status: candidate
+  acceptable_forms:
+  - sulphuric and hydrochloric acids
+  - sulphuric
+  - hydrochloric
+  evidence:
+  - quote: the pickle liquor might contain sulphuric and hydrochloric acids
+    approx_offset: 124408
+  notes: split out of material_caps-0054, where it had been carried as a form of 'pickle liquor'.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0070
+  name: nitric or phosphoric acid
+  status: candidate
+  acceptable_forms:
+  - nitric or phosphoric acid
+  - phosphoric acid
+  evidence:
+  - quote: On the other end, pickle liquor might contain nitric or phosphoric acid.
+    approx_offset: 124474
+  notes: split out of material_caps-0054, where it had been carried as a form of 'pickle liquor'.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0037
+  name: aluminum alloy 5052
+  status: confirmed
+  acceptable_forms:
+  - 5052-grade aluminum alloy
+  - '5052'
+  evidence:
+  - quote: Tanks made with 5052-grade aluminum alloy meet the set standards.
+    approx_offset: 126886
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works. Real 5xxx marine grades
+    from the marine-fuel-tank article.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0038
+  name: aluminum grades 5086 / 5083 / 5052
+  status: confirmed
+  acceptable_forms:
+  - Grade 5086, 5083 or 5052
+  - '5086'
+  - '5083'
+  evidence:
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 127392
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works. Quoted as ABYC recommendations
+    for aluminum fuel tanks.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0052
+  name: metal foil
+  status: confirmed
+  acceptable_forms:
+  - metal foil
+  - foil metal
+  - foil
+  evidence:
+  - quote: Metal foil is the thinnest level that sheet metal can get.
+    approx_offset: 153402
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0015
+  name: carbon steel
+  status: confirmed
+  acceptable_forms:
+  - carbon steel
+  - Carbon Steel
+  - carbon steels
+  - low carbon steels
+  - high carbon industrial steel
+  - High-carbon steel
+  evidence:
+  - quote: Also known as carbon steel, steel is an alloy of iron and about 2% carbon.
+    approx_offset: 157712
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0003
+  name: iron
+  status: confirmed
+  acceptable_forms:
+  - iron
+  - Iron
+  evidence:
+  - quote: steel is an alloy of iron and about 2% carbon
+    approx_offset: 157740
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0049
+  name: chromium
+  status: confirmed
+  acceptable_forms:
+  - chromium
+  - Chromium
+  evidence:
+  - quote: Stainless steel comprises of carbon, iron and more than 10.5% chromium.
+    approx_offset: 159102
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0050
+  name: molybdenum
+  status: confirmed
+  acceptable_forms:
+  - molybdenum
+  evidence:
+  - quote: allow elements such as silicon, nickel, molybdenum, and chromium
+    approx_offset: 160630
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0051
+  name: silicon
+  status: confirmed
+  acceptable_forms:
+  - silicon
+  evidence:
+  - quote: such as silicon, nickel, molybdenum, and chromium
+    approx_offset: 160645
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0001
+  name: tungsten
+  status: confirmed
+  acceptable_forms:
+  - tungsten
+  - Tungsten
+  evidence:
+  - quote: metals such as stainless steel, titanium, aluminum, and tungsten
+    approx_offset: 162322
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0042
+  name: titanium
+  status: confirmed
+  acceptable_forms:
+  - titanium
+  - Titanium
+  evidence:
+  - quote: stainless steel, titanium, aluminum, and tungsten
+    approx_offset: 162337
+  - quote: metal plates are steel, titanium, and Vitallium
+    approx_offset: 236904
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0043
+  name: tin
+  status: confirmed
+  acceptable_forms:
+  - Tin
+  - tin cans
+  evidence:
+  - quote: Tin
+    approx_offset: 234973
+  - quote: Steel drums, radiators, and tin cans are produced through this process.
+    approx_offset: 163828
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0045
+  name: nickel
+  status: confirmed
+  acceptable_forms:
+  - nickel
+  - Nickel
+  evidence:
+  - quote: Nickel
+    approx_offset: 172614
+  - quote: Nickel steels are classified as number 2 metals.
+    approx_offset: 172614
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0046
+  name: nickel steel
+  status: confirmed
+  acceptable_forms:
+  - Nickel steel
+  - nickel steel
+  - Nickel steels
+  - Nickel steel alloys
+  evidence:
+  - quote: Nickel steel contains 8% of nickel and 0.35% of carbon added to steel.
+    approx_offset: 172663
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0041
+  name: carbon
+  status: confirmed
+  acceptable_forms:
+  - carbon
+  evidence:
+  - quote: 0.35% of carbon added to steel
+    approx_offset: 172702
+  - quote: Materials that have high alloy or high carbon levels
+    approx_offset: 202163
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0047
+  name: nickel-chromium alloys
+  status: confirmed
+  acceptable_forms:
+  - nickel-chromium alloys
+  - Nickel-Chromium Steels
+  - nickel-chromium
+  evidence:
+  - quote: Number 3 metals consist of all nickel-chromium alloys.
+    approx_offset: 173882
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0048
+  name: cobalt-chrome alloys
+  status: confirmed
+  acceptable_forms:
+  - weld-deposited cobalt-chrome alloys
+  - cobalt-chrome alloys
+  evidence:
+  - quote: These alloys are a better alternative to weld-deposited cobalt-chrome alloys.
+    approx_offset: 175103
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0044
+  name: argon gas
+  status: confirmed
+  acceptable_forms:
+  - argon gas
+  - argon
+  evidence:
+  - quote: the ionization of argon gas that’s passed through the electric arc
+    approx_offset: 182740
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0035
+  name: acetone
+  status: confirmed
+  acceptable_forms:
+  - acetone
+  evidence:
+  - quote: By using an acetone or an alcohol
+    approx_offset: 188533
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0065
+  name: alcohol
+  status: candidate
+  acceptable_forms:
+  - alcohol
+  evidence:
+  - quote: By using an acetone or an alcohol, even if they are new, its best to clean your filler rods.
+    approx_offset: 188533
+  notes: named beside acetone, which the packet does enter at 0035, in the aluminum-welding article.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0036
+  name: filler metal
+  status: confirmed
+  acceptable_forms:
+  - filler metal
+  - filler metals
+  - filler material
+  - filler rods
+  - filler
+  evidence:
+  - quote: Proper Matching of Filler Metal and Base Material Strength
+    approx_offset: 201529
+  - quote: its best to clean your filler rods
+    approx_offset: 188590
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0031
+  name: acetylene
+  status: confirmed
+  acceptable_forms:
+  - acetylene
+  - oxyacetylene
+  evidence:
+  - quote: a flame generated by burning a fuel gas, such as acetylene
+    approx_offset: 209685
+  - quote: This process is performed using an oxyacetylene torch.
+    approx_offset: 191790
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0029
+  name: thermoplastics
+  status: confirmed
+  acceptable_forms:
+  - thermoplastics
+  - Thermoplastics
+  evidence:
+  - quote: two or more pieces of metal or thermoplastics
+    approx_offset: 195340
+  - quote: There are two main types of powder coating, thermoplastics, and thermosets.
+    approx_offset: 218988
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0073
+  name: nitrogen
+  status: candidate
+  acceptable_forms:
+  - nitrogen
+  evidence:
+  - quote: Porosity is cause by the absorption of nitrogen, hydrogen, and oxygen in the molten weld pool
+    approx_offset: 195995
+  notes: named in the same clause as hydrogen, which the packet enters at material_caps-0040; included for consistency
+    with that decision.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0074
+  name: oxygen
+  status: candidate
+  acceptable_forms:
+  - oxygen
+  evidence:
+  - quote: Porosity is cause by the absorption of nitrogen, hydrogen, and oxygen in the molten weld pool
+    approx_offset: 195995
+  notes: 'as with nitrogen: named in the same clause as hydrogen (material_caps-0040).'
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0030
+  name: shielding gas
+  status: confirmed
+  acceptable_forms:
+  - shielding gas type
+  - shielding gas
+  evidence:
+  - quote: double check your flow rates, the shielding gas type
+    approx_offset: 196521
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0039
+  name: stick electrodes
+  status: confirmed
+  acceptable_forms:
+  - stick electrodes
+  evidence:
+  - quote: look for stick electrodes and flux-cored wires that produce low levels of diffusible hydrogen
+    approx_offset: 200966
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: flux-cored wires are a different consumable from stick electrodes, named as the second item of the same
+      list, not a surface form of it. Kept as its own candidate miss.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0068
+  name: flux-cored wires
+  status: candidate
+  acceptable_forms:
+  - flux-cored wires
+  evidence:
+  - quote: look for stick electrodes and flux-cored wires that produce low levels of diffusible hydrogen
+    approx_offset: 200966
+  notes: split out of material_caps-0039, where it had been carried as a form of 'stick electrodes'; it is a separate
+    consumable.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0040
+  name: hydrogen
+  status: confirmed
+  acceptable_forms:
+  - diffusible hydrogen
+  - hydrogen
+  evidence:
+  - quote: low levels of diffusible hydrogen
+    approx_offset: 201026
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0067
+  name: base material / base metal
+  status: candidate
+  acceptable_forms:
+  - Base Material
+  - base material
+  evidence:
+  - quote: Proper Matching of Filler Metal and Base Material Strength
+    approx_offset: 201529
+  notes: the welding-defects article names the base material repeatedly as the counterpart to filler metal (0036),
+    which the packet does enter.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0011
+  name: copper
+  status: confirmed
+  acceptable_forms:
+  - copper
+  - Copper
+  evidence:
+  - quote: the power to cut reflective metals such as copper and brass
+    approx_offset: 205875
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0032
+  name: concrete
+  status: confirmed
+  acceptable_forms:
+  - concrete
+  evidence:
+  - quote: It can be used on different surfaces, including concrete, metal, steel, and plastic.
+    approx_offset: 218826
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0013
+  name: plastics
+  status: confirmed
+  acceptable_forms:
+  - plastics
+  - plastic
+  evidence:
+  - quote: including concrete, metal, steel, and plastic
+    approx_offset: 218864
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0033
+  name: thermosets
+  status: confirmed
+  acceptable_forms:
+  - thermosets
+  - Thermoset powder
+  - Thermoset coating
+  evidence:
+  - quote: There are two main types of powder coating, thermoplastics, and thermosets.
+    approx_offset: 218988
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0034
+  name: polymer resin
+  status: confirmed
+  acceptable_forms:
+  - polymer resin
+  - resin
+  evidence:
+  - quote: leveling agents, and several other additives, it’s a polymer resin
+    approx_offset: 220122
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0055
+  name: plate metal
+  status: confirmed
+  acceptable_forms:
+  - plate metal
+  - Plate Metal
+  - metal plates
+  - steel plates
+  evidence:
+  - quote: Any piece exceeding 6mm is known as plate metal
+    approx_offset: 224081
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0009
+  name: non-ferrous metals
+  status: candidate
+  acceptable_forms:
+  - non-ferrous metals
+  - non-ferrous materials
+  - non-ferrous
+  evidence:
+  - quote: Ferrous and non-ferrous metals of the same thickness have a different gauge.
+    approx_offset: 224812
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0056
+  name: zinc
+  status: confirmed
+  acceptable_forms:
+  - zinc
+  - 0.001-inch zinc coating
+  evidence:
+  - quote: galvanized sheet metal has a 0.001-inch zinc coating
+    approx_offset: 225994
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works. Also a coating named
+    after the substance it deposits.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0057
+  name: lead
+  status: confirmed
+  acceptable_forms:
+  - zinc, lead
+  - lead, and aluminum alloys
+  evidence:
+  - quote: such as aluminum, brass, copper, zinc, lead, and aluminum alloys
+    approx_offset: 226899
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works. CAUTION: ''lead''
+    has 15 word-boundary hits and 14 of them are lead time / leading / ''Lead and manage a team''. THIS is the only
+    occurrence where it names a metal. The known substring false-positive from the brute-search work applies to
+    this subject too.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: the metal sense of 'lead' occurs exactly once, in the blog list 'aluminum, brass, copper, zinc, lead,
+      and aluminum alloys'. The bare form is 4 chars so the harness matches it by plain casefold containment, and
+      14 of the 15 word-bounded occurrences in the file are 'lead times', 'lead time', 'Lead and manage', 'come
+      in the lead', 'lead to'. Any recall credit the bare form earns is therefore uninformative. Narrowed to the
+      two contiguous spans that pin the metal sense; this makes the entry harder to credit, which is the correct
+      trade for a form that would otherwise credit on nine capability pages that name no metal.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0058
+  name: aluminum alloys
+  status: confirmed
+  acceptable_forms:
+  - aluminum alloys
+  - aluminum alloy
+  evidence:
+  - quote: zinc, lead, and aluminum alloys
+    approx_offset: 226932
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0059
+  name: galvanized steel
+  status: confirmed
+  acceptable_forms:
+  - galvanized steel
+  - galvanized sheet metal
+  - galvanized
+  evidence:
+  - quote: Whether you are working with galvanized steel, standard steel, or non-ferrous metals
+    approx_offset: 227116
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0012
+  name: brass
+  status: confirmed
+  acceptable_forms:
+  - brass
+  - Brass
+  evidence:
+  - quote: Brass
+    approx_offset: 234999
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0060
+  name: platinum, gold and silver
+  status: confirmed
+  acceptable_forms:
+  - platinum, gold, and silver
+  - platinum
+  - gold
+  - silver
+  evidence:
+  - quote: Other metals such as platinum, gold, and silver can be made into sheets for decorative purposes.
+    approx_offset: 235014
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: the single bundled form can only credit if the stage returns all three metals as one span, which its
+      own prompt tells it not to do ('extract separate phrases for separate materials'). Each of platinum, gold
+      and silver occurs exactly once in the file, on this line, so the individual forms are distinctive and cannot
+      mis-credit.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0061
+  name: Vitallium
+  status: confirmed
+  acceptable_forms:
+  - Vitallium
+  evidence:
+  - quote: The most common materials for manufacturing metal plates are steel, titanium, and Vitallium.
+    approx_offset: 236860
+  actor: unknown
+  notes: 'BLOG-ONLY: named in generic metallurgy prose, not as stock the shop holds or works. A cobalt-chrome dental/orthopaedic
+    alloy; a striking single mention.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0006
+  name: cast-iron
+  status: retired
+  acceptable_forms:
+  - cast-iron
+  - heavy-duty cast-iron frame
+  evidence:
+  - quote: A heavy-duty cast-iron frame.
+  notes: 'retired at the markdown cutover: searched cast-iron, heavy-duty cast-iron frame; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0008
+  name: .05 aluminum
+  status: retired
+  acceptable_forms:
+  - .05 aluminum
+  evidence:
+  - quote: Fabricated with .05 aluminum or steel and finished with a smooth semi-gloss solvent based paint.
+  notes: 'retired at the markdown cutover: searched ''.05 aluminum''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0010
+  name: aluminum extrusions
+  status: retired
+  acceptable_forms:
+  - aluminum extrusions
+  evidence:
+  - quote: designed to cut aluminum extrusions, profiles, and other non-ferrous materials
+  notes: 'retired at the markdown cutover: searched aluminum extrusions; absent — only the bare word ''aluminum''
+    survives (captured separately), never combined with ''extrusions''.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0016
+  name: 11 gauge steel
+  status: retired
+  acceptable_forms:
+  - 11 gauge steel
+  - 11-18 gauge USA steel
+  - 11 gauge
+  evidence:
+  - quote: Two 11 gauge steel doors with welded angle-iron framework
+  notes: 'retired at the markdown cutover: searched 11 gauge steel, 11-18 gauge USA steel, 11 gauge; absent from
+    the new snapshot; the gauge/spec table that carried it is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0017
+  name: angle-iron
+  status: retired
+  acceptable_forms:
+  - angle-iron
+  - welded angle-iron framework
+  evidence:
+  - quote: welded angle-iron framework
+  notes: 'retired at the markdown cutover: searched angle-iron, welded angle-iron framework; absent from the new
+    snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0018
+  name: 18 ga steel
+  status: retired
+  acceptable_forms:
+  - 18 ga steel
+  evidence:
+  - quote: 18 ga steel body
+  notes: 'retired at the markdown cutover: searched 18 ga steel; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0019
+  name: tubing
+  status: retired
+  acceptable_forms:
+  - tubing
+  evidence:
+  - quote: Blackstone donated the tubing, cut to length
+  notes: 'retired at the markdown cutover: searched tubing; absent as a material word — only ''tube & pipe'' survives
+    (captured separately in material_caps-0005).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0020
+  name: ceramic
+  status: retired
+  acceptable_forms:
+  - 2 ceramic nozzles
+  - ceramic
+  evidence:
+  - quote: 1 steel and 2 ceramic nozzles
+  notes: 'retired at the markdown cutover: searched ceramic, ''2 ceramic nozzles''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0021
+  name: tempered glass
+  status: retired
+  acceptable_forms:
+  - tempered glass
+  evidence:
+  - quote: TWO tempered glass lenses
+  notes: 'retired at the markdown cutover: searched tempered glass; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0022
+  name: Skat Magic Abrasive
+  status: retired
+  acceptable_forms:
+  - Skat Magic Abrasive
+  - fast-cutting Skat Magic Abrasive
+  - abrasive
+  evidence:
+  - quote: 50 lbs fast-cutting Skat Magic Abrasive
+  notes: 'retired at the markdown cutover: searched Skat Magic Abrasive, ''fast-cutting Skat Magic Abrasive''; the
+    branded consumable is gone — only the generic word ''abrasive'' survives, in unrelated contexts (waterjet cutting
+    media, a polishing wheel, sand blasting grit), never naming this specific product.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0023
+  name: expanded metal
+  status: retired
+  acceptable_forms:
+  - Expanded metal screen
+  - Expanded metal
+  evidence:
+  - quote: Expanded metal screen holds objects up to 200 lbs
+  notes: 'retired at the markdown cutover: searched expanded metal, ''Expanded metal screen''; absent from the new
+    snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0025
+  name: ATSM 81011 steel
+  status: retired
+  acceptable_forms:
+  - ATSM 81011 steel
+  - ATSM 81011
+  evidence:
+  - quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+  notes: 'retired at the markdown cutover: searched ATSM 81011 steel, ATSM 81011; absent as this specific grade
+    — only a generic, unrelated reference to the ASTM standards body survives (''Adherence to industry standards
+    (ASTM, ASME)''), which does not name this designation.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0026
+  name: mild steel
+  status: retired
+  acceptable_forms:
+  - mild steel
+  evidence:
+  - quote: mild steel up to 1
+  notes: 'retired at the markdown cutover: searched mild steel; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0063
+  name: enamel
+  status: retired
+  acceptable_forms:
+  - enamel
+  evidence:
+  - quote: in preparation for the application of paint, enamel, or lacquer
+  notes: 'retired at the markdown cutover: searched enamel; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0064
+  name: lacquer
+  status: retired
+  acceptable_forms:
+  - lacquer
+  evidence:
+  - quote: in preparation for the application of paint, enamel, or lacquer
+  notes: 'retired at the markdown cutover: searched lacquer; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-material_caps-0075
+  name: stainless
+  status: candidate
+  acceptable_forms:
+  - stainless
+  evidence:
+  - quote: Fiber precision in steel, stainless and aluminum. Clean edges, light tolerances.
+    approx_offset: 779
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0076
+  name: 304 stainless steel
+  status: candidate
+  acceptable_forms:
+  - 304 stainless steel
+  evidence:
+  - quote: Choosing the right gauge, alloy series (such as 304 stainless steel or aluminum 6061), and tempering
+      processes can significantly impact part performance.
+    approx_offset: 29556
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0077
+  name: aluminum 6061
+  status: candidate
+  acceptable_forms:
+  - aluminum 6061
+  evidence:
+  - quote: Choosing the right gauge, alloy series (such as 304 stainless steel or aluminum 6061), and tempering
+      processes can significantly impact part performance.
+    approx_offset: 29556
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0078
+  name: granite
+  status: candidate
+  acceptable_forms:
+  - granite
+  evidence:
+  - quote: Waterjets also offer non-contact precision, capable of cutting through even abrasive materials like granite
+      without any heat-affected zones.
+    approx_offset: 53441
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0079
+  name: galvanized sheet metal
+  status: candidate
+  acceptable_forms:
+  - galvanized sheet metal
+  evidence:
+  - quote: Fabrication shops must ensure that suppliers consistently provide materials that meet required specifications
+      — whether it’s stainless steel, aluminum, or galvanized sheet metal.
+    approx_offset: 70764
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0080
+  name: 304 series stainless steel
+  status: candidate
+  acceptable_forms:
+  - 304 series
+  evidence:
+  - quote: The 304 series, known for its molybdenum content, offers good all-around performance and is commonly
+      used in kitchen appliances and general outdoor components.
+    approx_offset: 81565
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0081
+  name: 316 series stainless steel
+  status: candidate
+  acceptable_forms:
+  - 316 series
+  evidence:
+  - quote: The 316 series provides higher corrosion resistance in harsher conditions and is often specified in marine
+      environments or where chloride exposure is a concern.
+    approx_offset: 81890
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0082
+  name: 410 series stainless steel
+  status: candidate
+  acceptable_forms:
+  - 410 series
+  evidence:
+  - quote: The 410 series balances cost-effectiveness with strength, making it suitable for structural applications
+    approx_offset: 82053
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0083
+  name: 6061-T6 alloy
+  status: candidate
+  acceptable_forms:
+  - 6061-T6
+  evidence:
+  - quote: The 6061-T6 alloy is widely used due to its combination of high strength and ductility, making it versatile
+      for fabrication processes like laser cutting and stamping.
+    approx_offset: 82522
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0084
+  name: 7075 alloy
+  status: candidate
+  acceptable_forms:
+  - '7075'
+  evidence:
+  - quote: The 7075 alloy is known for its high strength-to-weight ratio, ideal for aerospace and defense applications
+      where lightweight yet robust components are needed.
+    approx_offset: 82808
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0085
+  name: 3003 alloy
+  status: candidate
+  acceptable_forms:
+  - '3003'
+  evidence:
+  - quote: The 3003 alloy is often used in decorative applications or situations requiring higher formability and
+      easier welding properties.
+    approx_offset: 83148
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0086
+  name: sulphuric acid
+  status: candidate
+  acceptable_forms:
+  - sulphuric
+  evidence:
+  - quote: When preparing low-carbon steel, the pickle liquor might contain sulphuric and hydrochloric acids.
+    approx_offset: 124375
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0087
+  name: hydrochloric acid
+  status: candidate
+  acceptable_forms:
+  - hydrochloric
+  evidence:
+  - quote: When preparing low-carbon steel, the pickle liquor might contain sulphuric and hydrochloric acids.
+    approx_offset: 124375
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0088
+  name: nitric acid
+  status: candidate
+  acceptable_forms:
+  - nitric
+  evidence:
+  - quote: On the other end, pickle liquor might contain nitric or phosphoric acid.
+    approx_offset: 124474
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0089
+  name: phosphoric acid
+  status: candidate
+  acceptable_forms:
+  - phosphoric acid
+  evidence:
+  - quote: On the other end, pickle liquor might contain nitric or phosphoric acid.
+    approx_offset: 124474
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0090
+  name: 5052-grade aluminum alloy
+  status: candidate
+  acceptable_forms:
+  - 5052-grade aluminum alloy
+  - '5052'
+  evidence:
+  - quote: Tanks made with 5052-grade aluminum alloy meet the set standards.
+    approx_offset: 126886
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0091
+  name: 5086 aluminum alloy
+  status: candidate
+  acceptable_forms:
+  - '5086'
+  evidence:
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 127392
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0092
+  name: 5083 aluminum alloy
+  status: candidate
+  acceptable_forms:
+  - '5083'
+  evidence:
+  - quote: Grade 5086, 5083 or 5052 for aluminum fuel tanks
+    approx_offset: 127392
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0093
+  name: gold
+  status: candidate
+  acceptable_forms:
+  - gold
+  evidence:
+  - quote: Although precious metals are rare, they make the best metal finishes. These metals include gold, rhodium,
+      silver, ruthenium, and palladium.
+    approx_offset: 229268
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0094
+  name: rhodium
+  status: candidate
+  acceptable_forms:
+  - rhodium
+  evidence:
+  - quote: Although precious metals are rare, they make the best metal finishes. These metals include gold, rhodium,
+      silver, ruthenium, and palladium.
+    approx_offset: 229268
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0095
+  name: silver
+  status: candidate
+  acceptable_forms:
+  - silver
+  evidence:
+  - quote: Although precious metals are rare, they make the best metal finishes. These metals include gold, rhodium,
+      silver, ruthenium, and palladium.
+    approx_offset: 229268
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0096
+  name: ruthenium
+  status: candidate
+  acceptable_forms:
+  - ruthenium
+  evidence:
+  - quote: Although precious metals are rare, they make the best metal finishes. These metals include gold, rhodium,
+      silver, ruthenium, and palladium.
+    approx_offset: 229268
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0097
+  name: palladium
+  status: candidate
+  acceptable_forms:
+  - palladium
+  evidence:
+  - quote: Although precious metals are rare, they make the best metal finishes. These metals include gold, rhodium,
+      silver, ruthenium, and palladium.
+    approx_offset: 229268
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0098
+  name: platinum
+  status: candidate
+  acceptable_forms:
+  - platinum
+  evidence:
+  - quote: Palladium is cheaper than gold and platinum and offers excellent corrosion resistance. Rhodium and platinum
+      are durable sheet metal finishing options
+    approx_offset: 229903
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-material_caps-0099
+  name: aluminum oxide
+  status: candidate
+  acceptable_forms:
+  - aluminum oxide
+  evidence:
+  - quote: This is the process of applying aluminum oxide on aluminum surfaces.
+    approx_offset: 230832
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Inconel
+  reason: never occurs; a superalloy a model may mint from 'nickel-chromium alloys' in the metals-numbering blog
+- form: Hastelloy
+  reason: never occurs
+- form: A36
+  reason: never occurs; no ASTM plate grades anywhere - the only grade string is the typo'd 'ATSM 81011'
+- form: '6061'
+  reason: never occurs; the only aluminum grades named are the 5xxx marine series (5052/5083/5086)
+- form: 304 Stainless
+  reason: never occurs; the text never grades its stainless at all
+- form: Vitalium
+  reason: the text spells it Vitallium (double L); the single-L spelling is a plausible fabrication

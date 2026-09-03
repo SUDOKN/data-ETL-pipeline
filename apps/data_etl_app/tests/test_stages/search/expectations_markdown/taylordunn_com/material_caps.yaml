@@ -1,0 +1,182 @@
+subject: taylordunn.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
+  sha256: 973bd30712ecbd8754d31aef6041a5b07356215a7425214d0330074b59bba489
+eval_set_version: 2
+expected_empty: true
+notes: No material, alloy, or grade is named anywhere. Word-boundary greps for steel/aluminum/alloy/rubber/copper/brass/iron/nylon/polymer/composite/
+  fiberglass (and earlier stainless/titanium/plastic/lithium) return zero hits across the whole file (verified 2026-08-26).
+  Any yield here is junk minted from cookie-consent boilerplate.
+entries:
+- id: taylordunn_com-material_caps-0001
+  name: lithium-ion
+  status: candidate
+  acceptable_forms:
+  - lithium-ion
+  - lithium ion
+  evidence:
+  - quote: The Bigfoot’s lithium-ion battery delivers a lower total cost of ownership.
+    approx_offset: 149177
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0002
+  name: AGM
+  status: candidate
+  acceptable_forms:
+  - AGM
+  evidence:
+  - quote: a significant advantage over traditional lead-acid and AGM batteries that degrade with partial charging.
+    approx_offset: 151058
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0003
+  name: steel
+  status: candidate
+  acceptable_forms:
+  - steel
+  evidence:
+  - quote: The R-380 is constructed around a fully welded 16-gauge diamond plate steel unibody frame
+    approx_offset: 160428
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0004
+  name: lead-acid
+  status: candidate
+  acceptable_forms:
+  - lead-acid
+  - lead acid
+  evidence:
+  - quote: Six 6V, 210 amp-hour, lead-acid
+    approx_offset: 162331
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0005
+  name: vinyl
+  status: candidate
+  acceptable_forms:
+  - vinyl
+  evidence:
+  - quote: Split seat with full back cushions, black vinyl; driver’s seat electric interlock switch
+    approx_offset: 162832
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0006
+  name: aluminum
+  status: candidate
+  acceptable_forms:
+  - aluminum
+  evidence:
+  - quote: Platform options include treadplate steel, TommyTraction steel, extruded aluminum, bargrate steel.
+    approx_offset: 237998
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0007
+  name: treadplate steel
+  status: candidate
+  acceptable_forms:
+  - treadplate steel
+  evidence:
+  - quote: Platform options include treadplate steel, TommyTraction steel, extruded aluminum, bargrate steel.
+    approx_offset: 237998
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0008
+  name: bargrate steel
+  status: candidate
+  acceptable_forms:
+  - bargrate steel
+  evidence:
+  - quote: Platform options include treadplate steel, TommyTraction steel, extruded aluminum, bargrate steel.
+    approx_offset: 237998
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0009
+  name: TommyTraction
+  status: candidate
+  acceptable_forms:
+  - TommyTraction
+  evidence:
+  - quote: Platform options include treadplate steel, TommyTraction steel, extruded aluminum, bargrate steel.
+    approx_offset: 237998
+  actor: supplier
+  notes: Proprietary tread-plate material trade name for the Tommy Gate G2 liftgate platform.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0010
+  name: FLA
+  status: candidate
+  acceptable_forms:
+  - FLA
+  evidence:
+  - quote: 'Battery options: Standard FLA or optional lithium ion'
+    approx_offset: 239549
+  notes: Flooded lead-acid battery, offered as a standard battery option on the Bigfoot XL.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0011
+  name: fiberglass
+  status: candidate
+  acceptable_forms:
+  - fiberglass
+  evidence:
+  - quote: Optional Accessories headlights, stoplight, reverse beeper, fiberglass cab, high-capacity batteries,
+      hard-rubber tires, spring-loaded hitch, non-marking tires, stake sides, and diamond deck.
+    approx_offset: 249350
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-material_caps-0012
+  name: rubber
+  status: candidate
+  acceptable_forms:
+  - rubber
+  evidence:
+  - quote: Optional Accessories headlights, stoplight, reverse beeper, fiberglass cab, high-capacity batteries,
+      hard-rubber tires, spring-loaded hitch, non-marking tires, stake sides, and diamond deck.
+    approx_offset: 249350
+  notes: '''hard-rubber tires''.'
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: cookies
+  reason: all 837 occurrences are the web-cookie sense in the consent policy; zero food/material sense in any window
+    (polyseme with no in-window material sense, U per taxonomy -- same rule as 'Lead' in lead time)

@@ -1,0 +1,255 @@
+subject: taylordunn.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
+  sha256: 973bd30712ecbd8754d31aef6041a5b07356215a7425214d0330074b59bba489
+eval_set_version: 2
+expected_empty: false
+notes: The nine footer INDUSTRIES menu labels are the only industry signal in the text; each repeats identically
+  on all 31 page blocks (offsets are for the first block, advisory only). Several are customer segments rather than
+  clean sectors (B-leaning at judgment time); all belong here because the eval is recall-first and the text names
+  them as served markets. Any yield beyond these labels is junk minted from cookie-consent boilerplate.
+entries:
+- id: taylordunn_com-industries-0001
+  name: Manufacturing & Warehousing
+  status: confirmed
+  acceptable_forms:
+  - Manufacturing & Warehousing
+  evidence:
+  - quote: Manufacturing & Warehousing
+    approx_offset: 3243
+  notes: footer INDUSTRIES menu label
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0002
+  name: Colleges & Universities
+  status: confirmed
+  acceptable_forms:
+  - Colleges & Universities
+  evidence:
+  - quote: Colleges & Universities
+    approx_offset: 3271
+  notes: footer INDUSTRIES menu label; customer segment (B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0003
+  name: Business & Residential
+  status: confirmed
+  acceptable_forms:
+  - Business & Residential
+  evidence:
+  - quote: Business & Residential
+    approx_offset: 3295
+  notes: footer INDUSTRIES menu label; customer segment (B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0004
+  name: Federal Government
+  status: confirmed
+  acceptable_forms:
+  - Federal Government
+  evidence:
+  - quote: Federal Government
+    approx_offset: 3318
+  notes: footer INDUSTRIES menu label; customer segment (B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0005
+  name: State & Local Governments
+  status: confirmed
+  acceptable_forms:
+  - State & Local Governments
+  evidence:
+  - quote: State & Local Governments
+    approx_offset: 3337
+  notes: footer INDUSTRIES menu label; customer segment (B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0006
+  name: Parks & Recreation
+  status: confirmed
+  acceptable_forms:
+  - Parks & Recreation
+  evidence:
+  - quote: Parks & Recreation
+    approx_offset: 3363
+  notes: footer INDUSTRIES menu label; customer segment (B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0007
+  name: Conventions & Events
+  status: confirmed
+  acceptable_forms:
+  - Conventions & Events
+  evidence:
+  - quote: Conventions & Events
+    approx_offset: 3382
+  notes: footer INDUSTRIES menu label; application domain (B-leaning)
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0008
+  name: Hospitality & Tourism
+  status: confirmed
+  acceptable_forms:
+  - Hospitality & Tourism
+  evidence:
+  - quote: Hospitality & Tourism
+    approx_offset: 3403
+  notes: footer INDUSTRIES menu label
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0009
+  name: Aviation
+  status: confirmed
+  acceptable_forms:
+  - Aviation
+  evidence:
+  - quote: Aviation
+    approx_offset: 3425
+  notes: footer INDUSTRIES menu label
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: nav
+- id: taylordunn_com-industries-0010
+  name: Business & Residential Properties
+  status: candidate
+  acceptable_forms:
+  - Business & Residential Properties
+  - Business & Residential
+  evidence:
+  - quote: BUSINESS & RESIDENTIAL PROPERTIES
+    approx_offset: 1693
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-industries-0011
+  name: golf cart industry
+  status: candidate
+  acceptable_forms:
+  - golf cart industry
+  evidence:
+  - quote: Taylor-Dunn leaves the golf cart industry to focus on commercial markets including manufacturing, universities,
+      airports and more.
+    approx_offset: 144127
+  notes: 'Historical: company exited this market per the 1985 company-history entry, but the text names it.'
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Marketing
+  reason: cookie-consent category label ('Marketing/Tracking cookies', consent-settings list), not a sector the
+    subject serves
+- form: Statistics
+  reason: cookie-consent category label, not a sector
+- form: Social media
+  reason: cookie-policy section 5.4 heading about embedded Facebook/LinkedIn/Instagram content, not a served industry
+- form: United States
+  reason: jurisdiction/location in legal prose ('Facebook, LinkedIn and Instagram are located in the United States'),
+    not an industry
+- form: European Economic Area
+  reason: legal jurisdiction defining the cookie policy's scope, not an industry
+- form: Vehicles
+  reason: the subject's own nav category header (VEHICLES); own product domain presented as a heading, O-code bait,
+    not a served sector

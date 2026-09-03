@@ -1,0 +1,2278 @@
+subject: howcogroup.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
+  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+eval_set_version: 3
+expected_empty: false
+entries:
+- id: howcogroup_com-material_caps-0012
+  name: AISI 4130
+  status: confirmed
+  acceptable_forms:
+  - AISI 4130
+  - '4130'
+  - LOW ALLOY 4130
+  evidence:
+  - quote: 'LOW ALLOY 4130: ASTM A29'
+    approx_offset: 7110
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0013
+  name: low alloy steel
+  status: confirmed
+  acceptable_forms:
+  - LOW ALLOY STEEL
+  - low alloy steel
+  - Low alloy
+  evidence:
+  - quote: AISI 4130 low alloy steel containing nominally 0.3% carbon, 1% chromium and 0.2% molybdenum is widely
+      used
+    approx_offset: 7151
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0046
+  name: Alloy 925
+  status: confirmed
+  acceptable_forms:
+  - Alloy 925
+  - ALLOY 925
+  - UNS N09925
+  evidence:
+  - quote: UNS N09925
+    approx_offset: 10819
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0047
+  name: iron
+  status: confirmed
+  acceptable_forms:
+  - Iron and Chromium
+  evidence:
+  - quote: This is an age-hardenable Nickel based alloy containing Iron and Chromium as major additions, and also
+      additions of Molybdenum, Copper, Titanium
+    approx_offset: 41336
+  - quote: Alloy 925 is a nickel based alloy containing Iron and Chromium as major additions, and also additions
+      of Molybdenum, Copper, Titanium
+    approx_offset: 10846
+  notes: alloying addition in the Alloy 925 / 925 Tube prose
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'SUBSTRING ARTEFACT, the largest in this packet: ''Iron'' (4 chars, so matched by bare containment)
+      is a substring of ''environ'', and ''environment(s)'' occurs 49 times in this text - ''marine environments'',
+      ''sour gas environments'', ''corrosive environments'' are all phrases a materials search would plausibly return,
+      and every one of them would silently credit ''iron''. ''Iron and Chromium'' is verbatim in both evidence quotes
+      and still credits a plain returned ''iron'' by containment.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0048
+  name: titanium
+  status: confirmed
+  acceptable_forms:
+  - Titanium
+  evidence:
+  - quote: containing Iron and Chromium as major additions, and also additions of Molybdenum, Copper, Titanium and
+      Aluminum. A combination of high strength and corrosion resistance
+    approx_offset: 41381
+  - quote: and Chromium as major additions, and also additions of Molybdenum, Copper, Titanium and Aluminium. A
+      combination of high strength and corrosion resistance
+    approx_offset: 10896
+  notes: alloying addition in Alloy 925/925 Tube prose; note the file spells it 'Aluminum' at 2507 and 'Aluminium'
+    at 4211
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0049
+  name: aluminium
+  status: confirmed
+  acceptable_forms:
+  - Aluminium
+  - Aluminum
+  evidence:
+  - quote: Chromium as major additions, and also additions of Molybdenum, Copper, Titanium and Aluminium. A combination
+      of high strength and corrosion resistance make it
+    approx_offset: 10900
+  - quote: Chromium as major additions, and also additions of Molybdenum, Copper, Titanium and Aluminum. A combination
+      of high strength and corrosion resistance make it
+    approx_offset: 41401
+  notes: both spellings occur, US at 2507 and UK at 4211
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0070
+  name: AISI 8630
+  status: confirmed
+  acceptable_forms:
+  - AISI 8630
+  - '8630'
+  - LOW ALLOY 8630
+  evidence:
+  - quote: 'LOW ALLOY 8630: ASTM A29'
+    approx_offset: 16115
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0051
+  name: Alloy 625
+  status: confirmed
+  acceptable_forms:
+  - Alloy 625
+  - ALLOY 625
+  - UNS N06625
+  - A625
+  evidence:
+  - quote: 'UNS N06625: ASTM B446 & B564'
+    approx_offset: 18203
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0052
+  name: niobium (columbium)
+  status: confirmed
+  acceptable_forms:
+  - Niobium (Columbium)
+  - Niobium
+  - Columbium
+  evidence:
+  - quote: Alloy 625 is a Nickel – Chromium alloy with additions of Niobium (Columbium) and Molybdenum.
+    approx_offset: 18248
+  notes: named once, on the Alloy 625 datasheet
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0069
+  name: Grade 420 Modified / 13Cr
+  status: confirmed
+  acceptable_forms:
+  - 420 Modified
+  - 420 Mod
+  - 13 CR – STAINLESS
+  - 13Cr
+  evidence:
+  - quote: 13 CR – STAINLESS
+    approx_offset: 19825
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0009
+  name: AISI 4330V
+  status: confirmed
+  acceptable_forms:
+  - AISI 4330V
+  - 4330v
+  - LOW ALLOY 4330V
+  evidence:
+  - quote: 'LOW ALLOY 4330V: ASTM A29'
+    approx_offset: 26252
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0018
+  name: super duplex stainless steel
+  status: confirmed
+  acceptable_forms:
+  - SUPER DUPLEX
+  - Super Duplex
+  - super duplex
+  evidence:
+  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 29940
+  - quote: S32760-F55 (Super Duplex)/25 Cr
+    approx_offset: 46959
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0063
+  name: Grade S32760 / F55 super duplex
+  status: confirmed
+  acceptable_forms:
+  - S32760
+  - F55
+  - 25 Cr
+  evidence:
+  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 29940
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0026
+  name: chromium
+  status: confirmed
+  acceptable_forms:
+  - chromium
+  - Chromium
+  evidence:
+  - quote: AISI 4140 low alloy steel containing Chromium and Molybdenum is the most widely used low alloy steel
+      for oil patch applications.
+    approx_offset: 80399
+  - quote: associated with Duplex Stainless Steels, are enhanced by a further addition of Chromium (to 25%), and
+      also Tungsten and Copper.
+    approx_offset: 30161
+  notes: named in running prose on 8 datasheet pages as an alloying addition
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0064
+  name: tungsten
+  status: confirmed
+  acceptable_forms:
+  - Tungsten
+  evidence:
+  - quote: with Duplex Stainless Steels, are enhanced by a further addition of Chromium (to 25%), and also Tungsten
+      and Copper.
+    approx_offset: 30172
+  notes: 'TRAP-ADJACENT: named in prose exactly ONCE, in the S32760 super-duplex scope paragraph. The bare ''W''
+    column heading on the same page is a table header, not a material designation'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0005
+  name: copper
+  status: confirmed
+  acceptable_forms:
+  - copper
+  - Copper
+  evidence:
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper. In the solution
+      treated and doubled aged condition
+    approx_offset: 78382
+  - quote: Steels, are enhanced by a further addition of Chromium (to 25%), and also Tungsten and Copper.
+    approx_offset: 30194
+  notes: 'TRAP-ADJACENT: ''Cu'' is also a bare CHEMICAL COMPOSITION table column on 22 datasheet pages, which is
+    what the old pipeline read as a material. This entry rests on the PROSE occurrences instead'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0038
+  name: AISI 4340
+  status: confirmed
+  acceptable_forms:
+  - AISI 4340
+  - '4340'
+  - LOW ALLOY 4340
+  evidence:
+  - quote: 'LOW ALLOY 4340: ASTM A29'
+    approx_offset: 32473
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0036
+  name: API 5CT 13Cr tube
+  status: confirmed
+  acceptable_forms:
+  - API 5CT 13Cr
+  - API 5CT 13CR
+  evidence:
+  - quote: API 5CT 13Cr
+    approx_offset: 37580
+  notes: a stocked tube grade; API 5CT is used here as the grade designation, not as a certificate
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0035
+  name: 9Cr / 1Mo
+  status: confirmed
+  acceptable_forms:
+  - 9 CR/1 MO
+  - 9Cr
+  - UNS S50400
+  evidence:
+  - quote: 'UNS S50400: ASTM A182'
+    approx_offset: 38409
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0057
+  name: Alloy 725
+  status: confirmed
+  acceptable_forms:
+  - Alloy 725
+  - ALLOY 725
+  - UNS N07725
+  - A725
+  evidence:
+  - quote: API 6A CRA (UNS N07725)
+    approx_offset: 39381
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0010
+  name: nickel and super alloys
+  status: candidate
+  acceptable_forms:
+  - nickel and superalloys
+  - Nickel & SuperAlloys
+  - NICKEL & SUPERALLOYS
+  - superalloys
+  - nickel
+  evidence:
+  - quote: Howco holds extensive inventories of low alloy steels, nickel and superalloys, stainless, duplex and
+      super duplex materials and is a global provider of these products to a range of industries
+    approx_offset: 46267
+  notes: 'markdown_v2 closes the space: legacy ''super alloys'' is now the single word ''superalloys'' everywhere
+    on site (materials-overview prose, the Nickel & SuperAlloys heading, and every per-alloy page''s ''NICKEL &
+    SUPERALLOYS'' breadcrumb-style line). Re-anchored on the materials-overview summary sentence.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-howcogroup-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0002
+  name: Alloy G3
+  status: confirmed
+  acceptable_forms:
+  - G3
+  evidence:
+  - quote: G3
+    approx_offset: 46803
+  notes: listed ONLY as a bare 'G3' line in the materials-overview nickel list; no datasheet page. Two characters,
+    so matched case-sensitively on word boundaries
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0015
+  name: 28Cr alloy
+  status: confirmed
+  acceptable_forms:
+  - 28CR
+  evidence:
+  - quote: 28CR
+    approx_offset: 46808
+  notes: bare token in the materials-overview nickel list; no datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0017
+  name: Grade 304 / 316L
+  status: confirmed
+  acceptable_forms:
+  - 304/316L
+  - 304 austenitic stainless
+  evidence:
+  - quote: 304/316L
+    approx_offset: 46855
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0019
+  name: AISI 4324
+  status: confirmed
+  acceptable_forms:
+  - '4324'
+  evidence:
+  - quote: '4324'
+    approx_offset: 47056
+  notes: listed ONLY on the materials-overview low-alloy list; no datasheet page of its own
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0020
+  name: AISI 8620
+  status: confirmed
+  acceptable_forms:
+  - '8620'
+  evidence:
+  - quote: '8620'
+    approx_offset: 47078
+  notes: listed ONLY on the materials-overview low-alloy list; no datasheet page of its own
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0021
+  name: OCTG casing grades L80 / T95
+  status: candidate
+  acceptable_forms:
+  - L80 T95
+  - L80/T95
+  - L80
+  evidence:
+  - quote: '- L80/T95'
+    approx_offset: 47113
+  notes: 'still a bare grade token, now under the ''Low Alloy Steels'' sub-heading of the materials-overview list
+    (slash, not space, between the two grades: ''L80/T95''). The ''L80'' short form matches on its own word boundary
+    regardless.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-howcogroup-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0022
+  name: OCTG casing grades C110 / P110
+  status: confirmed
+  acceptable_forms:
+  - C110 P110
+  - P110
+  - C110
+  evidence:
+  - quote: C110 P110
+    approx_offset: 47125
+  notes: bare OCTG grade token in the materials-overview list
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0023
+  name: OCTG casing grade Q125
+  status: confirmed
+  acceptable_forms:
+  - Q125
+  evidence:
+  - quote: Q125
+    approx_offset: 47137
+  notes: bare OCTG grade token in the materials-overview list
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0024
+  name: non-magnetic alloys
+  status: confirmed
+  acceptable_forms:
+  - NON-MAG
+  - 1515-HS MAX / SCF-260
+  - SCF-19
+  evidence:
+  - quote: NON-MAG
+    approx_offset: 47537
+  - quote: 1515-HS MAX / SCF-260
+    approx_offset: 47548
+  notes: a whole product family listed only here, at the very bottom of the materials-overview page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0054
+  name: Alloy 718
+  status: confirmed
+  acceptable_forms:
+  - Alloy 718
+  - ALLOY 718
+  - UNS N07718
+  evidence:
+  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
+    approx_offset: 49327
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0037
+  name: Grade F6NM
+  status: confirmed
+  acceptable_forms:
+  - F6NM
+  - GRADE F6NM
+  - UNS S41500
+  evidence:
+  - quote: 'UNS S41500: ASTM A182'
+    approx_offset: 54477
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0055
+  name: duplex stainless steel
+  status: confirmed
+  acceptable_forms:
+  - Duplex Stainless Steels
+  - duplex stainless steels
+  - DUPLEX STAINLESS
+  - Duplex
+  evidence:
+  - quote: The characteristic feature of duplex stainless steels is their dual phase microstructure, comprising
+      of approximately 50%
+    approx_offset: 56444
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 56355
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0056
+  name: Grade S31803 / F51 duplex
+  status: confirmed
+  acceptable_forms:
+  - S31803
+  - F51
+  - 22 Cr
+  evidence:
+  - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
+    approx_offset: 56355
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0028
+  name: Norsok M-501 coating systems
+  status: disputed
+  acceptable_forms:
+  - Norsok M-501 System 7 B & C, System 1 coatings
+  - Norsok M-501
+  evidence:
+  - quote: Norsok M-501 System 7 B & C, System 1 coatings
+    approx_offset: 65165
+  notes: 'a coating SPECIFICATION used as a material designation on the coating-facility process list; also seeded
+    under conformity_attestations | Norsok M-501 is a surface-preparation and protective-coating STANDARD, not a
+    substance: ''System 7 B & C, System 1 coatings'' names specification classes and never names what is deposited
+    (no aluminium/epoxy/zinc etc. appears). Already carried, correctly, as conformity_attestations-0018.'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'Norsok M-501 is a surface-preparation and protective-coating STANDARD, not a substance: ''System 7
+      B & C, System 1 coatings'' names specification classes and never names what is deposited (no aluminium/epoxy/zinc
+      etc. appears). Already carried, correctly, as conformity_attestations-0018.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0029
+  name: PTFE
+  status: confirmed
+  acceptable_forms:
+  - PTFE
+  evidence:
+  - quote: Phenolic Based Thermosetting Resin (PTFE) coatings
+    approx_offset: 65214
+  notes: deposited by a coating process, which the material_caps clause explicitly admits
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0030
+  name: phenolic thermosetting resin
+  status: confirmed
+  acceptable_forms:
+  - Phenolic Based Thermosetting Resin
+  evidence:
+  - quote: Phenolic Based Thermosetting Resin (PTFE) coatings
+    approx_offset: 65214
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0031
+  name: molybdenum disulphide
+  status: confirmed
+  acceptable_forms:
+  - Bonded Molybdenum Disulphide
+  - Molybdenum Disulphide
+  - Moly Disulphide
+  evidence:
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 65343
+  - quote: Phenolic Based Thermosetting Resin (Primer with Moly Disulphide) coatings
+    approx_offset: 65267
+  notes: the site spells it 'Disulphide' (British); 'disulfide' occurs zero times
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0032
+  name: Everslik 1201/1301
+  status: confirmed
+  acceptable_forms:
+  - Everslik 1201/1301
+  - Everslik
+  evidence:
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 65343
+  notes: a coating trade name - the material_caps clause admits trade names
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0033
+  name: polyurethane
+  status: confirmed
+  acceptable_forms:
+  - Polyurethane Coatings
+  - Polyurethane
+  evidence:
+  - quote: Polyurethane Coatings
+    approx_offset: 65402
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0034
+  name: aluminium oxide blast media
+  status: disputed
+  acceptable_forms:
+  - aluminium 60-80
+  - Shot blasting (aluminium 60-80)
+  evidence:
+  - quote: Shot blasting (aluminium 60-80)
+    approx_offset: 65459
+  notes: 'DISPUTED: ''aluminium 60-80'' is a grit size for blast media. It is a consumable the process is performed
+    WITH, not a substance the work is made from or performed in, so it arguably falls outside the material_caps
+    clause. Kept on the record because a reader could reasonably call blast media a material | ''aluminium 60-80''
+    is a blast-media grit spec: an abrasive consumable that acts on the work, not a substance the work is made from
+    or performed in, and nothing in the text says ''oxide''. Mechanically it also cannot ever miss independently:
+    any returned ''aluminium'' (material_caps-0049) is contained in this form and credits it.'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: '''aluminium 60-80'' is a blast-media grit spec: an abrasive consumable that acts on the work, not a
+      substance the work is made from or performed in, and nothing in the text says ''oxide''. Mechanically it also
+      cannot ever miss independently: any returned ''aluminium'' (material_caps-0049) is contained in this form
+      and credits it.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0053
+  name: Alloy 28
+  status: confirmed
+  acceptable_forms:
+  - Alloy 28
+  - ALLOY 28
+  - UNS N08028
+  evidence:
+  - quote: UNS N08028
+    approx_offset: 67676
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0066
+  name: Alloy 625 Plus
+  status: confirmed
+  acceptable_forms:
+  - Alloy 625 Plus
+  - ALLOY 625 PLUS
+  - UNS N07716
+  - A625 Plus
+  evidence:
+  - quote: 'API 6A CRA (UNS N07716) : AMS 5854 : ASTM B805 : AP16A)'
+    approx_offset: 71053
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0003
+  name: Grade 17-4 PH
+  status: confirmed
+  acceptable_forms:
+  - 17-4 PH
+  - GRADE 17-4 PH
+  - UNS S17400
+  evidence:
+  - quote: 'UNS S17400 : ASTM A564 GRADE 630'
+    approx_offset: 78333
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0004
+  name: martensitic stainless steel
+  status: confirmed
+  acceptable_forms:
+  - martensitic stainless steel
+  - Martensitic Stainless Steel
+  evidence:
+  - quote: UNS S41000 is a Martensitic Stainless Steel often utilised in valve bodies, bonnets, end and outlet connections
+      and valve seat facings.
+    approx_offset: 95847
+  - quote: 17-4 PH is a precipitation hardening martensitic stainless steel, containing copper. In the solution
+      treated and doubled aged
+    approx_offset: 78382
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0025
+  name: AISI 4140
+  status: confirmed
+  acceptable_forms:
+  - AISI 4140
+  - '4140'
+  - LOW ALLOY 4140
+  evidence:
+  - quote: 'LOW ALLOY 4140: ASTM A29 (VO1.05)'
+    approx_offset: 80349
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0027
+  name: molybdenum
+  status: confirmed
+  acceptable_forms:
+  - molybdenum
+  - Molybdenum
+  evidence:
+  - quote: AISI 4140 low alloy steel containing Chromium and Molybdenum is the most widely used low alloy steel
+      for oil patch applications.
+    approx_offset: 80399
+  - quote: based on the AISI chemistry. The most common change is to increase the Molybdenum level at 0.35% max
+      to improve the hardenability.
+    approx_offset: 80803
+  notes: named in running prose as an alloying addition
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0068
+  name: Alloy 945
+  status: confirmed
+  acceptable_forms:
+  - Alloy 945
+  - ALLOY 945
+  - UNS N09945
+  evidence:
+  - quote: UNS N09945
+    approx_offset: 86576
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0050
+  name: AISI 4145
+  status: confirmed
+  acceptable_forms:
+  - AISI 4145
+  - '4145'
+  - LOW ALLOY 4145
+  evidence:
+  - quote: 'LOW ALLOY 4145: ASTM A29'
+    approx_offset: 91606
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0006
+  name: Ti6Al4V
+  status: confirmed
+  acceptable_forms:
+  - Ti6Al4V
+  evidence:
+  - quote: Material Ti6Al4V, 625, 316 and C103.
+    approx_offset: 95121
+  notes: printed powder for the SLM280; the only titanium alloy named in the file
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0007
+  name: C103 niobium alloy
+  status: confirmed
+  acceptable_forms:
+  - C103
+  evidence:
+  - quote: Material Ti6Al4V, 625, 316 and C103.
+    approx_offset: 95121
+  notes: printed powder for the SLM280 - a refractory niobium alloy used in space hardware
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0008
+  name: 316 (printed)
+  status: confirmed
+  acceptable_forms:
+  - '316'
+  evidence:
+  - quote: Material Ti6Al4V, 625, 316 and C103.
+    approx_offset: 95121
+  notes: named as an SLM280 powder; distinct from the stocked '304/316L' bar entry
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0065
+  name: Grade 410
+  status: confirmed
+  acceptable_forms:
+  - Grade 410
+  - GRADE 410
+  - UNS S41000
+  evidence:
+  - quote: 'UNS S41000 : 13 CR. STAINLESS : ASTM A182, A276, A479'
+    approx_offset: 95777
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0058
+  name: carbon steel
+  status: confirmed
+  acceptable_forms:
+  - carbon steels
+  - Carbon, Stainless and Duplex materials
+  evidence:
+  - quote: a wide range of qualified procedures in place for cladding low alloy/carbon steels with stainless steel,
+      Inconel®, Monel®, Stellite™ and Hastelloy®. We
+    approx_offset: 102396
+  actor: unknown
+  notes: named as the base metal a supply-chain partner clads; also 'Carbon, Stainless and Duplex materials' in
+    the welder-qualification sentence (2669)
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: the bare form 'carbon' credits any returned phrase containing it, including 'Energy & Carbon Report'
+      (in the footer of every page), 'carbon neutral' and 'carbon footprint'. 'carbon steels' is the span the text
+      actually uses and still credits a returned 'carbon steel' by containment.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0059
+  name: Inconel
+  status: confirmed
+  acceptable_forms:
+  - Inconel®
+  - Inconel
+  evidence:
+  - quote: cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®. We
+      can even offer specialised procedures for overlaying
+    approx_offset: 102446
+  actor: supplier
+  notes: 'TRAP: named ONCE, in a list of what HOWCO''S PARTNERS clad with - ''Howco''s partners have a wide range
+    of qualified procedures in place for cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®,
+    Stellite™ and Hastelloy®''. Not Howco stock, not Howco''s own process. Recall-first keeps it; the ® / ™ marks
+    are part of the printed form'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0060
+  name: Monel
+  status: confirmed
+  acceptable_forms:
+  - Monel®
+  - Monel
+  evidence:
+  - quote: cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®. We
+      can even offer specialised procedures for overlaying
+    approx_offset: 102446
+  actor: supplier
+  notes: 'TRAP: named ONCE, in a list of what HOWCO''S PARTNERS clad with - ''Howco''s partners have a wide range
+    of qualified procedures in place for cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®,
+    Stellite™ and Hastelloy®''. Not Howco stock, not Howco''s own process. Recall-first keeps it; the ® / ™ marks
+    are part of the printed form'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0061
+  name: Stellite
+  status: confirmed
+  acceptable_forms:
+  - Stellite™
+  - Stellite
+  evidence:
+  - quote: cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®. We
+      can even offer specialised procedures for overlaying
+    approx_offset: 102446
+  actor: supplier
+  notes: 'TRAP: named ONCE, in a list of what HOWCO''S PARTNERS clad with - ''Howco''s partners have a wide range
+    of qualified procedures in place for cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®,
+    Stellite™ and Hastelloy®''. Not Howco stock, not Howco''s own process. Recall-first keeps it; the ® / ™ marks
+    are part of the printed form'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0062
+  name: Hastelloy
+  status: confirmed
+  acceptable_forms:
+  - Hastelloy®
+  - Hastelloy
+  evidence:
+  - quote: cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®, Stellite™ and Hastelloy®. We
+      can even offer specialised procedures for overlaying
+    approx_offset: 102446
+  actor: supplier
+  notes: 'TRAP: named ONCE, in a list of what HOWCO''S PARTNERS clad with - ''Howco''s partners have a wide range
+    of qualified procedures in place for cladding low alloy/carbon steels with stainless steel, Inconel®, Monel®,
+    Stellite™ and Hastelloy®''. Not Howco stock, not Howco''s own process. Recall-first keeps it; the ® / ™ marks
+    are part of the printed form'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0011
+  name: Alloy 825
+  status: confirmed
+  acceptable_forms:
+  - Alloy 825
+  - ALLOY 825
+  - UNS N08825
+  evidence:
+  - quote: 'UNS N08825 : ASTM B425 & B564 (VO2.04)'
+    approx_offset: 103325
+  notes: stocked grade with its own datasheet page; also listed on /materials/ and /materials/materials-overview/
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0016
+  name: stainless steel
+  status: confirmed
+  acceptable_forms:
+  - stainless steel
+  - Stainless
+  - STAINLESS, DUPLEX, SUPER DUPLEX
+  evidence:
+  - quote: 'Our Nickel, Stainless Steel and Low alloys are used in:'
+    approx_offset: 105000
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0039
+  name: sulfuric, hydrochloric and nitric acids
+  status: confirmed
+  acceptable_forms:
+  - Sulfuric, Hydrochloric, Nitric Acids
+  - Sulfuric
+  - Hydrochloric
+  - Nitric
+  evidence:
+  - quote: Acid Production and Use, including Sulfuric, Hydrochloric, Nitric Acids
+    approx_offset: 105259
+  actor: client
+  notes: same chemical-processing application list as the Polyethylene/Rubber/Plastics line
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0040
+  name: polyethylene
+  status: confirmed
+  acceptable_forms:
+  - Polyethylene
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 105395
+  actor: client
+  notes: 'TRAP: this whole line is an APPLICATION list - what the chemical-processing CUSTOMER manufactures using
+    Howco''s nickel/stainless/low alloys. Howco neither stocks nor works these. Recall-first keeps the entry with
+    actor=client; treating it as a Howco material capability is the defect'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0041
+  name: rubber
+  status: confirmed
+  acceptable_forms:
+  - Rubber
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 105395
+  actor: client
+  notes: 'TRAP: this whole line is an APPLICATION list - what the chemical-processing CUSTOMER manufactures using
+    Howco''s nickel/stainless/low alloys. Howco neither stocks nor works these. Recall-first keeps the entry with
+    actor=client; treating it as a Howco material capability is the defect'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0042
+  name: plastics
+  status: confirmed
+  acceptable_forms:
+  - Plastics
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 105395
+  actor: client
+  notes: 'TRAP: this whole line is an APPLICATION list - what the chemical-processing CUSTOMER manufactures using
+    Howco''s nickel/stainless/low alloys. Howco neither stocks nor works these. Recall-first keeps the entry with
+    actor=client; treating it as a Howco material capability is the defect'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0043
+  name: glass
+  status: confirmed
+  acceptable_forms:
+  - Glass
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 105395
+  actor: client
+  notes: 'TRAP: this whole line is an APPLICATION list - what the chemical-processing CUSTOMER manufactures using
+    Howco''s nickel/stainless/low alloys. Howco neither stocks nor works these. Recall-first keeps the entry with
+    actor=client; treating it as a Howco material capability is the defect'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0044
+  name: ethylene
+  status: confirmed
+  acceptable_forms:
+  - Ethylene
+  evidence:
+  - quote: Manufacture of Ethylene, Polyethylene, Rubber, Plastics and Glass
+    approx_offset: 105395
+  actor: client
+  notes: 'TRAP: this whole line is an APPLICATION list - what the chemical-processing CUSTOMER manufactures using
+    Howco''s nickel/stainless/low alloys. Howco neither stocks nor works these. Recall-first keeps the entry with
+    actor=client; treating it as a Howco material capability is the defect'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0045
+  name: nickel steel alloy
+  status: confirmed
+  acceptable_forms:
+  - Nickel steel alloy
+  evidence:
+  - quote: maintain its integrity at extremely low temperatures. Nickel steel alloy is the most effective choice
+      because it remains deductive – and won’t crack or shatter
+    approx_offset: 105910
+  notes: named on the LNG page as the material of cryogenic storage containers
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0071
+  name: Grade F22
+  status: confirmed
+  acceptable_forms:
+  - F22
+  - UNS K21590
+  evidence:
+  - quote: 'UNS K21590: ASTM A182'
+    approx_offset: 108549
+  notes: stocked low-alloy grade with its own datasheet page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0014
+  name: Grade 13-5-2 / Super 13Cr
+  status: confirmed
+  acceptable_forms:
+  - 13-5-2
+  - Super 13 Cr
+  - Super 13Cr
+  - UNS S41425
+  - S41426
+  - S41427
+  evidence:
+  - quote: 'UNS S41425 : S41426 : S41427'
+    approx_offset: 253026
+  notes: stocked stainless/duplex grade
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: 'the grade page covers three UNS designations - ''UNS S41425 : S41426 : S41427'' - but only the first
+      was listed, so a return of S41426 or S41427 could not credit. Adding the two spellings the text actually prints.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0067
+  name: Alloy 945X
+  status: confirmed
+  acceptable_forms:
+  - Alloy 945X
+  - ALLOY 945X
+  - Alloy 945x
+  - N09946
+  evidence:
+  - quote: ALLOY 945X
+    approx_offset: 256578
+  - quote: UNS N09945, N09946
+    approx_offset: 256663
+  notes: stocked grade with its own datasheet page; note its sibling 'Alloy 945' is a strict substring of every
+    form here
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0072
+  name: metal powder
+  status: confirmed
+  acceptable_forms:
+  - fine metal powders
+  - metal powders
+  evidence:
+  - quote: direct metal laser melting, or DMLM; a process which uses high-precision lasers to apply fine metal powders
+      in a meticulous, accurate, and virtually error-free
+    approx_offset: 362846
+  - quote: dedication to innovation and excellence. With a wide array of metal alloys, including Ti-based and Ni-based
+      alloys, our solution offers unparalleled versatility
+    approx_offset: 362465
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: '''the powder'' is a bare determiner phrase that names nothing, and ''metal alloys, including Ti-based
+      and Ni-based alloys'' is a DIFFERENT entity (alloy families, not powder) - it is filed here as a miss instead.
+      Evidence quote 1 still covers ''fine metal powders''.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0073
+  name: Ti-based and Ni-based alloys
+  status: candidate
+  acceptable_forms:
+  - Ti-based and Ni-based alloys
+  - Ti-based
+  - Ni-based alloys
+  evidence:
+  - quote: to innovation and excellence. With a wide array of metal alloys, including Ti-based and Ni-based alloys,
+      our solution offers unparalleled versatility and precision to our clients
+    approx_offset: 362476
+  notes: named alloy families for the AM line. This phrase was being carried as an acceptable form on material_caps-0072
+    (metal powder), where it does not belong; it is its own material entity.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0001
+  name: superalloys
+  status: confirmed
+  acceptable_forms:
+  - superalloys
+  - superalloy
+  - high performance alloys
+  - high-performance alloys
+  evidence:
+  - quote: With a primary focus on superalloys, Howco AM leaves no stone unturned in delivering comprehensive
+    approx_offset: 363328
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-material_caps-0074
+  name: Niobium (Columbium) and Molybdenum
+  status: candidate
+  acceptable_forms:
+  - Niobium
+  evidence:
+  - quote: Alloy 625 is a Nickel – Chromium alloy with additions of Niobium (Columbium) and Molybdenum.
+    approx_offset: 18248
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0075
+  name: stainless steels, titanium, nickel alloys and super alloys
+  status: candidate
+  acceptable_forms:
+  - titanium
+  - nickel alloys
+  - super alloys
+  evidence:
+  - quote: Howco is a global processor and distributor of high-performance stainless steels, titanium, nickel alloys
+      and super alloys and provides exceptional service and effective supply chain partnerships.
+    approx_offset: 24332
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0076
+  name: molybdenum, niobium, titanium and aluminium
+  status: candidate
+  acceptable_forms:
+  - niobium
+  evidence:
+  - quote: Alloy 718 Aero is a precipitation hardenable nickel-based superalloy with additions of molybdenum, niobium,
+      titanium and aluminium initially developed for use in rotating parts
+    approx_offset: 27862
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0077
+  name: G3
+  status: candidate
+  acceptable_forms:
+  - G3
+  evidence:
+  - quote: G3
+    approx_offset: 46803
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0078
+  name: 28CR
+  status: candidate
+  acceptable_forms:
+  - 28CR
+  evidence:
+  - quote: 28CR
+    approx_offset: 46808
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0079
+  name: 304/316L
+  status: candidate
+  acceptable_forms:
+  - 304/316L
+  - 316L
+  evidence:
+  - quote: 304/316L
+    approx_offset: 46855
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0080
+  name: 4130M
+  status: candidate
+  acceptable_forms:
+  - 4130M
+  evidence:
+  - quote: 4130/4130M
+    approx_offset: 47017
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0081
+  name: 4140M
+  status: candidate
+  acceptable_forms:
+  - 4140M
+  evidence:
+  - quote: 4140/4140M
+    approx_offset: 47030
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0082
+  name: 4145M
+  status: candidate
+  acceptable_forms:
+  - 4145M
+  evidence:
+  - quote: 4145/4145M
+    approx_offset: 47043
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0083
+  name: '4324'
+  status: candidate
+  acceptable_forms:
+  - '4324'
+  evidence:
+  - quote: '4324'
+    approx_offset: 47056
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0084
+  name: '8620'
+  status: candidate
+  acceptable_forms:
+  - '8620'
+  evidence:
+  - quote: '8620'
+    approx_offset: 47078
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0085
+  name: F22M
+  status: candidate
+  acceptable_forms:
+  - F22M
+  evidence:
+  - quote: F22/F22M
+    approx_offset: 47098
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0086
+  name: L80
+  status: candidate
+  acceptable_forms:
+  - L80
+  evidence:
+  - quote: L80/T95
+    approx_offset: 47115
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0087
+  name: T95
+  status: candidate
+  acceptable_forms:
+  - T95
+  evidence:
+  - quote: L80/T95
+    approx_offset: 47115
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0088
+  name: C110
+  status: candidate
+  acceptable_forms:
+  - C110
+  evidence:
+  - quote: C110 P110
+    approx_offset: 47125
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0089
+  name: P110
+  status: candidate
+  acceptable_forms:
+  - P110
+  evidence:
+  - quote: C110 P110
+    approx_offset: 47125
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0090
+  name: Q125
+  status: candidate
+  acceptable_forms:
+  - Q125
+  evidence:
+  - quote: Q125
+    approx_offset: 47137
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0091
+  name: 1515-HS MAX / SCF-260
+  status: candidate
+  acceptable_forms:
+  - 1515-HS MAX
+  - SCF-260
+  evidence:
+  - quote: 1515-HS MAX / SCF-260
+    approx_offset: 47548
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0092
+  name: SCF-19
+  status: candidate
+  acceptable_forms:
+  - SCF-19
+  evidence:
+  - quote: SCF-19
+    approx_offset: 47572
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0093
+  name: Alloy 75
+  status: candidate
+  acceptable_forms:
+  - Alloy 75
+  evidence:
+  - quote: Alloy 75
+    approx_offset: 47668
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0094
+  name: Alloy C263
+  status: candidate
+  acceptable_forms:
+  - Alloy C263
+  evidence:
+  - quote: Alloy C263
+    approx_offset: 47679
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0095
+  name: Alloy 80A
+  status: candidate
+  acceptable_forms:
+  - Alloy 80A
+  evidence:
+  - quote: Alloy 80A
+    approx_offset: 47692
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0096
+  name: Alloy 230
+  status: candidate
+  acceptable_forms:
+  - Alloy 230
+  evidence:
+  - quote: Alloy 230
+    approx_offset: 47704
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0097
+  name: 13-8
+  status: candidate
+  acceptable_forms:
+  - 13-8
+  evidence:
+  - quote: 13-8
+    approx_offset: 47716
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0098
+  name: 15-5
+  status: candidate
+  acceptable_forms:
+  - 15-5
+  evidence:
+  - quote: 15-5
+    approx_offset: 47723
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0099
+  name: A286
+  status: candidate
+  acceptable_forms:
+  - A286
+  evidence:
+  - quote: A286
+    approx_offset: 47737
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0100
+  name: Titanium Ti-6Al-4V
+  status: candidate
+  acceptable_forms:
+  - Titanium Ti-6Al-4V
+  - Ti-6Al-4V
+  evidence:
+  - quote: Titanium Ti-6Al-4V
+    approx_offset: 47744
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0101
+  name: Aircraft Steel S80
+  status: candidate
+  acceptable_forms:
+  - S80
+  evidence:
+  - quote: S80
+    approx_offset: 47783
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0102
+  name: Aircraft Steel S98
+  status: candidate
+  acceptable_forms:
+  - S98
+  evidence:
+  - quote: S98
+    approx_offset: 47788
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0103
+  name: Aircraft Steel S99
+  status: candidate
+  acceptable_forms:
+  - S99
+  evidence:
+  - quote: S99
+    approx_offset: 47793
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0104
+  name: Aircraft Steel S130
+  status: candidate
+  acceptable_forms:
+  - S130
+  evidence:
+  - quote: S130
+    approx_offset: 47798
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0105
+  name: Aircraft Steel S151
+  status: candidate
+  acceptable_forms:
+  - S151
+  evidence:
+  - quote: S151
+    approx_offset: 47804
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0106
+  name: Aircraft Steel S154
+  status: candidate
+  acceptable_forms:
+  - S154
+  evidence:
+  - quote: S154
+    approx_offset: 47810
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0107
+  name: Phenolic Based Thermosetting Resin (PTFE) coatings
+  status: candidate
+  acceptable_forms:
+  - PTFE
+  evidence:
+  - quote: Phenolic Based Thermosetting Resin (PTFE) coatings
+    approx_offset: 65214
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0108
+  name: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+  status: candidate
+  acceptable_forms:
+  - Molybdenum Disulphide
+  evidence:
+  - quote: Everslik 1201/1301 Bonded Molybdenum Disulphide Coatings
+    approx_offset: 65343
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0109
+  name: Polyurethane Coatings
+  status: candidate
+  acceptable_forms:
+  - Polyurethane
+  evidence:
+  - quote: Polyurethane Coatings
+    approx_offset: 65402
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0110
+  name: quenched and tempered steel
+  status: candidate
+  acceptable_forms:
+  - quenched and tempered steel
+  evidence:
+  - quote: Materials and weight saving can be gained when a clad, high strength, quenched and tempered steel is
+      used in corrosive environments.
+    approx_offset: 102116
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-material_caps-0111
+  name: 25% Cr duplex
+  status: candidate
+  acceptable_forms:
+  - Cr duplex
+  evidence:
+  - quote: We can even offer specialised procedures for overlaying and fabrication of more exotic materials, such
+      as 25% Cr duplex.
+    approx_offset: 102545
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Teflon
+  reason: ZERO occurrences. The text names the generic 'PTFE' (1436); a model that renders it as the DuPont trade
+    name is fabricating
+- form: LDPE
+  reason: ZERO occurrences; word-association from 'Polyethylene' on the chemical-processing application list (2062)
+- form: Acrylic
+  reason: ZERO occurrences
+- form: Polypropylene
+  reason: ZERO occurrences; word-association from 'Polyethylene ... Plastics' (2062)
+- form: Titanium Dioxide
+  reason: ZERO occurrences; word-association from 'Ti6Al4V' and the Ti column headings
+- form: NbCbTa
+  reason: a CHEMICAL COMPOSITION column heading (10 occurrences) collapsing Niobium/Columbium/Tantalum into one
+    cell label; it is a table header, not a material designation
+- form: Fe
+  reason: a bare CHEMICAL COMPOSITION column heading on 68 datasheet lines with no prose sentence naming iron as
+    such; 'Iron' spelled out occurs only twice (2507, 4211)
+- form: Lead
+  reason: zero occurrences as a metal; 'lead' appears only as a verb/noun in 'Lead time is radically reduced' (1877),
+    'lead' in 'led to increased production rates' and 'leading distributors'
+- form: Brass
+  reason: zero occurrences
+- form: Bronze
+  reason: zero occurrences

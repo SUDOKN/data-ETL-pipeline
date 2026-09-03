@@ -33,10 +33,25 @@ matcher return confident WRONG answers, silently, with no error to notice.
      that made the pipeline's brute search score `Lead` at 52 hits and 0 real
      ones — reproduced, independently, inside an evaluation harness.
 
+  5. CONTAINMENT IN THE WRONG DIRECTION. Asking "do these two forms overlap?"
+     accepts a RETURNED fragment of an EXPECTED designation as a find: the bare
+     word "titanium" credits the eval entry "titanium fusion cages", "metal"
+     credits "sheet metal", "Cutting" credits "laser cutting". Recall credit is
+     directional and must be asked directionally -- did the model return AT
+     LEAST the designation? -- so use `form_covers`, never `forms_overlap`.
+     Measured 2026-08-28 over 410 blind spot-checks of AWARDED credits in the
+     search harness: 33 false, 8.0% overall and 19.1% for products, which is
+     1.7 points of overall confirmed recall (95.4% -> 93.7%). Long forms also
+     matched with no LEFT word boundary, so "Stem" was credited by "MICROWAVE
+     SYSTEM" -- the trap-4 guard existed but stopped at 3 characters. The RIGHT
+     edge stays open on purpose, so "shear" still credits "Shearing".
+
 Traps 1-3 bias toward FALSE ALARMS (correct output judged fabricated or
-missing); trap 4 biases toward FALSE CREDIT (junk judged correct). A stage
+missing); traps 4 and 5 bias toward FALSE CREDIT (junk judged correct). A stage
 instrument that hits either direction reports numbers that look plausible and
-are wrong, which is worse than reporting nothing.
+are wrong, which is worse than reporting nothing. Trap 5 is the more dangerous
+of the two: false credit only ever FLATTERS the stage, so nothing downstream
+looks broken enough to investigate.
 
 Found and fixed in the search-stage harness on 2026-08-26, where trap 1 had
 already produced a false RED verdict on correct output before it was caught.
@@ -47,12 +62,13 @@ pipeline packages:
 
     import sys; from pathlib import Path
     sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-    from _shared.text_matching import normalize_spaces, occurs_in, forms_overlap
+    from _shared.text_matching import normalize_spaces, occurs_in, form_covers
 """
 
 from __future__ import annotations
 
 import re
+from functools import lru_cache
 from typing import Optional
 
 # Every Unicode space that must read as an ordinary space. Each maps ONE
@@ -131,21 +147,73 @@ def occurs_in(form: str, text: str, *, case_sensitive: bool = True) -> bool:
     return bool(pattern.search(normalize_spaces(text)))
 
 
-def forms_overlap(one: str, other: str) -> bool:
-    """Do two surface forms refer to the same thing by containment?
+@lru_cache(maxsize=100_000)
+def covering_pattern(form: str) -> Optional[re.Pattern[str]]:
+    """The ONE pattern `form_covers` matches with, exposed so callers that
+    precompile per acceptable form (the diff-set exporter) cannot drift from it.
 
-    Whitespace is collapsed on both sides first. If EITHER side is short, the
-    short one must appear in the other on WORD BOUNDARIES, case-sensitively —
-    otherwise "TIG" would match "tight" and "ABS" would match "absolute".
+    Short forms keep both boundaries and case sensitivity (trap 4); longer forms
+    are anchored on the left only (see `_left_anchored_pattern`).
+
+    Memoized: recall scoring calls this once per (acceptable form, returned
+    form) pair — millions of times over a 20-subject run — and `re`'s own cache
+    holds 512 patterns, far short of this corpus's distinct forms.
     """
-    a, b = collapse_whitespace(one), collapse_whitespace(other)
+    if is_short_form(collapse_whitespace(form)):
+        return flexible_pattern(form, case_sensitive=True)
+    return _left_anchored_pattern(form)
+
+
+def _left_anchored_pattern(form: str) -> Optional[re.Pattern[str]]:
+    """`flexible_pattern` with the RIGHT boundary dropped, case-insensitive.
+
+    The open right edge is a DELIBERATE leniency, pinned by tests: a returned
+    form may inflect or pluralize the expected designation ("shear" ->
+    "Shearing", "press brake" -> "CNC 7 Axis Press Brakes"). The left edge is
+    NOT negotiable — without it "Stem" matches inside "MICROWAVE SYSTEM".
+    """
+    stripped = normalize_spaces(form).strip()
+    if not stripped:
+        return None
+    body = r"\s+".join(re.escape(part) for part in stripped.split())
+    left = r"(?<!\w)" if re.match(r"\w", stripped[0]) else ""
+    return re.compile(left + body, re.IGNORECASE)
+
+
+def form_covers(expected: str, returned: str) -> bool:
+    """Did ``returned`` deliver AT LEAST the designation ``expected`` (trap 5)?
+
+    DIRECTIONAL on purpose, and that is the whole point: the expected
+    designation must occur inside what was RETURNED, never the reverse. "304
+    stainless steel bar" covers "stainless steel"; "steel" does NOT cover
+    "steel front panel for speaker".
+
+    Short forms keep the trap-4 rule (both boundaries, case-sensitive: TIG must
+    not match "tight"). Longer forms are anchored on the LEFT only, so
+    inflections still credit — see `_left_anchored_pattern` for why that
+    asymmetry is deliberate rather than an oversight.
+
+    NOT sufficient on its own. Two designations can nest and still be different
+    things ("steel" inside "stainless steel", "Miller syncrowave 350" inside
+    "Miller Syncrowave 350 LX", which the site lists as a separate machine).
+    That residue is a judgment about the world, not about strings, and belongs
+    to the reader; this function only refuses the mechanical mistakes.
+    """
+    a, b = collapse_whitespace(expected), collapse_whitespace(returned)
     if not a or not b:
         return False
     if a.casefold() == b.casefold():
         return True
-    if is_short_form(a) or is_short_form(b):
-        short, long_form = (a, b) if is_short_form(a) else (b, a)
-        pattern = flexible_pattern(short, case_sensitive=True)
-        return bool(pattern and pattern.search(long_form))
-    af, bf = a.casefold(), b.casefold()
-    return af in bf or bf in af
+    pattern = covering_pattern(a)
+    return bool(pattern and pattern.search(normalize_spaces(b)))
+
+
+def forms_overlap(one: str, other: str) -> bool:
+    """Symmetric: does EITHER form cover the other?
+
+    NEVER use this to award recall credit — that is trap 5, and `form_covers`
+    is the primitive for it. Kept for the genuinely symmetric questions (are
+    these two forms plausibly the same designation, in either direction), and
+    now word-boundary-safe in both directions.
+    """
+    return form_covers(one, other) or form_covers(other, one)

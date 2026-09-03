@@ -75,7 +75,12 @@ def build_work_orders(
 
     items: list[tuple[str, dict[str, Any]]] = []
 
-    for mention_id, mention in run.distinct_snippets().items():
+    # One item per LOCATION CLAIM, not per mention_id. The model answers once
+    # per (mention, window), and a mention_id recurring across pages draws a
+    # different, separately-checkable description each time; keying by
+    # mention_id alone dropped 22.5% of them (measured on 20260829T022413).
+    for mention, covered in run.location_claims():
+        mention_id = mention.mention_id
         annotations = []
         if mention_id in repeated:
             annotations.append("repeated_line")
@@ -83,9 +88,14 @@ def build_work_orders(
             annotations.append("restatement")
         if not mention.described:
             annotations.append("not_described")
+        pages = sorted({m.page for m in covered if m.page})
+        if len(pages) > 1:
+            # The claim is expected to cover them all; S3 is judged against the
+            # whole set, never against one of them.
+            annotations.append("spans_multiple_pages")
         key = ledger.content_key(
             item=ledger.ITEM_SNIPPET,
-            identity=mention_id,
+            identity=f"{mention_id}:{mention.chunk_bounds}:{mention.window}",
             judged_content=mention.snippet + "\x1e" + mention.location,
             pv=pv,
             taxonomy_version=taxonomy_version,
@@ -96,11 +106,18 @@ def build_work_orders(
                 {
                     "item": ledger.ITEM_SNIPPET,
                     "mention_id": mention_id,
+                    "chunk_bounds": mention.chunk_bounds,
+                    "window": mention.window,
                     "group_id": mention.group_id,
                     "group_key": mention.group_key,
                     "form": mention.form,
-                    "page": mention.page,
-                    "occurrences": counts.get(mention_id, 0),
+                    "forms_covered": sorted({m.form for m in covered}),
+                    "pages": pages,
+                    "occurrences": len(covered),
+                    "occurrences_all_windows": counts.get(mention_id, 0),
+                    "occurrence_doc_spans": [
+                        m.doc_span for m in covered if m.doc_span is not None
+                    ],
                     "snippet": mention.snippet,
                     "location": mention.location,
                     "location_source": mention.location_source,
@@ -111,6 +128,24 @@ def build_work_orders(
         )
 
     for group in run.groups:
+        by_snippet: dict[str, loading.Mention] = {}
+        for m in group.mentions:
+            by_snippet.setdefault(m.mention_id, m)
+        evidence_all = [
+            {
+                "mention_id": m.mention_id,
+                "form": m.form,
+                "snippet": m.snippet,
+                "location": m.location,
+            }
+            for m in by_snippet.values()
+        ]
+        # A 193-entry group would otherwise dwarf the rest of a slice. The cap
+        # is on what is INLINED, not on what is judged: the count below says
+        # how many were withheld so a judge knows to open the field's dump
+        # rather than assuming they have seen everything.
+        group_evidence = evidence_all[:40]
+        truncated = max(0, len(evidence_all) - len(group_evidence))
         key = ledger.content_key(
             item=ledger.ITEM_GROUP,
             identity=group.group_id,
@@ -133,6 +168,15 @@ def build_work_orders(
                     "mention_count": group.mention_count,
                     "distinct_snippets": group.distinct_snippets,
                     "chunk_bounds": group.chunk_bounds,
+                    # The group's own evidence travels WITH it. G1 (are these
+                    # forms the same thing), G3 (does the key name what the
+                    # group is about) and G4 (is the status right for this
+                    # evidence) are all answered by reading the passages; a
+                    # group item carrying only counts makes its G-codes
+                    # guesses, which is what RUNBOOK's "a group's snippets are
+                    # read together" rule is protecting against.
+                    "evidence": group_evidence,
+                    "evidence_truncated": truncated,
                     "dimensions": ["G1", "G2", "G3", "G4"],
                 },
             )
@@ -207,18 +251,40 @@ def prepare(run_id: str, dumps_root: Optional[Path] = None) -> dict[str, Any]:
                     "findings": [f.as_dict() for f in findings],
                 }
                 report.metrics.update(golden_metrics)
-                if findings:
+                gating = [f for f in findings if f.gating]
+                differences = [f for f in findings if not f.gating]
+                if gating:
                     report.findings.append(
                         mechanical.Finding(
                             "golden.occurrences",
                             mechanical.GATE_TRIPWIRE,
                             False,
                             "collected occurrences contradict the golden corpus",
-                            len(findings),
+                            len(gating),
                             [f"{f.form}: expected {f.expected}, got {f.actual}"
-                             for f in findings],
+                             for f in gating],
                         )
                     )
+                if differences:
+                    # Reported, never gating. Each of these has an innocent
+                    # reading (the trimmed copy) and a guilty one (under-
+                    # collection, or a wrong golden count), and only a reader
+                    # separates them. The standing rule is that a run-vs-corpus
+                    # difference is EXAMINED — which begins with being visible.
+                    report.findings.append(
+                        mechanical.Finding(
+                            "golden.occurrence_differences",
+                            mechanical.GATE_TREND,
+                            False,
+                            "run and corpus disagree on occurrence counts; each "
+                            "row needs a reader's verdict, on the label as much "
+                            "as on the stage",
+                            len(differences),
+                            [f"{f.form}: expected {f.expected}, got {f.actual}"
+                             for f in differences],
+                        )
+                    )
+                if findings:
                     record["status"] = report.status
                     record["reds"] = report.reds
 

@@ -1,0 +1,54 @@
+subject: alecmfg.com
+role: full_unit
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/alecmfg.com.txt
+  sha256: 1b7016ecac0a734538029b6e2fed1c6ba60473d7dd9c9dc0ef73a5e670c900ae
+scrape_hazards:
+- hazard: the homepage block contains the site's Cookie Policy, not homepage content; its services table lists WordPress/Google
+    Analytics/Elementor etc. (equipment-junk pressure)
+  quote: This Cookie Policy was last updated on July 31, 2025
+- hazard: 37 of 71 pages are one-line duplicate stubs, including /about-us/capabilities/ and /industries/ - the
+    two pages whose names promise the densest in-field content
+  quote: '[duplicate — content identical to a previously scraped page]'
+- hazard: 'case studies name third-party clients that read like the subject (Robovision DK, a French UAV maker,
+    a German EV client, an Ohio automation integrator, a Swedish truck startup); recall-first keeps their parts
+    as entries with actor: client'
+  quote: Danish surgical robotics developer Robovision DK
+- hazard: long generic 'what is CNC machining' explainer prose; its material blurbs mint word-association industries/products
+    (kitchen equipment, plumbing fixtures, gears and axles)
+  quote: CNC machining is a manufacturing process known for its precision and versatility
+- hazard: 'client-requirement and validation tables are flattened: header cells, spec cells and result cells arrive
+    as separate lines far apart (DK sensor ring case is the worst)'
+  quote: Hole Pattern Accuracy
+- hazard: emoji country flags in headings and fullwidth CJK punctuation in body text
+  quote: Time：9:00 AM-9:00 PM
+- hazard: 'copy-paste cross-contamination: the oil & gas welding page opens with the copper heat sink case''s intro
+    and repeats ''three aluminum alloy components'' while its own product table says welded steel frames'
+  quote: copper heat sink machining for industrial power electronics.In Q4 2024
+- hazard: one page is scraped empty (/alec-model-info-deck/)
+  quote: https://alecmfg.com/alec-model-info-deck/
+- hazard: 'company alias soup: Shenzhen Alec Model Co., Ltd. / Alec Model / Alec Manufacturing / ALEC / alecmfg
+    / alecmodel.com email domain'
+  quote: Shenzhen Alec Model Co., Ltd.
+- hazard: 'testimonial name glitches: template names left above quotes (''Mads'' above Jean L.''s quote, ''George''
+    above James Wong''s) - do not treat as personnel or clients'
+  quote: — Jean L., UAV Development Engineer
+- hazard: typo in the repeated CTA footer
+  quote: Partner with a trusted CNC machining specialist for your next poroject
+sampling_notes: read exhaustively - 141KB, 71 pages, 2,857 lines; unique content is the services pages, about/history,
+  10 client case studies, and company-news posts; the rest is 37 duplicate stubs, date archives, legal boilerplate
+  and repeated post-footer teasers (each case study title recurs 10+ times in More Posts blocks)
+notes: 'All six fields are non-empty. products.yaml doubles as the contract_products expectation (shared search
+  output): the subject is a contract manufacturer, so nearly every product entry carries actor: client. The subject''s
+  six service lines (CNC machining, 3D printing, injection molding, urethane casting, sheet metal fabrication, die
+  casting) are process_caps entries, NOT products.'
+provenance:
+- action: added
+  by: seed-agent-alecmfg
+  date: '2026-08-26'
+  source: corpus-seed
+- action: ported
+  by: port_corpus.py
+  date: '2026-08-29'
+  source: markdown-cutover
+eval_set_version: 1

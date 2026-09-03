@@ -1,0 +1,55 @@
+subject: acimachine.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
+  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+eval_set_version: 3
+expected_empty: true
+notes: 'No ''industries served'' page or sector claims anywhere; greps for industries/industry hit only third-party
+  machine marketing prose and the manufacturer name SHARP Industries. About/Support name only geography (Kentucky,
+  southern Indiana). CORRECTED 2026-08-26 (the seed''s original claim here read ''Aerospace/automotive/medical/defense/agriculture:
+  zero hits'' and was FALSE - see the verification note below for the real counts). What actually holds: no sector
+  is claimed BY ACI anywhere; every sector word in the file sits inside third-party OEM marketing prose on resold-machine
+  listings. Only ''defense'' and ''agricultur'' are genuinely absent. Any sizable industries yield on this subject
+  is still junk-minting signal, but a run returning ''aerospace'' is echoing real text, not hallucinating. VERIFY
+  2026-08-26 (second independent pass): expected_empty=true is NOT flipped, but two factual claims supporting it
+  - one here and one in subject.yaml''s targeted_greps - are WRONG and should be corrected before this file is trusted
+  as a junk-minting baseline. (a) ''Aerospace/automotive/medical/defense/agriculture: zero hits'' is false. Case-insensitive
+  counts: aerospace 11 lines, automotive 10, mining 10, medical 1, semiconductor 1. Only ''defense'' and ''agricultur''
+  are genuinely zero. All hits sit in third-party OEM marketing on resold-machine listings: ''grinding medium to
+  large workpieces for aircraft, wind turbine, automotive, power generation, oil exploration, mining, locomotive
+  and heavy machinery'' (10 lines), ''The FMG-B1224 easily adapts to future needs for job shops, medical, automotive,
+  semiconductor and aerospace.'' (line 38665), and Hurco''s ''customers who are suppliers for the aerospace and
+  energy sectors'' (5 lines). (b) The ''Energy'' false-friend reason ''no energy-sector sense in the file'' is false:
+  lines 77842, 91613, 110247, 112024, 145556, 176199, 179672, 219139, 225621 and 228819 read ''aerospace and energy
+  parts'' / ''the aerospace and energy sectors'', an unambiguous sector sense. The Uni-Hydro ''transfer energy''
+  lines the seed cites are a genuine second sense, so ''Energy'' is a polyseme here, not a pure word- association
+  false friend, and judging it should carry the polyseme flag. CONSEQUENCE: under strict recall-first these are
+  named sectors in the text with actor reseller_inventory - the exact analogue of the one representative reseller
+  probe the seed DID keep in process_caps (entry 0010). Either this file owes one such entry or process_caps 0010
+  should go; left at zero entries per the no-add rule and flagged for the user.'
+entries: []
+false_friends:
+- form: Oil Field
+  reason: machine-category name 'Oil Field & Hollow Spindle Lathes' (1,487 lines) — an equipment type, not a served
+    industry
+- form: Woodworking
+  reason: machine-category prefix ('Woodworking Lathes' x455, Woodworking Sanders/ Band Saws/Jointers) — equipment
+    types, not a served industry
+- form: HVAC
+  reason: JET marketing about buyer shop types ('perfect sheet metal forming machines to have in any general fabrication,
+    school, racing or HVAC shop') — the OEM's target segment, not ACI's served industry
+- form: racing
+  reason: same JET buyer-shop-type sentence; word-association
+- form: SHARP Industries
+  reason: manufacturer company name ('SHARP Industries is offering a new model') — 'Industries' here is a corporate
+    name token, not a sector
+- form: Energy
+  reason: 'POLYSEME, not word-association (corrected 2026-08-26; the seed''s reason ''no energy-sector sense in
+    the file'' was FALSE). Two senses: Uni-Hydro shear mechanics prose (''uses pivot arms to transfer energy to
+    three pressure points'', 6 lines) AND a genuine sector sense in Hurco marketing (''aerospace and energy parts''
+    / ''the aerospace and energy sectors'', 10 lines). Neither is a sector claim by ACI, so it stays a false friend
+    - but judge it as third-party sector prose, not as word-association.'
+- form: commercial and industrial
+  reason: JET hoist marketing 'operate in commercial and industrial applications' (68 lines) — generic application
+    prose, not a sector claim by ACI

@@ -39,9 +39,13 @@ sampling_notes: 'Seeded EXHAUSTIVELY by eight parallel page-aligned slice agents
   by name at build time, so cross-slice overlap collapsed rather than double-counting. One caveat recorded by the
   slice-3 agent: it deliberately skipped the per-page nav/footer boilerplate as byte-identical and already covered
   by slice 1, which did seed it - the merged inventory was checked for those site-wide service designations afterwards.'
-notes: 'OPEN QUESTION, recorded and deliberately NOT blocking this stage: whether a process performed at a PARTIALLY-OWNED
-  partner plant counts as this subject''s own capability. It is a downstream attribution decision; here it only
-  changes the actor label, and partner-plant capabilities carry actor supplier. A second open reading, flagged by
+notes: 'ANSWERED by the user 2026-08-29: a process performed at a PARTIALLY-OWNED partner plant DOES count as this
+  subject''s own capability, and screening owns the nuance - SCR-2b in the process_cap, material_cap and equipment
+  screening catalogs now reads a plant the manufacturer owns outright, one it part-owns, and a partner plant
+  producing to its direction as the manufacturer itself. Conformity attestations were deliberately left out of that
+  change, so a partner plant''s certificate is still not the subject''s. It never blocked this stage and still does
+  not: here it only changes the actor label, and partner-plant capabilities carry actor supplier - those labels
+  describe what the text says and were NOT re-labelled by the screening decision. A second open reading, flagged by
   the slice-7 agent and worth the user''s eye: roughly 200 product entries are drill bits, saw blades, wheels and
   taps that AGS-TECH sells as goods. They are seeded as products on the reading that the products clause excludes
   the tooling THE SUBJECT''S OWN work is done with, not tooling it sells. If the clause is read the other way those

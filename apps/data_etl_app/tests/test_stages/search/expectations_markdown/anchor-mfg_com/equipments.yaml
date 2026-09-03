@@ -1,0 +1,498 @@
+subject: anchor-mfg.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/anchor-mfg.com.txt
+  sha256: 3e85dd05ab75ae6deb3ff745a338b4cf9cb90484da8146f321b3f0ac99c91845
+eval_set_version: 3
+expected_empty: false
+notes: Rich but entirely UNBRANDED - no make/model names anywhere; every machine is a specific category with counts/specs
+  ('Over 60 presses, 2000 ton to 110 ton', '4,000 Watt CNC Laser'). Expect mostly B-grade category designations.
+  Spec-only lines ('Up to 240in. (6m) Bed Size', 'Stroke Length up to 20 in.', 'Interchangeable', 'Quick Change')
+  are S-code attributes of the seeded machines, not separate entities. Tooling-type words (Progressive / Transfer
+  / Single Hit / Deep Draw) are T-code tooling, deliberately not seeded as equipment. VERIFIER 2026-08-26 - independent
+  pass - all 11 entries confirmed, all 12 quotes verbatim, none resting on T&C text (every quote resolves to /capabilities-services/).
+  expected_empty false AGREED. false_friend concern - 'machine' is contained in entry 0011's accepted form 'Milling
+  Machines', so one returned form would both satisfy recall and score as a false friend; that false friend wants
+  narrowing to the 'machine readable files' sense.
+entries:
+- id: anchor-mfg_com-equipments-0001
+  name: Stamping presses
+  status: candidate
+  acceptable_forms:
+  - Presses
+  - presses
+  - Over 60 Presses
+  evidence:
+  - quote: Over 60 Presses up to 2000 ton
+    approx_offset: 18735
+  notes: the tonnage RANGE '2000 ton to 110 ton' is gone -- new copy only gives the top figure 'up to 2000 ton'
+    -- and the word is now capitalized 'Presses' where the old quote had lower-case; added the capitalized form
+    since word-matching is exact
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0002
+  name: Coil Fed Servo Transfer System
+  status: candidate
+  acceptable_forms:
+  - Servo Transfer Systems
+  - Servo Transfer System
+  evidence:
+  - quote: Press Mounted Servo Transfer Systems
+    approx_offset: 18865
+  notes: 'the ''Coil Fed'' qualifier is gone; the new stamping-equipment list instead says ''Press Mounted Servo
+    Transfer Systems'' (plural). Judgment call: kept as the same entity (a servo transfer system feeding the press
+    line) even though the qualifying adjective changed from coil-fed to press-mounted -- flagging in case this should
+    instead be read as two different attachments.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0003
+  name: Large Press Tandem Line
+  status: confirmed
+  acceptable_forms:
+  - Large Press Tandem Line
+  - tandem line
+  evidence:
+  - quote: Large Press Tandem Line
+    approx_offset: 18904
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0008
+  name: CNC Press Brakes
+  status: candidate
+  acceptable_forms:
+  - press brakes
+  - CNC multi-axis press brakes
+  - CNC 7 axis press brakes
+  evidence:
+  - quote: CNC multi-axis press brakes and CNC 7 axis press brakes
+    approx_offset: 24282
+  notes: both press-brake families survive on the fabrication page, just lower-cased ('multi-axis', 'axis' vs the
+    old capitalized 'Multi-Axis'/'Axis')
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0004
+  name: Flexible Weld Cells
+  status: candidate
+  acceptable_forms:
+  - flexible weld cells
+  - weld cells
+  evidence:
+  - quote: Anchor has over 40 flexible weld cells that can meet your welding needs.
+    approx_offset: 37590
+  notes: '''Over 40 Flexible Weld Cells'' list line replaced by an equivalent prose sentence on the welding page,
+    same count (40), lower-case now'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0005
+  name: Automated Error Proofing Systems
+  status: retired
+  acceptable_forms:
+  - Automated Error Proofing Systems
+  - error proofing
+  evidence:
+  - quote: Automated Error Proofing Systems
+  notes: 'retired at the markdown cutover: searched ''error proofing'', ''error-proofing'': zero hits anywhere in
+    the file. The in-cell quality-systems line this entry came from is gone from the assembly-and-automation page''s
+    rewritten prose (which now lists robots, collaborative robots, assembly cells, in-line measurement, vision systems,
+    AI -- no error-proofing mention).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0006
+  name: Laser – Turret Press
+  status: retired
+  acceptable_forms:
+  - Laser – Turret Press
+  - turret press
+  evidence:
+  - quote: Laser – Turret Press
+  notes: 'retired at the markdown cutover: searched ''turret'', ''Laser - Turret Press'', ''Laser Turret'': the
+    combined machine name is gone. Only ''turret punching'' survives (fabrication page: ''laser cutting, turret
+    punching, CNC multi-axis press brakes...''), phrased as a PROCESS in a list of processes, not as this named
+    combination machine. Not confident ''turret punching'' names the same equipment entity, so retiring rather than
+    re-anchoring onto a different-shaped mention.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0007
+  name: 4,000 Watt CNC Laser
+  status: retired
+  acceptable_forms:
+  - 4,000 Watt CNC Laser
+  - CNC Laser
+  evidence:
+  - quote: 4,000 Watt CNC Laser with 48” x 96” Capabilities up to .625” Thickness
+  notes: 'retired at the markdown cutover: searched ''Watt'', ''4,000'', ''CNC Laser'': zero hits. No wattage or
+    size spec for a laser survives anywhere; the fabrication page mentions only ''laser cutting'' as a bare process
+    phrase with no equipment spec attached. Genuinely absent.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0009
+  name: Mechanical Press Brake
+  status: retired
+  acceptable_forms:
+  - Mechanical Press Brake with Back Gage and Capabilities up to 10’
+  - Mechanical Press Brake
+  - press brake
+  evidence:
+  - quote: Mechanical Press Brake with Back Gage and Capabilities up to 10’
+  notes: 'retired at the markdown cutover: searched ''Mechanical'', ''Back Gage'', ''press brake'': only the two
+    CNC press-brake variants survive (see equipments-0008); the standalone ''Mechanical Press Brake with Back Gage
+    and Capabilities up to 10 feet'' spec line and ''Back Gage'' are both gone with no replacement. This was already
+    flagged as a distinct entity from the CNC brakes at seed time, and that distinction is now moot since the non-CNC
+    brake is simply absent.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0010
+  name: Material Shear
+  status: retired
+  acceptable_forms:
+  - Material Shear
+  - shear
+  evidence:
+  - quote: Material Shear
+  notes: 'retired at the markdown cutover: same ''shear'' grep as process_caps-0017: zero hits anywhere in the file.
+    Genuinely absent.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0011
+  name: Vertical Mills
+  status: retired
+  acceptable_forms:
+  - Milling Machines / Vertical Mills
+  - Milling Machines
+  - Vertical Mills
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+  notes: 'retired at the markdown cutover: same ''mill''/''vertical'' grep as process_caps-0019: zero hits anywhere
+    in the file. Genuinely absent.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-equipments-0012
+  name: trim press
+  status: candidate
+  acceptable_forms:
+  - trim press
+  evidence:
+  - quote: Looking forward to receiving them early next week and trialing in our trim press.
+    approx_offset: 17874
+  actor: client
+  notes: customer testimonial; press owned by the customer ('our trim press')
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0013
+  name: presses
+  status: candidate
+  acceptable_forms:
+  - presses
+  - high-speed presses
+  evidence:
+  - quote: Equipment includes a combination of high-speed presses and progressive dies as well as automated and
+      manual transfer processes to provide the most cost-effective
+    approx_offset: 18436
+  - quote: '- Over 60 Presses up to 2000 ton'
+    approx_offset: 18733
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0014
+  name: Servo Transfer Systems
+  status: candidate
+  acceptable_forms:
+  - Servo Transfer Systems
+  - Press Mounted Servo Transfer Systems
+  evidence:
+  - quote: '- Press Mounted Servo Transfer Systems'
+    approx_offset: 18863
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0015
+  name: Press Tandem Line
+  status: candidate
+  acceptable_forms:
+  - Press Tandem Line
+  - Large Press Tandem Line
+  evidence:
+  - quote: '- Large Press Tandem Line for low to mid volumes'
+    approx_offset: 18902
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0016
+  name: CNC multi-axis press brakes
+  status: candidate
+  acceptable_forms:
+  - CNC multi-axis press brakes
+  evidence:
+  - quote: Manufacturing processes use laser cutting, turret punching, CNC multi-axis press brakes and CNC 7 axis
+      press brakes.
+    approx_offset: 24222
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0017
+  name: CNC 7 axis press brakes
+  status: candidate
+  acceptable_forms:
+  - CNC 7 axis press brakes
+  evidence:
+  - quote: Manufacturing processes use laser cutting, turret punching, CNC multi-axis press brakes and CNC 7 axis
+      press brakes.
+    approx_offset: 24222
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0018
+  name: robots
+  status: candidate
+  acceptable_forms:
+  - robots
+  evidence:
+  - quote: These include the extensive use of robots, collaborative robots, proprietary assembly cells, 100% in
+      line measurements, vision systems and Artificial Intelligence.
+    approx_offset: 35422
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0019
+  name: collaborative robots
+  status: candidate
+  acceptable_forms:
+  - collaborative robots
+  evidence:
+  - quote: These include the extensive use of robots, collaborative robots, proprietary assembly cells, 100% in
+      line measurements, vision systems and Artificial Intelligence.
+    approx_offset: 35422
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0020
+  name: assembly cells
+  status: candidate
+  acceptable_forms:
+  - assembly cells
+  evidence:
+  - quote: These include the extensive use of robots, collaborative robots, proprietary assembly cells, 100% in
+      line measurements, vision systems and Artificial Intelligence.
+    approx_offset: 35422
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0021
+  name: weld system
+  status: candidate
+  acceptable_forms:
+  - weld system
+  evidence:
+  - quote: Anchor has developed a proprietary weld system that allows for rapid changeover from part to part using
+      multiple welding and assembly guns.
+    approx_offset: 36149
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0022
+  name: welding and assembly guns
+  status: candidate
+  acceptable_forms:
+  - welding and assembly guns
+  evidence:
+  - quote: Anchor has developed a proprietary weld system that allows for rapid changeover from part to part using
+      multiple welding and assembly guns.
+    approx_offset: 36149
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0023
+  name: flexible welding cells
+  status: candidate
+  acceptable_forms:
+  - welding cells
+  - weld cell
+  evidence:
+  - quote: Anchor also has developed flexible welding cells for larger parts that use a “sandbox” concept so 4 different
+      parts can be run simultaneously on the same weld cell.
+    approx_offset: 36399
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0024
+  name: iron phosphate wash line
+  status: candidate
+  acceptable_forms:
+  - wash line
+  evidence:
+  - quote: Anchor’s internal powder coating facility provides durable, cost effective and flexible coating using
+      a continuous seven stage iron phosphate wash line and automatic powder coat spray guns.
+    approx_offset: 39317
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-equipments-0025
+  name: powder coat spray guns
+  status: candidate
+  acceptable_forms:
+  - powder coat spray guns
+  evidence:
+  - quote: Anchor’s internal powder coating facility provides durable, cost effective and flexible coating using
+      a continuous seven stage iron phosphate wash line and automatic powder coat spray guns.
+    approx_offset: 39317
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: machine readable files
+  reason: employee-portal No Surprises Act health-plan transparency files ('digital representation of data') - U
+    junk, not machinery
+- form: Employee Navigator
+  reason: benefits-website brand name - looks like a named tool, is neither machine nor shop software
+- form: Special Tooling
+  reason: purchasing-T&C DEFINED TERM for Purchaser-owned property ('tools, equipment, material, drawings ... (Special
+    Tooling)') - legal term of art, not a machine designation
+- form: equipment
+  reason: generic (G) - 'equipment redundancy' marketing and T&C 'parts or equipment'
+- form: Bulletin Board
+  reason: employee-benefits website feature - U junk
+- form: mechanical breakdown
+  reason: force-majeure list in the seller T&Cs - an event, not a machine
+- form: tooling
+  reason: bare form names the tool & die PRODUCT line ('fabricated parts and tooling') and the T&C Special Tooling
+    term - as an equipments return it is the known product/tooling confusion (code D/T), the real entities being
+    the dies the shop builds
+- form: machine
+  reason: bare form occurs only inside 'machine readable files' and 'Milling Machines' - no standalone machine designation
+- form: Hexagon Global S
+  reason: a CMM (coordinate measuring machine) in the metrology lab; measuring equipment is explicitly excluded
+    from equipments
+- form: CMM
+  reason: measuring/inspection equipment explicitly excluded from equipments by definition; the inspection activity
+    belongs in process_caps instead
+- form: Optical Comparator
+  reason: measuring equipment (optical comparator) excluded from equipments
+- form: Blue Light Scanner
+  reason: measuring/scanning equipment excluded from equipments
+- form: Tensile Testers
+  reason: testing equipment excluded from equipments; the operation belongs in process_caps as tensile testing
+- form: Programmable Logic Controllers
+  reason: a process-control system that conditions/controls the plant, not a machine acting directly on the work
+- form: vision systems
+  reason: an inspection/measurement technology, excluded from equipments by definition
+- form: PLEX
+  reason: an ERP software system, not a production machine
+- form: Artificial Intelligence
+  reason: a general technology descriptor with no equipment identity of its own
+- form: NX/Unigraphics
+  reason: CAD/design software Anchor uses for tooling design, not production machinery
+- form: SolidWorks
+  reason: CAD design software, not production machinery
+- form: Catia
+  reason: CAD design software, not production machinery
+- form: Autodesk Suites
+  reason: design software, not production machinery

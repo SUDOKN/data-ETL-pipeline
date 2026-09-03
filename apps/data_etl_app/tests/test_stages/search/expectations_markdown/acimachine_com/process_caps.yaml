@@ -1,0 +1,619 @@
+subject: acimachine.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
+  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+eval_set_version: 3
+expected_empty: false
+notes: 'The subject''s OWN process capabilities are exactly the field-service operations on the /support page (plus
+  ''servicing machine tools'' on /About_Us) — entries 0001-0009, all actor own. Machine spec- sheet/marketing operations
+  (grinding, shearing, sawing, forming, ...) belong to the resold machines, not ACI; entry 0010 is ONE representative
+  reseller_inventory probe for that pattern — hundreds more like it exist in listing prose and are deliberately
+  not enumerated. A second pass may promote more of them as reseller_inventory entries under strict recall- first;
+  on this scale-stress subject they are the wrong-actor precision trap. VERIFY 2026-08-26 (second independent pass):
+  all 10 entries confirmed; every evidence quote verified verbatim. The /support page (line 958) was read in full
+  and the eight service-list items plus ''selling and servicing machine tools'' are exactly as seeded. TWO ISSUES
+  RECORDED RATHER THAN ACTED ON. (1) CROSS-SUBJECT INCONSISTENCY on taxonomy code I. Most of the own-actor entries
+  here are field-site work performed at the customer''s plant - 0003 Machine & Option Installations explicitly,
+  0006 Precision Leveling in substance, and arguably 0001/0004/0005/0008 - and TAXONOMY.md''s code I (installation/field-site
+  work) does NOT roll up to in_field. The austinelectricservices seed applied exactly the opposite rule, stating
+  in its own process_caps notes that code-I operations are ''NOT in_field under the rollup'' and seeding zero entries
+  for the same class of work. As written, one subject requires a run to return field-site services for recall while
+  the other counts them against precision. That needs a single ruling from the user, not a per-entry dispute, so
+  all 10 were confirmed here for internal consistency and the conflict is flagged. (2) Over-broad or absent acceptable_forms
+  flagged in-entry on 0002, 0003 and 0006.'
+entries:
+- id: acimachine_com-process_caps-0001
+  name: Mechanical & Electrical Troubleshooting
+  status: confirmed
+  acceptable_forms:
+  - Mechanical & Electrical Troubleshooting
+  - Troubleshooting
+  evidence:
+  - quote: Mechanical & Electrical Troubleshooting
+    approx_offset: 244657
+  - quote: Troubleshooting - Repairs - Maintenance
+    approx_offset: 244314
+  notes: support-page field service; actor own
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0002
+  name: Spindle & Control Repairs
+  status: confirmed
+  acceptable_forms:
+  - Spindle & Control Repairs
+  - spindle repair
+  - control repair
+  evidence:
+  - quote: Spindle & Control Repairs
+    approx_offset: 244697
+  notes: 'support-page field service; actor own VERIFY 2026-08-26 FORM FLAG: the acceptable form ''spindle repair''
+    does not occur anywhere in the text - it is a tolerance paraphrase only. ''Spindle & Control Repairs'' and ''control
+    repair'' both verify. Harmless, but the file should say so.'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0003
+  name: Machine & Option Installations
+  status: confirmed
+  acceptable_forms:
+  - Machine & Option Installations
+  - machine installation
+  evidence:
+  - quote: Machine & Option Installations
+    approx_offset: 244731
+  notes: 'taxonomy I (installation/field-site work) but a genuine own-actor service offering VERIFY 2026-08-26 FORM
+    FLAG: ''machine installation'' does not occur in the text (tolerance paraphrase only); the block form verifies.
+    See the top-level code-I note - this is the entry where the recall set and the precision taxonomy most clearly
+    disagree.'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0004
+  name: Part Replacements
+  status: confirmed
+  acceptable_forms:
+  - Part Replacements
+  - part replacement
+  evidence:
+  - quote: Part Replacements
+    approx_offset: 244762
+  notes: support-page field service; actor own
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0005
+  name: Retrofit
+  status: confirmed
+  acceptable_forms:
+  - Retrofit
+  evidence:
+  - quote: Retrofit
+    approx_offset: 244788
+  notes: single occurrence in the file, on the support-page service list; actor own
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0006
+  name: Precision Leveling
+  status: confirmed
+  acceptable_forms:
+  - Precision Leveling
+  - leveling
+  evidence:
+  - quote: Precision Leveling
+    approx_offset: 244797
+  notes: 'support-page field service; actor own VERIFY 2026-08-26 FORM FLAG: the bare form ''leveling'' is over-broad
+    - of its 4 occurrences only line 981 is this service; the other 3 are ''Leveling Blocks'', a resold- machine
+    accessory (lines 51066, 55358, 93383), which containment matching would wrongly credit. Prefer ''Precision Leveling''
+    alone.'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0007
+  name: Ball Bar Testing
+  status: confirmed
+  acceptable_forms:
+  - Ball Bar Testing
+  - ball bar test
+  evidence:
+  - quote: Ball Bar Testing
+    approx_offset: 244836
+  notes: machine-accuracy measurement service; testing/measurement ARE operations per the locked carve-out; actor
+    own
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0008
+  name: Machine Maintenance
+  status: confirmed
+  acceptable_forms:
+  - Maintenance
+  evidence:
+  - quote: Troubleshooting - Repairs - Maintenance
+    approx_offset: 244314
+  notes: form is borderline-generic; only credit occurrences windowed to the support page service list, not 'maintenance-free'
+    machine marketing
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0009
+  name: Machine tool servicing
+  status: confirmed
+  acceptable_forms:
+  - servicing machine tools
+  - selling and servicing machine tools
+  evidence:
+  - quote: selling and servicing machine tools since Mark Cox founded the company in 2001
+    approx_offset: 89991
+  notes: appears on both /support and /About_Us; actor own
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0010
+  name: precision sawing
+  status: confirmed
+  acceptable_forms:
+  - precision sawing
+  evidence:
+  - quote: and CSA/CUS certified electrics make Elite vertical bandsaws the choice for precision sawing of ferrous
+      and non-ferrous materials.
+    approx_offset: 629813
+  actor: reseller_inventory
+  notes: 'REPRESENTATIVE probe only: an operation named in resold-machine marketing prose — the machine''s capability,
+    not ACI''s. Stands in for the hundreds of similar operation mentions across listing descriptions.'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-austin
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: acimachine_com-process_caps-0011
+  name: die/mold work
+  status: candidate
+  acceptable_forms:
+  - die/mold work
+  - mold work
+  evidence:
+  - quote: batch production or die/mold work, the
+    approx_offset: 1894
+  actor: reseller_inventory
+  notes: Homepage HURCO VMX42I caption describing capability of the resold VMC.
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0012
+  name: threading
+  status: candidate
+  acceptable_forms:
+  - threading
+  evidence:
+  - quote: 'with inch threading dials, which allow great versatility when turning and threading with metalworking
+      lathes - Safety and performance optimization; '
+    approx_offset: 99483
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0013
+  name: MIG welding
+  status: candidate
+  acceptable_forms:
+  - MIG
+  evidence:
+  - quote: Blaze LF - Laser or MIG Welder
+    approx_offset: 157909
+  actor: reseller_inventory
+  notes: '''MIG'' names the welding process the resold cobot performs.'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0014
+  name: laser welding
+  status: candidate
+  acceptable_forms:
+  - laser welding
+  evidence:
+  - quote: Blaze with Miller® OptX® laser welding and optional cleaning
+    approx_offset: 217454
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0015
+  name: machine tending
+  status: candidate
+  acceptable_forms:
+  - machine tending
+  evidence:
+  - quote: 'including machine tending, dispensing, finishing processes, and far '
+    approx_offset: 225685
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0016
+  name: dispensing
+  status: candidate
+  acceptable_forms:
+  - dispensing
+  evidence:
+  - quote: machine tending, dispensing, finishing processes
+    approx_offset: 225695
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0017
+  name: finishing processes
+  status: candidate
+  acceptable_forms:
+  - finishing
+  evidence:
+  - quote: finishing processes, and far more
+    approx_offset: 225724
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0018
+  name: Maintenance
+  status: disputed
+  acceptable_forms:
+  - Maintenance
+  evidence:
+  - quote: Maintenance Ball Bar Testing
+    approx_offset: 244824
+  notes: ACI's own maintenance service. Disputed.
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0019
+  name: Rough grinding / fine grinding / spark-out
+  status: candidate
+  acceptable_forms:
+  - Rough grinding
+  - fine grinding
+  - spark-out
+  evidence:
+  - quote: thermal expansion of work piece Rough grinding, fine grinding and spark-out in one automated cycle. Wheelhead
+      retracts to park unload point
+    approx_offset: 258006
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0020
+  name: drilling
+  status: candidate
+  acceptable_forms:
+  - drilling
+  evidence:
+  - quote: 'lot sizes that require turning and secondary milling/drilling operations profitable. Save time with
+      one setup and you won’t '
+    approx_offset: 547830
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0021
+  name: boring mill machining
+  status: candidate
+  acceptable_forms:
+  - boring mill
+  evidence:
+  - quote: 'T-type boring mill expertly handles heavy-duty, high-precision machining with a moving column on the
+      Z-axis for '
+    approx_offset: 927749
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0022
+  name: fluting and veining
+  status: candidate
+  acceptable_forms:
+  - fluting
+  - veining
+  evidence:
+  - quote: 'Shaping, smoothing, finishing, fluting and veining all done on one machine – the JET JWL-1236 is a dream
+      tool for '
+    approx_offset: 1006276
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0023
+  name: polishing
+  status: candidate
+  acceptable_forms:
+  - polishing
+  evidence:
+  - quote: parts. Accessories allow the user to convert the Square Wheel Belt Grinder for polishing or buffing finished
+      parts
+    approx_offset: 1108806
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0024
+  name: buffing
+  status: candidate
+  acceptable_forms:
+  - buffing
+  evidence:
+  - quote: convert the Square Wheel Belt Grinder for polishing or buffing finished parts
+    approx_offset: 1108843
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0025
+  name: shearing
+  status: candidate
+  acceptable_forms:
+  - shearing
+  evidence:
+  - quote: life. JET Portable Slitting Shears, capable of shearing sheet steel, steel bars and rods, and many non-metallic
+      materials, allow
+    approx_offset: 1467263
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0026
+  name: induction hardened
+  status: candidate
+  acceptable_forms:
+  - induction hardened
+  evidence:
+  - quote: Engine lathes that provide induction hardened & precision ground ways
+    approx_offset: 99230
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0027
+  name: milling functions
+  status: candidate
+  acceptable_forms:
+  - milling
+  evidence:
+  - quote: 04 Complete milling functions. Up to six rotating tools
+    approx_offset: 279970
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0028
+  name: turning
+  status: candidate
+  acceptable_forms:
+  - turning
+  evidence:
+  - quote: require turning and secondary milling/drilling operations
+    approx_offset: 547845
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0029
+  name: grinding, deburr and chamfer
+  status: candidate
+  acceptable_forms:
+  - deburr
+  - chamfer
+  - grinding
+  evidence:
+  - quote: grind, deburr and chamfer with equal proficiency both internal/external on
+    approx_offset: 1108709
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0030
+  name: sanding
+  status: candidate
+  acceptable_forms:
+  - sanding
+  evidence:
+  - quote: non-drilling chores such as sanding, mortising, shaping, routing, plating
+    approx_offset: 2179321
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0031
+  name: mortising
+  status: candidate
+  acceptable_forms:
+  - mortising
+  evidence:
+  - quote: such as sanding, mortising, shaping, routing, plating
+    approx_offset: 2179341
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0032
+  name: shaping
+  status: candidate
+  acceptable_forms:
+  - shaping
+  evidence:
+  - quote: sanding, mortising, shaping, routing, plating
+    approx_offset: 2179349
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0033
+  name: routing
+  status: candidate
+  acceptable_forms:
+  - routing
+  evidence:
+  - quote: mortising, shaping, routing, plating, and other
+    approx_offset: 2179358
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-process_caps-0034
+  name: plating
+  status: candidate
+  acceptable_forms:
+  - plating
+  evidence:
+  - quote: shaping, routing, plating, and other practical jobs.
+    approx_offset: 2179369
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Machining
+  reason: overwhelmingly a machine-category name fragment ('Vertical Machining Centers' x3878, 'Gantry Machining
+    Centers', 'Horizontal Machining Centers') on resale listings — equipment-name text (E code), not an operation
+    ACI performs
+- form: Drilling & Tapping
+  reason: machine-category name 'Drilling & Tapping Centers' (x78) — equipment text, not an operation
+- form: manufacturing
+  reason: generic marketing prose plus the 'Manufacturer:' spec label on all 1,291 listings; G code — the subject
+    manufactures nothing

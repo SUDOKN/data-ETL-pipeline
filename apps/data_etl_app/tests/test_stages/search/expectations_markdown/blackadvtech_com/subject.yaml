@@ -1,0 +1,85 @@
+subject: blackadvtech.com
+slug: blackadvtech_com
+role: genre_probe
+business_type: sheet-metal job shop with ~22 first-person-plural SEO blog articles about the industry at large
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/blackadvtech.com.txt
+  sha256: 63354af5b4bd0925a7cd54d773d6677fcc24a25a7c262ac35fa3b99a22afb9ad
+eval_set_version: 1
+context: 'Blackstone Advanced Technologies, LLC - a 275,000 sq ft full-service sheet metal job shop in Jamestown
+  NY (woman-owned, ISO 9001:2015). Two published machine lists (/about-us/facility/ and /capabilities/machinery/)
+  make this the most equipment-dense subject in the corpus, and the real depth is at EQUIPMENT-PARAMETER level (130-320
+  ton press brakes, a 44-station turret, 55 punching tons) rather than at exotic-process level. It also carries
+  a genuine own-brand catalogue: 7 named Navy/marine furniture items. THE TRAP: ~22 first-person-plural SEO blog
+  articles explain the metalworking industry at large, and they name deep processes the shop does not perform (Deep
+  Drawing, Hot Working, Cold Rolling, Pickling, Spinning, Ironing, Hydroforming, Decambering, Perforating, Heat
+  Straightening). Those are SEEDED AS ENTRIES with actor: unknown, because the SEARCH stage extracts in-field designations
+  the text NAMES and attribution is a downstream stage''s job - returning them is correct search behaviour, not
+  a defect.'
+scrape_hazards:
+- hazard: 3 pages are live database-error pages with no content at all (/contact-us/, /about-us/faq/, /community/)
+  quote: Could not connect to database
+- hazard: the same database-error pages carry a raw MySQL error code
+  quote: 'Error: 2002'
+- hazard: 2 pages are 404s scraped as content (/?page_id=35351 and /?page_id=30294)
+  quote: The Page You Were Looking For Couldn't Be Found
+- hazard: the VMI page ends in a raw Divi shortcode dump (~25 lines of [et_pb_*] builder markup, social URLs and
+    hex colours)
+  quote: '[/et_pb_cta][/et_pb_column][/et_pb_row][/et_pb_section]'
+- hazard: the /work-with-blackstone/ page ships unreplaced lorem ipsum in two body slots
+  quote: Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit,
+    dolore magna aliquyam consetetur sadipscing.
+- hazard: the /custom-projects/ page body is a raw HubSpot form <script> blob with [et_pb_line_break_holder] separators
+  quote: <!--[if lte IE 8]><!-- [et_pb_line_break_holder] -->
+- hazard: 6 blog posts leak an unrendered HubSpot CTA shortcode where the call-to-action should be
+  quote: '{{cta(‘1615cd3c-4bbe-4d95-8408-39a73e91a111′,’justifycenter’)}}'
+- hazard: the industrial-welding page opens with a garbled glyph run fused onto the first word
+  quote: DROBDDDFOur AWS certified welders
+- hazard: 'the ISO registrar CONTRADICTS itself between pages: Preferred Registrar Group on 3 pages, AMTEC Registries
+    on /work-with-blackstone/'
+  quote: Quality is something we take seriously. We are ISO 9001:2015 certified by AMTEC Registries, and we have
+    a comprehensive Quality Management System.
+- hazard: 'heading/body mismatch: an ''AWS CERTIFIED WELDING INSPECTOR ON SITE'' heading is followed by the woman-owned
+    paragraph copy-pasted from the block above it'
+  quote: AWS CERTIFIED WELDING INSPECTOR ON SITE
+- hazard: job-application checkbox labels arrive concatenated with no separators, fusing process names into one
+    token and truncating the first ('Mig Weldin')
+  quote: Mig WeldinTig WeldingSpot WeldingOtherWeldingCNC Machine OperationCNC Machine Set-upNon-CNC MachiningForklift
+    DrivingPowder-Wet Coat PaintingMachine MaintenanceBlueprint ReadingQuality Control Devices
+- hazard: 'the equipment lists carry vendor-name typos that will not resolve against any ontology: ATSM for ASTM,
+    Trmpf/Sciaki/Fadel/Sebastion/Devilbliss/Plastma'
+  quote: "Aluminum\tStainless Steel\tATSM 81011 steel"
+- hazard: 1,081 non-breaking spaces, 204 curly apostrophes, 55 double-prime inch marks and 39 Divi private-use-area
+    glyphs (U+E00B/E010/E01D) sit inside phrases; a retyped quote will not match
+  quote: 4′ bending roll
+- hazard: 13 pages are scraped twice under http:// and https:// or with/without a trailing slash (home, about-us,
+    site-map, blog, storage, tool-sharpening and all 4 industries-served pages)
+  quote: http://blackadvtech.com/
+- hazard: the /terms-conditions/ page scrapes to a phone number and a share widget - no terms at all
+  quote: Share This
+sampling_notes: 'READ EXHAUSTIVELY - all 6,289 lines / 246 KB / 67 page blocks, in 20 sed slices (1-270, 270-625,
+  625-1010, 1008-1420, 1420-1730, 1730-2075, 2075-2460, 2460-2790, 2790-3130, 3130-3460, 3460-3745, 3745-3940, 3939-4185,
+  4185-4500, 4500-4800, 4800-5120, 5120-5420, 5420-5760, 5760-6060, 6060-6289). Then targeted greps: word-boundary
+  hem[a-z]* (the reported Hemming trap); every standards acronym (ISO ASTM ATSM ANSI NADCAP AS9100 ITAR AWS ASQC
+  SAE AISI UNS ABYC OSHA CAGE NAICS); all 121 distinct -ing words by frequency; every reported blog process by name;
+  alloy/grade digit patterns; a full non-ASCII character census. Unique content is the 2 machine lists, 8 capability
+  pages, 4 industries pages, the news page and 22 blog posts; the remaining ~30 blocks are duplicates, blog category
+  indexes, job postings and the repeated NAICS/CAGE footer (48 copies).'
+notes: 'products.yaml doubles as the contract_products expectation. The subject is BOTH a contract shop (transportation/industrial/scientific
+  parts made to customer print) and an own-brand catalogue vendor (7 standard Navy/marine furniture items). TWO
+  SUBSTRING TRAPS FOUND, both witnessed: (1) ''hem'' has 55 substring hits of which 47 are them/chemical/mathematical,
+  and the process word ''Hemming'' occurs ZERO times - but ''hems'' DOES occur as a real first-party design capability
+  in the design blog, so the entity is real and only the -ing form is the false friend; (2) ''ITAR'' occurs 16 times
+  and is EVERY time the middle of the word ''MILITARY'' - standalone ITAR is zero. CORRECTION TO THE VETTING NOTE:
+  roll forming is NOT blog-only - it is listed as a first-party service on /capabilities/ line 548, and sheet metal
+  rolling has its own capability section plus a ROLLING equipment heading (4ft Niagara, Buffalo Channel, 4'' bending
+  roll). What they lack is a sheet-thinning rolling MILL, which is what the cold-rolling blog is about.'
+provenance:
+- action: added
+  by: seed-agent-blackadvtech-com
+  date: '2026-08-27'
+  source: corpus-seed
+- action: ported
+  by: port_corpus.py
+  date: '2026-08-29'
+  source: markdown-cutover

@@ -1,0 +1,238 @@
+subject: acimachine.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
+  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+eval_set_version: 3
+expected_empty: true
+notes: 'The subject is a dealer: it works no material. Every material mention in 3.9MB is (a) construction of a
+  resold machine (cast iron base, Meehanite frame, stainless blades), (b) a spec-capacity rating (''Capacity (Mild
+  Steel)(in)''), or (c) a cuttable-materials list in third-party marketing (''steel, aluminum, brass, copper, lead,
+  plastic and zinc''). Seeded with zero entries per the scale-stress role — these are the known false- positive
+  trap. A second pass could promote cuttable-material lists to reseller_inventory entries under strict recall-first;
+  the trap catalog below is the more useful signal for this subject. VERIFY 2026-08-26 (second independent pass):
+  expected_empty=true AGREED. Independent greps reproduce the seed''s finding - every material occurrence is resold-machine
+  construction (''Meehanite processed cast iron frame''), a spec-capacity rating (''Capacity (Mild Steel)(in)''),
+  or an OEM cuttable-materials list (''steel, aluminum, brass, copper, lead, plastic and zinc'', JET slitting shears,
+  lines 23113/23120/175518). ACI works no material. The ''Lead'' entry is well-founded: ''lead screw'' occurs 5
+  times as a machine component. Recording the same recall-first tension the seed noted, because it is now a live
+  inconsistency: process_caps kept ONE representative reseller_inventory probe (entry 0010, ''precision sawing'')
+  for exactly this pattern of third-party marketing prose, so leaving material_caps and industries at zero while
+  process_caps carries a probe means the three files score the same class of text three different ways. Whichever
+  way the user rules, all three should settle together.'
+entries:
+- id: acimachine_com-material_caps-0001
+  name: stainless steel
+  status: candidate
+  acceptable_forms:
+  - stainless steel
+  evidence:
+  - quote: extended tool life so the GEN MILL 4024 can handle all your tough materials like stainless steel and
+      titanium. The rigidity and strength of the cross-
+    approx_offset: 167755
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0002
+  name: titanium
+  status: candidate
+  acceptable_forms:
+  - titanium
+  evidence:
+  - quote: GEN MILL 4024 can handle all your tough materials like stainless steel and titanium. The rigidity and
+      strength of the cross-
+    approx_offset: 167781
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0003
+  name: non-ferrous metal
+  status: candidate
+  acceptable_forms:
+  - non-ferrous metal
+  evidence:
+  - quote: 'RMV-APC series: For light chips, non-ferrous metal, composite material'
+    approx_offset: 839341
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0004
+  name: composite material
+  status: candidate
+  acceptable_forms:
+  - composite material
+  evidence:
+  - quote: 'RMV-APC series: For light chips, non-ferrous metal, composite material'
+    approx_offset: 839341
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0005
+  name: Meehanite cast iron
+  status: candidate
+  acceptable_forms:
+  - Meehanite
+  - cast iron
+  evidence:
+  - quote: speed for high productivity The rigidity of the massive Meehanite processed cast iron frame provides
+      a high-strength cutting
+    approx_offset: 167557
+  actor: reseller_inventory
+  notes: Meehanite is a trade-name engineered cast iron used for the GEN MILL 4024's frame casting.
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0006
+  name: aluminum
+  status: candidate
+  acceptable_forms:
+  - aluminum
+  evidence:
+  - quote: The speed makes the machine ideal for materials like aluminum and steel, and the
+    approx_offset: 168122
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0007
+  name: Inconell
+  status: candidate
+  acceptable_forms:
+  - Inconell
+  evidence:
+  - quote: spindle motor allows for efficient machining of Inconell and stainless.
+    approx_offset: 168254
+  actor: reseller_inventory
+  notes: Spelled 'Inconell' (double L) in the source text -- likely the site's misspelling of Inconel; quoted verbatim.
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0008
+  name: Nichrome steel
+  status: candidate
+  acceptable_forms:
+  - Nichrome steel
+  evidence:
+  - quote: High-grade Nichrome steel SNCM-220 wheel head
+    approx_offset: 257789
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0009
+  name: SNCM-220
+  status: candidate
+  acceptable_forms:
+  - SNCM-220
+  evidence:
+  - quote: Nichrome steel SNCM-220 wheel head
+    approx_offset: 257800
+  actor: reseller_inventory
+  notes: A specific steel grade designation for the grinding wheel head.
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0010
+  name: brass
+  status: candidate
+  acceptable_forms:
+  - brass
+  evidence:
+  - quote: including steel, aluminum, brass, copper, lead, plastic and zinc.
+    approx_offset: 1467131
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0011
+  name: copper
+  status: candidate
+  acceptable_forms:
+  - copper
+  evidence:
+  - quote: aluminum, brass, copper, lead, plastic and zinc.
+    approx_offset: 1467148
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0012
+  name: lead
+  status: candidate
+  acceptable_forms:
+  - lead
+  evidence:
+  - quote: brass, copper, lead, plastic and zinc.
+    approx_offset: 1467158
+  actor: reseller_inventory
+  notes: 4-char form; occurs here as the material (materials list), not the 'lead time' sense.
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0013
+  name: plastic
+  status: candidate
+  acceptable_forms:
+  - plastic
+  evidence:
+  - quote: copper, lead, plastic and zinc.
+    approx_offset: 1467165
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-material_caps-0014
+  name: zinc
+  status: candidate
+  acceptable_forms:
+  - zinc
+  evidence:
+  - quote: lead, plastic and zinc.
+    approx_offset: 1467173
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: mild steel
+  reason: 'spec-capacity rating of resold machines: label ''Capacity (Mild Steel)(in)'' and JET marketing ''precision
+    shearing of mild steel up to 16 gauge'' — machine capacity, not an ACI material capability'
+- form: carbon steel
+  reason: machine roll material ('polished carbon steel' slip-roll rolls)
+- form: steel
+  reason: bare form is generic/machine construction ('rigid steel construction'); no worked-material sense anywhere
+- form: ferrous
+  reason: bandsaw cutting-capacity phrasing 'precision sawing of ferrous and non-ferrous materials' — the machine's
+    rating

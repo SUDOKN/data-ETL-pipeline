@@ -142,7 +142,11 @@ Partly redundant w/ acimachine on its ~90 resold-instrument catalog pages (JANZ 
 COST CONTROL: stratified census, not full -- all 28 corporate pages + all 45 capability pages +
 sample 15-20 of 90 catalog pages. ~30% of bytes are byte-identical boilerplate.
 BLOCKING QUESTION BEFORE CENSUS: does a process performed at a PARTIALLY-OWNED partner plant count as
-this subject's capability? Must be answered BEFORE judging starts or the ground truth is noise.
+this subject's capability? ANSWERED 2026-08-29 by the user: YES, and screening owns it. SCR-2b was added to the
+process_cap and material_cap screening catalogs and reworded in equipment's -- a plant the subject owns outright,
+one it part-owns, and a partner plant producing to its direction all count as the subject itself. Deliberately NOT
+extended to conformity_attestations (a partner plant's certificate stays that plant's), nor to products or
+industries. Judging may proceed on that policy.
 
 ## 11th: pradeepmetals.com | non-US (India) | STRONG ACCEPT
 Closed-die steel forging house, Navi Mumbai, BSE-listed since 1993. Investor-relations genre CONFIRMED

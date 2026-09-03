@@ -238,6 +238,11 @@ class GoldenFinding:
     detail: str
     expected: Any
     actual: Any
+    # A gating finding is a defect this stage owns outright. A non-gating one is
+    # a DIFFERENCE: run and corpus disagree, both an innocent and a guilty
+    # reading exist, and only a reader can say which. Non-gating never means
+    # ignorable — it means "reported for examination, not counted as a RED".
+    gating: bool = True
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -247,6 +252,7 @@ class GoldenFinding:
             "detail": self.detail,
             "expected": self.expected,
             "actual": self.actual,
+            "gating": self.gating,
         }
 
 
@@ -263,14 +269,38 @@ def check_occurrences(
     * Counts are compared per subject, not per window. The pipeline reads a
       page-trimmed copy with a 2-chunk cap, so a golden count taken over the
       full text is an upper bound; only a MUST-NOT-OCCUR violation is exact.
+
+    NEITHER LENIENCY MAY SWALLOW A DISAGREEMENT. Standing user rule
+    (2026-08-28): where the run and the eval set differ, the difference is
+    examined, never agreed in passing — and examining it starts with the
+    instrument SAYING it happened. Both leniencies used to hide one:
+
+    * "not sent" conflated a form search never sent with a form search DID send
+      and this stage then found nothing for. The first is genuinely out of
+      scope; the second is either under-collection here or a wrong golden count.
+      The fold's windows record `zero_hit_forms`, so the two are separable.
+    * an UNDER-count was not reported at all — only over-counts were. The
+      trimmed copy explains an under-count; it does not excuse hiding it.
+
+    Both recovered cases are reported as NON-GATING differences. They have a
+    legitimate innocent explanation, so they must not fire a RED; they are also
+    exactly the rows a reader has to adjudicate, so they must not be silent.
     """
     found_by_form: dict[str, int] = {}
     for mention in run.mentions():
         key = mention.sent_form or mention.form
         found_by_form[key] = found_by_form.get(key, 0) + 1
 
+    # Forms search handed to at least one window that scored no hit in it. A
+    # form can be zero-hit in one window and found in another, so this is
+    # evidence of "was sent" only — never of "is absent". Absence is decided by
+    # found_by_form, over the whole subject.
+    sent_zero_hit: set[str] = set()
+    for window in run.windows:
+        sent_zero_hit.update(window.zero_hit_forms)
+
     findings: list[GoldenFinding] = []
-    checked = skipped = 0
+    checked = not_sent = 0
     for label in labels:
         if label.kind != "occurrence" or not label.gates:
             continue
@@ -289,13 +319,31 @@ def check_occurrences(
                     )
                 )
             continue
-        if label.form not in found_by_form:
-            # Never sent, or sent and legitimately absent from the trimmed text.
-            skipped += 1
-            continue
-        checked += 1
+
         expected = label.expect.get("occurrences")
-        if isinstance(expected, int) and actual > expected:
+        if label.form not in found_by_form:
+            if label.form in sent_zero_hit:
+                checked += 1
+                findings.append(
+                    GoldenFinding(
+                        label.id, label.form, label.kind,
+                        "sent to the scan and collected zero times, while the "
+                        "corpus records occurrences in the pinned text — "
+                        "under-collection here, occurrences that fell outside "
+                        "the trimmed copy, or a wrong golden count",
+                        expected, 0, gating=False,
+                    )
+                )
+            else:
+                # Nothing in this run's record says the form was ever handed to
+                # the scan. Out of scope: that is the search eval's question.
+                not_sent += 1
+            continue
+
+        checked += 1
+        if not isinstance(expected, int):
+            continue
+        if actual > expected:
             findings.append(
                 GoldenFinding(
                     label.id, label.form, label.kind,
@@ -304,8 +352,24 @@ def check_occurrences(
                     expected, actual,
                 )
             )
+        elif actual < expected:
+            findings.append(
+                GoldenFinding(
+                    label.id, label.form, label.kind,
+                    "fewer occurrences than the full-text golden count — "
+                    "expected wherever the trim dropped pages, a collection "
+                    "defect otherwise",
+                    expected, actual, gating=False,
+                )
+            )
+
+    gating_count = sum(1 for f in findings if f.gating)
     return findings, {
         "occurrence_labels_checked": checked,
-        "occurrence_labels_not_sent": skipped,
-        "occurrence_findings": len(findings),
+        "occurrence_labels_not_sent": not_sent,
+        # Renamed meaning 2026-08-28: `occurrence_findings` is now the GATING
+        # count alone, with the examine-me rows counted separately. No trend row
+        # is affected — no label has ever gated, so both were 0 everywhere.
+        "occurrence_findings": gating_count,
+        "occurrence_differences": len(findings) - gating_count,
     }

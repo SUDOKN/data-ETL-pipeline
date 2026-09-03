@@ -1,0 +1,2636 @@
+subject: lucasmilhaupt.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/lucasmilhaupt.com.txt
+  sha256: f84ad55ab82bc1fc47d34ac0917856ac7ccbac19ec6eb6697a67302b71441f93
+eval_set_version: 3
+expected_empty: false
+notes: 'Three distinct populations that must not be conflated. (1) FIRST-PARTY capabilities on /Services/Capabilities
+  and the industry pages: metal stamping, slitting, strip rolling, wire drawing and flattening, preform manufacture,
+  laser cutting, EDM, casting/melting, atomizing, coring, coating, paste blending. (2) INSTRUCTIONAL PROSE: ~570
+  lines of the Brazing Fundamentals manual and ~200 more in Principles of Joint Design are a second-person how-to
+  addressed to the reader (''you should ...'', ''keep the torch moving''), naming a further two dozen operations
+  -- degreasing, acid pickling, abrasive cleaning, quenching, sandblasting, twelve named NDT and destructive test
+  methods. Under recall-first those ARE entries, but they are NOT first-party capability claims, so every one of
+  them carries actor: unknown. (3) CONTRAST ECHO: /Brazing-Academy/Metal-Joining-Brazing-vs.-Welding argues AGAINST
+  welding at length; welding, resistance welding, electron beam, capacitor discharge and friction welding all occur
+  there only as the rejected alternative. They are seeded with that context recorded, because the text does name
+  them.'
+entries:
+- id: lucasmilhaupt_com-process_caps-0005
+  name: brazing audit
+  status: disputed
+  acceptable_forms:
+  - Brazing Audits
+  - brazing audits
+  - brazing audit
+  - on-site audits
+  - process audits
+  evidence:
+  - quote: Brazing Audits
+    approx_offset: 492
+  notes: an evaluation of the CUSTOMER'S brazing process rather than an operation on the work; kept because inspection
+    and evaluation qualify, contested because the object is a process, not a part | a brazing audit is a consulting
+    service that evaluates the CUSTOMER's process ('our engineers conduct thorough evaluations and provide a detailed
+    report'); it is not an operation performed on materials, parts or products. The clause's inspection carve-out
+    is for inspection OF THE WORK.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: a brazing audit is a consulting service that evaluates the CUSTOMER's process ('our engineers conduct
+      thorough evaluations and provide a detailed report'); it is not an operation performed on materials, parts
+      or products. The clause's inspection carve-out is for inspection OF THE WORK.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0024
+  name: joint design review
+  status: candidate
+  acceptable_forms:
+  - joint design reviews
+  - joint design
+  - joint design validation
+  evidence:
+  - quote: Principles of Joint Design
+    approx_offset: 784
+  notes: an engineering service rather than an operation performed on the work | a design review is an engineering
+    activity performed on a drawing, not an operation performed on materials, parts or products; 'joint design'
+    is a design artefact, not a production step.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0095
+  name: welding
+  status: candidate
+  acceptable_forms:
+  - welding
+  - weld
+  - welded
+  - butt-weld
+  evidence:
+  - quote: blue gradient background with woman welding
+    approx_offset: 1255
+  actor: unknown
+  notes: 'New surface: image alt text on the homepage hero (''woman welding''), a surface the legacy innerText rendering
+    never exposed.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0090
+  name: metal joining
+  status: candidate
+  acceptable_forms:
+  - metal joining
+  - material joining
+  - joining
+  evidence:
+  - quote: through custom metal joining solutions, advanced R&D, and rapid prototyping.
+    approx_offset: 1848
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0001
+  name: prototyping
+  status: confirmed
+  acceptable_forms:
+  - prototyping
+  - Rapid Prototyping
+  - rapid prototyping
+  - prototype
+  evidence:
+  - quote: the Center of Excellence – an innovation hub designed to accelerate our R&D, prototyping, and testing
+      operations. A collaborative space where curiosity knows
+    approx_offset: 2513
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0002
+  name: alloy casting
+  status: confirmed
+  acceptable_forms:
+  - alloy casting
+  - casting
+  - casting to fabrication
+  - we cast
+  evidence:
+  - quote: Being a vertically integrated supplier means we carefully control every aspect of the process – from
+      casting to fabrication - to ensure we deliver the best quality products.
+    approx_offset: 2893
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0011
+  name: fabrication
+  status: candidate
+  acceptable_forms:
+  - fabricate
+  - fabrication
+  - precision fabrication
+  - metal fabrication processes
+  evidence:
+  - quote: Being a vertically integrated supplier means we carefully control every aspect of the process – from
+      casting to fabrication
+    approx_offset: 2893
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0003
+  name: brazing
+  status: candidate
+  acceptable_forms:
+  - brazing
+  - braze
+  - brazed
+  - Brazing
+  evidence:
+  - quote: We offer a full portfolio of custom solutions designed to meet your metal joining needs. From custom
+      brazing alloys to fluxes to precision metal joining components.
+    approx_offset: 3096
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0109
+  name: assembly
+  status: candidate
+  acceptable_forms:
+  - Assembly for Brazing
+  - assembling
+  - assemble
+  - assembled
+  evidence:
+  - quote: And the joint is usually self-supporting when assembled for brazing.
+    approx_offset: 8469
+  actor: unknown
+  notes: Old forms ('assemble', 'assembling') are not whole-word covered by the surviving text's inflection 'assembled'
+    (matcher requires whole-word on both sides); added 'assembled' as a new acceptable form, kept the old ones.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0047
+  name: silver brazing
+  status: candidate
+  acceptable_forms:
+  - silver brazing
+  - Silver brazing
+  - silver brazed
+  evidence:
+  - quote: L = 25,000 psi (Typical shear strength for silver brazing filler metals)
+    approx_offset: 10653
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0029
+  name: drilling
+  status: confirmed
+  acceptable_forms:
+  - drilled
+  - drilling
+  evidence:
+  - quote: the filler metal. Where this is not possible, small holes may be drilled into the blind spots to allow
+      flux escape. The joint is completed when molten filler metal
+    approx_offset: 15164
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0022
+  name: melting
+  status: candidate
+  acceptable_forms:
+  - melt
+  - melting
+  - We melt
+  - melt to fabrication
+  - melting the alloy
+  evidence:
+  - quote: in a wide range of compositions, properties and melting temperatures.
+    approx_offset: 15981
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0081
+  name: paste blending
+  status: confirmed
+  acceptable_forms:
+  - blend
+  - custom blend
+  - blend precisely metered alloy powders
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders with
+      flux and rheology modifiers, ensuring accurate deposit control in automated
+    approx_offset: 18150
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0038
+  name: flux dispensing
+  status: confirmed
+  acceptable_forms:
+  - dispensing
+  - dispensable flux
+  - automated dispensing
+  evidence:
+  - quote: alloy powders with flux and rheology modifiers, ensuring accurate deposit control in automated dispensing,
+      stencil, or syringe applications, ideal for automotive, HVAC, and electronics
+    approx_offset: 18232
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0105
+  name: stenciling
+  status: candidate
+  acceptable_forms:
+  - stenciled
+  - stenciling
+  - stencil
+  evidence:
+  - quote: ensuring accurate deposit control in automated dispensing, stencil, or syringe applications,
+    approx_offset: 18280
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0083
+  name: slitting
+  status: confirmed
+  acceptable_forms:
+  - Slitting
+  - slitting
+  - slit strip
+  - custom slitting
+  evidence:
+  - quote: Distribution services we extend more than raw materials; we offer custom slitting, spooling, kitting,
+      VMI programs, and global logistics support, so your brazing
+    approx_offset: 18482
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0084
+  name: spooling
+  status: confirmed
+  acceptable_forms:
+  - spooling
+  evidence:
+  - quote: Distribution services we extend more than raw materials; we offer custom slitting, spooling, kitting,
+      VMI programs, and global logistics support,
+    approx_offset: 18482
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0085
+  name: kitting
+  status: confirmed
+  acceptable_forms:
+  - kitting
+  evidence:
+  - quote: services we extend more than raw materials; we offer custom slitting, spooling, kitting, VMI programs,
+      and global logistics support, so your brazing
+    approx_offset: 18495
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0086
+  name: vendor managed inventory
+  status: disputed
+  acceptable_forms:
+  - VMI programs
+  - VMI
+  evidence:
+  - quote: services we extend more than raw materials; we offer custom slitting, spooling, kitting, VMI programs,
+      and global logistics support, so your brazing supply chain stays lean and
+    approx_offset: 18495
+  notes: a supply-chain programme, not a manufacturing operation | VMI is an inventory-replenishment programme listed
+    under 'Distribution services'; it manages stock rather than acting on materials or parts.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: VMI is an inventory-replenishment programme listed under 'Distribution services'; it manages stock rather
+      than acting on materials or parts.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0006
+  name: material analysis
+  status: confirmed
+  acceptable_forms:
+  - Material Analysis
+  - material analysis
+  - analyze braze products and materials
+  evidence:
+  - quote: Material Analysis
+    approx_offset: 21891
+  - quote: The test lab enables us to analyze braze products and materials at a microscopic level.
+    approx_offset: 21910
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0007
+  name: quality control
+  status: confirmed
+  acceptable_forms:
+  - Quality Control
+  - quality control
+  - quality checks
+  evidence:
+  - quote: Quality Control
+    approx_offset: 22003
+  - quote: quality throughout the manufacturing process, with quality checks in the lab.
+    approx_offset: 22077
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0010
+  name: aluminum brazing
+  status: candidate
+  acceptable_forms:
+  - aluminum brazing
+  - Aluminum Brazing
+  evidence:
+  - quote: Aluminum Brazing of Evaporators and Condenser Coils
+    approx_offset: 24795
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0009
+  name: repair brazing
+  status: candidate
+  acceptable_forms:
+  - repair brazing
+  - repair
+  evidence:
+  - quote: Aluminum HVAC Repair
+    approx_offset: 24950
+  notes: 'Thin evidence: a Demo Videos title only (''Aluminum HVAC Repair''); no descriptive sentence about repair
+    brazing survives.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0020
+  name: brazing process consultation
+  status: candidate
+  acceptable_forms:
+  - brazing process consultation
+  - Consulting Services
+  - metal joining consulting
+  - brazing process evaluation
+  - Brazing Audits
+  - Engineering Assistance
+  evidence:
+  - quote: During a brazing process evaluation, one of our expertly trained Lucas Milhaupt Brazing Application Engineers
+      can diagnose and resolve operational issues.
+    approx_offset: 36417
+  notes: 'Old form ''Consulting Services'' now occurs only inside the sitewide Navigation: line, which the repair
+    brief says to avoid anchoring on. Reanchored to real prose on /Services/Brazing-Audit (''brazing process evaluation''),
+    added as a new acceptable form; kept old forms for the record.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0012
+  name: soldering
+  status: candidate
+  acceptable_forms:
+  - soldering
+  - solder
+  - soldered
+  evidence:
+  - quote: Our technical support team solves brazing and soldering challenges by recommending suitable alloys and
+      alternatives.
+    approx_offset: 36644
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0087
+  name: test brazing
+  status: confirmed
+  acceptable_forms:
+  - test brazing
+  - sample testing and analysis
+  evidence:
+  - quote: recommending suitable alloys and alternatives. With our in-house lab, we conduct test brazing, examine
+      assemblies, and perform feasibility studies to explore process alternatives.
+    approx_offset: 36714
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0004
+  name: precision stamping
+  status: retired
+  acceptable_forms:
+  - precision stamping
+  - Metal Stamping
+  - stamping
+  - stamped
+  evidence:
+  - quote: toughest environments. By controlling every step from alloy casting through precision stamping, we deliver
+      consistent quality, shorter lead
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''precision stamping'', ''Metal Stamping'',
+    ''stamping'', ''stamped''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0008
+  name: flux coring
+  status: retired
+  acceptable_forms:
+  - core
+  - cored
+  - flux-cored
+  - flux cored
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate in-house,
+      reducing variability, shortening lead times,
+  notes: 'retired at the markdown cutover: the only occurrence of ''core'' is ''At the core are our Filler Metals''
+    (Products page prose about company structure), unrelated to flux coring; no acceptable form occurs.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0013
+  name: precision microfabrication
+  status: retired
+  acceptable_forms:
+  - Precision Microfabrication
+  - microfabrication
+  evidence:
+  - quote: 'Precision Microfabrication: Lucas Milhaupt utilizes advanced fabrication technologies – including laser
+      cutting, EDM, and precision'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Precision Microfabrication'', ''microfabrication'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0014
+  name: laser cutting
+  status: retired
+  acceptable_forms:
+  - laser cutting
+  - laser-cut
+  - small-run laser cutting
+  evidence:
+  - quote: utilizes advanced fabrication technologies – including laser cutting, EDM, and precision stamping, to
+      produce custom preforms and components with
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''laser cutting'', ''laser-cut'', ''small-run
+    laser cutting''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0015
+  name: EDM
+  status: retired
+  acceptable_forms:
+  - EDM
+  evidence:
+  - quote: utilizes advanced fabrication technologies – including laser cutting, EDM, and precision stamping, to
+      produce custom preforms and components with
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''EDM''); the capability description that
+    named this process lived under the removed /Services/Capabilities or /Industries pages, which return only duplicate-page
+    placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0016
+  name: hermetic sealing
+  status: retired
+  acceptable_forms:
+  - hermetic sealing
+  - Hermetic Package Sealing
+  - lid attachment
+  evidence:
+  - quote: even for the smallest and most complex parts. If your design demands micron-level accuracy or hermetic
+      sealing, Lucas Milhaupt has the capability to deliver.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''hermetic sealing'', ''Hermetic Package
+    Sealing'', ''lid attachment''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0017
+  name: die attach
+  status: retired
+  acceptable_forms:
+  - Die Attach
+  - die attach
+  - die attachment
+  evidence:
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Die Attach'', ''die attach'', ''die
+    attachment''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0018
+  name: clean-room assembly
+  status: retired
+  acceptable_forms:
+  - clean-room environments
+  - clean lab room
+  evidence:
+  - quote: 'Precision Joining Capabilities: Advanced brazing techniques – including clean-room environments – allow
+      us to join small, delicate components'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''clean-room environments'', ''clean lab
+    room''); the capability description that named this process lived under the removed /Services/Capabilities or
+    /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0019
+  name: controlled atmosphere brazing
+  status: retired
+  acceptable_forms:
+  - controlled atmosphere brazing
+  - controlled atmosphere
+  - controlled atmosphere processes
+  evidence:
+  - quote: and, by excluding oxygen, prevents oxidation. Even in controlled atmosphere brazing you may find that
+      a small amount of flux improves the wetting action of the brazing filler metal.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''controlled atmosphere brazing'', ''controlled
+    atmosphere'', ''controlled atmosphere processes''); the capability description that named this process lived
+    under the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders
+    in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0021
+  name: vacuum brazing
+  status: retired
+  acceptable_forms:
+  - vacuum brazing
+  evidence:
+  - quote: 'methods: torch or manual brazing, induction brazing, resistance brazing, and vacuum brazing. The heating
+      method most commonly used in brazing'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''vacuum brazing''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0023
+  name: packaging
+  status: retired
+  acceptable_forms:
+  - package
+  - packaging
+  - pre-packaged
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We melt, cast, roll, draw, fabricate, and package in-house, giving
+      you full material traceability, consistent
+  notes: 'retired at the markdown cutover: the only occurrence of ''package''/''pre-packaged'' is the Demo Videos
+    page''s Product Family facet label ''Pre-Packaged'' (a product-line filter tag), with no sentence describing
+    a packaging operation; too thin/list-like to anchor on per the repair brief''s boilerplate guidance.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0025
+  name: preform manufacture
+  status: retired
+  acceptable_forms:
+  - Preforms
+  - custom preform fabrication
+  - preform sizing
+  - preform design
+  evidence:
+  - quote: AS9100-certified, vertically integrated manufacturing controls alloy chemistry and geometry from the
+      melt through custom preform fabrication, holding tolerances measured in microns for hermetic,
+  notes: 'retired at the markdown cutover: the only occurrence is ''preforms'' listed as one of the alloy forms
+    sold (''wire, strip, rings, preforms, and powders'') -- a product form, not a description of a preform-manufacturing
+    process; reanchored instead as products-0004.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0026
+  name: mechanical fastening
+  status: retired
+  acceptable_forms:
+  - Mechanically fastened
+  - mechanical fastening
+  - threaded, staked or riveted
+  evidence:
+  - quote: And what about other options? Mechanically fastened joints (threaded, staked or riveted) generally don’t
+      compare to brazed joints in strength, resistance to shock and vibration,
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Mechanically fastened'', ''mechanical
+    fastening'', ''threaded, staked or riveted''); the capability description that named this process lived under
+    the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this
+    crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0027
+  name: adhesive bonding
+  status: retired
+  acceptable_forms:
+  - Adhesive bonding
+  - adhesive bonding
+  evidence:
+  - quote: resistance to shock and vibration, or leak-tightness. Adhesive bonding and soldering will provide permanent
+      bonds, but generally, neither can offer the strength
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Adhesive bonding'', ''adhesive bonding'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0028
+  name: automated brazing
+  status: retired
+  acceptable_forms:
+  - automated brazing
+  - high production automated brazing
+  - mass production brazing
+  evidence:
+  - quote: linear welded joint. And, as we’ll see later on, these economies in time and labor are multiplied many
+      times over in high production automated brazing. The pure speed of brazing represents one of
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''automated brazing'', ''high production
+    automated brazing'', ''mass production brazing''); the capability description that named this process lived
+    under the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders
+    in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0030
+  name: degreasing
+  status: retired
+  acceptable_forms:
+  - degreasing
+  - vapor degreasing
+  - degreasing solvent
+  - degreasing solution
+  evidence:
+  - quote: In most cases you can do it very easily either by dipping the parts into a suitable degreasing solvent,
+      by vapor degreasing, or by alkaline or aqueous cleaning. If the metal
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''degreasing'', ''vapor degreasing'',
+    ''degreasing solvent'', ''degreasing solution''); the capability description that named this process lived under
+    the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this
+    crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0031
+  name: alkaline or aqueous cleaning
+  status: retired
+  acceptable_forms:
+  - alkaline or aqueous cleaning
+  - aqueous cleaning
+  - alkaline
+  evidence:
+  - quote: the parts into a suitable degreasing solvent, by vapor degreasing, or by alkaline or aqueous cleaning.
+      If the metal surfaces are coated with oxide
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''alkaline or aqueous cleaning'', ''aqueous
+    cleaning'', ''alkaline''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0032
+  name: acid pickling
+  status: retired
+  acceptable_forms:
+  - acid pickle treatment
+  - acid pickle
+  - pickling
+  - pickle
+  evidence:
+  - quote: those contaminants chemically or mechanically. For chemical removal, use an acid pickle treatment, making
+      sure that the chemicals are compatible
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''acid pickle treatment'', ''acid pickle'',
+    ''pickling'', ''pickle''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0033
+  name: abrasive cleaning
+  status: retired
+  acceptable_forms:
+  - abrasive cleaning
+  evidence:
+  - quote: acid traces remain in crevices or blind holes. Mechanical removal calls for abrasive cleaning. Particularly
+      in repair brazing, where parts
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''abrasive cleaning''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0034
+  name: grinding
+  status: retired
+  acceptable_forms:
+  - grinding
+  evidence:
+  - quote: where parts may be very dirty or heavily rusted, you can speed the cleaning process by using a grinding
+      wheel, or file or metallic grit blast, followed by
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''grinding''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0035
+  name: grit blasting
+  status: retired
+  acceptable_forms:
+  - metallic grit blast
+  - grit blast
+  evidence:
+  - quote: heavily rusted, you can speed the cleaning process by using a grinding wheel, or file or metallic grit
+      blast, followed by a rinsing operation.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''metallic grit blast'', ''grit blast'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0036
+  name: rinsing
+  status: retired
+  acceptable_forms:
+  - rinsing operation
+  - rinsing
+  - hot water rinse
+  - clean water rinse
+  evidence:
+  - quote: grinding wheel, or file or metallic grit blast, followed by a rinsing operation.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''rinsing operation'', ''rinsing'', ''hot
+    water rinse'', ''clean water rinse''); the capability description that named this process lived under the removed
+    /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this crawl; no
+    form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0037
+  name: fluxing
+  status: retired
+  acceptable_forms:
+  - Fluxing
+  - fluxing
+  - FLUXING THE PARTS
+  - flux application
+  evidence:
+  - quote: 'STEP 3: FLUXING THE PARTS'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Fluxing'', ''fluxing'', ''FLUXING THE
+    PARTS'', ''flux application''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0039
+  name: riveting
+  status: retired
+  acceptable_forms:
+  - riveting
+  - riveted
+  evidence:
+  - quote: be incorporated in the fabricating operation. Typical devices include crimping, interlocking seams, swaging,
+      peening, riveting, pinning, dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''riveting'', ''riveted''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0040
+  name: crimping
+  status: retired
+  acceptable_forms:
+  - crimping
+  evidence:
+  - quote: be incorporated in the fabricating operation. Typical devices include crimping, interlocking seams, swaging,
+      peening, riveting, pinning, dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''crimping''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0041
+  name: interlocking seams
+  status: retired
+  acceptable_forms:
+  - interlocking seams
+  evidence:
+  - quote: fabricating operation. Typical devices include crimping, interlocking seams, swaging, peening, riveting,
+      pinning, dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''interlocking seams''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0042
+  name: swaging
+  status: retired
+  acceptable_forms:
+  - swaging
+  evidence:
+  - quote: operation. Typical devices include crimping, interlocking seams, swaging, peening, riveting, pinning,
+      dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''swaging''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0043
+  name: peening
+  status: retired
+  acceptable_forms:
+  - peening
+  evidence:
+  - quote: devices include crimping, interlocking seams, swaging, peening, riveting, pinning, dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''peening''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0044
+  name: pinning
+  status: retired
+  acceptable_forms:
+  - pinning
+  evidence:
+  - quote: crimping, interlocking seams, swaging, peening, riveting, pinning, dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''pinning''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0045
+  name: dimpling
+  status: retired
+  acceptable_forms:
+  - dimpling
+  evidence:
+  - quote: interlocking seams, swaging, peening, riveting, pinning, dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''dimpling''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0046
+  name: knurling
+  status: retired
+  acceptable_forms:
+  - knurling
+  evidence:
+  - quote: interlocking seams, swaging, peening, riveting, pinning, dimpling or knurling.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''knurling''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0048
+  name: furnace brazing
+  status: retired
+  acceptable_forms:
+  - furnace brazing
+  - furnace
+  evidence:
+  - quote: When fixturing for furnace brazing, hold the mass of the fixture to a minimum.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''furnace brazing'', ''furnace''); the
+    capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0049
+  name: flame brazing
+  status: retired
+  acceptable_forms:
+  - flame-brazed
+  - flame-brazed or soldered joints
+  evidence:
+  - quote: Fixture design is a key factor in achieving quality flame-brazed or soldered joints.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''flame-brazed'', ''flame-brazed or soldered
+    joints''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0050
+  name: torch brazing
+  status: retired
+  acceptable_forms:
+  - torch brazing
+  - Torch brazing
+  - torch or manual brazing
+  - manual brazing
+  evidence:
+  - quote: 'There are four main types of brazing heating methods: torch or manual brazing,'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''torch brazing'', ''Torch brazing'',
+    ''torch or manual brazing'', ''manual brazing''); the capability description that named this process lived under
+    the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this
+    crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0051
+  name: induction brazing
+  status: retired
+  acceptable_forms:
+  - induction brazing
+  - induction heating
+  - induction
+  evidence:
+  - quote: 'are four main types of brazing heating methods: torch or manual brazing, induction brazing, resistance
+      brazing, and vacuum brazing. The heating method most commonly used in brazing'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''induction brazing'', ''induction heating'',
+    ''induction''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0052
+  name: resistance brazing
+  status: retired
+  acceptable_forms:
+  - resistance brazing
+  evidence:
+  - quote: 'brazing heating methods: torch or manual brazing, induction brazing, resistance brazing, and vacuum
+      brazing. The heating method most commonly used in brazing'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''resistance brazing''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0053
+  name: flux removal
+  status: retired
+  acceptable_forms:
+  - Flux Removal
+  - flux removal
+  - post-braze flux removal
+  evidence:
+  - quote: Flux Removal
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Flux Removal'', ''flux removal'', ''post-braze
+    flux removal''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0054
+  name: quenching
+  status: retired
+  acceptable_forms:
+  - Quenching
+  - quenching
+  - quench
+  evidence:
+  - quote: Quenching
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Quenching'', ''quenching'', ''quench'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0055
+  name: soaking / wetting
+  status: retired
+  acceptable_forms:
+  - Soaking/wetting
+  - soaking
+  - soak
+  evidence:
+  - quote: Soaking/wetting
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Soaking/wetting'', ''soaking'', ''soak'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0056
+  name: ultrasonic cleaning
+  status: retired
+  acceptable_forms:
+  - ultrasonic cleaning
+  evidence:
+  - quote: 'more elaborate methods of removing flux as well—an ultrasonic cleaning tank to speed the action of the
+      hot water, or live steam. Additional cleaning methods include:'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ultrasonic cleaning''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0057
+  name: steam lance cleaning
+  status: retired
+  acceptable_forms:
+  - Steam lance cleaning
+  - steam lance
+  evidence:
+  - quote: Steam lance cleaning - This process employs superheated steam under pressure
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Steam lance cleaning'', ''steam lance'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0058
+  name: chemical cleaning
+  status: retired
+  acceptable_forms:
+  - Chemical cleaning
+  - chemical cleaning
+  - chemical immersion
+  evidence:
+  - quote: Chemical cleaning - You can use an acidic or basic solution,
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Chemical cleaning'', ''chemical cleaning'',
+    ''chemical immersion''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0059
+  name: sandblasting
+  status: retired
+  acceptable_forms:
+  - sandblasting
+  evidence:
+  - quote: Mechanical cleaning - Clean residue from brazed joints with a wire brush or by sandblasting. Be advised
+      that soft metals-including aluminum-require
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''sandblasting''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0060
+  name: mechanical cleaning
+  status: retired
+  acceptable_forms:
+  - Mechanical cleaning
+  - mechanical cleaning
+  - mechanical finishing
+  evidence:
+  - quote: Mechanical cleaning - Clean residue from brazed joints with a wire brush
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Mechanical cleaning'', ''mechanical
+    cleaning'', ''mechanical finishing''); the capability description that named this process lived under the removed
+    /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this crawl; no
+    form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0061
+  name: electroplating
+  status: retired
+  acceptable_forms:
+  - electroplated finish
+  - plated
+  - tinned
+  evidence:
+  - quote: seldom needed. The assembly is ready for use, or for the application of an electroplated finish. In the
+      few instances where you need an ultra-clean
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''electroplated finish'', ''plated'',
+    ''tinned''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0062
+  name: nondestructive testing
+  status: retired
+  acceptable_forms:
+  - nondestructive examination
+  - Nondestructive testing methods
+  - Nondestructive testing
+  evidence:
+  - quote: 'Brazed Joint Examination Methods: Nondestructive testing methods'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''nondestructive examination'', ''Nondestructive
+    testing methods'', ''Nondestructive testing''); the capability description that named this process lived under
+    the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this
+    crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0063
+  name: visual examination
+  status: retired
+  acceptable_forms:
+  - Visual examination
+  - visual examination
+  - visual inspection
+  evidence:
+  - quote: Visual examination - with or without magnification-for evaluating voids, porosity,
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Visual examination'', ''visual examination'',
+    ''visual inspection''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0064
+  name: leak testing
+  status: retired
+  acceptable_forms:
+  - Leak testing
+  - leak testing
+  - bubble leak) testing
+  - Pressure (or bubble leak) testing
+  evidence:
+  - quote: Leak testing - for determining gas- or liquid-tightness of a brazement.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Leak testing'', ''leak testing'', ''bubble
+    leak) testing'', ''Pressure (or bubble leak) testing''); the capability description that named this process
+    lived under the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders
+    in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0065
+  name: pressure testing
+  status: retired
+  acceptable_forms:
+  - Pressure (or bubble leak) testing
+  - pressure test
+  - hydrostatic
+  evidence:
+  - quote: determining gas- or liquid-tightness of a brazement. Pressure (or bubble leak) testing involves the application
+      of air at greater-than-service pressures. Vacuum testing is
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Pressure (or bubble leak) testing'',
+    ''pressure test'', ''hydrostatic''); the capability description that named this process lived under the removed
+    /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this crawl; no
+    form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0066
+  name: vacuum testing
+  status: retired
+  acceptable_forms:
+  - Vacuum testing
+  evidence:
+  - quote: application of air at greater-than-service pressures. Vacuum testing is useful for refrigeration equipment
+      and detection of minute leaks, employing a mass spectrometer and a helium atmosphere.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Vacuum testing''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0067
+  name: radiographic examination
+  status: retired
+  acceptable_forms:
+  - Radiographic examination
+  - radiographic
+  evidence:
+  - quote: Radiographic examination - useful in detecting internal flaws, large cracks and braze voids,
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Radiographic examination'', ''radiographic'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0068
+  name: proof testing
+  status: retired
+  acceptable_forms:
+  - Proof testing
+  - spin testing
+  - tensile loading
+  evidence:
+  - quote: Proof testing - subjecting a brazed joint to a one-time load greater than the service level-applied
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Proof testing'', ''spin testing'', ''tensile
+    loading''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0069
+  name: ultrasonic examination
+  status: retired
+  acceptable_forms:
+  - Ultrasonic examination
+  - ultrasonic examination
+  evidence:
+  - quote: Ultrasonic examination - a comparative method for evaluating joint quality,
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Ultrasonic examination'', ''ultrasonic
+    examination''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0070
+  name: liquid penetrant examination
+  status: retired
+  acceptable_forms:
+  - Liquid penetrant examination
+  - liquid penetrant
+  - dye and fluorescent penetrants
+  evidence:
+  - quote: Liquid penetrant examination - dye and fluorescent penetrants may detect cracks
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Liquid penetrant examination'', ''liquid
+    penetrant'', ''dye and fluorescent penetrants''); the capability description that named this process lived under
+    the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this
+    crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0071
+  name: acoustic emission testing
+  status: retired
+  acceptable_forms:
+  - Acoustic emission testing
+  evidence:
+  - quote: Acoustic emission testing - evaluating the extent of discontinuity-using
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Acoustic emission testing''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0072
+  name: thermal transfer examination
+  status: retired
+  acceptable_forms:
+  - Thermal transfer examination
+  evidence:
+  - quote: Thermal transfer examination - detects changes in thermal transfer rates
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Thermal transfer examination''); the
+    capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0073
+  name: destructive testing
+  status: retired
+  acceptable_forms:
+  - destructive and mechanical testing methods
+  - destructive testing
+  - Destructive testing methods
+  evidence:
+  - quote: 'There are also several destructive and mechanical testing methods, often used in random or lot testing:'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''destructive and mechanical testing methods'',
+    ''destructive testing'', ''Destructive testing methods''); the capability description that named this process
+    lived under the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders
+    in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0074
+  name: peel testing
+  status: retired
+  acceptable_forms:
+  - Peel testing
+  evidence:
+  - quote: Peel testing - useful for evaluating lap joints and production quality control
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Peel testing''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0075
+  name: metallographic examination
+  status: retired
+  acceptable_forms:
+  - Metallographic examination
+  evidence:
+  - quote: Metallographic examination - testing the general quality of joints-detecting
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Metallographic examination''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0076
+  name: tension and shear testing
+  status: retired
+  acceptable_forms:
+  - Tension and shear testing
+  - shear testing
+  evidence:
+  - quote: Tension and shear testing - determines strength of a joint in tension or in shear-used
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Tension and shear testing'', ''shear
+    testing''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0077
+  name: fatigue testing
+  status: retired
+  acceptable_forms:
+  - Fatigue testing
+  evidence:
+  - quote: Fatigue testing - testing the base metal plus the brazed joint-a
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Fatigue testing''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0078
+  name: impact testing
+  status: retired
+  acceptable_forms:
+  - Impact testing
+  evidence:
+  - quote: Impact testing - determines the basic properties of brazed joints-generally
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Impact testing''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0079
+  name: torsion testing
+  status: retired
+  acceptable_forms:
+  - Torsion testing
+  evidence:
+  - quote: Torsion testing - used on brazed joints in production quality control-for
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Torsion testing''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0080
+  name: polishing
+  status: retired
+  acceptable_forms:
+  - polishing
+  - polished
+  evidence:
+  - quote: instances where you need an ultra-clean finish, you can get it by polishing the assembly with a fine
+      emery cloth. If the assemblies are going to be stored for
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''polishing'', ''polished''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0082
+  name: Lean Manufacturing / Six Sigma
+  status: retired
+  acceptable_forms:
+  - Lean Manufacturing
+  - Design for Six Sigma
+  - Six Sigma
+  - Strategy Deployment
+  evidence:
+  - quote: Milhaupt is committed to using Steel Partners Operational Excellence Programs include Lean Manufacturing,
+      Design for Six Sigma, Six Sigma and Strategy Deployment to reduce
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Lean Manufacturing'', ''Design for Six
+    Sigma'', ''Six Sigma'', ''Strategy Deployment''); the capability description that named this process lived under
+    the removed /Services/Capabilities or /Industries pages, which return only duplicate-page placeholders in this
+    crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0088
+  name: root-cause failure analysis
+  status: retired
+  acceptable_forms:
+  - root-cause failure analysis
+  - failure analysis
+  evidence:
+  - quote: volume, reduce rework, and boost throughput. Our team can help with root-cause failure analysis, feed-speed
+      recommendations and offer cost-down alloy substitutions.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''root-cause failure analysis'', ''failure
+    analysis''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0089
+  name: refining
+  status: retired
+  acceptable_forms:
+  - refining
+  evidence:
+  - quote: Handy & Harman (HNH) had long been recognized as a leading company in precious metal fabrication, processing
+      and refining. In 1931, (HNH) patented Sil-Fos, a silver brazing
+  actor: parent_sibling
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''refining''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0091
+  name: strip rolling
+  status: retired
+  acceptable_forms:
+  - Strip Rolling
+  - strip rolling
+  - roll your strip
+  - roll
+  evidence:
+  - quote: We have the ability to roll your strip thicknesses not available directly from the mills.
+  notes: 'retired at the markdown cutover: the only occurrence of ''roll'' is inside ''Scroll table to view all''
+    (a table-scroll UI hint on the Joint Design page), a substring false positive, not a mention of strip rolling.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0092
+  name: wire drawing
+  status: retired
+  acceptable_forms:
+  - Wire Drawing
+  - wire drawing
+  - draw wire
+  - drawing
+  - draw
+  evidence:
+  - quote: Wire Drawing & Flattening
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Wire Drawing'', ''wire drawing'', ''draw
+    wire'', ''drawing''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0093
+  name: flattening
+  status: retired
+  acceptable_forms:
+  - Flattening
+  - flattening
+  evidence:
+  - quote: Wire Drawing & Flattening
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Flattening'', ''flattening''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0094
+  name: atomizing
+  status: retired
+  acceptable_forms:
+  - atomize
+  - atomized
+  - atomized filler metal powder
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate in-house,
+      reducing variability, shortening lead times,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''atomize'', ''atomized'', ''atomized
+    filler metal powder''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0096
+  name: resistance welding
+  status: retired
+  acceptable_forms:
+  - electrical resistance welding
+  - resistance-weld
+  - resistance welding
+  evidence:
+  - quote: two small strips of metal at a single point, an electrical resistance welding approach is practical.
+      This is a fast, economical way to make strong,
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''electrical resistance welding'', ''resistance-weld'',
+    ''resistance welding''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0097
+  name: beveling
+  status: retired
+  acceptable_forms:
+  - beveling
+  evidence:
+  - quote: if you want to butt-weld two pieces of metal, you begin by beveling the edges of the metal pieces to
+      allow room for the welding filler metal. Then
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''beveling''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0098
+  name: electron beam welding
+  status: retired
+  acceptable_forms:
+  - electron beam
+  evidence:
+  - quote: that welding techniques do continually improve. You can weld on a production basis via electron beam,
+      capacitor discharge, friction and other methods. These sophisticated processes usually call for
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''electron beam''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0099
+  name: capacitor discharge welding
+  status: retired
+  acceptable_forms:
+  - capacitor discharge
+  evidence:
+  - quote: continually improve. You can weld on a production basis via electron beam, capacitor discharge, friction
+      and other methods. These sophisticated processes usually call for
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''capacitor discharge''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0100
+  name: friction welding
+  status: retired
+  acceptable_forms:
+  - friction and other methods
+  - friction
+  evidence:
+  - quote: improve. You can weld on a production basis via electron beam, capacitor discharge, friction and other
+      methods. These sophisticated processes usually call for
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''friction and other methods'', ''friction'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0101
+  name: coating
+  status: retired
+  acceptable_forms:
+  - coat
+  - coated
+  - flux-coated
+  - coating
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate in-house,
+      reducing variability, shortening lead times,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''coat'', ''coated'', ''flux-coated'',
+    ''coating''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0102
+  name: cutting
+  status: retired
+  acceptable_forms:
+  - cut, and fabricate
+  - cutting
+  evidence:
+  - quote: Vertically Integrated Manufacturing – We cast, atomize, core, coat, draw, roll, cut, and fabricate in-house,
+      reducing variability, shortening lead times,
+  notes: 'retired at the markdown cutover: the only occurrence of ''cutting'' is the adjective ''cutting-edge''
+    (''focusing on cutting-edge material joining solutions''), not the process; no other form occurs.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0103
+  name: coil brazing
+  status: retired
+  acceptable_forms:
+  - coil brazing
+  evidence:
+  - quote: and reduce flux residue that can mask leaks. Lucas Milhaupt has decades of HVAC/R coil brazing experience
+      that we leverage for automotive thermal systems,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''coil brazing''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0104
+  name: step brazing / step soldering
+  status: retired
+  acceptable_forms:
+  - step brazing/soldering operations
+  - step brazing
+  evidence:
+  - quote: Electrical contacts, electrodes, step brazing/soldering operations
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''step brazing/soldering operations'',
+    ''step brazing''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0106
+  name: spraying
+  status: retired
+  acceptable_forms:
+  - sprayed
+  - spray
+  evidence:
+  - quote: binders that are mixed with braze alloy powder to form a paste that can be stenciled or sprayed. Contact
+      the Lucas Milhaupt Technical Support
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''sprayed'', ''spray''); the capability
+    description that named this process lived under the removed /Services/Capabilities or /Industries pages, which
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0107
+  name: silk screening
+  status: retired
+  acceptable_forms:
+  - silk screening
+  evidence:
+  - quote: Precision application, stenciling, silk screening
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''silk screening''); the capability description
+    that named this process lived under the removed /Services/Capabilities or /Industries pages, which return only
+    duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0108
+  name: machining
+  status: retired
+  acceptable_forms:
+  - machine the parts
+  - machining
+  evidence:
+  - quote: bushing into a steel sleeve. Brass expands, when heated, more than steel. So if you machine the parts
+      to have a room temperature clearance of .002”-.003” (.051 mm-.076 mm), by the time
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''machine the parts'', ''machining'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0110
+  name: de-brazing / joint disassembly
+  status: retired
+  acceptable_forms:
+  - de-braze
+  - disassemble brazed joints
+  evidence:
+  - quote: (You can “de-braze” a brazed joint if you have to, but why plan on it?) For the typical non-permanent
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''de-braze'', ''disassemble brazed joints'');
+    the capability description that named this process lived under the removed /Services/Capabilities or /Industries
+    pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0111
+  name: metallizing
+  status: retired
+  acceptable_forms:
+  - metallized
+  - metallized ceramic
+  - metallizing
+  evidence:
+  - quote: Vacuum tube components, metallized ceramics, applications where AS9100 certification is required
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''metallized'', ''metallized ceramic'',
+    ''metallizing''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0112
+  name: galvanizing
+  status: retired
+  acceptable_forms:
+  - galvanized
+  - galvanizing
+  - Zinc coatings (galvanized)
+  evidence:
+  - quote: coating on a base metal will volatilize and produce toxic fume during heating. Zinc coatings (galvanized)
+      will also fume when heated. Learn to recognize these coatings. It is recommended
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''galvanized'', ''galvanizing'', ''Zinc
+    coatings (galvanized)''); the capability description that named this process lived under the removed /Services/Capabilities
+    or /Industries pages, which return only duplicate-page placeholders in this crawl; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-process_caps-0113
+  name: testing
+  status: candidate
+  acceptable_forms:
+  - testing
+  evidence:
+  - quote: designed to accelerate our R&D, prototyping, and testing operations
+    approx_offset: 2558
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-process_caps-0114
+  name: casting
+  status: candidate
+  acceptable_forms:
+  - casting
+  - Casting
+  evidence:
+  - quote: Being a vertically integrated supplier means we carefully control every aspect of the process – from
+      casting to fabrication - to ensure we deliver the best quality products.
+    approx_offset: 2893
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-process_caps-0115
+  name: annealing
+  status: candidate
+  acceptable_forms:
+  - annealed
+  evidence:
+  - quote: ' T = 70,000 psi (annealed Monel sheet)'
+    approx_offset: 10603
+  actor: unknown
+  notes: from Principles of Joint Design, a second-person instructional manual on brazed-joint design; describes
+    the customer's base-metal condition in a worked example, not a Lucas Milhaupt operation.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-process_caps-0116
+  name: oxide removal
+  status: candidate
+  acceptable_forms:
+  - oxide removal
+  evidence:
+  - quote: To complement those alloys, we formulate Fluxes that provide optimal wetting and oxide removal over a
+      full temperature spectrum
+    approx_offset: 17873
+  notes: flux function; a process the company's fluxes perform on the work.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-process_caps-0117
+  name: dispensing
+  status: candidate
+  acceptable_forms:
+  - dispensing
+  evidence:
+  - quote: ensuring accurate deposit control in automated dispensing, stencil, or syringe applications
+    approx_offset: 18280
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-process_caps-0118
+  name: quality checks
+  status: candidate
+  acceptable_forms:
+  - quality checks
+  evidence:
+  - quote: Being vertically integrated allows us to control product quality throughout the manufacturing process,
+      with quality checks in the lab.
+    approx_offset: 22020
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-process_caps-0119
+  name: brazing process evaluation
+  status: candidate
+  acceptable_forms:
+  - brazing process evaluation
+  evidence:
+  - quote: During a brazing process evaluation, one of our expertly trained Lucas Milhaupt Brazing Application Engineers
+      can diagnose
+    approx_offset: 36417
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-process_caps-0120
+  name: examine assemblies
+  status: candidate
+  acceptable_forms:
+  - examine assemblies
+  evidence:
+  - quote: With our in-house lab, we conduct test brazing, examine assemblies, and perform feasibility studies
+    approx_offset: 36761
+  notes: inspection of brazed assemblies.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Braze School
+  reason: 'witnessed ~15x: a training course. Training is explicitly separated from made artifacts in the products
+    clause, and it is not an operation on the work either.'
+- form: Brazing Academy
+  reason: 'witnessed: the training portal, not an operation'
+- form: operator training
+  reason: 'witnessed: instruction delivered to people, not an operation on the work'
+- form: Hemming
+  reason: 'anticipatory: does not occur; classic sheet-metal word-association'
+- form: Anodizing
+  reason: 'anticipatory: does not occur, despite heavy aluminium content'
+- form: Heat treating
+  reason: 'anticipatory: does not occur -- the text is full of heating and thermal cycling but never names heat
+    treatment as an operation'
+- form: Powder coating
+  reason: 'anticipatory: does not occur; word-association from ''coat'' and ''powders'''
+- form: 3D printing
+  reason: 'anticipatory: does not occur, despite ''rapid prototyping'' being named repeatedly'

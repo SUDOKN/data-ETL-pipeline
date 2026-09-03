@@ -454,12 +454,67 @@ def test_more_occurrences_than_the_full_text_holds_is_a_finding():
     assert findings[0].actual == 5
 
 
-def test_fewer_occurrences_than_golden_is_not_a_finding():
+def _window(zero_hit: tuple[str, ...] = ()) -> loading.Window:
+    return loading.Window(
+        window=0, sub_bounds="0:100", sent_forms=1 + len(zero_hit),
+        forms_with_hits=1, zero_hit_forms=zero_hit, mentions=1,
+        distinct_snippets=1, described=1, not_described=(), retried=(),
+        unknown_answer_ids=(), discovered_casings={}, short_forms=(),
+        excluded_pages=(), chunk_bounds="0:100",
+    )
+
+
+def test_fewer_occurrences_than_golden_is_reported_but_does_not_gate():
     """The pipeline reads a page-trimmed, 2-chunk-capped copy, so a full-text
-    golden count is an upper bound, never an equality."""
+    golden count is an upper bound, never an equality — which explains an
+    under-count without excusing hiding it.
+
+    Standing rule (2026-08-28): a run-vs-corpus difference is examined, never
+    agreed in passing. So the shortfall is REPORTED and left non-gating, rather
+    than being silently absorbed by the leniency that explains it.
+    """
     run = _run([_group([_mention("frames", (0, 6))])])
-    findings, _ = goldens.check_occurrences(run, [_golden("frames", occurrences=9)])
-    assert findings == []
+    findings, metrics = goldens.check_occurrences(run, [_golden("frames", occurrences=9)])
+    assert len(findings) == 1
+    assert findings[0].gating is False
+    assert (findings[0].expected, findings[0].actual) == (9, 1)
+    assert metrics["occurrence_findings"] == 0
+    assert metrics["occurrence_differences"] == 1
+
+
+def test_a_form_sent_but_collected_zero_times_is_a_reported_difference():
+    """The bucket that used to swallow this.
+
+    A form search SENT that this stage then found nothing for is not the same
+    fact as a form search never sent, and counting them together hid an
+    under-collection defect behind an out-of-scope label. `zero_hit_forms` on
+    the fold's windows is what separates them.
+    """
+    run = _run(
+        [_group([_mention("frames", (0, 6))])],
+        windows=[_window(zero_hit=("doors",))],
+    )
+    findings, metrics = goldens.check_occurrences(run, [_golden("doors", occurrences=9)])
+    assert len(findings) == 1
+    assert findings[0].form == "doors"
+    assert findings[0].gating is False
+    assert metrics["occurrence_labels_not_sent"] == 0
+    assert metrics["occurrence_labels_checked"] == 1
+    assert metrics["occurrence_differences"] == 1
+
+
+def test_a_must_not_occur_violation_still_gates():
+    """The examine-me category must not soften the one exact check."""
+    run = _run(
+        [_group([_mention("PET", (0, 3), snippet="PET sheet stock here")])],
+        windows=[_window()],
+    )
+    findings, metrics = goldens.check_occurrences(
+        run, [_golden("PET", occurrences=0, must_not_occur=True)]
+    )
+    assert [f.gating for f in findings] == [True]
+    assert metrics["occurrence_findings"] == 1
+    assert metrics["occurrence_differences"] == 0
 
 
 def test_only_confirmed_labels_gate():
@@ -520,3 +575,72 @@ def test_the_whole_golden_corpus_validates():
     assert errors == [], f"{len(errors)} golden-corpus errors: {errors[:5]}"
     assert report["totals"]["subjects"] == 20
     assert report["totals"]["labels"] > 14000
+
+
+def test_a_recurring_snippet_is_one_claim_per_window_not_one_per_mention_id():
+    """The judging unit is the model's claim, not the passage.
+
+    A mention_id is content-derived, so one id covers a passage wherever it
+    recurs; the model describes it once per window and legitimately gives a
+    different description each time. Measured on ableengineering: one snippet,
+    13 occurrences, 8 pages, 6 descriptions — of which the old enumeration
+    judged exactly one.
+    """
+    shared = "m9rec"
+    a = _mention("FAA", (10, 13), mention_id=shared, window=0,
+                 location="Heading on the Boeing page, in the site's own copy.",
+                 page="https://x/boeing")
+    b = _mention("FAA", (99, 102), mention_id=shared, window=1,
+                 location="Heading on the Airbus page, in the site's own copy.",
+                 page="https://x/airbus")
+    run = _run([_group([a, b])])
+    assert len(run.distinct_snippets()) == 1
+    claims = run.location_claims()
+    assert len(claims) == 2
+    assert {m.location for m, _ in claims} == {a.location, b.location}
+
+
+def test_a_claim_carries_every_occurrence_it_covers():
+    """One window, one description, several occurrences on several pages.
+
+    The prompt asks for exactly this ("describe it once, covering where it
+    recurs"), so a judge handed one representative page would call a correct
+    recurrence-covering sentence wrong.
+    """
+    loc = "Prose on both the Boeing and Airbus pages, in the site's own copy."
+    a = _mention("FAA", (10, 13), mention_id="mcov", window=0, location=loc,
+                 page="https://x/boeing")
+    b = _mention("FAA", (50, 53), mention_id="mcov", window=0, location=loc,
+                 page="https://x/airbus")
+    run = _run([_group([a, b])])
+    claims = run.location_claims()
+    assert len(claims) == 1
+    _rep, covered = claims[0]
+    assert {m.page for m in covered} == {"https://x/boeing", "https://x/airbus"}
+
+
+def test_a_banned_location_is_caught_in_any_window():
+    """The ban scan is an exact gate, so it must see every claim.
+
+    Keyed by mention_id it saw only the first, and a URL in a later window's
+    description went undetected.
+    """
+    clean = _mention("FAA", (10, 13), mention_id="mban", window=0,
+                     location="Heading on the parts page, in the site's own copy.")
+    dirty = _mention("FAA", (99, 102), mention_id="mban", window=1,
+                     location="Heading on https://example.com/parts, in the site's own copy.")
+    report = _report(_run([_group([clean, dirty])]))
+    assert "location.no_url" in report.reds
+
+
+def test_products_and_contract_products_must_match_on_location_too():
+    """The divergence that passed this gate on 20260829T022413."""
+    def build(field, location):
+        return _run(
+            [_group([_mention("FAA", (10, 13), mention_id="mid", location=location)])],
+            field=field, subject="lucasmilhaupt.com",
+        )
+    source = build(paths.SHARED_SOURCE, "Heading on the parts page, in the site's own copy.")
+    duplicate = build(paths.SHARED_DUPLICATE, "(location not described)")
+    reports = mechanical.evaluate_run([source, duplicate])
+    assert "identity.products_equals_contract_products" in reports[source.key].reds

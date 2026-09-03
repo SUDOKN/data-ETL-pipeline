@@ -1,0 +1,2875 @@
+subject: superiortech.org
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/superiortech.org.txt
+  sha256: 6de032283382c2ead7409e34541f2743fea3c67efb4a165eb47c68a1a93ab01a
+eval_set_version: 2
+expected_empty: false
+notes: 'The densest field on this subject, and the one that carries its STRATIFIED DEPTH. Tier 1 — five capabilities
+  with a dedicated page AND named machines in the census: CNC turning, CNC milling, large-part CNC turning/milling,
+  grinding-lapping-honing, electro-mechanical assembly & test. Tier 2 — a value-added secondary list where the sub-processes
+  are explicitly OUTSOURCED to ''trusted vendors'' and no machine exists behind them (heat treatment and its 7 sub-processes,
+  plating/paint/surface treatment and its 9, and the 5 destructive/chemical tests). Tier 2 entries carry actor:
+  supplier. Both tiers are entries — the search stage is recall-first and the text names the operation either way.
+  Note also that inspection, testing and measurement QUALIFY under this field''s clause, which is where every metrology
+  device excluded from `equipments` lands.'
+entries:
+- id: superiortech_org-process_caps-0001
+  name: Machining
+  status: confirmed
+  acceptable_forms:
+  - precision machining
+  - machining
+  - close tolerance precision machined parts
+  evidence:
+  - quote: Specializing in manufacturing of close tolerance precision machined parts and assemblies from prototype
+      to high volume production
+    approx_offset: 959
+  - quote: precision machining and assembly expertise
+    approx_offset: 31236
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0002
+  name: CNC Turning
+  status: confirmed
+  acceptable_forms:
+  - CNC Turning
+  - CNC Turned
+  - turning capabilities
+  - hard turning
+  evidence:
+  - quote: CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding, Lapping & Honing, Clean Room
+      Assembly
+    approx_offset: 1160
+  - quote: wide range of turning capabilities to meet our customer’s prototype and production turning needs
+    approx_offset: 4599
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0003
+  name: CNC Milling
+  status: confirmed
+  acceptable_forms:
+  - CNC Milling
+  - CNC Vertical Milling
+  - CNC Horizontal Milling
+  - milling capabilities
+  evidence:
+  - quote: CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding, Lapping & Honing, Clean Room
+      Assembly & Testing
+    approx_offset: 1160
+  - quote: CNC Vertical Milling up to 59″ x 26″ x 24″
+    approx_offset: 32781
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0004
+  name: Large part CNC turning and milling
+  status: confirmed
+  acceptable_forms:
+  - Large Part CNC Turning and Milling
+  - Large Parts CNC Turning and Milling
+  - Large Parts CNC Turning & Milling
+  - Large CNC Turning & Milling
+  evidence:
+  - quote: CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding, Lapping & Honing, Clean Room
+      Assembly & Testing, Value Added Secondary Processes
+    approx_offset: 1160
+  - quote: Large Parts CNC Turning & Milling
+    approx_offset: 35874
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0005
+  name: Grinding
+  status: confirmed
+  acceptable_forms:
+  - Grinding
+  - grinding
+  evidence:
+  - quote: CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding, Lapping & Honing, Clean Room
+      Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing
+    approx_offset: 1160
+  - quote: CNC PRECISION GRINDING
+    approx_offset: 13456
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0006
+  name: Lapping
+  status: confirmed
+  acceptable_forms:
+  - Lapping
+  - lapping
+  evidence:
+  - quote: CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding, Lapping & Honing, Clean Room
+      Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing
+    approx_offset: 1160
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment,
+      Military, Power Tool, Robotics and Automation Industries
+    approx_offset: 8515
+  - quote: Lapping and grinding are used for manufacturing extremely round and flat parts
+    approx_offset: 8258
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'Second quote is a mis-clip: the seed grabbed the tail of line 352 (''Aerospace, Automotive, Industrial
+      & Consumer Products, ...'') instead of its head, so that quote contains no acceptable form and proves nothing.
+      The head of the same line does. NOTE: applying corrected_quote replaces the whole evidence list, so the good
+      capabilities-list quote is dropped too -- restore it by hand if the window coverage matters.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0007
+  name: Honing
+  status: confirmed
+  acceptable_forms:
+  - Honing
+  - honing
+  evidence:
+  - quote: CNC Turning, CNC Milling, Large Part CNC Turning and Milling, Grinding, Lapping & Honing, Clean Room
+      Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing, and Managed
+    approx_offset: 1160
+  - quote: Grinding, Lapping & Honing
+    approx_offset: 1222
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0008
+  name: Clean Room Assembly & Testing
+  status: confirmed
+  acceptable_forms:
+  - Clean Room Assembly & Testing
+  - clean room assembly facility
+  evidence:
+  - quote: Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes
+    approx_offset: 1232
+  - quote: We maintain a clean room assembly facility dedicated to the assembly and test
+    approx_offset: 21960
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0009
+  name: Contract Manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Contract Manufacturing
+  evidence:
+  - quote: Grinding, Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary Processes, Contract
+      Manufacturing, and Managed Inventory Solutions.
+    approx_offset: 1222
+  - quote: Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary Services, Contract Manufacturing
+      and Managed Inventory Solutions.
+    approx_offset: 31390
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0010
+  name: Managed Inventory Solutions (Kanban)
+  status: disputed
+  acceptable_forms:
+  - Managed Inventory Solutions (Kanban)
+  - Managed Inventory Solutions
+  evidence:
+  - quote: Room Assembly & Testing, Value Added Secondary Processes, Contract Manufacturing, and Managed Inventory
+      Solutions.
+    approx_offset: 1256
+  - quote: Managed Inventory Solutions (Kanban)
+    approx_offset: 19240
+  notes: DISPUTED — Kanban stocking, packaging and drop-shipping is a LOGISTICS service. The field's clause covers
+    operations performed on the work up to 'finished goods ready to ship' — this begins where that ends. Kept as
+    the boundary case, because the same page also names packing and dunnage design, which a reader could call a
+    finishing operation. | Managed Inventory Solutions (Kanban) is inventory and logistics, not an operation on
+    the work. The page describes stocking finished parts to forecast, drop shipping, EDI/ERP integration, packaging,
+    dunnage and arranging transport. The field's clause bounds operations 'from raw material through to finished
+    goods ready to ship'; this begins where that ends.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: Managed Inventory Solutions (Kanban) is inventory and logistics, not an operation on the work. The page
+      describes stocking finished parts to forecast, drop shipping, EDI/ERP integration, packaging, dunnage and
+      arranging transport. The field's clause bounds operations 'from raw material through to finished goods ready
+      to ship'; this begins where that ends.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0011
+  name: Value Added Secondary Processes
+  status: confirmed
+  acceptable_forms:
+  - Value Added Secondary Processes
+  - Value Added Secondary Services
+  evidence:
+  - quote: CNC Turning and Milling, Grinding, Lapping & Honing, Clean Room Assembly & Testing, Value Added Secondary
+      Processes, Contract Manufacturing, and Managed Inventory Solutions.
+    approx_offset: 1197
+  - quote: Turning and Milling, Grinding, Lapping & Honing, Electro-Mechanical Assembly & Testing, Value Added Secondary
+      Services, Contract Manufacturing and Managed Inventory Solutions.
+    approx_offset: 31359
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0012
+  name: Electro-Mechanical Assembly & Testing
+  status: confirmed
+  acceptable_forms:
+  - Electro-Mechanical Assembly & Testing
+  - Assembly & Testing
+  evidence:
+  - quote: Milling, Large Parts CNC Turning and Milling, Grinding, Lapping & Honing, Electro-Mechanical Assembly
+      & Testing, Value Added Secondary Services, Contract Manufacturing and Managed Inventory Solutions.
+    approx_offset: 31334
+  - quote: Assembly & Testing
+    approx_offset: 1261
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0013
+  name: DFM (Design for Manufacturing)
+  status: disputed
+  acceptable_forms:
+  - DFM (Design for Manufacturing)
+  - DFM
+  evidence:
+  - quote: which starts with DFM (Design for Manufacturing) assistance
+    approx_offset: 1459
+  notes: DISPUTED — design-for-manufacture consulting is an ENGINEERING SERVICE delivered before production, not
+    'an operation performed on materials, parts, or products'. It is kept because the clause's span runs 'from raw
+    material through to finished goods' and a reader could argue DFM sits at the front of that span; on the narrow
+    reading it does not touch the work at all. | DFM (Design for Manufacturing) assistance is design/engineering
+    advice given before anything is cut. Nothing is performed on materials, parts or products, which is what the
+    clause's em-dash defines an operation as. Arguable because the clause's headline also says 'capability'.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: DFM (Design for Manufacturing) assistance is design/engineering advice given before anything is cut.
+      Nothing is performed on materials, parts or products, which is what the clause's em-dash defines an operation
+      as. Arguable because the clause's headline also says 'capability'.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0014
+  name: Prototyping
+  status: confirmed
+  acceptable_forms:
+  - prototyping
+  - prototype development
+  - prototype
+  evidence:
+  - quote: assistance, continuing through to prototyping and on-time volume production
+    approx_offset: 1508
+  - quote: from prototype development, product testing, manufacturing and distribution
+    approx_offset: 30659
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0015
+  name: Private Label Manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Private Label Manufacturing
+  - private label manufacturing
+  evidence:
+  - quote: Private Label Manufacturing
+    approx_offset: 20267
+  - quote: We offer full service private label manufacturing, we can develop and manufacture your entire product
+    approx_offset: 30557
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0016
+  name: CNC programming
+  status: disputed
+  acceptable_forms:
+  - CNC programming
+  evidence:
+  - quote: CNC programming, manufacturing engineering
+    approx_offset: 37375
+  notes: CNC programming is an office/engineering function -- it is listed on the careers page among 'all facets
+    of manufacturing including customer service, project management, CNC programming, ... logistics specialists',
+    i.e. among staff roles. No material is acted on.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: CNC programming is an office/engineering function -- it is listed on the careers page among 'all facets
+      of manufacturing including customer service, project management, CNC programming, ... logistics specialists',
+      i.e. among staff roles. No material is acted on.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0017
+  name: Manufacturing engineering
+  status: disputed
+  acceptable_forms:
+  - manufacturing engineering
+  evidence:
+  - quote: manufacturing engineering, journeyman machinists and toolmakers
+    approx_offset: 37392
+  notes: 'Manufacturing engineering, same clause and same list as CNC programming: a staff function named among
+    ''customer service, project management, CNC programming, manufacturing engineering, journeyman machinists...'',
+    not an operation performed on the work.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'Manufacturing engineering, same clause and same list as CNC programming: a staff function named among
+      ''customer service, project management, CNC programming, manufacturing engineering, journeyman machinists...'',
+      not an operation performed on the work.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0018
+  name: Deburring
+  status: confirmed
+  acceptable_forms:
+  - Deburring
+  - deburring
+  - burr removal
+  evidence:
+  - quote: Deburring and Part Finishing
+    approx_offset: 23743
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0019
+  name: Part Finishing
+  status: confirmed
+  acceptable_forms:
+  - Part Finishing
+  - surface finish requirements
+  evidence:
+  - quote: Deburring and Part Finishing
+    approx_offset: 23743
+  - quote: customer specifications for burr removal and surface finish requirements
+    approx_offset: 23835
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0020
+  name: Abrasive vibratory tumbling
+  status: confirmed
+  acceptable_forms:
+  - abrasive vibratory tumbling
+  evidence:
+  - quote: abrasive vibratory tumbling, sandblasting
+    approx_offset: 24032
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0021
+  name: Sandblasting
+  status: confirmed
+  acceptable_forms:
+  - sandblasting
+  - Sandblaster
+  evidence:
+  - quote: abrasive vibratory tumbling, sandblasting, and Time-Saver machine graining
+    approx_offset: 24032
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
+    approx_offset: 14828
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0022
+  name: Machine graining
+  status: confirmed
+  acceptable_forms:
+  - Time-Saver machine graining
+  - machine graining
+  - Graining
+  evidence:
+  - quote: and Time-Saver machine graining
+    approx_offset: 24075
+  - quote: (2) TIMESAVER  Liner Wet Sander, Deburring, Finishing & Graining to 36’ Wide
+    approx_offset: 14751
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0023
+  name: Hobbing
+  status: confirmed
+  acceptable_forms:
+  - Hobbing
+  - hobb
+  evidence:
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 24362
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0024
+  name: Broaching
+  status: confirmed
+  acceptable_forms:
+  - Broaching
+  - broach
+  evidence:
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 24362
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0025
+  name: Gear Cutting
+  status: confirmed
+  acceptable_forms:
+  - Gear Cutting
+  evidence:
+  - quote: Hobbing, Broaching and Gear Cutting
+    approx_offset: 24362
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0026
+  name: Key seating
+  status: confirmed
+  acceptable_forms:
+  - keyways
+  - keyway
+  - key seating
+  - KEY SEATER
+  evidence:
+  - quote: (1)  HANDSFORD KEY SEATER
+    approx_offset: 14012
+  - quote: we are able to broach flats, keyways
+    approx_offset: 24616
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'Entity stands: ''HANDSFORD KEY SEATER'' names a keyseating machine and ''we are able to broach flats,
+      keyways'' states the operation, so the process qualifies under the clause''s ''implies''. The mechanics did
+      not: both forms are non-process nouns (a machine name and a part feature), and forms_overlap is plain containment,
+      so the two most likely correct outputs -- ''key seating'' and ''keyway broaching'' -- match neither (''key
+      seater'' does not contain ''key seating''; ''keyways'' does not contain ''keyway broaching''). Adding singular
+      ''keyway'' and the process name closes both holes.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0027
+  name: Knurling
+  status: confirmed
+  acceptable_forms:
+  - knurl configurations
+  - knurl
+  evidence:
+  - quote: as well as multiple knurl configurations
+    approx_offset: 24739
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0028
+  name: Heat Treatment
+  status: confirmed
+  acceptable_forms:
+  - Heat Treatment
+  - heat treatment
+  evidence:
+  - quote: Heat Treatment
+    approx_offset: 24808
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0029
+  name: Steel case hardening
+  status: confirmed
+  acceptable_forms:
+  - steel case hardening
+  evidence:
+  - quote: steel case hardening, alloy steel heat treatment
+    approx_offset: 25049
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0030
+  name: Alloy steel heat treatment
+  status: confirmed
+  acceptable_forms:
+  - alloy steel heat treatment
+  evidence:
+  - quote: alloy steel heat treatment, induction hardening
+    approx_offset: 25071
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0031
+  name: Induction hardening
+  status: confirmed
+  acceptable_forms:
+  - induction hardening
+  evidence:
+  - quote: induction hardening, nitriding
+    approx_offset: 25099
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0032
+  name: Nitriding
+  status: confirmed
+  acceptable_forms:
+  - nitriding
+  evidence:
+  - quote: nitriding, annealing
+    approx_offset: 25120
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0033
+  name: Annealing
+  status: confirmed
+  acceptable_forms:
+  - annealing
+  evidence:
+  - quote: annealing, stress relieving
+    approx_offset: 25131
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0034
+  name: Stress relieving
+  status: confirmed
+  acceptable_forms:
+  - stress relieving
+  evidence:
+  - quote: stress relieving, aluminum and copper alloy treatments.
+    approx_offset: 25142
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0035
+  name: Aluminum and copper alloy treatments
+  status: confirmed
+  acceptable_forms:
+  - aluminum and copper alloy treatments
+  evidence:
+  - quote: aluminum and copper alloy treatments
+    approx_offset: 25160
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0036
+  name: Plating
+  status: confirmed
+  acceptable_forms:
+  - Plating
+  - plating
+  evidence:
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 25225
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0037
+  name: Specialized Surface Treatments
+  status: confirmed
+  acceptable_forms:
+  - Specialized Surface Treatments
+  - other surface treatments
+  - Other Surface Treatments
+  evidence:
+  - quote: Plating, Paint & Specialized Surface Treatments
+    approx_offset: 25225
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0038
+  name: Aluminum anodizing
+  status: confirmed
+  acceptable_forms:
+  - aluminum anodizing
+  evidence:
+  - quote: aluminum anodizing, hard anodizing
+    approx_offset: 25323
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0039
+  name: Hard anodizing
+  status: confirmed
+  acceptable_forms:
+  - hard anodizing
+  evidence:
+  - quote: hard anodizing, chrome and nickel plating
+    approx_offset: 25343
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0040
+  name: Chrome and nickel plating
+  status: confirmed
+  acceptable_forms:
+  - chrome and nickel plating
+  evidence:
+  - quote: chrome and nickel plating electro-plating
+    approx_offset: 25359
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0041
+  name: Electro-plating
+  status: confirmed
+  acceptable_forms:
+  - electro-plating
+  - Electro-Plating
+  evidence:
+  - quote: electro-plating, phosphatizing
+    approx_offset: 25385
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0042
+  name: Phosphatizing
+  status: confirmed
+  acceptable_forms:
+  - phosphatizing
+  evidence:
+  - quote: phosphatizing, blackening
+    approx_offset: 25402
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0043
+  name: Blackening
+  status: confirmed
+  acceptable_forms:
+  - blackening
+  evidence:
+  - quote: blackening, PVD coating
+    approx_offset: 25417
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0044
+  name: PVD coating
+  status: confirmed
+  acceptable_forms:
+  - PVD coating
+  - PVD
+  evidence:
+  - quote: PVD coating, paint
+    approx_offset: 25429
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0045
+  name: Painting
+  status: confirmed
+  acceptable_forms:
+  - Painting
+  - paint
+  evidence:
+  - quote: PVD coating, paint, powder coating
+    approx_offset: 25429
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0046
+  name: Powder coating
+  status: confirmed
+  acceptable_forms:
+  - powder coating
+  evidence:
+  - quote: powder coating, and other surface treatments.
+    approx_offset: 25449
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only inside the ''Available process include but are not limited to;'' vendor
+    list on the Value Added Secondary Processes page, introduced by ''Working with our trusted vendors''. No machine
+    for it exists anywhere in the ~100-unit census, and the list is explicitly hedged as non-exhaustive. Recall-first:
+    the text names the process, so it is an entry; the supplier is the attribution.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0047
+  name: Dynamic & Static Balancing
+  status: confirmed
+  acceptable_forms:
+  - Dynamic & Static Balancing
+  - Dynamic & Static balancing
+  - Dynamic Balancing
+  evidence:
+  - quote: Dynamic & Static Balancing
+    approx_offset: 25522
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0048
+  name: Non-Destructive Testing
+  status: confirmed
+  acceptable_forms:
+  - NDT (non-destructive testing)
+  - NDT Testing
+  - Non-Destructive Testing
+  - NDT
+  evidence:
+  - quote: In house capabilities to perform NDT (non-destructive testing), metallurgical testing
+    approx_offset: 25954
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0049
+  name: Metallurgical testing
+  status: confirmed
+  acceptable_forms:
+  - metallurgical testing
+  evidence:
+  - quote: metallurgical testing, and dimensional measurement
+    approx_offset: 26018
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0050
+  name: Dimensional metrology measurement inspection
+  status: confirmed
+  acceptable_forms:
+  - dimensional metrology measurement inspections
+  - dimensional measurement inspections
+  - full dimensional metrology measurement inspections
+  evidence:
+  - quote: the full dimensional metrology measurement inspections in our inspection department.
+    approx_offset: 26474
+  - quote: dimensional measurement inspections & reports
+    approx_offset: 26045
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0051
+  name: First article inspection
+  status: confirmed
+  acceptable_forms:
+  - 1st article, short run or production inspections
+  - 1st article
+  evidence:
+  - quote: as a contract basis for 1st article, short run or production inspections.
+    approx_offset: 26182
+  actor: client
+  notes: 'offered as a CONTRACT service on parts Superior did not make — ''This can be done on manufactured parts
+    by Superior Technology OR as a contract basis''. Recall-first: the operation is named, so it is an entry; the
+    split ownership is the attribution question'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0052
+  name: Magnetic particle inspection
+  status: confirmed
+  acceptable_forms:
+  - MPI (magnetic particle crack testing
+  - MAGNETIC PARTICLE INSPECTION
+  - MPI
+  evidence:
+  - quote: included MPI (magnetic particle crack testing in a purpose built high powered testing machine
+    approx_offset: 26282
+  - quote: (2)  (MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines
+    approx_offset: 14172
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0053
+  name: Dye-penetrant crack testing
+  status: confirmed
+  acceptable_forms:
+  - dye-penetrant crack testing
+  evidence:
+  - quote: dye-penetrant crack testing, leak & pressure testing
+    approx_offset: 26377
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0054
+  name: Leak & pressure testing
+  status: confirmed
+  acceptable_forms:
+  - leak & pressure testing
+  - leak & flow testing
+  - Leak Tests Stations
+  evidence:
+  - quote: leak & pressure testing, coatings measurements
+    approx_offset: 26406
+  - quote: 'Misc Tools: Manual Presses, Leak Tests Stations, Torque Tools, Electrical Testers'
+    approx_offset: 14495
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0055
+  name: Coatings measurements
+  status: confirmed
+  acceptable_forms:
+  - coatings measurements
+  evidence:
+  - quote: coatings measurements, Torque Testing
+    approx_offset: 26431
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0056
+  name: Torque Testing
+  status: confirmed
+  acceptable_forms:
+  - Torque Testing
+  - assembly torque & force
+  - Torque Tools
+  evidence:
+  - quote: Torque Testing, and the full dimensional metrology
+    approx_offset: 26454
+  - quote: 'Misc Tools: Manual Presses, Leak Tests Stations, Torque Tools, Electrical Testers'
+    approx_offset: 14495
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0057
+  name: X-ray inspection
+  status: confirmed
+  acceptable_forms:
+  - x-ray
+  evidence:
+  - quote: including x-ray, hardness
+    approx_offset: 26651
+  actor: supplier
+  notes: TIER 2 / OUTSOURCED. Named only in the second hedged vendor sentence — 'we working with trusted vendors
+    who can perform almost any testing required including ...'. No in-house machine for it exists in the census.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0058
+  name: Hardness testing
+  status: confirmed
+  acceptable_forms:
+  - hardness
+  evidence:
+  - quote: x-ray, hardness, tensile
+    approx_offset: 26661
+  actor: supplier
+  notes: TIER 2 / OUTSOURCED. Named only in the second hedged vendor sentence — 'we working with trusted vendors
+    who can perform almost any testing required including ...'. No in-house machine for it exists in the census.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0059
+  name: Tensile testing
+  status: confirmed
+  acceptable_forms:
+  - tensile
+  evidence:
+  - quote: tensile, SEM material chemical analysis
+    approx_offset: 26678
+  actor: supplier
+  notes: TIER 2 / OUTSOURCED. Named only in the second hedged vendor sentence — 'we working with trusted vendors
+    who can perform almost any testing required including ...'. No in-house machine for it exists in the census.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0060
+  name: SEM material chemical analysis
+  status: confirmed
+  acceptable_forms:
+  - SEM material chemical analysis
+  - SEM
+  evidence:
+  - quote: SEM material chemical analysis
+    approx_offset: 26687
+  actor: supplier
+  notes: 'TIER 2 / OUTSOURCED. Named only in the second hedged vendor sentence — ''we working with trusted vendors
+    who can perform almost any testing required including ...''. No in-house machine for it exists in the census.
+    Three-character form ''SEM'' matches case-sensitively on word boundaries: 2 genuine occurrences, plus 1 substring
+    inside ''ASSEMBLY'' that the word-boundary rule correctly refuses.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0061
+  name: Environmental and durability testing
+  status: confirmed
+  acceptable_forms:
+  - environmental and durability testing
+  evidence:
+  - quote: environmental and durability testing
+    approx_offset: 26719
+  actor: supplier
+  notes: TIER 2 / OUTSOURCED. Named only in the second hedged vendor sentence — 'we working with trusted vendors
+    who can perform almost any testing required including ...'. No in-house machine for it exists in the census.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0062
+  name: Part Marking
+  status: confirmed
+  acceptable_forms:
+  - Part Marking
+  - Part Traceability
+  evidence:
+  - quote: Part Marking
+    approx_offset: 26784
+  - quote: Part Traceability is something we take seriously and marking of customer parts
+    approx_offset: 26797
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0063
+  name: Engraving
+  status: confirmed
+  acceptable_forms:
+  - engraving
+  evidence:
+  - quote: can be performed by engraving, laser marking
+    approx_offset: 26931
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0064
+  name: Laser marking
+  status: confirmed
+  acceptable_forms:
+  - laser marking
+  evidence:
+  - quote: engraving, laser marking, pin stamping
+    approx_offset: 26951
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0065
+  name: Pin stamping
+  status: confirmed
+  acceptable_forms:
+  - pin stamping
+  evidence:
+  - quote: laser marking, pin stamping, Ink & stencil printing
+    approx_offset: 26962
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0066
+  name: Ink & stencil printing
+  status: confirmed
+  acceptable_forms:
+  - Ink & stencil printing
+  evidence:
+  - quote: pin stamping, Ink & stencil printing, hydrographic printing.
+    approx_offset: 26977
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0067
+  name: Hydrographic printing
+  status: confirmed
+  acceptable_forms:
+  - hydrographic printing
+  evidence:
+  - quote: hydrographic printing
+    approx_offset: 27015
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0068
+  name: Welding
+  status: confirmed
+  acceptable_forms:
+  - Welding
+  - welding operations
+  - Brazing & Welding
+  evidence:
+  - quote: Welding & Brazing
+    approx_offset: 27065
+  - quote: WELDING   (ASME AWS certifiable)
+    approx_offset: 14929
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0069
+  name: Brazing
+  status: confirmed
+  acceptable_forms:
+  - Brazing
+  - Production Brazing
+  evidence:
+  - quote: Welding & Brazing
+    approx_offset: 27065
+  - quote: Production Brazing is available to make tube, fitting and other assemblies.
+    approx_offset: 27230
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0070
+  name: Ultrasonic Cleaning
+  status: confirmed
+  acceptable_forms:
+  - Ultrasonic Cleaning
+  - ultrasonically cleaning
+  - Part & Ultrasonic Cleaning
+  evidence:
+  - quote: Part & Ultrasonic Cleaning
+    approx_offset: 27333
+  - quote: Rust Inhibiting Ultrasonic Cleaning in many chemistries.
+    approx_offset: 27630
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0071
+  name: Etching Passivation
+  status: confirmed
+  acceptable_forms:
+  - Etching Passivation
+  evidence:
+  - quote: this can include Etching Passivation
+    approx_offset: 27592
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0072
+  name: Rust Inhibiting
+  status: confirmed
+  acceptable_forms:
+  - Rust Inhibiting
+  evidence:
+  - quote: Rust Inhibiting Ultrasonic Cleaning
+    approx_offset: 27630
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0073
+  name: Tooling & fixture design and manufacture
+  status: confirmed
+  acceptable_forms:
+  - Toolroom Fixtures
+  - design and manufacture tooling and fixtures
+  - in-house fixture design
+  evidence:
+  - quote: Toolroom Fixtures
+    approx_offset: 27714
+  - quote: who design and manufacture tooling and fixtures
+    approx_offset: 27847
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0074
+  name: Production Sawing
+  status: confirmed
+  acceptable_forms:
+  - Production Sawing
+  - automatic saws
+  evidence:
+  - quote: Production Sawing
+    approx_offset: 28041
+  - quote: in house using out automatic saws
+    approx_offset: 28082
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0075
+  name: 4th Axis milling
+  status: confirmed
+  acceptable_forms:
+  - 4th Axis Milling
+  - 4th Axis Live Tool Milling
+  - CNC Milling with 4th Axis
+  evidence:
+  - quote: CNC Turning with 4th Axis Milling & CNC Swiss style turning
+    approx_offset: 28895
+  - quote: CNC Milling with 4th Axis available in both Vertical & Horizontal Configurations
+    approx_offset: 6553
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0076
+  name: CNC Swiss turning
+  status: confirmed
+  acceptable_forms:
+  - CNC Swiss style turning
+  - CNC Swiss machining
+  - Swiss Turning
+  - CNC Swiss Turned
+  evidence:
+  - quote: CNC Swiss style turning with sizes up to diameter 24” x 36” long, up to 1 ¾” Barfeed or chucking work.
+    approx_offset: 28931
+  - quote: CNC Swiss Turned – – Diameters up to 1″ x 24″ Long
+    approx_offset: 32669
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0077
+  name: CNC External Precision Grinding
+  status: confirmed
+  acceptable_forms:
+  - CNC External Precision Grinding
+  - CNC External Grinding
+  evidence:
+  - quote: CNC External Precision Grinding up to 9″ Diameter x 24″ Long
+    approx_offset: 29699
+  - quote: CNC External Grinding – Diameters. 9″ Round x 24″ Long
+    approx_offset: 32982
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0078
+  name: Surface Grinding
+  status: confirmed
+  acceptable_forms:
+  - Surface Grinding
+  evidence:
+  - quote: Surface Grinding and lapping up to 36” x 18” x 12
+    approx_offset: 29798
+  - quote: Surface Grinding& Lapping up to 36” x 18”
+    approx_offset: 33101
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0079
+  name: Sub-Assembly
+  status: confirmed
+  acceptable_forms:
+  - Sub-Assembly
+  evidence:
+  - quote: Sub-Assembly and Tested using both manual and automated equipment
+    approx_offset: 29985
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0080
+  name: Inspection Services
+  status: confirmed
+  acceptable_forms:
+  - Inspection Services
+  evidence:
+  - quote: Deburring, Heat Treatment, Electro-Plating, Painting & Other Surface Treatments, Dynamic Balancing, Broaching
+      & Hobbing, NDT Testing, Brazing & Welding, and Inspection Services
+    approx_offset: 30349
+  notes: the value-added summary list's own name for the inspection tier
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0081
+  name: Cylindrical grinding
+  status: confirmed
+  acceptable_forms:
+  - CNC cylindrical grinders
+  - CNC Cylindrical grinders
+  evidence:
+  - quote: ultra-precision CNC cylindrical grinders, Surface Grinding, Lapping, and Honing machines
+    approx_offset: 7780
+  - quote: 'CNC Cylindrical grinders up to 9” diameter x 24: long'
+    approx_offset: 8005
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0082
+  name: Punching
+  status: confirmed
+  acceptable_forms:
+  - Punching Machine
+  - Punching
+  evidence:
+  - quote: (1)  TRUMPF TRUMATIC 120 Punching Machine; (4’ x 8’)
+    approx_offset: 13840
+  notes: the only evidence is the TRUMPF machine's own census line; no prose anywhere claims punching as a capability,
+    so this operation is inferable ONLY from the equipment census — a good machine-implies-process recall probe
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0083
+  name: Self-clinching fastener insertion
+  status: confirmed
+  acceptable_forms:
+  - Self-Clinching Fastener Press
+  - PEM fasteners
+  evidence:
+  - quote: (3)  PEMSERTER – Self-Clinching Fastener Press
+    approx_offset: 14281
+  - quote: riveting & PEM fasteners
+    approx_offset: 22154
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0084
+  name: Electrical testing
+  status: confirmed
+  acceptable_forms:
+  - electrical testing
+  - Electrical Testers
+  evidence:
+  - quote: electrical testing of mechanical or electrical assemblies
+    approx_offset: 22356
+  - quote: 'Misc Tools: Manual Presses, Leak Tests Stations, Torque Tools, Electrical Testers'
+    approx_offset: 14495
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0085
+  name: Wet sanding
+  status: confirmed
+  acceptable_forms:
+  - Liner Wet Sander
+  - Wet Sander
+  evidence:
+  - quote: (2) TIMESAVER  Liner Wet Sander, Deburring, Finishing & Graining to 36’ Wide
+    approx_offset: 14751
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0086
+  name: TIG welding
+  status: confirmed
+  acceptable_forms:
+  - TIG
+  evidence:
+  - quote: (1)  MILLER Aerowave 300 Amp TIG
+    approx_offset: 14961
+  notes: three-character form, matched case-sensitively on word boundaries; the text prints it uppercase exactly
+    once, in the census line for the MILLER Aerowave
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0087
+  name: MIG welding
+  status: confirmed
+  acceptable_forms:
+  - MIG
+  evidence:
+  - quote: (1)  LINDE 200 Amp MIG
+    approx_offset: 14994
+  - quote: (1)  LINDE 300 Amp MIG
+    approx_offset: 15017
+  notes: three-character form, matched case-sensitively on word boundaries; two census occurrences, both on the
+    LINDE lines
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0088
+  name: Video & Optical Gaging
+  status: confirmed
+  acceptable_forms:
+  - Video & Optical Gaging
+  - Video Measuring System
+  - Optical comparators
+  evidence:
+  - quote: Video & Optical Gaging
+    approx_offset: 17466
+  - quote: (1) OGP SMART  SCOPE FLASH 200 Video Measuring System (8”/8”/6”) Resolution 0.00002” (20 millionths).
+      0.5µm
+    approx_offset: 15339
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0089
+  name: Surface finish measurement
+  status: confirmed
+  acceptable_forms:
+  - Surface Finish Profilometers
+  evidence:
+  - quote: (3) Surface Finish Profilometers,
+    approx_offset: 15516
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0090
+  name: Precision Measuring & Gaging
+  status: confirmed
+  acceptable_forms:
+  - Precision Measuring & Gaging Instruments
+  - hand held Metrology Equipment
+  evidence:
+  - quote: Precision Measuring & Gaging Instruments
+    approx_offset: 17490
+  - quote: Extensive collection of hand held Metrology Equipment
+    approx_offset: 15617
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0091
+  name: SPC data collection
+  status: disputed
+  acceptable_forms:
+  - ANSTAT SPC
+  - SPC
+  evidence:
+  - quote: ANSTAT SPC  data collection software
+    approx_offset: 15786
+  notes: 'named as software on the quality census line; the operation it names (statistical process control data
+    collection) is an in-field measurement activity even though the named artifact is a program | The named entity
+    is software, not an operation: ''ANSTAT SPC  data collection software'', sitting in the quality-assurance instrument
+    list next to ''GAGETRACK  Gage calibration software''. Measurement performed on the work qualifies; a statistics
+    package that collects the numbers afterwards is a step removed.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'The named entity is software, not an operation: ''ANSTAT SPC  data collection software'', sitting in
+      the quality-assurance instrument list next to ''GAGETRACK  Gage calibration software''. Measurement performed
+      on the work qualifies; a statistics package that collects the numbers afterwards is a step removed.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0092
+  name: Automatic assembly
+  status: confirmed
+  acceptable_forms:
+  - automatic assembly
+  evidence:
+  - quote: ultrasonically cleaning, automatic assembly, riveting & PEM fasteners, calibration
+    approx_offset: 22109
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0093
+  name: Riveting
+  status: confirmed
+  acceptable_forms:
+  - riveting
+  evidence:
+  - quote: riveting & PEM fasteners, calibration
+    approx_offset: 22154
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0094
+  name: Calibration
+  status: confirmed
+  acceptable_forms:
+  - calibration
+  - calibrated
+  evidence:
+  - quote: riveting & PEM fasteners, calibration, and testing
+    approx_offset: 22154
+  - quote: All equipment is calibrated regularly and tracked back to traceable to NIST & ISO national and International
+      Standards
+    approx_offset: 17532
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0095
+  name: Functional operation testing
+  status: confirmed
+  acceptable_forms:
+  - functional operation
+  evidence:
+  - quote: Specific testing such as, dimensional, functional operation
+    approx_offset: 22249
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: Dropping the second form, 'Specific testing such as, dimensional' -- a clipped sentence fragment, not
+      a surface form of anything. Because forms_overlap tests containment in BOTH directions, that fragment makes
+      a bare returned 'dimensional' credit this entry, which is a free recall point for an unrelated word. 'functional
+      operation' already covers 'functional operation testing' by containment.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0096
+  name: CBN Hard Turning
+  status: confirmed
+  acceptable_forms:
+  - CBN Hard Turning
+  evidence:
+  - quote: Processes commonly use include CBN Hard Turning, Roller Burnishing
+    approx_offset: 5333
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0097
+  name: Roller Burnishing
+  status: confirmed
+  acceptable_forms:
+  - Roller Burnishing
+  evidence:
+  - quote: Roller Burnishing for extremely fine surface finishes
+    approx_offset: 5382
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0098
+  name: Multi-axis milling
+  status: confirmed
+  acceptable_forms:
+  - Multi-axis milling
+  evidence:
+  - quote: Multi-axis milling is used for manufacturing a wide ranging from simple to complex
+    approx_offset: 7145
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0099
+  name: Coordinate measuring / CMM inspection
+  status: confirmed
+  acceptable_forms:
+  - High Accuracy CMM (Coordinate Measuring Machines)
+  - Coordinate Measuring Machines
+  - CMM
+  evidence:
+  - quote: High Accuracy CMM (Coordinate Measuring Machines)
+    approx_offset: 17415
+  notes: the CMMs themselves are EXCLUDED from `equipments` by that field's clause (they only measure the work);
+    the measuring operation belongs here, where 'Inspection, testing, and measurement performed on the work are
+    operations, and qualify'. This is the alecmfg lesson applied deliberately
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0100
+  name: Receiving inspection
+  status: disputed
+  acceptable_forms:
+  - customer receiving inspection
+  evidence:
+  - quote: bypasses customer receiving inspection
+    approx_offset: 18017
+  actor: client
+  notes: 'the inspection step at the CUSTOMER''s dock that certified delivery lets them skip; an in-field operation
+    named in the text, performed by someone else | The only mention is the CUSTOMER''s incoming inspection, and
+    it is named as something that does NOT happen: ''deliver certified product that bypasses customer receiving
+    inspection''. Recall-first says an actor never excludes an entity, so I did not retire it -- but an inspection
+    the text advertises as skipped is a weak thing to gate recall on.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'The only mention is the CUSTOMER''s incoming inspection, and it is named as something that does NOT
+      happen: ''deliver certified product that bypasses customer receiving inspection''. Recall-first says an actor
+      never excludes an entity, so I did not retire it -- but an inspection the text advertises as skipped is a
+      weak thing to gate recall on.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0101
+  name: Drilling and tapping
+  status: candidate
+  acceptable_forms:
+  - High Speed Drill/Tap Centers
+  - High Speed Drill Tap Centers
+  - Drill/Tap Centers
+  - Drill Tap Centers
+  - drilling
+  - tapping
+  evidence:
+  - quote: Our High Speed Drill/Tap Centers and latest Mazak Palletech CNC Milling
+    approx_offset: 6669
+  - quote: High Speed Drill Tap Centers for high volume production
+    approx_offset: 6871
+  notes: The machines are seeded under equipments-0006 but the operations they name are missing from process_caps
+    entirely -- there is no drilling and no tapping entry anywhere in the 100. The clause admits a phrase that 'implies'
+    an operation, and a drill/tap centre implies both.
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0102
+  name: Sheet metal bending and shearing
+  status: candidate
+  acceptable_forms:
+  - Sheetmetal Bender & Shear
+  - 50T Hydraulic Press Sheetmetal Bender & Shear
+  - Bender & Shear
+  - bending
+  - shearing
+  evidence:
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
+    approx_offset: 14828
+  notes: The toolroom press is seeded as equipments-0088, but bending and shearing appear nowhere in process_caps.
+    Both are operations performed on material and both are implied by the machine's own name.
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0103
+  name: Product testing
+  status: candidate
+  acceptable_forms:
+  - product testing
+  evidence:
+  - quote: thru to product testing, manufacturing, and distribution
+    approx_offset: 20499
+  - quote: from prototype development, product testing, manufacturing and distribution
+    approx_offset: 30659
+  notes: Named on both private-label pages as a step in the service they sell. Testing performed on the work qualifies
+    explicitly under the field's clause, and the packet's testing entries are all narrower (leak, torque, electrical,
+    functional-operation); none of their forms covers a returned 'product testing'.
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0104
+  name: Cellular manufacturing
+  status: candidate
+  acceptable_forms:
+  - cellular manufacturing layouts
+  - cellular manufacturing
+  - dedicated manufacturing cells
+  evidence:
+  - quote: With the variety of machine sizes, cellular manufacturing layouts, interchangeable pallet systems
+    approx_offset: 6076
+  - quote: with options of dedicated manufacturing cells and segregated work areas
+    approx_offset: 20946
+  notes: 'A named production method, on the CNC milling page and again on the private-label page, absent from the
+    packet. Flagging the doubt honestly: like the Kanban entry I disputed (process_caps-0010), this organizes production
+    rather than being performed on the work, so a later reader may well dispute it -- but there is currently no
+    record of it at all.'
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0105
+  name: JIT (Just-In Time) manufacturing
+  status: candidate
+  acceptable_forms:
+  - JIT (Just-In Time) manufacturing
+  - Just-In Time
+  - JIT
+  evidence:
+  - quote: this allows repeatability and flexibility for JIT (Just-In Time) manufacturing.
+    approx_offset: 7064
+  notes: 'A named manufacturing methodology on the CNC milling page, absent from the packet. Same boundary doubt
+    as the cellular-manufacturing miss above: it schedules production rather than acting on the work. ''JIT'' is
+    three characters, so it is matched case-sensitively on word boundaries -- the casing here is the text''s.'
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0106
+  name: Packaging development
+  status: candidate
+  acceptable_forms:
+  - packaging development
+  evidence:
+  - quote: from prototype and packaging development
+    approx_offset: 20457
+  notes: 'Named on the private-label page as part of the full-service offer. Weakest of my misses and flagged as
+    such: it is a design activity, so it is open to the same objection I raised against DFM (process_caps-0013),
+    which I disputed.'
+  provenance:
+  - action: added
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-process_caps-0107
+  name: CNC Swiss style turning
+  status: candidate
+  acceptable_forms:
+  - CNC Swiss style turning
+  - Swiss Turning
+  evidence:
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter 24” x
+      36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work. Machines
+    approx_offset: 5004
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0108
+  name: Live Tool Milling
+  status: candidate
+  acceptable_forms:
+  - Live Tool Milling
+  evidence:
+  - quote: CNC Turning with 4th Axis Live Tool Milling & CNC Swiss style turning with sizes up to Diameter 24” x
+      36” long, including Swiss Turning to 0.750″, 1 ¾” Barfeeders, and larger chucking work. Machines
+    approx_offset: 5004
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0109
+  name: Optical Verification
+  status: candidate
+  acceptable_forms:
+  - Optical Verification
+  evidence:
+  - quote: (1) Component Optical Verification System,
+    approx_offset: 14402
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0110
+  name: CMM inspection
+  status: candidate
+  acceptable_forms:
+  - CMM
+  evidence:
+  - quote: (1) WENZEL XO97 CMM (36”/60”/24”) Resolution 0.000004” (4 millionths). 0.1µm
+    approx_offset: 15174
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0111
+  name: APQP
+  status: disputed
+  acceptable_forms:
+  - APQP
+  evidence:
+  - quote: we follow industry wide systems such as APQP, PPAP.
+    approx_offset: 17115
+  notes: a quality-planning program the company follows, arguably closer to conformity_attestations; seeded here
+    as process_caps per 'industry wide systems' framing, disputed either way
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0112
+  name: PPAP
+  status: disputed
+  acceptable_forms:
+  - PPAP
+  evidence:
+  - quote: we follow industry wide systems such as APQP, PPAP.
+    approx_offset: 17115
+  notes: 'same as APQP: a quality-system framework, disputed between process_caps and conformity_attestations'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0113
+  name: flow testing
+  status: candidate
+  acceptable_forms:
+  - flow testing
+  evidence:
+  - quote: 'leak & flow testing, electrical testing '
+    approx_offset: 22335
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0114
+  name: vibratory tumbling
+  status: candidate
+  acceptable_forms:
+  - vibratory tumbling
+  evidence:
+  - quote: part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine graining. Additional
+      this can be done by our skilled deburring specialists manually with precision hand tools,
+    approx_offset: 24011
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0115
+  name: graining
+  status: candidate
+  acceptable_forms:
+  - graining
+  evidence:
+  - quote: part handling, or by abrasive vibratory tumbling, sandblasting, and Time-Saver machine graining. Additional
+      this can be done by our skilled deburring specialists manually with precision hand tools,
+    approx_offset: 24011
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0116
+  name: case hardening
+  status: candidate
+  acceptable_forms:
+  - case hardening
+  evidence:
+  - quote: steel case hardening, alloy steel heat treatment, induction hardening, nitriding, annealing, stress relieving,
+      aluminum and copper alloy treatments.</td></tr>
+    approx_offset: 25049
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0117
+  name: alloy treatments
+  status: candidate
+  acceptable_forms:
+  - alloy treatments
+  evidence:
+  - quote: steel case hardening, alloy steel heat treatment, induction hardening, nitriding, annealing, stress relieving,
+      aluminum and copper alloy treatments.</td></tr>
+    approx_offset: 25049
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0118
+  name: anodizing
+  status: candidate
+  acceptable_forms:
+  - anodizing
+  - aluminum anodizing
+  - hard anodizing
+  evidence:
+  - quote: aluminum anodizing, hard anodizing, chrome and nickel plating electro-plating, phosphatizing, blackening,
+      PVD coating, paint, powder coating, and other surface treatments.</td
+    approx_offset: 25323
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0119
+  name: NDT (non-destructive testing)
+  status: candidate
+  acceptable_forms:
+  - NDT
+  - non-destructive testing
+  evidence:
+  - quote: NDT (non-destructive testing), metallurgical testing, and
+    approx_offset: 25987
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0120
+  name: magnetic particle crack testing (MPI)
+  status: candidate
+  acceptable_forms:
+  - MPI
+  - magnetic particle crack testing
+  evidence:
+  - quote: MPI (magnetic particle crack testing in a purpose built high
+    approx_offset: 26291
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0121
+  name: x-ray testing
+  status: candidate
+  acceptable_forms:
+  - x-ray
+  evidence:
+  - quote: x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability testing.</td>
+    approx_offset: 26661
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0122
+  name: environmental testing
+  status: candidate
+  acceptable_forms:
+  - environmental
+  evidence:
+  - quote: x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability testing.</td>
+    approx_offset: 26661
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0123
+  name: durability testing
+  status: candidate
+  acceptable_forms:
+  - durability testing
+  evidence:
+  - quote: x-ray, hardness, tensile, SEM material chemical analysis, environmental and durability testing.</td>
+    approx_offset: 26661
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0124
+  name: stencil printing
+  status: candidate
+  acceptable_forms:
+  - stencil printing
+  evidence:
+  - quote: engraving, laser marking, pin stamping, Ink & stencil printing, hydrographic printing.</td></tr>
+    approx_offset: 26951
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0125
+  name: Etching
+  status: candidate
+  acceptable_forms:
+  - Etching
+  evidence:
+  - quote: Etching Passivation, Rust Inhibiting Ultrasonic Cleaning in many chemistries.</td></tr>
+    approx_offset: 27609
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0126
+  name: Passivation
+  status: candidate
+  acceptable_forms:
+  - Passivation
+  evidence:
+  - quote: Etching Passivation, Rust Inhibiting Ultrasonic Cleaning in many chemistries.</td></tr>
+    approx_offset: 27609
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-process_caps-0127
+  name: Sawing
+  status: candidate
+  acceptable_forms:
+  - Sawing
+  - saws
+  evidence:
+  - quote: Production Sawing We cut all of a blanks in house using out automatic saws, this saves time, material
+      cost and allows
+    approx_offset: 28041
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Sheet Metal
+  reason: the text has 'Sheetmetal' as ONE word, exactly once, inside the census line '50T Hydraulic Press Sheetmetal
+    Bender & Shear'. The two-word form has zero occurrences, so returning it is a normalization error, not a find
+- form: EDM
+  reason: 'anticipatory: zero occurrences. A near-universal companion capability on precision machine-shop sites,
+    and this one lists broaching, hobbing and keyseating, which is exactly the neighbourhood where EDM is usually
+    claimed'
+- form: Waterjet Cutting
+  reason: 'anticipatory: zero occurrences; primed by the real ''Production Sawing'' and ''Gear Cutting'''
+- form: Injection Molding
+  reason: 'anticipatory: zero occurrences; primed solely by the lone word ''plastics'' on line 299 — the same single
+    noun that fabricated 13 polymers in the old pipeline'
+- form: Die Casting
+  reason: 'anticipatory: zero occurrences; primed by the 5 real occurrences of ''castings'', which are the INCOMING
+    workpiece form, not a process performed here'
+- form: Additive Manufacturing
+  reason: 'anticipatory: zero occurrences, and ''3D printing'' is also zero; primed by the four real ''-printing''
+    processes (Ink & stencil, hydrographic) in the Part Marking list'
+- form: Forging
+  reason: 'the SINGULAR form has zero word-boundary occurrences: what the text names is the plural noun ''forgings'',
+    5 times, and always as an INCOMING workpiece the VTLs accommodate (''accommodate large castings, forgings, or
+    billets''), never as an operation Superior performs. Returning the singular is a re-inflection of a material
+    into a capability'
+- form: Casting
+  reason: 'same trap as Forging: the singular has zero word-boundary occurrences, while the plural ''castings''
+    occurs 5 times as what the large machines accept as raw stock, never as an operation performed here'
+- form: Hemming
+  reason: 'anticipatory: zero occurrences; a classic word-association mint from the real ''Honing'' and ''Hobbing''
+    which are both present and both rhyme with it'

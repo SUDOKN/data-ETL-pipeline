@@ -1,0 +1,1101 @@
+subject: superiortech.org
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/superiortech.org.txt
+  sha256: 6de032283382c2ead7409e34541f2743fea3c67efb4a165eb47c68a1a93ab01a
+eval_set_version: 2
+expected_empty: false
+notes: 'A genuine OWN-BRAND NEGATIVE that is NOT expected_empty. Superior Technology is a build-to-print job shop:
+  it names no own-brand catalog product anywhere in 60 KB — ''All products manufactured at Superior Technology''
+  are customer parts, and the private-label page says outright that it manufactures ''you entire product'' for the
+  OEM. But the text NAMES many artifacts, so under recall-first the field is richly populated with `actor: client`
+  entries: train brake rotors, pump and compressor housings, hydraulic and pneumatic manifolds, axle housings, transmission
+  casings, rail brake hub assemblies, fuel injectors, valves and regulators. Reporting this field as empty would
+  be wrong; so would reporting an own-brand product line. The old pipeline fabricated own products here, including
+  one that is actually a machine Superior OWNS (see the false_friends).'
+entries:
+- id: superiortech_org-products-0001
+  name: Precision machined parts and assemblies
+  status: confirmed
+  acceptable_forms:
+  - precision machined parts and assemblies
+  - Precision Machined Parts and Assemblies
+  - close tolerance precision machined parts and assemblies
+  evidence:
+  - quote: Your Single Source for Precision Machined Parts and Assemblies
+    approx_offset: 80
+  - quote: single source for all of their precision machined parts and assemblies.
+    approx_offset: 305
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it. The site's own headline designation
+    for its output
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0002
+  name: Finished products
+  status: confirmed
+  acceptable_forms:
+  - Finished products
+  - finished parts
+  evidence:
+  - quote: Finished products can be shipped to your facility
+    approx_offset: 20557
+  - quote: having finished parts manufactured to forecast
+    approx_offset: 19388
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0003
+  name: Packaging & dunnage
+  status: disputed
+  acceptable_forms:
+  - packaging & dunnage
+  evidence:
+  - quote: design and procure packaging & dunnage, customer packing
+    approx_offset: 19972
+  actor: supplier
+  notes: DISPUTED — dunnage IS a made artifact, but the text says Superior 'design[s] and procure[s]' it rather
+    than manufacturing it, and the field's clause excludes things that are not what 'comes out of manufacturing
+    work' here. Kept because 'design and procure' is genuinely ambiguous about who makes it. | 'we are able to design
+    and procure packaging & dunnage, customer packing' -- packaging and dunnage are bought in and used to ship the
+    goods, not artifacts that come out of the manufacturing work, which is the clause's stated test. Arguable because
+    they are undeniably made artifacts and the company designs them.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: '''we are able to design and procure packaging & dunnage, customer packing'' -- packaging and dunnage
+      are bought in and used to ship the goods, not artifacts that come out of the manufacturing work, which is
+      the clause''s stated test. Arguable because they are undeniably made artifacts and the company designs them.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0004
+  name: Gears
+  status: confirmed
+  acceptable_forms:
+  - internal and external gears
+  - gears
+  evidence:
+  - quote: internal and external gears, splines, serrations
+    approx_offset: 24471
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0005
+  name: Splines
+  status: disputed
+  acceptable_forms:
+  - splines
+  evidence:
+  - quote: gears, splines, serrations and slots
+    approx_offset: 24493
+  actor: client
+  notes: 'customer part named in a capability list; Superior is build-to-print, so the artifact is the client''s
+    design. Recall-first — the text names a made artifact, which is what qualifies it | A spline is a machined FEATURE
+    on a shaft, not a discrete artifact: ''internal and external gears, splines, serrations and slots''. Nothing
+    called a spline leaves the shop on its own. Gears (0004) I confirmed because a gear is a discrete component;
+    splines and serrations in the same list are not.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'A spline is a machined FEATURE on a shaft, not a discrete artifact: ''internal and external gears,
+      splines, serrations and slots''. Nothing called a spline leaves the shop on its own. Gears (0004) I confirmed
+      because a gear is a discrete component; splines and serrations in the same list are not.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0006
+  name: Serrations
+  status: disputed
+  acceptable_forms:
+  - serrations
+  evidence:
+  - quote: serrations and slots
+    approx_offset: 24509
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it | A serration is a machined feature,
+    not a discrete artifact -- 'gears, splines, serrations and slots', the same enumeration as the splines entry,
+    and the seed did not take 'slots' from it either. Same argument as products-0005.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: A serration is a machined feature, not a discrete artifact -- 'gears, splines, serrations and slots',
+      the same enumeration as the splines entry, and the seed did not take 'slots' from it either. Same argument
+      as products-0005.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0007
+  name: Spindles
+  status: confirmed
+  acceptable_forms:
+  - spindles
+  evidence:
+  - quote: on rotors, shafts, spindles or other parts
+    approx_offset: 24531
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: Entity is right -- spindles appear as workpieces in 'on rotors, shafts, spindles or other parts'. The
+      form was the three-item fragment 'rotors, shafts, spindles', and because forms_overlap tests containment both
+      ways, that fragment also credits a returned 'rotors' or 'shafts', which are the subject of products-0019 and
+      products-0012. Narrowing to 'spindles' still credits the full fragment by containment while no longer paying
+      out for its neighbours.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0008
+  name: Impellers
+  status: confirmed
+  acceptable_forms:
+  - impellers
+  evidence:
+  - quote: shafts, impellers, axles
+    approx_offset: 25811
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0009
+  name: Axles
+  status: confirmed
+  acceptable_forms:
+  - axles
+  evidence:
+  - quote: impellers, axles, hubs
+    approx_offset: 25819
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0010
+  name: Hubs
+  status: confirmed
+  acceptable_forms:
+  - hubs
+  evidence:
+  - quote: axles, hubs, wheels and brake rotors.
+    approx_offset: 25830
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'Same cross-crediting defect as products-0007: the form ''hubs, wheels and brake rotors'' pays out for
+      a returned ''wheels'' or ''brake rotors'', which are separately seeded as products-0011 and products-0012.
+      The bare form was already present and credits the fragment by containment, so dropping the compound costs
+      nothing.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0011
+  name: Wheels
+  status: confirmed
+  acceptable_forms:
+  - wheels
+  evidence:
+  - quote: hubs, wheels and brake rotors.
+    approx_offset: 25837
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0012
+  name: Brake rotors
+  status: confirmed
+  acceptable_forms:
+  - brake rotors
+  evidence:
+  - quote: wheels and brake rotors.
+    approx_offset: 25843
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0013
+  name: Tube and fitting assemblies
+  status: confirmed
+  acceptable_forms:
+  - tube, fitting and other assemblies
+  - tube and fitting assemblies
+  - tube assemblies
+  evidence:
+  - quote: to make tube, fitting and other assemblies.
+    approx_offset: 27262
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it. Named as what Production Brazing
+    is used to make
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'The entity is real -- ''Production Brazing is available to make tube, fitting and other assemblies''
+      -- but the single form was the comma fragment, and containment is exact: a returned ''tube and fitting assemblies''
+      or ''tube assemblies'' matches it in NEITHER direction, so the natural correct answer would have scored a
+      miss. Only a bare ''assemblies'' would have credited it, which is the wrong reason to credit it.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0014
+  name: Blanks
+  status: confirmed
+  acceptable_forms:
+  - blanks
+  evidence:
+  - quote: We cut all of a blanks in house
+    approx_offset: 28059
+  notes: the sawn workpiece Superior produces for its own downstream operations and also sells as a service; an
+    intermediate artifact coming out of the work
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0015
+  name: Wear parts
+  status: confirmed
+  acceptable_forms:
+  - wear parts
+  evidence:
+  - quote: very hard materials used wear parts
+    approx_offset: 8360
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0016
+  name: Pump & valve components
+  status: confirmed
+  acceptable_forms:
+  - pump & valve components
+  - pump and valve components
+  evidence:
+  - quote: pump & valve components
+    approx_offset: 5608
+  - quote: pump and valve components, auto parts
+    approx_offset: 8420
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0017
+  name: Auto parts
+  status: confirmed
+  acceptable_forms:
+  - auto parts
+  evidence:
+  - quote: auto parts, automation & robotics components
+    approx_offset: 8447
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0018
+  name: Automation & robotics components
+  status: confirmed
+  acceptable_forms:
+  - automation & robotics components
+  evidence:
+  - quote: automation & robotics components
+    approx_offset: 7354
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0019
+  name: Shafts and rotors
+  status: confirmed
+  acceptable_forms:
+  - shafts and rotors
+  evidence:
+  - quote: shafts and rotors
+    approx_offset: 8493
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0020
+  name: Machine parts
+  status: confirmed
+  acceptable_forms:
+  - machine parts
+  evidence:
+  - quote: machine parts, fuels system components
+    approx_offset: 5533
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment,
+      Military, Power Tool, Robotics and Automation Industries
+    approx_offset: 8515
+  - quote: such as machine parts, pump and valve components, auto parts
+    approx_offset: 8397
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'Second quote is the same mis-clip as process_caps-0006: the tail of line 352, the industries list,
+      which contains no acceptable form and proves nothing about machine parts. The head of that same line names
+      them. NOTE: corrected_quote replaces the whole evidence list, so the good ''machine parts, fuels system components''
+      quote is dropped -- restore it by hand if wanted.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0021
+  name: Train Brake Rotors & Axles
+  status: confirmed
+  acceptable_forms:
+  - Train Brake Rotors & Axles
+  evidence:
+  - quote: such as Train Brake Rotors & Axles, Pump & Compressor Housings
+    approx_offset: 36347
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0022
+  name: Pump & Compressor Housings
+  status: confirmed
+  acceptable_forms:
+  - Pump & Compressor Housings
+  evidence:
+  - quote: Pump & Compressor Housings, Oil & Gas Industry Parts
+    approx_offset: 36383
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0023
+  name: Oil & Gas Industry Parts
+  status: confirmed
+  acceptable_forms:
+  - Oil & Gas Industry Parts
+  evidence:
+  - quote: Oil & Gas Industry Parts
+    approx_offset: 36411
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0024
+  name: Hydraulic & Pneumatic Manifolds
+  status: confirmed
+  acceptable_forms:
+  - Hydraulic & Pneumatic Manifolds
+  evidence:
+  - quote: complex Hydraulic & Pneumatic Manifolds
+    approx_offset: 36666
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0025
+  name: On and Off-Road Axle Housings
+  status: confirmed
+  acceptable_forms:
+  - On and Off-Road Axle Housings
+  evidence:
+  - quote: On and Off-Road Axle Housings & Transmission Casings
+    approx_offset: 36707
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0026
+  name: Transmission Casings
+  status: confirmed
+  acceptable_forms:
+  - Transmission Casings
+  evidence:
+  - quote: Transmission Casings
+    approx_offset: 36739
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0027
+  name: Electro-Mechanical Assemblies
+  status: confirmed
+  acceptable_forms:
+  - Electro-Mechanical Assemblies
+  - Assembled and Tested Electro-Mechanical Assemblies
+  evidence:
+  - quote: complete Assembled and Tested Electro-Mechanical Assemblies
+    approx_offset: 21692
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0028
+  name: PEM fasteners
+  status: confirmed
+  acceptable_forms:
+  - PEM fasteners
+  evidence:
+  - quote: riveting & PEM fasteners
+    approx_offset: 22154
+  actor: client
+  notes: a purchased fastener installed into customer assemblies; still a made artifact named in the text, so recall-first
+    admits it. actor is really 'supplier' for the fastener itself and 'client' for the assembly
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0029
+  name: Rail Brake Hub Assemblies
+  status: confirmed
+  acceptable_forms:
+  - Rail Brake Hub Assemblies
+  evidence:
+  - quote: products such as Rail Brake Hub Assemblies, Fuel injectors
+    approx_offset: 22791
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0030
+  name: Fuel injectors
+  status: confirmed
+  acceptable_forms:
+  - Fuel injectors
+  evidence:
+  - quote: Fuel injectors, Valves & Regulators
+    approx_offset: 22835
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0031
+  name: Valves & Regulators
+  status: confirmed
+  acceptable_forms:
+  - Valves & Regulators
+  evidence:
+  - quote: Valves & Regulators, Machine Sub-Assemblies
+    approx_offset: 22851
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0032
+  name: Machine Sub-Assemblies
+  status: confirmed
+  acceptable_forms:
+  - Machine Sub-Assemblies
+  evidence:
+  - quote: Machine Sub-Assemblies
+    approx_offset: 22872
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0033
+  name: Precision shafts & rings
+  status: confirmed
+  acceptable_forms:
+  - precision shafts & rings
+  evidence:
+  - quote: including precision shafts & rings, machine parts
+    approx_offset: 5497
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0034
+  name: Fuels system components
+  status: confirmed
+  acceptable_forms:
+  - fuels system components
+  evidence:
+  - quote: fuels system components, test fixtures
+    approx_offset: 5548
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0035
+  name: Test fixtures
+  status: confirmed
+  acceptable_forms:
+  - test fixtures
+  evidence:
+  - quote: test fixtures, tooling components
+    approx_offset: 5573
+  - quote: test fixtures and tooling
+    approx_offset: 7388
+  notes: 'DISPUTED — the products clause explicitly separates a made artifact from ''the machinery, tooling, and
+    facilities the work is done with'', and a fixture is tooling. The counter-argument is real and specific here:
+    the toolroom page says Superior''s toolmakers ''design and manufacture tooling and fixtures'', so these fixtures
+    DO come out of manufacturing work — they are simply consumed internally rather than shipped. Seeded disputed
+    rather than dropped because that is a genuine boundary question, not an error.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0036
+  name: Tool components
+  status: confirmed
+  acceptable_forms:
+  - tool components
+  - tooling components
+  evidence:
+  - quote: tool components, automation
+    approx_offset: 7337
+  - quote: tooling components
+    approx_offset: 5588
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0037
+  name: Milled Parts
+  status: confirmed
+  acceptable_forms:
+  - Milled Parts
+  evidence:
+  - quote: Milled Parts
+    approx_offset: 38960
+  actor: client
+  notes: a gallery caption — one of only two standalone product designations on the site, and the shortest window
+    in the file
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0038
+  name: Turned Parts
+  status: confirmed
+  acceptable_forms:
+  - Turned Parts
+  evidence:
+  - quote: Turned Parts
+    approx_offset: 38977
+  actor: client
+  notes: gallery caption, see Milled Parts
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0039
+  name: Pump & valve housings
+  status: confirmed
+  acceptable_forms:
+  - pump & valve housings
+  evidence:
+  - quote: pump & valve housings, auto parts
+    approx_offset: 7302
+  actor: client
+  notes: customer part named in a capability list; Superior is build-to-print, so the artifact is the client's design.
+    Recall-first — the text names a made artifact, which is what qualifies it
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-products-0040
+  name: tooling components
+  status: candidate
+  acceptable_forms:
+  - tooling components
+  evidence:
+  - quote: machine parts, fuels system components, test fixtures, tooling components, pump & valve components for
+      Aerospace, Automotive, Industrial & Consumer Products, Medical Equipment,
+    approx_offset: 5533
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-products-0041
+  name: rotors
+  status: candidate
+  acceptable_forms:
+  - rotors
+  evidence:
+  - quote: automation & robotics components, shafts and rotors for Aerospace, Automotive, Industrial & Consumer
+      Products, Optics and Precision Instruments, Medical Equipment, Military, Power Tool, Robotics and
+    approx_offset: 8459
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-products-0042
+  name: tube
+  status: candidate
+  acceptable_forms:
+  - tube
+  evidence:
+  - quote: make tube, fitting and other assemblies.
+    approx_offset: 27265
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-products-0043
+  name: fitting
+  status: candidate
+  acceptable_forms:
+  - fitting
+  evidence:
+  - quote: make tube, fitting and other assemblies.
+    approx_offset: 27265
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-products-0044
+  name: Train Brake Rotors
+  status: candidate
+  acceptable_forms:
+  - Train Brake Rotors
+  evidence:
+  - quote: Train Brake Rotors & Axles, Pump &
+    approx_offset: 36355
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-products-0045
+  name: Compressor Housings
+  status: candidate
+  acceptable_forms:
+  - Compressor Housings
+  evidence:
+  - quote: Pump & Compressor Housings, Oil & Gas
+    approx_offset: 36383
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-products-0046
+  name: Axle Housings
+  status: candidate
+  acceptable_forms:
+  - Axle Housings
+  evidence:
+  - quote: Axle Housings & Transmission Casings.
+    approx_offset: 36723
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Large Capacity 4-Axis Horizontal CNC Machining Centers
+  reason: CONFIRMED LEAK. This is a machine Superior OWNS and operates, which the old pipeline emitted as a product
+    it makes. The sentence is 'Large Capacity 4-Axis Horizontal CNC Machining Centers allow milling of complex Hydraulic
+    & Pneumatic Manifolds' — the manifolds are the product, the machining centers are the machine. It is seeded
+    as an `equipments` entry
+- form: Vertical Turning Lathes
+  reason: 'same shape as the machining-centers leak: an owned machine in a sentence whose object is the real product
+    (''Large Vertical Turning Lathes (VTL’s) allow us to manufacture large turnings such as Train Brake Rotors &
+    Axles'')'
+- form: Superior Technology, Inc.
+  reason: the company's own name, which the clause excludes along with 'the names of companies, brands, or customer
+    groups'. It occurs 20+ times and is by far the most repeated capitalized noun phrase in the file
+- form: Managed Inventory Solutions
+  reason: a logistics SERVICE, not an artifact; the clause excludes what is not a made thing, and the capitalized
+    'Solutions' reads product-like
+- form: Value Added Secondary Processes
+  reason: a service category, not an artifact, despite title-case presentation
+- form: Fortune 500
+  reason: a customer group — the clause excludes 'the names of companies, brands, or customer groups' explicitly
+- form: Kanban
+  reason: an inventory METHOD, not an artifact; 5 occurrences, always parenthesized after 'Managed Inventory Solutions'
+- form: SolidWorks
+  reason: 'third-party CAD software: neither made here nor a made artifact of manufacturing work. ''MasterCam''
+    and ''Fusion 360'' on the same line are the same case'
+- form: keyways
+  reason: a FEATURE cut into a part, not a part. Line 169 lists 'flats, keyways, hexagonal, squares, splines, and
+    other polygon shapes', which mixes real components (splines) with pure geometry
+- form: polygon shapes
+  reason: geometry, not an artifact; same list as keyways
+- form: Made in The USA
+  reason: an origin claim, not an artifact; it is seeded as a disputed conformity_attestation
+- form: Clean Room
+  reason: a facility — the clause excludes 'the facilities the work is done with'

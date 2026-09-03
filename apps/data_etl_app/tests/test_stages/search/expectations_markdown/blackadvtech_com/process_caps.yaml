@@ -1,0 +1,3199 @@
+subject: blackadvtech.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/blackadvtech.com.txt
+  sha256: 63354af5b4bd0925a7cd54d773d6677fcc24a25a7c262ac35fa3b99a22afb9ad
+eval_set_version: 3
+expected_empty: false
+notes: 'The densest field on this subject and the one carrying the SEO-blog trap. Entries split two ways. (a) CAPABILITY-PAGE
+  processes: named on /capabilities/*, /about-us/facility/, /capabilities/machinery/ or the home page as things
+  Blackstone does - actor omitted (own). (b) BLOG-ONLY processes: named ONLY inside industry-explainer articles,
+  never as a first-party capability claim - actor: unknown, and every one says so in notes. Both are entries: the
+  search stage extracts in-field designations the text NAMES, and deciding whose capability it is happens downstream.
+  Do NOT read a blog-only entry as a defect when search returns it.'
+entries:
+- id: blackadvtech_com-process_caps-0004
+  name: laser cutting
+  status: candidate
+  acceptable_forms:
+  - laser cutting
+  - LASER CUTTING
+  - Laser Cutting
+  - CNC laser cutting
+  - sheet metal laser cutting
+  - SHEET METAL LASER CUTTING
+  evidence:
+  - quote: '### Laser Cutting'
+    approx_offset: 760
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0015
+  name: cutting
+  status: confirmed
+  acceptable_forms:
+  - Cutting
+  - cutting
+  evidence:
+  - quote: Cutting
+    approx_offset: 770
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0006
+  name: welding
+  status: candidate
+  acceptable_forms:
+  - welding
+  - WELDING
+  - Welding
+  - certified welding
+  - industrial welding
+  - INDUSTRIAL WELDING SERVICES
+  evidence:
+  - quote: '### Welding'
+    approx_offset: 866
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0014
+  name: engineering
+  status: disputed
+  acceptable_forms:
+  - engineering
+  - ENGINEERING
+  - Engineering
+  evidence:
+  - quote: Engineering
+    approx_offset: 1108
+  notes: listed as one of the shop's own service lines | 'engineering' names a department/service (ENGINEERING nav
+    item, /engineering/ page, job-board category), not an operation on the work.
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''engineering'' names a department/service (ENGINEERING nav item, /engineering/ page, job-board category),
+      not an operation on the work.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0003
+  name: punching
+  status: candidate
+  acceptable_forms:
+  - punching
+  - PUNCHING
+  - Sheet Metal Punching
+  - sheet metal punching
+  evidence:
+  - quote: Amada Coma-567 — 50-station turret punching, auto-index
+    approx_offset: 1599
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0054
+  name: sheet metal rolling
+  status: candidate
+  acceptable_forms:
+  - Sheet metal rolling
+  - sheet metal rolling
+  - rolling
+  - ROLLING
+  evidence:
+  - quote: Specialized rolling — 4ft Niagara & Buffalo Channel systems
+    approx_offset: 1991
+  notes: 'FIRST-PARTY: has its own press-room section AND a ROLLING heading in the facility machine list. What the
+    shop lacks is a sheet-THINNING rolling mill, which is the subject of the cold-rolling blog - a different machine
+    and a different entry.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0040
+  name: passivation
+  status: candidate
+  acceptable_forms:
+  - Weld Passivation
+  - Passivation
+  - weld passivation
+  - passivation
+  evidence:
+  - quote: Dual weld passivation systems for stainless integrity
+    approx_offset: 2346
+  notes: two Weld Passivation Wand Systems in the graining/deburring/finishing list
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0020
+  name: finishing
+  status: candidate
+  acceptable_forms:
+  - finishing
+  - FINISHING
+  - Finishing
+  - metal finishing
+  - Metal Finishing
+  - sheet metal finishing
+  - Sheet Metal Finishing
+  evidence:
+  - quote: '### Industrial Finishing & Coating'
+    approx_offset: 2406
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0049
+  name: phosphate coating
+  status: candidate
+  acceptable_forms:
+  - phosphate coating system
+  - phosphate powder coating system
+  - Iron Phosphate
+  - anticorrosive phosphate solution
+  - bonderizer
+  - Bonderiser
+  - iron phosphate bonderizer
+  evidence:
+  - quote: 5-stage iron phosphate bonderizer pre-treatment
+    approx_offset: 2446
+  notes: a treatment named after the substance it deposits, so it is also a material_caps entry
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0038
+  name: machining
+  status: candidate
+  acceptable_forms:
+  - MACHINING
+  - machining
+  - Machining
+  evidence:
+  - quote: '### Machining & Secondary Operations'
+    approx_offset: 2675
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0066
+  name: inspection
+  status: confirmed
+  acceptable_forms:
+  - inspection
+  - inspection activity
+  - inspection techniques
+  - visual inspection
+  - visual inspections
+  - dimensional inspections
+  - Inspectors
+  - Source Inspector
+  evidence:
+  - quote: experience in previous inspection activity, corrective action follow-up
+    approx_offset: 11597
+  notes: inspection, testing and measurement performed on the work qualify under this field's clause
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0067
+  name: first article documentation
+  status: disputed
+  acceptable_forms:
+  - first article documentation
+  evidence:
+  - quote: corrective action follow-up, first article documentation
+    approx_offset: 11641
+  notes: '''first article documentation'' names the paperwork of a first-article inspection rather than the inspection
+    itself; the inspection is already covered by 0066. Membership arguable.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''first article documentation'' names the paperwork of a first-article inspection rather than the inspection
+      itself; the inspection is already covered by 0066. Membership arguable.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0008
+  name: assembly
+  status: candidate
+  acceptable_forms:
+  - assembly
+  - assemblies
+  - assembled
+  evidence:
+  - quote: When multiple parts are assembled, these small deviations accumulate—a phenomenon known as tolerance
+      stack-up.
+    approx_offset: 19774
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0012
+  name: custom sheet metal fabrication
+  status: candidate
+  acceptable_forms:
+  - custom sheet metal fabrication
+  - CUSTOM SHEET METAL FABRICATION
+  - custom sheet metal manufacturing
+  - Custom fabrication
+  - custom metal fabrication
+  - CUSTOM METAL FABRICATION PROJECTS
+  evidence:
+  - quote: We’re the custom sheet metal fabrication you can count on
+    approx_offset: 25370
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0007
+  name: spot welding
+  status: candidate
+  acceptable_forms:
+  - spot welding
+  - Spot Welding
+  - SPOT WELDING
+  evidence:
+  - quote: These robots can be programmed to execute a wide range of welding processes, including MIG (Metal Inert
+      Gas), TIG (Tungsten Inert Gas), and spot welding.
+    approx_offset: 32555
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0027
+  name: MIG welding
+  status: candidate
+  acceptable_forms:
+  - MIG Welding
+  - MIG welding
+  - metal inert gas
+  - Metal Inert Gas
+  - MIG
+  evidence:
+  - quote: These robots can be programmed to execute a wide range of welding processes, including MIG (Metal Inert
+      Gas), TIG (Tungsten Inert Gas), and spot welding.
+    approx_offset: 32555
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0032
+  name: robotic welding
+  status: confirmed
+  acceptable_forms:
+  - Robotic Welding
+  - robotic welding
+  - Robotic Welding System
+  - welding robots
+  - ROBOT WELDER
+  - welding robot
+  evidence:
+  - quote: Robotic Welding
+    approx_offset: 32869
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0019
+  name: painting
+  status: candidate
+  acceptable_forms:
+  - painting
+  - PAINTING
+  - Painting
+  - paint coating
+  - Paint coating
+  - Industrial Sheet Metal Painting
+  evidence:
+  - quote: '### Dry Painting'
+    approx_offset: 40323
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0035
+  name: stamping
+  status: candidate
+  acceptable_forms:
+  - stamping
+  - Stamping
+  - STAMPING
+  - Sheet Metal Stamping
+  - sheet metal stamping
+  - Stamping & Press Forming
+  evidence:
+  - quote: '- LASER CUTTING AND STAMPING MACHINES CAN BE PROGRAMMED TO AUTOMATICALLY ADJUST BASED ON MATERIAL TYPE
+      AND SIZE, IMPROVING ACCURACY FROM ±0.1mm TO ±0.05mm.'
+    approx_offset: 43254
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0029
+  name: plasma arc welding
+  status: confirmed
+  acceptable_forms:
+  - Plasma Arc Welding
+  - plasma arc welding
+  - plasma arc
+  - Transferred Plasma Arc Welding
+  - Non-Transferred Plasma Arc Welding
+  evidence:
+  - quote: Plasma Arc Welding
+    approx_offset: 51303
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0030
+  name: seam welding
+  status: confirmed
+  acceptable_forms:
+  - Seam Welding
+  - seam welding
+  - Seam welding
+  - resistance spot welding
+  - Resistance seam welding
+  evidence:
+  - quote: Seam Welding
+    approx_offset: 51359
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0005
+  name: forming
+  status: candidate
+  acceptable_forms:
+  - forming
+  - FORMING
+  - metal forming
+  - METAL FORMING
+  - Sheet Metal Forming
+  - sheet metal forming
+  evidence:
+  - quote: In addition to CNC machining and stamping, sheet metal forming techniques
+    approx_offset: 62085
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0093
+  name: deep drawing
+  status: confirmed
+  acceptable_forms:
+  - Deep Drawing
+  - deep drawing
+  - Deep drawing
+  evidence:
+  - quote: Deep Drawing
+    approx_offset: 62342
+  - quote: Deep drawing converts flat sheet metal into either hollow box-shaped
+    approx_offset: 155178
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. Named
+    in three articles (metal thinning, enclosure design, sheet-vs-plate). The shop has no draw press in either machine
+    list.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0009
+  name: powder coating
+  status: candidate
+  acceptable_forms:
+  - powder coating
+  - POWDER COATING
+  - Powder Coating
+  - powder coat
+  - Powder Coat
+  evidence:
+  - quote: '# What Is Powder Coating?'
+    approx_offset: 109014
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0068
+  name: surface preparation
+  status: confirmed
+  acceptable_forms:
+  - Surface Preparation
+  - surface preparation
+  - surface treatment
+  - prep work
+  evidence:
+  - quote: 'Surface Preparation: The surface to be coated is cleaned and prepared to remove any dirt, grease, or
+      contaminants. This step ensures proper adhesion of the powder to the surface.'
+    approx_offset: 109442
+  - quote: Degreasing is a mandatory procedure before surface treatment
+    approx_offset: 122356
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0069
+  name: curing
+  status: confirmed
+  acceptable_forms:
+  - Curing
+  - curing
+  - curing process
+  evidence:
+  - quote: 'Curing: Once the powder is applied, the coated object is transferred to an oven or a curing chamber.
+      The'
+    approx_offset: 109881
+  - quote: the coated object is transferred to an oven or a curing chamber
+    approx_offset: 109917
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0070
+  name: spray painting
+  status: confirmed
+  acceptable_forms:
+  - spray painting
+  evidence:
+  - quote: such as brush painting, roller application, or spray painting
+    approx_offset: 113511
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: brush painting and roller application are two other paint-application methods named in the same sentence,
+      not surface forms of spray painting. Kept as their own candidate misses.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0099
+  name: degreasing
+  status: confirmed
+  acceptable_forms:
+  - Degreasing
+  - degreasing
+  - Dry degreasing
+  - Wet degreasing
+  evidence:
+  - quote: Degreasing
+    approx_offset: 122344
+  - quote: Degreasing is a mandatory procedure before surface treatment.
+    approx_offset: 122356
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0100
+  name: anodization
+  status: confirmed
+  acceptable_forms:
+  - aluminum anodization
+  - anodization
+  evidence:
+  - quote: The presence of oil can hinder aluminum anodization and other joining processes.
+    approx_offset: 122694
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0101
+  name: electroplating
+  status: confirmed
+  acceptable_forms:
+  - electroplate
+  evidence:
+  - quote: Whether you are planning to powder-coat or electroplate the sheet metal
+    approx_offset: 123461
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0102
+  name: pressure washing
+  status: confirmed
+  acceptable_forms:
+  - Pressure washing
+  evidence:
+  - quote: Pressure washing is the most effective method for industrial metals.
+    approx_offset: 123726
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0103
+  name: pickling
+  status: confirmed
+  acceptable_forms:
+  - Pickling
+  - pickling
+  - pickle liquor
+  - pickle and oiled
+  evidence:
+  - quote: Pickling
+    approx_offset: 123900
+  - quote: This is a metal preparation process that removes impurities such as scale and rust
+    approx_offset: 123910
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. A stage
+    in the generic ''preparing sheet metal for finishing'' article; there is no acid line in either machine list.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0114
+  name: electrolysis
+  status: candidate
+  acceptable_forms:
+  - electrolysis
+  evidence:
+  - quote: Pickling removes these impurities to prepare metal surfaces for both electrolysis and chemical reactions.
+    approx_offset: 124196
+  notes: named as a process metal surfaces are prepared for, in the pickling section of the sheet-metal-finishing
+    article; no entry covers it.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0026
+  name: polishing
+  status: candidate
+  acceptable_forms:
+  - polishing
+  - POLISHING
+  - Polishing
+  evidence:
+  - quote: '## Polishing'
+    approx_offset: 124663
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0104
+  name: buffing
+  status: confirmed
+  acceptable_forms:
+  - Buffing
+  - buffing
+  evidence:
+  - quote: Buffing and polishing are the last procedures when preparing sheet metal for finishing.
+    approx_offset: 124677
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0052
+  name: sanding
+  status: candidate
+  acceptable_forms:
+  - sanding
+  - SANDING
+  - Sanding
+  - sanding services
+  evidence:
+  - quote: Buffing and polishing are the last procedures when preparing sheet metal for finishing. Polishing is
+      a rather simple process that involves the removal of imperfections through sanding.
+    approx_offset: 124677
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0080
+  name: press breaking
+  status: disputed
+  acceptable_forms:
+  - press breaking
+  evidence:
+  - quote: Skilled operators combine several engineering capabilities such as press breaking, bending, Tig welding,
+      and plasma cutting.
+    approx_offset: 127189
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. A misspelling
+    of press braking inside the marine-fuel-tank article. | same process as process_caps-0033 (press braking) under
+    the site''s misspelling ''press breaking'' on the marine-fuel-tank article. SEEDING_BRIEF 5 says spellings the
+    text uses belong in one entry''s acceptable_forms, so keeping this as its own entity double-counts one process
+    in the recall denominator. `press breaking` added to 0033 instead.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: same process as process_caps-0033 (press braking) under the site's misspelling 'press breaking' on the
+      marine-fuel-tank article. SEEDING_BRIEF 5 says spellings the text uses belong in one entry's acceptable_forms,
+      so keeping this as its own entity double-counts one process in the recall denominator. `press breaking` added
+      to 0033 instead.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0033
+  name: press braking
+  status: candidate
+  acceptable_forms:
+  - press braking
+  - Press Braking
+  - press-brake bending
+  - PRESS BRAKING
+  - press breaking
+  evidence:
+  - quote: Skilled operators combine several engineering capabilities such as press breaking, bending, Tig welding,
+      and plasma cutting.
+    approx_offset: 127189
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0043
+  name: plasma cutting
+  status: confirmed
+  acceptable_forms:
+  - Plasma Cutting
+  - plasma cutting
+  - plasma cutter
+  - Plastma Cutting
+  evidence:
+  - quote: press breaking, bending, Tig welding, and plasma cutting
+    approx_offset: 127256
+  notes: note the typo 'Plastma' in the /capabilities/newequipment/ heading
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0081
+  name: pressure testing
+  status: confirmed
+  acceptable_forms:
+  - pressure test
+  evidence:
+  - quote: Conduct a pressure test to ensure that it will not leak any fuel.
+    approx_offset: 129782
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0041
+  name: quality control
+  status: confirmed
+  acceptable_forms:
+  - QUALITY CONTROL
+  - quality control
+  - quality control process
+  - quality control methods
+  evidence:
+  - quote: robust quality control process in place
+    approx_offset: 140116
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0077
+  name: non-destructive testing
+  status: confirmed
+  acceptable_forms:
+  - non-destructive testing
+  evidence:
+  - quote: Use visual inspections, non-destructive testing, and other quality control methods
+    approx_offset: 140230
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. A generic
+    ''what good suppliers do'' list in the CRM article.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0051
+  name: lean manufacturing
+  status: disputed
+  acceptable_forms:
+  - lean manufacturing
+  evidence:
+  - quote: Use lean manufacturing principles to minimize waste
+    approx_offset: 140948
+  notes: lean manufacturing is a management philosophy; the text uses it about minimising waste and improving efficiency,
+    not about anything done to a part.
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: lean manufacturing is a management philosophy; the text uses it about minimising waste and improving
+      efficiency, not about anything done to a part.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0087
+  name: curling
+  status: confirmed
+  acceptable_forms:
+  - Curling
+  - Curls
+  - Curled edges
+  - curl
+  evidence:
+  - quote: Curls
+    approx_offset: 144296
+  - quote: Curling is the process of adding a circular roll to the edge of the sheet metal
+    approx_offset: 144303
+  notes: 'first-person: the design blog states Blackstone''s own curl guidelines'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0088
+  name: hems
+  status: confirmed
+  acceptable_forms:
+  - Hems
+  - hems
+  - hem
+  - teardrop hems
+  - open hems
+  evidence:
+  - quote: Hems
+    approx_offset: 146485
+  - quote: Blackstone uses hems to create folds in sheet metal
+    approx_offset: 146491
+  notes: FIRST-PARTY and REAL. The design blog states it in the first person ('Blackstone uses hems'). Note the
+    -ing form 'Hemming' occurs ZERO times in the text - see the false_friends list.
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0055
+  name: folding
+  status: confirmed
+  acceptable_forms:
+  - Folding
+  - folds
+  evidence:
+  - quote: Blackstone uses hems to create folds in sheet metal
+    approx_offset: 146491
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0097
+  name: spinning
+  status: confirmed
+  acceptable_forms:
+  - spinning
+  evidence:
+  - quote: stamping, hydroforming, spinning, and deep drawing
+    approx_offset: 151571
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. One
+    word inside a four-item list of forming techniques in the enclosure-design article.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0098
+  name: hydroforming
+  status: confirmed
+  acceptable_forms:
+  - hydroforming
+  evidence:
+  - quote: stamping, hydroforming, spinning, and deep drawing
+    approx_offset: 151571
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0090
+  name: thinning
+  status: confirmed
+  acceptable_forms:
+  - Thinning
+  - thinning
+  - Sheet Metal Thinning Processes
+  - metal thinning process
+  evidence:
+  - quote: Sheet Metal Thinning Processes
+    approx_offset: 153114
+  - quote: Thinning is the process of reducing sheet metal to get the desired size.
+    approx_offset: 153146
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0091
+  name: hot rolling
+  status: confirmed
+  acceptable_forms:
+  - Hot rolling
+  - hot rolling
+  - rough hot rolls
+  evidence:
+  - quote: In hot rolling, a temperature of about 1400F is used for steel.
+    approx_offset: 153820
+  - quote: Cold and Hot Rolling
+    approx_offset: 153556
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0092
+  name: ironing
+  status: confirmed
+  acceptable_forms:
+  - Ironing
+  - ironing
+  evidence:
+  - quote: Ironing
+    approx_offset: 154530
+  - quote: Ironing is another metal thinning process used to reduce thickness
+    approx_offset: 154539
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0060
+  name: projection welding
+  status: confirmed
+  acceptable_forms:
+  - Projection weld
+  - Projection weld stud welders
+  - projection welding
+  - projection and spot welding
+  evidence:
+  - quote: It produces less overlap than projection and spot welding.
+    approx_offset: 162842
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0031
+  name: arc welding
+  status: candidate
+  acceptable_forms:
+  - arc welding
+  - Arc welding
+  evidence:
+  - quote: Compared to spot and plasma arc welding processes, the welder can do it without any complications.
+    approx_offset: 163044
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0083
+  name: post-weld heat treatment
+  status: confirmed
+  acceptable_forms:
+  - Post-weld heat treatment
+  - post-weld heat treatment
+  - Heat treatment
+  evidence:
+  - quote: Post-weld heat treatment also helps reduce the residual stress
+    approx_offset: 202654
+  - quote: Heat treatment
+    approx_offset: 172272
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0084
+  name: forging
+  status: confirmed
+  acceptable_forms:
+  - forging
+  - Forgings
+  - Heavy Forgings
+  - forging matrix dies
+  - forging industrial blades
+  evidence:
+  - quote: forging matrix dies
+    approx_offset: 183162
+  - quote: Used for the Manufacture of Heavy Forgings
+    approx_offset: 173284
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0089
+  name: wire drawing
+  status: confirmed
+  acceptable_forms:
+  - wire drawing
+  evidence:
+  - quote: This alloy is also highly resistant to heat and thus ideal for wire drawing.
+    approx_offset: 174932
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0094
+  name: groove welding
+  status: confirmed
+  acceptable_forms:
+  - Groove Welds
+  - groove welds
+  - Bevel Groove weld
+  - V-Groove Weld
+  - Square Groove Weld
+  - J and U Groove Weld
+  evidence:
+  - quote: Groove Welds
+    approx_offset: 178050
+  - quote: The edge shape of material pieces to be joined differentiates groove welds.
+    approx_offset: 178218
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. A weld-symbol
+    reference article; each named weld type implies its own welding operation.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0095
+  name: fillet welding
+  status: confirmed
+  acceptable_forms:
+  - Fillet Weld
+  - Fillet welds
+  - fillet welds
+  evidence:
+  - quote: Fillet Weld
+    approx_offset: 179428
+  - quote: Fillet welds are often specified as intermittent welds.
+    approx_offset: 179774
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0096
+  name: plug and slot welding
+  status: confirmed
+  acceptable_forms:
+  - Plug and Slot Welds
+  - plug welds
+  - slot welds
+  - plug weld symbols
+  evidence:
+  - quote: Plug and Slot Welds
+    approx_offset: 179881
+  - quote: Material pieces have round holes for plug welds and long and narrow holes for slot welds.
+    approx_offset: 179969
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0028
+  name: TIG welding
+  status: candidate
+  acceptable_forms:
+  - TIG Welding
+  - TIG welding
+  - Tig welding
+  - tungsten inert gas
+  - TIG
+  evidence:
+  - quote: Transferred arc welding can weld up to 500mm in a minute, more than cool wire TIG welding. If you want
+      a fast welding process, this might be an ideal option for you.
+    approx_offset: 183783
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0085
+  name: plasma spraying
+  status: confirmed
+  acceptable_forms:
+  - plasma spraying
+  evidence:
+  - quote: The primary purpose of this process its plasma spraying.
+    approx_offset: 185487
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0086
+  name: thermal coating
+  status: confirmed
+  acceptable_forms:
+  - thermal coating process
+  evidence:
+  - quote: This is a thermal coating process whereby heat-softened particles that form a coating
+    approx_offset: 185544
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0074
+  name: heat straightening
+  status: confirmed
+  acceptable_forms:
+  - Heat Straightening
+  - Heat straightening
+  - heat straightening
+  evidence:
+  - quote: Heat Straightening
+    approx_offset: 191225
+  - quote: Heat straightening is a welding correction process whereby you apply heat to deformed part.
+    approx_offset: 191245
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0075
+  name: hot mechanical straightening
+  status: confirmed
+  acceptable_forms:
+  - Hot Mechanical Straightening
+  - Hot mechanical straightening
+  - hot mechanical straightening
+  evidence:
+  - quote: Hot Mechanical Straightening
+    approx_offset: 192455
+  - quote: Hot mechanical straightening allows you to correct severe metal distortions.
+    approx_offset: 192867
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0076
+  name: hot working
+  status: confirmed
+  acceptable_forms:
+  - Hot Working
+  - hot working
+  evidence:
+  - quote: Hot Working
+    approx_offset: 193429
+  - quote: Both the weld and the metal may develop cracks after hot working.
+    approx_offset: 193967
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. It is
+    the third of three weld-distortion CORRECTION techniques in the ''3 Ways to Correct Distortion after Welding''
+    article.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0071
+  name: gas metal arc welding
+  status: confirmed
+  acceptable_forms:
+  - Gas Metal Arc Welding
+  - GMAW
+  evidence:
+  - quote: Gas Metal Arc Welding (GMAW)
+    approx_offset: 195629
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0072
+  name: gas tungsten arc welding
+  status: confirmed
+  acceptable_forms:
+  - Gas Tungsten Arc Welding
+  - GTAW
+  - gas tungsten arc process
+  evidence:
+  - quote: Gas Tungsten Arc Welding (GTAW)
+    approx_offset: 195659
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0073
+  name: flux-cored arc welding
+  status: confirmed
+  acceptable_forms:
+  - Flux-Cored Arc Welding
+  - FCAW
+  evidence:
+  - quote: Flux-Cored Arc Welding (FCAW)
+    approx_offset: 195696
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0025
+  name: deburring
+  status: candidate
+  acceptable_forms:
+  - deburring
+  - DEBURRING
+  - Deburring
+  - sheet metal deburring
+  - metal edge deburring
+  evidence:
+  - quote: To avoid cracks when welding, its necessary to spend time on cleaning, grinding, filing, or deburring
+      the edges of the plates.
+    approx_offset: 197965
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0082
+  name: preheating
+  status: confirmed
+  acceptable_forms:
+  - preheat
+  - Prior heating
+  evidence:
+  - quote: its essential to preheat such materials in the appropriate temperature
+    approx_offset: 202419
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0078
+  name: gas welding
+  status: confirmed
+  acceptable_forms:
+  - Gas welding
+  - gas welding
+  evidence:
+  - quote: including gas welding, laser welding, arc welding, and resistance welding
+    approx_offset: 209332
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0047
+  name: laser welding
+  status: confirmed
+  acceptable_forms:
+  - Laser welding
+  - laser welding
+  - Handheld Laser Welding
+  evidence:
+  - quote: gas welding, laser welding, arc welding
+    approx_offset: 209342
+  notes: 'FIRST-PARTY: the IPG LightWeld 2000XR is a handheld laser welding system on the new-equipment page; the
+    blog list is a separate, generic mention'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0079
+  name: resistance welding
+  status: confirmed
+  acceptable_forms:
+  - Resistance welding
+  - resistance welding
+  evidence:
+  - quote: arc welding, and resistance welding
+    approx_offset: 209370
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0053
+  name: sheet metal bending
+  status: confirmed
+  acceptable_forms:
+  - Sheet metal bending
+  - sheet metal bending
+  - bending
+  - Bending
+  - metal bending
+  evidence:
+  - quote: Sheet metal bending
+    approx_offset: 215048
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0018
+  name: sand blasting
+  status: candidate
+  acceptable_forms:
+  - sand blasting
+  - SAND BLASTING
+  - Sand Blasting
+  - Abrasive Blasting
+  evidence:
+  - quote: '## Sand Blasting'
+    approx_offset: 230469
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0045
+  name: grinding
+  status: candidate
+  acceptable_forms:
+  - grinding
+  - Grinding
+  - GRINDING
+  - grinding process
+  - shear grinding
+  - Shear grinding
+  evidence:
+  - quote: '## Metal Grinding'
+    approx_offset: 231901
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0001
+  name: shearing
+  status: candidate
+  acceptable_forms:
+  - shearing
+  - SHEARING
+  - shears
+  evidence:
+  - quote: You can cut sheet metal in different ways while using tools such as snips or even powered shears.
+    approx_offset: 235469
+  notes: generic 'Metal Sheet Making Processes' blog background (sheet-metal-vs-plate-metal article), not a dedicated
+    capability claim; kept per addendum sec 3 recall-first rule for generic industry background.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0105
+  name: decambering
+  status: confirmed
+  acceptable_forms:
+  - Decambering
+  evidence:
+  - quote: Decambering
+    approx_offset: 235912
+  - quote: This metalworking process involves the removal of camber from a strip-shaped material.
+    approx_offset: 235925
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0034
+  name: roll forming
+  status: confirmed
+  acceptable_forms:
+  - roll forming
+  - Roll Forming
+  evidence:
+  - quote: Roll Forming
+    approx_offset: 236060
+  notes: 'FIRST-PARTY, not blog-only: /capabilities/ lists it among the metal forming services Blackstone offers.
+    It ALSO appears as a blog explainer heading, which is why the vetting note mistook it for blog-only.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0106
+  name: perforating
+  status: confirmed
+  acceptable_forms:
+  - Perforating
+  evidence:
+  - quote: Perforating
+    approx_offset: 236335
+  - quote: the metal sheet is punched to make multiple small holes in a flat workpiece
+    approx_offset: 236365
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0107
+  name: cold rolling
+  status: confirmed
+  acceptable_forms:
+  - Cold Rolling
+  - cold rolling
+  - Cold rolling
+  - cold-rolled
+  - cold metal rolling
+  evidence:
+  - quote: What Is Cold Rolling?
+    approx_offset: 239477
+  - quote: Cold rolling is a metal forming process where a stock or sheet metal is compressed
+    approx_offset: 239500
+  actor: unknown
+  notes: 'BLOG-ONLY: occurs only in industry-explainer blog prose, never as a first-party capability claim. The
+    whole ''Cold Rolling and its Possible Defects'' article is generic mill metallurgy; it closes with a first-person
+    CTA (''Are you looking for a defect-free cold metal rolling? If yes, Blackstone Advanced Technologies helps
+    you attain flawless end materials'') that reads as a capability claim but is unsupported by any rolling mill
+    in either machine list.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0113
+  name: skin rolling
+  status: candidate
+  acceptable_forms:
+  - skin rolling
+  - skin-rolled
+  evidence:
+  - quote: In skin rolling, the metal stock is reduced by 0.5 to 1% to achieve to a smooth surface.
+    approx_offset: 239969
+  notes: a named rolling operation in the cold-rolling article, distinct from cold rolling (0107) and hot rolling
+    (0091), which it sits beside.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0002
+  name: sawing
+  status: retired
+  acceptable_forms:
+  - sawing
+  - SAWS
+  evidence:
+  - quote: shearing, sawing, punching
+  notes: 'retired at the markdown cutover: searched sawing, SAWS, saw; no genuine hit — the only occurrences are
+    the unrelated verb ''saw'' in ''A manufacturer saw a 20% reduction'' (AI-automation blog); no sawing process/equipment
+    page survives.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0010
+  name: value engineering
+  status: retired
+  acceptable_forms:
+  - value engineering
+  - VALUE ENGINEERING
+  - Value Engineering
+  - Sheet Metal Value Engineering
+  - VAVE Engineering
+  evidence:
+  - quote: We are experts at value engineering and cell manufacturing.
+  notes: 'retired at the markdown cutover: searched value engineering, VAVE, VAVE Engineering, Value Engineering;
+    absent from the new snapshot; the capability page that named it is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0011
+  name: cell manufacturing
+  status: retired
+  acceptable_forms:
+  - cell manufacturing
+  - CELL MANUFACTURING
+  - Cell Manufacturing
+  - cellular manufacturing
+  - Cellular manufacturing
+  - CELLULAR SHEET METAL MANUFACTURING
+  evidence:
+  - quote: value engineering and cell manufacturing
+  notes: 'retired at the markdown cutover: searched cell manufacturing, cellular manufacturing, CELLULAR SHEET METAL
+    MANUFACTURING; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0013
+  name: design assistance
+  status: retired
+  acceptable_forms:
+  - design assistance
+  evidence:
+  - quote: design assistance, welding, laser cutting
+  notes: 'retired at the markdown cutover: searched design assistance; absent from the new snapshot; the capability
+    page that named it is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0016
+  name: storage
+  status: retired
+  acceptable_forms:
+  - storage
+  - STORAGE
+  - Storage
+  evidence:
+  - quote: finishing, assembly, and storage
+  notes: 'retired at the markdown cutover: searched storage, STORAGE; the only hits are unrelated generic uses —
+    fuel/gasoline storage in a marine-tanks blog, filler-material storage in a welding blog, and ''storage cabinets''
+    as a product example — none describe a storage/VMI capability of Blackstone''s; the page that made that claim
+    is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0017
+  name: tool sharpening
+  status: retired
+  acceptable_forms:
+  - tool sharpening
+  - TOOL SHARPENING
+  - Tool sharpening
+  - sharpening tool services
+  evidence:
+  - quote: TOOL SHARPENING
+  notes: 'retired at the markdown cutover: searched tool sharpening, sharpening tool services; the only ''sharpen''
+    hit is from an unrelated job posting (custodian duties: ''Sharpens tools such as weed cutters, edging tools,
+    and shears'') — landscaping, not a manufacturing capability.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0021
+  name: inventory management
+  status: retired
+  acceptable_forms:
+  - Inventory management
+  - inventory management
+  - Inventory Management Programs
+  - vendor managed inventory
+  - supplier managed inventory
+  - SUPPLIER MANAGED INVENTORY PROGRAM
+  evidence:
+  - quote: Inventory management
+  notes: 'retired at the markdown cutover: searched inventory management, VMI, vendor managed inventory, supplier
+    managed inventory; absent from the new snapshot; the /capabilities/storage page that carried it is now a duplicate
+    placeholder with no content.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0022
+  name: wash
+  status: retired
+  acceptable_forms:
+  - wash booth
+  - Wash Booth
+  - 5-stage wash
+  evidence:
+  - quote: Large weldment wash booth
+  notes: 'retired at the markdown cutover: searched wash booth, Wash Booth, 5-stage wash; no genuine hit — ''washes''
+    only occurs in an unrelated custodian job posting (''Washes walls, ceiling, and woodwork'') and a generic surface-cleaning
+    sentence; the wash-booth capability description is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0023
+  name: baking
+  status: retired
+  acceptable_forms:
+  - Baking ovens
+  - Baking
+  evidence:
+  - quote: (2) Baking ovens
+  notes: 'retired at the markdown cutover: searched Baking ovens, Baking; absent; the only loose stem hit (''...becomes...'')
+    is unrelated porosity text in a welding-defects blog.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0024
+  name: smoothing finishes
+  status: retired
+  acceptable_forms:
+  - various methods of smoothing finishes
+  - smoothing finishes
+  evidence:
+  - quote: Blackstone also offers various methods of smoothing finishes
+  notes: 'retired at the markdown cutover: searched ''various methods of smoothing finishes'', smoothing finishes;
+    absent — ''smooth''/''smoothly'' occur only as generic adjectives (spreads smoothly, keep production running
+    smoothly), never as this named finishing method.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0036
+  name: weld cutting
+  status: retired
+  acceptable_forms:
+  - sheet metal weld cutting
+  - weld cutting
+  evidence:
+  - quote: sheet metal laser cutting and sheet metal weld cutting
+  notes: 'retired at the markdown cutover: searched weld cutting, sheet metal weld cutting; absent from the new
+    snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0037
+  name: VMI program
+  status: retired
+  acceptable_forms:
+  - VMI program
+  - VMI programs
+  - VMI services
+  evidence:
+  - quote: Our VMI programs are available for both new and repeat customers.
+  notes: 'retired at the markdown cutover: searched VMI program, VMI programs, VMI services; absent from the new
+    snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0039
+  name: stud welding
+  status: retired
+  acceptable_forms:
+  - stud welders
+  - stud guns
+  - Capacitive discharge stud guns
+  evidence:
+  - quote: • 3 – Capacitive discharge stud guns
+  notes: 'retired at the markdown cutover: searched stud welders, stud guns, Capacitive discharge stud guns; absent
+    from the new snapshot; only a false stem hit on ''capacity'' (unrelated: ''Scale capacity for trucks...'').'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0042
+  name: notching
+  status: retired
+  acceptable_forms:
+  - Notcher
+  - NOTCHERS
+  evidence:
+  - quote: • 1 – Comaca Notcher
+  notes: 'retired at the markdown cutover: searched Notcher, NOTCHERS, notching; absent from the new snapshot; only
+    false stem hits on ''top-notch'' (unrelated adjective) and an equipment-evaluation sentence with no notching
+    content.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0044
+  name: regrind
+  status: retired
+  acceptable_forms:
+  - regrind
+  evidence:
+  - quote: Why regrind? Sharp tools help to ensure you get burr-free parts
+  notes: 'retired at the markdown cutover: searched regrind; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0046
+  name: precision sharpening
+  status: retired
+  acceptable_forms:
+  - Precision sharpening
+  - sharpened
+  - sharpen
+  evidence:
+  - quote: Precision sharpening. An AC-servo motor driving a precision gear and ball screw with dual linear guides
+      and four
+  notes: 'retired at the markdown cutover: searched Precision sharpening, sharpened, sharpen; the only hits are
+    from an unrelated custodian job posting (landscaping tool sharpening); no manufacturing tool-sharpening capability
+    survives.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0048
+  name: marking and engraving
+  status: retired
+  acceptable_forms:
+  - marks and engraves
+  - Marks all bending locations
+  evidence:
+  - quote: easily marks and engraves on tube and pipe
+  notes: 'retired at the markdown cutover: searched ''marks and engraves'', ''Marks all bending locations'', engraving,
+    marking; absent — the only hits are unrelated uses of ''mark''/''market'' (ASTM/ASME standards mark, market
+    demands, new markets); no marking-and-engraving capability survives.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0050
+  name: value analysis
+  status: retired
+  acceptable_forms:
+  - value analysis
+  - Value Analysis
+  - VAVE
+  evidence:
+  - quote: VAVE (Value Analysis / Value Engineering)
+  notes: 'retired at the markdown cutover: searched value analysis, Value Analysis, VAVE; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0056
+  name: wiping
+  status: retired
+  acceptable_forms:
+  - Wiping
+  evidence:
+  - quote: Wiping
+  notes: 'retired at the markdown cutover: searched Wiping; no genuine hit — only false stem hits on ''WIP'' (work-in-process,
+    an accounting acronym in job postings) and ''wipe'' (a metal-surface-cleaning sentence unrelated to a wiping
+    forming operation).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0057
+  name: air bending
+  status: retired
+  acceptable_forms:
+  - Air bending
+  evidence:
+  - quote: Air bending
+  notes: 'retired at the markdown cutover: searched Air bending; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0058
+  name: bottoming
+  status: retired
+  acceptable_forms:
+  - Bottoming
+  evidence:
+  - quote: Bottoming
+  notes: 'retired at the markdown cutover: searched Bottoming; no genuine hit — only unrelated ''The Bottom Line''
+    section headings across multiple blog posts.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0059
+  name: cold forming
+  status: retired
+  acceptable_forms:
+  - cold forming
+  - cold forming operations
+  evidence:
+  - quote: sheet metal stamping is done through cold forming operations
+  notes: 'retired at the markdown cutover: searched cold forming, cold forming operations; absent — only the unrelated,
+    already-captured ''cold rolling'' process and generic ''Bottom Line'' headings.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0061
+  name: frame straightening
+  status: retired
+  acceptable_forms:
+  - Frame-straightening stations
+  - Frame-straightening
+  evidence:
+  - quote: (2) Frame-straightening stations
+  notes: 'retired at the markdown cutover: searched Frame-straightening, Frame-straightening stations; absent as
+    such — the nearest survivor is ''## Heat Straightening'' (a weld-distortion correction technique in a different
+    blog article), which is a materially different operation from structural frame straightening, so treating it
+    as the same entity would be forcing a match.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0062
+  name: riveting
+  status: retired
+  acceptable_forms:
+  - riveting
+  - riveting machines
+  evidence:
+  - quote: (2) Bracker riveting machines
+  notes: 'retired at the markdown cutover: searched riveting, riveting machines; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0063
+  name: nibbling
+  status: retired
+  acceptable_forms:
+  - Sheet metal nibbler
+  - nibbler
+  evidence:
+  - quote: (1) Sheet metal nibbler
+  notes: 'retired at the markdown cutover: searched Sheet metal nibbler, nibbler; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0064
+  name: stretch forming
+  status: retired
+  acceptable_forms:
+  - semi-automatic stretch machine
+  - stretch machine
+  evidence:
+  - quote: (1) Muller semi-automatic stretch machine
+  notes: 'retired at the markdown cutover: searched semi-automatic stretch machine, stretch machine, stretch forming;
+    no genuine hit — ''stretched over a form or die'' at L4996 describes Deep Drawing (a different, explicitly-headed
+    process), not stretch forming, and ''stretches'' elsewhere is generic material-behavior language during bending.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0108
+  name: graining
+  status: retired
+  acceptable_forms:
+  - GRAINING
+  - graining
+  evidence:
+  - quote: GRAINING/DEBURRING/FINISHING
+  notes: 'retired at the markdown cutover: searched GRAINING, graining; absent — only unrelated hits on ''grain
+    direction'' (a bending-quality tip) and ''ingrained'' (unrelated verb).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0109
+  name: Synergic Standard MIG process
+  status: retired
+  acceptable_forms:
+  - Synergic Standard
+  evidence:
+  - quote: Synergic Standard
+  notes: 'retired at the markdown cutover: searched ''Synergic Standard''; absent from the new snapshot; the MIG-process-mode
+    spec table is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0110
+  name: Synergic Pulse MIG process
+  status: retired
+  acceptable_forms:
+  - Synergic Pulse
+  evidence:
+  - quote: Synergic Pulse
+  notes: 'retired at the markdown cutover: searched ''Synergic Pulse''; absent from the new snapshot; the MIG-process-mode
+    spec table is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0111
+  name: Synergic Syncro-Pulse MIG process
+  status: retired
+  acceptable_forms:
+  - Synergic Syncro-Pulse
+  evidence:
+  - quote: Synergic Syncro-Pulse
+  notes: 'retired at the markdown cutover: searched ''Synergic Syncro-Pulse''; absent from the new snapshot; the
+    MIG-process-mode spec table is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0112
+  name: PMC / PMC mix MIG process
+  status: retired
+  acceptable_forms:
+  - PMC mix
+  - PMC
+  evidence:
+  - quote: PMC mix
+  notes: 'retired at the markdown cutover: searched PMC, PMC mix; absent from the new snapshot; the MIG-process-mode
+    spec table is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0115
+  name: constructing skids and crates
+  status: retired
+  acceptable_forms:
+  - constructing skids and crates
+  - skids and crates
+  evidence:
+  - quote: Capable of constructing skids and crates to customer specifications
+  notes: 'retired at the markdown cutover: searched ''constructing skids and crates'', skids, crates; absent from
+    the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0116
+  name: tooling design, build and maintenance
+  status: retired
+  acceptable_forms:
+  - design, build, & maintain close-tolerance tooling
+  - close-tolerance tooling
+  evidence:
+  - quote: Capability to design, build, & maintain close-tolerance tooling
+  notes: 'retired at the markdown cutover: searched ''design, build, & maintain close-tolerance tooling'', close-tolerance
+    tooling; absent — ''tooling'' occurs only in unrelated bending-troubleshooting tips (''Standardize tooling'',
+    ''maintain tooling''), never as this design/build/maintain service claim.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-process_caps-0117
+  name: turret punching
+  status: candidate
+  acceptable_forms:
+  - turret punching
+  evidence:
+  - quote: Amada Coma-567 — 50-station turret punching, auto-index
+    approx_offset: 1599
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0118
+  name: weld passivation
+  status: candidate
+  acceptable_forms:
+  - passivation
+  evidence:
+  - quote: Dual weld passivation systems for stainless integrity
+    approx_offset: 2346
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0119
+  name: inspection (calipers, CMM, micrometers)
+  status: candidate
+  acceptable_forms:
+  - inspection
+  evidence:
+  - quote: training in inspection techniques (including calipers, CMM and micrometers).
+    approx_offset: 11711
+  notes: calipers/CMM/micrometers themselves are measuring equipment, excluded from the equipments field by definition;
+    recorded as the inspection process they support
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0120
+  name: Geometric Dimensioning & Tolerancing (GD&T)
+  status: candidate
+  acceptable_forms:
+  - Geometric Dimensioning & Tolerancing
+  - GD&T
+  evidence:
+  - quote: Use Geometric Dimensioning & Tolerancing (GD&T) to define functional requirements clearly.
+    approx_offset: 20045
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0121
+  name: waterjet
+  status: candidate
+  acceptable_forms:
+  - waterjet
+  evidence:
+  - quote: Consider alternative cutting methods (e.g., waterjet) for sensitive parts.
+    approx_offset: 22076
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0122
+  name: first-article inspection
+  status: candidate
+  acceptable_forms:
+  - first-article inspections
+  evidence:
+  - quote: Perform first-article inspections to validate results.
+    approx_offset: 22966
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0123
+  name: non-destructive testing (NDT)
+  status: candidate
+  acceptable_forms:
+  - non-destructive testing
+  - NDT
+  evidence:
+  - quote: Comprehensive non-destructive testing (NDT) methods like ultrasonic testing, magnetic particle inspection,
+      or eddy current testing are employed to detect flaws
+    approx_offset: 28064
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0124
+  name: ultrasonic testing
+  status: candidate
+  acceptable_forms:
+  - ultrasonic testing
+  evidence:
+  - quote: Comprehensive non-destructive testing (NDT) methods like ultrasonic testing, magnetic particle inspection,
+      or eddy current testing are employed to detect flaws
+    approx_offset: 28064
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0125
+  name: magnetic particle inspection
+  status: candidate
+  acceptable_forms:
+  - magnetic particle inspection
+  evidence:
+  - quote: Comprehensive non-destructive testing (NDT) methods like ultrasonic testing, magnetic particle inspection,
+      or eddy current testing are employed to detect flaws
+    approx_offset: 28064
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0126
+  name: eddy current testing
+  status: candidate
+  acceptable_forms:
+  - eddy current testing
+  evidence:
+  - quote: Comprehensive non-destructive testing (NDT) methods like ultrasonic testing, magnetic particle inspection,
+      or eddy current testing are employed to detect flaws
+    approx_offset: 28064
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0127
+  name: tempering
+  status: candidate
+  acceptable_forms:
+  - tempering
+  evidence:
+  - quote: Choosing the right gauge, alloy series (such as 304 stainless steel or aluminum 6061), and tempering
+      processes can significantly impact part performance.
+    approx_offset: 29556
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0128
+  name: press brake forming
+  status: candidate
+  acceptable_forms:
+  - press brake forming
+  evidence:
+  - quote: advanced manufacturing techniques (including laser cutting, press brake forming, stamping, welding, and
+      finishing)
+    approx_offset: 30325
+  notes: attributed directly to Blackstone's own technique list
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0129
+  name: Dry Painting
+  status: candidate
+  acceptable_forms:
+  - Dry Painting
+  evidence:
+  - quote: Dry Painting
+    approx_offset: 40327
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0130
+  name: Wet Painting
+  status: candidate
+  acceptable_forms:
+  - Wet Painting
+  evidence:
+  - quote: Wet Painting
+    approx_offset: 40521
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0131
+  name: oxy-fuel cutting
+  status: candidate
+  acceptable_forms:
+  - oxy-fuel cutting
+  evidence:
+  - quote: In contrast, oxy-fuel cutting uses a flame to burn through metal, which can be slower and may cause significant
+      HAZ
+    approx_offset: 53254
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0132
+  name: Blanking
+  status: candidate
+  acceptable_forms:
+  - Blanking
+  evidence:
+  - quote: 'Blanking:'
+    approx_offset: 61250
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0133
+  name: Flanging
+  status: candidate
+  acceptable_forms:
+  - Flanging
+  evidence:
+  - quote: 'Flanging:'
+    approx_offset: 61431
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0134
+  name: Bending and Drawing
+  status: candidate
+  acceptable_forms:
+  - Drawing
+  evidence:
+  - quote: 'Bending and Drawing:'
+    approx_offset: 61569
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0135
+  name: aluminum anodization
+  status: candidate
+  acceptable_forms:
+  - anodization
+  evidence:
+  - quote: The presence of oil can hinder aluminum anodization and other joining processes.
+    approx_offset: 122694
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0136
+  name: Cleaning
+  status: candidate
+  acceptable_forms:
+  - Cleaning
+  evidence:
+  - quote: Cleaning
+    approx_offset: 123163
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0137
+  name: electroplate
+  status: candidate
+  acceptable_forms:
+  - electroplate
+  evidence:
+  - quote: Whether you are planning to powder-coat or electroplate the sheet metal, removing all elements is penultimate.
+    approx_offset: 123461
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0138
+  name: hot-rolling
+  status: candidate
+  acceptable_forms:
+  - Hot-rolling
+  evidence:
+  - quote: Hot-rolling leaves metal surfaces with oxide layers that prevent the steel from obtaining a smooth surface.
+    approx_offset: 124088
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0139
+  name: hemming
+  status: candidate
+  acceptable_forms:
+  - Hems
+  - hem
+  evidence:
+  - quote: Hems
+    approx_offset: 146485
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0140
+  name: drilling
+  status: candidate
+  acceptable_forms:
+  - drilling
+  evidence:
+  - quote: The tools that you will need when drilling aluminum are different from the ones to punch steel.
+    approx_offset: 149819
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0141
+  name: butt weld
+  status: candidate
+  acceptable_forms:
+  - butt
+  evidence:
+  - quote: Mostly, overlap occurs in butt and fillet welds.
+    approx_offset: 167548
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0142
+  name: Bevel Groove weld
+  status: candidate
+  acceptable_forms:
+  - Bevel Groove weld
+  evidence:
+  - quote: Bevel Groove weld
+    approx_offset: 178342
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0143
+  name: V-Groove Weld
+  status: candidate
+  acceptable_forms:
+  - V-Groove Weld
+  evidence:
+  - quote: V-Groove Weld
+    approx_offset: 178639
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0144
+  name: Square Groove Weld
+  status: candidate
+  acceptable_forms:
+  - Square Groove Weld
+  evidence:
+  - quote: Square Groove Weld
+    approx_offset: 178835
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0145
+  name: J and U Groove Weld
+  status: candidate
+  acceptable_forms:
+  - Groove Weld
+  evidence:
+  - quote: J and U Groove Weld
+    approx_offset: 179070
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0146
+  name: Fillet Weld
+  status: candidate
+  acceptable_forms:
+  - Fillet Weld
+  evidence:
+  - quote: Fillet Weld
+    approx_offset: 179428
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0147
+  name: Plug and Slot Welds
+  status: candidate
+  acceptable_forms:
+  - Plug and Slot Welds
+  evidence:
+  - quote: Plug and Slot Welds
+    approx_offset: 179881
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0148
+  name: Gas Metal Arc Welding (GMAW)
+  status: candidate
+  acceptable_forms:
+  - Gas Metal Arc Welding
+  - GMAW
+  evidence:
+  - quote: Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored Arc Welding (FCAW) are
+      some common types of welding used today.
+    approx_offset: 195629
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0149
+  name: Gas Tungsten Arc Welding (GTAW)
+  status: candidate
+  acceptable_forms:
+  - Gas Tungsten Arc Welding
+  - GTAW
+  evidence:
+  - quote: Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored Arc Welding (FCAW) are
+      some common types of welding used today.
+    approx_offset: 195629
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0150
+  name: Flux-Cored Arc Welding (FCAW)
+  status: candidate
+  acceptable_forms:
+  - Flux-Cored Arc Welding
+  - FCAW
+  evidence:
+  - quote: Gas Metal Arc Welding (GMAW), Gas Tungsten Arc Welding (GTAW), and Flux-Cored Arc Welding (FCAW) are
+      some common types of welding used today.
+    approx_offset: 195629
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0151
+  name: Buff Polishing
+  status: candidate
+  acceptable_forms:
+  - Buff Polishing
+  evidence:
+  - quote: Buff Polishing
+    approx_offset: 230103
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0152
+  name: Anodizing
+  status: candidate
+  acceptable_forms:
+  - Anodizing
+  evidence:
+  - quote: Anodizing
+    approx_offset: 230821
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0153
+  name: Electroless Plating
+  status: candidate
+  acceptable_forms:
+  - Electroless Plating
+  evidence:
+  - quote: Electroless Plating
+    approx_offset: 231589
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-process_caps-0154
+  name: Metal Grinding
+  status: candidate
+  acceptable_forms:
+  - Metal Grinding
+  evidence:
+  - quote: Metal Grinding
+    approx_offset: 231904
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Hemming
+  reason: THE HEADLINE TRAP. The process word 'Hemming' occurs ZERO times. 'hem' has 55 substring hits, 47 of which
+    are inside them/chemical/chemicals/mathematical, and the other 8 are (a) 3 copies of the HEM Saw / HEM CNC brand
+    name in the machine lists and (b) 5 real occurrences of the noun hem/hems in the design blog. Minting 'Hemming'
+    from either the brand or the noun is fabrication; the noun 'hems' is a separate, legitimate entry.
+- form: Estimating
+  reason: a department on the team page (three staff listed under it), not an operation on the work
+- form: Purchasing
+  reason: the job title 'Purchasing Coordinator' on the team page
+- form: Accounting
+  reason: a team-page department
+- form: Machine Maintenance
+  reason: equipment upkeep from a job-application checkbox list; not an operation performed on the work
+- form: Forklift Driving
+  reason: material handling from the same job-application checkbox list
+- form: Shipping
+  reason: a job-board category and a dock-leveller caption; logistics, not an operation on the work
+- form: Heat Treating
+  reason: never occurs as a capability; only 'heat treatment' as a metal-classification factor and 'post-weld heat
+    treatment' in a blog
+- form: Galvanizing
+  reason: never occurs; 'galvanized' appears only as a property of purchased steel in the thickness blogs
+- form: Sadipscing
+  reason: a lorem ipsum token on /work-with-blackstone/ that a loose extractor could mistake for a process name

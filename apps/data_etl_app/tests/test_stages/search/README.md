@@ -1,5 +1,17 @@
 # Search-stage evaluation
 
+> **CORPUS CUTOVER, 2026-08-29 — the live eval set moved.** The scraper
+> switched from innerText to Markdown and the sites were re-crawled, so the
+> ground truth moved with the text: the live set is now
+> [`expectations_markdown/`](expectations_markdown/README.md), pinned to
+> `sample_scraped_markdowns/`. `expectations/` is the LEGACY set and is kept —
+> every number in `history/metrics.jsonl` was scored against it, so those runs
+> stay interpretable. Select with `SEARCH_EVAL_CORPUS=legacy|markdown`
+> (default `markdown`). **Never compare a number across the two sets.**
+> The new crawl is a different SAMPLE, not a re-rendering: three sites were
+> restructured and two are dead domains. See
+> `expectations_markdown/README.md`.
+
 > **New here? Read [`HANDOFF.md`](HANDOFF.md) first.** It carries the current
 > state of the eval set, the exact commands, every measured trap with the
 > reasoning behind each deliberate non-fix, and the open items. It is the

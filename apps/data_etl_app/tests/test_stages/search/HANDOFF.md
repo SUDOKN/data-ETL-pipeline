@@ -1,5 +1,17 @@
 # HANDOFF — search-stage eval set, corpus expansion to 20 subjects
 
+> **CORPUS CUTOVER, 2026-08-29 — the live eval set moved.** The scraper
+> switched from innerText to Markdown and the sites were re-crawled, so the
+> ground truth moved with the text: the live set is now
+> [`expectations_markdown/`](expectations_markdown/README.md), pinned to
+> `sample_scraped_markdowns/`. `expectations/` is the LEGACY set and is kept —
+> every number in `history/metrics.jsonl` was scored against it, so those runs
+> stay interpretable. Select with `SEARCH_EVAL_CORPUS=legacy|markdown`
+> (default `markdown`). **Never compare a number across the two sets.**
+> The new crawl is a different SAMPLE, not a re-rendering: three sites were
+> restructured and two are dead domains. See
+> `expectations_markdown/README.md`.
+
 **Purpose.** Everything a person or agent needs to pick this up cold. Read this
 first, then the file it points you at for the topic you care about. It is
 written to be **appended to**, not rewritten: put new work in a dated entry

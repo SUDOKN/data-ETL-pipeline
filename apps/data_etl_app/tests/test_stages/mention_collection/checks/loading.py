@@ -136,11 +136,55 @@ class FieldRun:
             yield from group.mentions
 
     def distinct_snippets(self) -> dict[str, Mention]:
-        """mention_id -> one representative mention (they share the snippet)."""
+        """mention_id -> one representative mention (they share the snippet).
+
+        NOT the judging unit. A mention_id is content-derived, so one id covers
+        every occurrence of that passage anywhere in the document — and the
+        model describes it once PER WINDOW, correctly giving a different
+        description for each place it recurs. Collapsing to one representative
+        therefore hides real, separately-checkable claims: measured 2026-08-29,
+        28,260 ids against 36,441 claims, so 22.5% would never be read.
+        Use `location_claims()` for anything that judges a location.
+
+        Kept for the mechanical counts, where "how many distinct passages are
+        there" is a legitimately different question from "how many claims did
+        the model make".
+        """
         out: dict[str, Mention] = {}
         for mention in self.mentions():
             out.setdefault(mention.mention_id, mention)
         return out
+
+    def location_claims(self) -> list[tuple[Mention, list[Mention]]]:
+        """One entry per location the model actually produced.
+
+        A claim is `(mention_id, chunk_bounds, window)`: the model is asked
+        about each mention once per window, and it answers once — verified on
+        run 20260829T022413, where 0 of 36,441 window-mention pairs carried
+        more than one distinct location. So this is exactly the set of
+        assertions the S-codes grade.
+
+        Each entry carries EVERY occurrence its claim covers, because a correct
+        description may legitimately span several of them:
+
+            "Sentence of prose under the main content area on both the Boeing
+             and Airbus fixed wing replacement parts pages, in the site's own
+             copy."
+
+        That is one window, one description, four occurrences, two pages — and
+        the prompt explicitly asks for it ("A passage may occur at more than one
+        place ... Describe it once, covering where it recurs"). A judge handed a
+        single representative occurrence would read that sentence against one
+        page and call it wrong, manufacturing exactly the false failure the
+        verification brief exists to prevent.
+
+        Ordered by first appearance so work orders are stable across re-runs.
+        """
+        claims: dict[tuple[str, str, int], list[Mention]] = {}
+        for mention in self.mentions():
+            key = (mention.mention_id, mention.chunk_bounds, mention.window)
+            claims.setdefault(key, []).append(mention)
+        return [(covered[0], covered) for covered in claims.values()]
 
     def nested_mentions(self) -> list[tuple[Mention, Mention]]:
         """Every (inner, outer) pair where one occurrence sits strictly inside

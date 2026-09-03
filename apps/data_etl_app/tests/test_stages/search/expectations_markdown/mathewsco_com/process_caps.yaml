@@ -1,0 +1,1780 @@
+subject: mathewsco.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/mathewsco.com.txt
+  sha256: 7eb730c3267b62e56f228475f8f78451a801c769432b2bd78bdc5c9a14ec428e
+eval_set_version: 2
+expected_empty: false
+notes: Mathews performs NO manufacturing process - it is a commissioned sales agency. Every entry here is a principal's
+  capability written in that principal's first-person voice on a Mathews page, so actor is supplier (a named principal)
+  or unknown (one of the eight anonymous Kansas principals). Seeded anyway because the search stage is recall-first
+  and the text plainly names these operations; attribution is scored downstream from the actor labels.
+entries:
+- id: mathewsco_com-process_caps-0001
+  name: Metal Stamping
+  status: confirmed
+  acceptable_forms:
+  - Premier Precision Metal Stamping
+  - Precision Metal Stamping
+  - Metal Stamping
+  - Metal Stampings
+  - metal stampings
+  evidence:
+  - quote: a global reputation as a Premier Precision Metal Stamping
+    approx_offset: 21907
+  - quote: Metal Stampings
+    approx_offset: 15188
+  - quote: short to medium volume metal stampings
+    approx_offset: 38051
+  actor: supplier
+  notes: Sun Microstamping / Rowley Spring / Clow Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0002
+  name: Injection Molding
+  status: confirmed
+  acceptable_forms:
+  - Injection Molding
+  - Plastic Injection
+  - Injection and Compression Molding
+  evidence:
+  - quote: Custom Plastic Insert and Injection Molding company
+    approx_offset: 21966
+  - quote: custom Plastic Injection
+    approx_offset: 22174
+  - quote: Transfer, Injection and Compression Molding
+    approx_offset: 20152
+  actor: supplier
+  notes: Sun Microstamping; the line-168 span carries NBSPs inside the phrase
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0003
+  name: Insert Molding
+  status: confirmed
+  acceptable_forms:
+  - Insert Molding
+  - Plastic Insert
+  evidence:
+  - quote: Custom Plastic Insert and Injection Molding
+    approx_offset: 21966
+  - quote: and Insert Molding that feature
+    approx_offset: 22199
+  actor: supplier
+  notes: Sun Microstamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0004
+  name: Plastic Molding
+  status: confirmed
+  acceptable_forms:
+  - Plastic Molding
+  evidence:
+  - quote: a wide range of Metal Stamping and Plastic Molding products
+    approx_offset: 22408
+  - quote: Plastic Molding
+    approx_offset: 15327
+  actor: supplier
+  notes: Sun Microstamping / DimcoGray line-card row
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0005
+  name: forging
+  status: confirmed
+  acceptable_forms:
+  - forging manufacturing facilities
+  - custom forgings
+  - forgings
+  - forged
+  evidence:
+  - quote: Operating from 2 forging manufacturing facilities
+    approx_offset: 17348
+  - quote: a variety of custom forgings including shafts
+    approx_offset: 17762
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0006
+  name: open-die forging
+  status: confirmed
+  acceptable_forms:
+  - open-die forging
+  evidence:
+  - quote: known worldwide as a leader in the open-die forging industry
+    approx_offset: 17427
+  actor: supplier
+  notes: Ellwood City Forge
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0007
+  name: rough turning
+  status: confirmed
+  acceptable_forms:
+  - rough turned bar
+  - rough turned
+  evidence:
+  - quote: smooth forged billet and rough turned bar
+    approx_offset: 17895
+  actor: supplier
+  notes: Ellwood City Forge; turning implied by the finished-state adjective
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0008
+  name: Deep Draw
+  status: confirmed
+  acceptable_forms:
+  - Deep Draw Stampings
+  - Deep Draw
+  - deep drawn
+  evidence:
+  - quote: Deep Draw Stampings
+    approx_offset: 15239
+  - quote: green manufacturer of deep drawn metal enclosures
+    approx_offset: 11276
+  - quote: over 15,000 standard deep drawn shapes
+    approx_offset: 11818
+  actor: supplier
+  notes: Hudson Technologies
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0009
+  name: Centrifugal Castings
+  status: confirmed
+  acceptable_forms:
+  - Centrifugal Castings
+  evidence:
+  - quote: Centrifugal Castings
+    approx_offset: 15395
+  actor: supplier
+  notes: line-card row paired with johnsoncentrifugal.com on the next line
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0010
+  name: Ductile Gray Castings
+  status: confirmed
+  acceptable_forms:
+  - Ductile Gray Castings
+  evidence:
+  - quote: Ductile Gray Castings
+    approx_offset: 15441
+  actor: supplier
+  notes: line-card row paired with ociw.com on the next line
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0011
+  name: Investment Castings
+  status: confirmed
+  acceptable_forms:
+  - Investment Castings
+  - Investment castings
+  evidence:
+  - quote: Investment Castings - Investment castings offer a near net shape casting
+    approx_offset: 18833
+  actor: unknown
+  notes: anonymous Kansas principal - no company name anywhere on the page
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0012
+  name: near net shape casting
+  status: confirmed
+  acceptable_forms:
+  - near net shape casting
+  - near net shape
+  evidence:
+  - quote: offer a near net shape casting eliminating costly machining
+    approx_offset: 18875
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0013
+  name: machining
+  status: confirmed
+  acceptable_forms:
+  - machining
+  - machined
+  evidence:
+  - quote: eliminating costly machining and surface finishes
+    approx_offset: 18906
+  - quote: We can supply your rapid prototype machined
+    approx_offset: 19120
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0014
+  name: surface finishes
+  status: confirmed
+  acceptable_forms:
+  - surface finishes
+  evidence:
+  - quote: costly machining and surface finishes of 100 RMS or better
+    approx_offset: 18918
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0015
+  name: rapid prototyping
+  status: confirmed
+  acceptable_forms:
+  - rapid prototype
+  evidence:
+  - quote: They also offer rapid prototype in a cast metal
+    approx_offset: 19027
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0016
+  name: Die Casting
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Die Casting
+  - aluminum die casting
+  - die casting
+  evidence:
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting
+    approx_offset: 19182
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0017
+  name: stamping
+  status: confirmed
+  acceptable_forms:
+  - stampings
+  - Stampings
+  - stamping
+  evidence:
+  - quote: Stampings - For short to medium run stampings
+    approx_offset: 19551
+  - quote: value-added operations to stamping
+    approx_offset: 38496
+  actor: unknown
+  notes: broad umbrella form; the anonymous Kansas stamping principal plus Clow
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0018
+  name: laser cutting
+  status: confirmed
+  acceptable_forms:
+  - laser cutting
+  evidence:
+  - quote: short to medium run stampings or laser cutting up to 1/2 thick
+    approx_offset: 19567
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0019
+  name: deburring
+  status: confirmed
+  acceptable_forms:
+  - deburring
+  - Vibratory Deburring
+  - Deburring
+  evidence:
+  - quote: Secondary operations included deburring, tapping, reaming
+    approx_offset: 19786
+  - quote: Vibratory Deburring - removes the sharp edges from parts
+    approx_offset: 7422
+  actor: unknown
+  notes: anonymous Kansas stamping principal; also Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0020
+  name: secondary operations
+  status: confirmed
+  acceptable_forms:
+  - Secondary operations
+  - secondary operations
+  evidence:
+  - quote: Secondary operations included deburring
+    approx_offset: 19786
+  - quote: Our in house secondary operations include
+    approx_offset: 7376
+  actor: unknown
+  notes: anonymous Kansas principal; Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0021
+  name: tapping
+  status: confirmed
+  acceptable_forms:
+  - tapping
+  evidence:
+  - quote: deburring, tapping, reaming, welding and assembly
+    approx_offset: 19816
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0022
+  name: reaming
+  status: confirmed
+  acceptable_forms:
+  - reaming
+  evidence:
+  - quote: tapping, reaming, welding and assembly
+    approx_offset: 19827
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0023
+  name: welding
+  status: confirmed
+  acceptable_forms:
+  - welding
+  - edge welded
+  evidence:
+  - quote: reaming, welding and assembly
+    approx_offset: 19836
+  - quote: mechanical seals, edge welded bellows
+    approx_offset: 12441
+  actor: unknown
+  notes: anonymous Kansas principal; Hudson names edge-welded bellows
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0024
+  name: assembly
+  status: confirmed
+  acceptable_forms:
+  - assembly
+  evidence:
+  - quote: welding and assembly
+    approx_offset: 19845
+  - quote: Precision components and assemblies
+    approx_offset: 20586
+  actor: unknown
+  notes: anonymous Kansas principals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    reason: The operation is real ("deburring, tapping, reaming, welding and assembly"), but the second form "assemblies"
+      occurs in the text only as a product noun, in "Precision components and assemblies" (seeded as products-0026).
+      forms_overlap is bidirectional containment, so a returned product phrase would silently credit this process
+      entry. Keeping only "assembly", which is in the evidence quote.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0025
+  name: Rubber Fabrication
+  status: confirmed
+  acceptable_forms:
+  - Rubber Fabrication
+  evidence:
+  - quote: Rubber Fabrication & Gaskets - With manufacturing
+    approx_offset: 19928
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0026
+  name: Die Cutting
+  status: confirmed
+  acceptable_forms:
+  - Die Cutting
+  evidence:
+  - quote: They offer Die Cutting Water Jet Cutting
+    approx_offset: 20088
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0027
+  name: Water Jet Cutting
+  status: confirmed
+  acceptable_forms:
+  - Water Jet Cutting
+  evidence:
+  - quote: Die Cutting Water Jet Cutting, Slitting
+    approx_offset: 20099
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0028
+  name: Slitting
+  status: confirmed
+  acceptable_forms:
+  - Slitting
+  evidence:
+  - quote: Water Jet Cutting, Slitting, Extrusions
+    approx_offset: 20111
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0029
+  name: Extrusions
+  status: confirmed
+  acceptable_forms:
+  - Extrusions
+  evidence:
+  - quote: Slitting, Extrusions, Transfer
+    approx_offset: 20130
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0030
+  name: Transfer Molding
+  status: confirmed
+  acceptable_forms:
+  - Transfer, Injection and Compression Molding
+  - Transfer
+  evidence:
+  - quote: Extrusions, Transfer, Injection and Compression Molding
+    approx_offset: 20140
+  actor: unknown
+  notes: '''Transfer'' occurs exactly once in the whole file and only here, elided in a list of molding methods;
+    it means transfer molding'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0031
+  name: Compression Molding
+  status: confirmed
+  acceptable_forms:
+  - Compression Molding
+  evidence:
+  - quote: Transfer, Injection and Compression Molding
+    approx_offset: 20152
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0032
+  name: Sand Castings
+  status: confirmed
+  acceptable_forms:
+  - Sand Castings
+  evidence:
+  - quote: Sand Castings - Mathews & Company a large range of Aluminum
+    approx_offset: 20275
+  actor: unknown
+  notes: 'THE SMOKING GUN. Ungrammatical agency shorthand puts ''Mathews & Company'' in the subject position of
+    a foundry''s capability sentence. Read literally the page says the AGENCY casts aluminum and iron. It does not:
+    this is an anonymous foundry principal. Downstream must not attribute this to the subject.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0033
+  name: floor molding
+  status: confirmed
+  acceptable_forms:
+  - floor molding
+  evidence:
+  - quote: in a variety of processes floor molding, cope & drag
+    approx_offset: 20480
+  actor: unknown
+  notes: named as a process by the text itself ('a variety of processes ...')
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0034
+  name: cope & drag
+  status: confirmed
+  acceptable_forms:
+  - cope & drag
+  evidence:
+  - quote: floor molding, cope & drag, semi-automatic
+    approx_offset: 20506
+  actor: unknown
+  notes: sand-casting molding method
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0035
+  name: permanent mold
+  status: confirmed
+  acceptable_forms:
+  - permanent mold
+  evidence:
+  - quote: cope & drag, semi-automatic and permanent mold
+    approx_offset: 20521
+  actor: unknown
+  notes: listed by the text among 'a variety of processes', so it names permanent-mold CASTING here; the mold itself
+    would be tooling and is an equipments false friend
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0036
+  name: semi-automatic
+  status: confirmed
+  acceptable_forms:
+  - semi-automatic
+  evidence:
+  - quote: cope & drag, semi-automatic and permanent mold
+    approx_offset: 20521
+  actor: unknown
+  notes: 'DISPUTED: sits inside the text''s own list of ''processes'', but on its own it names a degree of automation
+    rather than an operation performed on the work'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0037
+  name: precision machining
+  status: confirmed
+  acceptable_forms:
+  - precision machining
+  - precision machine
+  evidence:
+  - quote: a company that does precision machine that is
+    approx_offset: 20647
+  - quote: STADCO Precision is a precision machining company
+    approx_offset: 35542
+  actor: unknown
+  notes: anonymous Kansas principal; Stadco Precision
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0038
+  name: CNC Machining
+  status: confirmed
+  acceptable_forms:
+  - CNC Machining
+  evidence:
+  - quote: 9-axis Swiss machines, CNC Machining
+    approx_offset: 20761
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0039
+  name: 5-axis vertical milling
+  status: confirmed
+  acceptable_forms:
+  - 5-axis vertical milling
+  - vertical milling
+  evidence:
+  - quote: CNC Machining, 5-axis vertical milling
+    approx_offset: 20784
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0040
+  name: precision grinding
+  status: confirmed
+  acceptable_forms:
+  - precision grinding
+  evidence:
+  - quote: 5-axis vertical milling, precision grinding
+    approx_offset: 20799
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0041
+  name: honing
+  status: confirmed
+  acceptable_forms:
+  - honing
+  evidence:
+  - quote: precision grinding, honing and lapping
+    approx_offset: 20824
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0042
+  name: lapping
+  status: confirmed
+  acceptable_forms:
+  - lapping
+  evidence:
+  - quote: honing and lapping
+    approx_offset: 20844
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0043
+  name: Cold Heading
+  status: confirmed
+  acceptable_forms:
+  - Cold Heading
+  - cold header
+  evidence:
+  - quote: Cold Heading - Our cold header offers external thread parts
+    approx_offset: 21156
+  actor: unknown
+  notes: anonymous Kansas principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0044
+  name: sorting
+  status: confirmed
+  acceptable_forms:
+  - sorting
+  evidence:
+  - quote: They offer a wide variety of sorting so you receive what you ordered
+    approx_offset: 21468
+  actor: unknown
+  notes: an inspection/segregation operation on the finished parts, which the process clause admits ('Inspection,
+    testing, and measurement performed on the work ... qualify')
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0045
+  name: value-add services
+  status: confirmed
+  acceptable_forms:
+  - value-add services
+  - value-added operations
+  evidence:
+  - quote: Modifications, finishes and value-add services are available
+    approx_offset: 11963
+  - quote: value-added operations to stamping
+    approx_offset: 38496
+  actor: supplier
+  notes: Hudson Technologies; Clow Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0046
+  name: tool & die making
+  status: confirmed
+  acceptable_forms:
+  - tool & die makers
+  - tool & die
+  evidence:
+  - quote: A highly-skilled staff of engineers and tool & die makers build customized tooling
+    approx_offset: 12025
+  actor: supplier
+  notes: 'DISPUTED: the surface form names a trade/job title; the operation it implies (building tooling) is real
+    manufacturing work but the phrase itself designates people. Kept on the record rather than dropped.'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0047
+  name: compacting
+  status: confirmed
+  acceptable_forms:
+  - compacting
+  evidence:
+  - quote: we operate 70 compacting (molding to 100t in 2)
+    approx_offset: 6988
+  actor: supplier
+  notes: Missouri Pressed Metals - powder-metal compaction
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0048
+  name: coining
+  status: confirmed
+  acceptable_forms:
+  - coining
+  - Coining or Sizing
+  - Coining
+  evidence:
+  - quote: 40 coining (sizing to 60T in 2) presses
+    approx_offset: 7040
+  - quote: Coining or Sizing - is beneficial for close dimensional control
+    approx_offset: 7481
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0049
+  name: sizing
+  status: confirmed
+  acceptable_forms:
+  - sizing
+  - Sizing
+  evidence:
+  - quote: 40 coining (sizing to 60T in 2)
+    approx_offset: 7040
+  - quote: Coining or Sizing
+    approx_offset: 7481
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0050
+  name: impregnation
+  status: confirmed
+  acceptable_forms:
+  - impregnation
+  - Oil Impregnation
+  evidence:
+  - quote: For impregnation we utilize five complete vacuum systems
+    approx_offset: 7081
+  - quote: Oil Impregnation - makes bearings self-lubricate
+    approx_offset: 7796
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0051
+  name: sintering
+  status: confirmed
+  acceptable_forms:
+  - sintering
+  evidence:
+  - quote: Seven controlled atmosphere sintering furnaces
+    approx_offset: 7248
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0052
+  name: densification
+  status: confirmed
+  acceptable_forms:
+  - densification
+  evidence:
+  - quote: close dimensional control as well as densification
+    approx_offset: 7519
+  actor: supplier
+  notes: 'DISPUTED: names the metallurgical RESULT of coining rather than an operation; kept because the text lists
+    it as what the secondary operation achieves'
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0053
+  name: Automatic Stamping
+  status: confirmed
+  acceptable_forms:
+  - Automatic Stamping
+  evidence:
+  - quote: Automatic Stamping - aids the identification of parts
+    approx_offset: 7572
+  actor: supplier
+  notes: Missouri Pressed Metals - part marking
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0054
+  name: Black Oxidizing
+  status: confirmed
+  acceptable_forms:
+  - Black Oxidizing
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating - is useful for corrosion resistance
+    approx_offset: 7628
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0055
+  name: Oil Dip Coating
+  status: confirmed
+  acceptable_forms:
+  - Oil Dip Coating
+  evidence:
+  - quote: Black Oxidizing or Oil Dip Coating
+    approx_offset: 7628
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0056
+  name: Steam Treating
+  status: confirmed
+  acceptable_forms:
+  - Steam Treating
+  evidence:
+  - quote: Steam Treating - will make the surface hard
+    approx_offset: 7702
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0057
+  name: laser technology
+  status: confirmed
+  acceptable_forms:
+  - laser technology
+  - Laser Technology
+  evidence:
+  - quote: such as laser technology, in-house tooling
+    approx_offset: 38432
+  - quote: Laser Technology
+    approx_offset: 38645
+  actor: supplier
+  notes: Clow Stamping - the site's heading for its laser cutting/prototyping capability
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0058
+  name: Laser prototyping
+  status: confirmed
+  acceptable_forms:
+  - Laser prototyping
+  evidence:
+  - quote: Laser prototyping is among the biggest advances in parts production
+    approx_offset: 38663
+  actor: supplier
+  notes: Clow Stamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0059
+  name: SPC data collection
+  status: confirmed
+  acceptable_forms:
+  - SPC data collection
+  - SPC
+  evidence:
+  - quote: We offer SPC data collection, JIT delivery scheduling
+    approx_offset: 35863
+  actor: supplier
+  notes: Stadco Precision. Measurement performed on the work, which the process clause admits. 'SPC' is a 3-character
+    form and matches case-sensitively on word boundaries.
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0060
+  name: secondary machining
+  status: confirmed
+  acceptable_forms:
+  - secondary machining
+  evidence:
+  - quote: specified to eliminate secondary machining and lower costs
+    approx_offset: 36105
+  actor: supplier
+  notes: Stadco Precision
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0061
+  name: CNC production technology
+  status: confirmed
+  acceptable_forms:
+  - CNC production technology
+  - CNC production
+  evidence:
+  - quote: coupled with our CNC production technology
+    approx_offset: 39661
+  actor: supplier
+  notes: Fox Valley Spring
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0062
+  name: plating
+  status: confirmed
+  acceptable_forms:
+  - platings
+  - un-plated, plated
+  - plated
+  evidence:
+  - quote: specifications for materials, threads, tolerances, and platings
+    approx_offset: 41567
+  - quote: We also provide un-plated, plated, and custom-design samples
+    approx_offset: 41809
+  actor: supplier
+  notes: Carey
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0063
+  name: decorative finishes
+  status: confirmed
+  acceptable_forms:
+  - decorative finishes
+  evidence:
+  - quote: stainless steel with more than 35 decorative finishes
+    approx_offset: 41682
+  actor: supplier
+  notes: Carey
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0064
+  name: powder coat finish
+  status: confirmed
+  acceptable_forms:
+  - powder coat finish
+  - powder coat
+  evidence:
+  - quote: We also offer a powder coat finish in more than 50 colors
+    approx_offset: 41737
+  actor: supplier
+  notes: Carey
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0065
+  name: in-house tooling
+  status: candidate
+  acceptable_forms:
+  - in-house tooling
+  - in house engineering and tooling
+  evidence:
+  - quote: such as laser technology, in-house tooling with CAD assistance
+    approx_offset: 38432
+  - quote: They have in house engineering and tooling
+    approx_offset: 19867
+  actor: supplier
+  notes: Making its own tooling is stated as a capability by two different principals (Clow Stamping, and the Kansas
+    stamping supplier). process_caps-0046 covers the same idea only through the forms "tool & die makers"/"tool
+    & die", neither of which is matched by a returned "in-house tooling".
+  provenance:
+  - action: added
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0066
+  name: adhesive application
+  status: candidate
+  acceptable_forms:
+  - apply Pressure Sensitive Adhesives
+  evidence:
+  - quote: We can apply Pressure Sensitive Adhesives on most materials
+    approx_offset: 20197
+  actor: supplier
+  notes: An operation performed on the work, stated on the Kansas Product Line page. The packet seeded the substance
+    (material_caps-0018) but not the operation that applies it.
+  provenance:
+  - action: added
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0067
+  name: Lean Manufacturing
+  status: candidate
+  acceptable_forms:
+  - Lean Manufacturing
+  evidence:
+  - quote: through the philosophy of Teamwork, Lean Manufacturing, and the efforts of our employees
+    approx_offset: 1438
+  actor: supplier
+  notes: Named on the Rowley Spring page and absent from the packet. Weaker than the rest of the field - a production
+    methodology rather than an operation on the work - so it enters as a candidate for the next reader to decide.
+  provenance:
+  - action: added
+    by: verify-agent-mathewsco
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: mathewsco_com-process_caps-0068
+  name: molding
+  status: candidate
+  acceptable_forms:
+  - molding
+  evidence:
+  - quote: Presently, we operate 70 compacting (molding to 100t in 2) and 40 coining (sizing to 60T in 2) presses.
+    approx_offset: 6977
+  actor: supplier
+  notes: Missouri Pressed Metals
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0069
+  name: Vibratory Deburring
+  status: candidate
+  acceptable_forms:
+  - Vibratory Deburring
+  evidence:
+  - quote: Vibratory Deburring - removes the sharp edges from parts
+    approx_offset: 7422
+  actor: supplier
+  notes: Missouri Pressed Metals secondary operations
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0070
+  name: Oil Impregnation
+  status: candidate
+  acceptable_forms:
+  - Oil Impregnation
+  evidence:
+  - quote: Oil Impregnation - makes bearings self-lubricate and is ideal for applications where lubrecation is difficult
+    approx_offset: 7796
+  actor: supplier
+  notes: Missouri Pressed Metals secondary operations
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0071
+  name: welded
+  status: candidate
+  acceptable_forms:
+  - welded
+  evidence:
+  - quote: flow meters, relay cases, semi-conductor, mechanical seals, edge welded bellows and other industrial
+      applications worldwide.
+    approx_offset: 12399
+  actor: supplier
+  notes: Hudson Technologies edge welded bellows
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0072
+  name: casting
+  status: candidate
+  acceptable_forms:
+  - casting
+  evidence:
+  - quote: Investment castings offer a near net shape casting eliminating costly machining and surface finishes
+      of 100 RMS or better in a number of ferrous and non-ferrous materials.
+    approx_offset: 18855
+  actor: supplier
+  notes: Kansas product-line principal (investment casting)
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0073
+  name: aluminum die casting
+  status: candidate
+  acceptable_forms:
+  - aluminum die casting
+  evidence:
+  - quote: Aluminum Die Casting - This American manufacturer of aluminum die casting has position itself to compete
+      against off shore manufacturer
+    approx_offset: 19182
+  actor: supplier
+  notes: Kansas product-line principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0074
+  name: vertical milling
+  status: candidate
+  acceptable_forms:
+  - vertical milling
+  evidence:
+  - quote: Their equipment list includes 9-axis Swiss machines, CNC Machining, 5-axis vertical milling, precision
+      grinding, honing and lapping.
+    approx_offset: 20731
+  actor: supplier
+  notes: Kansas precision-components principal
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0075
+  name: Precision Metal Stamping
+  status: candidate
+  acceptable_forms:
+  - Precision Metal Stamping
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping, Custom
+      Plastic Insert and Injection Molding company.
+    approx_offset: 21872
+  actor: supplier
+  notes: Sun Microstamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0076
+  name: Custom Plastic Insert
+  status: candidate
+  acceptable_forms:
+  - Custom Plastic Insert
+  evidence:
+  - quote: Sun Microstamping Technologies has a global reputation as a Premier Precision Metal Stamping, Custom
+      Plastic Insert and Injection Molding company.
+    approx_offset: 21872
+  actor: supplier
+  notes: Sun Microstamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0077
+  name: Plastic Injection
+  status: candidate
+  acceptable_forms:
+  - Plastic Injection
+  evidence:
+  - quote: We specialize in custom Plastic Injection and Insert Molding that feature a high degree of difficulty
+      on both product design and high performance molding resins.
+    approx_offset: 22157
+  actor: supplier
+  notes: Sun Microstamping
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: mathewsco_com-process_caps-0078
+  name: CNC production
+  status: candidate
+  acceptable_forms:
+  - CNC production
+  evidence:
+  - quote: Our fast design and prototype service, coupled with our CNC production technology, gives you a unique
+      and long-term manufacturing partner.
+    approx_offset: 39622
+  actor: supplier
+  notes: Fox Valley Spring
+  provenance:
+  - action: added
+    by: seed-agent-mathewsco-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Telemarketing
+  reason: a sales activity on the agency's own services page, not an operation on the work
+- form: Quotation follow-up
+  reason: a sales activity on the agency's own services page
+- form: Insulating
+  reason: occurs only in the product name 'Insulating Washers' and the company name 'Insulation Components Associates'
+    - a property of the artifact, not an operation
+- form: Handling
+  reason: occurs only in the DuPont market heading 'Energy and Material Handling'; material handling is excluded
+    from process by the equipment/logistics boundary
+- form: Design
+  reason: 'engineering design, not an operation performed on materials: ''from the Design stage to Production'',
+    ''our fast design and prototype service'''
+- form: Blanking
+  reason: word-association from stamping/die cutting; the string never occurs
+- form: Cold Isostatic Pressing
+  reason: word-association from 'Cold Heading' plus the powder-metal compacting presses; the string never occurs
+- form: anodizing
+  reason: word-association from aluminum plus 'Black Oxidizing'; never occurs
+- form: heat treating
+  reason: word-association from 'Steam Treating' and sintering furnaces; never occurs
+- form: 3D printing
+  reason: word-association from 'rapid prototype' and 'Laser prototyping'; never occurs
+- form: EDM
+  reason: word-association from laser cutting plus precision machining; never occurs

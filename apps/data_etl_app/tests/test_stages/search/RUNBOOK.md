@@ -18,6 +18,19 @@ judge agent per (subject, field), double-judge agents on samples, verification
 agents — this fan-out is the user's explicit instruction, renewed by every
 "run the search eval" request. Do not hesitate; do not ask permission per agent.
 
+**Standing rule (user, 2026-08-28): the eval set is itself under test on every
+run.** Both difference sets get validity-checked before any number is read as a
+stage defect: a run phrase absent from the eval set is judged against the window
+text and the field's `What qualifies` clause (valid → eval-set gap → new
+`candidate` entry with provenance; invalid → precision finding), and an eval
+entry unmatched by the run is re-validated ITSELF (quote verbatim in the wire
+text, membership per the clause, status/actor right) before it counts as a
+recall miss — a wrong entry becomes `disputed`/`retired` with a reason, never a
+silent miss. Matched forms are not automatically safe either: containment credit
+can be false (the `Lead` class) — spot-sample the matched set when reading
+precision. Founding case: the alecmfg equipments false RED (2026-08-27), where
+the eval set, not the stage, was wrong.
+
 ## Definitions (plain language)
 
 - **Window**: one ~5k-token sub-window of a chunk; the unit a search request
@@ -54,7 +67,14 @@ agents — this fan-out is the user's explicit instruction, renewed by every
    `history/runs/<run_id>/raw/judge_packets/`, carrying the field's code
    table, every returned form, the exact window text the stage read, and the
    subject's confirmed must-find list. (Packets embed site text and stay
-   gitignored.) Then spawn ONE agent per packet — products serves
+   gitignored.) **Judging depth is the user's per-run call**: the full census
+   (code EVERY form, as below) or the difference-set pass — judge only forms
+   not creditable against the eval set, re-validate every unmatched eval entry
+   per the standing rule above, double-judge a sample, and spot-sample matched
+   forms for false credit; precision is then estimated with matched forms
+   counted as text-verified credit. (2026-08-28, first 20-subject run: the
+   user chose difference sets — ~28k returned forms made the full census ~10×
+   the largest prior one.) Then spawn ONE agent per packet — products serves
    contract_products, so never judge it twice; 6 packets per subject in a run
    run. Each agent codes EVERY form (J1), flags actor/evidence kind (J3/J4),
    and lists in-window entities no form covers (J2 misses). It writes JSONL to
@@ -137,6 +157,13 @@ run twice, keep only the later row per (run, subject, field) and say so.
   runs as elastic; without that, faithful forms score as fabrication and fire
   false RED gates. Short forms (<=3 chars: TIG, ABS, CMM) match on word
   boundaries case-sensitively — plain containment credits "tight" for TIG.
+- **Recall credit is DIRECTIONAL (fixed 2026-08-28).** Use
+  `form_covers(expected, returned)`, never `forms_overlap`: the expected
+  designation must occur inside what was returned, and a returned fragment
+  credits nothing. Measured before the fix at 8.0% false credit over 410 blind
+  spot-checks of awarded credits (19.1% for products), worth 1.7 points of
+  overall confirmed recall. Every recall number from a run scored before
+  2026-08-28 is high by roughly that much.
 - **An unverified expectation set gates nothing.** `confirmed_recall: null`
   means "not gated", never "no misses"; check
   `expectations/VERIFICATION_LEDGER.md` before reading a subject's recall.

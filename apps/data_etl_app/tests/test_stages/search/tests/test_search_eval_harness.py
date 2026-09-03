@@ -184,6 +184,23 @@ def test_false_friend_hits_are_reported_not_gated():
     assert verdict["status"] == "OK"  # recall-only gating
 
 
+def test_low_yield_smoke_alarm_flags_but_never_gates():
+    # a fat window answered with 1 phrase fires the flag; a thin window and a
+    # productive window do not; and the flag lands in warnings, never in reds.
+    fat_quiet = _window(sub="0:100", phrases=["one"], domain="x" * 9_000)
+    thin_quiet = _window(sub="100:200", phrases=[], domain="x" * 500)
+    productive = _window(sub="200:300", phrases=["a", "b", "c"], domain="x" * 9_000)
+    wh = mechanical.window_metrics([fat_quiet, thin_quiet, productive])
+    flagged = [d["window"] for d in wh["low_yield_windows"]]
+    assert flagged == ["0:100"]
+    assert wh["empty_windows"] == ["100:200"]
+    v = mechanical.verdict({"window_health": wh}, {})
+    assert v["status"] == "OK"
+    assert v["warnings"] == ["low_yield_windows:1"]
+    clean = mechanical.verdict({"window_health": {"low_yield_windows": []}}, {})
+    assert "warnings" not in clean
+
+
 def test_verdict_reds_on_recall_miss_and_tripwires_only():
     metrics = {
         "expectations": {"confirmed_missed": [{"id": "e3"}]},
@@ -302,9 +319,12 @@ def test_short_forms_match_on_word_boundaries_not_substrings():
     assert mechanical._form_covers("TIG", "TIG welding")
     assert not mechanical._form_covers("ABS", "absolute positioning")
     assert mechanical._form_covers("ABS", "ABS plastic")
-    # long forms keep ordinary containment in both directions
+    # long forms keep containment in the COVERING direction only. The reverse
+    # ("stainless steel" returned, "304 stainless steel bar" expected) was
+    # credited until 2026-08-28, when 410 blind spot-checks of awarded credits
+    # measured 8.0% of them false — trap 5 in _shared/text_matching.
     assert mechanical._form_covers("stainless steel", "304 stainless steel bar")
-    assert mechanical._form_covers("304 stainless steel bar", "stainless steel")
+    assert not mechanical._form_covers("304 stainless steel bar", "stainless steel")
 
 
 def test_expectation_quote_matching_survives_nbsp_in_the_wire_text():
@@ -608,7 +628,7 @@ def _seed_fixture(tmp_path, monkeypatch, jsonl_lines, text):
     expectations.mkdir(parents=True, exist_ok=True)
 
     monkeypatch.setattr(be, "EXPECTATIONS_DIR", expectations)
-    monkeypatch.setattr(be, "_text_path_for", lambda slug: text_file)
+    monkeypatch.setattr(be, "text_path_for", lambda slug: text_file)
     monkeypatch.setattr(av, "EXPECTATIONS_DIR", expectations)
     monkeypatch.setattr(av, "REPO_ROOT", tmp_path)
 

@@ -1,0 +1,92 @@
+subject: howcogroup.com
+slug: howcogroup_com
+role: attribution_negative
+business_type: Scottish metal stockholder/distributor, vertically integrated forward into processing; Sumitomo subsidiary
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
+  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+eval_set_version: 1
+scrape_hazards:
+- hazard: 'identical 17-line legal/registration footer repeated on 97 of 97 pages; it carries a certification (''Certified:
+    ISO 9001: 2015'') and a registry id, so ISO 9001 evidence is in scope for nearly every window'
+  quote: 'Certified: ISO 9001: 2015'
+- hazard: the subject is a metal STOCKHOLDER/DISTRIBUTOR vertically integrated forward into processing; roughly
+    half the site (all 30 alloy datasheet pages) sells metal it did not make, and those pages describe generic grade
+    metallurgy, not Howco's own work
+  quote: Howco holds extensive inventories of low alloy steels, nickel and super alloys, stainless, duplex
+- hazard: 'MULTI-ENTITY SCOPING: certificates are held at DIFFERENT single sites but stated in one identical voice
+    on one page; AS9100D is Houston-only, ISO 17025 Sheffield-only, API 5B and API-7-2 Dubai-only'
+  quote: 'LRQA AS9100D: QUALITY ASSURANCE'
+- hazard: 'PHANTOM ENTITY: ''Drummond'' is listed as a certificate-holding site 3x on the accreditations page and
+    appears NOWHERE else in the text - not in the careers site list, the contact page World Locations, or any prose'
+  quote: Bredbury | Cumbernauld | Drummond | Irvine | Sheffield | Norway
+- hazard: 'the site contradicts itself on its own size FOUR ways: ''10 locations in 6 countries'' (home, line 9,
+    and the Singapore news post, 5557), ''nine locations, with purpose built facilities in six countries'' (about,
+    2443), 12 named towns on the careers page (564-570), and 11 addresses under WORLD LOCATIONS on the contact page
+    (3013-3113)'
+  quote: In response, Howco has more than 650 colleagues dedicated to serving these needs, in nine locations, with
+    purpose built facilities in six countries.
+- hazard: Cumbernauld holds THREE certificates on the accreditations page (ISO 14001/45001, ISO 50001, API Spec
+    Q1) but has no address under WORLD LOCATIONS on the contact page; it appears only in the careers town list and
+    in certificate scopes
+  quote: Howco, Cumbernauld, UK
+- hazard: 'SUPPLY-CHAIN-PARTNER AMBIGUITY: welding, cladding, fabrication and HIP are all described in Howco''s
+    first person but attributed to ''our established supply chain partners'' in the same paragraph; the actor cannot
+    be resolved from the text'
+  quote: welding capabilities – providing fabrication services via our established supply chain partners to our
+    customers worldwide. Our fabrication and welding
+- hazard: 'vendor brochure copy pasted verbatim: the additive heat-treatment page reproduces the furnace maker''s
+    marketing, importing aerospace/automotive/medical-device industry claims that are about the FURNACE, not about
+    Howco''s customers'
+  quote: handle a wide range of materials and applications, from aerospace and automotive components to medical
+    devices and industrial parts. And with its energy-efficient
+- hazard: 30 alloy datasheets carry a CHEMICAL COMPOSITION table rendered as ~50 lines of bare element symbols (C,
+    Si, Mn, P, S, Cr, Ni, Mo, Cu, Ti, Al, V, N, W, NbCbTa, Fe) with no header row; this is ~2,300 of the file's
+    7,573 lines
+  quote: 28CR
+- hazard: 'scrape artifact: the URL .../new-horizontal-and-vertical-cnc-turning-centres-now-in-operation-at-bredbury/
+    returns the body of the UNRELATED ''Celebrating Our Team in Dubai'' post - the Bredbury turning-centre article
+    body is never scraped'
+  quote: HOME  NEWS  CELEBRATING OUR TEAM IN DUBAI
+- hazard: 'scrape artifact: a wp-admin URL was crawled and returned a 404 body'
+  quote: So Sorry!
+- hazard: the news index is scraped 4 times (/news/, /news/?et_blog, /news/page/2/, /news/page/3/) so headline text
+    such as the deep-hole-borer announcement recurs verbatim in unrelated windows
+  quote: New 4 Metre Deep Hole Boring Machine Installed at Howco Singapore
+- hazard: 117 NBSP (U+00A0) characters, several mid-phrase; line 6824 carries TWO consecutive NBSPs between 'accreditations'
+    and 'ISO 9001:2015'
+  quote: 'The ‘Made in Sheffield’ recognition complements the site’s long standing ISO accreditations  ISO 9001:2015,
+    ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
+- hazard: 28 U+F1C1 private-use glyphs (a PDF-file icon) sit alone on lines between each accreditation heading and
+    its site scope, splitting every certificate from the site that holds it
+  quote: 'ISO 17025: TEST LABORATORY MECHANICAL TESTING'
+- hazard: 'scrape run-on: line 3150 fuses a standard number to the next heading - ''ASTM B668GENERAL SCOPE'' - so
+    a correct ''ASTM B668'' extraction can never word-boundary match the text. The same line also carries a source
+    typo, ''N080287'' where UNS N08028 is meant'
+  quote: 'UNS N08825 : ASTM B423 UNS N080287 : ASTM B668GENERAL SCOPE'
+- hazard: '''ASME 1X'' is printed with the DIGIT one, not the Roman numeral I; a retyped ''ASME IX'' will not match'
+  quote: our dedicated Fabrication & Welding facility. Welder qualifications to ASME 1X, EN ISO 9606-1. This enables
+    us to provide full turnkey packages for a
+- hazard: '~2,000 lines of non-manufacturing filler: purchase-order terms and conditions, a 78-country dropdown,
+    and ~20 CSR/social news posts (cricket, golf, coffee mornings, Chinese New Year)'
+  quote: Albania
+sampling_notes: 'EXHAUSTIVE. All 7,573 lines / 222,956 bytes were read, in slices, via two derived views built from
+  the file: (a) footer-stripped (the 17-line legal footer occurs 98x and was elided), (b) composition-table-stripped
+  (bare element-symbol and Min/Max numeric rows elided) - both keyed back to original line numbers, and the elided
+  material was separately enumerated and checked (all distinct symbol-only lines listed; only C, Si, Mn, P, S, Cr,
+  Ni, Mo, Cu, Ti, Al, V, N, B, W, PREN, NbCbTa, NbCb appear). The accreditations page (3519-3605), the coating page
+  (1420-1453), the precision-fabrication page (2660-2681) and the testing/NDT page (2224-2248) were additionally
+  read RAW in repr form so NBSP, U+F1C1 and the ''ASME 1X'' digit-one are byte-exact. Then ~120 targeted word-boundary
+  greps: standards bodies (ISO/ASTM/API/AMS/AS/ASME/EN/BS/NACE/NORSOK/UKAS/PCN/CSWIP/ICorr/ASNT/LRQA/NADCAP/ANSI/UL/SAE),
+  every anticipated-absent string (CE, UKCA, PED, ATEX, Achilles, FPAL, Teflon, LDPE, Acrylic, Polypropylene, PCB
+  - all confirmed ZERO occurrences), alloy/grade patterns, machine brands, -ing process words, and each of the seven
+  reported defect exemplars. No byte range was skipped.'
+provenance:
+- action: added
+  by: seed-agent-howcogroup-com
+  date: '2026-08-27'
+  source: corpus-seed
+- action: ported
+  by: port_corpus.py
+  date: '2026-08-29'
+  source: markdown-cutover

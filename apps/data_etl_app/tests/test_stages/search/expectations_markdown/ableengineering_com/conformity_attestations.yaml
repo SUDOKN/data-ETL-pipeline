@@ -1,0 +1,709 @@
+subject: ableengineering.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/ableengineering.com.txt
+  sha256: 7f2e8d7e059f38f53fc2e3ce92499369e9099f8ae550e6d0177284e3850258c7
+eval_set_version: 4
+expected_empty: false
+notes: 'Rich field. The cert wall (17 items) appears verbatim on the homepage AND the why-able page; the footer
+  cert string repeats on all 27 pages. All attestations are the subject''s own; none of the press releases attribute
+  certifications to other companies, but OEM authorizations name their grantors (Airbus, Bell, Leonardo). SECOND-PASS
+  VERIFICATION 2026-08-26 (verify-agent-ableengineering): all 23 evidence quotes located verbatim in the snapshot;
+  22 confirmed, 1 disputed (0023 DER - personnel job title, not a company attestation). Short-form audit: PMA, CAA,
+  CAAT, DGCA, ECAA, JCAB, SMS, ARSA, NATA are all real word-bounded designations in the text, none is a substring
+  artifact; the over-broad ones on the MATCHING side are ''Part 145'' (shared by 0001/0003), ''NADCAP'' (shared
+  by 0010/0011/0012), ''CAA'' (contained in CAAC/CAAT/ECAA and in Able part numbers ending -CAAA) and ''DER''. All
+  6 false friends checked and agreed: ''FAA-approved'' is a bare adjective 19x, ''Certified'' is the footer trailing
+  word plus the QUALIFIED/VERIFIED/CERTIFIED heading, and the two footer document titles carry no standard id.'
+entries:
+- id: ableengineering_com-conformity_attestations-0023
+  name: Designated Engineering Representative (DER)
+  status: disputed
+  acceptable_forms:
+  - designated engineering representatives (DER)
+  - DER
+  evidence:
+  - quote: designated engineering representatives (DER), specialists, avionics techs
+    approx_offset: 689
+  notes: 'borderline: FAA designation held by staff members, not a company certificate; second pass may dispute
+    | DISPUTED by second pass 2026-08-26: both occurrences are personnel-roster text - ''a dedicated team of more
+    than 350 mechanics, engineers, designated engineering representatives (DER), specialists, avionics techs'' and
+    ''our on-site engineering and DER specialists have - on average - 20 years of industry experience''. DER is
+    a staff job title here; the text never presents it as an attestation the company holds and makes no compliance
+    claim from it. Separately the bare form is unsafe for containment matching: only 2 of the 18 case-insensitive
+    substring hits are the acronym, the rest sit inside provider/providers/leader/Federal/grinders/under/understanding,
+    so any returned form containing ''der'' would be credited.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0001
+  name: FAA Part 145
+  status: candidate
+  acceptable_forms:
+  - FAA Part 145
+  - Part 145
+  evidence:
+  - quote: FAA Part 145
+    approx_offset: 1549
+  notes: 'cert-wall entry survives verbatim (homepage + why-able, both crawled). Dropped ''FAA PART 145'' (all-caps
+    form, no longer occurs, site now renders ''FAA Part 145'') and ''A1LR190N'' (searched the whole file for A1LR190N:
+    zero hits; the every-page footer that used to carry the FAA repair-station certificate number is gone from this
+    crawl). Carried forward the earlier flag: ''Part 145'' is a substring of ''EASA Part 145'' (entry 0003), so
+    a returned EASA form double-credits this entry.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0002
+  name: FAA PMA
+  status: confirmed
+  acceptable_forms:
+  - FAA PMA
+  - PMA
+  evidence:
+  - quote: FAA PMA
+    approx_offset: 1570
+  - quote: Rotor Wing PMA
+    approx_offset: 57692
+  notes: '''PMA'' also appears as a label on every parts-catalogue row | VERIFY 2026-08-26 (second pass): ''FAA
+    PMA'' x2 on the cert wall. Bare ''PMA'' has 132 further occurrences as the catalogue row label plus the ''Rotor
+    Wing PMA''/''Fixed Wing PMA'' literature titles - every one carries the Parts Manufacturer Approval sense, so
+    the 3-letter form is a real designation here and not a substring artifact.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0003
+  name: EASA Part 145
+  status: candidate
+  acceptable_forms:
+  - EASA Part 145
+  evidence:
+  - quote: EASA Part 145
+    approx_offset: 1587
+  notes: 'cert-wall entry survives verbatim (homepage + why-able). Dropped ''EASA 145.4010'' (searched ''145.4010''
+    and ''145.40'': zero hits; the footer cert-number string is gone from this crawl, same as A1LR190N on entry
+    0001). The cert-wall heading alone now carries the entry.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0004
+  name: CAA
+  status: confirmed
+  acceptable_forms:
+  - CAA
+  evidence:
+  - quote: CAA
+    approx_offset: 1605
+  notes: 'bare acronym on the cert wall (UK CAA presumably); beware substring collisions with CAAC/CAAT/ECAA | VERIFY
+    2026-08-26 (second pass): exactly 2 word-bounded ''CAA'' occurrences, both the standalone cert-wall line - a
+    real designation, not a substring artifact. The seed''s collision warning is confirmed and is a matching-side
+    hazard: ''CAA'' is contained in CAAC (0005), CAAT (0006), ECAA (0008) and in Able part numbers (''20-065-07074CAAA'',
+    4x), so any of those returned forms also credits this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0006
+  name: CAAT
+  status: confirmed
+  acceptable_forms:
+  - CAAT
+  evidence:
+  - quote: CAAT
+    approx_offset: 1656
+  notes: 'Civil Aviation Authority of Thailand; bare acronym on cert wall | VERIFY 2026-08-26 (second pass): 2 word-bounded
+    occurrences, both the cert wall; not a substring artifact.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0007
+  name: DGCA
+  status: confirmed
+  acceptable_forms:
+  - DGCA
+  evidence:
+  - quote: DGCA
+    approx_offset: 1670
+  notes: 'bare acronym on cert wall | VERIFY 2026-08-26 (second pass): 2 word-bounded occurrences, both the cert
+    wall; not a substring artifact.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0008
+  name: ECAA
+  status: confirmed
+  acceptable_forms:
+  - ECAA
+  evidence:
+  - quote: ECAA
+    approx_offset: 1684
+  notes: 'bare acronym on cert wall | VERIFY 2026-08-26 (second pass): 2 word-bounded occurrences, both the cert
+    wall; not a substring artifact. Contains ''CAA'' (entry 0004).'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0009
+  name: JCAB
+  status: confirmed
+  acceptable_forms:
+  - JCAB
+  evidence:
+  - quote: JCAB
+    approx_offset: 1698
+  notes: 'Japan Civil Aviation Bureau; bare acronym on cert wall | VERIFY 2026-08-26 (second pass): 2 word-bounded
+    occurrences, both the cert wall; not a substring artifact.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0010
+  name: NADCAP NDT
+  status: confirmed
+  acceptable_forms:
+  - NADCAP – NDT
+  - NADCAP
+  evidence:
+  - quote: NADCAP – NDT
+    approx_offset: 1719
+  - quote: we’ve established comprehensive, in-house and NADCAP-approved Non-Destructive Testing (NDT) services.
+    approx_offset: 25160
+  notes: 'VERIFY 2026-08-26 (second pass): cert-wall line plus the NADCAP-approved NDT prose on /processes/. Flag:
+    the bare form ''NADCAP'' is over-broad - it is contained in the cert-wall forms of 0011 and 0012, so any NADCAP-scope
+    form returned also credits this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0011
+  name: NADCAP Surface Enhancement
+  status: candidate
+  acceptable_forms:
+  - NADCAP – SURFACE ENHANCEMENT
+  evidence:
+  - quote: NADCAP – Surface Enhancement
+    approx_offset: 1743
+  notes: cert-wall entry survives verbatim (homepage + why-able), en dash intact. The old corroborating quote ('NADCAP-approved,
+    Able has state-of-the-art CNC shot peen...') that carried no acceptable form is dropped; the cert-wall line
+    alone is sufficient and cleaner.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0013
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO9001
+  - ISO 9001
+  - ISO9001:2015
+  evidence:
+  - quote: ISO9001/AS9100 / AS9110
+    approx_offset: 1813
+  notes: 'VERIFY 2026-08-26 (second pass): ''ISO9001/AS9100 / AS9110'' on the cert wall plus ''ISO9001:2015'' in
+    the all-page footer (27x). The spaced form ''ISO 9001'' never occurs verbatim - it is a legitimate normalization
+    alias only, not evidence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0014
+  name: AS9100
+  status: confirmed
+  acceptable_forms:
+  - AS9100
+  evidence:
+  - quote: ISO9001/AS9100 / AS9110
+    approx_offset: 1813
+  notes: 'VERIFY 2026-08-26 (second pass): cert wall plus all-page footer; 29 occurrences, no collisions.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0015
+  name: AS9110
+  status: confirmed
+  acceptable_forms:
+  - AS9110
+  evidence:
+  - quote: ISO9001/AS9100 / AS9110
+    approx_offset: 1813
+  notes: 'VERIFY 2026-08-26 (second pass): cert wall plus all-page footer; 29 occurrences, no collisions.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0017
+  name: Authorized Bell Helicopter Service Center
+  status: candidate
+  acceptable_forms:
+  - AUTHORIZED BELL HELICOPTER SERVICE CENTER
+  evidence:
+  - quote: Authorized Bell Helicopter Service Center
+    approx_offset: 1895
+  notes: cert-wall entry survives verbatim (homepage + why-able).
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0018
+  name: Approved Leonardo Helicopters Maintenance Sub-Contractor
+  status: candidate
+  acceptable_forms:
+  - APPROVED LEONARDO HELICOPTERS MAINTENANCE SUB-CONTRACTOR
+  evidence:
+  - quote: Approved Leonardo Helicopters Maintenance Sub-Contractor
+    approx_offset: 1938
+  notes: cert-wall entry survives verbatim (homepage + why-able).
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0019
+  name: ARSA membership
+  status: candidate
+  acceptable_forms:
+  - ARSA MEMBER
+  - ARSA
+  evidence:
+  - quote: ARSA Member
+    approx_offset: 1996
+  notes: cert-wall entry survives verbatim (homepage + why-able).
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0012
+  name: NADCAP Chemical Processing
+  status: confirmed
+  acceptable_forms:
+  - NADCAP – CHEMICAL PROCESSING
+  - NADCAP-approved for chrome
+  evidence:
+  - quote: Able is NADCAP-approved for chrome, which reduces in-house processing time for nickel, CAD plating and
+      several other processes.
+    approx_offset: 24758
+  notes: 'VERIFY 2026-08-26 (second pass): cert wall plus the ''NADCAP-approved for chrome'' prose. The second acceptable
+    form is a clause rather than a designation - harmless, but unlikely ever to match a returned form.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0005
+  name: CAAC Maintenance Organization
+  status: confirmed
+  acceptable_forms:
+  - CAAC MAINTENANCE ORGANIZATION
+  - CAAC
+  evidence:
+  - quote: Our Boeing 737 landing gear program is FAA, EASA and CAAC approved.
+    approx_offset: 26455
+  notes: 'VERIFY 2026-08-26 (second pass): cert-wall line plus ''Our Boeing 737 landing gear program is FAA, EASA
+    and CAAC approved'' on the landing-gear page; 3 word-bounded occurrences.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0020
+  name: FAA Safety Management System acceptance
+  status: confirmed
+  acceptable_forms:
+  - Safety Management System
+  - SMS
+  evidence:
+  - quote: received Federal Aviation Administration (FAA) acceptance of the company’s new Safety Management System
+      (SMS) implementation plan
+    approx_offset: 92233
+  notes: 'regulatory acceptance of a named program (B), from a 2024 press release | VERIFY 2026-08-26 (second pass):
+    3 word-bounded ''SMS'' occurrences, all in the Nov-2024 FAA-acceptance press release (implementation plan, SMS
+    program, SMS Committee); no substring collisions in this file.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0016
+  name: Approved Airbus Helicopters Maintenance & Repair Center
+  status: confirmed
+  acceptable_forms:
+  - APPROVED AIRBUS HELICOPTERS MAINTENANCE & REPAIR CENTER
+  - authorized Airbus Service Center
+  evidence:
+  - quote: Able has been an authorized Airbus Service Center for more than a decade
+    approx_offset: 109769
+  notes: 'OEM authorization granted by Airbus Helicopters (named program, B); the subject holds it | VERIFY 2026-08-26
+    (second pass): cert-wall line plus the July 2024 press release (''Able has been an authorized Airbus Service
+    Center for more than a decade''). Grantor is Airbus Helicopters, holder is the subject, so no actor flag is
+    needed.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0021
+  name: NATA Green Aviation Business certification
+  status: confirmed
+  acceptable_forms:
+  - Green Aviation Business
+  - NATA Sustainability Standard
+  - NATA
+  evidence:
+  - quote: has certified as a Green Aviation Business under the National Air Transportation Association (NATA)
+    approx_offset: 111203
+  - quote: The NATA Sustainability Standard is a self-certification process for aviation businesses
+    approx_offset: 112129
+  notes: 'self-certification scheme (B), from a 2024 press release | VERIFY 2026-08-26 (second pass): both quotes
+    verbatim; 5 word-bounded ''NATA''. Flag: bare ''NATA'' names the granting association rather than the credential,
+    and it is contained in ''NATA Sustainability Standard'' - keep it as a tolerant alias only.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0022
+  name: California Transparency in Supply Chains Act
+  status: retired
+  acceptable_forms:
+  - California Transparency in Supply Chains Act
+  evidence:
+  - quote: California Transparency in Supply Chains Act
+  notes: 'retired at the markdown cutover: searched ''California Transparency'', ''Supply Chains Act'', ''transparency''
+    and (case-insensitively) ''privacy''/''terms of'' across the whole file. The every-page footer resource-link
+    list this entry was anchored to is gone from the 2026-08-29 crawl; the only surviving privacy/terms mention
+    anywhere is a single generic reCAPTCHA disclaimer line (''This site is protected by reCAPTCHA and the Google
+    Privacy Policy and Terms of Service apply.'', L1735) which names Google''s policies, not this statute. No trace
+    of the statute name remains.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-conformity_attestations-0024
+  name: NADCAP - NDT
+  status: candidate
+  acceptable_forms:
+  - NADCAP
+  evidence:
+  - quote: NADCAP – NDT
+    approx_offset: 1719
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0025
+  name: NADCAP - Surface Enhancement
+  status: candidate
+  acceptable_forms:
+  - Surface Enhancement
+  evidence:
+  - quote: NADCAP – Surface Enhancement
+    approx_offset: 1743
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0026
+  name: NADCAP - Chemical Processing
+  status: candidate
+  acceptable_forms:
+  - NADCAP
+  evidence:
+  - quote: NADCAP – Chemical Processing
+    approx_offset: 1783
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0027
+  name: ISO9001
+  status: candidate
+  acceptable_forms:
+  - ISO9001
+  evidence:
+  - quote: ISO9001/AS9100 / AS9110
+    approx_offset: 1813
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0028
+  name: ARSA Member
+  status: disputed
+  acceptable_forms:
+  - ARSA Member
+  - ARSA
+  evidence:
+  - quote: ARSA Member
+    approx_offset: 1996
+  notes: trade-association membership, argued either way per brief
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0029
+  name: Six Sigma Black Belt
+  status: candidate
+  acceptable_forms:
+  - Six Sigma Black Belt
+  evidence:
+  - quote: Vargas. He is a certified Six Sigma Black Belt and an FAA licensed private pilot.
+    approx_offset: 108304
+  notes: held by an individual staff member (Rodrigo Nardelli)
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0030
+  name: Green Aviation Business
+  status: candidate
+  acceptable_forms:
+  - Green Aviation Business
+  evidence:
+  - quote: customers around the world, has certified as a Green Aviation Business under the National Air Transportation
+      Association (NATA), which encourages environmental sustainability within the industry.
+    approx_offset: 111175
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0031
+  name: National Air Transportation Association (NATA)
+  status: candidate
+  acceptable_forms:
+  - National Air Transportation Association
+  - NATA
+  evidence:
+  - quote: National Air Transportation Association (NATA), which encourages environmental sustainability within
+      the industry.
+    approx_offset: 111256
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0032
+  name: Safety Management System (SMS)
+  status: candidate
+  acceptable_forms:
+  - Safety Management System
+  - SMS
+  evidence:
+  - quote: Safety Management System is a
+    approx_offset: 93070
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0033
+  name: Project Management Professional (PMP)
+  status: candidate
+  acceptable_forms:
+  - project management professional
+  - PMP
+  evidence:
+  - quote: project management professional (PMP).
+    approx_offset: 106677
+  notes: held by an individual staff member (Yuri Hoverson)
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-conformity_attestations-0034
+  name: NATA Sustainability Standard
+  status: candidate
+  acceptable_forms:
+  - Sustainability Standard
+  evidence:
+  - quote: Sustainability Standard is designed to
+    approx_offset: 111379
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: FAA-approved
+  reason: generic approval adjective repeated ~20x; the concrete attestations are FAA Part 145 / FAA PMA
+- form: CERTIFIED MULTIPLIED
+  reason: marketing heading above the cert wall, contains no standard id
+- form: Certified
+  reason: generic ('QUALIFIED. VERIFIED. CERTIFIED.' heading, 'ISO9001:2015 Certified' trailing word alone)
+- form: Instructions for Continued Airworthiness
+  reason: regulatory document title in footer resource links (taxonomy D), not a certification held
+- form: Able Aerospace Warranty
+  reason: company document title in footer resource links (taxonomy D)
+- form: Privacy Policy
+  reason: legal boilerplate link (junk)

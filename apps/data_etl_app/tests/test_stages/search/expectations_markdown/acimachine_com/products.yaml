@@ -1,0 +1,30 @@
+subject: acimachine.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
+  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+eval_set_version: 3
+expected_empty: true
+notes: 'This file also serves the contract_products field. The subject manufactures nothing and offers no contract
+  manufacturing: every salable good in the file is a resold third-party machine, which belongs to the equipments
+  field. Any brand/model form returned under products is adjacent_field (equipment, S code) — judge it there, do
+  not credit or false-friend-count it here to avoid double-counting against the equipments entries. Any sizable
+  products yield on this subject is junk-minting signal. VERIFY 2026-08-26 (second independent pass): expected_empty=true
+  AGREED. I enumerated every non-/equipment/ page independently (home, /support, /About_Us, /brands, /types, /machines,
+  /categories, /new- machinery, /active-inventory, /equipment index, /Request_A_Quote, /contact, /Buy_Equipment,
+  /policies/*, /blog and all 14 blog posts) and read the substantive ones: no ACI-manufactured or ACI-branded good
+  appears anywhere, and the blog posts are shop-humour columns whose ''Suggested Assets'' blocks list only more
+  resold brand/model pairs. Every salable item in the file is a resold third-party machine belonging to equipments,
+  so the no-double-count instruction is sound and should be kept.'
+entries: []
+false_friends:
+- form: Products
+  reason: nav label in the Quick Links footer on all 1,430 pages; U/G code, no designation content
+- form: finished products
+  reason: Nomura 2SI machine marketing ('machining the front(OP10) and back(OP20) sides of finished products') —
+    the machine buyer's products, generic phrase
+- form: products and services
+  reason: legal/consent boilerplate ('similar products or services we offer', Terms of Service SECTION 5 - PRODUCTS
+    OR SERVICES)
+- form: Machine Shop Funnies
+  reason: blog post title (9 lines) — document/literature title, D code

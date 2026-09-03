@@ -1,0 +1,20 @@
+subject: 101machine.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
+  sha256: 6e351d8fdc5317848d99f37551218329a4a0a6359267213bcec847e6b44aaa40
+eval_set_version: 2
+expected_empty: true
+notes: 'expected_empty: the text names ZERO standards, certifications, or regulatory designations - no ISO/AS/IATF/ASTM/NADCAP
+  anywhere; no form of ''certif-'' occurs in the file. Any sizable yield here is junk-minting signal.'
+entries: []
+false_friends:
+- form: .step file
+  reason: CAD interchange format in FAQ quoting instructions ('a .step file or Parasolid if possible'); STEP is
+    nominally ISO 10303 but nothing here attests conformity - a file-format mention, not a certification held
+- form: Parasolid
+  reason: CAD kernel/format from the same FAQ line; not a standard designation
+- form: quality
+  reason: generic quality prose ('high quality work', 'quality of our work') with no standard id (code G)
+- form: 1 inch = 25.4mm
+  reason: unit-conversion line in the FAQ, not a standard reference

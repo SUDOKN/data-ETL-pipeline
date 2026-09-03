@@ -1,0 +1,134 @@
+subject: taylordunn.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
+  sha256: 973bd30712ecbd8754d31aef6041a5b07356215a7425214d0330074b59bba489
+eval_set_version: 2
+expected_empty: true
+notes: No standard, certification, or regulatory designation appears. Word-boundary greps for ISO/AS/IATF/ASTM/ANSI/UL/NFPA/OSHA/SAE/DOT/EPA/CE
+  and for 'certif' return zero hits across the whole file (verified 2026-08-26). The compliance-shaped strings present
+  are all legal document titles and cookie-consent vocabulary with no standard id. The strongest near-miss is the
+  footer link "Supplier Code of Conduct" -- a named parent-company policy document, D code, still not an attestation.
+  Any yield here is junk.
+entries:
+- id: taylordunn_com-conformity_attestations-0001
+  name: Sourcewell contract
+  status: disputed
+  acceptable_forms:
+  - Sourcewell contract
+  - Sourcewell
+  evidence:
+  - quote: 'Contact Waev for our Sourcewell contract #'
+    approx_offset: 90264
+  notes: A cooperative-purchasing contract vehicle rather than a certification/standard in the strict sense; recorded
+    per recall-first / the trade-association-membership precedent.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-conformity_attestations-0002
+  name: OSHA 1910.178
+  status: candidate
+  acceptable_forms:
+  - OSHA 1910.178
+  evidence:
+  - quote: Type E OSHA 1910.178, ANSI B56.8
+    approx_offset: 163063
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-conformity_attestations-0003
+  name: ANSI B56.8
+  status: candidate
+  acceptable_forms:
+  - ANSI B56.8
+  evidence:
+  - quote: Type E OSHA 1910.178, ANSI B56.8
+    approx_offset: 163063
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-conformity_attestations-0004
+  name: GSA
+  status: disputed
+  acceptable_forms:
+  - GSA
+  evidence:
+  - quote: we offer access to several federal procurement channels such as Small Business Reseller Partnerships,
+      GSA and DLA Contract Programs and other Strategic Sourcing Programs.
+    approx_offset: 176237
+  notes: Federal procurement/contracting channel, not a certification with its own compliance identity in the strict
+    sense.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-conformity_attestations-0005
+  name: DLA Contract Programs
+  status: disputed
+  acceptable_forms:
+  - DLA Contract Programs
+  evidence:
+  - quote: we offer access to several federal procurement channels such as Small Business Reseller Partnerships,
+      GSA and DLA Contract Programs and other Strategic Sourcing Programs.
+    approx_offset: 176237
+  notes: Federal procurement/contracting channel, not a certification with its own compliance identity in the strict
+    sense.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-conformity_attestations-0006
+  name: ANSI B56.9
+  status: candidate
+  acceptable_forms:
+  - ANSI B56.9
+  evidence:
+  - quote: Type E OSHA 1910.178, ANSI B56.9
+    approx_offset: 190915
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: taylordunn_com-conformity_attestations-0007
+  name: ANSI B5
+  status: candidate
+  acceptable_forms:
+  - ANSI B5
+  evidence:
+  - quote: The TT-316 also meets Type E OSHA 1910.178 and ANSI B5 safety standards, making it a reliable choice
+      for workplace compliance and peace of mind.
+    approx_offset: 242412
+  notes: Likely a truncated/typo form of ANSI B56.9 (used in the same page's conformance table), but the text literally
+    names 'ANSI B5' here.
+  provenance:
+  - action: added
+    by: seed-agent-taylordunn-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Supplier Code of Conduct
+  reason: footer-linked parent-company policy document; named program with no standard id (D code) -- the strongest
+    conformity near-miss in the text
+- form: Cookie Policy
+  reason: legal document title, no standard id
+- form: Privacy Policy
+  reason: legal document title, no standard id
+- form: Terms & Conditions
+  reason: legal document title (also as 'TERMS AND CONDITIONS' in the footer), no standard id
+- form: Complianz
+  reason: cookie-consent plugin brand that merely sounds like 'compliance'; a software vendor name in the cookie
+    table
+- form: Consent to service
+  reason: boilerplate cell text repeated through the 'Placed cookies' vendor table; consent-management vocabulary,
+    not an attestation
+- form: European Economic Area
+  reason: legal jurisdiction defining the policy's scope, not a standard or certification

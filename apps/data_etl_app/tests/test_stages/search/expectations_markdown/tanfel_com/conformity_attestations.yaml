@@ -1,0 +1,704 @@
+subject: tanfel.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/tanfel.com.txt
+  sha256: 96ff5eadb45bd7fd97d2731c6c499404d008d0e591fb073d7ea26e1d8ba5f860
+eval_set_version: 3
+expected_empty: false
+notes: '25 entries — 15 actor=supplier, 6 own, 4 unknown, 7 of them disputed. EXACTLY ONE is presented in Tanfel''s
+  own name: the ''ISO 9001:2015 CERTIFICATE'' download on the About page. Every numbered standard other than that
+  one appears as a bare list item inside a partner factory''s capability block (investment casting, MIM, stamping)
+  or as an unnumbered ''ISO certified facilities'' claim about the offshore network. Note also that ISO 9001 is
+  spelled three incompatible ways on one site (:2015 on About, :2008 on stamping, -2008 on MIM), which is itself
+  evidence that the registrations belong to different legal entities.'
+entries:
+- id: tanfel_com-conformity_attestations-0004
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001
+  evidence:
+  - quote: ISO 9001
+    approx_offset: 9484
+  actor: supplier
+  notes: bare item in the Investment/Sand Casting capability block, i.e. the offshore casting partner's registrations
+    written in the first person.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0024
+  name: ISO 9001:2008
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2008
+  evidence:
+  - quote: ISO 9001:2008
+    approx_offset: 11204
+  actor: supplier
+  notes: stamping partner's block. Note the site simultaneously claims :2008 here and :2015 on the About page.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0025
+  name: TS16949
+  status: confirmed
+  acceptable_forms:
+  - TS16949
+  evidence:
+  - quote: TS16949
+    approx_offset: 11219
+  actor: supplier
+  notes: unspaced spelling on the stamping page; a distinct surface form from 'TS 16949'.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0012
+  name: ISO 14001
+  status: confirmed
+  acceptable_forms:
+  - ISO 14001
+  evidence:
+  - quote: ISO 14001
+    approx_offset: 11239
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0014
+  name: IATF
+  status: confirmed
+  acceptable_forms:
+  - IATF
+  evidence:
+  - quote: Our global network of quality ISO & IATF certified facilities can support your prototype to large production
+      requirements.
+    approx_offset: 24634
+  actor: supplier
+  notes: '''IATF'' occurs ONLY here, bare, never followed by 16949. Pairing the two is fabrication.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0015
+  name: Certificate of conformance
+  status: disputed
+  acceptable_forms:
+  - certificate of conformance
+  evidence:
+  - quote: Detailed reports are available such as certificate of conformance, material specification sheets, PPAP,
+      dimensional test reports plus any other customer
+    approx_offset: 25072
+  actor: supplier
+  notes: a certificate of conformance is a per-shipment document issued with the goods, listed here alongside 'material
+    specification sheets' and 'dimensional test reports' as report types. It attests conformity but is not itself
+    a certification, registration or standard with a name, number or issuing body that the company or its sites
+    hold.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: a certificate of conformance is a per-shipment document issued with the goods, listed here alongside
+      'material specification sheets' and 'dimensional test reports' as report types. It attests conformity but
+      is not itself a certification, registration or standard with a name, number or issuing body that the company
+      or its sites hold.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0016
+  name: PPAP
+  status: confirmed
+  acceptable_forms:
+  - PPAP
+  evidence:
+  - quote: material specification sheets, PPAP, dimensional test reports plus any other customer requirements. Tanfel
+      verifies each lot in house to ensure that nothing slips through the cracks.
+    approx_offset: 25139
+  actor: supplier
+  notes: a document the suppliers produce on request.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0017
+  name: NAFTA
+  status: confirmed
+  acceptable_forms:
+  - NAFTA
+  evidence:
+  - quote: We work closely with Customs to ensure we are in compliance with NAFTA, C-TPAT, Tariffs, Anti-Dumping
+      and much more. This ensures that your parts are not delayed.
+    approx_offset: 26456
+  notes: Tanfel's own customs-compliance claim.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0018
+  name: C-TPAT
+  status: confirmed
+  acceptable_forms:
+  - C-TPAT
+  evidence:
+  - quote: C-TPAT, Tariffs, Anti-Dumping and much more. This ensures that your parts are not delayed.
+    approx_offset: 26528
+  notes: a US Customs supply-chain security programme; Tanfel claims compliance in its own name.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0019
+  name: Anti-Dumping
+  status: disputed
+  acceptable_forms:
+  - Anti-Dumping
+  evidence:
+  - quote: Tariffs, Anti-Dumping and much more. This ensures that your parts are not delayed.
+    approx_offset: 26536
+  notes: 'DISPUTED: ''compliance with ... Anti-Dumping'' names a trade-remedy regime rather than a certification
+    with an issuing body. Kept disputed. | ''Anti-Dumping'' names a category of customs duty, not a named standard
+    or certification. It sits in the list ''NAFTA, C-TPAT, Tariffs, Anti-Dumping'' whose other members (NAFTA, C-TPAT)
+    do have their own identities; ''Anti-Dumping'' is as generic as its neighbour ''Tariffs'', which the seed correctly
+    left out.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: '''Anti-Dumping'' names a category of customs duty, not a named standard or certification. It sits in
+      the list ''NAFTA, C-TPAT, Tariffs, Anti-Dumping'' whose other members (NAFTA, C-TPAT) do have their own identities;
+      ''Anti-Dumping'' is as generic as its neighbour ''Tariffs'', which the seed correctly left out.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0003
+  name: ISO 2768
+  status: confirmed
+  acceptable_forms:
+  - ISO 2768 (m)
+  - ISO 2768
+  evidence:
+  - quote: Tolerances per ISO 2768 (m)
+    approx_offset: 38739
+  actor: supplier
+  notes: a general-tolerance STANDARD the MIM partner works to, not a certification held.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0005
+  name: ISO 9001-2008
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001-2008
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev. C
+    approx_offset: 38817
+  actor: supplier
+  notes: MIM partner's block; hyphen instead of colon — a THIRD spelling of ISO 9001 on one site. Distinct surface
+    form, so it gets its own entry.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0006
+  name: ISO/TS 16949:2009
+  status: confirmed
+  acceptable_forms:
+  - ISO/TS 16949:2009
+  evidence:
+  - quote: ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev. C
+    approx_offset: 38832
+  actor: supplier
+  notes: the ONLY place the site prints a 16949 number attached to 'ISO'. The old pipeline's 'ISO 16949' and its
+    duplicate 'IATF 16949' are both minted; neither string occurs in this file.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0007
+  name: TS 16949
+  status: confirmed
+  acceptable_forms:
+  - TS 16949
+  evidence:
+  - quote: TS 16949
+    approx_offset: 38836
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0008
+  name: ISO/13485:2003
+  status: confirmed
+  acceptable_forms:
+  - ISO/13485:2003
+  evidence:
+  - quote: ISO/13485:2003, AS 9100 Rev. C
+    approx_offset: 38851
+  actor: supplier
+  notes: MIM partner's block; slash-and-year spelling, distinct from 'ISO 13485'.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0009
+  name: AS 9100 Rev. C
+  status: confirmed
+  acceptable_forms:
+  - AS 9100 Rev. C
+  - AS 9100
+  evidence:
+  - quote: AS 9100 Rev. C
+    approx_offset: 38867
+  actor: supplier
+  notes: aerospace QMS standard listed in the MIM partner's block. Printed with a space and a revision letter —
+    'AS9100' and 'AS9100D' are both fabrications here.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0002
+  name: ISO 13485
+  status: confirmed
+  acceptable_forms:
+  - ISO 13485
+  evidence:
+  - quote: With ISO 13485 certified facilities, and project relationships with Fortune 500 companies, we’re the
+      study partner you can count on to meet your deadlines.
+    approx_offset: 42275
+  actor: supplier
+  notes: '''ISO 13485 certified FACILITIES'' — the partner plants, not Tanfel.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0010
+  name: ISO certified facilities
+  status: confirmed
+  acceptable_forms:
+  - ISO CERTIFIED FACILITIES
+  - ISO certified facilities
+  - ISO & TS certified facilities
+  - ISO & IATF certified facilities
+  evidence:
+  - quote: We have ISO certified facilities around the world to complete all of your metal casting and other metalworking
+      project needs
+    approx_offset: 51984
+  actor: supplier
+  notes: 'the site''s characteristic move: an unnumbered ''ISO certified'' claim about the offshore network, repeated
+    on six pages.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0011
+  name: ISO 9001:2015 certificate
+  status: candidate
+  acceptable_forms:
+  - ISO 9001:2015 CERTIFICATE
+  - ISO 9001:2015
+  evidence:
+  - quote: ISO 9001:2015 Certificate
+    approx_offset: 57616
+  notes: on the /about page, listed as a downloadable document alongside 'Metal Overview Product Sheet' and 'Company
+    Profile Presentation' - the same download-link placement the original note described. Left the ubiquitous footer
+    line 'Certified ISO 9001:2015 logo-anab' (appears on every page) unused as evidence per the brief's boilerplate
+    rule.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0021
+  name: NIST
+  status: disputed
+  acceptable_forms:
+  - National Institute of Standards and Technology (NIST)
+  - NIST
+  evidence:
+  - quote: the National Institute of Standards and Technology (NIST) is largely responsible for setting, maintaining,
+      and updating national measurement standards.
+    approx_offset: 70939
+  actor: unknown
+  notes: 'DISPUTED: an issuing body named in metrology textbook prose. The site never claims NIST-traceable calibration
+    of its gages, so crediting it as an attestation over-reads the text. | NIST is named only as the body ''largely
+    responsible for setting, maintaining, and updating national measurement standards'' in a general metrology explainer.
+    The body is named but no NIST standard, traceability claim or accreditation is; nothing here is held, met or
+    followed by Tanfel.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: NIST is named only as the body 'largely responsible for setting, maintaining, and updating national
+      measurement standards' in a general metrology explainer. The body is named but no NIST standard, traceability
+      claim or accreditation is; nothing here is held, met or followed by Tanfel.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0022
+  name: UNC-2B thread class
+  status: disputed
+  acceptable_forms:
+  - UNC-2B
+  evidence:
+  - quote: UNC-2B Taperlock GO NOGO Thread Plug Gage
+    approx_offset: 73115
+  notes: 'DISPUTED: a Unified National Coarse thread class designation inside Tanfel''s own gage part numbers. It
+    is a standard the product is made to, but it reads as part of a SKU. | UNC-2B is a thread-form/class designation
+    printed inside four gage product names, i.e. what the gage measures. It is arguably a standard the product meets,
+    but it reads as a product size spec rather than a conformity attestation. Mechanics note if it is ever promoted:
+    the text prints it BOTH as ''UNC-2B'' (lines 2720, 2721, 2724) and as ''UNC- 2B'' with a space after the hyphen
+    (line 2725), and only the first spelling is in the packet.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: 'UNC-2B is a thread-form/class designation printed inside four gage product names, i.e. what the gage
+      measures. It is arguably a standard the product meets, but it reads as a product size spec rather than a conformity
+      attestation. Mechanics note if it is ever promoted: the text prints it BOTH as ''UNC-2B'' (lines 2720, 2721,
+      2724) and as ''UNC- 2B'' with a space after the hyphen (line 2725), and only the first spelling is in the
+      packet.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0023
+  name: Thread gauge classes 1A / 2A / 2B / 3A
+  status: disputed
+  acceptable_forms:
+  - Class 1A
+  - Classes 2A and 2B
+  - Class 3A
+  evidence:
+  - quote: Class 1A has the greatest range of tolerance
+    approx_offset: 73847
+  actor: unknown
+  notes: 'DISPUTED: thread tolerance classes explained in gage-catalog prose. | Class 1A / 2A / 2B / 3A are thread
+    tolerance classes explained in a tutorial passage about what gauge classes mean (''Class 1A has the greatest
+    range of tolerance''). They are standard designations a threaded part could meet, but the passage is general
+    education about thread gauges, not a compliance claim, so membership in this field is arguable.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: Class 1A / 2A / 2B / 3A are thread tolerance classes explained in a tutorial passage about what gauge
+      classes mean ('Class 1A has the greatest range of tolerance'). They are standard designations a threaded part
+      could meet, but the passage is general education about thread gauges, not a compliance claim, so membership
+      in this field is arguable.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0020
+  name: Section 301 / Trade Act of 1974
+  status: disputed
+  acceptable_forms:
+  - Section 301
+  - Trade Act of 1974
+  evidence:
+  - quote: Sections 301 through 310 of the Trade Act of 1974, as amended, are commonly referred to as “Section 301”.
+      It is one of the principal statutory means by which the United States enforces U.S
+    approx_offset: 91079
+  actor: unknown
+  notes: 'DISPUTED: a whole tariff-explainer page. Statutes are compliance regimes with an identity, but nothing
+    here is held or met by Tanfel. | Section 301 / the Trade Act of 1974 is US trade law described in an informational
+    article about China tariffs; the page never states that Tanfel or its products hold, meet or follow it. A statute
+    that imposes duties on imports is arguably a compliance regime, but it is not a certification, accreditation
+    or registration with a holder.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: Section 301 / the Trade Act of 1974 is US trade law described in an informational article about China
+      tariffs; the page never states that Tanfel or its products hold, meet or follow it. A statute that imposes
+      duties on imports is arguably a compliance regime, but it is not a certification, accreditation or registration
+      with a holder.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0001
+  name: American Foundry Society
+  status: disputed
+  acceptable_forms:
+  - American Foundry Society
+  evidence:
+  - quote: American Foundry Society shows surface finishes from 20 to 900 RMS.
+    approx_offset: 110548
+  actor: unknown
+  notes: 'DISPUTED: a standards-publishing trade body cited for a surface-finish scale; membership is not claimed.
+    Trade-association rows are seeded disputed by the brief. | the text names the society, not a certification:
+    ''American Foundry Society shows surface finishes from 20 to 900 RMS'' cites AFS as the publisher of a surface-finish
+    scale. It is an issuing body whose scale the work follows, but no certification, accreditation or standard designation
+    is named that Tanfel or its parts could hold or meet, and a bare trade-society name is the case SEEDING_BRIEF
+    §4 says to seed disputed.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: 'the text names the society, not a certification: ''American Foundry Society shows surface finishes
+      from 20 to 900 RMS'' cites AFS as the publisher of a surface-finish scale. It is an issuing body whose scale
+      the work follows, but no certification, accreditation or standard designation is named that Tanfel or its
+      parts could hold or meet, and a bare trade-society name is the case SEEDING_BRIEF §4 says to seed disputed.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0013
+  name: Quality Management System
+  status: disputed
+  acceptable_forms:
+  - Quality Management System
+  evidence:
+  - quote: We will maintain an effective Quality Management System in order to meet and exceed our customers’ requirements.  
+      We believe in employees’ involvement
+    approx_offset: 115971
+  notes: 'DISPUTED: generic; no name, number, mark or issuing body of its own. The quality-policy page carries NO
+    certification number at all — a notable absence for the field. | ''an effective Quality Management System''
+    has no identity of its own - no name, number, mark or issuing body. It is the generic object that ISO 9001 (already
+    entries 0004/0005/0011/0024) certifies, stated as a policy intention rather than as a standard held, met or
+    followed.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: '''an effective Quality Management System'' has no identity of its own - no name, number, mark or issuing
+      body. It is the generic object that ISO 9001 (already entries 0004/0005/0011/0024) certifies, stated as a
+      policy intention rather than as a standard held, met or followed.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-conformity_attestations-0026
+  name: ISO 9001 (investment casting)
+  status: candidate
+  acceptable_forms:
+  - ISO 9001
+  evidence:
+  - quote: ISO 9001
+    approx_offset: 9484
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-conformity_attestations-0027
+  name: PPAP (cert)
+  status: candidate
+  acceptable_forms:
+  - PPAP
+  evidence:
+  - quote: such as certificate of conformance, material specification sheets, PPAP, dimensional test reports plus
+      any
+    approx_offset: 25103
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-conformity_attestations-0028
+  name: ISO 9001-2008 (MIM)
+  status: candidate
+  acceptable_forms:
+  - ISO 9001-2008
+  evidence:
+  - quote: ISO 9001-2008, ISO/TS 16949:2009, ISO/13485:2003, AS 9100 Rev. C
+    approx_offset: 38817
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: ISO 16949
+  reason: 'anticipatory AND historical: this exact string does NOT occur. The file prints ''ISO/TS 16949:2009'',
+    ''TS 16949'' and ''TS16949''. The old pipeline credited ''ISO 16949'' here, and separately double-counted it
+    as IATF 16949.'
+- form: IATF 16949
+  reason: 'anticipatory: ''IATF'' occurs once, bare, in ''ISO & IATF certified facilities''; ''16949'' only ever
+    follows TS. Joining them is the documented double-count.'
+- form: AS9100
+  reason: 'anticipatory: the text prints ''AS 9100 Rev. C'' with a space.'
+- form: CE
+  reason: 'anticipatory: the letters ''CE'' appear only inside words (SURFACE FINISH, PERFORMANCE); no CE mark is
+    claimed anywhere.'
+- form: ITAR
+  reason: 'anticipatory: never occurs, and the aerospace/defense mentions are textbook prose and a form dropdown.'
+- form: NADCAP
+  reason: 'anticipatory: never occurs.'
+- form: RoHS
+  reason: 'anticipatory: never occurs, despite the electronics/plastics pages.'
+- form: Fortune 500
+  reason: 'witnessed: ''project relationships with Fortune 500 companies'' is a customer credential, not an attestation
+    the company holds.'

@@ -1,0 +1,189 @@
+subject: 101machine.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
+  sha256: 6e351d8fdc5317848d99f37551218329a4a0a6359267213bcec847e6b44aaa40
+eval_set_version: 2
+expected_empty: false
+notes: 'All positive industries live in two near-duplicate service-prose lists (turning page: 5 industries; milling
+  page repeats them and adds agricultural). Entry 0007 is the negated ''automobile parts'' statement from the FAQ
+  - see its entry notes.'
+entries:
+- id: 101machine_com-industries-0001
+  name: Nuclear power
+  status: confirmed
+  acceptable_forms:
+  - nuclear power
+  evidence:
+  - quote: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical industries
+    approx_offset: 4622
+  - quote: CNC milling and turning services for nuclear power, semiconductor, lighting, chemical, agricultural,
+      and medical industries
+    approx_offset: 3722
+  notes: industry served; named in both the turning and milling service prose
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-industries-0002
+  name: Semiconductor
+  status: confirmed
+  acceptable_forms:
+  - semiconductor
+  evidence:
+  - quote: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical industries
+    approx_offset: 4622
+  - quote: CNC milling and turning services for nuclear power, semiconductor, lighting, chemical, agricultural,
+      and medical industries
+    approx_offset: 3722
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-industries-0003
+  name: Lighting
+  status: confirmed
+  acceptable_forms:
+  - lighting
+  evidence:
+  - quote: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical industries
+    approx_offset: 4622
+  - quote: CNC milling and turning services for nuclear power, semiconductor, lighting, chemical, agricultural,
+      and medical industries
+    approx_offset: 3722
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-industries-0004
+  name: Chemical
+  status: confirmed
+  acceptable_forms:
+  - chemical
+  evidence:
+  - quote: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical industries
+    approx_offset: 4622
+  - quote: CNC milling and turning services for nuclear power, semiconductor, lighting, chemical, agricultural,
+      and medical industries
+    approx_offset: 3722
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-industries-0005
+  name: Medical
+  status: confirmed
+  acceptable_forms:
+  - medical
+  evidence:
+  - quote: CNC turning services for nuclear power, semiconductor, lighting, chemical, and medical industries
+    approx_offset: 4622
+  - quote: CNC milling and turning services for nuclear power, semiconductor, lighting, chemical, agricultural,
+      and medical industries
+    approx_offset: 3722
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-industries-0006
+  name: Agricultural
+  status: confirmed
+  acceptable_forms:
+  - agricultural
+  evidence:
+  - quote: CNC milling and turning services for nuclear power, semiconductor, lighting, chemical, agricultural,
+      and medical industries
+    approx_offset: 3722
+  notes: milling page only; absent from the turning page's otherwise-identical list
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-industries-0007
+  name: Automobile parts
+  status: disputed
+  acceptable_forms:
+  - automobile parts
+  - automobile
+  evidence:
+  - quote: We DO NOT machine automobile parts!
+    approx_offset: 2149
+  notes: 'EXPLICITLY NEGATED: the subject states it does NOT machine automobile parts. Kept per recall-first semantics
+    (the text names the domain; negation/attribution is downstream''s job) - surfacing it at search is not an error,
+    but the judged pass should flag the negation. No actor set: it is a negated own-capability statement. Confirming
+    pass should weigh whether this should ever gate recall. DISPUTED (verify-agent-101machine, 2026-08-26): disagree
+    that this should be a must-find entry. The schema''s recall-first carve-out covers ACTOR concerns only (client/supplier/lab/reseller);
+    negation is not an actor concern. The text names automobile work solely as a sector explicitly NOT served, so
+    it is not an in-field ''industry served or targeted''. Confirming would gate recall against runs that correctly
+    honor the negation; products already treats the same sentence as a false friend. Recommend it stay non-gating
+    unless the user rules otherwise.'
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+false_friends:
+- form: machining
+  reason: the subject's OWN activity presented as a sector (code O), not an industry served
+- form: CNC machining
+  reason: same own-activity trap as 'machining' - service, not sector
+- form: manufacturing
+  reason: generic; occurs only in prose like 'your unique manufacturing needs'
+- form: Aviation
+  reason: 'word-association trap: occurs only in the street name ''Aviation Parkway'' (location prose; ''RDU Airport''
+    nearby reinforces it)'

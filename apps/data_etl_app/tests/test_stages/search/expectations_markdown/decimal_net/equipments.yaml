@@ -1,0 +1,968 @@
+subject: decimal.net
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/decimal.net.txt
+  sha256: ba4fce9db47e08d89fb6bfa97546a93fa70d2544931101547fbd57aecf982d99
+eval_set_version: 3
+expected_empty: false
+notes: Seeded to the prompt's 'acts on the work itself' boundary ONLY. 26 entries, of which
+  two are marked disputed (a tapping head that is arguably tooling, an ambiguous 'High-speed
+  drill.' caption) and one is a client's machine that Decimal built. Everything in the Testing
+  & Inspection Equipment column, the whole quality department (Mitutoyo/Keyence/Virtek/TESAHITE),
+  all fixturing and dies, the gas tank, the storage tower, the box truck and every CAD/CAM
+  package are recorded as false_friends.
+entries:
+- id: decimal_net-equipments-0001
+  name: FOBA M2000-B laser marking workstation
+  status: confirmed
+  acceptable_forms:
+  - FOBA M2000-B advanced laser marking workstation
+  - FOBA M2000-B
+  - general purpose marking machine
+  evidence:
+  - quote: Electronics, Promotional and much more. Our new FOBA M2000-B advanced laser marking
+      workstation is for precise and economic processing of small, large and geometrically
+    approx_offset: 7912
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0026
+  name: Mitsubishi FX10 wire EDM
+  status: confirmed
+  acceptable_forms:
+  - Mitsubishi FX10
+  - FX10
+  evidence:
+  - quote: Electronic Discharge Machining (Wire EDM) using our Mitsubishi FX10, we are now
+      producing 2000 units annually with a standard delivery time of one week
+    approx_offset: 9520
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0021
+  name: Mori Seiki NT3150 9-axis mill/turn machine
+  status: confirmed
+  acceptable_forms:
+  - Mori Seiki NT3150 9-Axis Mill/Turn Machine
+  - Mori Seiki NT3150
+  - NT3150
+  evidence:
+  - quote: conformed to military grade standards. Using our Mori Seiki NT3150 9-axis Mill/Turn
+      machine, we fabricated each servo body with a diameter of 8.263″ x 3/641″
+    approx_offset: 11608
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0009
+  name: Hutchinson tapping head
+  status: disputed
+  acceptable_forms:
+  - Hutchinson tapping head
+  evidence:
+  - quote: saving die space and tooling costs. Using a Hutchinson tapping head in a Federated
+      punch press, we performed in-die tapping via a 1032 tap with a ¼” head.
+    approx_offset: 20779
+  notes: 'DISPUTED: an in-die tapping head is held by the press rather than driving the work,
+    so the equipment prompt''s tooling exclusion arguably catches it. Kept on the record because
+    it is a powered unit that cuts threads | a tapping head is an attachment held in the press
+    - ''Using a Hutchinson tapping head in a Federated punch press'' - and in-die tapping
+    puts it inside the die, so it falls on the tooling side of the clause''s ''what a machine
+    holds, guides, or acts through'' exclusion; the press itself is seeded at 0010'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: a tapping head is an attachment held in the press - 'Using a Hutchinson tapping
+      head in a Federated punch press' - and in-die tapping puts it inside the die, so it
+      falls on the tooling side of the clause's 'what a machine holds, guides, or acts through'
+      exclusion; the press itself is seeded at 0010
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0010
+  name: Federated punch press
+  status: candidate
+  acceptable_forms:
+  - Federated Punch Press
+  - Federated punch press
+  evidence:
+  - quote: '**Equipment Used to Manufacture Part:** Hutchinson tapping head in a Federated
+      Punch Press'
+    approx_offset: 21701
+  notes: reanchored to the household-hot-water-heater project-highlights table
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0008
+  name: wire EDM machines
+  status: confirmed
+  acceptable_forms:
+  - Wire EDM Machines
+  - wire EDM machines
+  - wire EDM equipment
+  evidence:
+  - quote: Wire EDM Machines
+    approx_offset: 66040
+  - quote: Exceptionally tight tolerances on the order of ±0.0002″ can be held with our wire
+      EDM machines and holes between 0.020″ and 0.12″ can be accurately cut using our Mitsubishi
+    approx_offset: 22811
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0020
+  name: Mitsubishi hole popper
+  status: confirmed
+  acceptable_forms:
+  - Mitsubishi hole popper
+  - hole popper EDM equipment
+  evidence:
+  - quote: held with our wire EDM machines and holes between 0.020″ and 0.12″ can be accurately
+      cut using our Mitsubishi hole popper. We operate wire EDM equipment with
+    approx_offset: 22874
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0011
+  name: Beyeler press brakes
+  status: confirmed
+  acceptable_forms:
+  - Beyeler Press Brakes (9-Axis of control)
+  - Beyeler press brakes
+  - Bystronic Beyeler CNC Press Brake
+  evidence:
+  - quote: accuracy set us apart from our competition. Our Beyeler press brakes can provide
+      bending of up to 9 axes of control allowing for unmatched versatility. Our
+    approx_offset: 27857
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0018
+  name: RAS panel bender
+  status: confirmed
+  acceptable_forms:
+  - RAS Panel Bender
+  evidence:
+  - quote: RAS Panel Bender
+    approx_offset: 30688
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0012
+  name: 2D/3D laser with load/unload
+  status: confirmed
+  acceptable_forms:
+  - 2D/3D Laser (with load/unload)
+  - 2D/3D Laser
+  evidence:
+  - quote: 2D/3D Laser (with load/unload)
+    approx_offset: 31190
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0016
+  name: Haeger and Auto-Sert insertion machines
+  status: candidate
+  acceptable_forms:
+  - Haeger and Auto-Sert Insertion Machines
+  - Insertion Machines
+  - Auto-Sert
+  - Haeger
+  evidence:
+  - quote: '**Beyeler Press Brakes (9-Axis of control) CNC Press Brakes CNC Turret Punch Press
+      Haeger and Auto-Sert Insertion Machines:** Miller Welding Machines'
+    approx_offset: 31266
+  notes: reanchored to the sheet-metal-fabrication Equipment table
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0017
+  name: Miller welding machines
+  status: candidate
+  acceptable_forms:
+  - Miller Welding Machines
+  - Welding Machines
+  evidence:
+  - quote: '**Beyeler Press Brakes (9-Axis of control) CNC Press Brakes CNC Turret Punch Press
+      Haeger and Auto-Sert Insertion Machines:** Miller Welding Machines'
+    approx_offset: 31266
+  notes: same Equipment table row as Haeger/Auto-Sert (0016)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0014
+  name: CNC press brakes
+  status: confirmed
+  acceptable_forms:
+  - CNC Press Brakes
+  - press brake
+  evidence:
+  - quote: CNC Press Brakes
+    approx_offset: 31309
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0015
+  name: CNC turret punch press
+  status: confirmed
+  acceptable_forms:
+  - CNC Turret Punch Press
+  evidence:
+  - quote: CNC Turret Punch Press
+    approx_offset: 31326
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0024
+  name: Mazak laser cutter
+  status: confirmed
+  acceptable_forms:
+  - Mazak Laser Cutter
+  - Mazak
+  evidence:
+  - quote: Mazak Laser Cutter
+    approx_offset: 37633
+  - quote: Our team employed a full suite of equipment for the job that included a Mazak Laser
+      Cutter, Bystronic Beyeler CNC Press Brake, Kitamura
+    approx_offset: 37561
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0025
+  name: Kitamura CNC machining center
+  status: confirmed
+  acceptable_forms:
+  - Kitamura CNC Machining Center
+  - Kitamura
+  evidence:
+  - quote: included a Mazak Laser Cutter, Bystronic Beyeler CNC Press Brake, Kitamura CNC
+      Machining Center, and several welding operations. Using cold rolled sheet metal,
+    approx_offset: 37622
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0022
+  name: Makino A71NX-571
+  status: confirmed
+  acceptable_forms:
+  - Makino A71NX-571
+  - A71NX-571
+  evidence:
+  - quote: Decimal Engineering adds the Makino A71NX-571 to handle it’s growing demand in
+      precision manufacturing business. The
+    approx_offset: 53028
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0013
+  name: Salvagnini P2-L-2520 automated panel bender
+  status: confirmed
+  acceptable_forms:
+  - Salvagini P2L-2520 Automated Panel Bender
+  - Salvagnini P2-L-2520
+  - P2L-2520 panel bender
+  - P2-2520
+  - P2L-2520
+  evidence:
+  - quote: Why did Decimal Engineering wait for the Salvagnini P2-L-2520?  Well, conventional
+      bending is characterized
+    approx_offset: 54179
+  notes: 'a machine they BOUGHT and own; the old pipeline emitted it as a product they make
+    - see the products false_friend. Two spellings in the text: ''Salvagini'' (capability
+    table) and ''Salvagnini'' (blog post)'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0023
+  name: Bystronic Xpert 40 mobile bending robot (D.E.B.R.A.)
+  status: confirmed
+  acceptable_forms:
+  - Bystronic Xpert 40 Mobile Bending Robot
+  - Xpert 40
+  - D.E.B.R.A.
+  - Decimal Engineering Bending Robot Automation
+  evidence:
+  - quote: (Decimal Engineering Bending Robot Automation). D.E.B.R.A. is the Bystronic Xpert
+      40 Mobile Bending Robot.  She is capable of bending parts up to 40.5 inches
+    approx_offset: 54974
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0002
+  name: CNC 9-axis mill/turn centers
+  status: confirmed
+  acceptable_forms:
+  - CNC 9-Axis Mill/Turn Centers
+  - 9-axis Mill/Turn centers
+  - combination Mill/Turn centers
+  evidence:
+  - quote: CNC 9-Axis Mill/Turn Centers
+    approx_offset: 65891
+  - quote: variety of sophisticated equipment, including combination Mill/Turn centers which
+      have a combined 9-axis machining capability, these costs can be contained
+    approx_offset: 63354
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0003
+  name: CNC vertical milling centers
+  status: confirmed
+  acceptable_forms:
+  - CNC Vertical Milling Centers
+  - 3-axis vertical mills
+  evidence:
+  - quote: CNC Vertical Milling Centers
+    approx_offset: 66010
+  - quote: to offer a variety of work envelopes. Our 3-axis vertical mills are capable of
+      machining parts up to 60″ in length, 25″ in width, and 27″ in height, while
+    approx_offset: 63976
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0004
+  name: CNC horizontal milling centers
+  status: confirmed
+  acceptable_forms:
+  - CNC Horizontal Milling Centers (with multiple pallets)
+  - CNC Horizontal Milling Centers
+  - 4-axis horizontal mills
+  evidence:
+  - quote: length, 25″ in width, and 27″ in height, while our 4-axis horizontal mills have
+      a work envelope of 22″ x 20″ x 20″. Last but not least, are our 9-axis Mill/Turn
+    approx_offset: 64084
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0005
+  name: high-speed drill
+  status: disputed
+  acceptable_forms:
+  - High-speed drill.
+  evidence:
+  - quote: High-speed drill.
+    approx_offset: 65593
+  notes: 'DISPUTED: an image caption on the precision-machining page; ambiguous between a
+    drilling machine (equipment) and a drill bit (tooling, excluded) | ''High-speed drill.''
+    is a bare photo caption (line 152) with no surrounding context; it reads equally as a
+    drilling machine and as a high-speed drill bit, and a drill bit is tooling the machine
+    acts through, which the equipments clause excludes'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: '''High-speed drill.'' is a bare photo caption (line 152) with no surrounding
+      context; it reads equally as a drilling machine and as a high-speed drill bit, and a
+      drill bit is tooling the machine acts through, which the equipments clause excludes'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0007
+  name: CNC lathes with live tooling
+  status: candidate
+  acceptable_forms:
+  - CNC Lathes (with live tooling)
+  - CNC Lathes
+  evidence:
+  - quote: '**Bridgeport Mills CNC 9-Axis Mill/Turn Centers CNC Horizontal Milling Centers
+      (with multiple pallets):** CNC Lathes (with live tooling)'
+    approx_offset: 65872
+  notes: reanchored to the precision-machining Equipment table
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0006
+  name: Bridgeport mills
+  status: confirmed
+  acceptable_forms:
+  - Bridgeport Mills
+  evidence:
+  - quote: Bridgeport Mills
+    approx_offset: 65874
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0019
+  name: Bystronic ByStar 12,000 fiber laser
+  status: confirmed
+  acceptable_forms:
+  - Bystronic ByStar 12,000 Fiber Laser
+  - ByStar
+  - Bystronic Laser
+  - Fiber Laser Cutter
+  evidence:
+  - quote: Our New Bystronic ByStar 12,000 Fiber Laser Laser has a maximum power output of
+      12,000 watts and a cutting table that can accommodate sheets up to 120″ in length and
+      60″ in width.
+    approx_offset: 69867
+  - quote: better productivity. They also added the new pad to mount the 3,000 gallon AirAgas
+      tank to feed the Fiber Laser Cutter. This will also […]
+    approx_offset: 84174
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0027
+  name: chicken breast flattening machine
+  status: confirmed
+  acceptable_forms:
+  - Stainless Chicken Breast Flattening Machine
+  - Chicken Breast Flattening Machine
+  evidence:
+  - quote: Stainless Chicken Breast Flattening Machine
+    approx_offset: 101321
+  actor: client
+  notes: 'a food-production machine Decimal BUILT for a customer (album caption). Recall-first:
+    the text names a production machine, so it is an entry with actor client; it is simultaneously
+    a products entry'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-equipments-0028
+  name: Mitsubishi FX10
+  status: candidate
+  acceptable_forms:
+  - Mitsubishi FX10
+  evidence:
+  - quote: '**Equipment Used to Manufacture Part:** Mitsubishi FX10'
+    approx_offset: 10621
+  notes: Cross Pendant project highlights
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0029
+  name: hole popper EDM equipment
+  status: candidate
+  acceptable_forms:
+  - hole popper EDM equipment
+  evidence:
+  - quote: 'As a versatile manufacturer of precision components, at Decimal Engineering, Inc.
+      we offer electrical discharge machining using wire EDM and hole popper EDM equipment. '
+    approx_offset: 22349
+  notes: Wire EDM Services intro
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0030
+  name: Salvagini P2L-2520 automated panel bender
+  status: candidate
+  acceptable_forms:
+  - Salvagini P2L-2520
+  evidence:
+  - quote: Our Salvagini P2L-2520 automated panel bender, because of its innovative design,
+      allows us to bend in one piece
+    approx_offset: 28009
+  notes: Sheet Metal Fabrication
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0031
+  name: Virtek laser scanner
+  status: confirmed
+  acceptable_forms:
+  - Virtek
+  - laser scanner
+  evidence:
+  - quote: We also operate quality systems that are as equally advanced as our fabrication
+      equipment; one of these is our Virtek, a laser scanner.
+    approx_offset: 28972
+  notes: 'Sheet Metal Fabrication quality system; a laser-scanning measuring machine, excluded
+    from equipments by the metrology clause but kept here to match the legacy corpus''s device-name
+    placement -- see disputed status | UN-DISPUTED by user ruling 2026-09-02: metrology IS
+    in-field for equipments; the prompt''s measure/inspect/test exclusion is the defect, not
+    this entry.'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - date: '2026-09-02'
+    by: user ruling via assistant
+    action: disputed -> confirmed (metrology-in-equipments ruling)
+- id: decimal_net-equipments-0032
+  name: 2D/3D Laser (with load/unload)
+  status: candidate
+  acceptable_forms:
+  - 2D/3D Laser
+  evidence:
+  - quote: '**2D/3D Laser (with load/unload) Salvagini P2L-2520 Automated Panel Bender:**'
+    approx_offset: 31188
+  notes: Sheet Metal Fabrication Equipment table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0033
+  name: automated equipment
+  status: disputed
+  acceptable_forms:
+  - automated equipment
+  evidence:
+  - quote: Shortly thereafter, Garey updated his small business by purchasing some automated
+      equipment.
+    approx_offset: 34941
+  notes: About Decimal Engineering
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0034
+  name: Bystronic Beyeler CNC Press Brake
+  status: candidate
+  acceptable_forms:
+  - Bystronic Beyeler CNC Press Brake
+  evidence:
+  - quote: '**Mazak Laser Cutter Bystronic Beyeler CNC Press Brake:** Kitamura CNC Machining
+      Center'
+    approx_offset: 38846
+  notes: Locomotive project Equipment Used
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0035
+  name: Renishaw PH10M Probe
+  status: disputed
+  acceptable_forms:
+  - Renishaw PH10M Probe
+  evidence:
+  - quote: ' Renishaw PH10M Probe'
+    approx_offset: 40398
+  notes: Why Decimal page image caption
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0036
+  name: Salvagnini P2-L-2520
+  status: candidate
+  acceptable_forms:
+  - Salvagnini P2-L-2520
+  evidence:
+  - quote: '# After months and months of waiting our New Salvagnini P2-L-2520 is here and
+      boy it was worth the wait!!'
+    approx_offset: 54072
+  notes: News post headline
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0037
+  name: Bystronic Xpert 40 Mobile Bending Robot
+  status: candidate
+  acceptable_forms:
+  - Bystronic Xpert 40 Mobile Bending Robot
+  evidence:
+  - quote: D.E.B.R.A. is the Bystronic Xpert 40 Mobile Bending Robot.
+    approx_offset: 55022
+  notes: D.E.B.R.A. news post
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0038
+  name: Keyence IM-8000
+  status: candidate
+  acceptable_forms:
+  - Keyence IM-8000
+  evidence:
+  - quote: the purchase of The Keyence IM-8000. Quality Manager Curtis Wright said
+    approx_offset: 55804
+  notes: Quality department news post
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0039
+  name: Mitutoyo Bright A710 CMM
+  status: candidate
+  acceptable_forms:
+  - Mitutoyo Bright A710 CMM
+  evidence:
+  - quote: ' Mitutoyo Bright A710 CMM, Virtek Laser Scanning System, TESAHITE 700, Mitutoyo'
+    approx_offset: 55979
+  notes: Quality department news post (wrapped continuation line)
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0040
+  name: Virtek Laser Scanning System
+  status: disputed
+  acceptable_forms:
+  - Virtek Laser Scanning System
+  evidence:
+  - quote: ' Mitutoyo Bright A710 CMM, Virtek Laser Scanning System, TESAHITE 700, Mitutoyo'
+    approx_offset: 55979
+  notes: Quality department news post (wrapped continuation line)
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0041
+  name: TESAHITE 700
+  status: candidate
+  acceptable_forms:
+  - TESAHITE 700
+  evidence:
+  - quote: ' Mitutoyo Bright A710 CMM, Virtek Laser Scanning System, TESAHITE 700, Mitutoyo'
+    approx_offset: 55979
+  notes: Quality department news post (wrapped continuation line)
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0042
+  name: Mill/Turn centers
+  status: candidate
+  acceptable_forms:
+  - Mill/Turn centers
+  evidence:
+  - quote: However, by maintaining a variety of sophisticated equipment, including combination
+      Mill/Turn centers which have a combined 9-axis machining capability
+    approx_offset: 63328
+  notes: Precision Machining intro
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0043
+  name: CNC Lathes
+  status: candidate
+  acceptable_forms:
+  - CNC Lathes
+  evidence:
+  - quote: '**Bridgeport Mills CNC 9-Axis Mill/Turn Centers CNC Horizontal Milling Centers
+      (with multiple pallets):** CNC Lathes (with live tooling)'
+    approx_offset: 65872
+  notes: Precision Machining Equipment table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-equipments-0044
+  name: Mori Seiki NT3150 9-Axis Mill/Turn machine (Spray Shower project)
+  status: candidate
+  acceptable_forms:
+  - Mori Seiki NT3150
+  evidence:
+  - quote: '**Equipment Used to Manufacture Part:** Mori Seiki NT3150 9-Axis Mill/Turn machine'
+    approx_offset: 76629
+  notes: Spray Shower Tester project Equipment Used
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: CMM
+  reason: metrology - the equipment prompt excludes machines that only measure, inspect or
+    test the work
+- form: Coordinate Measuring Machine
+  reason: metrology, excluded by the equipment prompt
+- form: Virtek (Laser Scanner)
+  reason: a laser scanning MEASURING machine, excluded
+- form: Mitutoyo Surface Measurement System
+  reason: metrology, excluded
+- form: Mitutoyo PH-A14 Optical Comparator
+  reason: metrology, excluded
+- form: Optical Comparators
+  reason: metrology, excluded
+- form: Hardness Testers
+  reason: test equipment, excluded
+- form: Digital Height Gages
+  reason: metrology, excluded
+- form: Digital Micrometers & Calipers
+  reason: metrology, excluded
+- form: Master Gauge Blocks
+  reason: metrology, excluded
+- form: Carbide Ring Gages
+  reason: metrology, excluded
+- form: Deltronic Pins
+  reason: gage pins - metrology, excluded
+- form: Pull Testers
+  reason: test equipment, excluded
+- form: Slipstick
+  reason: an inspection gauge, excluded
+- form: Digital Microscope
+  reason: metrology, excluded
+- form: In-House Fixturing & Tooling
+  reason: tooling - what a machine holds or acts through, excluded by the equipment prompt
+- form: Live Tooling
+  reason: tooling, excluded
+- form: Compound Die
+  reason: a die is tooling, excluded
+- form: Wire EDM Fixture
+  reason: a fixture is tooling, excluded (and here an album part they MADE)
+- form: AirAgas tank
+  reason: a 3,000 gallon assist-gas tank - plant utility, excluded
+- form: Box Truck
+  reason: a delivery vehicle - moves what the plant makes, excluded
+- form: loading dock
+  reason: a facility, not a production machine
+- form: 19 position tower
+  reason: an automated material-retrieval and parts-storage tower - storage/handling, excluded
+- form: SolidWorks
+  reason: CAD software, not a machine
+- form: AutoCAD
+  reason: CAD software, not a machine
+- form: CAMWorks
+  reason: CAM software, not a machine
+- form: Edgecam
+  reason: CAM software, not a machine (the text has it only inside the fused cell 'EdgecamRadan')
+- form: Radan
+  reason: nesting software, not a machine (the text has it only inside the fused cell 'EdgecamRadan')
+- form: EdgecamRadan
+  reason: two CAM/nesting packages fused into one spec-table cell; software, not machines
+- form: Radbend
+  reason: bend-simulation software, not a machine
+- form: Autodesk Inventor
+  reason: CAD software listed under File Formats
+- form: CATIA
+  reason: CAD software listed under File Formats
+- form: Aluminum Espresso Machine Assembly Food
+  reason: a product they assembled, and an appliance rather than a production machine
+- form: Act Contact Manager
+  reason: not present in this text; anticipatory false friend carried from the CRM-software
+    pattern seen in other subjects
+- form: Tool Designer
+  reason: a job title ('Thanks to our Tool Designer, EDM operators, and Engineers') on the
+    Cross Pendant project page, not a machine

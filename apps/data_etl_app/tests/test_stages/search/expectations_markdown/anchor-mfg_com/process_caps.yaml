@@ -1,0 +1,1072 @@
+subject: anchor-mfg.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/anchor-mfg.com.txt
+  sha256: 3e85dd05ab75ae6deb3ff745a338b4cf9cb90484da8146f321b3f0ac99c91845
+eval_set_version: 3
+expected_empty: false
+notes: Very rich field - nearly all of it concentrated in the /capabilities-services/ list dump (offsets ~6500-8000).
+  Counter-pressure comes from the two T&C pages - a wrong-actor pump of contractual activity phrases (see false_friends;
+  per seeding direction the T&C junk pump is recorded there, including 'inspection', which occurs ONLY inside purchase-order
+  boilerplate). Bare section headings 'Assembly' and the tooling-type words 'Progressive' / 'Transfer' / 'Single
+  Hit' are defensible borderline returns but too generic/polysemous to require - seeded neither as entries nor as
+  false friends. VERIFIER 2026-08-26 - independent pass - all 31 entries confirmed, all 40 quotes verbatim. The
+  wrong-actor hypothesis was checked directly - NO entry's evidence lies inside either T&C page body; every quote
+  resolves to /capabilities-services/, /, /industries-served/ and its /Anchor/ duplicate, /careers/, /executive-team/
+  or /about-anchor-mfg/. The only T&C contact is the bare 'Tool & Die' string in entry 0024, and that is the copyright
+  footer, not clause text (see that entry's note). The 'inspection' false friend was re-verified independently -
+  every occurrence of inspect-anything in the file sits in purchasing clause 5. false_friend concern - 'engineering'
+  is contained in the accepted forms of entries 0027 ('engineering changes') and 0031 ('Engineering Design Support'),
+  so those returns would both satisfy recall and score as a false friend. Omissions noted but not added (adding
+  entries is out of scope for this pass) - laser cutting has no process entity although both laser lines are seeded
+  as equipment, and 'process control' from the defense prose is unseeded either way.
+entries:
+- id: anchor-mfg_com-process_caps-0031
+  name: Engineering Design Support
+  status: candidate
+  acceptable_forms:
+  - Engineering Product Development
+  evidence:
+  - quote: Anchor Engineering Product Development ensures your component’s design is optimal
+    approx_offset: 9970
+  notes: '''Complete Engineering Design Support from Concept Through Launch'' bullet is gone (the about page was
+    fully rewritten with no bullet list); the new advance-engineering page carries the same service under a different
+    name, ''Anchor Engineering Product Development'' -- judgment call to keep this as the same entity since it is
+    the same design-support-through-launch service, just renamed and moved to its own page'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0030
+  name: Deep Draw
+  status: candidate
+  acceptable_forms:
+  - deep-draw
+  - Deep Draw
+  evidence:
+  - quote: tooling portfolio—spanning progressive, transfer, single-hit, and deep-draw dies—is designed
+    approx_offset: 12027
+  notes: the old tooling-type list line 'Types of Tooling Include - Progressive, Transfer, Single Hit, Deep Draw'
+    is gone, replaced by prose on the design-and-tooling page; the new text hyphenates it 'deep-draw' (not 'Deep
+    Draw' with a space), so added the hyphenated form -- the old space-separated form would not match as a whole
+    word against the hyphenated text
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0025
+  name: Die Design
+  status: candidate
+  acceptable_forms:
+  - die designs
+  - designs
+  evidence:
+  - quote: developing die designs that not only guarantee quality but also minimize manufacturing cost
+    approx_offset: 12659
+  notes: the itemized Tool & Die capability list (Die Design / New Die Construction / Major Engineering Changes
+    / Die Repair-Refurbish / Die Adaptation) is gone entirely from the redesigned design-and-tooling page; only
+    generic prose about 'die designs' (plural) survives -- reanchored this one narrowly on that plural form since
+    singular 'Die Design'/'design' alone would be far too broad
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0016
+  name: Prototype Fabrication
+  status: candidate
+  acceptable_forms:
+  - prototyping
+  - prototype creation
+  evidence:
+  - quote: advanced product development and prototyping
+    approx_offset: 15887
+  notes: '''prototype fabrication to mass production'' is gone (no ''mass production'' anywhere); the about page
+    now says ''advanced product development and prototyping'', and the advance-engineering page separately says
+    ''Anchor offers prototype creation''. Re-anchored on ''prototyping'' as the more distinctive surviving form;
+    kept the entity as the general prototyping capability rather than splitting it'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0003
+  name: Welding
+  status: confirmed
+  acceptable_forms:
+  - Welding
+  evidence:
+  - quote: Welding
+    approx_offset: 17534
+  notes: section heading for the weld-cell capability block; the specific modes are separate entries below - a bare
+    'welding' return still covers this entity
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0001
+  name: Metal Stamping
+  status: confirmed
+  acceptable_forms:
+  - Metal Stamping
+  - stamping
+  - metal stamper
+  evidence:
+  - quote: Metal Stamping
+    approx_offset: 17566
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0020
+  name: Powder Coating
+  status: confirmed
+  acceptable_forms:
+  - Powder Coating
+  - powder coating
+  evidence:
+  - quote: Powder Coating
+    approx_offset: 20501
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0015
+  name: Fabricating
+  status: candidate
+  acceptable_forms:
+  - fabrication
+  - Fabrication
+  evidence:
+  - quote: Anchor has a sheet metal fabrication group focused exclusively on low to mid volume sheet metal fabrication.
+    approx_offset: 24113
+  notes: bare 'Fabricating' gerund is gone but 'fabrication' (the noun) is everywhere, including a whole page dedicated
+    to it
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0005
+  name: MIG Welding
+  status: candidate
+  acceptable_forms:
+  - MIG
+  - Mig
+  evidence:
+  - quote: Assembly is performed using both robotic and manual MIG, TIG and laser welding.
+    approx_offset: 24339
+  notes: fabrication page explicitly names both robotic and manual MIG welding
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0006
+  name: TIG Welding
+  status: candidate
+  acceptable_forms:
+  - TIG
+  evidence:
+  - quote: Assembly is performed using both robotic and manual MIG, TIG and laser welding.
+    approx_offset: 24339
+  notes: same manual/robotic MIG+TIG sentence as 0005
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0024
+  name: Tool & Die
+  status: confirmed
+  acceptable_forms:
+  - Tool & Die
+  - tool and die
+  evidence:
+  - quote: Tool & Die
+    approx_offset: 25136
+  notes: the bare 'Tool & Die' string also matches the copyright footer ('Anchor Tool & Die Co.', 15 pages) - the
+    capability heading at offset 7798 and the home prose are the genuine designations; window location by string
+    match must tolerate the footer collisions VERIFIER 2026-08-26 - evidence hazard - the bare 'Tool & Die' quote
+    occurs 17 times (15 copyright footers plus clause 1 of both T&C pages) in addition to the capabilities heading,
+    so under window-scoped recall this entry is in scope for every window in the file, including the two T&C pages
+    that contain no capability text; the discriminating evidence is the home-page prose quote.
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-anchor-mfg
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0004
+  name: Robotic Spot Welding
+  status: candidate
+  acceptable_forms:
+  - Spot
+  evidence:
+  - quote: MIG, TIG, Cold Metal Transfer, Laser, Spot, Resistance and Drawn Arc
+    approx_offset: 35807
+  notes: '''Robotic Spot & Mig Welding'' as a compound line is gone; ''Spot'' survives as one weld mode in the welding-page/assembly-page
+    process list (''...Laser, Spot, Resistance and Drawn Arc''); dropped the old compound and ''spot welding'' forms
+    since neither occurs verbatim now'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0007
+  name: Drawn Arc Welding
+  status: candidate
+  acceptable_forms:
+  - Drawn Arc
+  evidence:
+  - quote: MIG, TIG, Cold Metal Transfer, Laser, Spot, Resistance and Drawn Arc
+    approx_offset: 35807
+  notes: '''Drawn Arc Welding'' compound is gone; bare ''Drawn Arc'' survives as the last item in the welding-type
+    list'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0008
+  name: Resistance Welding
+  status: candidate
+  acceptable_forms:
+  - Resistance
+  evidence:
+  - quote: MIG, TIG, Cold Metal Transfer, Laser, Spot, Resistance and Drawn Arc
+    approx_offset: 35807
+  notes: '''Resistance Welding'' compound is gone; bare ''Resistance'' survives as a weld-type list item'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0009
+  name: Riveting
+  status: candidate
+  acceptable_forms:
+  - riveting
+  - orbital riveting
+  evidence:
+  - quote: conventional and orbital riveting, staking, toggle lock, industrial adhesives
+    approx_offset: 35935
+  notes: '''Conventional & Orbital Riveting'' list line replaced by a comma-run sentence; ''riveting'' and ''orbital
+    riveting'' both survive as substrings of it'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0010
+  name: Staking
+  status: candidate
+  acceptable_forms:
+  - staking
+  evidence:
+  - quote: conventional and orbital riveting, staking, toggle lock, industrial adhesives
+    approx_offset: 35935
+  notes: same comma-run sentence; 'staking' survives lower-case
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0011
+  name: Toggle Lock
+  status: candidate
+  acceptable_forms:
+  - toggle lock
+  evidence:
+  - quote: conventional and orbital riveting, staking, toggle lock, industrial adhesives
+    approx_offset: 35935
+  notes: same comma-run sentence; 'toggle lock' survives lower-case
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0012
+  name: Automated Tapping
+  status: candidate
+  acceptable_forms:
+  - automated tapping
+  - tapping
+  evidence:
+  - quote: automated tapping, manual component assembly and in-press assembly of studs and nuts.
+    approx_offset: 36014
+  notes: '''Automated Tapping'' list line replaced by comma-run sentence; ''automated tapping'' survives lower-case'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0013
+  name: Manual Component Assembly
+  status: candidate
+  acceptable_forms:
+  - manual component assembly
+  - component assembly
+  evidence:
+  - quote: automated tapping, manual component assembly and in-press assembly of studs and nuts.
+    approx_offset: 36014
+  notes: same sentence; 'manual component assembly' survives lower-case
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0014
+  name: In-press Assembly
+  status: candidate
+  acceptable_forms:
+  - in-press assembly
+  evidence:
+  - quote: automated tapping, manual component assembly and in-press assembly of studs and nuts.
+    approx_offset: 36014
+  notes: '''In-press Assembly (Studs, Nuts)'' list line replaced; ''in-press assembly of studs and nuts'' survives
+    lower-case, parenthetical dropped'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0018
+  name: CNC Machining
+  status: candidate
+  acceptable_forms:
+  - Machining
+  - machining
+  evidence:
+  - quote: Precision Machining Capabilities
+    approx_offset: 36724
+  notes: '''CNC Machining'' compound is gone; ''machining'' survives as its own heading/section on the assembly-and-automation
+    page (''Precision Machining Capabilities'', ''expertise machining mid to high volume parts'')'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0022
+  name: Seven Stage Iron Phosphate Wash
+  status: candidate
+  acceptable_forms:
+  - Seven Stage Iron Phosphate Wash
+  - iron phosphate wash
+  evidence:
+  - quote: continuous seven stage iron phosphate wash line
+    approx_offset: 39421
+  notes: verbatim capitalized line is gone but the lower-case acceptable_form 'iron phosphate wash' already survives
+    inside the rewritten sentence, unchanged in substance
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0021
+  name: Automated Powder Spraying
+  status: candidate
+  acceptable_forms:
+  - powder coat spray
+  - spray
+  evidence:
+  - quote: automatic powder coat spray guns
+    approx_offset: 39473
+  notes: '''Automated Powder Spraying'' list line is gone; the powder-coating page now describes ''automatic powder
+    coat spray guns'' in prose -- same operation, reworded'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0023
+  name: Salt Spray Testing
+  status: candidate
+  acceptable_forms:
+  - Salt Spray Capability
+  - salt spray
+  evidence:
+  - quote: up to 1,200 hours salt spray protection
+    approx_offset: 39621
+  notes: '''Salt Spray Capability– up to 1,200 Hours'' spec line is gone; ''salt spray'' survives lower-case in
+    the rewritten powder-coating paragraph (''up to 1,200 hours salt spray protection'')'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0002
+  name: Metal Forming
+  status: retired
+  acceptable_forms:
+  - metal forming
+  evidence:
+  - quote: As a metal stamper, our metal forming capabilities
+  notes: 'retired at the markdown cutover: searched ''metal forming'', ''forming capabilities'', ''metal former''
+    -- zero hits anywhere in the file. The site now describes the same general capability only as ''stamping''/''metal
+    stamping'' (e.g. line 322 ''Anchor''s Stamping Capabilities''), which is a different, already-distinct entity
+    in this corpus; re-anchoring ''Metal Forming'' onto it would just duplicate that entry rather than recover this
+    one, so retiring instead.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0017
+  name: Shearing
+  status: retired
+  acceptable_forms:
+  - Shearing
+  - Material Shear
+  evidence:
+  - quote: Shearing Capabilities up to 1/8” x 12’
+  notes: 'retired at the markdown cutover: grepped ''shear''/''Shear'' case-insensitively across the whole 561-line
+    file: zero hits. The stamping page''s equipment list no longer mentions a shear at all (it lists presses, bed
+    size, coil feed width, servo transfer, tandem line, secondary presses -- no shear line survived the CMS move).
+    Genuinely absent, not just reworded.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0019
+  name: Milling
+  status: retired
+  acceptable_forms:
+  - Milling Machines / Vertical Mills
+  - milling
+  evidence:
+  - quote: Milling Machines / Vertical Mills
+  notes: 'retired at the markdown cutover: grepped ''mill''/''Mill''/''vertical'' case-insensitively: zero hits
+    anywhere in the file. The equipment section that used to carry ''Milling Machines / Vertical Mills'' is gone
+    from the stamping page''s new equipment list (presses/bed size/coil feed/servo transfer/tandem line only). Genuinely
+    absent.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0026
+  name: New Die Construction
+  status: retired
+  acceptable_forms:
+  - New Die Construction
+  - die construction
+  evidence:
+  - quote: New Die Construction
+  notes: 'retired at the markdown cutover: searched ''die construction'', ''construction'' (as a process), ''new
+    die''. ''construction'' occurs three times in the new text but only ever as the industry SECTOR (''Construction
+    & Solar'' heading, ''the construction industry'', ''construction products'') -- never paired with ''die''. The
+    old itemized Tool & Die list this entry came from is entirely gone from the rewritten design-and-tooling page.
+    Genuinely absent as a capability designation.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0027
+  name: Major Engineering Changes
+  status: retired
+  acceptable_forms:
+  - Major Engineering Changes
+  - engineering changes
+  evidence:
+  - quote: Major Engineering Changes
+  notes: 'retired at the markdown cutover: searched ''engineering changes''. ''engineering'' occurs 5 times and
+    ''change''/''changes'' occurs 3 times in the new text, but never adjacent -- the occurrences are ''Advance Engineering''
+    (a page title), ''Engineering Product Development'', ''Engineering involvement'', vs. ''changes made to your
+    benefits'', ''appropriate changes made based on the fluctuation of material prices'' (T&C clause 14, renumbered
+    from the legacy clause 11(b)), and ''rapid changeover''. Neither the Tool & Die list occurrence nor the T&C
+    occurrence of ''engineering changes'' survived the rewrite.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0028
+  name: Die Repair / Refurbish
+  status: retired
+  acceptable_forms:
+  - Repair / Refurbish
+  - die repair
+  - refurbish
+  evidence:
+  - quote: Repair / Refurbish
+  notes: 'retired at the markdown cutover: searched ''repair'', ''refurbish''. ''refurbish'' has zero hits. ''repair''
+    occurs exactly once, inside the customer-portal warranty clause 4 (''Seller will, at its option, repair or replace
+    any goods which fail to meet the warranties'') -- boilerplate seller-warranty language, not a Tool & Die capability
+    designation, and the same polyseme the original seed note already flagged as NOT this entity. The Tool & Die
+    list occurrence this entry was seeded from is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0029
+  name: Die Adaptation
+  status: retired
+  acceptable_forms:
+  - Die Adaptation
+  evidence:
+  - quote: Die Adaptation
+  notes: 'retired at the markdown cutover: searched ''adapt'', ''adaptation'': zero hits anywhere in the file. The
+    Tool & Die itemized list this entry came from is entirely gone from the rewritten design-and-tooling page.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-process_caps-0032
+  name: fabrication
+  status: candidate
+  acceptable_forms:
+  - fabrication
+  - fabricated
+  evidence:
+  - quote: Anchor also supplies lower volume fabricated metal parts and assemblies in a dedicated metal fabrication
+      facility
+    approx_offset: 1274
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0033
+  name: testing
+  status: candidate
+  acceptable_forms:
+  - testing
+  evidence:
+  - quote: Anchor offers prototype creation, rigorous testing, and iterative improvements to ensure every design
+      surpasses expectations.
+    approx_offset: 8953
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0034
+  name: additive manufacturing
+  status: candidate
+  acceptable_forms:
+  - additive manufacturing
+  evidence:
+  - quote: Simulation-driven design, additive manufacturing, and automated systems are used to achieve success.
+    approx_offset: 9079
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0035
+  name: progressive die stamping
+  status: candidate
+  acceptable_forms:
+  - progressive
+  evidence:
+  - quote: Our comprehensive tooling portfolio—spanning progressive, transfer, single-hit, and deep-draw dies—is
+      designed to address diverse manufacturing demands
+    approx_offset: 12009
+  notes: named via 'progressive ... dies' in the tooling-portfolio sentence
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0036
+  name: deep drawing
+  status: candidate
+  acceptable_forms:
+  - deep-draw
+  evidence:
+  - quote: Our comprehensive tooling portfolio—spanning progressive, transfer, single-hit, and deep-draw dies—is
+      designed to address diverse manufacturing demands
+    approx_offset: 12009
+  notes: named via 'deep-draw dies'; matcher folds the non-breaking hyphen
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0037
+  name: stamping
+  status: candidate
+  acceptable_forms:
+  - Stamping
+  evidence:
+  - quote: '### Anchor''s Stamping Capabilities'
+    approx_offset: 18318
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0038
+  name: transfer process
+  status: candidate
+  acceptable_forms:
+  - transfer processes
+  evidence:
+  - quote: Equipment includes a combination of high-speed presses and progressive dies as well as automated and
+      manual transfer processes to provide the most cost-effective
+    approx_offset: 18436
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0039
+  name: inspection
+  status: candidate
+  acceptable_forms:
+  - inspection
+  evidence:
+  - quote: Our comprehensive quality processes include tool validation, testing, and inspection to ensure that each
+      product meets the highest industry standards.
+    approx_offset: 21471
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0040
+  name: tool validation
+  status: candidate
+  acceptable_forms:
+  - tool validation
+  evidence:
+  - quote: Our comprehensive quality processes include tool validation, testing, and inspection to ensure that each
+      product meets the highest industry standards.
+    approx_offset: 21471
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0041
+  name: CMM inspection
+  status: candidate
+  acceptable_forms:
+  - CMM
+  evidence:
+  - quote: '- LK G90-C CMM'
+    approx_offset: 21737
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0042
+  name: tensile testing
+  status: candidate
+  acceptable_forms:
+  - Tensile Testers
+  evidence:
+  - quote: '- Large & Small Tensile Testers Contact Our Sales Team'
+    approx_offset: 21839
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0043
+  name: laser cutting
+  status: candidate
+  acceptable_forms:
+  - laser cutting
+  evidence:
+  - quote: Manufacturing processes use laser cutting, turret punching, CNC multi-axis press brakes and CNC 7 axis
+      press brakes.
+    approx_offset: 24222
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0044
+  name: turret punching
+  status: candidate
+  acceptable_forms:
+  - turret punching
+  evidence:
+  - quote: Manufacturing processes use laser cutting, turret punching, CNC multi-axis press brakes and CNC 7 axis
+      press brakes.
+    approx_offset: 24222
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0045
+  name: assembly
+  status: candidate
+  acceptable_forms:
+  - Assembly
+  evidence:
+  - quote: '# Assembly & Automation'
+    approx_offset: 35278
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0046
+  name: vision inspection
+  status: candidate
+  acceptable_forms:
+  - vision systems
+  evidence:
+  - quote: These include the extensive use of robots, collaborative robots, proprietary assembly cells, 100% in
+      line measurements, vision systems and Artificial Intelligence.
+    approx_offset: 35422
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0047
+  name: in-line measurement
+  status: candidate
+  acceptable_forms:
+  - measurements
+  evidence:
+  - quote: These include the extensive use of robots, collaborative robots, proprietary assembly cells, 100% in
+      line measurements, vision systems and Artificial Intelligence.
+    approx_offset: 35422
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0048
+  name: Cold Metal Transfer welding
+  status: candidate
+  acceptable_forms:
+  - Cold Metal Transfer
+  evidence:
+  - quote: These processes include all types of welding including MIG, TIG, Cold Metal Transfer, Laser, Spot, Resistance
+      and Drawn Arc.
+    approx_offset: 35752
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0049
+  name: laser welding
+  status: candidate
+  acceptable_forms:
+  - Laser
+  evidence:
+  - quote: These processes include all types of welding including MIG, TIG, Cold Metal Transfer, Laser, Spot, Resistance
+      and Drawn Arc.
+    approx_offset: 35752
+  notes: listed among welding types; laser cutting is a separate entity at line439
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0050
+  name: Spot welding
+  status: candidate
+  acceptable_forms:
+  - Spot
+  evidence:
+  - quote: These processes include all types of welding including MIG, TIG, Cold Metal Transfer, Laser, Spot, Resistance
+      and Drawn Arc.
+    approx_offset: 35752
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0051
+  name: part insertion
+  status: candidate
+  acceptable_forms:
+  - part insertion
+  evidence:
+  - quote: Assembly processes also include automated part insertion, conventional and orbital riveting, staking,
+      toggle lock, industrial adhesives,
+    approx_offset: 35877
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0052
+  name: tapping
+  status: candidate
+  acceptable_forms:
+  - tapping
+  evidence:
+  - quote: automated tapping, manual component assembly and in-press assembly of studs and nuts.
+    approx_offset: 36014
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0053
+  name: machining
+  status: candidate
+  acceptable_forms:
+  - machining
+  evidence:
+  - quote: Anchor has many years of expertise machining mid to high volume parts inside of the assembly cells.
+    approx_offset: 36758
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0054
+  name: E-Coating
+  status: candidate
+  acceptable_forms:
+  - E-Coating
+  evidence:
+  - quote: '#### E-Coating, Anodizing & Other Coating Processes'
+    approx_offset: 40735
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0055
+  name: Anodizing
+  status: candidate
+  acceptable_forms:
+  - Anodizing
+  - anodizing
+  evidence:
+  - quote: '#### E-Coating, Anodizing & Other Coating Processes'
+    approx_offset: 40735
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-process_caps-0056
+  name: plating
+  status: candidate
+  acceptable_forms:
+  - plating
+  evidence:
+  - quote: Anchor also is very close to suppliers of anodizing, plating and other coating processes.
+    approx_offset: 40898
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: supplier quality assurance system
+  reason: wrong actor - 'Seller will provide and maintain a supplier quality assurance system approved by Purchaser'
+    obligates Anchor's suppliers, not Anchor
+- form: delivery
+  reason: T&C logistics clauses plus the service-values marketing list ('quality, service, program management, efficiency,
+    and delivery') - business activity (Z), never an operation on the work
+- form: packing
+  reason: T&C clause 'PACKING, MARKING AND SHIPMENT' - supplier logistics obligation, not a capability
+- form: marking
+  reason: same T&C clause ('pack and mark goods') - supplier logistics obligation
+- form: shipment
+  reason: T&C logistics boilerplate
+- form: shipping
+  reason: T&C logistics ('including shipping on Saturdays and holidays, when requested') - supplier obligation
+- form: transportation
+  reason: T&C routing-instruction clauses - logistics, wrong actor
+- form: insurance
+  reason: T&C clause 10 - legal/insurance obligation (Z)
+- form: indemnification
+  reason: T&C clause 10(b) - legal activity (Z)
+- form: warranty
+  reason: warranty clauses in both T&C documents - legal boilerplate (Z)
+- form: termination
+  reason: T&C clause 19 - contractual/legal activity
+- form: cancellation
+  reason: T&C clause 20 'CANCELLATION FOR DEFAULT' - contractual activity
+- form: assignment
+  reason: T&C clause 18 - contractual activity
+- form: customs
+  reason: T&C clause 13 - import/export compliance activity, wrong actor
+- form: labor disputes
+  reason: T&C clause 6 - HR/legal contingency clause
+- form: purchasing
+  reason: doc title 'PRODUCTION/TOOL PURCHASING' and T&C context - Anchor's procurement, a business activity (Z)
+- form: quotation
+  reason: doc title 'QUOTATION/ACKNOWLEDGEMENT TERMS AND CONDITIONS' - sales paperwork, not an operation
+- form: payment
+  reason: T&C payment/credit clauses - business activity
+- form: claims adjustment
+  reason: T&C clause 12 heading - legal/accounting activity
+- form: installation
+  reason: T&C clause 16 ('installation, servicing or maintenance of equipment' performed by suppliers inside Anchor
+    facilities) - code I trap, wrong actor
+- form: maintenance
+  reason: named only as an internal department in the CEO bio and in T&C clause 16 supplier context - never a maintenance-service
+    capability claim
+- form: program management
+  reason: service-values marketing list - business activity (Z)
+- form: production
+  reason: generic (G) - 'mass production', 'bring them into production'
+- form: manufacturing
+  reason: generic (G) - own name and 'manufacturing space'
+- form: training
+  reason: HR benefit ('additional training') and award subject ('safety, training and technology') - Z
+- form: compliance
+  reason: CSR/legal boilerplate ('Compliance with legal and ethical standards', 'REQUIRED COMPLIANCE' clause) -
+    Z/G
+- form: forced labor
+  reason: CSR code-of-conduct heading - policy topic, not an operation
+- form: child labor
+  reason: CSR code-of-conduct heading - policy topic, not an operation
+- form: repair or replace
+  reason: seller-T&C warranty remedy ('repair or replace any goods which fail to meet the warranties') - legal remedy
+    language, distinct from the Tool & Die 'Repair / Refurbish' capability (entry 0028)
+- form: engineering
+  reason: bare form appears as a department ('engineering departments') and a degree ('Engineering degree from Cornell')
+    - generic without the design-support or die-change qualifiers (entries 0027/0031 carry the real designations)

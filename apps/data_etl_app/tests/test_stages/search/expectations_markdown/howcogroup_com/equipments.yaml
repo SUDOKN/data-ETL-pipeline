@@ -1,0 +1,831 @@
+subject: howcogroup.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
+  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+eval_set_version: 2
+expected_empty: false
+entries:
+- id: howcogroup_com-equipments-0001
+  name: SLM 500 metal 3D printer
+  status: confirmed
+  acceptable_forms:
+  - SLM500
+  - SLM 500
+  evidence:
+  - quote: SLM500
+    approx_offset: 94542
+  - quote: large build envelope of 500 x 280 x 365 mm, the SLM 500 allows you to create large, complex and intricate
+      parts with ease. Its high-quality laser beam and
+    approx_offset: 94668
+  notes: a laser powder-bed-fusion printer at Howco AM Houston; four lasers, 500 x 280 x 365 mm build envelope.
+    The text prints it both closed-up ('SLM500') and spaced ('SLM 500')
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0002
+  name: SLM 280 metal 3D printer
+  status: confirmed
+  acceptable_forms:
+  - SLM280
+  - SLM 280
+  evidence:
+  - quote: SLM280
+    approx_offset: 95111
+  - quote: The SLM 280 is a dual laser machine offers high productivity with automatic sieving. The automatic
+    approx_offset: 95160
+  notes: 'TRAP: this is a MACHINE MODEL NAME, and the only correct field for it. The old pipeline additionally minted
+    the process ''Selective Laser Melting'' and a product from it; neither is in the text'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0003
+  name: CNC machines
+  status: confirmed
+  acceptable_forms:
+  - CNC machines
+  - CNC machinery
+  - machine tools
+  - CNC machine
+  evidence:
+  - quote: A typical day in my role involves setting up and operating CNC machines with the professional shadowing
+      me, performing maintenance
+    approx_offset: 60295
+  - quote: Howco’s global first stage machining capabilities utilise both conventional and CNC machinery. Our worldwide
+      resources offer capacities up to
+    approx_offset: 57801
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0004
+  name: horizontal CNC turning centres
+  status: confirmed
+  acceptable_forms:
+  - Horizontal and Vertical CNC Turning Centres
+  - Horizontal CNC Turning Centres
+  evidence:
+  - quote: delighted to confirm the addition of two new state-of-the-art Horizontal and Vertical CNC Turning Centres
+      at our Bredbury site. This significant investment is
+    approx_offset: 277526
+  notes: 'Bredbury, May 2025. NOTE: the dedicated article for this at /news/new-horizontal-and-vertical-cnc-turning-centres-now-in-operation-at-bredbury/
+    was mis-scraped and returns the Dubai party post instead, so this headline+teaser is the ONLY evidence in the
+    file'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: the single acceptable form was listed TWICE (the only mechanical defect the packet-wide check found).
+      Deduplicated, and the horizontal-only spelling added so a model that splits the compound can still credit.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0005
+  name: band saws
+  status: confirmed
+  acceptable_forms:
+  - band saws
+  - band sawing
+  - high technology saws
+  - saws
+  evidence:
+  - quote: to cut metal materials. Technological advancements have equipped band saws with superior blades that
+      have led to increased production rates and blade life.
+    approx_offset: 53626
+  - quote: Howco’s global investment in high technology saws and the latest blade technology coupled with our global
+    approx_offset: 53783
+  notes: cutting range 12.7mm to 1300mm diameter; automatic and lights-out operation
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0006
+  name: spray booths
+  status: disputed
+  acceptable_forms:
+  - X 2 medium spray booths
+  - X 1 Large spray booth
+  - spray booths
+  - spray booth
+  evidence:
+  - quote: X 2 medium spray booths
+    approx_offset: 65604
+  - quote: X 1 Large spray booth
+    approx_offset: 65630
+  notes: 'DISPUTED under the equipments clause: a booth is an ENCLOSURE that conditions the working environment;
+    the spray gun, not the booth, acts on the work. Kept on the record because the coating-facility list reads as
+    an equipment inventory. The operation itself is seeded under process_caps as ''spray painting'' | a spray booth
+    is a ventilated ENCLOSURE in which a person sprays (''Spray painters I Cats trained''), not a device that acts
+    on the work; it sits with the plant-conditioning exclusion rather than with the machines. The coating operation
+    itself is correctly held by process_caps-0014.'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    reason: a spray booth is a ventilated ENCLOSURE in which a person sprays ('Spray painters I Cats trained'),
+      not a device that acts on the work; it sits with the plant-conditioning exclusion rather than with the machines.
+      The coating operation itself is correctly held by process_caps-0014.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0007
+  name: shot blasting chamber
+  status: confirmed
+  acceptable_forms:
+  - Large shot blasting chamber
+  - shot blasting chamber
+  evidence:
+  - quote: Large shot blasting chamber
+    approx_offset: 65686
+  notes: a blast chamber acts on the work (it strips and profiles the surface), so it is kept as a production machine
+    rather than as a plant enclosure
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0008
+  name: alkaline degreasing equipment
+  status: confirmed
+  acceptable_forms:
+  - Alkaline degreasing equipment
+  evidence:
+  - quote: Alkaline degreasing equipment
+    approx_offset: 65716
+  notes: acts on the work by cleaning it before coating
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0009
+  name: curing and pre-heat ovens
+  status: confirmed
+  acceptable_forms:
+  - 5 curing ovens
+  - 2 pre-heat ovens
+  - curing ovens
+  - pre-heat ovens
+  evidence:
+  - quote: 5 curing ovens
+    approx_offset: 65772
+  - quote: 2 pre-heat ovens
+    approx_offset: 65789
+  notes: Irvine coating facility
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0010
+  name: compact and vertical cladding systems
+  status: confirmed
+  acceptable_forms:
+  - COMPACT & VERTICAL CLADDING SYSTEMS
+  - Cladding Systems
+  evidence:
+  - quote: The Cladding Systems of our established supply chain partners are designed to perform fully-automated
+      GTAW
+    approx_offset: 85645
+  actor: supplier
+  notes: explicitly 'The Cladding Systems of our established supply chain partners' - a machine the text names but
+    Howco does not own
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0011
+  name: butt welding stations
+  status: confirmed
+  acceptable_forms:
+  - Butt Welding Stations
+  - BUTT WELDING STATIONS
+  evidence:
+  - quote: Modern Butt Welding Stations are designed to perform automated GTAW butt Welds. The use of automation
+      gives improved
+    approx_offset: 85909
+  actor: unknown
+  notes: same Welding & Cladding page as the partner-owned cladding systems
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0012
+  name: post weld heat treatment / stress relieving ovens
+  status: confirmed
+  acceptable_forms:
+  - Stress Relieving ovens
+  - Post Weld Heat Treatment & Stress Relieving ovens
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment of welded
+      components
+    approx_offset: 86117
+  actor: unknown
+  notes: on the Welding & Cladding page, whose systems are attributed to supply chain partners
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0013
+  name: metal 3D printers
+  status: confirmed
+  acceptable_forms:
+  - 3D printers
+  evidence:
+  - quote: See our 3D printers, furnace and CNC machine in operation. Follow the journey of components from digital
+    approx_offset: 76225
+  notes: only the plural 'printers' occurs; a returned singular '3D printer' will not word-boundary match
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0014
+  name: deep hole drilling machines
+  status: confirmed
+  acceptable_forms:
+  - Deep Hole Drilling machines
+  - deep hole boring and honing machines
+  evidence:
+  - quote: Deep Hole Drilling machines – 18
+    approx_offset: 64074
+  - quote: This cutting-edge machine complements the four existing deep hole boring and honing machines already
+      in operation at the Singapore site, creating
+    approx_offset: 291832
+  notes: a fleet count of 18 worldwide on the deep-hole-boring page
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0015
+  name: heat treatment furnaces
+  status: confirmed
+  acceptable_forms:
+  - energy efficient furnaces
+  - Various sized furnaces
+  - furnaces
+  - furnace
+  evidence:
+  - quote: We utilise energy efficient furnaces, maintaining tight quality control over the heat treatment
+    approx_offset: 106754
+  notes: a furnace acts on the work (it heat-treats it), so it is a production machine here rather than plant conditioning
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0016
+  name: vertical and horizontal borers
+  status: confirmed
+  acceptable_forms:
+  - Vertical Borers and Horizontal Borers
+  - Vertical Borers
+  - Horizontal Borers
+  - vertical borers
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated team of
+      machinists
+    approx_offset: 73230
+  - quote: Vertical borers are high precision, specialist lathes. They boast an impressive machining capacity, are
+    approx_offset: 349708
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0017
+  name: Millturns
+  status: confirmed
+  acceptable_forms:
+  - Millturn’s
+  - Millturn
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated
+    approx_offset: 73230
+  notes: printed with a curly apostrophe as 'Millturn's'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0018
+  name: G-M HVF 101-XB vacuum furnace
+  status: confirmed
+  acceptable_forms:
+  - HVF 101-XB
+  - HVF 101-xb
+  - G-M model HVF 101-XB
+  - Horizontal front loading vacuum furnace
+  evidence:
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress relief, solution
+      annealing and age hardening.
+    approx_offset: 47995
+  notes: 'Howco AM Houston. CASING VARIES: ''-XB'' at 5147, ''-xb'' at 5149 and twice at 5151. Its brochure copy
+    (5151) is the source of the stray automotive/medical-device industry claims'
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0019
+  name: 4 metre deep hole boring machine
+  status: confirmed
+  acceptable_forms:
+  - 4 Metre Deep Hole Boring Machine
+  - Deep Hole Boring Machine
+  - 4m Deep Hole Borer
+  evidence:
+  - quote: The new 4m Deep Hole Borer is a highly specialised machine designed to drill deep, precise bores through
+    approx_offset: 291476
+  notes: installed at Singapore May 2025; 30kW spindle motor, 4000mm max bore length
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0020
+  name: vertical CNC turning centres
+  status: confirmed
+  acceptable_forms:
+  - Vertical CNC Turning Centres
+  - Vertical CNC Turning Centre
+  - vertical turning lathes
+  - VTLs
+  evidence:
+  - quote: manufacturing capabilities, we’ve invested over £1 million in two state-of-the-art Vertical CNC Turning
+      Centres. The ‘You Ji’ machines were supplied by TDT Machine
+    approx_offset: 348903
+  - quote: Also known as vertical borers or vertical turning lathes (VTLs), these state-of-the-art turning centres
+      will
+    approx_offset: 349131
+  notes: two 'You Ji' machines supplied by TDT Machine Tools Ltd, installed at Irvine 2024; 1.8m vertical borers
+    with C axis drives
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0021
+  name: lathes (horizontal and vertical)
+  status: candidate
+  acceptable_forms:
+  - vertical lathe
+  - horizontal lathe
+  - lathes
+  evidence:
+  - quote: machining capability. A point of difference between a horizontal lathe and a vertical lathe is that the
+      vertical orientation allows gravity to assist in securely holding the
+    approx_offset: 349262
+  notes: production machines that act on the work. equipments-0016 and -0020 cover 'borers' and 'turning centres'
+    but no form of either contains 'lathe' except 'vertical turning lathes', which does not contain 'vertical lathe',
+    so these surface forms credit nothing today.
+  provenance:
+  - action: added
+    by: verify-agent-howcogroup
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: howcogroup_com-equipments-0022
+  name: HVF 101-XB Horizontal front loading vacuum furnace
+  status: candidate
+  acceptable_forms:
+  - HVF 101-XB
+  - vacuum furnace
+  evidence:
+  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress relief, solution
+      annealing and age hardening.
+    approx_offset: 47995
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0023
+  name: medium spray booths
+  status: candidate
+  acceptable_forms:
+  - spray booths
+  evidence:
+  - quote: X 2 medium spray booths
+    approx_offset: 65604
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0024
+  name: Large spray booth
+  status: candidate
+  acceptable_forms:
+  - spray booth
+  evidence:
+  - quote: X 1 Large spray booth
+    approx_offset: 65630
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0025
+  name: large shot blasting chamber
+  status: candidate
+  acceptable_forms:
+  - shot blasting chamber
+  evidence:
+  - quote: Large shot blasting chamber
+    approx_offset: 65686
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0026
+  name: curing ovens
+  status: candidate
+  acceptable_forms:
+  - curing ovens
+  evidence:
+  - quote: 5 curing ovens
+    approx_offset: 65772
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0027
+  name: pre-heat ovens
+  status: candidate
+  acceptable_forms:
+  - pre-heat ovens
+  evidence:
+  - quote: 2 pre-heat ovens
+    approx_offset: 65789
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0028
+  name: Millturn's
+  status: candidate
+  acceptable_forms:
+  - Millturn
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated team of
+      machinists trained to the highest of standards.
+    approx_offset: 73230
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0029
+  name: Vertical Borers
+  status: candidate
+  acceptable_forms:
+  - Vertical Borers
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated team of
+      machinists trained to the highest of standards.
+    approx_offset: 73230
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0030
+  name: Horizontal Borers
+  status: candidate
+  acceptable_forms:
+  - Horizontal Borers
+  evidence:
+  - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated team of
+      machinists trained to the highest of standards.
+    approx_offset: 73230
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0031
+  name: Compact & Vertical Cladding Systems
+  status: candidate
+  acceptable_forms:
+  - Cladding Systems
+  evidence:
+  - quote: '### Compact & Vertical Cladding Systems'
+    approx_offset: 85604
+  actor: supplier
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0032
+  name: Electric Post Weld Heat Treatment & Stress Relieving ovens
+  status: candidate
+  acceptable_forms:
+  - Stress Relieving ovens
+  evidence:
+  - quote: Electric Post Weld Heat Treatment & Stress Relieving ovens suitable for the heat treatment of welded
+      components to industry standards / requirements
+    approx_offset: 86117
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0033
+  name: SLM 500
+  status: candidate
+  acceptable_forms:
+  - SLM500
+  - SLM 500
+  evidence:
+  - quote: Featuring a large build envelope of 500 x 280 x 365 mm, the SLM 500 allows you to create large, complex
+      and intricate parts with ease.
+    approx_offset: 94656
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0034
+  name: SLM 280
+  status: candidate
+  acceptable_forms:
+  - SLM280
+  - SLM 280
+  evidence:
+  - quote: The SLM 280 is a dual laser machine offers high productivity with automatic sieving.
+    approx_offset: 95160
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0035
+  name: various sized furnaces up to 15 Tonnes
+  status: candidate
+  acceptable_forms:
+  - furnaces
+  evidence:
+  - quote: Various sized furnaces up to 15 Tonnes, max. length 6.4m
+    approx_offset: 106913
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0036
+  name: 4m Deep Hole Borer
+  status: candidate
+  acceptable_forms:
+  - Deep Hole Borer
+  evidence:
+  - quote: The new 4m Deep Hole Borer is a highly specialised machine designed to drill deep, precise bores through
+      nickel alloy bars and other high-performance materials.
+    approx_offset: 291476
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0037
+  name: Geminis GT5i G4 1200 x 6000 horizontal lathe
+  status: candidate
+  acceptable_forms:
+  - Geminis GT5i G4
+  - horizontal lathe
+  evidence:
+  - quote: Geminis GT5i G4 1200 x 6000 heavy duty horizontal lathe is a highly specialist piece of CNC machinery
+      used in the production of large and heavy components, and machining of complex geometric profiles.
+    approx_offset: 299609
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0038
+  name: YOU-JI VTL1800ATC+C-I vertical borer
+  status: candidate
+  acceptable_forms:
+  - YOU-JI VTL1800ATC
+  - vertical borer
+  evidence:
+  - quote: We have also invested in a YOU-JI VTL1800ATC+C-I vertical borer for our Bredbury site, which was supplied
+      by TDT Machine Tools of Coventry.
+    approx_offset: 299938
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: howcogroup_com-equipments-0039
+  name: vertical turning lathes (VTLs)
+  status: candidate
+  acceptable_forms:
+  - vertical turning lathes
+  - VTL
+  evidence:
+  - quote: Also known as vertical borers or vertical turning lathes (VTLs), these state-of-the-art turning centres
+      will further our precision machining capability.
+    approx_offset: 349131
+  provenance:
+  - action: added
+    by: seed-agent-howcogroup-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: CMM
+  reason: the equipments clause explicitly excludes equipment that 'only measures, inspects, or tests the work'.
+    Two CMMs are named (LK Evolution 3000x2000x1500mm and LK G-90C, lines 3310-3311) plus an in-house CMM at 1897.
+    The capability is seeded under process_caps as 'CMM dimensional inspection'. This exact confusion produced a
+    FALSE RED on the alecmfg set
+- form: LK Evolution
+  reason: a coordinate measuring machine brand/model (3310); measures the work, so excluded from equipments by the
+    clause
+- form: HandySCAN Black Elite
+  reason: a Creaform 3D scanner (2176-2181); it measures and inspects, it does not act on the work. Its capability
+    is seeded under process_caps as '3D scanning'
+- form: Shadow Graph
+  reason: an optical comparator for thread profiles and contours (3312); metrology, excluded by the clause
+- form: Gage Maker measuring equipment
+  reason: explicitly 'measuring equipment for API thread measurement and taper seals' (3313); metrology
+- form: Boroscopes
+  reason: inspection instruments (3314); the clause excludes equipment that only inspects
+- form: 5 Ton Crane
+  reason: '''5 Ton Crane capacity'' (1453) - material handling; the clause excludes equipment that ''moves, stores,
+    or carries'' what it makes'
+- form: Solar Photovoltaic Energy System
+  reason: a roof PV array at Sheffield and Cumbernauld (6714); it powers the plant, which the clause excludes
+- form: Edgecam
+  reason: CAM software used to create 3D models and machining strategies (4073); not a machine at all
+- form: Facing & Contouring Heads
+  reason: machine-tool attachments listed at 4075 alongside 'Multi - Angled Milling Heads and Outfacing Bars'; tooling
+    that a machine acts through, excluded by the clause
+- form: blades
+  reason: '''superior blades'', ''the latest blade technology'' (1093, 1095) - saw blades are consumable tooling,
+    not the machine'
+- form: next generation tooling
+  reason: '''trial numerous amounts of next generation tooling'' (3354) - explicitly tooling, excluded by the clause'
+- form: Standards room
+  reason: a calibration/metrology room (3317); neither a machine nor acting on the work
+- form: Press Brake
+  reason: zero occurrences - 'press' does not appear anywhere in the file. A generic sheet-metal word-association
+- form: Waterjet
+  reason: zero occurrences; word-association from a metal-cutting site whose only cutting machines are band saws
+- form: EDM
+  reason: zero occurrences
+- form: Crane
+  reason: '''5 Ton Crane capacity'' occurs on the coating & finishing page, but a crane moves/carries rather than
+    acting on the work, which the equipments boundary excludes.'

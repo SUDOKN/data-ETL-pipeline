@@ -1,0 +1,821 @@
+subject: superiortech.org
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/superiortech.org.txt
+  sha256: 6de032283382c2ead7409e34541f2743fea3c67efb4a165eb47c68a1a93ab01a
+eval_set_version: 2
+expected_empty: false
+notes: Rich and explicitly enumerated on a dedicated Industries Served page (lines 648-674) plus four in-prose lists
+  on the capability pages, which use DIFFERENT wordings for the same sectors ('Automation & Robotics' vs 'Robotics
+  and Automation' vs 'Robotics & Automation'); each wording is its own surface form. A sixth, historical list (line
+  837) names the three industries the founder's 1964 screw-machine shop served.
+entries:
+- id: superiortech_org-industries-0001
+  name: OEM
+  status: disputed
+  acceptable_forms:
+  - OEM’s
+  - OEM
+  evidence:
+  - quote: Fortune 500 companies, OEM’s, small independent companies, and startups
+    approx_offset: 668
+  - quote: allows the OEM the confidence of a known fixed cost
+    approx_offset: 30763
+  notes: 'DISPUTED — ''OEM'' names a CUSTOMER TYPE (original equipment manufacturer), not a domain of economic activity.
+    The prompt''s clause wants ''a recognizable domain of economic activity that a manufacturer''s goods or services
+    can serve'', which an OEM is not — it is a rung in a supply chain that exists across every domain already listed.
+    Recorded rather than dropped because it is the single most likely industries over-generation on this text (4
+    occurrences, always beside the real industry lists) and the boundary is arguable. | OEM is a customer category,
+    not a domain of economic activity: it appears only inside ''Fortune 500 companies, OEM''s, small independent
+    companies, and startups'' and ''allows the OEM the confidence of a known fixed cost'' -- both lists of company
+    TYPES, alongside ''startups'' and ''Fortune 500'', which nobody would seed as industries. The field''s clause
+    asks for a recognizable domain of economic activity; original-equipment-manufacturer names who buys, not what
+    sector.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'OEM is a customer category, not a domain of economic activity: it appears only inside ''Fortune 500
+      companies, OEM''s, small independent companies, and startups'' and ''allows the OEM the confidence of a known
+      fixed cost'' -- both lists of company TYPES, alongside ''startups'' and ''Fortune 500'', which nobody would
+      seed as industries. The field''s clause asks for a recognizable domain of economic activity; original-equipment-manufacturer
+      names who buys, not what sector.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0002
+  name: Aerospace
+  status: confirmed
+  acceptable_forms:
+  - Aerospace
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Aerospace
+    approx_offset: 785
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0003
+  name: Automation & Robotics
+  status: confirmed
+  acceptable_forms:
+  - Automation & Robotics
+  - Automation and Robotics
+  - Robotics and Automation
+  - Robotics & Automation
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Automotive Fuel Systems, Automation and Robotics, Industrial Tools & Equipment, Rail Transit
+    approx_offset: 22674
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0004
+  name: Robotics
+  status: confirmed
+  acceptable_forms:
+  - Robotics
+  evidence:
+  - quote: Robotics
+    approx_offset: 809
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  notes: named standalone on the Industries Served page; broad form, a substring of its siblings, so its coverage
+    carries no independent information
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0005
+  name: Automotive
+  status: confirmed
+  acceptable_forms:
+  - Automotive
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil and Gas, Power Generation,
+      Rail , and Transportation Industries
+    approx_offset: 36131
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0006
+  name: Construction Equipment
+  status: confirmed
+  acceptable_forms:
+  - Construction Equipment
+  - Construction & Industrial Equipment
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil and Gas, Power Generation,
+      Rail , and Transportation Industries
+    approx_offset: 36131
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0007
+  name: Defense
+  status: confirmed
+  acceptable_forms:
+  - Military & Defense
+  - Defense
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Military & Defense
+    approx_offset: 18947
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0008
+  name: Medical
+  status: confirmed
+  acceptable_forms:
+  - Medical
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Medical
+    approx_offset: 864
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0009
+  name: Office Equipment
+  status: confirmed
+  acceptable_forms:
+  - Office Equipment
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Office Equipment
+    approx_offset: 873
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0010
+  name: Industrial & Consumer Products
+  status: confirmed
+  acceptable_forms:
+  - Industrial & Consumer Products
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment,
+      Military, Power Tool, Robotics and Automation Industries
+    approx_offset: 8515
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0011
+  name: Rail
+  status: confirmed
+  acceptable_forms:
+  - Rail
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil and Gas, Power Generation,
+      Rail , and Transportation Industries
+    approx_offset: 36131
+  notes: broad form; 'Rail' is a substring of 'Railway Systems' and 'Rail Transit', so do not read its coverage
+    as evidence about this entity alone
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0012
+  name: Transportation
+  status: confirmed
+  acceptable_forms:
+  - Transportation
+  evidence:
+  - quote: Aerospace, Automation & Robotics, Automotive, Construction Equipment, Defense, Medical, Office Equipment,
+      Industrial & Consumer Products, Rail, Robotics and Transportation.
+    approx_offset: 785
+  - quote: Transportation
+    approx_offset: 942
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0013
+  name: Military
+  status: confirmed
+  acceptable_forms:
+  - Military
+  evidence:
+  - quote: Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil and Gas, Power Generation,
+      Rail , and Transportation Industries
+    approx_offset: 36131
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment,
+      Military, Power Tool, Robotics and Automation Industries
+    approx_offset: 8515
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0014
+  name: Medical Equipment
+  status: confirmed
+  acceptable_forms:
+  - Medical Equipment
+  evidence:
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment,
+      Military, Power Tool, Robotics and Automation Industries
+    approx_offset: 8515
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Medical Equipment, Military, Optics and Precision
+      Instruments, Power Tool, Robotics and Automation, Rail, and Transportation Industries.
+    approx_offset: 5636
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0015
+  name: Optics and Precision Instruments
+  status: confirmed
+  acceptable_forms:
+  - Optics and Precision Instruments
+  evidence:
+  - quote: Optics and Precision Instruments
+    approx_offset: 5720
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment,
+      Military, Power Tool, Robotics and Automation Industries
+    approx_offset: 8515
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0016
+  name: Power Tools
+  status: confirmed
+  acceptable_forms:
+  - Power Tools
+  - Power Tool
+  evidence:
+  - quote: Power Tools, (Industrial & Consumer Products)
+    approx_offset: 19030
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Optics and Precision Instruments, Medical Equipment,
+      Military, Power Tool, Robotics and Automation Industries
+    approx_offset: 8515
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0017
+  name: Oil & Gas
+  status: confirmed
+  acceptable_forms:
+  - Oil & Gas
+  - Oil and Gas
+  evidence:
+  - quote: Oil & Gas
+    approx_offset: 19019
+  - quote: Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil and Gas, Power Generation,
+      Rail , and Transportation Industries
+    approx_offset: 36131
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0018
+  name: Power Generation
+  status: confirmed
+  acceptable_forms:
+  - Power Generation
+  evidence:
+  - quote: Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil and Gas, Power Generation,
+      Rail , and Transportation Industries
+    approx_offset: 36131
+  notes: named only in the large-parts capability list (lines 621 and 1095)
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0019
+  name: Automation & Machine Building
+  status: confirmed
+  acceptable_forms:
+  - Automation & Machine Building
+  evidence:
+  - quote: Automation & Machine Building
+    approx_offset: 18856
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0020
+  name: Automotive & Alternative Fuels
+  status: confirmed
+  acceptable_forms:
+  - Automotive & Alternative Fuels
+  evidence:
+  - quote: Automotive & Alternative Fuels
+    approx_offset: 18887
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0021
+  name: Electronics
+  status: confirmed
+  acceptable_forms:
+  - Electronics
+  evidence:
+  - quote: Electronics
+    approx_offset: 18919
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0022
+  name: HVAC
+  status: confirmed
+  acceptable_forms:
+  - HVAC
+  evidence:
+  - quote: HVAC
+    approx_offset: 18932
+  notes: named ONLY on the Industries Served page and nowhere else in the text; no HVAC part, process or customer
+    is described, so this is a single-mention sector and a good isolated-window recall probe
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0023
+  name: Railway Systems
+  status: confirmed
+  acceptable_forms:
+  - Railway Systems
+  evidence:
+  - quote: Railway Systems
+    approx_offset: 19087
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0024
+  name: Automotive Fuel Systems
+  status: confirmed
+  acceptable_forms:
+  - Automotive Fuel Systems
+  evidence:
+  - quote: Automotive Fuel Systems, Automation and Robotics, Industrial Tools & Equipment, Rail Transit
+    approx_offset: 22674
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0025
+  name: Rail Transit
+  status: confirmed
+  acceptable_forms:
+  - Rail Transit
+  evidence:
+  - quote: Automotive Fuel Systems, Automation and Robotics, Industrial Tools & Equipment, Rail Transit
+    approx_offset: 22674
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0026
+  name: Industrial Tools & Equipment
+  status: confirmed
+  acceptable_forms:
+  - Industrial Tools & Equipment
+  evidence:
+  - quote: Automotive Fuel Systems, Automation and Robotics, Industrial Tools & Equipment, Rail Transit
+    approx_offset: 22674
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0027
+  name: imaging
+  status: confirmed
+  acceptable_forms:
+  - imaging
+  evidence:
+  - quote: servicing the auto, imaging, and fastener industries
+    approx_offset: 3366
+  actor: unknown
+  notes: 'historical: an industry the founder''s 1964 screw-machine shop served, not a current market claim. Recall-first
+    — the text names the sector, so it is an entry; the era is the attribution question, not the existence question'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0028
+  name: fastener industries
+  status: confirmed
+  acceptable_forms:
+  - fastener industries
+  evidence:
+  - quote: servicing the auto, imaging, and fastener industries
+    approx_offset: 3366
+  actor: unknown
+  notes: historical 1964 list, same as 'imaging'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0029
+  name: auto industry (1964 legacy list)
+  status: confirmed
+  acceptable_forms:
+  - auto industries
+  - auto industry
+  - auto, imaging, and fastener industries
+  evidence:
+  - quote: servicing the auto, imaging, and fastener industries
+    approx_offset: 3366
+  actor: unknown
+  notes: the bare token 'auto' is not usable as a form — it is a substring of the 29 'Automotive'/'Automation' occurrences
+    — so the entity is pinned to the whole historical list phrase instead
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'The entity (the auto industry, in the 1964 legacy list) is real -- ''servicing the auto, imaging, and
+      fastener industries'' distributes ''industries'' over all three heads. But the only acceptable form was the
+      whole five-word comma list, which no single returned phrase can ever equal or contain, so the entry could
+      never credit: a silent hole in the denominator. ''auto industries'' credits a returned ''auto'', ''auto industry''
+      or ''auto industries'' by containment. I deliberately did NOT add bare ''auto'': at 4 chars it is matched
+      by containment, so it would falsely credit on ''Automotive'' and ''Automation'', both certain to be returned
+      for this subject.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-industries-0030
+  name: auto industry
+  status: candidate
+  acceptable_forms:
+  - auto
+  evidence:
+  - quote: servicing the auto, imaging, and fastener industries
+    approx_offset: 3366
+  notes: from company-history page; 'auto' names the automotive sector the firm's screw-machine-shop predecessor
+    served
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-industries-0031
+  name: imaging industry
+  status: candidate
+  acceptable_forms:
+  - imaging
+  evidence:
+  - quote: servicing the auto, imaging, and fastener industries
+    approx_offset: 3366
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-industries-0032
+  name: fastener industry
+  status: candidate
+  acceptable_forms:
+  - fastener
+  evidence:
+  - quote: servicing the auto, imaging, and fastener industries
+    approx_offset: 3366
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-industries-0033
+  name: Power Tool
+  status: candidate
+  acceptable_forms:
+  - Power Tool
+  evidence:
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Medical Equipment, Military, Optics and Precision
+      Instruments, Power Tool, Robotics and Automation, Rail, and Transportation Industries.
+    approx_offset: 5636
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-industries-0034
+  name: Robotics and Automation
+  status: candidate
+  acceptable_forms:
+  - Robotics and Automation
+  evidence:
+  - quote: Aerospace, Automotive, Industrial & Consumer Products, Medical Equipment, Military, Optics and Precision
+      Instruments, Power Tool, Robotics and Automation, Rail, and Transportation Industries.
+    approx_offset: 5636
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-industries-0035
+  name: Military & Defense
+  status: candidate
+  acceptable_forms:
+  - Military & Defense
+  evidence:
+  - quote: Military & Defense
+    approx_offset: 18947
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+- id: superiortech_org-industries-0036
+  name: Construction & Industrial Equipment
+  status: candidate
+  acceptable_forms:
+  - Construction & Industrial Equipment
+  evidence:
+  - quote: Aerospace, Automotive, Construction & Industrial Equipment, Military, Oil and Gas, Power Generation,
+      Rail , and Transportation Industries
+    approx_offset: 36131
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Fortune 500
+  reason: a customer-size tier, not an industry; occurs twice ('Fortune 500 companies', 'Fortune 500') always adjacent
+    to the real industry list on lines 18 and 44
+- form: startups
+  reason: a customer maturity class, not a sector; sits inside the same line-18 customer clause that the industry
+    list follows
+- form: PET
+  reason: ZERO word-boundary occurrences. All 9 hits are the substring inside 'competitive'. Confirmed live on this
+    file; only a substring matcher or a fabrication can return it
+- form: ITAR
+  reason: 'ZERO word-boundary occurrences. All 9 hits are the substring inside ''Military''. Doubly baited: the
+    text really does name Military, Defense and Aerospace, so a model has every reason to mint the regime that usually
+    accompanies them'
+- form: Semiconductor
+  reason: 'anticipatory: zero occurrences, but ''Electronics'', ''Optics and Precision Instruments'' and ''Clean
+    Room'' are all present and habitually co-occur with it'
+- form: Nuclear
+  reason: 'anticipatory: zero occurrences; primed by ''Power Generation'' and ''Oil & Gas'''
+- form: Energy
+  reason: 'anticipatory: zero occurrences; primed by ''Power Generation'' and ''Oil & Gas'''
+- form: Marine
+  reason: 'anticipatory: zero occurrences; a standing companion of the Defense/Transportation pairing that is present'
+- form: Pharmaceutical
+  reason: 'anticipatory: zero occurrences; primed by the real ''Medical'' and by ''clean room'''
+- form: Food and Beverage
+  reason: 'anticipatory: zero occurrences; a stock machine-shop industry-list filler'
+- form: Agriculture
+  reason: 'anticipatory: zero occurrences; primed by ''Construction Equipment'' and ''On and Off-Road Axle Housings'''

@@ -1,0 +1,67 @@
+subject: 101machine.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
+  sha256: 6e351d8fdc5317848d99f37551218329a4a0a6359267213bcec847e6b44aaa40
+eval_set_version: 2
+expected_empty: false
+notes: 'Sparse by nature of the text: exactly one named machine, on the New page. Any sizable yield beyond this
+  entry is junk-minting signal; the company name ''101 Machine'' is the standing trap.'
+entries:
+- id: 101machine_com-equipments-0001
+  name: Chevalier EM2040L
+  status: confirmed
+  acceptable_forms:
+  - Chevalier EM2040L
+  - EM2040L
+  - Milling Center
+  evidence:
+  - quote: Chevalier EM2040L
+    approx_offset: 5319
+  - quote: Just added a new Milling Center.
+    approx_offset: 5282
+  notes: the NEW page's 'new Milling Center' and 'Chevalier EM2040L' are the SAME physical machine - one entity;
+    either form covers it
+  provenance:
+  - action: added
+    by: seed-agent-101machine
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-101machine
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: 101machine_com-equipments-0002
+  name: Milling Center
+  status: candidate
+  acceptable_forms:
+  - Milling Center
+  evidence:
+  - quote: Just added a new Milling Center.
+    approx_offset: 5282
+  notes: from the New.html capital-improvement announcement.
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: 101 Machine
+  reason: the subject's company name (nav + footer on every page), not equipment
+- form: machine
+  reason: 'generic (code G): ''New Machine'' heading, ''Moving the machine in'', ''machine shop'''
+- form: Machine Shop
+  reason: facility self-descriptor 'The One Stop Prototype Machine Shop' (code S)
+- form: CNC machinists
+  reason: 'people, not machines: ''Our highly trained CNC machinists'''
+- form: Parasolid
+  reason: CAD file format from FAQ quoting instructions (code T territory), not a machine
+- form: micrometer
+  reason: a depth micrometer is a measuring instrument, excluded by the equipments field's own exclusion clause;
+    occurs only in image alt text ('Photo of depth micrometer').
+- form: cutter
+  reason: a 'face cutter' is a cutting tool held by a machine (tooling), excluded by the equipments field's own
+    exclusion clause; occurs only in image alt text ('Photo of face cutter').

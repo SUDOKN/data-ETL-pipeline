@@ -1,0 +1,2820 @@
+subject: lucasmilhaupt.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/lucasmilhaupt.com.txt
+  sha256: f84ad55ab82bc1fc47d34ac0917856ac7ccbac19ec6eb6697a67302b71441f93
+eval_set_version: 3
+expected_empty: false
+notes: 'products.yaml doubles as the contract_products expectation. THE PRODUCT-IS-A-MATERIAL CASE: this subject''s
+  own-brand goods (Sil-Fos, Silvaloy, Silvacut, Premabraze, AL 718, AL 822, Handy One, Handy Flux, Handy Paste,
+  Handy Flo, Easy-Flo, Fos-Flo 7, Stop-Off) are brazing alloys, fluxes and pastes -- i.e. consumable MATERIALS that
+  are also finished artifacts coming out of its own manufacturing. Every one of them is seeded in BOTH products
+  and material_caps on purpose; neither field is wrong to return them, and an eval that forces a choice would be
+  scoring an artefact of its own taxonomy. Physical FORMS (wire, strip, rings, preforms, foils, washers, powders,
+  sticks) are products only. A large second population is customer artifacts named in the seven ''Applications We
+  Support'' lists -- turbine components, vacuum interrupters, drill bits, EGR coolers, pacemakers; those carry actor:
+  client.'
+entries:
+- id: lucasmilhaupt_com-products-0001
+  name: Custom Solutions
+  status: disputed
+  acceptable_forms:
+  - Custom Solutions
+  - custom solutions
+  evidence:
+  - quote: Custom Solutions(15)
+    approx_offset: 24461
+  - quote: We offer a full portfolio of custom solutions designed to meet your metal joining needs. From
+    approx_offset: 3096
+  notes: '''Custom Solutions'' is a product-family/marketing label (a facet on the demo-video page and ''a full
+    portfolio of custom solutions''); ''solutions'' names no made artifact. The artifacts it stands for (preforms,
+    rings, washers) are seeded separately.'
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: '''Custom Solutions'' is a product-family/marketing label (a facet on the demo-video page and ''a full
+      portfolio of custom solutions''); ''solutions'' names no made artifact. The artifacts it stands for (preforms,
+      rings, washers) are seeded separately.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0002
+  name: brazing alloys
+  status: confirmed
+  acceptable_forms:
+  - brazing alloys
+  - custom brazing alloys
+  - braze alloys
+  - engineered brazing alloys
+  evidence:
+  - quote: solutions designed to meet your metal joining needs. From custom brazing alloys to fluxes to precision
+      metal joining components.
+    approx_offset: 3132
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0003
+  name: precision metal joining components
+  status: confirmed
+  acceptable_forms:
+  - precision metal joining components
+  - metal joining components
+  evidence:
+  - quote: solutions designed to meet your metal joining needs. From custom brazing alloys to fluxes to precision
+      metal joining components.
+    approx_offset: 3132
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0085
+  name: tubing
+  status: confirmed
+  acceptable_forms:
+  - copper tubing
+  - steel tubing
+  - thin-wall tubing
+  - tubing
+  evidence:
+  - quote: What length of lap do you need to join 3/4" O.D. copper tubing (wall thickness .064") to 3/4" I.D. steel
+      tubing?
+    approx_offset: 11432
+  actor: unknown
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0114
+  name: brazed assembly / brazement
+  status: candidate
+  acceptable_forms:
+  - brazement
+  - brazed assembly
+  - brazed assemblies
+  evidence:
+  - quote: you may be designing a brazed assembly that needs to be electrically conductive.
+    approx_offset: 13713
+  actor: unknown
+  notes: the central artifact of the whole site ('Brazed assemblies for surgical tools', 'the brazed assembly has
+    to be pressure-tight'); no generic entry for it in the packet
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0057
+  name: filler metals
+  status: confirmed
+  acceptable_forms:
+  - Filler Metals
+  - filler metals
+  - filler metal
+  evidence:
+  - quote: 'matter the alloy, geometry, or production scale. At the core are our Filler Metals: a comprehensive
+      line of silver, aluminum, copper, nickel, precious-metal, and specialized alloy forms'
+    approx_offset: 17534
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0058
+  name: wire
+  status: confirmed
+  acceptable_forms:
+  - wire
+  - flux-cored wire
+  - solid wire
+  - filler wire
+  evidence:
+  - quote: aluminum, copper, nickel, precious-metal, and specialized alloy forms (wire, strip, rings, preforms,
+      and powders) engineered to deliver consistent braze strength
+    approx_offset: 17650
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0059
+  name: powders
+  status: confirmed
+  acceptable_forms:
+  - powders
+  - alloy powders
+  - braze powders
+  evidence:
+  - quote: copper, nickel, precious-metal, and specialized alloy forms (wire, strip, rings, preforms, and powders)
+      engineered to deliver consistent braze strength
+    approx_offset: 17660
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0004
+  name: preforms
+  status: candidate
+  acceptable_forms:
+  - preforms
+  - pre-forms
+  - custom pre-forms
+  - custom preforms
+  - brazing preforms
+  - silver alloy brazing preforms
+  - buried preform
+  evidence:
+  - quote: wire, strip, rings, preforms
+    approx_offset: 17721
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0012
+  name: rings
+  status: candidate
+  acceptable_forms:
+  - rings
+  - brazing ring
+  - brazing rings
+  - triangular brazing ring
+  - flux cored brazing rings
+  - Silvaloy® rings
+  evidence:
+  - quote: wire, strip, rings
+    approx_offset: 17721
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0029
+  name: strip
+  status: candidate
+  acceptable_forms:
+  - strip
+  - precision strips
+  - perforated strip
+  evidence:
+  - quote: wire, strip
+    approx_offset: 17721
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0060
+  name: fluxes
+  status: confirmed
+  acceptable_forms:
+  - Fluxes
+  - fluxes
+  - flux
+  evidence:
+  - quote: demanding thermal cycles. To complement those alloys, we formulate Fluxes that provide optimal wetting
+      and oxide removal over a full temperature spectrum, from low-temp
+    approx_offset: 17847
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0054
+  name: pastes
+  status: confirmed
+  acceptable_forms:
+  - Pastes
+  - pastes
+  - paste products
+  - Paste products
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders with
+      flux and rheology modifiers, ensuring accurate deposit control in automated
+    approx_offset: 18150
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0109
+  name: brazing rod
+  status: candidate
+  acceptable_forms:
+  - brazing rod
+  - HVAC brazing rod
+  - rod
+  evidence:
+  - quote: ' Brazing Alloys, Brazing Products, Brazing Rings, Brazing Rod'
+    approx_offset: 19032
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0086
+  name: Pre-Packaged products
+  status: confirmed
+  acceptable_forms:
+  - Pre-Packaged
+  - pre-packaged products
+  - pre-packaged brazing and soldering materials
+  evidence:
+  - quote: Pre-Packaged(19)
+    approx_offset: 24593
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0015
+  name: evaporators and condensers
+  status: candidate
+  acceptable_forms:
+  - evaporators
+  - condensers
+  - coils, compressors, evaporators, and condensers
+  - Condenser Coils
+  evidence:
+  - quote: Aluminum Brazing of Evaporators and Condenser Coils
+    approx_offset: 24795
+  actor: client
+  notes: Only 'Evaporators' (plural) survives whole-word; text has 'Condenser' (singular), not 'condensers', so
+    added 'Condenser Coils' as the literal surviving form.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0011
+  name: Sil-Fos
+  status: candidate
+  acceptable_forms:
+  - Sil-Fos
+  - Sil-Fos®
+  - SilFos
+  - Sil-Fos Products
+  evidence:
+  - quote: Brazing Copper to Copper with Sil-Fos
+    approx_offset: 25042
+  notes: 'THE two-axes-one-object case: a silver-copper-phosphorus brazing alloy, so also a material_caps entry'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0005
+  name: turbine engine components
+  status: retired
+  acceptable_forms:
+  - turbine engine components
+  - Engine Components
+  - jet turbine blades
+  - hot-zone hardware
+  evidence:
+  - quote: expertise spans a remarkable range of markets. Whether you build turbine engine components for aerospace
+      and defense, battery and thermal-management systems for automotive
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''turbine engine components'', ''Engine
+    Components'', ''jet turbine blades'', ''hot-zone hardware''); the whole /EN/Products catalogue tree (and the
+    Industries pages that named this item as an application) is absent from the 2026-08-29 crawl -- those routes
+    now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0006
+  name: battery and thermal-management systems
+  status: retired
+  acceptable_forms:
+  - battery and thermal-management systems
+  - battery
+  evidence:
+  - quote: engine components for aerospace and defense, battery and thermal-management systems for automotive and
+      EV, copper-aluminum coils for HVAC/R and appliance,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''battery and thermal-management systems'',
+    ''battery''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0007
+  name: copper-aluminum coils
+  status: retired
+  acceptable_forms:
+  - copper-aluminum coils
+  - aluminum coils
+  - heat exchange coil
+  evidence:
+  - quote: thermal-management systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic
+      packages for microelectronics and semiconductor,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''copper-aluminum coils'', ''aluminum
+    coils'', ''heat exchange coil''); the whole /EN/Products catalogue tree (and the Industries pages that named
+    this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0008
+  name: hermetic packages
+  status: retired
+  acceptable_forms:
+  - hermetic packages
+  - ceramic-to-metal packages
+  - micro-packages
+  - microelectronic packages
+  evidence:
+  - quote: copper-aluminum coils for HVAC/R and appliance, hermetic packages for microelectronics and semiconductor,
+      high-current connectors for electrical power,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''hermetic packages'', ''ceramic-to-metal
+    packages'', ''micro-packages'', ''microelectronic packages''); the whole /EN/Products catalogue tree (and the
+    Industries pages that named this item as an application) is absent from the 2026-08-29 crawl -- those routes
+    now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0009
+  name: high-current connectors
+  status: retired
+  acceptable_forms:
+  - high-current connectors
+  evidence:
+  - quote: packages for microelectronics and semiconductor, high-current connectors for electrical power, biocompatible
+      assemblies for medical devices,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''high-current connectors''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0010
+  name: biocompatible assemblies
+  status: retired
+  acceptable_forms:
+  - biocompatible assemblies
+  evidence:
+  - quote: high-current connectors for electrical power, biocompatible assemblies for medical devices, or rugged
+      tools for oil & gas, Lucas Milhaupt
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''biocompatible assemblies''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0013
+  name: return bends / U-bends
+  status: retired
+  acceptable_forms:
+  - return bends
+  - U-bends
+  - return bends, or U-bends
+  evidence:
+  - quote: innovative, patent pending triangular brazing ring and flux cored brazing rings for return bends, or
+      U-bends.
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''return bends'', ''U-bends'', ''return
+    bends, or U-bends''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as
+    an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0014
+  name: compressors
+  status: retired
+  acceptable_forms:
+  - compressors
+  evidence:
+  - quote: courses give Service Technicians an opportunity to train alongside industry experts that helped design
+      the coils, compressors, evaporators, and condensers that you work on
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''compressors''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0016
+  name: Premabraze Series
+  status: retired
+  acceptable_forms:
+  - Premabraze® Series
+  - Premabraze Series
+  evidence:
+  - quote: Milhaupt’s high-purity alloy offerings, including the Premabraze® Series (AuSn Premabraze 800, AuGe Premabraze
+      880) and Silvaloy 721 – deliver exceptional bond strength,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Premabraze® Series'', ''Premabraze Series'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0017
+  name: foils
+  status: retired
+  acceptable_forms:
+  - stamped foils
+  - foils
+  evidence:
+  - quote: and components with extremely tight tolerances. We have achieved wire diameters as small as 0.006″ and
+      stamped foils down to 0.001″ thick, enabling reliable bonding even for the smallest
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''stamped foils'', ''foils''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0018
+  name: semiconductor chips / dies
+  status: retired
+  acceptable_forms:
+  - semiconductor chips
+  - semiconductor chips (dies)
+  - substrates
+  evidence:
+  - quote: 'Semiconductor Die Attach: Lucas Milhaupt supplies high-purity solders for attaching semiconductor chips
+      (dies) to substrates or packaging. Our Premabraze® 880 (an 88% Au / 12% Ge eutectic'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''semiconductor chips'', ''semiconductor
+    chips (dies)'', ''substrates''); the whole /EN/Products catalogue tree (and the Industries pages that named
+    this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0019
+  name: power transistors
+  status: retired
+  acceptable_forms:
+  - power transistors
+  evidence:
+  - quote: maintain vacuum integrity during device operation. Whether for power transistors, LEDs, or integrated
+      circuits, these solder alloys ensure a strong, void-free
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''power transistors''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0020
+  name: LEDs
+  status: retired
+  acceptable_forms:
+  - LEDs
+  evidence:
+  - quote: integrity during device operation. Whether for power transistors, LEDs, or integrated circuits, these
+      solder alloys ensure a strong, void-free
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''LEDs''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0021
+  name: integrated circuits
+  status: retired
+  acceptable_forms:
+  - integrated circuits
+  evidence:
+  - quote: integrity during device operation. Whether for power transistors, LEDs, or integrated circuits, these
+      solder alloys ensure a strong, void-free
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''integrated circuits''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0022
+  name: connector feedthroughs
+  status: retired
+  acceptable_forms:
+  - connector feedthroughs
+  - Feedthroughs
+  evidence:
+  - quote: Applications include sealing ceramic-to-metal packages, lid attachment, and brazing connector feedthroughs
+      for sensors, medical implants, and aerospace electronics. Lucas Milhaupt’s
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''connector feedthroughs'', ''Feedthroughs'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0023
+  name: RF microwave modules
+  status: retired
+  acceptable_forms:
+  - RF microwave modules
+  - RF & Microwave Components
+  - RF lid seals
+  evidence:
+  - quote: and electrical transfer at the solder joint. This makes them ideal for RF microwave modules, telecommunications
+      hardware, and power electronics (heat spreaders, laser
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''RF microwave modules'', ''RF & Microwave
+    Components'', ''RF lid seals''); the whole /EN/Products catalogue tree (and the Industries pages that named
+    this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0024
+  name: heat spreaders
+  status: retired
+  acceptable_forms:
+  - heat spreaders
+  evidence:
+  - quote: microwave modules, telecommunications hardware, and power electronics (heat spreaders, laser diode submounts)
+      where managing heat and ensuring signal integrity
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''heat spreaders''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0025
+  name: laser diode submounts
+  status: retired
+  acceptable_forms:
+  - laser diode submounts
+  - laser diodes
+  evidence:
+  - quote: telecommunications hardware, and power electronics (heat spreaders, laser diode submounts) where managing
+      heat and ensuring signal integrity
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''laser diode submounts'', ''laser diodes'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0026
+  name: MEMS sensors
+  status: retired
+  acceptable_forms:
+  - MEMS sensors
+  evidence:
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors and precision
+      medical devices, Lucas Milhaupt'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''MEMS sensors''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0027
+  name: photonic packages
+  status: retired
+  acceptable_forms:
+  - photonic packages
+  - optical components
+  evidence:
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors and precision
+      medical devices, Lucas Milhaupt'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''photonic packages'', ''optical components'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0028
+  name: fiber-optic and imaging modules
+  status: retired
+  acceptable_forms:
+  - fiber-optic and imaging modules
+  evidence:
+  - quote: enable hermetic sealing of optical components, bonding of sensor elements, and assembly of fiber-optic
+      and imaging modules. The result is robust connectivity for optical
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''fiber-optic and imaging modules'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0030
+  name: washers
+  status: retired
+  acceptable_forms:
+  - washers
+  - washer preforms
+  - custom preform washers
+  - flux-cored washer
+  evidence:
+  - quote: produce simple, compound or progressive dies, utilizing high precision equipment to manufacture washers,
+      discs, perforated strip and irregular configurations.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''washers'', ''washer preforms'', ''custom
+    preform washers'', ''flux-cored washer''); the whole /EN/Products catalogue tree (and the Industries pages that
+    named this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0031
+  name: ribbon
+  status: retired
+  acceptable_forms:
+  - ribbon
+  evidence:
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this Au88/Ge12
+      eutectuc is designed for high-reliability
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ribbon''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0032
+  name: laser-cut frames
+  status: retired
+  acceptable_forms:
+  - laser-cut frames
+  evidence:
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this Au88/Ge12
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''laser-cut frames''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0033
+  name: dental handpieces
+  status: retired
+  acceptable_forms:
+  - handpieces
+  - dental equipment
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances) that require
+      precise, durable joints and biocompatible'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''handpieces'', ''dental equipment'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0034
+  name: orthodontic appliances
+  status: retired
+  acceptable_forms:
+  - orthodontic appliances
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances) that require
+      precise, durable joints and biocompatible'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''orthodontic appliances''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0035
+  name: diagnostic equipment
+  status: retired
+  acceptable_forms:
+  - Diagnostic Equipment
+  - diagnostic machines
+  - MRI
+  - X-ray
+  - ultrasound equipment
+  evidence:
+  - quote: 'Diagnostic Equipment: Reliable joining of components in diagnostic machines and instruments (such as
+      MRI, X-ray, and ultrasound equipment), ensuring consistent operation and longevity'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Diagnostic Equipment'', ''diagnostic
+    machines'', ''MRI'', ''X-ray''); the whole /EN/Products catalogue tree (and the Industries pages that named
+    this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0036
+  name: implants / pacemakers / prosthetics
+  status: retired
+  acceptable_forms:
+  - implants
+  - pacemakers
+  - prosthetics
+  - implantable devices
+  - medical implants
+  evidence:
+  - quote: brazing alloys (gold-based filler metals) to assemble implants like pacemakers, prosthetics, and sensor
+      housings with hermetic seals and precision joints that
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''implants'', ''pacemakers'', ''prosthetics'',
+    ''implantable devices''); the whole /EN/Products catalogue tree (and the Industries pages that named this item
+    as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0037
+  name: sensor housings
+  status: retired
+  acceptable_forms:
+  - sensor housings
+  - precision sensor housings
+  evidence:
+  - quote: alloys (gold-based filler metals) to assemble implants like pacemakers, prosthetics, and sensor housings
+      with hermetic seals and precision joints that
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''sensor housings'', ''precision sensor
+    housings''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0038
+  name: surgical instruments
+  status: retired
+  acceptable_forms:
+  - Surgical Instruments
+  - surgical tools
+  - forceps
+  - endoscopes
+  - robotic surgery components
+  evidence:
+  - quote: 'Instruments & Other High-Tech Medical Devices: Brazed assemblies for surgical tools (forceps, endoscopes,
+      robotic surgery components) and other high-tech medical devices, providing'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Surgical Instruments'', ''surgical tools'',
+    ''forceps'', ''endoscopes''); the whole /EN/Products catalogue tree (and the Industries pages that named this
+    item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0039
+  name: turbine speed/torque sensors
+  status: retired
+  acceptable_forms:
+  - turbine speed/torque sensors
+  evidence:
+  - quote: sustained temps approaching or exceeding ~900°F, such as turbine speed/torque sensors and hot-zone hardware.
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''turbine speed/torque sensors''); the
+    whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0040
+  name: pitot probes
+  status: retired
+  acceptable_forms:
+  - Pitot Probes
+  - Sensors & Instrumentation
+  evidence:
+  - quote: Sensors & Instrumentation (Pitot Probes, Thermal, Pressure)
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Pitot Probes'', ''Sensors & Instrumentation'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0041
+  name: circuit breakers
+  status: retired
+  acceptable_forms:
+  - circuit breakers
+  evidence:
+  - quote: materials, making it the go-to method for assembling high-power electrical devices like circuit breakers,
+      vacuum tubes, and busbars. These high-value components often require brazing
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''circuit breakers''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0042
+  name: vacuum tubes
+  status: retired
+  acceptable_forms:
+  - vacuum tubes
+  - Vacuum tube components
+  - vacuum electronic devices
+  evidence:
+  - quote: for assembling high-power electrical devices like circuit breakers, vacuum tubes, and busbars. These
+      high-value components often require brazing
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''vacuum tubes'', ''Vacuum tube components'',
+    ''vacuum electronic devices''); the whole /EN/Products catalogue tree (and the Industries pages that named this
+    item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0043
+  name: busbars
+  status: retired
+  acceptable_forms:
+  - busbars
+  - busbar assemblies
+  - Busbar Connections
+  evidence:
+  - quote: assembling high-power electrical devices like circuit breakers, vacuum tubes, and busbars. These high-value
+      components often require brazing
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''busbars'', ''busbar assemblies'', ''Busbar
+    Connections''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0044
+  name: vacuum interrupters
+  status: retired
+  acceptable_forms:
+  - vacuum interrupters
+  - vacuum interrupter
+  - medium-voltage vacuum interrupter
+  evidence:
+  - quote: Power Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters, electrical
+      fuses, and switch contact assemblies. These components
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''vacuum interrupters'', ''vacuum interrupter'',
+    ''medium-voltage vacuum interrupter''); the whole /EN/Products catalogue tree (and the Industries pages that
+    named this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0045
+  name: electrical fuses
+  status: retired
+  acceptable_forms:
+  - electrical fuses
+  evidence:
+  - quote: Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters, electrical fuses,
+      and switch contact assemblies. These components manage high voltages and currents,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''electrical fuses''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0046
+  name: switch contact assemblies
+  status: retired
+  acceptable_forms:
+  - switch contact assemblies
+  - switchgear
+  - high-voltage switchgear
+  evidence:
+  - quote: Switchgear – Brazing is critical in devices like vacuum interrupters, electrical fuses, and switch contact
+      assemblies. These components manage high voltages and currents,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''switch contact assemblies'', ''switchgear'',
+    ''high-voltage switchgear''); the whole /EN/Products catalogue tree (and the Industries pages that named this
+    item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0047
+  name: traveling wave tubes
+  status: retired
+  acceptable_forms:
+  - Traveling wave tubes
+  - TWTs
+  - traveling wave tube
+  evidence:
+  - quote: Traveling wave tubes (TWTs) and other vacuum electronic devices rely on brazing
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Traveling wave tubes'', ''TWTs'', ''traveling
+    wave tube''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0048
+  name: transformers
+  status: retired
+  acceptable_forms:
+  - transformers
+  - power transformers
+  - Transformers
+  evidence:
+  - quote: Transformers & Busbar Connections – In power transformers and busbar assemblies, brazed copper connections
+      ensure low-resistance,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''transformers'', ''power transformers'',
+    ''Transformers''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an
+    application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0049
+  name: cable lugs
+  status: retired
+  acceptable_forms:
+  - cable lugs
+  - high-current cable lugs
+  evidence:
+  - quote: across all segments of the electrical industry. From high-current cable lugs and grounding connectors
+      to precision sensor housings, we provide the
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''cable lugs'', ''high-current cable lugs'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0050
+  name: grounding connectors
+  status: retired
+  acceptable_forms:
+  - grounding connectors
+  evidence:
+  - quote: all segments of the electrical industry. From high-current cable lugs and grounding connectors to precision
+      sensor housings, we provide the right filler metals and process
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''grounding connectors''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0051
+  name: brass bushing / steel sleeve
+  status: retired
+  acceptable_forms:
+  - brass bushing
+  - steel sleeve
+  evidence:
+  - quote: As an example, let’s say you’re brazing a brass bushing into a steel sleeve. Brass expands, when heated,
+      more than steel.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''brass bushing'', ''steel sleeve'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0052
+  name: Fos-Flo 7
+  status: retired
+  acceptable_forms:
+  - Fos-Flo 7
+  - Fos-Flo
+  evidence:
+  - quote: filler metal specially formulated for the job, such as Handy & Harman's Sil-Fos or Fos-Flo 7. (The phosphorus
+      in these alloys acts as a fluxing
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Fos-Flo 7'', ''Fos-Flo''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0053
+  name: studs and screws
+  status: retired
+  acceptable_forms:
+  - studs or screws
+  evidence:
+  - quote: on brazed joints in production quality control-for example, studs or screws brazed to thick sections
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''studs or screws''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0055
+  name: Handy Flo binder series
+  status: retired
+  acceptable_forms:
+  - Handy Flo
+  - HANDY FLO 100 Series
+  - HANDY FLO 800 Series
+  - Handy-Flo 310
+  - Handy Flo 500 Series
+  evidence:
+  - quote: HANDY FLO 100 Series
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Handy Flo'', ''HANDY FLO 100 Series'',
+    ''HANDY FLO 800 Series'', ''Handy-Flo 310''); the whole /EN/Products catalogue tree (and the Industries pages
+    that named this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only
+    duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0056
+  name: soft solder forms
+  status: retired
+  acceptable_forms:
+  - soft solder forms
+  - soft solder
+  evidence:
+  - quote: II. Over the next twenty years, Lucas Milhaupt began to offer copper, brass and aluminum brazing preforms
+      and soft solder forms to keep up with the demand of the electronic
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''soft solder forms'', ''soft solder'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0061
+  name: tool joints and wear parts
+  status: retired
+  acceptable_forms:
+  - tool joints
+  - wear parts
+  - wear components
+  evidence:
+  - quote: and pastes that hold up in harsh environments. From tool joints and wear parts to valves and heat exchangers,
+      our solutions support both new build and MRO
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''tool joints'', ''wear parts'', ''wear
+    components''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0062
+  name: valves
+  status: retired
+  acceptable_forms:
+  - valves
+  - Valves
+  - tapered valves
+  evidence:
+  - quote: and pastes that hold up in harsh environments. From tool joints and wear parts to valves and heat exchangers,
+      our solutions support both new build and MRO
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''valves'', ''Valves'', ''tapered valves'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0063
+  name: Silvacut
+  status: retired
+  acceptable_forms:
+  - Silvacut
+  - Silvacut®
+  - SilvaCut
+  evidence:
+  - quote: 'Portfolio built for carbide, steel and copper: Highlighted solutions include Silvacut® and Silvaloy®
+      silver-braze alloys for bonding tungsten carbide to alloy steels,'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silvacut'', ''Silvacut®'', ''SilvaCut'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0064
+  name: Handy Paste
+  status: retired
+  acceptable_forms:
+  - Handy Paste
+  - Handy Paste™
+  evidence:
+  - quote: for bonding tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper and copper-to-brass
+      assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable results.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Handy Paste'', ''Handy Paste™''); the
+    whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0065
+  name: Handy Flux
+  status: retired
+  acceptable_forms:
+  - Handy Flux
+  - Handy Flux™
+  - Handy® Flux
+  evidence:
+  - quote: copper-to-copper and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable
+      results.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Handy Flux'', ''Handy Flux™'', ''Handy®
+    Flux''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0066
+  name: pellet forms
+  status: retired
+  acceptable_forms:
+  - pellet forms
+  - pellet
+  evidence:
+  - quote: filler metal and flux, optimize joint design, and tailor paste viscosity or pellet forms to your production
+      method, whether you braze in a torch, furnace, or induction
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''pellet forms'', ''pellet''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0067
+  name: drill bits
+  status: retired
+  acceptable_forms:
+  - drill bits
+  - Downhole drilling bits
+  - roller-cone
+  - PDC
+  evidence:
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''drill bits'', ''Downhole drilling bits'',
+    ''roller-cone'', ''PDC''); the whole /EN/Products catalogue tree (and the Industries pages that named this item
+    as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0068
+  name: reamers
+  status: retired
+  acceptable_forms:
+  - reamers
+  evidence:
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts and wear'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''reamers''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0069
+  name: tungsten carbide inserts
+  status: retired
+  acceptable_forms:
+  - tungsten carbide inserts
+  - carbide inserts
+  evidence:
+  - quote: 'Downhole drilling bits and reamers: Brazing of tungsten carbide inserts and wear protection features
+      for PDC and roller-cone designs to withstand'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''tungsten carbide inserts'', ''carbide
+    inserts''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0070
+  name: stabilizers, subs, mandrels
+  status: retired
+  acceptable_forms:
+  - Stabilizers, subs, mandrels
+  - stabilizers
+  - mandrels
+  - bearing surfaces
+  evidence:
+  - quote: Stabilizers, subs, mandrels and bearing surfaces that require robust carbide-to-steel joints
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Stabilizers, subs, mandrels'', ''stabilizers'',
+    ''mandrels'', ''bearing surfaces''); the whole /EN/Products catalogue tree (and the Industries pages that named
+    this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0071
+  name: pumps
+  status: retired
+  acceptable_forms:
+  - pumps
+  evidence:
+  - quote: 'Valves, pumps and compression equipment: Seals, impellers, housings and trim where leak-tight'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''pumps''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0072
+  name: impellers
+  status: retired
+  acceptable_forms:
+  - impellers
+  evidence:
+  - quote: 'Valves, pumps and compression equipment: Seals, impellers, housings and trim where leak-tight joints
+      and corrosion resistance'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''impellers''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0073
+  name: seals and trim
+  status: retired
+  acceptable_forms:
+  - Seals, impellers, housings and trim
+  - trim
+  evidence:
+  - quote: 'Valves, pumps and compression equipment: Seals, impellers, housings and trim where leak-tight joints
+      and corrosion resistance are vital in sour and corrosive environments.'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Seals, impellers, housings and trim'',
+    ''trim''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0074
+  name: heat exchangers
+  status: retired
+  acceptable_forms:
+  - heat exchangers
+  - High-Temp Engine Heat Exchangers
+  evidence:
+  - quote: 'Surface facilities and instrumentation: Tube-to-header joints in heat exchangers, manifolds and precision
+      fittings for reliable performance in processing, measurement'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''heat exchangers'', ''High-Temp Engine
+    Heat Exchangers''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as
+    an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0075
+  name: manifolds
+  status: retired
+  acceptable_forms:
+  - manifolds
+  evidence:
+  - quote: 'Surface facilities and instrumentation: Tube-to-header joints in heat exchangers, manifolds and precision
+      fittings for reliable performance in processing, measurement'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''manifolds''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0076
+  name: precision fittings
+  status: retired
+  acceptable_forms:
+  - precision fittings
+  - fittings
+  evidence:
+  - quote: 'and instrumentation: Tube-to-header joints in heat exchangers, manifolds and precision fittings for
+      reliable performance in processing, measurement'
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''precision fittings'', ''fittings'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0077
+  name: cutters and picks
+  status: retired
+  acceptable_forms:
+  - cutters, picks
+  - cutters
+  - picks
+  - cutting structures
+  evidence:
+  - quote: hard-metal ores destroy ordinary joints in minutes. The cutters, picks, and drill bits that tame these
+      materials rely on brazed joints that survive crushing loads,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''cutters, picks'', ''cutters'', ''picks'',
+    ''cutting structures''); the whole /EN/Products catalogue tree (and the Industries pages that named this item
+    as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0078
+  name: Easy-Flo
+  status: retired
+  acceptable_forms:
+  - Easy-Flo
+  - Easy-Flo®
+  evidence:
+  - quote: Sil-Fos, Easy-Flo and other brazing alloys were used innumerable braze joints of planes, ships, and ammunition.
+      Sil-Fos was
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Easy-Flo'', ''Easy-Flo®''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0079
+  name: aircraft
+  status: retired
+  acceptable_forms:
+  - aircraft
+  - airplanes
+  - planes
+  evidence:
+  - quote: repair shops. Examples are robotic assemblies plus fabrication of pressure vessels, bridges, building
+      structures, aircraft, railway coaches and tracks, pipelines and more.
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''aircraft'', ''airplanes'', ''planes'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0080
+  name: ships
+  status: retired
+  acceptable_forms:
+  - ships
+  evidence:
+  - quote: Sil-Fos, Easy-Flo and other brazing alloys were used innumerable braze joints of planes, ships, and ammunition.
+      Sil-Fos was instrumental in increasing the strength
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ships''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0081
+  name: ammunition
+  status: retired
+  acceptable_forms:
+  - ammunition
+  evidence:
+  - quote: alloys were used innumerable braze joints of planes, ships, and ammunition. Sil-Fos was instrumental
+      in increasing the strength
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ammunition''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0082
+  name: airplane engine bearings
+  status: retired
+  acceptable_forms:
+  - airplane engine bearings
+  evidence:
+  - quote: braze joints of planes, ships, and ammunition. Sil-Fos was instrumental in increasing the strength of
+      airplane engine bearings and increasing engine efficiency, resulting in
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''airplane engine bearings''); the whole
+    /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent from
+    the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in
+    the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0083
+  name: shaft, bearing or gear
+  status: retired
+  acceptable_forms:
+  - metal shaft, bearing or gear
+  - shaft, bearing or gear
+  - shaft
+  evidence:
+  - quote: contribution Sil-Fos offered was in machine repair. A broken or damaged metal shaft, bearing or gear
+      could put a vitally-needed machine tool out of production. Replacement of the part might
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''metal shaft, bearing or gear'', ''shaft,
+    bearing or gear'', ''shaft''); the whole /EN/Products catalogue tree (and the Industries pages that named this
+    item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0084
+  name: tin cans
+  status: retired
+  acceptable_forms:
+  - tin cans
+  evidence:
+  - quote: example, or soft soldering or adhesive bonding.) If you are selecting a method to seal the seams of tin
+      cans, there is nothing to stop you from brazing.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''tin cans''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0087
+  name: Stop-Off
+  status: retired
+  acceptable_forms:
+  - Stop-Off
+  - 460 Stop-Off
+  - 470 Stop-Off
+  evidence:
+  - quote: 460 Stop-Off TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Stop-Off'', ''460 Stop-Off'', ''470
+    Stop-Off''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0088
+  name: stamped parts
+  status: retired
+  acceptable_forms:
+  - stamped parts
+  evidence:
+  - quote: Our extensive inventory of more than 4,000 dies enables us to deliver high quality stamped parts
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''stamped parts''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0089
+  name: discs
+  status: retired
+  acceptable_forms:
+  - discs
+  evidence:
+  - quote: progressive dies, utilizing high precision equipment to manufacture washers, discs, perforated strip
+      and irregular configurations.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''discs''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0090
+  name: spools and coils (packaged material)
+  status: retired
+  acceptable_forms:
+  - spools or coils
+  evidence:
+  - quote: from 6” down to .062” (152.4mm to 1.57mm) and package the material on either spools or coils, depending
+      upon your needs and production requirements.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''spools or coils''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0091
+  name: satellite components
+  status: retired
+  acceptable_forms:
+  - satellite components
+  evidence:
+  - quote: from air conditioning systems for automobiles to highly sensitive jet turbine blades to satellite components
+      to fine jewelry. Brazing offers a significant advantage in applications
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''satellite components''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0092
+  name: fine jewelry
+  status: retired
+  acceptable_forms:
+  - fine jewelry
+  evidence:
+  - quote: conditioning systems for automobiles to highly sensitive jet turbine blades to satellite components to
+      fine jewelry. Brazing offers a significant advantage in applications
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''fine jewelry''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0093
+  name: robotic assemblies
+  status: retired
+  acceptable_forms:
+  - robotic assemblies
+  evidence:
+  - quote: construction, manufacturing and repair shops. Examples are robotic assemblies plus fabrication of pressure
+      vessels, bridges, building structures, aircraft, railway
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''robotic assemblies''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0094
+  name: pressure vessels
+  status: retired
+  acceptable_forms:
+  - pressure vessels
+  evidence:
+  - quote: repair shops. Examples are robotic assemblies plus fabrication of pressure vessels, bridges, building
+      structures, aircraft, railway coaches and tracks, pipelines
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''pressure vessels''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0095
+  name: bridges
+  status: retired
+  acceptable_forms:
+  - bridges
+  evidence:
+  - quote: Examples are robotic assemblies plus fabrication of pressure vessels, bridges, building structures, aircraft,
+      railway coaches and tracks, pipelines and more.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''bridges''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0096
+  name: building structures
+  status: retired
+  acceptable_forms:
+  - building structures
+  evidence:
+  - quote: assemblies plus fabrication of pressure vessels, bridges, building structures, aircraft, railway coaches
+      and tracks, pipelines and more.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''building structures''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0097
+  name: railway coaches and tracks
+  status: retired
+  acceptable_forms:
+  - railway coaches and tracks
+  - railway coaches
+  evidence:
+  - quote: pressure vessels, bridges, building structures, aircraft, railway coaches and tracks, pipelines and more.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''railway coaches and tracks'', ''railway
+    coaches''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application)
+    is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0098
+  name: pipelines
+  status: retired
+  acceptable_forms:
+  - pipelines
+  evidence:
+  - quote: vessels, bridges, building structures, aircraft, railway coaches and tracks, pipelines and more.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''pipelines''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0099
+  name: A/C lines
+  status: retired
+  acceptable_forms:
+  - A/C lines
+  - A/C Lines
+  - A/C Systems
+  evidence:
+  - quote: transfer systems live or die by joint quality. From A/C lines and radiator coils to diesel EGR coolers
+      and fuel delivery assemblies, brazed connections
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''A/C lines'', ''A/C Lines'', ''A/C Systems'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0100
+  name: radiator coils
+  status: retired
+  acceptable_forms:
+  - radiator coils
+  - Radiator Coils
+  evidence:
+  - quote: transfer systems live or die by joint quality. From A/C lines and radiator coils to diesel EGR coolers
+      and fuel delivery assemblies, brazed connections must be repeatable, corrosion-resistant,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''radiator coils'', ''Radiator Coils'');
+    the whole /EN/Products catalogue tree (and the Industries pages that named this item as an application) is absent
+    from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0101
+  name: diesel EGR coolers
+  status: retired
+  acceptable_forms:
+  - EGR coolers
+  - diesel EGR coolers
+  - Diesel EGR Coolers
+  evidence:
+  - quote: joint quality. From A/C lines and radiator coils to diesel EGR coolers and fuel delivery assemblies,
+      brazed connections must be repeatable, corrosion-resistant,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''EGR coolers'', ''diesel EGR coolers'',
+    ''Diesel EGR Coolers''); the whole /EN/Products catalogue tree (and the Industries pages that named this item
+    as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0102
+  name: fuel delivery assemblies / fuel rails
+  status: retired
+  acceptable_forms:
+  - fuel delivery assemblies
+  - fuel rails
+  - Fuel Rails
+  - injector rails
+  - stainless fuel lines
+  evidence:
+  - quote: quality. From A/C lines and radiator coils to diesel EGR coolers and fuel delivery assemblies, brazed
+      connections must be repeatable, corrosion-resistant,
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''fuel delivery assemblies'', ''fuel rails'',
+    ''Fuel Rails'', ''injector rails''); the whole /EN/Products catalogue tree (and the Industries pages that named
+    this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0103
+  name: AL CC
+  status: retired
+  acceptable_forms:
+  - AL CC
+  - AL CC™
+  - AL CC™ (Aluminum Corrosive Cored Wire)
+  - Aluminum Corrosive Cored Wire
+  evidence:
+  - quote: AL CC™ (Aluminum Corrosive Cored Wire)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AL CC'', ''AL CC™'', ''AL CC™ (Aluminum
+    Corrosive Cored Wire)'', ''Aluminum Corrosive Cored Wire''); the whole /EN/Products catalogue tree (and the
+    Industries pages that named this item as an application) is absent from the 2026-08-29 crawl -- those routes
+    now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0104
+  name: AL 718
+  status: retired
+  acceptable_forms:
+  - AL 718
+  - AL718
+  evidence:
+  - quote: AL 718
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AL 718'', ''AL718''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0105
+  name: Silvaloy
+  status: retired
+  acceptable_forms:
+  - Silvaloy
+  - Silvaloy®
+  - Silvaloy 721
+  - Silvaloy® rings
+  - SILVALOY 721 VTG Gr1
+  evidence:
+  - quote: SILVALOY 721 VTG Gr1
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silvaloy'', ''Silvaloy®'', ''Silvaloy
+    721'', ''Silvaloy® rings''); the whole /EN/Products catalogue tree (and the Industries pages that named this
+    item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0106
+  name: Schrader valves / service ports
+  status: retired
+  acceptable_forms:
+  - Schrader
+  - Schrader-style valves
+  - service ports
+  - Service Port Joints
+  evidence:
+  - quote: Port Joints (Schrader / Tapered Connections) - Service ports and Schrader-style valves are notorious
+      leak paths when flux or filler distribution is inconsistent.
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Schrader'', ''Schrader-style valves'',
+    ''service ports'', ''Service Port Joints''); the whole /EN/Products catalogue tree (and the Industries pages
+    that named this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only
+    duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0107
+  name: Cone Cored flux-cored washer
+  status: retired
+  acceptable_forms:
+  - Cone Cored
+  - Cone Cored™
+  - Cone Cored™ Flux-Cored Washer
+  - HANDY ONE AL CONE CORED
+  evidence:
+  - quote: Cone Cored™ Flux-Cored Washer
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Cone Cored'', ''Cone Cored™'', ''Cone
+    Cored™ Flux-Cored Washer'', ''HANDY ONE AL CONE CORED''); the whole /EN/Products catalogue tree (and the Industries
+    pages that named this item as an application) is absent from the 2026-08-29 crawl -- those routes now return
+    only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0108
+  name: AL 822
+  status: retired
+  acceptable_forms:
+  - AL 822
+  - AL822
+  evidence:
+  - quote: AL 822
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AL 822'', ''AL822''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0110
+  name: sticks
+  status: retired
+  acceptable_forms:
+  - Sticks
+  - sticks
+  evidence:
+  - quote: .090" DIA X 20" X 4 Sticks
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Sticks'', ''sticks''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0111
+  name: Premabraze 880
+  status: retired
+  acceptable_forms:
+  - Premabraze 880
+  - Premabraze® 880
+  - PREMABRAZE 880
+  evidence:
+  - quote: PREMABRAZE 880
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Premabraze 880'', ''Premabraze® 880'',
+    ''PREMABRAZE 880''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as
+    an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0112
+  name: Premabraze 800
+  status: retired
+  acceptable_forms:
+  - Premabraze 800
+  - Premabraze® 800
+  - PREMABRAZE 800
+  evidence:
+  - quote: PREMABRAZE 800
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Premabraze 800'', ''Premabraze® 800'',
+    ''PREMABRAZE 800''); the whole /EN/Products catalogue tree (and the Industries pages that named this item as
+    an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0113
+  name: Handy One
+  status: retired
+  acceptable_forms:
+  - Handy One
+  - Handy One®
+  - HANDY ONE
+  - HANDY ONE AL CORROSIVE CORED
+  - HANDY ONE AL 718
+  evidence:
+  - quote: HANDY ONE AL CORROSIVE CORED
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Handy One'', ''Handy One®'', ''HANDY
+    ONE'', ''HANDY ONE AL CORROSIVE CORED''); the whole /EN/Products catalogue tree (and the Industries pages that
+    named this item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page
+    placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0115
+  name: air conditioning systems
+  status: retired
+  acceptable_forms:
+  - air conditioning systems
+  - air conditioning systems for automobiles
+  evidence:
+  - quote: aerospace, automotive, HVAC/R, construction and more. Examples range from air conditioning systems for
+      automobiles to highly sensitive jet turbine blades to satellite components to fine jewelry.
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''air conditioning systems'', ''air conditioning
+    systems for automobiles''); the whole /EN/Products catalogue tree (and the Industries pages that named this
+    item as an application) is absent from the 2026-08-29 crawl -- those routes now return only duplicate-page placeholders;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0116
+  name: dispensers
+  status: retired
+  acceptable_forms:
+  - Dispensers
+  evidence:
+  - quote: Repairing Aluminum Coils & Dispensers
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Dispensers''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0117
+  name: '99088'
+  status: retired
+  acceptable_forms:
+  - '99088'
+  evidence:
+  - quote: "99088\t.090\" DIA X 20\" X 4 Sticks\t20/box"
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''99088''); the whole /EN/Products catalogue
+    tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29 crawl --
+    those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0118
+  name: Silvaloy 720
+  status: retired
+  acceptable_forms:
+  - Silvaloy 720
+  evidence:
+  - quote: Silvaloy 720 SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silvaloy 720''); the whole /EN/Products
+    catalogue tree (and the Industries pages that named this item as an application) is absent from the 2026-08-29
+    crawl -- those routes now return only duplicate-page placeholders; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-products-0119
+  name: Silver Alloy
+  status: candidate
+  acceptable_forms:
+  - Silver Alloy
+  evidence:
+  - quote: ' Brazing Alloys, Silver Alloy, Brazing Flux Paste, Brazing Flux Powder'
+    approx_offset: 18945
+  notes: product-image alt text on the Products page.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-products-0120
+  name: Brazing Flux Paste
+  status: candidate
+  acceptable_forms:
+  - Brazing Flux Paste
+  evidence:
+  - quote: ' Brazing Alloys, Silver Alloy, Brazing Flux Paste, Brazing Flux Powder'
+    approx_offset: 18945
+  notes: product-image alt text on the Products page.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-products-0121
+  name: Brazing Flux Powder
+  status: candidate
+  acceptable_forms:
+  - Brazing Flux Powder
+  evidence:
+  - quote: ' Brazing Alloys, Silver Alloy, Brazing Flux Paste, Brazing Flux Powder'
+    approx_offset: 18945
+  notes: product-image alt text on the Products page.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-products-0122
+  name: Brazing Rings
+  status: candidate
+  acceptable_forms:
+  - Brazing Rings
+  evidence:
+  - quote: ' Brazing Alloys, Brazing Products, Brazing Rings, Brazing Rod'
+    approx_offset: 19032
+  notes: product-image alt text on the Products page.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-products-0123
+  name: silver brazing paste
+  status: candidate
+  acceptable_forms:
+  - silver brazing paste
+  evidence:
+  - quote: ' brazing flux powder, brazing flux paste, silver brazing paste, silver brazing powder'
+    approx_offset: 19103
+  notes: product-image alt text on the Products page.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-products-0124
+  name: silver brazing powder
+  status: candidate
+  acceptable_forms:
+  - silver brazing powder
+  evidence:
+  - quote: ' brazing flux powder, brazing flux paste, silver brazing paste, silver brazing powder'
+    approx_offset: 19103
+  notes: product-image alt text on the Products page.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-products-0125
+  name: Evaporators
+  status: candidate
+  acceptable_forms:
+  - Evaporators
+  evidence:
+  - quote: '#### Aluminum Brazing of Evaporators and Condenser Coils'
+    approx_offset: 24790
+  actor: client
+  notes: Demo Videos page title; the workpiece being brazed in the demonstration, a customer's HVAC component, not
+    Lucas Milhaupt's own product.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-products-0126
+  name: Condenser Coils
+  status: candidate
+  acceptable_forms:
+  - Condenser Coils
+  evidence:
+  - quote: '#### Aluminum Brazing of Evaporators and Condenser Coils'
+    approx_offset: 24790
+  actor: client
+  notes: Demo Videos page title; the workpiece being brazed in the demonstration, a customer's HVAC component, not
+    Lucas Milhaupt's own product.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Lucas Gear
+  reason: 'witnessed on all 69 pages: a footer link to employee/branded merchandise, not a manufactured product
+    line -- and ''Gear'' invites a machinery reading too'
+- form: Trade Name Cross Reference Sheet
+  reason: 'witnessed: a downloadable DOCUMENT, which the products clause excludes by name'
+- form: Technical Data Sheets
+  reason: 'witnessed ~250x as ''TDS'': documents, excluded by name'
+- form: Safety Data Sheets
+  reason: 'witnessed ~250x as ''SDS'': documents, excluded by name'
+- form: Braze School
+  reason: 'witnessed ~15x: TRAINING, excluded by name in the products clause'
+- form: Brazing Academy
+  reason: 'witnessed: training, excluded by name'
+- form: Demo Videos
+  reason: 'witnessed: media, excluded by name'
+- form: ebooks
+  reason: 'witnessed: ''how-to braze ebooks'' -- documents, excluded by name'
+- form: Quick Reference Chart
+  reason: 'witnessed: ''Brazing Tips and Techniques Quick Reference Chart'' -- a document, excluded by name'
+- form: Center of Excellence
+  reason: 'witnessed ~12x: a FACILITY, which the clause separates from artifacts'
+- form: Steel Partners
+  reason: 'witnessed 7x: a company name, excluded by name'
+- form: Handy & Harman
+  reason: 'witnessed 6x: a company name (the 1967 merger partner), excluded by name'
+- form: Wolverine Technologies
+  reason: 'witnessed: a legacy trade-name family referenced on the products page; a brand/company, not an artifact'
+- form: dies
+  reason: 'AMBIGUOUS, and worth counting either way: ''stock dies'' and ''4,000 dies'' are stamping TOOLING (excluded),
+    while ''semiconductor chips (dies)'' on the microelectronics page is a genuine made artifact. The bare form
+    cannot be scored without its context.'
+- form: fixtures
+  reason: 'witnessed ~20x: tooling the work is held in, which the clause separates from artifacts'
+- form: Join with the BEST
+  reason: 'witnessed 3x: a marketing slogan / trademark, not a product'
+- form: Braze School 2025
+  reason: 'witnessed: an event, not an artifact'
+- form: Handy and Harman
+  reason: a legacy company/brand name whose trade names are cross-referenced, not a made artifact of Lucas Milhaupt's.
+- form: Distribution
+  reason: one of the Products page's four tiles, but the text describes it as a logistics/kitting service (slitting,
+    spooling, kitting, VMI, logistics), not a made artifact.

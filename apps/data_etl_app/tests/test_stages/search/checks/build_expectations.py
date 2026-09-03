@@ -50,9 +50,13 @@ from _shared.text_matching import (  # noqa: E402
     flexible_pattern,
     normalize_spaces,
 )
-from paths import EXPECTATIONS_DIR, REPO_ROOT, SEARCH_FIELDS  # noqa: E402
+from paths import (  # noqa: E402
+    EXPECTATIONS_DIR,
+    SAMPLE_TEXTS_REL,
+    SEARCH_FIELDS,
+    text_path_for,
+)
 
-SAMPLE_TEXTS_REL = "apps/data_etl_app/tests/test_stages/sample_scraped_texts"
 # An evidence quote is meant to be a short verbatim span - roughly one line -
 # that locates the entity precisely. The harness's own schema test enforces this
 # cap, so catching it here turns a puzzling test failure later into a named
@@ -64,13 +68,10 @@ VALID_ACTORS = {
 }
 
 
-def _text_path_for(slug: str) -> Path:
-    """`tanfel_com` -> the .txt whose name matches once dots are restored."""
-    directory = REPO_ROOT / SAMPLE_TEXTS_REL
-    for candidate in sorted(directory.glob("*.txt")):
-        if candidate.stem.replace(".", "_") == slug:
-            return candidate
-    raise SystemExit(f"no scraped text found for slug {slug!r} in {directory}")
+def _occurs_ci(form: str, normalized_quote: str) -> bool:
+    """Does `form` occur in this quote as a whole word? Mirrors the validator."""
+    pattern = flexible_pattern(form, case_sensitive=len(form.strip()) <= 3)
+    return bool(pattern and pattern.search(normalized_quote))
 
 
 def _offset_of(quote: str, normalized_text: str) -> int | None:
@@ -137,7 +138,7 @@ def _sorted_by_first_appearance(
 
 
 def build(slug: str, jsonl_path: Path, merge: bool) -> int:
-    text_path = _text_path_for(slug)
+    text_path = text_path_for(slug)
     text = text_path.read_text(errors="replace")
     normalized_text = normalize_spaces(text)
     sha = hashlib.sha256(text_path.read_bytes()).hexdigest()
@@ -205,6 +206,15 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
                         offset = _offset_of(trimmed, normalized_text)
                         if offset is not None:
                             record["approx_offset"] = offset
+                # An evidence quote that cannot be FOUND is not evidence. It
+                # used to be complained about and written anyway, which put
+                # rows into the eval set that `validate_expectations.py` then
+                # errored on -- 24 of them in one 2026-08-29 top-up pass, from
+                # an agent that truncated its quotes at exactly the 200-char
+                # cap and so cut the last word in half. `flexible_pattern`
+                # bounds BOTH edges, so a quote ending mid-word never matches.
+                if "approx_offset" not in record:
+                    continue
                 evidence.append(record)
             # A seed may argue that an entity sits outside its field's clause;
             # `disputed` keeps the argument on the record without gating recall.
@@ -223,10 +233,29 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
                     f"(only 'disputed'); left as candidate"
                 )
                 status_hint = None
+            entry_forms = [str(f) for f in (row.get("acceptable_forms") or [])]
+            if not evidence:
+                complaints.append(
+                    f"line {line_number}: no evidence quote occurs in the text; "
+                    f"entry {row.get('name')!r} left out"
+                )
+                continue
+            # Validator check 4, enforced here rather than three steps later:
+            # an entry whose forms appear in none of its own quotes can never
+            # credit, so writing it would be writing a known-dead row.
+            if not any(
+                _occurs_ci(form, normalize_spaces(item["quote"]))
+                for item in evidence for form in entry_forms
+            ):
+                complaints.append(
+                    f"line {line_number}: no acceptable_form is covered by its own "
+                    f"evidence; entry {row.get('name')!r} left out (forms={entry_forms[:3]})"
+                )
+                continue
             entry = {
                 "status": status_hint or "candidate",
                 "name": row.get("name", ""),
-                "acceptable_forms": list(row.get("acceptable_forms") or []),
+                "acceptable_forms": entry_forms,
                 "evidence": evidence,
             }
             if actor and actor != "own":
@@ -246,11 +275,24 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
     for field_name in SEARCH_FIELDS:
         path = subject_dir / f"{field_name}.yaml"
         existing: list[dict[str, Any]] = []
+        existing_friends: list[dict[str, Any]] = []
+        existing_meta: dict[str, Any] = {}
         version = 1
         if merge and path.is_file():
             payload = yaml.safe_load(path.read_text()) or {}
             existing = list(payload.get("entries") or [])
-            version = int(payload.get("eval_set_version") or 1)
+            # A merging JSONL carries only what its agent found. Everything ELSE
+            # the file already states -- expected_empty, the field notes, the
+            # false friends -- is prior judgment that the new rows say nothing
+            # about, so it survives unless the JSONL actually overrides it.
+            # Without this a top-up pass silently reset `expected_empty` to
+            # false and dropped every false friend the subject had.
+            existing_friends = list(payload.get("false_friends") or [])
+            existing_meta = {
+                "expected_empty": payload.get("expected_empty", False),
+                "notes": payload.get("notes"),
+            }
+            version = int(payload.get("eval_set_version") or 1) + 1
 
         seen = {collapse_whitespace(e.get("name", "")).casefold() for e in existing}
         fresh = []
@@ -262,10 +304,31 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
             fresh.append(entry)
 
         entries = existing + fresh
-        for index, entry in enumerate(entries, 1):
+        # Ids come from the HIGHEST id already in the file, never from the
+        # entry's position in the list. Positional numbering silently produced
+        # DUPLICATE ids on merge: `apply_repairs` inserts repaired entries in
+        # document order, so an entry carrying id -0116 can sit at position
+        # 200, and the next new entry landing at position 116 would claim
+        # -0116 as well. The loader reports that as a schema error, and it hit
+        # agstech and blackadvtech for real on 2026-08-29.
+        taken = {str(e.get("id")) for e in entries if e.get("id")}
+        prefix = f"{slug}-{field_name}-"
+        next_index = 1 + max(
+            (
+                int(eid[len(prefix):])
+                for eid in taken
+                if eid.startswith(prefix) and eid[len(prefix):].isdigit()
+            ),
+            default=0,
+        )
+        for entry in entries:
             entry.setdefault("id", "")
             if not entry["id"]:
-                entry["id"] = f"{slug}-{field_name}-{index:04d}"
+                while f"{prefix}{next_index:04d}" in taken:
+                    next_index += 1
+                entry["id"] = f"{prefix}{next_index:04d}"
+                taken.add(entry["id"])
+                next_index += 1
             entry.setdefault(
                 "provenance",
                 [{"action": "added", "by": seeder, "date": date, "source": "corpus-seed"}],
@@ -277,7 +340,8 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
                 if key_name in entry:
                     ordered[key_name] = entry.pop(key_name)
             ordered.update(entry)
-            entries[index - 1] = ordered
+            entry.clear()
+            entry.update(ordered)
 
         # A false friend that is ALSO an entry's acceptable form in the same
         # field contradicts itself: the judged pass would count the same string
@@ -291,11 +355,13 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
             for form in entry.get("acceptable_forms", [])
         }
         kept_friends = []
-        for friend in friends[field_name]:
+        seen_friends: set[str] = set()
+        for friend in existing_friends + friends[field_name]:
             key = collapse_whitespace(str(friend.get("form", ""))).casefold()
             if key in seeded_forms:
                 dropped_friends.append(f"{field_name}: {friend.get('form')!r}")
-            else:
+            elif key not in seen_friends:
+                seen_friends.add(key)
                 kept_friends.append(friend)
         friends[field_name] = kept_friends
 
@@ -305,10 +371,13 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
             "field": field_name,
             "snapshot": {"file": f"{SAMPLE_TEXTS_REL}/{text_path.name}", "sha256": sha},
             "eval_set_version": version,
-            "expected_empty": bool(meta.get("expected_empty", False)),
+            "expected_empty": bool(
+                meta.get("expected_empty", existing_meta.get("expected_empty", False))
+            ),
         }
-        if meta.get("notes"):
-            document["notes"] = meta["notes"]
+        notes = meta.get("notes") or existing_meta.get("notes")
+        if notes:
+            document["notes"] = notes
         document["entries"] = entries
         if friends[field_name]:
             document["false_friends"] = friends[field_name]
@@ -319,20 +388,28 @@ def build(slug: str, jsonl_path: Path, merge: bool) -> int:
         print(f"  {field_name:<24} {len(entries):>4} entries ({len(fresh)} new)")
 
     if subject_meta:
-        subject_document: dict[str, Any] = {
+        subject_path = subject_dir / "subject.yaml"
+        # Same rule as the field files: on a merge the existing subject record
+        # (profile, scrape hazards, the sampling plan and the pages actually
+        # read) is prior judgment. A top-up agent that mentions none of it must
+        # not erase it.
+        subject_document: dict[str, Any] = {}
+        if merge and subject_path.is_file():
+            subject_document = yaml.safe_load(subject_path.read_text()) or {}
+        subject_document.update({
             "subject": subject_name,
             "slug": slug,
-            "role": subject_meta.get("role", "full_unit"),
+            "role": subject_meta.get("role", subject_document.get("role", "full_unit")),
             "snapshot": {"file": f"{SAMPLE_TEXTS_REL}/{text_path.name}", "sha256": sha},
-            "eval_set_version": 1,
-        }
+            "eval_set_version": int(subject_document.get("eval_set_version") or 0) + 1,
+        })
         for key_name in ("context", "scrape_hazards", "sampling_notes", "notes"):
             if subject_meta.get(key_name):
                 subject_document[key_name] = subject_meta[key_name]
-        subject_document["provenance"] = [
+        subject_document["provenance"] = list(subject_document.get("provenance") or []) + [
             {"action": "added", "by": seeder, "date": date, "source": "corpus-seed"}
         ]
-        (subject_dir / "subject.yaml").write_text(
+        subject_path.write_text(
             yaml.safe_dump(subject_document, sort_keys=False, allow_unicode=True, width=110)
         )
         written += 1

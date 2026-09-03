@@ -279,9 +279,12 @@ def check_location_content(report: FieldReport, run: loading.FieldRun) -> None:
     and gate. Whether a location is CORRECT is a judgment (S2/S3/S4) and is not
     decided here.
     """
-    described = [
-        m for m in run.distinct_snippets().values() if m.described
-    ]
+    # Every location the model produced, not one per mention_id: a mention
+    # recurring across pages is described once PER WINDOW, and keying by
+    # mention_id alone hid 22.5% of the claims (measured 20260829T022413).
+    # A banned URL or opener in a hidden claim is still a contract violation,
+    # and these are exact gates, so they must see all of them.
+    described = [m for m, _covered in run.location_claims() if m.described]
     total = len(described)
 
     def ban(check: str, pattern: re.Pattern[str], detail: str) -> list[loading.Mention]:
@@ -502,8 +505,20 @@ def check_shared_identity(reports: dict[str, FieldReport], runs: list[loading.Fi
         duplicate = fields.get(paths.SHARED_DUPLICATE)
         if not source or not duplicate or not source.has_fold or not duplicate.has_fold:
             continue
-        left = [(m.mention_id, m.span, m.group_id) for m in source.mentions()]
-        right = [(m.mention_id, m.span, m.group_id) for m in duplicate.mentions()]
+        # The location and its source belong in the tuple. Compared on ids and
+        # spans alone this check passed on 20260829T022413 while the two folds
+        # genuinely differed: lucasmilhaupt's mis-echoed mention id triggered a
+        # retry in `products` and no retry in `contract_products`, leaving three
+        # rows described in one field and "(location not described)" in the
+        # other. A byte-copy assertion has to compare the bytes that can differ.
+        left = [
+            (m.mention_id, m.span, m.group_id, m.location, m.location_source)
+            for m in source.mentions()
+        ]
+        right = [
+            (m.mention_id, m.span, m.group_id, m.location, m.location_source)
+            for m in duplicate.mentions()
+        ]
         report = reports.get(source.key)
         if report is None:
             continue

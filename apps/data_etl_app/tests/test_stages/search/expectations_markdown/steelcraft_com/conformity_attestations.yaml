@@ -1,0 +1,1781 @@
+subject: steelcraft.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/steelcraft.com.txt
+  sha256: 177da18fbba7968e733d2de9701d1b82b82d9d4e3ccf7cbef93cd44317cc6434
+eval_set_version: 3
+expected_empty: false
+notes: 'THE subject''s most important field: a dense standards inventory (50 entries) spanning SDI/ANSI construction
+  standards, fire tests (ASTM E152, UL-10B/10C, UL 1784, NFPA 80), the tornado family (ICC 500, FEMA P-320/P-361),
+  the WINDSTORM TEST FAMILY the 2026-08-25 run lost - TAS 201/202/203 and ASTM E1886/E1996 are ALL verbatim in the
+  text (plus ASTM E330 and ANSI/SDI A250.13 beside them) - paint tests (B117/D4585/D2794/D3359), stainless/coating
+  specs (A666/A653), approval regimes (FBC, SFBC, Miami-Dade NOA, TDI, HVHZ), bodies (SDI cert, Intertek, UL), and
+  green-building programs (LEED, CALGreen, Clean Air Gold, EPD/HPD/Declare, Living Building Challenge). ACTOR HAZARD:
+  FL/Miami-Dade/TDI approvals are filed under ''Allegion-Schlage Lock Company'' / ''Schlage Lock Co.'' - stated
+  in-text; still the subject''s product attestations. The privacy/terms pages contribute legal-only designations
+  (CCPA, DMCA) seeded as false friends. VERIFICATION PASS 2026-08-26 (verify-agent-steelcraft, second independent
+  read of the full 225KB snapshot): all 50 entries confirmed; 0 disputed; 0 quote failures - every evidence quote
+  in this file is byte-exact verbatim in the snapshot, NBSPs included. WINDSTORM FIVE VERDICT: all five are genuinely
+  in the text and the entries are sound - TAS 201 (2 occurrences), TAS 202 (3), TAS 203 (2), ASTM E1886 (3, twice
+  fused as ''ASTM E1886/E1996''), ASTM E1996 (3 occurrences of the E1996 string, only 1 as the standalone ''ASTM
+  E1996'' bigram); ASTM E330 (2) and ANSI/SDI A250.13 (1) sit beside them as the seed says. FALSE FRIENDS: agreed
+  as written - STC/Sound Transmission Control, LU/HSW, Limited Warranty, Authorized Seller Program, 08 17 13, CCPA,
+  DMCA, ''NYSE: ALLE'' and EHPA all check out against the text, and I found no false friend that is actually in-field.
+  OVER-BROAD FORMS: bare ''FBC'' and ''TDI'' are credited by containment from their own Excel download titles; bare
+  ''EPD''/''HPD'' are 3 chars; bare ''A115'' is 4. OBSERVED GAPS (recorded, NOT added): ''U.S. Green Building Council
+  (USGBC)'' and ''California Department of Public Health (CDPH)'' are named bodies of the same kind as the seeded
+  Intertek/UL entries and are absent from the entry list.'
+entries:
+- id: steelcraft_com-conformity_attestations-0016
+  name: FEMA P-361
+  status: confirmed
+  acceptable_forms:
+  - FEMA P-361
+  - FEMA 361
+  - P-361
+  evidence:
+  - quote: No wood door, with or without metal sheathing, has successfully passed FEMA P-361.
+    approx_offset: 67196
+  - quote: Meets FEMA P-320 & P-361/ICC500-2014 standards for tornado shelters
+    approx_offset: 814
+  notes: 'tornado safe-room criteria; also appears as ''FEMA 320/361'' and once with a U+2044 fraction slash: ''FEMA
+    361⁄320'''
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0017
+  name: FEMA P-320
+  status: confirmed
+  acceptable_forms:
+  - FEMA P-320
+  - FEMA 320
+  evidence:
+  - quote: labeled by Intertek signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361
+      (2021), as required by the International Building Code
+    approx_offset: 90637
+  - quote: Meets FEMA P-320 & P-361/ICC500-2014 standards for tornado shelters
+    approx_offset: 814
+  notes: residential safe-room criteria
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0049
+  name: ADA compliance
+  status: confirmed
+  acceptable_forms:
+  - ADA-compliant
+  - ADA compliant
+  evidence:
+  - quote: ADA-compliant glass lights available
+    approx_offset: 954
+  notes: accessibility regulation compliance claim (B); bare 'ADA' deliberately not a form (contained in unrelated
+    words)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0009
+  name: SDI Certification / Steel Door Institute
+  status: confirmed
+  acceptable_forms:
+  - SDI Certified
+  - SDI Certification
+  - Steel Door Institute
+  - SDI Membership
+  evidence:
+  - quote: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and quality standards
+      set by the Steel Door Institute
+    approx_offset: 2992
+  - quote: Founded in 1933 in Cincinnati, Ohio, Steelcraft was one of the original members of The Steel Door Institute
+      (SDI).
+    approx_offset: 38373
+  notes: the subject's own certification claim, repeated on nearly every product page (~20x); body and cert merged
+    into one entity
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0002
+  name: ANSI A250.6 (hardware reinforcing)
+  status: confirmed
+  acceptable_forms:
+  - ANSI A250.6-2003
+  - ANSI/SDI A250.6
+  - A250.6
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI A115, unless
+      otherwise stated
+    approx_offset: 3349
+  notes: also cited as ANSI A250.6-1997 on the elevations page and ANSI/SDI A250.6 in the SDI membership list
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0003
+  name: ANSI/DHI A115 (hardware locations)
+  status: confirmed
+  acceptable_forms:
+  - ANSI/DHI A115
+  - ANSI A115
+  - A115
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI A115, unless
+      otherwise stated
+    approx_offset: 3349
+  - quote: ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All Tornado products are Galvanealled), ANSI A115
+      (Locations) and SDI 117 (Tolerances)
+    approx_offset: 82847
+  notes: 'VERIFY 2026-08-26: agreed. FORM FLAG: bare ''A115'' is 4 chars; distinctive enough in this corpus but
+    it is the shortest form in the file - a containment match on it should be spot-checked.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0010
+  name: ASTM E152 (neutral pressure fire test)
+  status: confirmed
+  acceptable_forms:
+  - ASTM E152
+  evidence:
+  - quote: they are listed for installations requiring compliance to both neutral pressure testing (ASTM E152 and
+      UL-10B) and positive pressure standards (UL-10C)
+    approx_offset: 3523
+  notes: cited on nearly every series page in the neutral/positive pressure sentence
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0011
+  name: UL 10B
+  status: confirmed
+  acceptable_forms:
+  - UL-10B
+  - UL 10B
+  evidence:
+  - quote: they are listed for installations requiring compliance to both neutral pressure testing (ASTM E152 and
+      UL-10B) and positive pressure standards (UL-10C)
+    approx_offset: 3523
+  notes: neutral-pressure fire test listing
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0012
+  name: UL 10C
+  status: confirmed
+  acceptable_forms:
+  - UL-10C
+  - UL 10C
+  - ANSI UL 10C
+  - USL-10C
+  evidence:
+  - quote: they are listed for installations requiring compliance to both neutral pressure testing (ASTM E152 and
+      UL-10B) and positive pressure standards (UL-10C)
+    approx_offset: 3523
+  - quote: ANSI/SDI A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical
+      endurance)
+    approx_offset: 82694
+  notes: positive-pressure fire standard; the LS page carries the site typo 'USL-10C' ('Compliance with ASTM A666,
+    ASTM E152, UL-10B, and USL-10C') - kept as an acceptable form so a faithful echo still credits
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0004
+  name: ANSI A250.10 (prime paint)
+  status: confirmed
+  acceptable_forms:
+  - ANSI A250.10-2011
+  - ANSI/SDI A250.10
+  - A250.10
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 3677
+  - quote: ANSI/SDI A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical
+      endurance)
+    approx_offset: 82694
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0048
+  name: California Prop 65
+  status: confirmed
+  acceptable_forms:
+  - California PROP65
+  - PROP65
+  evidence:
+  - quote: In accordance with California PROP65 -
+    approx_offset: 4273
+  notes: regulatory designation in a warning block repeated ~25x on product pages; defensible B but pure boilerplate
+    - judged pass should expect heavy repetition
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: legal_boilerplate
+- id: steelcraft_com-conformity_attestations-0001
+  name: ANSI/SDI A250.8 (SDI-100)
+  status: confirmed
+  acceptable_forms:
+  - ANSI A250.8-2017 (SDI-100)
+  - ANSI/SDI A250.8
+  - SDI-100
+  - SDI 100
+  - A250.8
+  evidence:
+  - quote: exceeds ANSI A250.8-2017 (SDI-100), the standard set by SDI specifying sizes, design, materials, construction,
+      finishing and performance
+    approx_offset: 5880
+  notes: the recurrent door/frame construction standard (~20x); 2017 and 2003 editions both cited
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0041
+  name: LEED
+  status: confirmed
+  acceptable_forms:
+  - LEED
+  - Leadership in Energy and Environmental Design
+  evidence:
+  - quote: The benchmark for sustainable design in the United States is the Leadership in Energy and Environmental
+      Design (LEED) rating system developed by the U.S. Green Building Council (USGBC).
+    approx_offset: 16041
+  notes: building rating system the subject's products contribute credits to - NOT a certification the subject holds
+    (B, actor nuance)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0044
+  name: Environmental Product Declarations (EPDs)
+  status: confirmed
+  acceptable_forms:
+  - Environmental Product Declarations (EPDs)
+  - EPDs
+  - EPD
+  evidence:
+  - quote: Environmental Product Declarations (EPDs), are independently verified documents that communicate transparent
+      information about the environmental impact of products
+    approx_offset: 16899
+  notes: 'independently verified product declarations provided via Allegion (B; actor: parent provides the documentation)
+    | VERIFY 2026-08-26: agreed (a third-party-verified declaration IS a conformity attestation). FORM FLAG: bare
+    ''EPD'' is 3 chars - safe inside this corpus but it would be credited by any unrelated EPD-prefixed token (e.g.
+    EPDM) in a future snapshot.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0045
+  name: Health Product Declarations (HPDs)
+  status: confirmed
+  acceptable_forms:
+  - Health Product Declarations (HPDs)
+  - HPDs
+  - HPD
+  evidence:
+  - quote: Health Product Declarations (HPDs) disclose the potential chemicals of concern in products.
+    approx_offset: 17213
+  notes: 'B; documentation program | VERIFY 2026-08-26: agreed. FORM FLAG: bare ''HPD'' is 3 chars - same containment
+    caveat as EPD.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0042
+  name: CALGreen
+  status: confirmed
+  acceptable_forms:
+  - CALGreen
+  - CalGreen Building Standards
+  - CALGreen Building Code
+  evidence:
+  - quote: Clean Air Gold Certification supports CALGreen, the nation's first state-mandated green building code
+      based on criteria set by the California Department of Public Health (CDPH).
+    approx_offset: 17469
+  notes: state green building code (B)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0043
+  name: Clean Air Gold Certification
+  status: confirmed
+  acceptable_forms:
+  - Clean Air Gold Certification
+  - Clean Air Gold
+  evidence:
+  - quote: Clean Air Gold Certification supports CALGreen, the nation's first state-mandated green building code
+      based on criteria set by the California Department of Public Health (CDPH).
+    approx_offset: 17469
+  notes: named certification on the sustainability page (B)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0046
+  name: Declare labels
+  status: confirmed
+  acceptable_forms:
+  - Declare labels
+  - Declare Labels
+  evidence:
+  - quote: To support the Living Building Challenge, Allegion provides Declare labels for products.
+    approx_offset: 17784
+  actor: parent_sibling
+  notes: Allegion (parent) provides the labels for products - B, parent-provided attestation
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0047
+  name: Living Building Challenge
+  status: confirmed
+  acceptable_forms:
+  - Living Building Challenge
+  evidence:
+  - quote: To support the Living Building Challenge, Allegion provides Declare labels for products.
+    approx_offset: 17784
+  notes: named building program (B)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0039
+  name: Intertek listing/labeling
+  status: confirmed
+  acceptable_forms:
+  - Intertek labeled
+  - labeled by Intertek
+  - Intertek (WHI)
+  - Listed and labeled by Intertek
+  evidence:
+  - quote: Tested and Intertek labeled showing compliance with ICC500-2014 and FEMA 320/361
+    approx_offset: 92036
+  - quote: Listed and labeled by Intertek and UL showing compliance with ICC500-2014, ICC 500-2020 and and FEMA
+      320/361.
+    approx_offset: 20685
+  notes: 'own product listing attested by the Intertek lab (B: body); the Paladin quote preserves the source typo
+    ''and and'''
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0040
+  name: UL listing/labeling
+  status: confirmed
+  acceptable_forms:
+  - Intertek and UL
+  - UL fire ratings
+  evidence:
+  - quote: Labeling with Intertek and UL fire ratings
+    approx_offset: 180331
+  - quote: Listed and labeled by Intertek and UL showing compliance with ICC500-2014, ICC 500-2020 and and FEMA
+      320/361.
+    approx_offset: 20685
+  notes: own listing via the UL body; bare 'UL' deliberately not a form (substring chaos); the UL 10B/10C/1784 standards
+    are separate entries
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0032
+  name: ANSI/BHMA A156.3 (exit devices)
+  status: confirmed
+  acceptable_forms:
+  - ANSI/BHMA A156.3
+  evidence:
+  - quote: Hardware meets ANSI/BHMA A156.3 2014
+    approx_offset: 36858
+  notes: INPACT hardware standard
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0005
+  name: ANSI/SDI A250.4 (physical endurance)
+  status: confirmed
+  acceptable_forms:
+  - ANSI/SDI A250.4
+  - SDI/A250.4
+  - A250.4
+  evidence:
+  - quote: SDI/A250.4 to 1 Million Cycles and a 350 lb. cart impact
+    approx_offset: 36897
+  - quote: ANSI/SDI A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical
+      endurance)
+    approx_offset: 82694
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0026
+  name: ASTM C1363 (thermal performance)
+  status: confirmed
+  acceptable_forms:
+  - ASTM C1363
+  evidence:
+  - quote: Frames tested to ASTM C1363 for Thermal Performance
+    approx_offset: 65717
+  notes: FT Series thermal-break frames
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0015
+  name: ICC 500
+  status: confirmed
+  acceptable_forms:
+  - ICC 500
+  - ICC500
+  - ICC 500-2020
+  - ICC 500-2014
+  - ICC500-2014
+  - ICC500-2020
+  evidence:
+  - quote: ICC 500 is the Standard for the Design and Construction of Storm Shelters.
+    approx_offset: 67403
+  - quote: labeled by Intertek signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361
+      (2021), as required by the International Building Code
+    approx_offset: 90637
+  notes: 2014 and 2020 editions merged as one designation; also appears fused in ICC500-2014 style
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0007
+  name: ANSI/SDI A250.13 (severe windstorm components)
+  status: confirmed
+  acceptable_forms:
+  - ANSI/SDI A250.13
+  - ANSI A250.13
+  - A250.13
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm Resistant
+      Components for Swinging Door Assemblies for Protection of Building Envelopes
+    approx_offset: 68609
+  notes: windstorm standard cited beside the TAS/ASTM test family in all three THE TEST STANDARDS lines
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0034
+  name: South Florida Building Code (SFBC)
+  status: confirmed
+  acceptable_forms:
+  - South Florida Building Code
+  - SFBC
+  evidence:
+  - quote: the Florida Building Code (FBC) and the South Florida Building Code (SFBC)
+    approx_offset: 68796
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0033
+  name: Florida Building Code (FBC)
+  status: confirmed
+  acceptable_forms:
+  - Florida Building Code
+  - FBC
+  evidence:
+  - quote: Florida Building Code (FBC)
+    approx_offset: 68800
+  notes: 'hurricane approval listing; ACTOR NUANCE: the FL filings are held under ''Allegion-Schlage Lock Company,
+    LLC'' (parent legal entity), stated in-text - the attestation is still for the subject''s products | VERIFY
+    2026-08-26: agreed on membership (regulatory approval regime, V/B). TWO FLAGS: (a) the second evidence quote
+    (''Note that Steelcraft/Allegion approvals are listed under Schlage Lock Co.'') contains NO acceptable form,
+    so it is an actor-context quote, not a valid window anchor per EXPECTATIONS_SCHEMA - harmless here because ''Florida
+    Building Code (FBC)'' occurs twice on the same H Series page; (b) bare ''FBC'' is credited by containment from
+    the download titles ''FBC Lookup-Approvals (Excel)'' / ''FBC Lookup-Anchors (Excel)'', i.e. a doc-title return
+    would credit this standard entry.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+  evidence_kind: spec_table
+- id: steelcraft_com-conformity_attestations-0018
+  name: TAS 201 (large missile impact)
+  status: confirmed
+  acceptable_forms:
+  - TAS 201
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 68899
+  - quote: 'TAS 201: Missile impact tests -- Level D: 50 F/S 34 mph; Level E: 80 F/S 54.5 mph, risk category 4'
+    approx_offset: 81536
+  notes: 'known pipeline loss 2026-08-25: the windstorm test family was lost by a prior run and never re-checked
+    against the text - high-value entry; 2 occurrences (windstorm application page, H Series page) | VERIFY 2026-08-26:
+    independently confirmed verbatim in text, 2 occurrences (windstorm applications page ''Large Missile Impacts
+    (TAS 201, ...)'' and H Series page ''TAS 201: Missile impact tests'').'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0021
+  name: ASTM E1886
+  status: confirmed
+  acceptable_forms:
+  - ASTM E1886
+  - ASTM E1886/E1996
+  - E1886
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 68899
+  - quote: 'TAS 203 (ASTM E1886 outside Florida HVHZ): Cyclic wind pressure tests -- inward/outward pressure'
+    approx_offset: 81743
+  notes: 'known pipeline loss 2026-08-25: the windstorm test family was lost by a prior run and never re-checked
+    against the text - high-value entry; 3 occurrences (twice fused as ASTM E1886/E1996, once standalone) | VERIFY
+    2026-08-26: independently confirmed verbatim, 3 occurrences of the string ''ASTM E1886'' (twice fused as ''ASTM
+    E1886/E1996'', once standalone in ''TAS 203 (ASTM E1886 outside Florida HVHZ)'').'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0022
+  name: ASTM E1996
+  status: confirmed
+  acceptable_forms:
+  - ASTM E1996
+  - E1996
+  evidence:
+  - quote: 'TAS 202 (ASTM E1996 outside Florida HVHZ): Uniform static air pressure tests -- structural load'
+    approx_offset: 81641
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 68899
+  notes: 'known pipeline loss 2026-08-25: the windstorm test family was lost by a prior run and never re-checked
+    against the text - high-value entry; once standalone, twice fused as ASTM E1886/E1996 | VERIFY 2026-08-26: independently
+    confirmed verbatim, 3 occurrences of ''E1996'' (once as ''ASTM E1996'' standalone in the TAS 202 line, twice
+    fused as ''ASTM E1886/E1996''). Note only ONE occurrence carries the literal ''ASTM E1996'' bigram; the fused
+    form is covered by the ''E1996'' acceptable form.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0019
+  name: TAS 202 (uniform static air pressure)
+  status: confirmed
+  acceptable_forms:
+  - TAS 202
+  evidence:
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 68978
+  - quote: 'TAS 202 (ASTM E1996 outside Florida HVHZ): Uniform static air pressure tests -- structural load'
+    approx_offset: 81641
+  notes: 'known pipeline loss 2026-08-25: the windstorm test family was lost by a prior run and never re-checked
+    against the text - high-value entry; 3 occurrences | VERIFY 2026-08-26: independently confirmed verbatim, 3
+    occurrences (windstorm page, H Series impact protocol list, and ''ANSI/ASTM E330 (also validated by TAS 202)'').'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0023
+  name: ASTM E330 (uniform static air pressure)
+  status: confirmed
+  acceptable_forms:
+  - ASTM E330
+  - ANSI/ASTM E330
+  evidence:
+  - quote: 'ANSI/ASTM E330 (also validated by TAS 202): Uniform static air pressure (non-impact)'
+    approx_offset: 82126
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 68978
+  notes: windstorm static-pressure standard cited beside the TAS family the 2026-08-25 run lost
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0020
+  name: TAS 203 (cyclic wind pressure)
+  status: confirmed
+  acceptable_forms:
+  - TAS 203
+  evidence:
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 69047
+  - quote: 'TAS 203 (ASTM E1886 outside Florida HVHZ): Cyclic wind pressure tests -- inward/outward pressure'
+    approx_offset: 81743
+  notes: 'known pipeline loss 2026-08-25: the windstorm test family was lost by a prior run and never re-checked
+    against the text - high-value entry; 2 occurrences | VERIFY 2026-08-26: independently confirmed verbatim, 2
+    occurrences (windstorm page, H Series page).'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0036
+  name: Texas Department of Insurance (TDI) windstorm listing
+  status: confirmed
+  acceptable_forms:
+  - Texas Department of Insurance (TDI)
+  - TDI
+  evidence:
+  - quote: Texas Department of Insurance (TDI) listing requirements for resistance to hurricane forces
+    approx_offset: 78093
+  notes: 'listings filed under ''Steelcraft Mfg. Co., Schlage Lock Co.'' per the lookup instructions | VERIFY 2026-08-26:
+    agreed. FORM FLAG: bare ''TDI'' is credited by containment from the doc titles ''TDI Lookup-Approvals (Excel)''
+    / ''TDI Lookup-Anchors (Excel)'' and the link labels ''TDI Impact'' / ''TDI Non-impact''.'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0035
+  name: Miami-Dade NOA
+  status: candidate
+  acceptable_forms:
+  - Miami-Dade
+  - Miami-Dade Notice of Acceptance
+  - MD-NOA
+  evidence:
+  - quote: Miami-Dade Notice of Acceptance (NOA)
+    approx_offset: 80305
+  notes: re-anchored on the H Series hurricane-doors 'Approvals and specified industry standards' section (still
+    filed under Schlage Lock Company LLC in the lookup instructions, same as before). Old forms 'NOA Dade County
+    Florida' / 'NOA Miami-Dade County Florida' don't occur in the new prose, which instead spells it out as 'Miami-Dade
+    Notice of Acceptance (NOA)'; 'MD-NOA' still occurs verbatim in two downloadable-file labels ('MD-NOA Lookup-Approvals
+    (Excel)').
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-steelcraft-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0050
+  name: HVHZ protocols
+  status: confirmed
+  acceptable_forms:
+  - HVHZ protocols
+  - HVHZ
+  evidence:
+  - quote: tested to HVHZ protocols (coastal Palm Beach/Dade)
+    approx_offset: 81259
+  notes: High-Velocity Hurricane Zone test protocol designation (B); 3 occurrences on the H Series page
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0013
+  name: UL 1784 (air leakage)
+  status: confirmed
+  acceptable_forms:
+  - UL 1784
+  evidence:
+  - quote: ANSI/SDI A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical
+      endurance)
+    approx_offset: 82694
+  notes: 'present once, in the SDI membership standards list (task asked to check: YES, in text)'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0006
+  name: ANSI A250.3 (factory-applied finish)
+  status: confirmed
+  acceptable_forms:
+  - ANSI A250.3-2007 (R2011)
+  - ANSI/SDI A250.3
+  - A250.3
+  evidence:
+  - quote: Finish paint tested in accordance with ANSI A250.3-2007 (R2011) Test Procedure and Acceptance Criteria
+      for Factory Applied Finish
+    approx_offset: 98168
+  - quote: ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All Tornado products are Galvanealled), ANSI A115
+      (Locations) and SDI 117 (Tolerances)
+    approx_offset: 82847
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0008
+  name: SDI 117 (tolerances)
+  status: confirmed
+  acceptable_forms:
+  - SDI 117
+  evidence:
+  - quote: ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All Tornado products are Galvanealled), ANSI A115
+      (Locations) and SDI 117 (Tolerances)
+    approx_offset: 82847
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0024
+  name: ASTM A653 (galvannealed coating)
+  status: confirmed
+  acceptable_forms:
+  - ASTM A653
+  evidence:
+  - quote: ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All Tornado products are Galvanealled), ANSI A115
+      (Locations) and SDI 117 (Tolerances)
+    approx_offset: 82847
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0037
+  name: International Building Code
+  status: confirmed
+  acceptable_forms:
+  - International Building Code
+  evidence:
+  - quote: Fire doors must meet the requirements of the International Building Code and International Fire Code,
+      as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives
+    approx_offset: 140178
+  - quote: labeled by Intertek signifying compliance to ICC 500-2020, ICC 500-2014, FEMA 320 (2021), and FEMA 361
+      (2021), as required by the International Building Code
+    approx_offset: 90637
+  notes: 'model code the fire/tornado listings satisfy (B: code designation, not a cert held)'
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0028
+  name: ASTM B117 (salt spray)
+  status: confirmed
+  acceptable_forms:
+  - ASTM B117-18
+  - ASTM B117
+  evidence:
+  - quote: Salt spray testing in accordance with ASTM B117-18
+    approx_offset: 98387
+  notes: paint surface test
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0029
+  name: ASTM D4585 (condensation/humidity)
+  status: confirmed
+  acceptable_forms:
+  - ASTM D4585-D4585M-18
+  - ASTM D4585
+  evidence:
+  - quote: Condensation testing (humidity) in accordance with ASTM D4585-D4585M-18
+    approx_offset: 98442
+  notes: paint surface test
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0030
+  name: ASTM D2794 (paint impact test)
+  status: confirmed
+  acceptable_forms:
+  - D2794-93R19
+  - D2794
+  evidence:
+  - quote: Impact test D2794-93R19
+    approx_offset: 98518
+  notes: the text omits the 'ASTM' prefix for this one designation
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0031
+  name: ASTM D3359 (film adhesion)
+  status: confirmed
+  acceptable_forms:
+  - ASTM D3359-17
+  - ASTM D3359
+  evidence:
+  - quote: Film adhesion test in accordance with ASTM D3359-17
+    approx_offset: 98546
+  notes: paint surface test
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0027
+  name: ASTM E413 (STC rating calculation)
+  status: confirmed
+  acceptable_forms:
+  - ASTM E413
+  evidence:
+  - quote: The STC rating is calculated in accordance with ASTM E413.
+    approx_offset: 135423
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0014
+  name: NFPA 80
+  status: confirmed
+  acceptable_forms:
+  - NFPA 80
+  evidence:
+  - quote: Fire doors must meet the requirements of the International Building Code and International Fire Code,
+      as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives
+    approx_offset: 140178
+  notes: Standard for Fire Doors and Other Opening Protectives; on both fire-rated application pages
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0038
+  name: International Fire Code
+  status: confirmed
+  acceptable_forms:
+  - International Fire Code
+  evidence:
+  - quote: Fire doors must meet the requirements of the International Building Code and International Fire Code,
+      as well as NFPA 80 Standard for Fire Doors and Other Opening Protectives
+    approx_offset: 140178
+  notes: model code (B)
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-steelcraft
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0025
+  name: ASTM A666 (stainless steel)
+  status: retired
+  acceptable_forms:
+  - ASTM A666
+  evidence:
+  - quote: 'Exceptional corrosion resistance, conforming to ASTM A666:'
+  notes: 'retired at the markdown cutover: searched ''A666'' and ''ASTM'' (30 ASTM hits total, none is A666) across
+    the whole file: zero occurrences of A666. This standard was specific to the now-discontinued stainless steel
+    product data sheet; that content is gone from the 2026-08-29 crawl.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-steelcraft-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: steelcraft_com-conformity_attestations-0051
+  name: FEMA P-320 / P-361
+  status: candidate
+  acceptable_forms:
+  - FEMA P-320
+  - P-361
+  - ICC500-2014
+  evidence:
+  - quote: Meets FEMA P-320 & P-361/ICC500-2014 standards for tornado shelters
+    approx_offset: 814
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0052
+  name: SDI Certified
+  status: candidate
+  acceptable_forms:
+  - SDI Certified
+  - Steel Door Institute
+  evidence:
+  - quote: Steelcraft is SDI Certified through regular audits to ensure manufacturing, performance and quality standards
+      set by the Steel Door Institute.
+    approx_offset: 2992
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0053
+  name: ANSI A250.8-2017 (SDI-100)
+  status: candidate
+  acceptable_forms:
+  - ANSI A250.8-2017
+  - SDI-100
+  evidence:
+  - quote: Overall door construction exceeds ANSI A250.8-2017(SDI-100), the standard set by SDI specifying sizes,
+      design, materials, construction, finishing and performance for standard commercial steel
+    approx_offset: 3137
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0054
+  name: ANSI A250.6-2003
+  status: candidate
+  acceptable_forms:
+  - ANSI A250.6-2003
+  evidence:
+  - quote: Hardware preparations and reinforcements meet ANSI A250.6-2003, and locations meet ANSI/DHI A115, unless
+      otherwise stated
+    approx_offset: 3349
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0055
+  name: ANSI/DHI A115
+  status: candidate
+  acceptable_forms:
+  - ANSI/DHI A115
+  evidence:
+  - quote: and locations meet ANSI/DHI A115, unless otherwise stated
+    approx_offset: 3413
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0056
+  name: ASTM E152
+  status: candidate
+  acceptable_forms:
+  - ASTM E152
+  evidence:
+  - quote: Doors meet the broadest fire rating requirements; they are listed for installations requiring compliance
+      to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+    approx_offset: 3473
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0057
+  name: UL-10B
+  status: candidate
+  acceptable_forms:
+  - UL-10B
+  evidence:
+  - quote: requiring compliance to both neutral pressure testing (ASTM E152 and UL-10B) and positive pressure standards
+      (UL-10C)
+    approx_offset: 3557
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0058
+  name: UL-10C
+  status: candidate
+  acceptable_forms:
+  - UL-10C
+  evidence:
+  - quote: and positive pressure standards (UL-10C)
+    approx_offset: 3634
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0059
+  name: ANSI A250.10-2011
+  status: candidate
+  acceptable_forms:
+  - ANSI A250.10-2011
+  evidence:
+  - quote: Factory-applied baked-on rust inhibiting primer meets ANSI A250.10-2011
+    approx_offset: 3677
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0060
+  name: California PROP65
+  status: candidate
+  acceptable_forms:
+  - California PROP65
+  - PROP65
+  evidence:
+  - quote: In accordance with California PROP65 -
+    approx_offset: 4273
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0061
+  name: USGBC
+  status: candidate
+  acceptable_forms:
+  - U.S. Green Building Council
+  - USGBC
+  evidence:
+  - quote: 'developed by the U.S. Green Building Council (USGBC). In the system, buildings become LEED certified
+      by earning credits from the following categories: sustainable sites, water efficiency, energy'
+    approx_offset: 16173
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0062
+  name: LEED certified
+  status: candidate
+  acceptable_forms:
+  - LEED certified
+  evidence:
+  - quote: 'In the system, buildings become LEED certified by earning credits from the following categories: sustainable
+      sites, water efficiency, energy and atmosphere, materials and resources, and indoor'
+    approx_offset: 16227
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0063
+  name: EPDs
+  status: candidate
+  acceptable_forms:
+  - EPDs
+  - Environmental Product Declarations
+  evidence:
+  - quote: Environmental Product Declarations (EPDs), are independently verified documents that communicate transparent
+      information about the environmental impact of products throughout their life cycle.
+    approx_offset: 16899
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0064
+  name: HPDs
+  status: candidate
+  acceptable_forms:
+  - HPDs
+  - Health Product Declarations
+  evidence:
+  - quote: Health Product Declarations (HPDs) disclose the potential chemicals of concern in products. They contain
+      product content and associated health information of building products and materials.
+    approx_offset: 17213
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0065
+  name: CALGreen Building Code
+  status: candidate
+  acceptable_forms:
+  - CALGreen
+  evidence:
+  - quote: Clean Air Gold Certification supports CALGreen, the nation's first state-mandated green building code
+      based on criteria set by the California Department of Public Health (CDPH).
+    approx_offset: 17469
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0066
+  name: Declare Labels / Living Building Challenge
+  status: candidate
+  acceptable_forms:
+  - Living Building Challenge
+  - Declare labels
+  evidence:
+  - quote: To support the Living Building Challenge, Allegion provides Declare labels for products.
+    approx_offset: 17784
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0067
+  name: ANSI/BHMA A156.3 2014
+  status: candidate
+  acceptable_forms:
+  - ANSI/BHMA A156.3
+  evidence:
+  - quote: Hardware meets ANSI/BHMA A156.3 2014
+    approx_offset: 36858
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0068
+  name: SDI/A250.4
+  status: candidate
+  acceptable_forms:
+  - SDI/A250.4
+  evidence:
+  - quote: SDI/A250.4 to 1 Million Cycles and a 350 lb. cart impact
+    approx_offset: 36897
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0069
+  name: ASTM C1363
+  status: candidate
+  acceptable_forms:
+  - ASTM C1363
+  evidence:
+  - quote: Frames tested to ASTM C1363 for Thermal Performance
+    approx_offset: 65717
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0070
+  name: ANSI/SDI A250.13
+  status: candidate
+  acceptable_forms:
+  - ANSI/SDI A250.13
+  evidence:
+  - quote: Steelcraft products are in accordance with ANSI/SDI A250.13 Testing and Rating of Severe Windstorm Resistant
+      Components for Swinging Door Assemblies for Protection of Building Envelopes, the
+    approx_offset: 68609
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0071
+  name: TAS 201
+  status: candidate
+  acceptable_forms:
+  - TAS 201
+  evidence:
+  - quote: Large Missile Impacts (TAS 201, ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 68899
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0072
+  name: ASTM E1886/E1996
+  status: candidate
+  acceptable_forms:
+  - ASTM E1886/E1996
+  evidence:
+  - quote: ASTM E1886/E1996, ANSI A250.13, and ICC 500)
+    approx_offset: 68931
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0073
+  name: TAS 202
+  status: candidate
+  acceptable_forms:
+  - TAS 202
+  evidence:
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 68978
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0074
+  name: ASTM E330
+  status: candidate
+  acceptable_forms:
+  - ASTM E330
+  evidence:
+  - quote: Uniform Static Air Pressure (TAS 202, ASTM E330, and ANSI A250.13)
+    approx_offset: 68978
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0075
+  name: TAS 203
+  status: candidate
+  acceptable_forms:
+  - TAS 203
+  evidence:
+  - quote: Cyclic Wind Pressure Loading Test (TAS 203, ASTM E1886/E1996, and ANSI A250.13)
+    approx_offset: 69047
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0076
+  name: Texas Department of Insurance (TDI)
+  status: candidate
+  acceptable_forms:
+  - Texas Department of Insurance
+  - TDI
+  evidence:
+  - quote: Texas Department of Insurance (TDI) listing requirements for resistance to hurricane forces
+    approx_offset: 78093
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0077
+  name: Miami-Dade Notice of Acceptance (NOA)
+  status: candidate
+  acceptable_forms:
+  - Miami-Dade Notice of Acceptance
+  - NOA
+  evidence:
+  - quote: Miami-Dade Notice of Acceptance (NOA)
+    approx_offset: 80305
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0078
+  name: ANSI/SDI A250.8
+  status: candidate
+  acceptable_forms:
+  - ANSI/SDI A250.8
+  evidence:
+  - quote: SDI Membership communicates compliance with industry standards including ANSI/SDI A250.8, ANSI/SDI A250.10
+      (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical
+    approx_offset: 82604
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0079
+  name: ANSI/SDI A250.10 (Prime Paint)
+  status: candidate
+  acceptable_forms:
+  - ANSI/SDI A250.10
+  evidence:
+  - quote: ANSI/SDI A250.10 (Prime Paint), ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical
+      endurance), ANSI/SDI A250.6 (Hardware reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM
+    approx_offset: 82694
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0080
+  name: ANSI UL 10C (Fire)
+  status: candidate
+  acceptable_forms:
+  - ANSI UL 10C
+  evidence:
+  - quote: ANSI UL 10C (Fire), UL 1784 (Air Leakage), ANSI/SDI A250.4 (Physical endurance), ANSI/SDI A250.6 (Hardware
+      reinforcing), ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All Tornado products
+    approx_offset: 82726
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0081
+  name: ANSI/SDI A250.3 (Finish coatings)
+  status: candidate
+  acceptable_forms:
+  - ANSI/SDI A250.3
+  evidence:
+  - quote: ANSI/SDI A250.3 (Finish coatings), ASTM A653 (Galv; All Tornado products are Galvanealled), ANSI A115
+      (Locations) and SDI 117 (Tolerances).
+    approx_offset: 82847
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0082
+  name: ASTM A653
+  status: candidate
+  acceptable_forms:
+  - ASTM A653
+  evidence:
+  - quote: ASTM A653 (Galv; All Tornado products are Galvanealled), ANSI A115 (Locations) and SDI 117 (Tolerances).
+    approx_offset: 82882
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0083
+  name: ANSI A250.3-2007 (R2011)
+  status: candidate
+  acceptable_forms:
+  - ANSI A250.3-2007
+  evidence:
+  - quote: Finish paint tested in accordance with ANSI A250.3-2007 (R2011) Test Procedure and Acceptance Criteria
+      for Factory Applied Finish
+    approx_offset: 98168
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0084
+  name: ASTM B117-18
+  status: candidate
+  acceptable_forms:
+  - ASTM B117-18
+  evidence:
+  - quote: Salt spray testing in accordance with ASTM B117-18
+    approx_offset: 98387
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0085
+  name: ASTM D4585-D4585M-18
+  status: candidate
+  acceptable_forms:
+  - ASTM D4585-D4585M-18
+  evidence:
+  - quote: Condensation testing (humidity) in accordance with ASTM D4585-D4585M-18
+    approx_offset: 98442
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0086
+  name: D2794-93R19 (Impact test)
+  status: candidate
+  acceptable_forms:
+  - D2794-93R19
+  evidence:
+  - quote: Impact test D2794-93R19
+    approx_offset: 98518
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0087
+  name: ASTM D3359-17
+  status: candidate
+  acceptable_forms:
+  - ASTM D3359-17
+  evidence:
+  - quote: Film adhesion test in accordance with ASTM D3359-17
+    approx_offset: 98546
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: steelcraft_com-conformity_attestations-0088
+  name: ASTM E413
+  status: candidate
+  acceptable_forms:
+  - ASTM E413
+  evidence:
+  - quote: The STC rating is calculated in accordance with ASTM E413.
+    approx_offset: 135423
+  provenance:
+  - action: added
+    by: seed-agent-steelcraft-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: STC
+  reason: Sound Transmission Class is a performance RATING metric ('STC 46'), not a standard designation - the standard
+    behind it (ASTM E413) is the entry
+- form: Sound Transmission Control
+  reason: application-page heading for the rating family, not a standard designation
+- form: LU/HSW
+  reason: AIA continuing-education credit units ('1.0 LU/HSW Hour'), not a product standard
+- form: Limited Warranty
+  reason: warranty document ('Republic and Steelcraft Limited Warranty') - code D, not a conformity attestation
+- form: Authorized Seller Program
+  reason: commercial sales program (code Z/B-), not a conformity scheme
+- form: 08 17 13
+  reason: CSI MasterFormat spec-section number for their own product specification - document organization, not
+    a standard designation
+- form: CCPA
+  reason: privacy-law designation from website legal boilerplate (California Consumer Privacy Act) - about the WEBSITE,
+    not product conformity; same for CPRA
+- form: DMCA
+  reason: copyright-law designation from the terms-of-use page - website legal boilerplate, not product conformity
+- form: 'NYSE: ALLE'
+  reason: 'stock-exchange listing of the parent (''Allegion (NYSE: ALLE)'') - not a conformity designation'
+- form: EHPA
+  reason: appears only inside the doc title 'Allegion EHPA Tornado Systems Data Sheet' - document title (D), no
+    prose designation

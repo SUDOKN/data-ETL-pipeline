@@ -1,0 +1,87 @@
+subject: 101machine.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
+  sha256: 6e351d8fdc5317848d99f37551218329a4a0a6359267213bcec847e6b44aaa40
+eval_set_version: 2
+expected_empty: true
+notes: 'SHARED OUTPUT NOTE: products and contract_products share one search output; this file serves as the expectation
+  set for BOTH fields. expected_empty: pure job shop - the text names no catalog product designations. Outputs of
+  the machining service are described only generically (''highly accurate parts, full-functioning engineering prototypes,
+  piece parts and injection molds''). Judgment call: ''injection molds'' is the closest thing to a product designation
+  but reads as a category of made-to-order service output, not a product offered - a run returning it is a defensible
+  borderline (B), so it is NOT listed as a false friend, just not seeded as must-find (expected_empty means ''almost
+  nothing'', not ''zero defensible forms''). The FAQ''s negated ''automobile parts'' is the field''s search false-friend
+  - see false_friends.'
+entries:
+- id: 101machine_com-products-0001
+  name: Parts
+  status: candidate
+  acceptable_forms:
+  - parts
+  evidence:
+  - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
+      engineering prototypes, piece parts and injection molds.
+    approx_offset: 2878
+  notes: generic but literally what the text says is produced.
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: 101machine_com-products-0002
+  name: Engineering Prototypes
+  status: candidate
+  acceptable_forms:
+  - engineering prototypes
+  evidence:
+  - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
+      engineering prototypes, piece parts and injection molds.
+    approx_offset: 2878
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: 101machine_com-products-0003
+  name: Piece Parts
+  status: candidate
+  acceptable_forms:
+  - piece parts
+  evidence:
+  - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
+      engineering prototypes, piece parts and injection molds.
+    approx_offset: 2878
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: 101machine_com-products-0004
+  name: Injection Molds
+  status: disputed
+  acceptable_forms:
+  - injection molds
+  evidence:
+  - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
+      engineering prototypes, piece parts and injection molds.
+    approx_offset: 2878
+  notes: text frames these as an output of the shop's CNC machining work ('produce ... injection molds'), so treated
+    as a made artifact rather than tooling; disputed because injection molds are typically tooling used by others
+    downstream.
+  provenance:
+  - action: added
+    by: seed-agent-101machine-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: automobile parts
+  reason: explicitly negated capability ('We DO NOT machine automobile parts!') AND a generic part category - not
+    a product designation the subject offers
+- form: prototype
+  reason: generic output category and shop self-descriptor ('The One Stop Prototype Machine Shop'); no designation
+    content
+- form: PDF
+  reason: file format from FAQ quoting instructions ('a PDF of the print') - code U junk
+- form: Parasolid
+  reason: CAD format from FAQ quoting instructions - code U junk

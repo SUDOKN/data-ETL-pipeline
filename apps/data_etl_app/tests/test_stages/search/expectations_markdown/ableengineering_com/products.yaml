@@ -1,0 +1,1223 @@
+subject: ableengineering.com
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/ableengineering.com.txt
+  sha256: 7f2e8d7e059f38f53fc2e3ce92499369e9099f8ae550e6d0177284e3850258c7
+eval_set_version: 4
+expected_empty: false
+notes: 'This file also serves the contract_products field (single expectation set for both). Entries 3-9 are exchange
+  components; 18-22 are representative picks from the PMA parts catalogue - the catalogue''s generic single-noun
+  rows (BEARING, BOLT, BUSHING, ADAPTER...) are real parts offered (code B if returned) but are deliberately not
+  seeded as must-find entries. MRO catalogue rows (e.g. 42 DEGREE GEARBOX ASSEMBLY, 200SGL STARTER GENERATORS) name
+  components repaired/overhauled, not goods sold; treated as repair-scope, not product entries. The flattened MODEL
+  facet lists on /parts/ and /mro/ pages are search-filter junk, covered by false_friends and subject.yaml hazards.
+  SECOND-PASS VERIFICATION 2026-08-26 (verify-agent-ableengineering): all 22 entries confirmed, all quotes verbatim.
+  Checked specifically against the facet-list hazard: no entry rests on the flattened MODEL filter lists (''204-B
+  204B 205A-1 ...'') or on bare part numbers - entries 18-22 were each traced to a real catalogue PART row (designation
+  line + OEM P/N + Able P/N + Make + Model), which is spec-table content but is an entity. Noted inconsistency for
+  the user, not disputed: entries 12-17 are components named in the fixed-wing REPAIR capabilities list, which is
+  the same repair-scope basis this file uses to exclude the MRO catalogue rows (42 DEGREE GEARBOX ASSEMBLY, 200SGL
+  STARTER GENERATORS, ...); under recall-first both are defensible, and a must-find list is allowed to be a subset.
+  All 9 false friends checked and agreed; consider also ''Rotor Wing PMA''/''Fixed Wing PMA'', which are datasheet-page
+  literature titles of the same kind as ''Airbus H125/H130''.'
+entries:
+- id: ableengineering_com-products-0001
+  name: FAA-approved replacement parts
+  status: confirmed
+  acceptable_forms:
+  - approved replacement parts
+  - replacement parts
+  evidence:
+  - quote: Able also provides a parts exchange program and approved replacement parts for some of the biggest names
+      in aviation.
+    approx_offset: 347
+  - quote: Find the components you’re looking for from our deep inventory of quality, FAA-approved replacement parts.
+    approx_offset: 2487
+  notes: 'the core product line: PMA replacement parts sold from inventory | VERIFY 2026-08-26 (second pass): both
+    quotes verbatim; the parts pages sell them from inventory, so a genuine product line rather than a service.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0003
+  name: Main rotor hub
+  status: confirmed
+  acceptable_forms:
+  - main rotor hub
+  - Main Rotor Hub Assembly
+  evidence:
+  - quote: dynamic rotor wing components – main rotor hub, main transmission, mast, swashplate, tail rotor gearbox
+    approx_offset: 3888
+  - quote: Main Rotor Hub Assembly
+    approx_offset: 4489
+  notes: 'exchange component (B: component offered) | VERIFY 2026-08-26 (second pass): named in the rotor-wing exchange
+    sentence and again as ''Main Rotor Hub Assembly'' in the capabilities list.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0004
+  name: Main transmission
+  status: confirmed
+  acceptable_forms:
+  - main transmission
+  - Transmission Assemblies
+  evidence:
+  - quote: dynamic rotor wing components – main rotor hub, main transmission, mast, swashplate, tail rotor gearbox
+    approx_offset: 3888
+  - quote: Transmission Assemblies
+    approx_offset: 4515
+  notes: 'VERIFY 2026-08-26 (second pass): named in the exchange sentence and again as ''Transmission Assemblies''
+    in the capabilities list.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0005
+  name: Rotor mast
+  status: confirmed
+  acceptable_forms:
+  - mast
+  - Mast Assemblies
+  - MAIN ROTOR MAST
+  evidence:
+  - quote: dynamic rotor wing components – main rotor hub, main transmission, mast, swashplate, tail rotor gearbox
+    approx_offset: 3888
+  - quote: Mast Assemblies
+    approx_offset: 4562
+  notes: 'VERIFY 2026-08-26 (second pass): exchange sentence, ''Mast Assemblies'' in the capabilities list, and
+    15 ''MAIN ROTOR MAST'' catalogue rows. Bare ''mast'' is safe here - every one of its 17 occurrences is a rotor
+    mast.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0006
+  name: Swashplate
+  status: confirmed
+  acceptable_forms:
+  - swashplate
+  evidence:
+  - quote: dynamic rotor wing components – main rotor hub, main transmission, mast, swashplate, tail rotor gearbox
+    approx_offset: 3888
+  notes: 'VERIFY 2026-08-26 (second pass): single occurrence in the rotor-wing exchange sentence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0007
+  name: Tail rotor gearbox
+  status: confirmed
+  acceptable_forms:
+  - tail rotor gearbox
+  - Tail Rotor Gear Box Assembly
+  evidence:
+  - quote: dynamic rotor wing components – main rotor hub, main transmission, mast, swashplate, tail rotor gearbox
+    approx_offset: 3888
+  - quote: Tail Rotor Gear Box Assembly
+    approx_offset: 4616
+  notes: 'VERIFY 2026-08-26 (second pass): exchange sentence plus ''Tail Rotor Gear Box Assembly'' in the capabilities
+    list.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0008
+  name: Freewheeling units
+  status: confirmed
+  acceptable_forms:
+  - Freewheeling Units
+  evidence:
+  - quote: Freewheeling Units
+    approx_offset: 4541
+  notes: 'VERIFY 2026-08-26 (second pass): capabilities list on /rotor-wing/, single occurrence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0009
+  name: Tail rotor hub and blade assembly
+  status: confirmed
+  acceptable_forms:
+  - Tail Rotor Hub and Blade Assembly
+  evidence:
+  - quote: Tail Rotor Hub and Blade Assembly
+    approx_offset: 4580
+  notes: 'VERIFY 2026-08-26 (second pass): capabilities list on /rotor-wing/, single occurrence.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0018
+  name: Actuator housing assembly
+  status: candidate
+  acceptable_forms:
+  - ACTUATOR HOUSING ASSEMBLY
+  evidence:
+  - quote: '### Actuator Housing Assembly'
+    approx_offset: 6168
+  notes: 'same PMA catalogue row survives on the rotor-wing parts page (Bell filter), OEM P/N 41009491-101, Able
+    P/N 41009491-101AA, Make: Bell, Model: 407, 427, OH-58D — identical to the legacy row. Heading now carries a
+    Markdown ''### '' prefix.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0002
+  name: Rotable exchange inventory
+  status: confirmed
+  acceptable_forms:
+  - rotable inventories
+  - rotable exchange inventories
+  - rotable
+  evidence:
+  - quote: We have one of the largest rotable inventories in the world
+    approx_offset: 22750
+  - quote: has one of the world’s largest rotable exchange inventories
+    approx_offset: 87821
+  notes: 'borderline: inventory/program designation rather than a single good | VERIFY 2026-08-26 (second pass):
+    both quotes verbatim. Borderline B is right - ''rotable inventories'' names the stock of exchangeable goods
+    rather than one good, and the bare form ''rotable'' is adjectival in several of its 5 occurrences.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0017
+  name: Line replaceable units
+  status: confirmed
+  acceptable_forms:
+  - Line Replaceable Units
+  - line replacement units
+  evidence:
+  - quote: Landing Gear & Supporting Line Replaceable Units
+    approx_offset: 39000
+  - quote: our capabilities range from complete gear overhaul and repairs to life-limited components and line replacement
+      units alike
+    approx_offset: 26143
+  notes: 'text uses both ''Line Replaceable Units'' and ''line replacement units'' | VERIFY 2026-08-26 (second pass):
+    both spellings confirmed - ''Landing Gear & Supporting Line Replaceable Units'' and ''line replacement units''.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0010
+  name: Landing gear
+  status: confirmed
+  acceptable_forms:
+  - landing gear
+  evidence:
+  - quote: we provide exchanges, leases and outright sale options on most landing gear configurations
+    approx_offset: 26570
+  notes: 'offered as exchange, lease and outright sale, so a good as well as a service | VERIFY 2026-08-26 (second
+    pass): a good as well as a service, per ''we provide exchanges, leases and outright sale options on most landing
+    gear configurations''.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0011
+  name: Engine mounts
+  status: confirmed
+  acceptable_forms:
+  - engine mounts
+  - Engine Mounting Systems
+  - engine mount
+  evidence:
+  - quote: From component maintenance to landing gear and engine mounts, we complete thousands of repairs every
+      year.
+    approx_offset: 38063
+  - quote: Engine Mounting Systems
+    approx_offset: 39050
+  notes: 'VERIFY 2026-08-26 (second pass): fixed-wing prose plus ''Engine Mounting Systems'' in the capabilities
+    list; also ''CFM engine mount MRO programs'' and the ''Boeing 737 Max Leap-1B Engine Mounting System'' datasheet
+    title.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0012
+  name: Flap tracks
+  status: candidate
+  acceptable_forms:
+  - Flap Tracks
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  notes: same Flight Controls capability line survives verbatim on /fixed-wing/, comma-separated list unchanged
+    apart from the Gimble->Gimbal spelling fix noted on entry 0014.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0013
+  name: Carriages / sequencing carriages
+  status: candidate
+  acceptable_forms:
+  - Sequencing Carriages
+  - Carriages
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  notes: same Flight Controls line carries both 'Carriages' and 'Sequencing Carriages'; the standalone 'Sequencing
+    Carriages' bullet also still exists immediately below it on /fixed-wing/.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0014
+  name: Gimble fittings
+  status: candidate
+  acceptable_forms:
+  - Gimbal Fittings
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  notes: 'site fixed its own typo: the legacy ''Gimble Fittings'' (sic) no longer occurs anywhere in the file (grepped
+    ''gimb'' case-insensitively, one hit total) — the 2026-08-29 crawl spells it correctly, ''Gimbal Fittings''.
+    Same physical part, form updated to match; the ''site''s own misspelling'' rationale in the old notes no longer
+    applies.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0015
+  name: Flap transmissions
+  status: candidate
+  acceptable_forms:
+  - Flap Transmissions
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  notes: same Flight Controls line carries 'Flap Transmissions'; the standalone 'Flap Transmissions' bullet also
+    still exists a couple lines below it on /fixed-wing/.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0016
+  name: Geared rotary actuators
+  status: confirmed
+  acceptable_forms:
+  - Geared Rotary Actuators
+  evidence:
+  - quote: Geared Rotary Actuators
+    approx_offset: 39220
+  notes: 'VERIFY 2026-08-26 (second pass): standalone bullet in the fixed-wing capabilities list.'
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering
+    date: '2026-08-26'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-ableengineering
+    date: '2026-08-26'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0019
+  name: Fuel nozzle shrouds
+  status: candidate
+  acceptable_forms:
+  - Fuel Nozzle Air Shroud
+  - Fuel Nozzle Shroud
+  evidence:
+  - quote: '### Fuel Nozzle Air Shroud'
+    approx_offset: 53457
+  - quote: '### Fuel Nozzle Shroud'
+    approx_offset: 53730
+  notes: 'both catalogue rows survive on the fixed-wing parts (Airbus filter) page, Make: Airbus, Boeing, Honeywell
+    for both — Honeywell GTCP APU applications intact, consistent with the seed''s attribution. Forms recased Title
+    Case to match the site''s current rendering; matching is case-insensitive so the old ALL-CAPS forms would also
+    still work, but this is cleaner.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0020
+  name: Galley structural parts (beam, capping)
+  status: candidate
+  acceptable_forms:
+  - Galley Beam
+  - Galley Capping
+  evidence:
+  - quote: '### Galley Beam'
+    approx_offset: 53994
+  - quote: '### Galley Capping'
+    approx_offset: 54183
+  notes: 'both catalogue rows survive on the fixed-wing parts (Airbus filter) page, Make: Airbus, Model: A318-A321
+    for both, matching the seed''s attribution. Forms recased to the site''s current Title Case rendering.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0021
+  name: Waste container
+  status: candidate
+  acceptable_forms:
+  - Waste Container
+  evidence:
+  - quote: '### Waste container'
+    approx_offset: 55428
+  notes: 'catalogue row survives on the fixed-wing parts (Airbus filter) page, OEM P/N 5L0012000100000, Make: Airbus
+    — matches the seed''s attribution. Site renders it sentence-case (''Waste container''); matching is case-insensitive.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0022
+  name: Printed circuit assembly
+  status: candidate
+  acceptable_forms:
+  - PRINTED CIRCUIT ASSEMBLY
+  evidence:
+  - quote: '### Printed Circuit Assembly'
+    approx_offset: 56612
+  notes: 'catalogue row survives on the rotor-wing parts (Airbus Helicopters filter) page, OEM P/N 802170, Make:
+    Airbus Helicopters — matches the seed''s attribution.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-ableengineering-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: ableengineering_com-products-0023
+  name: Main Rotor Hub Assembly
+  status: candidate
+  acceptable_forms:
+  - Main Rotor Hub Assembly
+  evidence:
+  - quote: ' Main Rotor Hub Assembly'
+    approx_offset: 4489
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0024
+  name: Transmission Assemblies
+  status: candidate
+  acceptable_forms:
+  - Transmission Assemblies
+  evidence:
+  - quote: ' Transmission Assemblies'
+    approx_offset: 4515
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0025
+  name: Mast Assemblies
+  status: candidate
+  acceptable_forms:
+  - Mast Assemblies
+  evidence:
+  - quote: ' Mast Assemblies'
+    approx_offset: 4562
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0026
+  name: Tail Rotor Gear Box Assembly
+  status: candidate
+  acceptable_forms:
+  - Tail Rotor Gear Box Assembly
+  evidence:
+  - quote: ' Tail Rotor Gear Box Assembly'
+    approx_offset: 4616
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0027
+  name: Adapter
+  status: candidate
+  acceptable_forms:
+  - Adapter
+  evidence:
+  - quote: '### Adapter'
+    approx_offset: 6360
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0028
+  name: Adjusting Screw
+  status: candidate
+  acceptable_forms:
+  - Adjusting Screw
+  evidence:
+  - quote: '### Adjusting Screw'
+    approx_offset: 7051
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0029
+  name: ANTI ROTATION BLOCK
+  status: candidate
+  acceptable_forms:
+  - ANTI ROTATION BLOCK
+  evidence:
+  - quote: '### ANTI ROTATION BLOCK'
+    approx_offset: 7340
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0030
+  name: BEARING
+  status: candidate
+  acceptable_forms:
+  - BEARING
+  evidence:
+  - quote: '### BEARING'
+    approx_offset: 7506
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0031
+  name: Bearing Race
+  status: candidate
+  acceptable_forms:
+  - Bearing Race
+  evidence:
+  - quote: '### Bearing Race'
+    approx_offset: 9051
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0032
+  name: Bearing, Pivot
+  status: candidate
+  acceptable_forms:
+  - Bearing, Pivot
+  evidence:
+  - quote: '### Bearing, Pivot'
+    approx_offset: 9469
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0033
+  name: Bearing, Roller
+  status: candidate
+  acceptable_forms:
+  - Bearing, Roller
+  evidence:
+  - quote: '### Bearing, Roller'
+    approx_offset: 9631
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0034
+  name: BOLT
+  status: candidate
+  acceptable_forms:
+  - BOLT
+  evidence:
+  - quote: '### BOLT'
+    approx_offset: 9908
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0035
+  name: Bolt [shear bearing]
+  status: candidate
+  acceptable_forms:
+  - Bolt [shear bearing]
+  evidence:
+  - quote: '### Bolt [shear bearing]'
+    approx_offset: 10947
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0036
+  name: Boot
+  status: candidate
+  acceptable_forms:
+  - Boot
+  evidence:
+  - quote: '### Boot'
+    approx_offset: 11124
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0037
+  name: Bracket
+  status: candidate
+  acceptable_forms:
+  - Bracket
+  evidence:
+  - quote: '### Bracket'
+    approx_offset: 11276
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0038
+  name: Bracket Assembly
+  status: candidate
+  acceptable_forms:
+  - Bracket Assembly
+  evidence:
+  - quote: '### Bracket Assembly'
+    approx_offset: 11407
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0039
+  name: Buffer
+  status: candidate
+  acceptable_forms:
+  - Buffer
+  evidence:
+  - quote: '### Buffer'
+    approx_offset: 11696
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0040
+  name: Buffer Pad
+  status: candidate
+  acceptable_forms:
+  - Buffer Pad
+  evidence:
+  - quote: '### Buffer Pad'
+    approx_offset: 12024
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0041
+  name: 2nd Stage Stator Shroud
+  status: candidate
+  acceptable_forms:
+  - 2nd Stage Stator Shroud
+  evidence:
+  - quote: '### 2nd Stage Stator Shroud'
+    approx_offset: 14912
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0042
+  name: 2nd Stage Vane Shroud
+  status: candidate
+  acceptable_forms:
+  - 2nd Stage Vane Shroud
+  evidence:
+  - quote: '### 2nd Stage Vane Shroud'
+    approx_offset: 15095
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0043
+  name: 350 Main Rotor Mast Sleeve
+  status: candidate
+  acceptable_forms:
+  - 350 Main Rotor Mast Sleeve
+  evidence:
+  - quote: '### 350 Main Rotor Mast Sleeve'
+    approx_offset: 15254
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0044
+  name: 412 Main rotor mast
+  status: candidate
+  acceptable_forms:
+  - 412 Main rotor mast
+  evidence:
+  - quote: '### 412 Main rotor mast'
+    approx_offset: 16052
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0045
+  name: 42 Deg. Gearbox Assy.
+  status: candidate
+  acceptable_forms:
+  - 42 Deg. Gearbox Assy.
+  evidence:
+  - quote: '### 42 Deg. Gearbox Assy.'
+    approx_offset: 17901
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0046
+  name: 42 Degree Gearbox Assembly
+  status: candidate
+  acceptable_forms:
+  - 42 Degree Gearbox Assembly
+  evidence:
+  - quote: '### 42 Degree Gearbox Assembly'
+    approx_offset: 18243
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0047
+  name: 42° Gearbox Case
+  status: candidate
+  acceptable_forms:
+  - 42° Gearbox Case
+  evidence:
+  - quote: '### 42° Gearbox Case'
+    approx_offset: 19784
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0048
+  name: Landing Gear & Supporting Line Replaceable Units / line replacement units
+  status: candidate
+  acceptable_forms:
+  - Line Replaceable Units
+  - line replacement units
+  evidence:
+  - quote: Landing Gear & Supporting Line Replaceable Units
+    approx_offset: 39000
+  - quote: life-limited components and line replacement units alike. Able’s unmatched quality from the beginning
+      repair and overhaul process to the final custom crating and packaging we offer the solution needed
+    approx_offset: 26209
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0049
+  name: AFT IB TRACK
+  status: candidate
+  acceptable_forms:
+  - AFT IB TRACK
+  evidence:
+  - quote: '### AFT IB TRACK'
+    approx_offset: 31654
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0050
+  name: Aft IB Track Assy
+  status: candidate
+  acceptable_forms:
+  - Aft IB Track Assy
+  evidence:
+  - quote: '### Aft IB Track Assy'
+    approx_offset: 32254
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0051
+  name: Aft OB Track
+  status: candidate
+  acceptable_forms:
+  - Aft OB Track
+  evidence:
+  - quote: '### Aft OB Track'
+    approx_offset: 32566
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0052
+  name: Aft Outboard Track
+  status: candidate
+  acceptable_forms:
+  - Aft Outboard Track
+  evidence:
+  - quote: '### Aft Outboard Track'
+    approx_offset: 32717
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0053
+  name: Basket Cam Assembly
+  status: candidate
+  acceptable_forms:
+  - Basket Cam Assembly
+  evidence:
+  - quote: '### Basket Cam Assembly'
+    approx_offset: 32874
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0054
+  name: Bearing, Sleeve
+  status: candidate
+  acceptable_forms:
+  - Bearing, Sleeve
+  evidence:
+  - quote: '### Bearing, Sleeve'
+    approx_offset: 33514
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0055
+  name: Bearing, Thrust Washer
+  status: candidate
+  acceptable_forms:
+  - Bearing, Thrust Washer
+  evidence:
+  - quote: '### Bearing, Thrust Washer'
+    approx_offset: 34300
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0056
+  name: Bushing
+  status: candidate
+  acceptable_forms:
+  - Bushing
+  evidence:
+  - quote: '### Bushing'
+    approx_offset: 34757
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0057
+  name: Engine Mounting Systems
+  status: candidate
+  acceptable_forms:
+  - Engine Mounting Systems
+  evidence:
+  - quote: Engine Mounting Systems
+    approx_offset: 39050
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0058
+  name: Flight Controls
+  status: candidate
+  acceptable_forms:
+  - Flight Controls
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0059
+  name: Carriages
+  status: candidate
+  acceptable_forms:
+  - Carriages
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0060
+  name: Gimbal Fittings
+  status: candidate
+  acceptable_forms:
+  - Gimbal Fittings
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0061
+  name: Sequencing Carriages
+  status: candidate
+  acceptable_forms:
+  - Sequencing Carriages
+  evidence:
+  - quote: 'Flight Controls: Flap Tracks, Carriages, Gimbal Fittings, Sequencing Carriages and Flap Transmissions'
+    approx_offset: 39075
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0062
+  name: Fuel Nozzle Air Shroud
+  status: candidate
+  acceptable_forms:
+  - Fuel Nozzle Air Shroud
+  evidence:
+  - quote: '### Fuel Nozzle Air Shroud'
+    approx_offset: 53457
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0063
+  name: Fuel Nozzle Shroud
+  status: candidate
+  acceptable_forms:
+  - Fuel Nozzle Shroud
+  evidence:
+  - quote: '### Fuel Nozzle Shroud'
+    approx_offset: 53730
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0064
+  name: Galley Beam
+  status: candidate
+  acceptable_forms:
+  - Galley Beam
+  evidence:
+  - quote: '### Galley Beam'
+    approx_offset: 53994
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0065
+  name: Galley Capping
+  status: candidate
+  acceptable_forms:
+  - Galley Capping
+  evidence:
+  - quote: '### Galley Capping'
+    approx_offset: 54183
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0066
+  name: Hinge Assy
+  status: candidate
+  acceptable_forms:
+  - Hinge Assy
+  evidence:
+  - quote: '### Hinge Assy'
+    approx_offset: 54375
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0067
+  name: IGV Gear
+  status: candidate
+  acceptable_forms:
+  - IGV Gear
+  evidence:
+  - quote: '### IGV Gear'
+    approx_offset: 54579
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0068
+  name: SEAL
+  status: candidate
+  acceptable_forms:
+  - SEAL
+  evidence:
+  - quote: '### SEAL'
+    approx_offset: 54860
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0069
+  name: Spur Gear
+  status: candidate
+  acceptable_forms:
+  - Spur Gear
+  evidence:
+  - quote: '### Spur Gear'
+    approx_offset: 55079
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0070
+  name: '# 1 Passenger Door R/H Lower Hinge Arm Assy'
+  status: candidate
+  acceptable_forms:
+  - '# 1 Passenger Door R/H Lower Hinge Arm Assy'
+  evidence:
+  - quote: '### # 1 Passenger Door R/H Lower Hinge Arm Assy'
+    approx_offset: 72293
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0071
+  name: '# 4 Passenger Door Lower Hinge Arm Assy'
+  status: candidate
+  acceptable_forms:
+  - '# 4 Passenger Door Lower Hinge Arm Assy'
+  evidence:
+  - quote: '### # 4 Passenger Door Lower Hinge Arm Assy'
+    approx_offset: 73554
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0072
+  name: 200SGL Starter Generators
+  status: candidate
+  acceptable_forms:
+  - 200SGL Starter Generators
+  evidence:
+  - quote: '### 200SGL Starter Generators'
+    approx_offset: 77094
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0073
+  name: thrust link
+  status: candidate
+  acceptable_forms:
+  - thrust link
+  evidence:
+  - quote: are an industry leader in engine mount and thrust link repair, delivering integrated solutions that enhance
+      aircraft performance, reliability, and lifecycle value. Our fixed wing support includes full
+    approx_offset: 90235
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: ableengineering_com-products-0074
+  name: engine mount
+  status: candidate
+  acceptable_forms:
+  - engine mount
+  evidence:
+  - quote: engine mount and thrust link
+    approx_offset: 48488
+  provenance:
+  - action: added
+    by: seed-agent-ableengineering-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: 204B
+  reason: aircraft-model search facet from the flattened filter lists ('204-B 204B 205A-1 205B 206A...'), not a
+    product
+- form: B737
+  reason: aircraft-model facet / platform designation, not a subject product
+- form: AS350
+  reason: customer helicopter model facet, not a subject product
+- form: Boeing
+  reason: OEM/customer platform brand (Make facet), not a product designation
+- form: Bell
+  reason: OEM/customer platform brand (Make facet), not a product designation
+- form: Skydrol
+  reason: third-party hydraulic fluid brand whose components Able services, not a product sold
+- form: OEM P/N
+  reason: catalogue row label (junk); bare part-number strings after it are identifiers, not designations
+- form: ADD TO REQUEST
+  reason: UI button text (junk)
+- form: Airbus H125/H130
+  reason: rotor-wing literature/datasheet title (taxonomy D), not a product

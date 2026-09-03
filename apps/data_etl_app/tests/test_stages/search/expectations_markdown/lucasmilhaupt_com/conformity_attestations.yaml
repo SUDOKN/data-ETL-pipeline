@@ -1,0 +1,499 @@
+subject: lucasmilhaupt.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/lucasmilhaupt.com.txt
+  sha256: f84ad55ab82bc1fc47d34ac0917856ac7ccbac19ec6eb6697a67302b71441f93
+eval_set_version: 3
+expected_empty: false
+notes: 'Two distinct populations. (1) Company quality-system certifications, concentrated on /About/Certification
+  and repeated in the industry-page intros: AS9100 D, ISO 9001, ISO 14001, IATF 16949, ITAR, DFARS, RoHS, NATE.
+  (2) PRODUCT specification designations printed in the ''Industry Specifications'' block of every product detail
+  page: AWS filler-metal classifications (BVAg-8, BAlSi-4, BCuP-5), ISO 17672 alloy numbers (Ag 272, Al 112) and
+  AMS numbers (4185, 3410, 3411). The second population is the one a name-only reading of the field would miss.
+  TDS/SDS occur ~500 times and are documents, not attestations.'
+entries:
+- id: lucasmilhaupt_com-conformity_attestations-0001
+  name: AS9100
+  status: retired
+  acceptable_forms:
+  - AS9100
+  - AS 9100
+  - AS9100 D
+  - AS9100-certified
+  - AS9100 certification
+  evidence:
+  - quote: Our commitment to quality is just as broad. Lucas Milhaupt operates under AS9100 D, ISO 9001, ISO 14001,
+      and IATF 16949 quality systems, maintains
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AS9100'', ''AS 9100'', ''AS9100 D'',
+    ''AS9100-certified''); /About/Certification and every certification-bearing Industries page return only duplicate-page
+    placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0002
+  name: ITAR
+  status: retired
+  acceptable_forms:
+  - ITAR
+  evidence:
+  - quote: 9001, ISO 14001, and IATF 16949 quality systems, maintains ITAR and DFARS compliance, and holds numerous
+      customer-specific approvals
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ITAR''); /About/Certification and every
+    certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0003
+  name: DFARS
+  status: retired
+  acceptable_forms:
+  - DFARS
+  - DFAR
+  - DFAR Certified Compliance
+  evidence:
+  - quote: 9001, ISO 14001, and IATF 16949 quality systems, maintains ITAR and DFARS compliance, and holds numerous
+      customer-specific approvals
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''DFARS'', ''DFAR'', ''DFAR Certified
+    Compliance''); /About/Certification and every certification-bearing Industries page return only duplicate-page
+    placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0004
+  name: customer-specific approvals
+  status: retired
+  acceptable_forms:
+  - customer-specific approvals
+  evidence:
+  - quote: systems, maintains ITAR and DFARS compliance, and holds numerous customer-specific approvals so you can
+      specify our products with confidence. Backed by vertically integrated
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''customer-specific approvals''); /About/Certification
+    and every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form
+    occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0005
+  name: Sil-Fos patent (1931)
+  status: retired
+  acceptable_forms:
+  - patented in 1931
+  - Sil-Fos patent
+  - patent
+  evidence:
+  - quote: Sil-Fos® has been the preferred silver brazing alloy for HVAC/R contractors since it was patented in
+      1931. Sil-Fos alloys combine silver (Ag), copper (Cu),
+  notes: 'retired at the markdown cutover: searched ''patented in 1931'', ''Sil-Fos patent'', ''patent''; none occur.
+    Sil-Fos itself survives as a product/material name (see products-0011, material_caps-0004) but the patent claim
+    is gone from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0006
+  name: NATE certification
+  status: retired
+  acceptable_forms:
+  - NATE
+  - NATE certified
+  - NATE-certified
+  - NATE Training
+  - NATE certified training course
+  - NATE certified brazing courses
+  evidence:
+  - quote: in the field. Refresh your brazing knowledge, join a NATE certified training course, or learn where to
+      buy Sil-Fos today.
+  notes: 'retired at the markdown cutover: searched ''NATE''; the only substring hit is inside ''Fortunately'' (Joint
+    Design page), a false positive; no genuine mention of NATE certification survives.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0007
+  name: ISO 9001
+  status: retired
+  acceptable_forms:
+  - ISO 9001
+  - ISO 9001-certified
+  - ISO 9001 & ISO 14001 Certification
+  evidence:
+  - quote: ISO 9001 & ISO 14001 Certification
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ISO 9001'', ''ISO 9001-certified'',
+    ''ISO 9001 & ISO 14001 Certification''); /About/Certification and every certification-bearing Industries page
+    return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0008
+  name: ISO 14001
+  status: retired
+  acceptable_forms:
+  - ISO 14001
+  - ISO 14001:2015
+  - ISO 14001:2015 Environmental Policy
+  evidence:
+  - quote: ISO 9001 & ISO 14001 Certification
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ISO 14001'', ''ISO 14001:2015'', ''ISO
+    14001:2015 Environmental Policy''); /About/Certification and every certification-bearing Industries page return
+    only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0009
+  name: IATF 16949
+  status: retired
+  acceptable_forms:
+  - IATF 16949
+  - IATF16949
+  - IATF 16949 Certification
+  - IATF 16949 certified
+  evidence:
+  - quote: 'IATF 16949: Committing to Automotive Excellence'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''IATF 16949'', ''IATF16949'', ''IATF
+    16949 Certification'', ''IATF 16949 certified''); /About/Certification and every certification-bearing Industries
+    page return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0010
+  name: RoHS
+  status: retired
+  acceptable_forms:
+  - RoHS
+  evidence:
+  - quote: pads, Premabraze 800 is lead and silver-free formulation hat meets RoHS and medical-device purity mandates.
+      Ultra-low vapor pressure keeps voiding to a
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''RoHS''); /About/Certification and every
+    certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0011
+  name: AWS (American Welding Society)
+  status: retired
+  acceptable_forms:
+  - AWS
+  - American Welding Society
+  evidence:
+  - quote: The American Welding Society (AWS) defines brazing
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AWS'', ''American Welding Society'');
+    /About/Certification and every certification-bearing Industries page return only duplicate-page placeholders
+    in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0012
+  name: AWS BCuP-5
+  status: retired
+  acceptable_forms:
+  - BCuP-5
+  evidence:
+  - quote: filler metal such as the Lucas Milhaupt Sil-Fos alloys (BCuP-5) in copper-based assemblies must be used.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''BCuP-5''); /About/Certification and
+    every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0013
+  name: AMS 3410
+  status: retired
+  acceptable_forms:
+  - AMS 3410
+  evidence:
+  - quote: Industry flux standards focus on water-based fluxes. AMS 3410 and AMS 3411 stipulate that all fluxes
+      conforming to these specifications should be soluble in
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AMS 3410''); /About/Certification and
+    every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0014
+  name: AMS 3411
+  status: retired
+  acceptable_forms:
+  - AMS 3411
+  evidence:
+  - quote: Industry flux standards focus on water-based fluxes. AMS 3410 and AMS 3411 stipulate that all fluxes
+      conforming to these specifications should be soluble in
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AMS 3411''); /About/Certification and
+    every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0015
+  name: Six Sigma / Lean Manufacturing programs
+  status: retired
+  acceptable_forms:
+  - Six Sigma
+  - Design for Six Sigma
+  - Lean Manufacturing
+  - Strategy Deployment
+  evidence:
+  - quote: Partners Operational Excellence Programs include Lean Manufacturing, Design for Six Sigma, Six Sigma
+      and Strategy Deployment to reduce and eliminate waste.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Six Sigma'', ''Design for Six Sigma'',
+    ''Lean Manufacturing'', ''Strategy Deployment''); /About/Certification and every certification-bearing Industries
+    page return only duplicate-page placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0016
+  name: Lucas Milhaupt Code of Conduct
+  status: retired
+  acceptable_forms:
+  - Code of Conduct
+  - Lucas Milhaupt Code of Conduct
+  evidence:
+  - quote: Lucas Milhaupt Code of Conduct
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Code of Conduct'', ''Lucas Milhaupt
+    Code of Conduct''); /About/Certification and every certification-bearing Industries page return only duplicate-page
+    placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0017
+  name: AWS BVAg-8 Grade 1
+  status: retired
+  acceptable_forms:
+  - BVAg-8 Grade 1
+  - BVAg-8
+  - 'AWS: BVAg-8 Grade 1'
+  evidence:
+  - quote: 'AWS: BVAg-8 Grade 1'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''BVAg-8 Grade 1'', ''BVAg-8'', ''AWS:
+    BVAg-8 Grade 1''); /About/Certification and every certification-bearing Industries page return only duplicate-page
+    placeholders in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0018
+  name: ISO 17672
+  status: retired
+  acceptable_forms:
+  - ISO 17672
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ISO 17672''); /About/Certification and
+    every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0019
+  name: ISO 17672 Ag 272
+  status: retired
+  acceptable_forms:
+  - Ag 272
+  - 'ISO 17672: Ag 272'
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Ag 272'', ''ISO 17672: Ag 272''); /About/Certification
+    and every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form
+    occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0020
+  name: AMS 4185
+  status: retired
+  acceptable_forms:
+  - 'AMS: 4185'
+  - AMS 4185
+  - '4185'
+  evidence:
+  - quote: 'AMS: 4185'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AMS: 4185'', ''AMS 4185'', ''4185'');
+    /About/Certification and every certification-bearing Industries page return only duplicate-page placeholders
+    in this crawl; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0021
+  name: AWS BAlSi-4
+  status: retired
+  acceptable_forms:
+  - BAlSi-4
+  - 'AWS: BAlSi-4'
+  evidence:
+  - quote: 'AWS: BAlSi-4'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''BAlSi-4'', ''AWS: BAlSi-4''); /About/Certification
+    and every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form
+    occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-conformity_attestations-0022
+  name: ISO 17672 Al 112
+  status: retired
+  acceptable_forms:
+  - Al 112
+  - 'ISO 17672: Al 112'
+  evidence:
+  - quote: 'ISO 17672: Al 112'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Al 112'', ''ISO 17672: Al 112''); /About/Certification
+    and every certification-bearing Industries page return only duplicate-page placeholders in this crawl; no form
+    occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+false_friends:
+- form: TDS
+  reason: 'witnessed ~250x: ''Technical Data Sheet'', a product document, not an attestation'
+- form: SDS
+  reason: 'witnessed ~250x: ''Safety Data Sheet'', a product document, not an attestation'
+- form: VTG
+  reason: 'witnessed: ''vacuum tube grade'', an alloy purity grade in product names (SILVALOY 721 VTG Gr1) -- a
+    material designation, not a certification'
+- form: Braze School
+  reason: 'witnessed ~15x: a training course, not a certification (only its NATE accreditation is)'
+- form: Brazing Academy
+  reason: 'witnessed: the company''s training portal, not an accreditation'
+- form: Steel Partners Operational Excellence Programs
+  reason: 'witnessed: the parent''s internal improvement programme, not a standard held or met'
+- form: Grade 1
+  reason: witnessed only as the tail of the AWS class 'BVAg-8 Grade 1'; alone it names no standard
+- form: NADCAP
+  reason: 'anticipatory: does not occur; strong word-association from AS9100 + aerospace brazing'
+- form: ISO 13485
+  reason: 'anticipatory: does not occur; word-association from the medical-device pages, which cite only ISO 9001'
+- form: AS9100 Rev D
+  reason: 'anticipatory: the text says ''AS9100 D'', never ''Rev D'''
+- form: FDA
+  reason: 'anticipatory: does not occur; word-association from ''medical-device purity mandates'''
+- form: REACH
+  reason: 'anticipatory: does not occur; word-association from RoHS'

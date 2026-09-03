@@ -1,0 +1,727 @@
+subject: lucasmilhaupt.com
+field: industries
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/lucasmilhaupt.com.txt
+  sha256: f84ad55ab82bc1fc47d34ac0917856ac7ccbac19ec6eb6697a67302b71441f93
+eval_set_version: 3
+expected_empty: false
+notes: Brazing-consumables maker; the site is organised BY industry (7 industry landing pages) and each product
+  detail page carries a 'Common Industries' block, so industry designations are dense and repeat verbatim across
+  the .htm duplicate pages. The HVAC/R OEM and HVAC/R Distributor pages each dump the full ~240-entry ISO country
+  dropdown into the text -- countries are geography, not industries, and are the field's main junk-minting pressure.
+entries:
+- id: lucasmilhaupt_com-industries-0003
+  name: HVAC
+  status: confirmed
+  acceptable_forms:
+  - HVAC
+  evidence:
+  - quote: HVAC
+    approx_offset: 364
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0001
+  name: materials science
+  status: disputed
+  acceptable_forms:
+  - materials science
+  evidence:
+  - quote: in materials science
+    approx_offset: 1122
+  - quote: quickly. With more than 500 custom alloys, and decades of materials science expertise, Lucas Milhaupt
+      develops custom joining solutions
+    approx_offset: 1506
+  notes: named as the domain the company works in ('we're what's NEXT in materials science'), not as a customer
+    market; marginal against 'a domain a manufacturer's goods can serve'. | 'materials science' is a scientific
+    discipline and a claimed area of expertise ('decades of materials science expertise'), not a domain of economic
+    activity the company's goods serve; the sectors it serves are named separately (aerospace, HVAC/R, medical...).
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+    reason: '''materials science'' is a scientific discipline and a claimed area of expertise (''decades of materials
+      science expertise''), not a domain of economic activity the company''s goods serve; the sectors it serves
+      are named separately (aerospace, HVAC/R, medical...).'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0004
+  name: aerospace
+  status: candidate
+  acceptable_forms:
+  - Aerospace
+  - aerospace and defense
+  - aerospace
+  evidence:
+  - quote: '- Aerospace'
+    approx_offset: 2026
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0008
+  name: microelectronics
+  status: candidate
+  acceptable_forms:
+  - Microelectronics
+  - microelectronics
+  - microelectronics sector
+  evidence:
+  - quote: '- Microelectronics'
+    approx_offset: 2038
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0002
+  name: EV
+  status: confirmed
+  acceptable_forms:
+  - EV
+  evidence:
+  - quote: EV
+    approx_offset: 2059
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0012
+  name: oil and gas
+  status: candidate
+  acceptable_forms:
+  - Oil & gas
+  - Oil and Gas
+  - oil & gas
+  - Oil & Gas
+  evidence:
+  - quote: '- Oil & gas'
+    approx_offset: 2069
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0006
+  name: automotive
+  status: candidate
+  acceptable_forms:
+  - Automotive
+  - automotive
+  - automotive and EV
+  evidence:
+  - quote: '- Automotive'
+    approx_offset: 2081
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0010
+  name: electrical
+  status: candidate
+  acceptable_forms:
+  - Electrical
+  - electrical industry
+  - electrical power
+  evidence:
+  - quote: '- Electrical'
+    approx_offset: 2094
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0016
+  name: plumbing
+  status: candidate
+  acceptable_forms:
+  - plumbing
+  - plumbing industries
+  evidence:
+  - quote: The lap joint gives you a double thickness at the joint, but in many applications (plumbing connections,
+      for example) the double thickness is not objectionable.
+    approx_offset: 7638
+  notes: 'Thin: ''plumbing connections'' is a generic worked example in the brazing-tutorial page, not a stated
+    served-industry claim. Reanchored rather than disputed because the word does literally name the domain, consistent
+    with recall-first (existence, not attribution, is what search credits).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0027
+  name: electronics
+  status: candidate
+  acceptable_forms:
+  - Electronics
+  - electronics
+  - electronics packaging industry
+  evidence:
+  - quote: ideal for automotive, HVAC, and electronics lines seeking repeatable first-pass yields.
+    approx_offset: 18373
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0031
+  name: manufacturing
+  status: disputed
+  acceptable_forms:
+  - manufacturing
+  - Manufacturing
+  evidence:
+  - quote: Being vertically integrated allows us to control product quality throughout the manufacturing process,
+      with quality checks in the lab.
+    approx_offset: 22020
+  notes: The word survives only as an adjective describing Lucas Milhaupt's OWN process ('the manufacturing process',
+    and elsewhere 'manufacturing engineers' among customer trainees) -- never as a named served industry/sector.
+    No surviving sentence asserts a 'manufacturing' domain the company serves, unlike the homepage's explicit served-industries
+    bullet list, which does not include it.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: dispute
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0011
+  name: medical devices
+  status: candidate
+  acceptable_forms:
+  - medical devices
+  - medical device industry
+  - Medical
+  evidence:
+  - quote: Medical(12)
+    approx_offset: 24373
+  notes: Only surviving occurrence is the Demo Videos page's Industry facet count ('Medical(12)'), not prose --
+    a real page-specific facet, not sitewide nav; still a genuine naming.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0013
+  name: HVAC/R
+  status: candidate
+  acceptable_forms:
+  - HVAC/R
+  - HVAC/R industry
+  - HVAC & Refrigeration
+  evidence:
+  - quote: We provide in-person and on-site training for design engineers, manufacturing engineers, and HVAC/R Service
+      Technicians
+    approx_offset: 29475
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0005
+  name: defense
+  status: retired
+  acceptable_forms:
+  - defense
+  - Defense
+  - aerospace and defense
+  evidence:
+  - quote: Whether you build turbine engine components for aerospace and defense, battery and thermal-management
+      systems for automotive
+  notes: 'retired at the markdown cutover: searched ''defense'', ''aerospace and defense''; neither occurs anywhere
+    in the file (the homepage''s industries list has ''Aerospace'' but never pairs it with defense).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0007
+  name: appliance
+  status: retired
+  acceptable_forms:
+  - appliance
+  evidence:
+  - quote: thermal-management systems for automotive and EV, copper-aluminum coils for HVAC/R and appliance, hermetic
+      packages for microelectronics and semiconductor,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''appliance''); the dedicated Industries
+    page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder), and
+    no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0009
+  name: semiconductor
+  status: retired
+  acceptable_forms:
+  - semiconductor
+  - Semiconductor
+  evidence:
+  - quote: copper-aluminum coils for HVAC/R and appliance, hermetic packages for microelectronics and semiconductor,
+      high-current connectors for electrical power,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''semiconductor'', ''Semiconductor'');
+    the dedicated Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page
+    placeholder), and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0014
+  name: refrigeration
+  status: retired
+  acceptable_forms:
+  - refrigeration
+  - Refrigeration
+  evidence:
+  - quote: specialized brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air
+      conditioning equipment . Our legacy began with the invention of Sil-Fos®
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''refrigeration'', ''Refrigeration'');
+    the dedicated Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page
+    placeholder), and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0015
+  name: air conditioning
+  status: retired
+  acceptable_forms:
+  - air conditioning
+  evidence:
+  - quote: brazing alloys and expertise that ensure durable, leak-free joints in refrigeration and air conditioning
+      equipment . Our legacy began with the invention of Sil-Fos®
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''air conditioning''); the dedicated Industries
+    page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder), and
+    no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0017
+  name: aviation
+  status: retired
+  acceptable_forms:
+  - aviation
+  - Aviation
+  evidence:
+  - quote: common group of quality management standards for the aviation, space and defense industry.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''aviation'', ''Aviation''); the dedicated
+    Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder),
+    and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0018
+  name: space
+  status: retired
+  acceptable_forms:
+  - Space
+  - space and defense
+  evidence:
+  - quote: 'AS 9100: Committing to the highest quality standards in Aviation, Space and Defense'
+  notes: 'retired at the markdown cutover: the only occurrences of the string ''space'' are the physical-space sense
+    (''the space to innovate'', ''125,000 sq. ft. of space in our HQ'') on the homepage and Center-of-Excellence
+    page -- not the aerospace/space-industry sense; no real occurrence of a Space industry naming.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0019
+  name: telecommunications
+  status: retired
+  acceptable_forms:
+  - telecommunications
+  - telecom
+  evidence:
+  - quote: at the solder joint. This makes them ideal for RF microwave modules, telecommunications hardware, and
+      power electronics (heat spreaders, laser
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''telecommunications'', ''telecom'');
+    the dedicated Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page
+    placeholder), and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0020
+  name: power electronics
+  status: retired
+  acceptable_forms:
+  - power electronics
+  evidence:
+  - quote: This makes them ideal for RF microwave modules, telecommunications hardware, and power electronics (heat
+      spreaders, laser diode submounts) where
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''power electronics''); the dedicated
+    Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder),
+    and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0021
+  name: optoelectronics
+  status: retired
+  acceptable_forms:
+  - Optoelectronics
+  - optoelectronics
+  evidence:
+  - quote: 'Optoelectronics & Sensor Assemblies: From laser diodes and photonic packages to MEMS sensors'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Optoelectronics'', ''optoelectronics'');
+    the dedicated Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page
+    placeholder), and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0022
+  name: healthcare
+  status: retired
+  acceptable_forms:
+  - healthcare
+  evidence:
+  - quote: commitment to quality and traceability guarantees reliable performance in critical healthcare applications.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''healthcare''); the dedicated Industries
+    page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder), and
+    no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0023
+  name: dental
+  status: retired
+  acceptable_forms:
+  - Dental
+  - dental
+  evidence:
+  - quote: 'Dental Devices: Brazing solutions for dental equipment (handpieces, orthodontic appliances) that require'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Dental'', ''dental''); the dedicated
+    Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder),
+    and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0024
+  name: power distribution
+  status: retired
+  acceptable_forms:
+  - Power Distribution
+  - power distribution
+  evidence:
+  - quote: Power Distribution & Switchgear – Brazing is critical in devices like vacuum interrupters, electrical
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Power Distribution'', ''power distribution'');
+    the dedicated Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page
+    placeholder), and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0025
+  name: utility and industrial power
+  status: retired
+  acceptable_forms:
+  - utility and industrial power systems
+  - industrial power systems
+  evidence:
+  - quote: high-current joints, helping prevent hot spots and ensuring efficient power flow in utility and industrial
+      power systems.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''utility and industrial power systems'',
+    ''industrial power systems''); the dedicated Industries page that named this sector is absent from the 2026-08-29
+    crawl (returns a duplicate-page placeholder), and no other page mentions it; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0026
+  name: MRO
+  status: retired
+  acceptable_forms:
+  - MRO
+  evidence:
+  - quote: and wear parts to valves and heat exchangers, our solutions support both new build and MRO needs. With
+      global manufacturing and distribution,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''MRO''); the dedicated Industries page
+    that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder), and no other
+    page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0028
+  name: construction
+  status: retired
+  acceptable_forms:
+  - construction
+  evidence:
+  - quote: include electronics/electrical, aerospace, automotive, HVAC/R, construction and more. Examples range
+      from air conditioning
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''construction''); the dedicated Industries
+    page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder), and
+    no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0029
+  name: jewelry
+  status: retired
+  acceptable_forms:
+  - Jewelry
+  - jewelry
+  - fine jewelry
+  evidence:
+  - quote: variety of flux and flux-free binders that are primarily mixed with karat gold braze powders to form
+      a paste for use in jewelry brazing. Contact the Lucas Milhaupt Technical Support
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Jewelry'', ''jewelry'', ''fine jewelry'');
+    the dedicated Industries page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page
+    placeholder), and no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0030
+  name: transportation
+  status: retired
+  acceptable_forms:
+  - transportation
+  evidence:
+  - quote: cosmetic joints. Applications include transportation, construction, manufacturing and repair shops. Examples
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''transportation''); the dedicated Industries
+    page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder), and
+    no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0032
+  name: repair shops
+  status: retired
+  acceptable_forms:
+  - repair shops
+  evidence:
+  - quote: transportation, construction, manufacturing and repair shops. Examples
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''repair shops''); the dedicated Industries
+    page that named this sector is absent from the 2026-08-29 crawl (returns a duplicate-page placeholder), and
+    no other page mentions it; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-industries-0033
+  name: Oil & gas
+  status: candidate
+  acceptable_forms:
+  - Oil & gas
+  - Oil & Gas
+  evidence:
+  - quote: '- Oil & gas'
+    approx_offset: 2069
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: lucasmilhaupt_com-industries-0034
+  name: Medical
+  status: candidate
+  acceptable_forms:
+  - Medical
+  evidence:
+  - quote: Medical(12)
+    approx_offset: 24373
+  notes: Demo Videos page industry filter facet.
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Brazil
+  reason: 'witnessed: only in the ~240-entry country dropdown on the HVAC/R OEM and Distributor forms; a geography,
+    not an industry -- and its first four letters collide with ''braz(ing)'''
+- form: Turkey
+  reason: 'witnessed: country-dropdown entry only'
+- form: Georgia
+  reason: 'witnessed: country-dropdown entry only (the US state list is separate, as ''GA'')'
+- form: Jordan
+  reason: 'witnessed: country-dropdown entry only'
+- form: China
+  reason: 'witnessed: country dropdown plus the Suzhou site address; a location, not an industry'
+- form: France
+  reason: 'witnessed: country dropdown plus the Riberac site address; a location, not an industry'
+- form: Chile
+  reason: 'witnessed: country-dropdown entry only'
+- form: Steel Partners
+  reason: 'witnessed: the parent holding company''s name, not the steel industry'
+- form: Steel Sports
+  reason: 'witnessed: the parent''s youth-sports charity, not a market the subject serves'
+- form: Lucas Gear
+  reason: 'witnessed: a footer link to employee merchandise, repeated on all 69 pages'
+- form: Marine
+  reason: 'anticipatory: does not occur; word-association from ''ships'' in the WWII history page'
+- form: Nuclear
+  reason: 'anticipatory: does not occur; word-association from ''power'', ''turbine'', ''vacuum'''
+- form: Shipbuilding
+  reason: 'anticipatory: does not occur; ''planes, ships, and ammunition'' is a WWII list of brazed artifacts, not
+    a named market'
+- form: Food and Beverage
+  reason: 'anticipatory: does not occur; word-association from ''seal the seams of tin cans'''

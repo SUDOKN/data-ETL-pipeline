@@ -1,0 +1,3500 @@
+subject: blackadvtech.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/blackadvtech.com.txt
+  sha256: 63354af5b4bd0925a7cd54d773d6677fcc24a25a7c262ac35fa3b99a22afb9ad
+eval_set_version: 3
+expected_empty: false
+notes: 'The richest equipments inventory in the corpus: /about-us/facility/ publishes 92 numbered machines and /capabilities/machinery/
+  publishes a second, partly different fleet with capacities. SEEDED TO THE PROMPT''S BOUNDARY, not to the everyday
+  sense of ''equipment'': a production machine acts on the work itself. So the QUALITY CONTROL block (Faro Arm,
+  Positector, Glossmeter, Sharp Edge Tester) and the CMM/calipers/micrometers in the QC Inspector posting are METROLOGY
+  and are false_friends here, not entries; the March 360 sheet loader, lift tables, dock levellers and overhead
+  crane are MATERIAL HANDLING; the dust collectors, boilers, sprinklers, bus-duct wiring and lighting are PLANT
+  UTILITIES; dies, punches, grinding wheels, chucks and grid tables are TOOLING; and the six CAD/MRP packages are
+  software. All of those are recorded as false_friends so the judged pass can count them, exactly as the alecmfg
+  false-RED lesson prescribes.'
+entries:
+- id: blackadvtech_com-equipments-0018
+  name: Trumpf TruLaser 3040 Fiber
+  status: candidate
+  acceptable_forms:
+  - Trumpf TruLaser 3040 Fiber
+  evidence:
+  - quote: Trumpf TruLaser 3040 Fiber — high-speed precision cutting
+    approx_offset: 1403
+  notes: one of the 92 numbered machines on /about-us/facility/, under the LASER CUTTING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0117
+  name: Cincinnati CL-940
+  status: candidate
+  acceptable_forms:
+  - CINCINNATI CL-940
+  - CL-900 Series Fiber Laser System
+  - CL-900
+  evidence:
+  - quote: (2) Cincinnati CL-900 Fiber — dual 4000W, automated sheet loaders
+    approx_offset: 1465
+  notes: Dynamic Power Control (DPC), touch-screen HMI
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0021
+  name: Amada Coma-567 44 station 50 ton 60” X 72”
+  status: candidate
+  acceptable_forms:
+  - Amada Coma-567 44 station 50 ton 60” X 72”
+  - Amada Coma-567
+  evidence:
+  - quote: Amada Coma-567 — 50-station turret punching, auto-index
+    approx_offset: 1599
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PUNCHING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0120
+  name: CNC turret punch press
+  status: candidate
+  acceptable_forms:
+  - CNC turret punch press
+  - turret punch press
+  - 44-station turret
+  - turret punching
+  evidence:
+  - quote: Amada Coma-567 — 50-station turret punching, auto-index
+    approx_offset: 1599
+  notes: 'EQUIPMENT-PARAMETER DEPTH: 55 punching tons, 4.5 inch max tool, 60x72 max sheet, a 44-station turret with
+    2 auto index stations. The turret station count is the distinctive spec.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0025
+  name: Rousselle 300 Ton
+  status: candidate
+  acceptable_forms:
+  - Rousselle 300 Ton
+  - Rousselle
+  evidence:
+  - quote: High-tonnage punching — 300-Ton Versa & 300-Ton Rousselle OBI
+    approx_offset: 1659
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PUNCHING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0105
+  name: Dragon A400 Plasma Cutting Machine
+  status: candidate
+  acceptable_forms:
+  - Dragon A400 Plasma Cutting Machine
+  - Dragon A400 Plasma
+  evidence:
+  - quote: Dragon A400 Plasma — tube & pipe operations
+    approx_offset: 1725
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TUBE & PIPE heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0109
+  name: Dragon A400 tube and pipe plasma cutter
+  status: candidate
+  acceptable_forms:
+  - Dragon A400 CNC tube and pipe plasma cutter
+  - Dragon Tube and Pipe Plastma Cutting Machine
+  - Dragon A400 Plasma
+  evidence:
+  - quote: Dragon A400 Plasma — tube & pipe operations
+    approx_offset: 1725
+  notes: same source line as equipments-0105; the legacy corpus apparently listed this machine twice (general-purpose
+    vs. tube/pipe-specific), and only one consolidated mention survives.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0079
+  name: Trumpf TruBend v7036
+  status: candidate
+  acceptable_forms:
+  - Trumpf TruBend v7036
+  evidence:
+  - quote: Trumpf TruBend v7036 with robotic arm — high-consistency output
+    approx_offset: 1812
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0116
+  name: Trumpf TruBend 7036 (spec block)
+  status: candidate
+  acceptable_forms:
+  - Trumpf TruBend 7036
+  - Trumpf Trubend 7036
+  - Trumpf TruBend v7036
+  evidence:
+  - quote: Trumpf TruBend v7036 with robotic arm — high-consistency output
+    approx_offset: 1812
+  notes: legacy name has no 'v' prefix ('TruBend 7036'); likely the same physical machine as equipments-0079's main-list
+    mention, listed twice in the legacy corpus (main list vs. spec block).
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0088
+  name: Cincinnati 230 Autoform +8
+  status: candidate
+  acceptable_forms:
+  - Cincinnati 230 Autoform +8
+  evidence:
+  - quote: Cincinnati 230 Autoform +8 — 230-Ton, 6-axis backgauge
+    approx_offset: 1880
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0076
+  name: Trumpf TruBend v130
+  status: candidate
+  acceptable_forms:
+  - Trumpf TruBend v130
+  - v130
+  evidence:
+  - quote: Full Trumpf precision fleet, v5320 through v130
+    approx_offset: 1939
+  notes: 'the fleet-range endpoint literally names v130; note context: text reads without a space as ''v130''.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0081
+  name: Trumpf TruBend v5320
+  status: candidate
+  acceptable_forms:
+  - Trumpf TruBend v5320
+  - v5320
+  evidence:
+  - quote: Full Trumpf precision fleet, v5320 through v130
+    approx_offset: 1939
+  notes: one of the 92 numbered machines on /about-us/facility/, under the FORMING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0093
+  name: 4ft Niagara plate roll
+  status: candidate
+  acceptable_forms:
+  - 4ft Niagara
+  evidence:
+  - quote: Specialized rolling — 4ft Niagara & Buffalo Channel systems
+    approx_offset: 1991
+  notes: one of the 92 numbered machines on /about-us/facility/, under the ROLLING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0094
+  name: Buffalo Channel roll
+  status: candidate
+  acceptable_forms:
+  - Buffalo Channel
+  evidence:
+  - quote: Specialized rolling — 4ft Niagara & Buffalo Channel systems
+    approx_offset: 1991
+  notes: one of the 92 numbered machines on /about-us/facility/, under the ROLLING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0126
+  name: 4' bending roll
+  status: candidate
+  acceptable_forms:
+  - 4′ bending roll
+  - 4′ roll machine
+  - 4ft Niagara
+  evidence:
+  - quote: Specialized rolling — 4ft Niagara & Buffalo Channel systems
+    approx_offset: 1991
+  notes: same underlying Niagara roll as equipments-0093; the legacy corpus described it once generically ('4 foot
+    bending roll') and once by brand.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0011
+  name: MIG machine
+  status: candidate
+  acceptable_forms:
+  - metal inert gas (MIG) machine
+  - MIG
+  evidence:
+  - quote: 50+ certified MIG, TIG & Spot welding stations
+    approx_offset: 2088
+  notes: the specific 'metal inert gas (MIG) machine' phrasing is gone; only the generic MIG welding-station line
+    survives, shared with equipments-0132's fleet-count entry.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0132
+  name: MIG welders (fleet count)
+  status: candidate
+  acceptable_forms:
+  - (30) MIG welders
+  - MIG welders
+  - MIG
+  evidence:
+  - quote: 50+ certified MIG, TIG & Spot welding stations
+    approx_offset: 2088
+  notes: thirty on the machinery page
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0133
+  name: TIG welders (fleet count)
+  status: candidate
+  acceptable_forms:
+  - (16) TIG welders
+  - TIG welders
+  - TIG
+  evidence:
+  - quote: 50+ certified MIG, TIG & Spot welding stations
+    approx_offset: 2088
+  notes: sixteen on the machinery page
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0058
+  name: IPG LightWeld handheld laser welder
+  status: confirmed
+  acceptable_forms:
+  - LightWELD
+  - Handheld Laser Welding & Cleaning Systems
+  evidence:
+  - quote: IPG LightWeld 2000XR
+    approx_offset: 2246
+  notes: handheld laser welding and cleaning system
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '`IPG LightWeld 2000XR` is the identity and sole/primary acceptable form of equipments-0057, so carrying
+      it here makes one returned phrase credit two entries and inflates the equipments denominator. This entry keeps
+      its own distinct surface forms.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0057
+  name: IPG LightWeld 2000XR
+  status: candidate
+  acceptable_forms:
+  - IPG LightWeld 2000XR
+  evidence:
+  - quote: IPG LightWeld 2000XR handheld laser welder
+    approx_offset: 2246
+  notes: one of the 92 numbered machines on /about-us/facility/, under the TIG WELDERS heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0152
+  name: handheld welder
+  status: candidate
+  acceptable_forms:
+  - HANDHELD WELDER
+  - handheld laser welder
+  - handheld
+  evidence:
+  - quote: IPG LightWeld 2000XR handheld laser welder
+    approx_offset: 2246
+  notes: likely the same physical unit as equipments-0057's IPG LightWeld 2000XR; the legacy corpus apparently also
+    listed it generically as 'handheld welder'.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0061
+  name: Taylor Winfield spot welders
+  status: candidate
+  acceptable_forms:
+  - Taylor Winfield
+  evidence:
+  - quote: 100 KVA Taylor Winfield spot welder, 7'x7' table
+    approx_offset: 2293
+  notes: one of the 92 numbered machines on /about-us/facility/, under the SPOT WELDING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0131
+  name: Taylor Winfield spot welders (machinery page)
+  status: candidate
+  acceptable_forms:
+  - Taylor Winfield spot welders ram and press types
+  - Taylor Winfield spot welders
+  - Taylor Winfield spot welder
+  - Taylor Winfield
+  evidence:
+  - quote: 100 KVA Taylor Winfield spot welder, 7'x7' table
+    approx_offset: 2293
+  notes: seventeen, ram and press types, up to 100 KVA, electronic controls
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0069
+  name: Weld Passivation Wand Systems
+  status: candidate
+  acceptable_forms:
+  - Weld Passivation Wand Systems
+  - weld passivation systems
+  evidence:
+  - quote: Dual weld passivation systems for stainless integrity
+    approx_offset: 2346
+  notes: one of the 92 numbered machines on /about-us/facility/, under the GRAINING/DEBURRING/FINISHING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0030
+  name: 5 Stage Iron Phosphate Bonderiser
+  status: candidate
+  acceptable_forms:
+  - 5 Stage Iron Phosphate Bonderiser
+  - 5-stage iron phosphate bonderizer
+  evidence:
+  - quote: 5-stage iron phosphate bonderizer pre-treatment
+    approx_offset: 2446
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0118
+  name: bonderizer
+  status: candidate
+  acceptable_forms:
+  - bonderizer
+  - Bonderizer
+  evidence:
+  - quote: 5-stage iron phosphate bonderizer pre-treatment
+    approx_offset: 2446
+  notes: early-2022 investment; a 5-stage iron phosphate conversion line
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0026
+  name: Nordson Encore LT Powder Coat Machine
+  status: candidate
+  acceptable_forms:
+  - Nordson Encore LT Powder Coat Machine
+  - Nordson Encore LT
+  evidence:
+  - quote: Gema MPSI-B & Nordson Encore LT powder coating
+    approx_offset: 2498
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0027
+  name: Gema MPSI-B Powder Coat Machine
+  status: candidate
+  acceptable_forms:
+  - Gema MPSI-B Powder Coat Machine
+  - Gema MPSI-B
+  evidence:
+  - quote: Gema MPSI-B & Nordson Encore LT powder coating
+    approx_offset: 2498
+  notes: one of the 92 numbered machines on /about-us/facility/, under the PAINT & POWDER heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0005
+  name: baking ovens
+  status: candidate
+  acceptable_forms:
+  - Baking ovens
+  - curing ovens
+  - batch oven
+  evidence:
+  - quote: Twin 12'x30'x8.5' curing ovens plus a 20' batch oven
+    approx_offset: 2549
+  notes: terminology shift from 'baking' to 'curing/batch' ovens; likely the same physical equipment as equipments-0033
+    (same line, same dimensions minus the 'Rohner' brand).
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0033
+  name: 12X30X8.5 Rohner Paint/powder coat ovens
+  status: candidate
+  acceptable_forms:
+  - 12X30X8.5 Rohner Paint/powder coat ovens
+  - 12'x30'x8.5'
+  evidence:
+  - quote: Twin 12'x30'x8.5' curing ovens plus a 20' batch oven
+    approx_offset: 2549
+  notes: dimensions match the legacy '12X30X8.5 Rohner' ovens exactly; the 'Rohner' brand name is dropped in the
+    new copy.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0075
+  name: Fadel CNC
+  status: candidate
+  acceptable_forms:
+  - Fadel CNC
+  evidence:
+  - quote: Fadel CNC vertical machining center
+    approx_offset: 2717
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MACHINING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0072
+  name: Sebastion A-6 Lathe
+  status: candidate
+  acceptable_forms:
+  - Sebastion A-6 Lathe
+  - Sebastian A-6 lathe
+  evidence:
+  - quote: Bridgeport mills, radial arm drills, Sebastian A-6 lathe
+    approx_offset: 2757
+  notes: legacy name misspelled 'Sebastion'; the new snapshot spells it 'Sebastian', the standard spelling for this
+    lathe brand.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0073
+  name: Bridgeport milling machines
+  status: candidate
+  acceptable_forms:
+  - Bridgeport’s
+  - Bridgeport mills
+  evidence:
+  - quote: Bridgeport mills, radial arm drills, Sebastian A-6 lathe
+    approx_offset: 2757
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MACHINING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0074
+  name: Radial Arm Drill
+  status: candidate
+  acceptable_forms:
+  - Radial Arm Drill
+  - radial arm drills
+  evidence:
+  - quote: Bridgeport mills, radial arm drills, Sebastian A-6 lathe
+    approx_offset: 2757
+  notes: one of the 92 numbered machines on /about-us/facility/, under the MACHINING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0150
+  name: Pemserter presses
+  status: candidate
+  acceptable_forms:
+  - PEMSERTER PRESSES
+  - PEMserter
+  evidence:
+  - quote: (5) PEMserter automated hardware-insertion presses
+    approx_offset: 2818
+  notes: only a generic PEMserter mention survives, with no per-model breakdown; equipments-0070 and equipments-0071
+    (specific Autosert AS-7.5 / Series 2000 model numbers) are retired rather than forced onto this same generic
+    line.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0013
+  name: laser cutters
+  status: candidate
+  acceptable_forms:
+  - Multiple laser cutters
+  - laser cutters
+  - laser machines
+  evidence:
+  - quote: Calibrate machines (press brakes, laser cutters, punch presses) on a scheduled basis.
+    approx_offset: 21506
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0106
+  name: mechanical punch presses
+  status: candidate
+  acceptable_forms:
+  - Mechanical punch presses
+  - punch press
+  - punch presses
+  evidence:
+  - quote: Calibrate machines (press brakes, laser cutters, punch presses) on a scheduled basis.
+    approx_offset: 21506
+  notes: three, 'Ranging from 20 to 40 tons'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0012
+  name: welding robots (prose)
+  status: candidate
+  acceptable_forms:
+  - welding robots
+  - robotic arms
+  - robotic arm
+  evidence:
+  - quote: At its core, robotic welding involves the use of robotic arms equipped with welding equipment
+    approx_offset: 32407
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0144
+  name: collaborative robots
+  status: confirmed
+  acceptable_forms:
+  - collaborative robots (cobots)
+  - cobots
+  evidence:
+  - quote: collaborative robots (cobots) are becoming more prevalent in welding applications
+    approx_offset: 37839
+  actor: unknown
+  notes: 'BLOG-ONLY: the robotic-welding explainer''s outlook section'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0125
+  name: mechanical press brakes
+  status: candidate
+  acceptable_forms:
+  - Mechanical press brakes
+  - Mechanical Press Brakes
+  evidence:
+  - quote: '- Benefits of Hydraulic or Mechanical Press Brakes Over Manual Ones:'
+    approx_offset: 55103
+  notes: '''Ranging from 100 to 230 tons'', 10''-14'' beds, NC backgauge controllers'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0127
+  name: 55 punching tons
+  status: retired
+  acceptable_forms:
+  - 55 punching tons
+  evidence:
+  - quote: 55 punching tons
+    approx_offset: 85772
+  notes: the turret press's capacity line; an equipment parameter, kept because the corpus note asks for parameter-level
+    precision on this subject | '55 punching tons' is the punching-capacity line of the CNC turret punch press already
+    entered at equipments-0120 (it sits directly under it in both the machinery and press-room lists). It names
+    a capacity, not a device, so it does not satisfy 'names, states or implies a production machine', and it is
+    the entry's only acceptable form, so nothing survives correction.
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: retired
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''55 punching tons'' is the punching-capacity line of the CNC turret punch press already entered at
+      equipments-0120 (it sits directly under it in both the machinery and press-room lists). It names a capacity,
+      not a device, so it does not satisfy ''names, states or implies a production machine'', and it is the entry''s
+      only acceptable form, so nothing survives correction.'
+- id: blackadvtech_com-equipments-0143
+  name: electrostatic spray system
+  status: confirmed
+  acceptable_forms:
+  - electrostatic spray system
+  - electrostatic spray guns
+  - specialized spray gun
+  evidence:
+  - quote: using a specialized spray gun or an electrostatic spray system
+    approx_offset: 109681
+  - quote: operation requires specialized equipment, such as spray booths, curing ovens, and electrostatic spray
+      guns. The initial investment can be relatively high, especially for small businesses
+    approx_offset: 112315
+  actor: unknown
+  notes: 'BLOG-ONLY: the powder-coating explainer''s generic equipment list'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: curing ovens and spray booths are two other pieces of powder-coating equipment listed in the same sentence,
+      not surface forms of an electrostatic spray system. Kept as their own candidate misses.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0156
+  name: curing ovens
+  status: candidate
+  acceptable_forms:
+  - curing ovens
+  evidence:
+  - quote: such as spray booths, curing ovens, and electrostatic spray guns
+    approx_offset: 112357
+  notes: split out of equipments-0143, where it had been carried as a form of 'electrostatic spray system'; a separate
+    machine, and a distinct surface form from the facility list's 'Baking ovens' (0005).
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0157
+  name: spray booths
+  status: candidate
+  acceptable_forms:
+  - spray booths
+  evidence:
+  - quote: such as spray booths, curing ovens, and electrostatic spray guns
+    approx_offset: 112357
+  notes: split out of equipments-0143; a distinct surface form from the facility list's paint booths (0028) and
+    wet spray booths (0137).
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0147
+  name: rolling mills
+  status: confirmed
+  acceptable_forms:
+  - rollers
+  - work rolls
+  evidence:
+  - quote: In the mills, rollers are used to reduce the metal thickness
+    approx_offset: 153959
+  actor: unknown
+  notes: 'BLOG-ONLY and the crux of the cold-rolling trap: the rolling MILL exists only in the thickness/cold-rolling
+    articles. Neither machine list contains one.'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: '''In the mills, rollers are used'' is a sentence fragment, not a designation - the search prompt''s
+      Extent section forbids returning the statement around the name, so no correct run could ever emit it. `rollers`
+      and `work rolls` name the machine''s working elements and are kept.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0146
+  name: plasma arc torch
+  status: confirmed
+  acceptable_forms:
+  - plasma arc torch
+  evidence:
+  - quote: the plasma arc torch has two electrodes, a rear and a front one
+    approx_offset: 184446
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0145
+  name: oxyacetylene torch
+  status: confirmed
+  acceptable_forms:
+  - oxyacetylene torch
+  evidence:
+  - quote: This process is performed using an oxyacetylene torch.
+    approx_offset: 191790
+  actor: unknown
+  notes: 'BLOG-ONLY: the tool the weld-distortion article prescribes for heat straightening'
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0155
+  name: welding torch
+  status: candidate
+  acceptable_forms:
+  - welding torch
+  evidence:
+  - quote: the operator should re-bake, use fresh consumables, and check the welding torch for any leaks
+    approx_offset: 196362
+  notes: named in the common-welding-issues article; same class as the oxyacetylene torch (0145) and plasma arc
+    torch (0146) the packet does enter.
+  provenance:
+  - action: added
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0020
+  name: Cincinnati CL-900 4000watt Fiber 6×12
+  status: candidate
+  acceptable_forms:
+  - Cincinnati CL-900 4000watt Fiber 6×12
+  evidence:
+  - quote: Our technicians operate the Cincinnati CL-900 4000watt Fiber 6×12 with an automated March system
+    approx_offset: 207719
+  notes: one of the 92 numbered machines on /about-us/facility/, under the LASER CUTTING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0119
+  name: 2000-watt CO2 lasers
+  status: candidate
+  acceptable_forms:
+  - 2000-watt CO2 lasers
+  - 2000 watt C02 6×12 laser
+  - 4000 watt C02 5×10 laser
+  - 4000 watt Fiber 6×12 laser
+  - Cincinnati CL-707 2000watt C02 6×12
+  - 2000watt C02 6×12
+  evidence:
+  - quote: with an automated March system, the Cincinnati CL-707 2000watt C02 6×12, and the Mazak Optiplex 3015
+    approx_offset: 207785
+  notes: the press-room laser fleet as the machinery page states it
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0142
+  name: Cincinnati CL-707
+  status: confirmed
+  acceptable_forms:
+  - Cincinnati CL-707 2000watt C02 6×12
+  evidence:
+  - quote: the Cincinnati CL-707 2000watt C02 6×12
+    approx_offset: 207817
+  notes: named only in the fiber-laser blog post, not in either machine list
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0017
+  name: Mazak Optiplex 3015 4000watt C02 5×10
+  status: candidate
+  acceptable_forms:
+  - Mazak Optiplex 3015 4000watt C02 5×10
+  evidence:
+  - quote: the Mazak Optiplex 3015 4000watt C02 5×10 laser cutting machine, offering the fastest cutting speeds
+      on the market!
+    approx_offset: 207862
+  notes: one of the 92 numbered machines on /about-us/facility/, under the LASER CUTTING heading
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0148
+  name: powered shears
+  status: confirmed
+  acceptable_forms:
+  - powered shears
+  evidence:
+  - quote: while using tools such as snips or even powered shears
+    approx_offset: 235511
+  actor: unknown
+  notes: BLOG-ONLY
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-blackadvtech
+    date: '2026-08-27'
+    reason: snips are hand tools ('using tools such as snips or even powered shears'), which the clause puts outside
+      the boundary along with tooling; powered shears are the production machine in that sentence and are kept.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0001
+  name: robotic powder coating equipment
+  status: retired
+  acceptable_forms:
+  - top-of-the-line robotic equipment
+  evidence:
+  - quote: High repeatability — our top-of-the-line robotic equipment makes the process a breeze
+  notes: 'retired at the markdown cutover: searched ''top-of-the-line robotic equipment''; absent — the powder-coating
+    equipment named in the new snapshot (Gema MPSI-B, Nordson Encore LT) is never described as robotic; only welding
+    and bending equipment get that adjective.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0002
+  name: large weldment wash booth
+  status: retired
+  acceptable_forms:
+  - Large weldment wash booth
+  evidence:
+  - quote: Large weldment wash booth
+  notes: 'retired at the markdown cutover: searched ''Large weldment wash booth''; absent — the wash-booth step
+    is not described in the new snapshot at all, only the phosphate pre-treatment survives (captured separately).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0003
+  name: 5-stage wash & phosphate coating system
+  status: retired
+  acceptable_forms:
+  - 5-stage wash & phosphate coating system
+  - 5-stage wash & phosphate powder coating system
+  evidence:
+  - quote: (2) 5-stage wash & phosphate coating system
+  notes: 'retired at the markdown cutover: searched ''5-stage wash & phosphate coating system''; the wash half is
+    absent from the new snapshot — only ''5-stage iron phosphate bonderizer pre-treatment'' survives (no wash step
+    named), so reanchoring here would force the missing half onto an unrelated capability.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0004
+  name: batch paint/powder booths
+  status: retired
+  acceptable_forms:
+  - Batch paint/powder booths
+  evidence:
+  - quote: (5) Batch paint/powder booths
+  notes: 'retired at the markdown cutover: searched ''Batch paint/powder booths''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0006
+  name: Gema Volstatic powder applicators
+  status: retired
+  acceptable_forms:
+  - Gema Volstatic powder applicators
+  evidence:
+  - quote: (8) Gema Volstatic powder applicators
+  notes: 'retired at the markdown cutover: searched ''Gema Volstatic powder applicators''; absent — the new snapshot
+    names a different specific Gema model (''Gema MPSI-B'') for powder coating, not Volstatic applicators.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0007
+  name: Timesavers belt sanders
+  status: retired
+  acceptable_forms:
+  - 30″ Timesavers belt sander
+  - 19″ Timesavers belt sander
+  - Timesavers belt sander
+  - TIMESAVERS 2100
+  - Timesavers 2100 Series
+  evidence:
+  - quote: (1) 30″ Timesavers belt sander
+  notes: 'retired at the markdown cutover: searched Timesavers, TIMESAVERS 2100; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0008
+  name: belt sanders to 14'
+  status: retired
+  acceptable_forms:
+  - Belt sanders to 14′ 0″
+  - Belt sanders
+  evidence:
+  - quote: (2) Belt sanders to 14′ 0″
+  notes: 'retired at the markdown cutover: searched ''Belt sanders to 14 feet''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0009
+  name: Falls metal edge deburring machine
+  status: retired
+  acceptable_forms:
+  - Falls metal edge deburring machine
+  evidence:
+  - quote: (1) Falls metal edge deburring machine
+  notes: 'retired at the markdown cutover: searched ''Falls metal edge deburring machine''; absent from the new
+    snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0010
+  name: Sweco vibratory deburring machine
+  status: retired
+  acceptable_forms:
+  - Sweco 4′ vibratory deburring machine
+  evidence:
+  - quote: (2) Sweco 4′ vibratory deburring machine
+  notes: 'retired at the markdown cutover: searched ''Sweco 4 foot vibratory deburring machine''; absent from the
+    new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0014
+  name: XSharp grinder
+  status: retired
+  acceptable_forms:
+  - XSHARP™ GRINDER
+  - XSharp grinder
+  - XSharp Grinder
+  - XSharp Tool Grinder
+  - Xsharp Grinder
+  - XSharp
+  evidence:
+  - quote: XSHARP™ GRINDER
+  notes: 'retired at the markdown cutover: searched XSharp, XSHARP, Xsharp; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0015
+  name: Skat Blast 985 cabinet
+  status: retired
+  acceptable_forms:
+  - Skat Blast 985 Cabinet
+  - 985 SKAT BLAST Cabinet
+  evidence:
+  - quote: • 1 – Skat Blast 985 Abrasive Blasting Cabinet
+  notes: 'retired at the markdown cutover: searched ''Skat Blast 985 Cabinet'', ''985 SKAT BLAST Cabinet''; absent
+    from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0016
+  name: C-35-M Power Gun
+  status: retired
+  acceptable_forms:
+  - C-35-M Power Gun
+  - C-35 Foot-Pedal-Operated Power Gun
+  evidence:
+  - quote: one center-mounted C-35-M Power Gun
+  notes: 'retired at the markdown cutover: searched ''C-35-M Power Gun'', ''C-35 Foot-Pedal-Operated Power Gun'';
+    absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0019
+  name: Trumpf 6×12 laser
+  status: retired
+  acceptable_forms:
+  - Trumpf 6×12
+  evidence:
+  - quote: • 1 – Trumpf 6×12
+  notes: 'retired at the markdown cutover: searched ''Trumpf 6×12''; absent — the surviving Trumpf laser is the
+    TruLaser 3040 Fiber (captured separately); no 6×12 Trumpf laser is named, only bending-brake models under the
+    ''Trumpf precision fleet''.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0022
+  name: Ferracute P23 40 Ton
+  status: retired
+  acceptable_forms:
+  - Ferracute P23 40 Ton
+  evidence:
+  - quote: • 1 – Ferracute P23 40 Ton
+  notes: 'retired at the markdown cutover: searched ''Ferracute P23 40 Ton''; absent from the new snapshot; the
+    high-tonnage punching bullet names only Versa and Rousselle presses.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0023
+  name: Verson 300 Ton
+  status: retired
+  acceptable_forms:
+  - Verson 300 Ton
+  evidence:
+  - quote: • 1 – Verson 300 Ton
+  notes: 'retired at the markdown cutover: searched ''Verson 300 Ton''; the new snapshot''s high-tonnage punching
+    bullet names a ''300-Ton Versa'' press instead — a different brand name (Versa, not Verson), so treating it
+    as the same machine would be forcing a match on a coincidental resemblance rather than a confirmed identity.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0024
+  name: Toledo 40 Ton
+  status: retired
+  acceptable_forms:
+  - Toledo 40 Ton
+  evidence:
+  - quote: • 1 – Toledo 40 Ton
+  notes: 'retired at the markdown cutover: searched ''Toledo 40 Ton''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0028
+  name: 15x10x15 Paint Booths
+  status: retired
+  acceptable_forms:
+  - 15x10x15 Paint Booths
+  evidence:
+  - quote: • 5 – 15x10x15 Paint Booths
+  notes: 'retired at the markdown cutover: searched ''15x10x15 Paint Booths''; absent — the new snapshot gives no
+    dimensions for the paint/powder booths.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0029
+  name: Large Bay Wash Booth
+  status: retired
+  acceptable_forms:
+  - Large Bay Wash Booth
+  evidence:
+  - quote: • 1 – Large Bay Wash Booth
+  notes: 'retired at the markdown cutover: searched ''Large Bay Wash Booth''; absent from the new snapshot; no wash-booth
+    equipment is named at all.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0031
+  name: HVLP Finex & Devilbliss Guns
+  status: retired
+  acceptable_forms:
+  - HVLP Finex & Devilbliss Guns
+  evidence:
+  - quote: • 5 – HVLP Finex & Devilbliss Guns
+  notes: 'retired at the markdown cutover: searched ''HVLP Finex & Devilbliss Guns''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0032
+  name: HVLP spray gun
+  status: retired
+  acceptable_forms:
+  - HVLP gun
+  - HVLP spray gun
+  evidence:
+  - quote: This is true for painting with an HVLP gun
+  notes: 'retired at the markdown cutover: searched HVLP gun, HVLP spray gun; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0034
+  name: Miller Millermatic 250
+  status: retired
+  acceptable_forms:
+  - Miller Millermatic 250
+  evidence:
+  - quote: • 2 – Miller Millermatic 250
+  notes: 'retired at the markdown cutover: searched ''Miller Millermatic 250''; absent — the specific Miller/Lincoln
+    welder-model roster is gone, replaced by the generic ''50+ certified MIG, TIG & Spot welding stations'' line.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0035
+  name: Miller Dimension 452
+  status: retired
+  acceptable_forms:
+  - Miller Dimension 452
+  evidence:
+  - quote: • 4 – Miller Dimension 452
+  notes: 'retired at the markdown cutover: searched ''Miller Dimension 452''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0036
+  name: Miller CP-302
+  status: retired
+  acceptable_forms:
+  - Miller CP-302
+  evidence:
+  - quote: • 5 – Miller CP-302
+  notes: 'retired at the markdown cutover: searched ''Miller CP-302''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0037
+  name: Miller Dimension 400
+  status: retired
+  acceptable_forms:
+  - Miller Dimension 400
+  evidence:
+  - quote: • 1 – Miller Dimension 400
+  notes: 'retired at the markdown cutover: searched ''Miller Dimension 400''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0038
+  name: Miller Invision 456MP Pulse
+  status: retired
+  acceptable_forms:
+  - Miller Invision 456MP Pulse
+  evidence:
+  - quote: • 2 – Miller Invision 456MP Pulse
+  notes: 'retired at the markdown cutover: searched ''Miller Invision 456MP Pulse''; absent — the Miller/Lincoln
+    welder-model roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0039
+  name: Lincoln STT II
+  status: retired
+  acceptable_forms:
+  - Lincoln STT II
+  evidence:
+  - quote: • 13 – Lincoln STT II
+  notes: 'retired at the markdown cutover: searched ''Lincoln STT II''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0040
+  name: Miller 252
+  status: retired
+  acceptable_forms:
+  - Miller 252
+  evidence:
+  - quote: • 2 – Miller 252
+  notes: 'retired at the markdown cutover: searched ''Miller 252''; absent — the Miller/Lincoln welder-model roster
+    is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0041
+  name: Lincoln Electric Power Wave
+  status: retired
+  acceptable_forms:
+  - Lincoln Electric Power Wave
+  evidence:
+  - quote: • 4 – Lincoln Electric Power Wave
+  notes: 'retired at the markdown cutover: searched ''Lincoln Electric Power Wave''; absent — the Miller/Lincoln
+    welder-model roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0042
+  name: Miller 450
+  status: retired
+  acceptable_forms:
+  - Miller 450
+  evidence:
+  - quote: • 2 – Miller 450
+  notes: 'retired at the markdown cutover: searched ''Miller 450''; absent — the Miller/Lincoln welder-model roster
+    is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0043
+  name: Miller Axcess 300
+  status: retired
+  acceptable_forms:
+  - Miller Axcess 300
+  evidence:
+  - quote: • 2 – Miller Axcess 300
+  notes: 'retired at the markdown cutover: searched ''Miller Axcess 300''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0044
+  name: Weldmark 140
+  status: retired
+  acceptable_forms:
+  - Weldmark 140
+  evidence:
+  - quote: • 1 – Weldmark 140
+  notes: 'retired at the markdown cutover: searched ''Weldmark 140''; absent — the Miller/Lincoln welder-model roster
+    is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0045
+  name: Hobart 140
+  status: retired
+  acceptable_forms:
+  - Hobart 140
+  evidence:
+  - quote: • 1 – Hobart 140
+  notes: 'retired at the markdown cutover: searched ''Hobart 140''; absent — the Miller/Lincoln welder-model roster
+    is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0046
+  name: Miller Axcess 450
+  status: retired
+  acceptable_forms:
+  - Miller Axcess 450
+  evidence:
+  - quote: • 4 – Miller Axcess 450
+  notes: 'retired at the markdown cutover: searched ''Miller Axcess 450''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0047
+  name: Miller Continuum 350
+  status: retired
+  acceptable_forms:
+  - Miller Continuum 350
+  evidence:
+  - quote: • 2 – Miller Continuum 350
+  notes: 'retired at the markdown cutover: searched ''Miller Continuum 350''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0048
+  name: Miller Deltaweld 350
+  status: retired
+  acceptable_forms:
+  - Miller Deltaweld 350
+  evidence:
+  - quote: • 7 – Miller Deltaweld 350
+  notes: 'retired at the markdown cutover: searched ''Miller Deltaweld 350''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0049
+  name: THG Automation Fronius Robot
+  status: retired
+  acceptable_forms:
+  - THG Automation Fronius Robot
+  evidence:
+  - quote: • 3 – THG Automation Fronius Robot
+  notes: 'retired at the markdown cutover: searched ''THG Automation Fronius Robot''; absent — only generic ''robotic
+    arm'' phrasing survives (e.g. ''Trumpf TruBend v7036 with robotic arm''), never the THG Automation / Fronius
+    brand combination.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0050
+  name: Miller 351
+  status: retired
+  acceptable_forms:
+  - Miller 351
+  evidence:
+  - quote: • 7 – Miller 351
+  notes: 'retired at the markdown cutover: searched ''Miller 351''; absent — the Miller/Lincoln welder-model roster
+    is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0051
+  name: Lincoln Square Wave
+  status: retired
+  acceptable_forms:
+  - Lincoln Square Wave
+  evidence:
+  - quote: • 2 – Lincoln Square Wave
+  notes: 'retired at the markdown cutover: searched ''Lincoln Square Wave''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0052
+  name: Miller syncrowave 350
+  status: retired
+  acceptable_forms:
+  - Miller syncrowave 350
+  evidence:
+  - quote: • 3 – Miller syncrowave 350
+  notes: 'retired at the markdown cutover: searched ''Miller syncrowave 350''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0053
+  name: Lincoln Electric TIG welder
+  status: retired
+  acceptable_forms:
+  - Lincoln Electric
+  evidence:
+  - quote: • 1 – Lincoln Electric
+  notes: 'retired at the markdown cutover: searched ''Lincoln Electric''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0054
+  name: Miller Syncrowave 350 LX
+  status: retired
+  acceptable_forms:
+  - Miller Syncrowave 350 LX
+  evidence:
+  - quote: • 6 – Miller Syncrowave 350 LX
+  notes: 'retired at the markdown cutover: searched ''Miller Syncrowave 350 LX''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0055
+  name: Miller Dynasty 280 DX
+  status: retired
+  acceptable_forms:
+  - Miller Dynasty 280 DX
+  evidence:
+  - quote: • 8 – Miller Dynasty 280 DX
+  notes: 'retired at the markdown cutover: searched ''Miller Dynasty 280 DX''; absent — the Miller/Lincoln welder-model
+    roster is gone.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0056
+  name: Pandjiris 8′ bed
+  status: retired
+  acceptable_forms:
+  - Pandjiris 8′ bed
+  evidence:
+  - quote: SEAM WELDERS • 1 – Pandjiris 8′ bed
+  notes: 'retired at the markdown cutover: searched ''Pandjiris 8 foot bed''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0059
+  name: Sciaki Spot welders
+  status: retired
+  acceptable_forms:
+  - Sciaki Spot welders
+  evidence:
+  - quote: • 2 – Sciaki Spot welders
+  notes: 'retired at the markdown cutover: searched ''Sciaki Spot welders''; absent — the new snapshot names only
+    a ''100 KVA Taylor Winfield spot welder'', not Sciaki.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0060
+  name: Sciaki spot welder
+  status: retired
+  acceptable_forms:
+  - Sciaki spot welder
+  evidence:
+  - quote: (2) Sciaki spot welder
+  notes: 'retired at the markdown cutover: searched ''Sciaki spot welder''; absent — the new snapshot names only
+    a ''100 KVA Taylor Winfield spot welder'', not Sciaki.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0062
+  name: 38 KVA portable/hanging spot welders
+  status: retired
+  acceptable_forms:
+  - 38 KVA Portable/hanging
+  evidence:
+  - quote: • 4 – 38 KVA Portable/hanging
+  notes: 'retired at the markdown cutover: searched ''38 KVA Portable/hanging''; absent — the new snapshot''s spot
+    welder is a fixed ''100 KVA... 7x7 table'' unit, a different spec than this portable/hanging 38 KVA machine.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0063
+  name: Capacitive discharge stud guns
+  status: retired
+  acceptable_forms:
+  - Capacitive discharge stud guns
+  evidence:
+  - quote: • 3 – Capacitive discharge stud guns
+  notes: 'retired at the markdown cutover: searched ''Capacitive discharge stud guns''; absent — the only loose
+    stem hit is the unrelated word ''capacity'' (''Scale capacity for trucks...''); no stud-welding equipment survives.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0064
+  name: Mattison 138 Belt Sander
+  status: retired
+  acceptable_forms:
+  - Mattison 138 Belt Sander
+  evidence:
+  - quote: • 1 – Mattison 138 Belt Sander
+  notes: 'retired at the markdown cutover: searched ''Mattison 138 Belt Sander''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0065
+  name: Mattison 124 Belt Sander
+  status: retired
+  acceptable_forms:
+  - Mattison 124 Belt Sander
+  evidence:
+  - quote: • 1 – Mattison 124 Belt Sander
+  notes: 'retired at the markdown cutover: searched ''Mattison 124 Belt Sander''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0066
+  name: Doucet Stroke Sander
+  status: retired
+  acceptable_forms:
+  - Doucet Stroke Sander
+  evidence:
+  - quote: • 1 – Doucet Stroke Sander
+  notes: 'retired at the markdown cutover: searched ''Doucet Stroke Sander''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0067
+  name: 35”x15’ 2100 Series Timesaver
+  status: retired
+  acceptable_forms:
+  - 35”x15’ 2100 Series Timesaver
+  evidence:
+  - quote: • 1 – 35”x15’ 2100 Series Timesaver
+  notes: 'retired at the markdown cutover: searched ''2100 Series Timesaver''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0068
+  name: Sweco Deburrer Mil
+  status: retired
+  acceptable_forms:
+  - Sweco Deburrer Mil
+  evidence:
+  - quote: • 2 – Sweco Deburrer Mil
+  notes: 'retired at the markdown cutover: searched ''Sweco Deburrer Mil''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0070
+  name: Pemserter Autosert AS-7.5 press
+  status: retired
+  acceptable_forms:
+  - Autosert AS-7.5
+  evidence:
+  - quote: • 3 – Autosert AS-7.5
+  notes: 'retired at the markdown cutover: searched ''Autosert AS-7.5''; absent — only a generic ''(5) PEMserter
+    automated hardware-insertion presses'' line survives, with no per-model breakdown; captured generically as equipments-0150
+    instead of forcing this specific model number onto it.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0071
+  name: Pemserter Series 2000 press
+  status: retired
+  acceptable_forms:
+  - Series 2000
+  evidence:
+  - quote: • 2 – Series 2000
+  notes: 'retired at the markdown cutover: searched ''Series 2000'' (Pemserter); absent — only a generic ''(5) PEMserter
+    automated hardware-insertion presses'' line survives, with no per-model breakdown; captured generically as equipments-0150
+    instead of forcing this specific model number onto it.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0077
+  name: Trumpf TruBend v170
+  status: retired
+  acceptable_forms:
+  - Trumpf TruBend v170
+  evidence:
+  - quote: • 2 – Trumpf TruBend v170
+  notes: 'retired at the markdown cutover: searched ''Trumpf TruBend v170''; not literally named — the new snapshot
+    only states the fleet RANGE ''v5320 through v130'' without enumerating v170; treating an implied range as naming
+    every intermediate model would force a match the text does not make.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0078
+  name: Trumpf TruBend v320
+  status: retired
+  acceptable_forms:
+  - Trumpf TruBend v320
+  evidence:
+  - quote: • 1 – Trumpf TruBend v320
+  notes: 'retired at the markdown cutover: searched ''Trumpf TruBend v320''; not literally named — only the fleet
+    range endpoints (v130, v5320) are stated; see equipments-0077 for the same reasoning.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0080
+  name: Trumpf TruBend v2100
+  status: retired
+  acceptable_forms:
+  - Trumpf TruBend v2100
+  evidence:
+  - quote: • 1 – Trumpf TruBend v2100
+  notes: 'retired at the markdown cutover: searched ''Trumpf TruBend v2100''; not literally named — only the fleet
+    range endpoints (v130, v5320) are stated; see equipments-0077 for the same reasoning.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0082
+  name: Trumpf TruBend v5130
+  status: retired
+  acceptable_forms:
+  - Trumpf TruBend v5130
+  evidence:
+  - quote: • 1 – Trumpf TruBend v5130
+  notes: 'retired at the markdown cutover: searched ''Trumpf TruBend v5130''; not literally named — only the fleet
+    range endpoints (v130, v5320) are stated; see equipments-0077 for the same reasoning.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0083
+  name: Trumpf TrueBend V5100
+  status: retired
+  acceptable_forms:
+  - Trumpf TrueBend V5100
+  evidence:
+  - quote: • 1 – Trumpf TrueBend V5100
+  notes: 'retired at the markdown cutover: searched ''Trumpf TrueBend V5100''; not literally named — model number
+    5100 does not match either fleet-range endpoint (v130, v5320); see equipments-0077 for the same reasoning.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0084
+  name: Trumpf TruBend v3170
+  status: retired
+  acceptable_forms:
+  - Trumpf TruBend v3170
+  evidence:
+  - quote: • 1 – Trumpf TruBend v3170
+  notes: 'retired at the markdown cutover: searched ''Trumpf TruBend v3170''; not literally named — only the fleet
+    range endpoints (v130, v5320) are stated; see equipments-0077 for the same reasoning.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0085
+  name: Trumpf TruBend 7050
+  status: retired
+  acceptable_forms:
+  - Trumpf TruBend 7050
+  evidence:
+  - quote: • 1 – Trumpf TruBend 7050
+  notes: 'retired at the markdown cutover: searched ''Trumpf TruBend 7050''; not literally named — the only explicit
+    7000-series model in the new snapshot is v7036 (captured separately as equipments-0079/0116); 7050 does not
+    match.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0086
+  name: Darley 110 31/25 press brake
+  status: retired
+  acceptable_forms:
+  - Darley 110 31/25
+  evidence:
+  - quote: • 1 – Darley 110 31/25
+  notes: 'retired at the markdown cutover: searched ''Darley 110 31/25''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0087
+  name: Cincinnati Mechanical Brake
+  status: retired
+  acceptable_forms:
+  - Cincinnati Mechanical Brake
+  evidence:
+  - quote: • 3 – Cincinnati Mechanical Brake
+  notes: 'retired at the markdown cutover: searched ''Cincinnati Mechanical Brake''; absent — the surviving Cincinnati
+    equipment is the CL-900 laser and the 230 Autoform +8 press brake, not a generic ''Mechanical Brake'' model.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0089
+  name: Pacific Hydraulic Brake
+  status: retired
+  acceptable_forms:
+  - Pacific Hydraulic Brake
+  evidence:
+  - quote: • 1 – Pacific Hydraulic Brake
+  notes: 'retired at the markdown cutover: searched ''Pacific Hydraulic Brake''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0090
+  name: Cincinnati Hydraulic Brake
+  status: retired
+  acceptable_forms:
+  - Cincinnati Hydraulic Brake
+  evidence:
+  - quote: • 1 – Cincinnati Hydraulic Brake
+  notes: 'retired at the markdown cutover: searched ''Cincinnati Hydraulic Brake''; absent — the surviving Cincinnati
+    equipment is the CL-900 laser and the 230 Autoform +8 press brake, not a generic ''Hydraulic Brake'' model.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0091
+  name: Devin Arbor Press
+  status: retired
+  acceptable_forms:
+  - Devin Arbor Press
+  evidence:
+  - quote: • 1 – Devin Arbor Press
+  notes: 'retired at the markdown cutover: searched ''Devin Arbor Press''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0092
+  name: K.R. Wilson 3750V Arbor Press
+  status: retired
+  acceptable_forms:
+  - K.R. Wilson 3750V Arbor Press
+  evidence:
+  - quote: • 1 – K.R. Wilson 3750V Arbor Press
+  notes: 'retired at the markdown cutover: searched ''K.R. Wilson 3750V Arbor Press''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0095
+  name: Marvel 8 Series 8
+  status: retired
+  acceptable_forms:
+  - Marvel 8 Series 8
+  evidence:
+  - quote: • 1 – Marvel 8 Series 8
+  notes: 'retired at the markdown cutover: searched ''Marvel 8 Series 8''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0096
+  name: HEM Saw Auto Feed Programmable Jobs
+  status: retired
+  acceptable_forms:
+  - HEM Saw Auto Feed Programmable Jobs
+  evidence:
+  - quote: • 1 – HEM Saw Auto Feed Programmable Jobs
+  notes: 'retired at the markdown cutover: searched ''HEM Saw Auto Feed Programmable Jobs''; absent from the new
+    snapshot; no HEM Saw equipment is named at all.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0097
+  name: HEM CNC vertical Band Saw
+  status: retired
+  acceptable_forms:
+  - HEM CNC vertical Band Saw
+  evidence:
+  - quote: • 1 – HEM CNC vertical Band Saw
+  notes: 'retired at the markdown cutover: searched ''HEM CNC vertical Band Saw''; absent from the new snapshot;
+    no HEM Saw equipment is named at all.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0098
+  name: PMI-20 CNC Auto Miter Upcut Saw
+  status: retired
+  acceptable_forms:
+  - PMI-20 CNC Auto Miter Upcut Saw
+  - upcut miter saw
+  evidence:
+  - quote: PMI-20 CNC Auto Miter Upcut Saw
+  notes: 'retired at the markdown cutover: searched ''PMI-20 CNC Auto Miter Upcut Saw''; absent from the new snapshot;
+    no saw equipment is named at all.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0099
+  name: aluminum up-cut saw
+  status: retired
+  acceptable_forms:
+  - Aluminum up-cut
+  evidence:
+  - quote: • 1 – Aluminum up-cut
+  notes: 'retired at the markdown cutover: searched ''Aluminum up-cut''; absent — only the bare word ''aluminum''
+    survives (captured separately as a material), never combined with an up-cut saw.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0100
+  name: 10ft Cincinnati shear
+  status: retired
+  acceptable_forms:
+  - 10ft Cincinnati
+  evidence:
+  - quote: • 1 – 10ft Cincinnati
+  notes: 'retired at the markdown cutover: searched ''10ft Cincinnati'' (shear); absent — the surviving Cincinnati
+    equipment is the CL-900 laser and the 230 Autoform +8 press brake, no shear.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0101
+  name: 10ft Niagara shear
+  status: retired
+  acceptable_forms:
+  - 10ft Niagara
+  evidence:
+  - quote: • 1 – 10ft Niagara
+  notes: 'retired at the markdown cutover: searched ''10ft Niagara'' (shear); the surviving Niagara equipment is
+    a ROLLING system (''4ft Niagara'' plate roll, captured as equipments-0093), not a shear — a different machine
+    under the same brand, so treating it as this entity would misidentify it.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0102
+  name: 6ft Cincinnati shear
+  status: retired
+  acceptable_forms:
+  - 6ft Cincinnati
+  evidence:
+  - quote: • 1 – 6ft Cincinnati
+  notes: 'retired at the markdown cutover: searched ''6ft Cincinnati'' (shear); absent — no Cincinnati shear is
+    named, only the CL-900 laser and 230 Autoform +8 press brake.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0103
+  name: Comaca Notcher
+  status: retired
+  acceptable_forms:
+  - Comaca Notcher
+  evidence:
+  - quote: • 1 – Comaca Notcher
+  notes: 'retired at the markdown cutover: searched ''Comaca Notcher''; absent from the new snapshot; no notching
+    equipment is named at all.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0104
+  name: Skat Blast 985 Abrasive Blasting Cabinet
+  status: retired
+  acceptable_forms:
+  - Skat Blast 985 Abrasive Blasting Cabinet
+  evidence:
+  - quote: • 1 – Skat Blast 985 Abrasive Blasting Cabinet
+  notes: 'retired at the markdown cutover: searched ''Skat Blast 985 Abrasive Blasting Cabinet''; absent from the
+    new snapshot; no sand-blasting equipment (only the process) is named.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0107
+  name: Trumpf Flex Cell 7050
+  status: retired
+  acceptable_forms:
+  - Trumpf Flex Cell 7050
+  - Flex Cell
+  - mobile robot cell
+  evidence:
+  - quote: Trumpf Flex Cell 7050
+  notes: 'retired at the markdown cutover: searched ''Trumpf Flex Cell 7050'', ''Flex Cell'', ''mobile robot cell'';
+    absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0108
+  name: TruDisk solid-state laser
+  status: retired
+  acceptable_forms:
+  - TruDisk solid-state laser
+  evidence:
+  - quote: The TruDisk solid-state laser enables the processing of non-ferrous metals
+  notes: 'retired at the markdown cutover: searched ''TruDisk solid-state laser''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0110
+  name: Trumpf TruBend 5130 (spec block)
+  status: retired
+  acceptable_forms:
+  - TruBend 5130
+  - Trmpf TruBend 5130
+  evidence:
+  - quote: Trmpf TruBend 5130
+  notes: 'retired at the markdown cutover: searched ''TruBend 5130''; not literally named — only the fleet range
+    endpoints (v130, v5320) are stated; see equipments-0077 for the same reasoning.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0111
+  name: THG Automation Fronius welding robot
+  status: retired
+  acceptable_forms:
+  - THG Automation Fronius Welding Robot
+  - THG Automation Fronius
+  evidence:
+  - quote: THG Automation Fronius Welding Robot
+  notes: 'retired at the markdown cutover: searched ''THG Automation Fronius Welding Robot''; absent — only generic
+    ''robotic arm'' phrasing survives, never the THG Automation / Fronius brand combination.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0112
+  name: Fronius TPS 400i power source
+  status: retired
+  acceptable_forms:
+  - TPS 400i Power Source
+  evidence:
+  - quote: TPS 400i Power Source with 1000 jobs, Teach Mode, Job Editor, and more
+  notes: 'retired at the markdown cutover: searched ''TPS 400i Power Source''; absent from the new snapshot; no
+    Fronius power-source model is named.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0113
+  name: Universal Robots UR10e
+  status: retired
+  acceptable_forms:
+  - Universal Robots UR10e
+  - UR10e
+  evidence:
+  - quote: the Universal Robots UR10e 12.5 kg payload robot
+  notes: 'retired at the markdown cutover: searched ''Universal Robots UR10e''; absent — the only ''universal''
+    hit is an unrelated ''universal numbering system'' for metal alloys in a different blog article.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0114
+  name: Trumpf TruBend 2100 (spec block)
+  status: retired
+  acceptable_forms:
+  - TruBend 2100
+  - Trmpf TruBend 2100
+  evidence:
+  - quote: Trmpf TruBend 2100
+  notes: 'retired at the markdown cutover: searched ''TruBend 2100''; not literally named — only the fleet range
+    endpoints (v130, v5320) are stated; see equipments-0077 for the same reasoning.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0115
+  name: HEM Saw VT100HLA-60 CTS
+  status: retired
+  acceptable_forms:
+  - HEM Saw VT100HLA-60 CTS
+  - Metal-Cutting Production Band Saw
+  - HEM Saw
+  evidence:
+  - quote: HEM Saw VT100HLA-60 CTS
+  notes: 'retired at the markdown cutover: searched ''HEM Saw VT100HLA-60 CTS''; absent from the new snapshot; no
+    HEM Saw equipment is named at all.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0121
+  name: 10' shear
+  status: retired
+  acceptable_forms:
+  - 10′ shear
+  - 10′ shears
+  evidence:
+  - quote: (2) 10′ shear
+  notes: 'retired at the markdown cutover: searched "10 foot shear"; no genuine hit — the only ''shear'' occurrences
+    are landscaping ''shears'' in an unrelated job posting and a generic ''snips or even powered shears'' cutting-tool
+    sentence; no shear machine is named.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0122
+  name: CNC hydraulic press brakes
+  status: retired
+  acceptable_forms:
+  - CNC hydraulic press brakes
+  evidence:
+  - quote: (5) CNC hydraulic press brakes
+  notes: 'retired at the markdown cutover: searched ''CNC hydraulic press brakes''; absent — the surviving press
+    brakes are named by brand (Trumpf TruBend fleet, Cincinnati 230 Autoform +8), never this generic CNC-hydraulic
+    description.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0123
+  name: CNC electric press brake
+  status: retired
+  acceptable_forms:
+  - CNC electric press brake
+  evidence:
+  - quote: (1) CNC electric press brake
+  notes: 'retired at the markdown cutover: searched ''CNC electric press brake''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0124
+  name: conventional hydraulic press brakes
+  status: retired
+  acceptable_forms:
+  - Conventional hydraulic press brakes
+  evidence:
+  - quote: (2) Conventional hydraulic press brakes
+  notes: 'retired at the markdown cutover: searched ''Conventional hydraulic press brakes''; absent — the only loose
+    hits are unrelated (''touch-up... convenient'').'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0128
+  name: 130 to 320 ton press brake range
+  status: retired
+  acceptable_forms:
+  - 320-ton machine
+  evidence:
+  - quote: Ranging from 130 tons to 320 tons
+  notes: 'retired at the markdown cutover: searched ''320-ton machine'' (130 to 320 ton press brake range); absent
+    — the new snapshot''s Trumpf fleet range is stated by model number (v130 through v5320), not tonnage, so this
+    tonnage range cannot be confirmed against it.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0129
+  name: straight-sided mechanical presses
+  status: retired
+  acceptable_forms:
+  - Straight-sided mechanical presses
+  evidence:
+  - quote: (2) Straight-sided mechanical presses
+  notes: 'retired at the markdown cutover: searched ''Straight-sided mechanical presses''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0130
+  name: sheet seam-welder
+  status: retired
+  acceptable_forms:
+  - Sheet seam-welder
+  - Seam welder
+  - seam-welder
+  evidence:
+  - quote: (1) Sheet seam-welder for making oversize sheets
+  notes: 'retired at the markdown cutover: searched ''Sheet seam-welder'', ''Seam welder''; absent as a named MACHINE
+    — ''seam welding'' survives only as a PROCESS in blog articles, with no equipment named for it.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0134
+  name: SST welders
+  status: retired
+  acceptable_forms:
+  - 9 SST welders
+  - SST welders
+  evidence:
+  - quote: 9 SST welders
+  notes: 'retired at the markdown cutover: searched SST, ''SST welders''; absent from the new snapshot (zero occurrences
+    of the string ''SST'').'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0135
+  name: push/pull arc weld guns
+  status: retired
+  acceptable_forms:
+  - Push/pull arc weld guns
+  evidence:
+  - quote: (3) Push/pull arc weld guns
+  notes: 'retired at the markdown cutover: searched ''Push/pull arc weld guns''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0136
+  name: plasma welder-cutters
+  status: retired
+  acceptable_forms:
+  - Plasma welder-cutters
+  evidence:
+  - quote: (2) Plasma welder-cutters
+  notes: 'retired at the markdown cutover: searched ''Plasma welder-cutters''; absent — the surviving Dragon A400
+    Plasma equipment is described only for ''tube & pipe operations'' (cutting), never as a combination welder-cutter.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0137
+  name: large weldment wet spray booth
+  status: retired
+  acceptable_forms:
+  - Large weldment wet spray booth
+  - Large weldment wet spray paint booth
+  - Large wet spray paint booth
+  evidence:
+  - quote: Large weldment wet spray booth
+  notes: 'retired at the markdown cutover: searched ''Large weldment wet spray booth''; absent — no wet-spray booth
+    equipment is named in the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0138
+  name: frame-straightening stations
+  status: retired
+  acceptable_forms:
+  - Frame-straightening stations
+  evidence:
+  - quote: (2) Frame-straightening stations
+  notes: 'retired at the markdown cutover: searched ''Frame-straightening stations''; absent from the new snapshot;
+    only the unrelated ''## Heat Straightening'' weld-correction technique survives (a different operation).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0139
+  name: Bracker riveting machines
+  status: retired
+  acceptable_forms:
+  - Bracker riveting machines
+  evidence:
+  - quote: (2) Bracker riveting machines
+  notes: 'retired at the markdown cutover: searched ''Bracker riveting machines''; absent from the new snapshot;
+    no riveting equipment is named.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0140
+  name: sheet metal nibbler
+  status: retired
+  acceptable_forms:
+  - Sheet metal nibbler
+  evidence:
+  - quote: (1) Sheet metal nibbler
+  notes: 'retired at the markdown cutover: searched ''Sheet metal nibbler''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0141
+  name: Muller semi-automatic stretch machine
+  status: retired
+  acceptable_forms:
+  - Muller semi-automatic stretch machine
+  evidence:
+  - quote: (1) Muller semi-automatic stretch machine
+  notes: 'retired at the markdown cutover: searched ''Muller semi-automatic stretch machine''; absent from the new
+    snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0149
+  name: Projection weld stud welders
+  status: retired
+  acceptable_forms:
+  - Projection weld stud welders
+  evidence:
+  - quote: Projection weld stud welders
+  notes: 'retired at the markdown cutover: searched ''Projection weld stud welders''; absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0151
+  name: sand blaster
+  status: retired
+  acceptable_forms:
+  - SAND BLASTER
+  evidence:
+  - quote: SAND BLASTER
+  notes: 'retired at the markdown cutover: searched ''SAND BLASTER''; no equipment is named — only the sand-blasting
+    PROCESS survives (''## Sand Blasting'' heading, captured under process_caps-0018), with no machine named for
+    it.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0153
+  name: Fronius Push Torch
+  status: retired
+  acceptable_forms:
+  - Push Torch
+  evidence:
+  - quote: Push Torch
+  notes: 'retired at the markdown cutover: searched ''Push Torch'' (Fronius); absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0154
+  name: Fronius wire feeder
+  status: retired
+  acceptable_forms:
+  - Wire Feeder
+  evidence:
+  - quote: Wire Feeder
+  notes: 'retired at the markdown cutover: searched ''Wire Feeder'' (Fronius); absent from the new snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-blackadvtech-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: blackadvtech_com-equipments-0158
+  name: Cincinnati CL-900 Fiber
+  status: candidate
+  acceptable_forms:
+  - Cincinnati CL-900 Fiber
+  evidence:
+  - quote: (2) Cincinnati CL-900 Fiber — dual 4000W, automated sheet loaders
+    approx_offset: 1465
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0159
+  name: Mazak Optiplex 3015
+  status: candidate
+  acceptable_forms:
+  - Mazak Optiplex 3015
+  evidence:
+  - quote: Mazak Optiplex 3015 — 4000W CO2 for heavy-gauge versatility
+    approx_offset: 1535
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0160
+  name: Amada Coma-567
+  status: candidate
+  acceptable_forms:
+  - Amada Coma-567
+  evidence:
+  - quote: Amada Coma-567 — 50-station turret punching, auto-index
+    approx_offset: 1599
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0161
+  name: 300-Ton Versa
+  status: candidate
+  acceptable_forms:
+  - 300-Ton Versa
+  evidence:
+  - quote: High-tonnage punching — 300-Ton Versa & 300-Ton Rousselle OBI
+    approx_offset: 1659
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0162
+  name: 300-Ton Rousselle OBI
+  status: candidate
+  acceptable_forms:
+  - Rousselle OBI
+  evidence:
+  - quote: High-tonnage punching — 300-Ton Versa & 300-Ton Rousselle OBI
+    approx_offset: 1659
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0163
+  name: Dragon A400 Plasma
+  status: candidate
+  acceptable_forms:
+  - Dragon A400 Plasma
+  evidence:
+  - quote: Dragon A400 Plasma — tube & pipe operations
+    approx_offset: 1725
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0164
+  name: 4ft Niagara Channel system
+  status: candidate
+  acceptable_forms:
+  - Niagara
+  evidence:
+  - quote: Specialized rolling — 4ft Niagara & Buffalo Channel systems
+    approx_offset: 1991
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0165
+  name: Buffalo Channel system
+  status: candidate
+  acceptable_forms:
+  - Buffalo Channel
+  evidence:
+  - quote: Specialized rolling — 4ft Niagara & Buffalo Channel systems
+    approx_offset: 1991
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0166
+  name: 100 KVA Taylor Winfield spot welder
+  status: candidate
+  acceptable_forms:
+  - Taylor Winfield
+  evidence:
+  - quote: 100 KVA Taylor Winfield spot welder, 7'x7' table
+    approx_offset: 2293
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0167
+  name: iron phosphate bonderizer
+  status: candidate
+  acceptable_forms:
+  - bonderizer
+  evidence:
+  - quote: 5-stage iron phosphate bonderizer pre-treatment
+    approx_offset: 2446
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0168
+  name: Gema MPSI-B powder coating system
+  status: candidate
+  acceptable_forms:
+  - Gema MPSI-B
+  evidence:
+  - quote: Gema MPSI-B & Nordson Encore LT powder coating
+    approx_offset: 2498
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0169
+  name: Nordson Encore LT powder coating system
+  status: candidate
+  acceptable_forms:
+  - Nordson Encore LT
+  evidence:
+  - quote: Gema MPSI-B & Nordson Encore LT powder coating
+    approx_offset: 2498
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0170
+  name: Fadel CNC vertical machining center
+  status: candidate
+  acceptable_forms:
+  - Fadel CNC vertical machining center
+  evidence:
+  - quote: Fadel CNC vertical machining center
+    approx_offset: 2717
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0171
+  name: Bridgeport mills
+  status: candidate
+  acceptable_forms:
+  - Bridgeport mills
+  evidence:
+  - quote: Bridgeport mills, radial arm drills, Sebastian A-6 lathe
+    approx_offset: 2757
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0172
+  name: radial arm drills
+  status: candidate
+  acceptable_forms:
+  - radial arm drills
+  evidence:
+  - quote: Bridgeport mills, radial arm drills, Sebastian A-6 lathe
+    approx_offset: 2757
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0173
+  name: Sebastian A-6 lathe
+  status: candidate
+  acceptable_forms:
+  - Sebastian A-6 lathe
+  evidence:
+  - quote: Bridgeport mills, radial arm drills, Sebastian A-6 lathe
+    approx_offset: 2757
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0174
+  name: PEMserter automated hardware-insertion press
+  status: candidate
+  acceptable_forms:
+  - PEMserter
+  evidence:
+  - quote: (5) PEMserter automated hardware-insertion presses
+    approx_offset: 2818
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0175
+  name: press brakes
+  status: candidate
+  acceptable_forms:
+  - press brakes
+  evidence:
+  - quote: Calibrate machines (press brakes, laser cutters, punch presses) on a scheduled basis.
+    approx_offset: 21506
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0176
+  name: punch presses
+  status: candidate
+  acceptable_forms:
+  - punch presses
+  evidence:
+  - quote: Calibrate machines (press brakes, laser cutters, punch presses) on a scheduled basis.
+    approx_offset: 21506
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0177
+  name: collaborative robots (cobots)
+  status: candidate
+  acceptable_forms:
+  - collaborative robots
+  - cobots
+  evidence:
+  - quote: Additionally, collaborative robots (cobots) are becoming more prevalent in welding applications.
+    approx_offset: 37825
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0178
+  name: CNC machines
+  status: candidate
+  acceptable_forms:
+  - CNC machines
+  evidence:
+  - quote: To thrive in the sheet metal fabrication industry, having the right tools is crucial. CNC machines form
+      the backbone of modern shops
+    approx_offset: 52633
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0179
+  name: CNC plasma cutters
+  status: candidate
+  acceptable_forms:
+  - CNC plasma cutters
+  evidence:
+  - quote: For most sheet metal shops, CNC plasma cutters strike a balance between speed and accuracy.
+    approx_offset: 53862
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0180
+  name: Makino P-300
+  status: candidate
+  acceptable_forms:
+  - Makino P-300
+  evidence:
+  - quote: A modern CNC plasma cutter like the Makino P-300 can process a 1/4-inch steel plate in less than two
+      minutes
+    approx_offset: 54094
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0181
+  name: multi-form bending machines
+  status: candidate
+  acceptable_forms:
+  - Multi-Form Bending Machines
+  - multi-form bending machines
+  evidence:
+  - quote: 'Importance of Multi-Form Bending Machines for Quick Prototyping:'
+    approx_offset: 54572
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0182
+  name: Trumpf MB 4200
+  status: candidate
+  acceptable_forms:
+  - Trumpf MB 4200
+  evidence:
+  - quote: a multi-form bender like the Trumpf MB 4200 can save significant time by allowing multiple bending steps
+      in one setup.
+    approx_offset: 54984
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0183
+  name: hydraulic press brakes
+  status: candidate
+  acceptable_forms:
+  - Hydraulic
+  - Press Brakes
+  evidence:
+  - quote: 'Benefits of Hydraulic or Mechanical Press Brakes Over Manual Ones:'
+    approx_offset: 55105
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0184
+  name: robotic arms
+  status: candidate
+  acceptable_forms:
+  - Robotic Arms
+  - robotic arms
+  evidence:
+  - quote: 'Why Robotic Arms and Automated Feeding Systems Are Essential:'
+    approx_offset: 55905
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0185
+  name: KUKA KR 16
+  status: candidate
+  acceptable_forms:
+  - KUKA KR 16
+  evidence:
+  - quote: For example, a KUKA KR 16 robot can handle up to 20 kg of payload and has a reach of over 3 meters
+    approx_offset: 56076
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0186
+  name: automated feeding systems
+  status: candidate
+  acceptable_forms:
+  - Automated feeding systems
+  - automated feeding system
+  evidence:
+  - quote: Automated feeding systems streamline the loading process, ensuring consistent material flow and reducing
+      downtime.
+    approx_offset: 56276
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0187
+  name: TRUMPF AutoLoader
+  status: candidate
+  acceptable_forms:
+  - TRUMPF AutoLoader
+  evidence:
+  - quote: the TRUMPF AutoLoader system can cycle through multiple sheets in just a few seconds
+    approx_offset: 56513
+  actor: unknown
+  notes: generic industry-background mention in a blog/educational article, not stated as Blackstone's own claim
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0188
+  name: Cincinnati CL-900 4000watt Fiber 6x12
+  status: candidate
+  acceptable_forms:
+  - CL-900
+  evidence:
+  - quote: Our technicians operate the Cincinnati CL-900 4000watt Fiber 6×12 with an automated March system, the
+      Cincinnati CL-707 2000watt C02 6×12, and the Mazak
+    approx_offset: 207719
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: blackadvtech_com-equipments-0189
+  name: Cincinnati CL-707 2000watt C02 6x12
+  status: candidate
+  acceptable_forms:
+  - CL-707
+  evidence:
+  - quote: the Cincinnati CL-707 2000watt C02 6×12, and the Mazak Optiplex 3015 4000watt C02 5×10 laser cutting
+      machine, offering the fastest cutting speeds
+    approx_offset: 207817
+  provenance:
+  - action: added
+    by: seed-agent-blackadvtech-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Faro Arm Edge
+  reason: METROLOGY. Listed under the facility list's QUALITY CONTROL heading; a portable CMM measures the work,
+    it does not act on it - excluded by this field's clause
+- form: Positector 6000 Mil Gauge
+  reason: 'METROLOGY: a coating-thickness gauge under QUALITY CONTROL'
+- form: Glossmeter
+  reason: 'METROLOGY: a gloss measuring instrument under QUALITY CONTROL'
+- form: Ergonomics se300 Sharp Edge Tester
+  reason: 'METROLOGY/TESTING: a sharp-edge tester under QUALITY CONTROL'
+- form: CMM
+  reason: METROLOGY. Named in the QC Inspector job posting alongside calipers and micrometers. This is the exact
+    string that produced the alecmfg false RED.
+- form: calipers
+  reason: METROLOGY, from the same QC Inspector posting
+- form: micrometers
+  reason: METROLOGY, from the same QC Inspector posting
+- form: March 360 4 tray sheet loader system
+  reason: 'MATERIAL HANDLING: a sheet loader feeds the laser, it does not process the work. Also appears as ''M.A.R.C.H
+    (Multi Axis Rapid Cincinnati Handling System) 360 system'' - the vendor''s own expansion says Handling System.'
+- form: Timesaver Wet Dust Collectors
+  reason: 'PLANT UTILITY: dust collection conditions the plant, it does not act on the work'
+- form: Adjustable height lift tables
+  reason: 'MATERIAL HANDLING: 35 of them on the machinery page'
+- form: Hydraulic dock levelers for shipping
+  reason: MATERIAL HANDLING
+- form: 5-ton overhead crane system
+  reason: MATERIAL HANDLING
+- form: Shipping and receiving docks
+  reason: FACILITY, not a machine
+- form: Gas-fired boilers
+  reason: 'PLANT UTILITY: named in the machinery page''s facility tail'
+- form: Complete sprinkler system
+  reason: PLANT UTILITY / life safety
+- form: High-intensity lighting
+  reason: PLANT UTILITY
+- form: Bus-duct wiring
+  reason: 'PLANT UTILITY: power distribution'
+- form: Vac-50 HEPA Vacuum
+  reason: 'PLANT UTILITY: dust extraction on the blast cabinet'
+- form: Variable-size grid tables
+  reason: 'TOOLING/FIXTURING: eight of them; a welding table holds the work, the machine does not drive it'
+- form: grinding wheel
+  reason: 'TOOLING: the consumable the XSharp acts through'
+- form: XSharp shear grinding chuck
+  reason: 'TOOLING: a workholding chuck, explicitly excluded by the clause'
+- form: punch die setup
+  reason: 'TOOLING: dies are what the press acts through'
+- form: segmented precision tooling with quick-change clamps
+  reason: 'TOOLING: press-brake tooling, not the brake'
+- form: Solid Edge
+  reason: 'SOFTWARE: one of six CAD/CAM/MRP packages under the facility list''s SOFTWARE heading'
+- form: AutoCad
+  reason: SOFTWARE
+- form: Radan
+  reason: 'SOFTWARE: sheet-metal CAM, not a machine'
+- form: Fusion 360
+  reason: SOFTWARE - and the most machine-sounding of the six
+- form: Draftsight
+  reason: SOFTWARE
+- form: Epicor MRP
+  reason: 'SOFTWARE: an ERP/MRP system'
+- form: Video Player
+  reason: a website widget heading that appears on 5 pages, not a machine
+- form: Waterjet
+  reason: never occurs; a model may mint it alongside laser and plasma cutting
+- form: CNC machining center
+  reason: never occurs; the MACHINING block is a lathe, two Bridgeports, a radial arm drill and a 'Fadel CNC'

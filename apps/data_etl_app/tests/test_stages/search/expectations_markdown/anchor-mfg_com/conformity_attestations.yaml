@@ -1,0 +1,243 @@
+subject: anchor-mfg.com
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/anchor-mfg.com.txt
+  sha256: 3e85dd05ab75ae6deb3ff745a338b4cf9cb90484da8146f321b3f0ac99c91845
+eval_set_version: 3
+expected_empty: false
+notes: Conformity is present ONLY as supplier-portal DOCUMENT TITLES - two certificate titles listed identically
+  on /supplier-portal/ and /supplier-portal-2/. No standard id appears in prose anywhere (no ISO/IATF-16949-numbered/ASTM/NADCAP
+  strings outside these titles). These titles ARE in-text designations and are seeded as must-find with evidence_kind
+  doc_title; the rest of the file is a false-friend minefield (HR 'certificate programs', statutes in legal boilerplate,
+  awards, wrong-actor supplier-QA phrases). VERIFIER 2026-08-26 - independent pass - both quotes verify verbatim
+  and both entities confirmed. expected_empty false AGREED, but the field is thin - a case-insensitive grep for
+  iso / 9001 / 14001 / 16949 / iatf / astm / nadcap / as9100 / ansi / sae / mil- finds no hit anywhere outside these
+  two supplier-portal titles, so any sizable yield beyond them is junk-minting signal. Actor own on 0001 and 0002
+  is an inference from the portal context (the titles carry no holder name) - unknown would also be defensible.
+entries:
+- id: anchor-mfg_com-conformity_attestations-0002
+  name: EMS Certificate
+  status: candidate
+  acceptable_forms:
+  - EMS Certificate
+  - EMS
+  evidence:
+  - quote: EMS Certificate
+    approx_offset: 13420
+  notes: supplier-portal heading survives verbatim, unchanged from the legacy text ('03.015.1' document-number suffix
+    from the legacy quote is not repeated in the new heading, but the certificate title itself is intact)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-conformity_attestations-0001
+  name: IATF Certificate without Product Design
+  status: candidate
+  acceptable_forms:
+  - IATF Certificate without Production Design
+  - IATF
+  evidence:
+  - quote: IATF Certificate without Production Design
+    approx_offset: 13457
+  notes: 'the supplier-portal heading survived the CMS move almost verbatim except one word: ''Product Design''
+    became ''Production Design''. Judgment call: treated as the same certificate document (same portal, same IATF
+    scope-qualifier position) rather than a new/different cert, and updated acceptable_forms to the new wording
+    since the old ''without Product Design'' string no longer occurs.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-anchor-mfg-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: anchor-mfg_com-conformity_attestations-0003
+  name: UL certification
+  status: candidate
+  acceptable_forms:
+  - UL certification
+  evidence:
+  - quote: Anchor has successfully completed projects that require UL certification.
+    approx_offset: 3180
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0004
+  name: IATF 16949
+  status: candidate
+  acceptable_forms:
+  - IATF 16949
+  evidence:
+  - quote: This includes IATF 16949, ISO 9001 and ISO 14001 certification as well as Corporate Social Responsibility
+      requirements.
+    approx_offset: 5054
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0005
+  name: ISO 9001
+  status: candidate
+  acceptable_forms:
+  - ISO 9001
+  evidence:
+  - quote: This includes IATF 16949, ISO 9001 and ISO 14001 certification as well as Corporate Social Responsibility
+      requirements.
+    approx_offset: 5054
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0006
+  name: ISO 14001
+  status: candidate
+  acceptable_forms:
+  - ISO 14001
+  evidence:
+  - quote: This includes IATF 16949, ISO 9001 and ISO 14001 certification as well as Corporate Social Responsibility
+      requirements.
+    approx_offset: 5054
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0007
+  name: Supplier Responsibility Policy and Code of Conduct
+  status: disputed
+  acceptable_forms:
+  - SUPPLIER RESPONSIBILITY POLICY AND CODE OF CONDUCT
+  evidence:
+  - quote: '##### ANCHOR SUPPLIER RESPONSIBILITY POLICY AND CODE OF CONDUCT'
+    approx_offset: 13279
+  notes: Anchor's own internal supplier code of conduct document, not an external standard/registration
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0008
+  name: IATF Certificate without Production Design
+  status: candidate
+  acceptable_forms:
+  - IATF Certificate
+  evidence:
+  - quote: '#### IATF Certificate without Production Design'
+    approx_offset: 13452
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0009
+  name: TISAX
+  status: candidate
+  acceptable_forms:
+  - TISAX
+  evidence:
+  - quote: '#### TISAX ASSESSMENT'
+    approx_offset: 13516
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0010
+  name: Top Workplace (Cleveland Plain Dealer)
+  status: disputed
+  acceptable_forms:
+  - Top Workplace
+  evidence:
+  - quote: “Top Workplace throughout Northern Ohio” as voted by the employees multiple times through the Cleveland
+      Plain Dealer
+    approx_offset: 17028
+  notes: an employer/workplace recognition, not a compliance certification with an issuing standard
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0011
+  name: North Coast 99
+  status: disputed
+  acceptable_forms:
+  - North Coast 99
+  evidence:
+  - quote: “Top Place to Work” in Northern Ohio 6 times in the last decade as part of the Employees Resource Counsel’s
+      North Coast 99
+    approx_offset: 17147
+  notes: employer-recognition ranking, not a certification the company holds/meets/follows
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0012
+  name: Greater Cleveland Safety Council award
+  status: disputed
+  acceptable_forms:
+  - Greater Cleveland Safety Council
+  evidence:
+  - quote: ' •Greater Cleveland Safety Council'
+    approx_offset: 17350
+  notes: listed under 'Multiple Awards Received'; an awarding body, not a standard/certification Anchor holds
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: anchor-mfg_com-conformity_attestations-0013
+  name: Ohio Bureau of Workers Compensation award
+  status: disputed
+  acceptable_forms:
+  - Ohio Bureau of Workers Compensation
+  evidence:
+  - quote: •Ohio Bureau of Workers Compensation
+    approx_offset: 17384
+  notes: listed under 'Multiple Awards Received'; an awarding body, not a standard/certification Anchor holds
+  provenance:
+  - action: added
+    by: seed-agent-anchor-mfg-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: certificate programs
+  reason: HR careers benefit ('lunch and learns, course reimbursements, certificate programs') - the non-conformity
+    certificate sense (code Z)
+- form: Supplier Quality Assurance Manual
+  reason: doc title with no standard id (code D) - and it is Anchor's manual governing its SUPPLIERS' quality systems,
+    not an attestation Anchor holds
+- form: Code of Conduct
+  reason: policy document title ('ANCHOR SUPPLIER RESPONSIBILITY POLICY AND CODE OF CONDUCT') - code D, no standard
+    id
+- form: Foreign Corrupt Practices Act
+  reason: statute named in anti-corruption CSR boilerplate ('strictly adheres to all local and applicable U.S. laws')
+    - business-ethics law, not a manufacturing conformity attestation. Judgment call - it IS a named regulation,
+    but nothing here is a certification/standard the ontology grounds; seeded as false friend
+- form: No Surprises Act
+  reason: health-plan transparency legislation on the employee-benefits page - unrelated to manufacturing conformity
+- form: Uniform Commercial Code
+  reason: Ohio UCC cited in seller T&Cs - commercial statute in legal boilerplate
+- form: Precision Metalforming Association
+  reason: trade-association membership (CEO 'active participant with the Precision Metalforming Association (PMA)')
+    - a body one joins, not a standard one attests to; 'PMA' likewise
+- form: NorthCoast 99 Award
+  reason: best-workplace award, not a certification
+- form: Awards of Excellence
+  reason: customer/industry awards 'for such things as safety, training and technology' - not certifications
+- form: quality assurance system
+  reason: generic (G) and wrong-actor - 'supplier quality assurance system approved by Purchaser' is the supplier's
+    obligation; 'comprehensive quality assurance systems' is defense-page marketing prose
+- form: Class A
+  reason: cosmetic appearance grade ('Class A Cosmetic Parts', 'Class A appearance trim') - a spec, not a standard
+    designation

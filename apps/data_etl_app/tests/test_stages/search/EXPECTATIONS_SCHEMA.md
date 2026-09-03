@@ -100,6 +100,23 @@ in `business_type`, which is free text and never gates anything.
 role changes how its `actor` labels are read downstream, not which entities the
 text names.
 
+## Entries beyond a run's read coverage are RESERVED, not defective (user ruling 2026-09-01)
+
+An entry whose evidence quote sits outside every window a given run actually
+read is **reserved** for that run: it does not count in the recall denominator
+(the mechanical pass already excludes it as `confirmed_out_of_coverage`), and
+its existence is not a defect. The moment a run's coverage reaches it — larger
+caps, different chunking, a deeper read — it activates automatically: it gates
+recall AND becomes open to critique under the doubt-the-corpus rule, like any
+other entry.
+
+Reserved is a per-run, computed condition, NOT a status value written into the
+YAML: which entries lie beyond coverage depends on that run's chunking and
+token caps, so a stored label would go stale the day either changes. Do not
+add a `reserved:` field; the scorecard's out-of-coverage count is the record.
+Seeding beyond the current production read budget remains allowed — such
+entries are an investment that activates when coverage grows.
+
 ## Status lifecycle (locked by user decision 2026-08-26)
 
 Agents/assistant add entries as `candidate` with provenance. Promotion to
@@ -136,6 +153,20 @@ do not read a broad entry's coverage as evidence about that entity alone.
 Short forms are the exception and are strict: `EMS` is NOT credited by
 "quality assurance systems", because forms of three characters or fewer must
 match on word boundaries case-sensitively (see `_shared/text_matching.py`).
+
+**The leniency runs ONE WAY, and did not until 2026-08-28.** The matcher asked
+whether either form contained the other, so a returned FRAGMENT credited the
+entry it was a fragment of: the bare word `titanium` credited `titanium fusion
+cages`, `metal` credited `sheet metal`, `Cutting` credited `laser cutting`.
+That was never the policy this section describes — the examples above are all
+"returned form is at least the designation" — it was an accident of a symmetric
+implementation, and because false credit only ever flatters the stage nothing
+downstream ever looked broken. 410 blind spot-checks of AWARDED credits found
+33 false (8.0% overall, 19.1% for products), worth 1.7 points of overall
+confirmed recall. `forms_overlap` was replaced by `form_covers(expected,
+returned)`, which also anchors the LEFT word boundary at every length (`Stem`
+was being credited by `MICROWAVE SYSTEM`). The right edge stays open, which is
+what keeps `shear` → `Shearing` working.
 
 ## An expectation must encode the FIELD'S DEFINED BOUNDARY, not the field's name
 

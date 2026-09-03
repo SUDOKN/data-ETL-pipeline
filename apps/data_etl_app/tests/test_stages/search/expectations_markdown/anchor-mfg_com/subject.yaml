@@ -1,0 +1,59 @@
+subject: anchor-mfg.com
+role: inventory_subject
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/anchor-mfg.com.txt
+  sha256: 3e85dd05ab75ae6deb3ff745a338b4cf9cb90484da8146f321b3f0ac99c91845
+scrape_hazards:
+- hazard: nav/footer block repeats on every one of the 15 pages (the footer line below occurs 15 times verbatim,
+    plus the matching portal/menu header block on each page - the nav pump)
+  quote: Home Capabilities & Services Industries Served About Contact Us Customer Portal Employee Portal
+- hazard: /industries-served/ is duplicated byte-for-byte under /Anchor/industries-served/, and the 7-industry list
+    appears verbatim on four surfaces (home, /capabilities-services/, both industries pages) - duplicate-window
+    pressure inflates industry occurrence counts
+  quote: Anchor keeps agriculture rolling.
+- hazard: buyer-perspective purchase-order T&Cs on /productiontool-purchasing-general-terms-conditions/ (also a
+    supplier-portal doc title) - 'Seller' is Anchor's SUPPLIER and 'Purchaser' is Anchor, so 23 numbered clauses
+    of supplier obligations read like capability text but describe the wrong actor; this is the wrong-actor pump
+    for process_caps and conformity_attestations
+  quote: Seller will provide and maintain a supplier quality assurance system approved by Purchaser
+- hazard: seller-perspective quotation/acknowledgement T&Cs on /customer-portal/ (Anchor is 'Seller' there) - 17
+    more clauses of legal boilerplate whose contractual verbs (delivery, inspection, warranty, indemnification,
+    customs) are business/legal activity, not shop-floor operations
+  quote: Buyer agrees to buy certain goods or services
+- hazard: HR careers text offers 'certificate programs' as an employee benefit - the non-conformity 'certificate'
+    sense (code Z trap for conformity_attestations)
+  quote: lunch and learns, course reimbursements, certificate programs
+- hazard: agriculture marketing filler mints word-association industries/materials (food, wood, houses, clothes)
+  quote: without agriculture, there is no culture
+- hazard: employee-portal 'machine readable files' are No Surprises Act health-plan transparency files, not machinery;
+    the definition sentence also embeds a non-breaking space (U+00A0 after 'means'), so long quotes from that line
+    will not string-match naively
+  quote: Employees have access to machine readable files
+- hazard: Employee Navigator is the benefits-website brand, not a shop tool or software capability
+  quote: Employee Navigator
+- hazard: own-name pressure - four Anchor legal entities are named in the T&Cs, and the copyright footer repeats
+    'Anchor Tool & Die Co.' on all 15 pages, so the bare string 'Tool & Die' string-matches the footer as well as
+    the one genuine capability heading (offset 7798)
+  quote: Anchor Tool & Die Co.
+sampling_notes: read completely (all 780 lines / 55,288 bytes, 15 page blocks). Pages - home, history (nav-only,
+  empty body), careers, executive-team, capabilities-services (THE dense capability dump - materials/stamping/welding/assembly/fabricating/machining/powder-coating/
+  tool-and-die lists), customer-portal (seller T&Cs), employee-portal (benefits), contact-us, industries-served
+  plus its /Anchor/ duplicate, supplier-portal plus supplier-portal-2 duplicate (five doc titles each, incl. the
+  two certificate titles), about-anchor-mfg, purchasing T&Cs (buyer-perspective), supplier code of conduct (CSR
+  boilerplate). Extractable capability text is concentrated in /capabilities-services/ plus short home/industries
+  prose; roughly half the corpus bytes are legal/CSR/HR boilerplate with zero in-field yield.
+notes: products.yaml doubles as the contract_products expectation set (shared search output). Prior measured facts
+  checked against THIS file - 'CMM' and 'insert torque' do NOT occur here (they were measured on alecmfg excerpts),
+  so they are deliberately not seeded. Large metal stamper / welded-assembly maker with a stand-alone tool & die
+  business, Cleveland OH, 350,000 sq ft, automotive-dominant Tier I/II supplier; equipment is rich but entirely
+  unbranded (no make/model names anywhere).
+provenance:
+- action: added
+  by: seed-agent-anchor-mfg
+  date: '2026-08-26'
+  source: corpus-seed
+- action: ported
+  by: port_corpus.py
+  date: '2026-08-29'
+  source: markdown-cutover
+eval_set_version: 1

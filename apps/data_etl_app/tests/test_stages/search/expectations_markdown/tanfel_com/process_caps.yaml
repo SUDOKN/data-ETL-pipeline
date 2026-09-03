@@ -1,0 +1,2707 @@
+subject: tanfel.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/tanfel.com.txt
+  sha256: 96ff5eadb45bd7fd97d2731c6c499404d008d0e591fb073d7ea26e1d8ba5f860
+eval_set_version: 3
+expected_empty: false
+notes: 99 entries (94 own, 5 unknown, 1 disputed) — the densest field on this site. Nearly all are written in the
+  first person but performed by partner factories; they are left actor=own because the text presents them as Tanfel's,
+  and the intermediary question is a downstream judgment, not a recall one. The handful marked actor=unknown are
+  the ones stated only as generic industry background (squeeze casting, metal spinning).
+entries:
+- id: tanfel_com-process_caps-0002
+  name: Sand casting
+  status: confirmed
+  acceptable_forms:
+  - SAND CASTING
+  - Sand Casting
+  - sand casting
+  evidence:
+  - quote: 'Sand Casting: Great for smaller volume and larger size parts.'
+    approx_offset: 236
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0003
+  name: Aluminum extrusion
+  status: confirmed
+  acceptable_forms:
+  - ALUMINUM EXTRUSION
+  - Aluminum Extrusion
+  - aluminum extrusion
+  - Extrusion
+  - extruded
+  - extruding
+  evidence:
+  - quote: ALUMINUM EXTRUSION
+    approx_offset: 607
+  - quote: Extrusion is an inexpensive and fast way to create aluminum parts without resorting to extensive machine
+    approx_offset: 12504
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0074
+  name: Metal stamping
+  status: confirmed
+  acceptable_forms:
+  - Metal Stamping
+  - METAL STAMPING
+  - Precision Metal Stamping
+  - metal stamping
+  - Stamping
+  - stamped
+  evidence:
+  - quote: Precision Metal Stamping
+    approx_offset: 10024
+  - quote: Tanfel has been a provider of precision stamped metal parts and assemblies since 2008.
+    approx_offset: 9792
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0075
+  name: Transfer press stamping
+  status: confirmed
+  acceptable_forms:
+  - Transfer Press Stamping
+  - transfer press stamping
+  - TRANSFER PRESS STAMPING
+  evidence:
+  - quote: Transfer Press Stamping
+    approx_offset: 10117
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0076
+  name: Brazing
+  status: confirmed
+  acceptable_forms:
+  - Brazing and Welding
+  - Brazing
+  evidence:
+  - quote: Brazing and Welding
+    approx_offset: 10143
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0077
+  name: Assembly
+  status: confirmed
+  acceptable_forms:
+  - Assembly
+  - assembly
+  evidence:
+  - quote: Assembly
+    approx_offset: 10208
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0043
+  name: Metal finishing
+  status: confirmed
+  acceptable_forms:
+  - Metal Finishing
+  - Cosmetic Finishes
+  - CASTING FINISHES
+  - Casting Finishes
+  - surface treatment
+  - metal treatment services
+  evidence:
+  - quote: Metal Finishing
+    approx_offset: 10219
+  - quote: Cosmetic Finishes
+    approx_offset: 35317
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0014
+  name: Tool and die manufacturing
+  status: confirmed
+  acceptable_forms:
+  - Tool & die manufacturing
+  - tool and die manufacturing
+  - Tool and Die Design
+  - In house tool making
+  - Jig / Fixture manufacturing
+  - jig or fixture manufacturing
+  evidence:
+  - quote: Tool & die manufacturing
+    approx_offset: 31095
+  - quote: Tool and Die Design
+    approx_offset: 10237
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0083
+  name: Blanking
+  status: candidate
+  acceptable_forms:
+  - Blanking
+  - blanking
+  evidence:
+  - quote: '- Piercing / Blanking'
+    approx_offset: 10257
+  notes: on /products/stamping, the stamping capability bullet list; the tolerance table row '| Blanking & Piercing
+    | ±0.0004 in |' also survives on the same page as a second occurrence.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0078
+  name: Piercing
+  status: confirmed
+  acceptable_forms:
+  - Piercing
+  - piercing
+  - Blanking / Piercing
+  evidence:
+  - quote: Piercing / Blanking
+    approx_offset: 10259
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0079
+  name: Single die stamping
+  status: confirmed
+  acceptable_forms:
+  - SINGLE DIE
+  - Single die
+  - single die
+  evidence:
+  - quote: Progressive Die, Single die, Deep draw, Blanking / Piercing, turret punch, bending, laser cut
+    approx_offset: 10463
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0080
+  name: Drilling and tapping
+  status: confirmed
+  acceptable_forms:
+  - Drilling and tapping
+  - Drilling
+  - drill and tap
+  - drilling and cutting
+  evidence:
+  - quote: 'Secondary operations: Drilling and tapping, CNC machining, grinding, EDM cutting, heat treating, stress
+      relieving, welding, laser, argon and spot welding, riveting'
+    approx_offset: 10559
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0081
+  name: Welding
+  status: confirmed
+  acceptable_forms:
+  - Welding
+  - welding
+  - spot welding
+  - argon
+  - laser, argon and spot welding
+  evidence:
+  - quote: laser, argon and spot welding, riveting
+    approx_offset: 10683
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0082
+  name: Riveting
+  status: confirmed
+  acceptable_forms:
+  - riveting
+  - rivets
+  evidence:
+  - quote: spot welding, riveting
+    approx_offset: 10700
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0039
+  name: Anodizing
+  status: confirmed
+  acceptable_forms:
+  - Anodizing
+  - anodizing
+  - anodized
+  evidence:
+  - quote: Anodizing
+    approx_offset: 10733
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0009
+  name: Quality control and inspection
+  status: confirmed
+  acceptable_forms:
+  - QUALITY CONTROL AND INSPECTION SERVICES
+  - Quality Control & Inspection Services
+  - quality control
+  evidence:
+  - quote: Quality Control & Inspection Services
+    approx_offset: 11320
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: 'the bare form ''inspection'' is over-broad across a whole family of sibling entries: it is a substring
+      of Dimension Inspection Services (0058), First Article Inspection (0060), Parts Inspection Services (0061),
+      Contract Inspection (0066), Layout Inspection (0067), Non-contact Inspection (0068) and 100% inspection (0094),
+      so any one of those crediting would silently credit this entry too. Dropping it leaves the two printed service
+      names plus ''quality control'', which no sibling contains.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0035
+  name: Deburring
+  status: confirmed
+  acceptable_forms:
+  - deburring
+  evidence:
+  - quote: Some post-processing is required for deburring, anodizing, and cutting the extrusion into individual
+      parts, which we describe below.
+    approx_offset: 13159
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0036
+  name: Metal spinning
+  status: confirmed
+  acceptable_forms:
+  - metal spinning
+  evidence:
+  - quote: used for metal spinning and general manufacturing.
+    approx_offset: 15508
+  actor: unknown
+  notes: aluminum-alloy textbook prose, not a Tanfel capability claim.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0037
+  name: Grinding
+  status: confirmed
+  acceptable_forms:
+  - Grinding
+  - grinding
+  evidence:
+  - quote: Grinding
+    approx_offset: 17536
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0038
+  name: Tempering
+  status: confirmed
+  acceptable_forms:
+  - Tempering
+  evidence:
+  - quote: Tempering
+    approx_offset: 17561
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0040
+  name: Electroplating
+  status: confirmed
+  acceptable_forms:
+  - Electroplating
+  - electroplating
+  - Plating
+  - plating
+  evidence:
+  - quote: Electroplating
+    approx_offset: 17782
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0008
+  name: Painting
+  status: confirmed
+  acceptable_forms:
+  - Painting
+  - painting
+  - wet paint
+  - liquid paint
+  - Aluminum Extrusion Black Paint
+  evidence:
+  - quote: Painting
+    approx_offset: 17799
+  - quote: wet paint, powder coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 99115
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0041
+  name: Powder coating
+  status: confirmed
+  acceptable_forms:
+  - Powder coating
+  - powder coating
+  evidence:
+  - quote: Powder coating
+    approx_offset: 17810
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0042
+  name: Labeling
+  status: confirmed
+  acceptable_forms:
+  - Labeling
+  - Printing / Labeling
+  evidence:
+  - quote: Labeling
+    approx_offset: 17838
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0032
+  name: Heat treating / stress relieving
+  status: confirmed
+  acceptable_forms:
+  - Heat treating / Stress relieving
+  - heat treating
+  - heat treated
+  - heat treatment
+  - Vacuum heat treatment
+  evidence:
+  - quote: Vacuum heat treatment, passivation, high pressure washing,
+    approx_offset: 102190
+  - quote: Heat treating / Stress relieving, Welding,
+    approx_offset: 18350
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0011
+  name: Protective coating
+  status: confirmed
+  acceptable_forms:
+  - PROTECTIVE COATING
+  - Protective Coating
+  - protective coatings
+  - UV hard coating
+  evidence:
+  - quote: 'Protective Coating: Glossy / Matte / EM / PU / Metallic'
+    approx_offset: 77652
+  - quote: UV hard coating
+    approx_offset: 20394
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0069
+  name: EMI / RFI / ESD shielding
+  status: confirmed
+  acceptable_forms:
+  - EMI, RFI and ESD shielding
+  - EMI shielding
+  evidence:
+  - quote: EMI, RFI and ESD shielding
+    approx_offset: 20412
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0101
+  name: Prototyping
+  status: candidate
+  acceptable_forms:
+  - Prototyping & validation services
+  - Prototyping
+  - prototyping
+  evidence:
+  - quote: Prototyping & validation services
+    approx_offset: 24103
+  notes: listed among the engineering core competencies (line 2422) and repeated as 'CNC milling services for both
+    prototyping and full production runs'; making prototypes is a production capability and no packet entry covers
+    it.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0057
+  name: Dimensional test reports
+  status: confirmed
+  acceptable_forms:
+  - dimensional test reports
+  evidence:
+  - quote: dimensional test reports plus any other customer requirements. Tanfel verifies each lot in house to ensure
+      that nothing slips through the cracks.
+    approx_offset: 25176
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0058
+  name: Dimension inspection services
+  status: candidate
+  acceptable_forms:
+  - Dimension Inspection Services
+  evidence:
+  - quote: '| Dimension Inspection Services | Part Validation Services | First Article Inspection (FAI) Testing
+      & Documentation |'
+    approx_offset: 25553
+  notes: the full services table on /services survived intact as a pipe table (was tab-separated in the legacy text);
+    this row is real page content under '## Quality Control & Inspection Services', not nav/footer.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0059
+  name: Part validation services
+  status: candidate
+  acceptable_forms:
+  - Part Validation Services
+  - Validation Services
+  evidence:
+  - quote: '| Dimension Inspection Services | Part Validation Services | First Article Inspection (FAI) Testing
+      & Documentation |'
+    approx_offset: 25553
+  notes: same /services pipe-table row as tanfel_com-process_caps-0058.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0060
+  name: First article inspection
+  status: confirmed
+  acceptable_forms:
+  - First Article Inspection (FAI) Testing & Documentation
+  - First Article Inspection
+  - FAI
+  evidence:
+  - quote: First Article Inspection (FAI) Testing & Documentation
+    approx_offset: 25614
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0061
+  name: Parts inspection services
+  status: candidate
+  acceptable_forms:
+  - Parts Inspection Services
+  evidence:
+  - quote: '| Parts Inspection Services | Sorting Services | Nondestructive Testing (NDT) |'
+    approx_offset: 25685
+  notes: /services pipe table, row 2 of the services table.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0062
+  name: Sorting services
+  status: candidate
+  acceptable_forms:
+  - Sorting Services
+  evidence:
+  - quote: '| Parts Inspection Services | Sorting Services | Nondestructive Testing (NDT) |'
+    approx_offset: 25685
+  notes: same /services pipe-table row as tanfel_com-process_caps-0061.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0063
+  name: Nondestructive testing
+  status: confirmed
+  acceptable_forms:
+  - Nondestructive Testing (NDT)
+  - Nondestructive Testing
+  - NDT
+  evidence:
+  - quote: Nondestructive Testing (NDT)
+    approx_offset: 25734
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0064
+  name: Metrology services
+  status: candidate
+  acceptable_forms:
+  - Metrology Services
+  - metrology
+  - dimensional measurement
+  evidence:
+  - quote: '| Metrology Services | Validation Services | Verification Services |'
+    approx_offset: 25765
+  notes: /services pipe table, row 3.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0065
+  name: Verification services
+  status: confirmed
+  acceptable_forms:
+  - Verification Services
+  evidence:
+  - quote: Verification Services
+    approx_offset: 25810
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0066
+  name: Contract inspection
+  status: candidate
+  acceptable_forms:
+  - Contract Inspection
+  evidence:
+  - quote: '| Contract Inspection | Layout Inspection | Non-contact Inspection |'
+    approx_offset: 25834
+  notes: /services pipe table, row 4 (last row of the table).
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0067
+  name: Layout inspection
+  status: candidate
+  acceptable_forms:
+  - Layout Inspection
+  evidence:
+  - quote: '| Contract Inspection | Layout Inspection | Non-contact Inspection |'
+    approx_offset: 25834
+  notes: same /services pipe-table row as tanfel_com-process_caps-0066.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0068
+  name: Non-contact inspection
+  status: confirmed
+  acceptable_forms:
+  - Non-contact Inspection
+  evidence:
+  - quote: Non-contact Inspection
+    approx_offset: 25878
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0012
+  name: CNC milling
+  status: confirmed
+  acceptable_forms:
+  - CNC MILLING
+  - CNC Milling
+  - CNC milling
+  - CNC-milled
+  - Milling
+  - milled
+  evidence:
+  - quote: We offer CNC milling services as a primary operation or secondary operations for prototype or production
+      parts.  We use 3-axis, 4-axis and 5-axis machines.
+    approx_offset: 30700
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0013
+  name: Casting machining
+  status: confirmed
+  acceptable_forms:
+  - Casting machining
+  - casting machining
+  evidence:
+  - quote: Casting machining, Tool & die manufacturing
+    approx_offset: 31076
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0015
+  name: Jig boring
+  status: confirmed
+  acceptable_forms:
+  - Jig boring
+  evidence:
+  - quote: Jig boring, Electrode & Wire EDM,
+    approx_offset: 31164
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0016
+  name: EDM
+  status: confirmed
+  acceptable_forms:
+  - Electrode & Wire EDM
+  - Electrode and wire EDM
+  - EDM cutting
+  - Wire EDM
+  evidence:
+  - quote: Electrode & Wire EDM,
+    approx_offset: 31176
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0017
+  name: Broaching
+  status: confirmed
+  acceptable_forms:
+  - Broaching
+  evidence:
+  - quote: Broaching, Honing, Laser machining, Screw machining
+    approx_offset: 31199
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0018
+  name: Honing
+  status: confirmed
+  acceptable_forms:
+  - Honing
+  evidence:
+  - quote: Honing, Laser machining, Screw machining
+    approx_offset: 31210
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0019
+  name: Screw machining
+  status: confirmed
+  acceptable_forms:
+  - Screw machining
+  evidence:
+  - quote: Screw machining
+    approx_offset: 31235
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0004
+  name: High speed machining
+  status: candidate
+  acceptable_forms:
+  - HIGH SPEED MACHINING
+  - high speed machining
+  evidence:
+  - quote: such as CAD/CAM/CAE design technology, high speed machining, electric injection molding, protective coating
+      and laser marking.
+    approx_offset: 33319
+  notes: found on the /products/plastic-products page, same sentence as the legacy quote, just re-cased to sentence
+    case; quote windowed to stay under 200 chars since the full line is 217.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0005
+  name: Plastic injection molding
+  status: candidate
+  acceptable_forms:
+  - Plastic injection
+  - plastic injection molding
+  - ELECTRIC INJECTION MOLDING
+  - Injection Molding
+  - injection molding
+  evidence:
+  - quote: such as CAD/CAM/CAE design technology, high speed machining, electric injection molding, protective coating
+      and laser marking.
+    approx_offset: 33319
+  notes: same sentence as tanfel_com-process_caps-0004 (electric injection molding, /products/plastic-products page);
+    'ELECTRIC INJECTION MOLDING' acceptable_form still matches case-insensitively against the now-lowercase 'electric
+    injection molding'.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0006
+  name: Laser marking
+  status: candidate
+  acceptable_forms:
+  - LASER MARKING
+  - Laser marking
+  evidence:
+  - quote: such as CAD/CAM/CAE design technology, high speed machining, electric injection molding, protective coating
+      and laser marking.
+    approx_offset: 33319
+  notes: same sentence again, /products/plastic-products page; three process_caps entries (0004, 0005, 0006) all
+    reanchor onto this one sentence, which is legitimate content, not boilerplate.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0007
+  name: Laser etching
+  status: confirmed
+  acceptable_forms:
+  - Laser etching
+  - Laser etching (backlight)
+  evidence:
+  - quote: Laser etching, Painting, Plating, and rubber grip surface
+    approx_offset: 33870
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0071
+  name: Baking
+  status: confirmed
+  acceptable_forms:
+  - baking
+  evidence:
+  - quote: techniques such as baking, bending, or punching. It is a complex yet cost-effective way to mass- produce
+      metal forms. Custom
+    approx_offset: 36869
+  notes: 'DISPUTED: the blog names ''baking'' as a metal-stamping technique. It is almost certainly the site''s
+    typo for BLANKING — baking is not a metal-forming operation. Kept as a disputed entry rather than a false friend,
+    because a model that returns it is reading the text correctly; the defect is the site''s.'
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0026
+  name: Metal injection molding
+  status: confirmed
+  acceptable_forms:
+  - MIM – Metal Injection Molding
+  - Metal Injection Molding
+  - metal injection molding
+  - MIM
+  evidence:
+  - quote: Metal injection molding or MIM is a process where fine powdered metal is injected into a mold allowing
+      for high
+    approx_offset: 37806
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0027
+  name: Sintering
+  status: confirmed
+  acceptable_forms:
+  - sintered
+  evidence:
+  - quote: The metal part is then sintered at a temperature to bind the particles but not melt the metal. Metal
+      injection molded parts are
+    approx_offset: 39468
+  notes: named inside the MIM process explanation.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0025
+  name: Precision CNC machining
+  status: confirmed
+  acceptable_forms:
+  - Precision CNC-Machining
+  - Precision Machining
+  - PRECISION CNC –
+  evidence:
+  - quote: Precision CNC-Machining
+    approx_offset: 42602
+  - quote: Precision Machining
+    approx_offset: 58935
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0030
+  name: Metal casting
+  status: confirmed
+  acceptable_forms:
+  - METAL CASTING
+  - Metal casting
+  - metal casting
+  evidence:
+  - quote: Metal casting creates high-quality, reliable parts. Selecting the appropriate casting process depends
+      upon the design, metal selection, and surface finish needs.
+    approx_offset: 43836
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0031
+  name: Investment casting
+  status: confirmed
+  acceptable_forms:
+  - INVESTMENT CASTING
+  - Investment Casting
+  - investment casting
+  - precision casting
+  evidence:
+  - quote: Investment casting—or precision casting—uses specialty wax molds to create highly detailed and intricate
+      models
+    approx_offset: 47217
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0102
+  name: Black nickel finish
+  status: candidate
+  acceptable_forms:
+  - black nickel finish
+  - Black Nickel Finish
+  evidence:
+  - quote: Zinc die casting with black nickel finish
+    approx_offset: 51670
+  notes: a plating/blackening finish applied to their own die-cast parts, appearing twice (line 968 and the photo
+    caption 'Zinc Die-Cast Black Nickel Finish', line 3353). The electroplating entry's forms ('Electroplating',
+    'Plating') would not match it; the material side is already carried by material_caps-0076.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0070
+  name: Hollow / seamless tube extrusion
+  status: confirmed
+  acceptable_forms:
+  - Hollow Extrusion Shapes
+  - Seamless Tube Extrusion
+  - Hollow Extrusions
+  - HOLLOW,
+  - SEAMLESS TUBE
+  evidence:
+  - quote: Hollow Extrusion Shapes
+    approx_offset: 82836
+  - quote: Seamless Tube Extrusion
+    approx_offset: 82863
+  - quote: Hollow Extrusions
+    approx_offset: 54714
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0072
+  name: Skiving
+  status: disputed
+  acceptable_forms:
+  - Skive
+  evidence:
+  - quote: Skive Heatsink
+    approx_offset: 59190
+  notes: photo-gallery caption 'Skive Heatsink'; skiving is the only reading of 'Skive' here, but the caption is
+    the sole occurrence. | 'Skive Heatsink' is a photo-gallery caption naming a part, and the operation is only
+    inferable from that product name - the exact case VERIFY_BRIEF §2 gives as a dispute. The word 'Skive' occurs
+    nowhere else in the file, and the site never lists skiving among its processes.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: '''Skive Heatsink'' is a photo-gallery caption naming a part, and the operation is only inferable from
+      that product name - the exact case VERIFY_BRIEF §2 gives as a dispute. The word ''Skive'' occurs nowhere else
+      in the file, and the site never lists skiving among its processes.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0073
+  name: Nylon extrusion
+  status: confirmed
+  acceptable_forms:
+  - Nylon Extrusion
+  evidence:
+  - quote: Nylon Extrusion
+    approx_offset: 59227
+  notes: photo-gallery caption; also the only place a plastic extrusion is named as done.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0054
+  name: CNC machining
+  status: confirmed
+  acceptable_forms:
+  - CNC MACHINING SERVICES
+  - CNC machining
+  - CNC Machining
+  - Computer numerical control (CNC) machining
+  - Metal CNC/Machining
+  evidence:
+  - quote: 'Computer numerical control (CNC) machining is a broad term encompassing an expansive range of automated
+      machining processes. At Tanfel, our CNC machining capabilities include:'
+    approx_offset: 61101
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0055
+  name: Rotary transfer machining
+  status: confirmed
+  acceptable_forms:
+  - rotary transfer machining
+  - Rotary transfer machine
+  evidence:
+  - quote: rotary transfer machining. Our team of technicians and engineers will help you select the best processes
+      for each part and stage of production.
+    approx_offset: 62029
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0056
+  name: CNC turning
+  status: confirmed
+  acceptable_forms:
+  - CNC TURNING
+  - CNC Turning
+  - CNC turning
+  - Turning
+  - turned
+  evidence:
+  - quote: CNC turning is a machining process used to create cylindrical objects. This reductive process rotates
+      the
+    approx_offset: 62219
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0028
+  name: Knurling
+  status: confirmed
+  acceptable_forms:
+  - knurling
+  evidence:
+  - quote: cutting, sanding, knurling, drilling or turning.  Tools are used to create a part that is symmetric around
+      the axis.
+    approx_offset: 67451
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0029
+  name: Sanding
+  status: confirmed
+  acceptable_forms:
+  - sanding
+  evidence:
+  - quote: cutting, sanding, knurling, drilling or turning.  Tools are used to create a part that is symmetric around
+      the axis.
+    approx_offset: 67451
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0010
+  name: Co-molding
+  status: confirmed
+  acceptable_forms:
+  - co-molded
+  evidence:
+  - quote: Silicone rubber keypads can be co-molded with silicone conductive pills (carbon, gold or metal).
+    approx_offset: 77439
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0001
+  name: Die casting
+  status: confirmed
+  acceptable_forms:
+  - DIE CASTING
+  - Die Casting
+  - die casting
+  - die cast
+  - Diecasting
+  evidence:
+  - quote: Die casting is a process of forcing molten metal under high pressure into a mold cavity. The mold cavity
+      is
+    approx_offset: 97888
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0047
+  name: Polishing and buffing
+  status: confirmed
+  acceptable_forms:
+  - polishing
+  - buffing
+  - spot-polished
+  evidence:
+  - quote: polishing, buffing, vibratory finish, shot blasting
+    approx_offset: 98984
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0048
+  name: Vibratory finishing
+  status: confirmed
+  acceptable_forms:
+  - vibratory finish
+  evidence:
+  - quote: vibratory finish, shot blasting
+    approx_offset: 99004
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0049
+  name: Shot blasting
+  status: confirmed
+  acceptable_forms:
+  - shot blasting
+  evidence:
+  - quote: shot blasting
+    approx_offset: 99022
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0050
+  name: Teflon coating
+  status: confirmed
+  acceptable_forms:
+  - Teflon coating
+  evidence:
+  - quote: Teflon coating, Ceramic coating, polishing, wet paint, powder coating, Silkscreen, Pad printing, Sand
+      blasting
+    approx_offset: 99071
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0051
+  name: Ceramic coating
+  status: confirmed
+  acceptable_forms:
+  - Ceramic coating
+  evidence:
+  - quote: Ceramic coating, polishing, wet paint, powder coating, Silkscreen, Pad printing, Sand blasting
+    approx_offset: 99087
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0052
+  name: Silkscreen printing
+  status: confirmed
+  acceptable_forms:
+  - Silkscreen
+  - silkscreen
+  - Pad printing
+  - pad printing
+  - Printing
+  - Multi-color and reverse side printing
+  evidence:
+  - quote: Silkscreen, Pad printing, Sand blasting
+    approx_offset: 99142
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0053
+  name: Sand blasting
+  status: confirmed
+  acceptable_forms:
+  - Sand blasting
+  evidence:
+  - quote: Sand blasting
+    approx_offset: 99168
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0033
+  name: Passivation
+  status: confirmed
+  acceptable_forms:
+  - passivation
+  - Chrome-free passivation
+  evidence:
+  - quote: Vacuum heat treatment, passivation, high pressure washing,
+    approx_offset: 102190
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0034
+  name: High pressure washing
+  status: confirmed
+  acceptable_forms:
+  - high pressure washing
+  evidence:
+  - quote: high pressure washing,
+    approx_offset: 102226
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0100
+  name: Powder metallurgy
+  status: candidate
+  acceptable_forms:
+  - POWDER METALLURGY
+  - Powder metallurgy
+  - METALLURGY
+  evidence:
+  - quote: '| | MIM | POWDER METALLURGY | CASTING | MACHINING | STAMPING |'
+    approx_offset: 106746
+  actor: unknown
+  notes: on /products/design-parameters the process-comparison table is now a proper pipe table and POWDER METALLURGY
+    is no longer split across a line break the way it was in the legacy render - the original blocker is gone.
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0020
+  name: Nobake casting
+  status: confirmed
+  acceptable_forms:
+  - NOBAKE
+  - Nobake casting
+  - nobake
+  evidence:
+  - quote: Nobake casting utilizes chemical binders to bond molding sand. After the sand and the chemical binder
+      are
+    approx_offset: 111124
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0021
+  name: Shell mold casting
+  status: confirmed
+  acceptable_forms:
+  - SHELL MOLD
+  - Shell mold casting
+  - Shell sand
+  evidence:
+  - quote: Shell mold casting is similar to sand casting, but benefits from the use of reusable patterns. This allows
+    approx_offset: 111454
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0022
+  name: Vacuum casting
+  status: confirmed
+  acceptable_forms:
+  - VACUUM CASTING
+  - Vacuum casting
+  - vacuum casting
+  evidence:
+  - quote: Vacuum casting relies on vacuums to draw moisture from sand molds during production. Vacuum casting is
+      an ideal
+    approx_offset: 111788
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0023
+  name: Squeeze casting
+  status: confirmed
+  acceptable_forms:
+  - squeeze casting
+  evidence:
+  - quote: Diecasting and squeeze casting both can reach 20 RMS in extreme cases.
+    approx_offset: 112574
+  actor: unknown
+  notes: named once in casting-finish textbook prose.
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0024
+  name: Abrasive blasting
+  status: confirmed
+  acceptable_forms:
+  - abrasive blasting
+  - Abrasive blasting
+  evidence:
+  - quote: We can use abrasive blasting to smooth a rough surface. Abrasive blasting using materials like sand and
+      glass beads produces
+    approx_offset: 114334
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0091
+  name: Wire forming
+  status: confirmed
+  acceptable_forms:
+  - WIRE FORMING / SPRINGS
+  - Wire Forming
+  - Wire forming
+  - wire formed
+  evidence:
+  - quote: Wire forming – Springs
+    approx_offset: 123222
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0092
+  name: Tensile testing
+  status: confirmed
+  acceptable_forms:
+  - tensile testing
+  evidence:
+  - quote: We offer tensile testing and torsion testing with the capability to do 100% inspection with high volume.  
+      We can help you design the part that is perfect for your unique application.
+    approx_offset: 123564
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0093
+  name: Torsion testing
+  status: confirmed
+  acceptable_forms:
+  - torsion testing
+  evidence:
+  - quote: torsion testing with the capability to do 100% inspection with high volume.   We can help you design
+      the part that is perfect for your unique application.
+    approx_offset: 123593
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0094
+  name: 100% inspection
+  status: confirmed
+  acceptable_forms:
+  - 100% inspection
+  evidence:
+  - quote: 100% inspection with high volume.   We can help you design the part that is perfect for your unique application.
+    approx_offset: 123635
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0085
+  name: Sheet metal fabrication
+  status: confirmed
+  acceptable_forms:
+  - Sheet Metal Fabrication
+  - SHEET METAL
+  - fabrication
+  - custom fabrications
+  evidence:
+  - quote: Sheet Metal Fabrication
+    approx_offset: 125340
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0086
+  name: Press brake forming
+  status: confirmed
+  acceptable_forms:
+  - press brake forming
+  - press bending
+  - bending
+  evidence:
+  - quote: Stamping, press bending, laser cutting, press brake forming, punching, rolling, roll forming, water jet
+      cutting, Welding, rivets, standoffs, screws and
+    approx_offset: 125516
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0087
+  name: Roll forming
+  status: confirmed
+  acceptable_forms:
+  - roll forming
+  - rolling
+  evidence:
+  - quote: punching, rolling, roll forming, water jet cutting, Welding, rivets, standoffs, screws and other hardware
+      insertion methods are
+    approx_offset: 125577
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0088
+  name: Water jet cutting
+  status: confirmed
+  acceptable_forms:
+  - water jet cutting
+  evidence:
+  - quote: water jet cutting, Welding, rivets, standoffs, screws and other hardware insertion methods are often
+      used.  Parts
+    approx_offset: 125610
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0089
+  name: Punching
+  status: confirmed
+  acceptable_forms:
+  - Punching
+  - punching
+  - Turret punch
+  - turret punch
+  evidence:
+  - quote: Punching, Turret punch, 7 axis Press brake, Welding, Hardware insertion
+    approx_offset: 125845
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0090
+  name: Hardware insertion
+  status: confirmed
+  acceptable_forms:
+  - Hardware insertion
+  - hardware insertion methods
+  evidence:
+  - quote: Welding, Hardware insertion
+    approx_offset: 125889
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0095
+  name: Photo etching / chemical etching
+  status: confirmed
+  acceptable_forms:
+  - PHOTO ETCHING / CHEMICAL ETCHING
+  - Photo Etching
+  - Photo etching
+  - Chemical etching
+  - Chemical milling
+  - Photo chemical machining – PCM
+  evidence:
+  - quote: This process is also called Photo chemical machining – PCM, Chemical etching, Chemical milling.
+    approx_offset: 129536
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    reason: the bare form 'etching' is a substring of sibling entry 0007 'Laser etching' (and of 'Pressing plus
+      etching'), so a return of 'Laser etching' would credit this entry as well. The remaining forms are the names
+      the page actually prints for this process.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0103
+  name: Pressing
+  status: candidate
+  acceptable_forms:
+  - Pressing plus etching
+  - Pressing
+  evidence:
+  - quote: Pressing plus etching available
+    approx_offset: 129719
+  notes: the photo-etching page offers pressing as a combinable operation; the word occurs nowhere else in the file
+    and no packet entry covers it.
+  provenance:
+  - action: added
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0096
+  name: Deep drawn stamping
+  status: confirmed
+  acceptable_forms:
+  - Deep Drawn Stamping
+  - Deep drawn stamping
+  - DEEP DRAW
+  - Deep Draw Stamping
+  - Deep Draw
+  evidence:
+  - quote: Deep drawn stamping is when sheet metal is pulled into the die by way of a punch, and the depth
+    approx_offset: 133035
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0097
+  name: Progressive die stamping
+  status: confirmed
+  acceptable_forms:
+  - Progressive Die Stamping
+  - Progressive die stamping
+  - PROGRESSIVE DIE
+  - Progressive Die
+  evidence:
+  - quote: Progressive die stamping follows an assembly line process; the initial material goes through a
+    approx_offset: 133510
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0098
+  name: Threading
+  status: confirmed
+  acceptable_forms:
+  - threading
+  - internal and external threads
+  evidence:
+  - quote: cut-outs, ribs, holes, and threading where progressive die stamping requires a
+    approx_offset: 134526
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0099
+  name: Laser cutting
+  status: confirmed
+  acceptable_forms:
+  - laser cutting
+  - laser cut
+  - Laser machining
+  evidence:
+  - quote: EDM cutting, heat treating, welding, and laser cutting. By
+    approx_offset: 134789
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0084
+  name: Forging
+  status: confirmed
+  acceptable_forms:
+  - FORGING
+  - Forging
+  - forging
+  - Hot forging
+  - Cold forging
+  - warm forging
+  evidence:
+  - quote: Cold forging, warm forging or hot forging.
+    approx_offset: 137040
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-tanfel
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0044
+  name: PIM / CIM
+  status: retired
+  acceptable_forms:
+  - MIM / PIM / CIM
+  evidence:
+  - quote: MIM / PIM / CIM
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched ''PIM'', ''CIM'', ''MIM / PIM / CIM'': PIM and CIM have zero
+    hits anywhere in the file (MIM alone survives, e.g. ''Metal Injection Molding'', but that is a different entry).
+    This was an RFQ ''Product Interest'' dropdown option per the original note, and the dropdown option lists are
+    gone from this snapshot (see tanfel_com-industries-0024).'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0045
+  name: Plastic extrusion
+  status: retired
+  acceptable_forms:
+  - Plastic extrusion
+  evidence:
+  - quote: Plastic extrusion
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched ''Plastic extrusion'': zero hits. ''extrusion'' alone survives
+    (aluminum extrusion pages) but never combined with plastic. Was an RFQ dropdown option only per the original
+    note; the dropdown option lists are gone from this snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0046
+  name: Plastic machining
+  status: retired
+  acceptable_forms:
+  - Plastic machining
+  evidence:
+  - quote: Plastic machining
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched ''Plastic machining'': zero hits. ''plastic'' and ''machining''
+    each occur but never as this combined phrase. Was an RFQ dropdown option only per the original note; the dropdown
+    option lists are gone from this snapshot.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-tanfel-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: tanfel_com-process_caps-0104
+  name: dimensional test
+  status: candidate
+  acceptable_forms:
+  - dimensional test
+  evidence:
+  - quote: material specification sheets, PPAP, dimensional test reports plus any other customer requirements.
+    approx_offset: 25139
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0105
+  name: Dimension Inspection
+  status: candidate
+  acceptable_forms:
+  - Dimension Inspection
+  evidence:
+  - quote: '| Dimension Inspection Services | Part Validation Services | First Article Inspection (FAI) Testing
+      & Documentation |'
+    approx_offset: 25553
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0106
+  name: Part Validation
+  status: candidate
+  acceptable_forms:
+  - Part Validation
+  evidence:
+  - quote: '| Dimension Inspection Services | Part Validation Services | First Article Inspection (FAI) Testing
+      & Documentation |'
+    approx_offset: 25553
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0107
+  name: Parts Inspection
+  status: candidate
+  acceptable_forms:
+  - Parts Inspection
+  evidence:
+  - quote: '| Parts Inspection Services | Sorting Services | Nondestructive Testing (NDT) |'
+    approx_offset: 25685
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0108
+  name: Sorting
+  status: candidate
+  acceptable_forms:
+  - Sorting Services
+  evidence:
+  - quote: '| Parts Inspection Services | Sorting Services | Nondestructive Testing (NDT) |'
+    approx_offset: 25685
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0109
+  name: Validation Services
+  status: candidate
+  acceptable_forms:
+  - Validation Services
+  evidence:
+  - quote: '| Metrology Services | Validation Services | Verification Services |'
+    approx_offset: 25765
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0110
+  name: Tool & die manufacturing
+  status: candidate
+  acceptable_forms:
+  - Tool & die manufacturing
+  evidence:
+  - quote: 'Specialty machining: Rotary transfer machine, Jig / Fixture manufacturing, Casting machining, Tool &
+      die manufacturing'
+    approx_offset: 31001
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0111
+  name: Electrode & Wire EDM
+  status: candidate
+  acceptable_forms:
+  - Wire EDM
+  - Electrode & Wire EDM
+  evidence:
+  - quote: 'Capabilities: Drilling, Milling, Turning, Jig boring, Electrode & Wire EDM,'
+    approx_offset: 31122
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0112
+  name: Laser machining
+  status: candidate
+  acceptable_forms:
+  - Laser machining
+  evidence:
+  - quote: ' Broaching, Honing, Laser machining, Screw machining'
+    approx_offset: 31199
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0113
+  name: electric injection molding
+  status: candidate
+  acceptable_forms:
+  - electric injection molding
+  evidence:
+  - quote: such as CAD/CAM/CAE design technology, high speed machining, electric injection molding, protective coating
+      and laser marking.
+    approx_offset: 33319
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0114
+  name: Cosmetic Finishes
+  status: candidate
+  acceptable_forms:
+  - Cosmetic Finishes
+  evidence:
+  - quote: '- Cosmetic Finishes'
+    approx_offset: 35315
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0115
+  name: Deep Draw Stamping
+  status: candidate
+  acceptable_forms:
+  - Deep Draw Stamping
+  evidence:
+  - quote: '- Deep Draw Stamping'
+    approx_offset: 35381
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0116
+  name: Electrode and wire EDM
+  status: candidate
+  acceptable_forms:
+  - Electrode and wire EDM
+  evidence:
+  - quote: '- Electrode and wire EDM'
+    approx_offset: 61805
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0117
+  name: Trim press
+  status: candidate
+  acceptable_forms:
+  - Trim press
+  evidence:
+  - quote: 'Secondary Operations: Trim press, drill and tap, CNC, polishing, buffing, vibratory finish, shot blasting'
+    approx_offset: 98930
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0118
+  name: buffing
+  status: candidate
+  acceptable_forms:
+  - buffing
+  evidence:
+  - quote: 'Secondary Operations: Trim press, drill and tap, CNC, polishing, buffing, vibratory finish, shot blasting'
+    approx_offset: 98930
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0119
+  name: vibratory finish
+  status: candidate
+  acceptable_forms:
+  - vibratory finish
+  evidence:
+  - quote: 'Secondary Operations: Trim press, drill and tap, CNC, polishing, buffing, vibratory finish, shot blasting'
+    approx_offset: 98930
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0120
+  name: Chrome-free passivation
+  status: candidate
+  acceptable_forms:
+  - Chrome-free passivation
+  evidence:
+  - quote: 'Finish: Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder coating,
+      Silkscreen, Pad printing, Sand blasting'
+    approx_offset: 99038
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0121
+  name: wet paint
+  status: candidate
+  acceptable_forms:
+  - wet paint
+  evidence:
+  - quote: 'Finish: Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder coating,
+      Silkscreen, Pad printing, Sand blasting'
+    approx_offset: 99038
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0122
+  name: Silkscreen
+  status: candidate
+  acceptable_forms:
+  - Silkscreen
+  evidence:
+  - quote: 'Finish: Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder coating,
+      Silkscreen, Pad printing, Sand blasting'
+    approx_offset: 99038
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0123
+  name: Pad printing
+  status: candidate
+  acceptable_forms:
+  - Pad printing
+  evidence:
+  - quote: 'Finish: Chrome-free passivation, Teflon coating, Ceramic coating, polishing, wet paint, powder coating,
+      Silkscreen, Pad printing, Sand blasting'
+    approx_offset: 99038
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0124
+  name: EMI shielding
+  status: candidate
+  acceptable_forms:
+  - EMI shielding
+  evidence:
+  - quote: '- EMI shielding ability'
+    approx_offset: 99985
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0125
+  name: Vacuum heat treatment
+  status: candidate
+  acceptable_forms:
+  - Vacuum heat treatment
+  evidence:
+  - quote: Vacuum heat treatment, passivation, high pressure washing,
+    approx_offset: 102190
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0126
+  name: Nobake
+  status: candidate
+  acceptable_forms:
+  - Nobake
+  evidence:
+  - quote: Nobake casting utilizes chemical binders to bond molding sand.
+    approx_offset: 111124
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0127
+  name: Shell Mold
+  status: candidate
+  acceptable_forms:
+  - Shell Mold
+  - Shell mold casting
+  evidence:
+  - quote: Shell mold casting is similar to sand casting, but benefits from the use of reusable patterns.
+    approx_offset: 111454
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0128
+  name: press bending
+  status: candidate
+  acceptable_forms:
+  - press bending
+  evidence:
+  - quote: Stamping, press bending, laser cutting, press brake forming, punching, rolling, roll forming, water jet
+      cutting, Welding, rivets, standoffs, screws
+    approx_offset: 125516
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0129
+  name: Chemical milling
+  status: candidate
+  acceptable_forms:
+  - Chemical milling
+  evidence:
+  - quote: Chemical milling corrosively machines away selected sheet metal material to produce a complex part with
+      fine detail.
+    approx_offset: 129250
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0130
+  name: Photo chemical machining
+  status: candidate
+  acceptable_forms:
+  - Photo chemical machining
+  - PCM
+  evidence:
+  - quote: This process is also called Photo chemical machining – PCM, Chemical etching, Chemical milling.
+    approx_offset: 129536
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0131
+  name: Cold forging
+  status: candidate
+  acceptable_forms:
+  - Cold forging
+  evidence:
+  - quote: Cold forging, warm forging or hot forging.
+    approx_offset: 137040
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0132
+  name: warm forging
+  status: candidate
+  acceptable_forms:
+  - warm forging
+  evidence:
+  - quote: Cold forging, warm forging or hot forging.
+    approx_offset: 137040
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: tanfel_com-process_caps-0133
+  name: Hot forging
+  status: candidate
+  acceptable_forms:
+  - Hot forging
+  evidence:
+  - quote: Hot forging. 300 and 400 ton presses
+    approx_offset: 137310
+  provenance:
+  - action: added
+    by: seed-agent-tanfel-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: 3D printing
+  reason: 'anticipatory: never occurs; a likely mint from ''prototype'' + ''MIM''.'
+- form: additive manufacturing
+  reason: 'anticipatory: never occurs.'
+- form: Global Sourcing
+  reason: 'witnessed: a service line (finding and auditing offshore suppliers), not an operation performed on the
+    work. Same for ''Supply Chain Management'' and ''Customs Management''.'
+- form: Warehousing
+  reason: 'witnessed: storage and logistics, not an operation on the work.'

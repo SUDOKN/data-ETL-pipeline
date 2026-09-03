@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import sys
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
@@ -157,6 +158,66 @@ def append_history(scorecard: dict[str, Any]) -> None:
         handle.write(json.dumps(row, ensure_ascii=False, default=str) + "\n")
 
 
+
+
+def _collision_rollup(scorecards: list[dict[str, Any]]) -> list[str]:
+    """Corpus-level cross-field collisions — the field-boundary metric.
+
+    Added 2026-08-29 alongside the three `What qualifies` edits (products gains
+    an operation/substance separation, industries a served-domain separation,
+    process_caps a commercial-services separation). This is the number those
+    edits are meant to move, and it is the RIGHT one to watch: it is mechanical,
+    needs no judges, and so carries no agreement floor — unlike every judged
+    figure, where nothing under ~11 points is readable.
+
+    Read it with the collision-is-not-always-a-defect caveat: 43% of confirmed
+    process_caps entries and 67% of confirmed equipments entries legitimately
+    appear in a sibling's window, because "CNC turning" really is both an
+    operation performed and a capability advertised. A fall here is only good
+    news if confirmed recall holds.
+    """
+    own_total: Counter[str] = Counter()
+    claimed_total: Counter[str] = Counter()
+    pair_shared: Counter[tuple[str, str]] = Counter()
+    pair_union: Counter[tuple[str, str]] = Counter()
+    for sc in scorecards:
+        cf = (sc.get("metrics") or {}).get("cross_field_overlap")
+        if not cf:
+            continue
+        field = sc["field"]
+        own_total[field] += cf.get("distinct_forms", 0)
+        claimed_total[field] += cf.get("shared_with_any", 0)
+        for other, block in (cf.get("by_field") or {}).items():
+            key = tuple(sorted((field, other)))
+            # each unordered pair is reported by both its fields; count once
+            if field < other:
+                pair_shared[key] += block.get("shared_forms", 0)
+                pair_union[key] += block.get("union_forms", 0)
+    if not own_total:
+        return []
+    out = [
+        "",
+        "## Cross-field collisions",
+        "",
+        "Distinct forms this field returned that some OTHER field also returned",
+        "for the same subject. Mechanical, so no agreement floor applies. A",
+        "collision is not automatically a defect — see `_collision_rollup`.",
+        "",
+        "| field | distinct forms | claimed by a sibling | share |",
+        "|---|---|---|---|",
+    ]
+    for field in sorted(own_total, key=lambda f: -claimed_total[f] / max(1, own_total[f])):
+        own, claimed = own_total[field], claimed_total[field]
+        out.append(f"| {field} | {own} | {claimed} | {claimed / own:.1%} |")
+    grand_own = sum(own_total.values())
+    grand_claimed = sum(claimed_total.values())
+    out.append(f"| **ALL** | **{grand_own}** | **{grand_claimed}** | **{grand_claimed / grand_own:.1%}** |")
+    out += ["", "| field pair | shared | Jaccard |", "|---|---|---|"]
+    for (a, b), n in pair_shared.most_common(8):
+        union = pair_union[(a, b)]
+        out.append(f"| {a} ↔ {b} | {n} | {n / union:.1%} |" if union else f"| {a} ↔ {b} | {n} | — |")
+    return out
+
 def write_summary(run_id: str, scorecards: list[dict[str, Any]]) -> Path:
     lines = [
         f"# Search-stage eval — mechanical pass, run {run_id}",
@@ -200,6 +261,7 @@ def write_summary(run_id: str, scorecards: list[dict[str, Any]]) -> Path:
             f"| {cons.get('consistency', '—')} "
             f"| {delta_text} |"
         )
+    lines.extend(_collision_rollup(scorecards))
     out = run_dir(run_id) / "SUMMARY.md"
     out.parent.mkdir(parents=True, exist_ok=True)
     # SUMMARY.md is REGENERATED on every mechanical pass, so the assistant's

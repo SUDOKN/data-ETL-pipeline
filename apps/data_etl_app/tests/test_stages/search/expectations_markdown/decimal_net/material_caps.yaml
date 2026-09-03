@@ -1,0 +1,1830 @@
+subject: decimal.net
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/decimal.net.txt
+  sha256: ba4fce9db47e08d89fb6bfa97546a93fa70d2544931101547fbd57aecf982d99
+eval_set_version: 3
+expected_empty: false
+notes: Five Materials columns plus a Materials Forms column plus case-study 'Material Used' cells. Plating and coating
+  rows (Gold, Silver, Tin, Zinc, Cadmium, Rhodium, nickel and chrome variants, PTFE, CARC) are seeded as materials
+  on the prompt's explicit 'a treatment named after a substance it deposits does imply that substance' clause.
+entries:
+- id: decimal_net-material_caps-0001
+  name: sheet
+  status: confirmed
+  acceptable_forms:
+  - Sheet
+  - Sheet Metal
+  evidence:
+  - quote: Sheet
+    approx_offset: 177
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0055
+  name: kovar
+  status: candidate
+  acceptable_forms:
+  - Kovar
+  - HipernikKovar
+  evidence:
+  - quote: '**430 Bright annealed Aluminum (All Alloys in soft, ¼ hard, ½ hard & annealed) Beryllium Copper Brass
+      Bronze Copper Copper Nickel Galvanized (G30 – G90) Galvannealed (G30 – G90) Hipernik:** Kovar'
+    approx_offset: 4775
+  notes: reanchored to the metal-stamping materials list; 'Hipernik:** Kovar' now has real word boundaries on both
+    sides for 'Kovar', unlike the legacy fused 'HipernikKovar'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0056
+  name: hipernik
+  status: candidate
+  acceptable_forms:
+  - Hipernik
+  - HipernikKovar
+  evidence:
+  - quote: '**430 Bright annealed Aluminum (All Alloys in soft, ¼ hard, ½ hard & annealed) Beryllium Copper Brass
+      Bronze Copper Copper Nickel Galvanized (G30 – G90) Galvannealed (G30 – G90) Hipernik:** Kovar'
+    approx_offset: 4775
+  notes: reanchored to the same materials-list line as kovar (0055); 'Hipernik' is now bounded by a space on the
+    left and ':**' on the right instead of running directly into 'Kovar'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0053
+  name: 430 bright annealed stainless
+  status: confirmed
+  acceptable_forms:
+  - 430 Bright annealed
+  evidence:
+  - quote: 430 Bright annealed
+    approx_offset: 4777
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0048
+  name: beryllium copper
+  status: confirmed
+  acceptable_forms:
+  - Beryllium Copper
+  evidence:
+  - quote: Beryllium Copper
+    approx_offset: 4854
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0010
+  name: copper
+  status: confirmed
+  acceptable_forms:
+  - Copper
+  evidence:
+  - quote: Copper
+    approx_offset: 4864
+  - quote: Thick Wire EDM Copper Center Conductor
+    approx_offset: 80494
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0007
+  name: brass
+  status: confirmed
+  acceptable_forms:
+  - Brass
+  - brass
+  - solid brass
+  evidence:
+  - quote: Brass
+    approx_offset: 4871
+  - quote: quality, as well as our ability for DFM services. The part required solid brass with a diameter of 4.015″
+      x 1.473″ at +/− .002″ tolerances with a brushed
+    approx_offset: 75267
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0008
+  name: bronze
+  status: confirmed
+  acceptable_forms:
+  - Bronze
+  evidence:
+  - quote: Bronze
+    approx_offset: 4877
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0049
+  name: copper nickel
+  status: confirmed
+  acceptable_forms:
+  - Copper Nickel
+  evidence:
+  - quote: Copper Nickel
+    approx_offset: 4891
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0054
+  name: galvanized steel
+  status: confirmed
+  acceptable_forms:
+  - Galvanized (G30 – G90)
+  - Galvanized
+  evidence:
+  - quote: Galvanized (G30 – G90)
+    approx_offset: 4905
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0041
+  name: galvannealed steel
+  status: confirmed
+  acceptable_forms:
+  - Galvannealed (G30 – G90)
+  - Galvannealed
+  evidence:
+  - quote: Galvannealed (G30 – G90)
+    approx_offset: 4928
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0057
+  name: nickel alloys
+  status: confirmed
+  acceptable_forms:
+  - Nickel Alloys
+  evidence:
+  - quote: Nickel Alloys
+    approx_offset: 4972
+  notes: standalone row on the stamping table; two other tables fuse it as 'Nickel AlloysNylon' / 'Nickel AlloysNickel
+    Silver'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0058
+  name: nickel silver
+  status: confirmed
+  acceptable_forms:
+  - Nickel Silver
+  evidence:
+  - quote: Nickel Silver
+    approx_offset: 4987
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0034
+  name: silver
+  status: confirmed
+  acceptable_forms:
+  - Silver
+  - silver
+  evidence:
+  - quote: Silver
+    approx_offset: 4994
+  - quote: vendor of pendants, rings, and bracelets, required the manufacture of titanium and silver cross pendants
+      with an overall part dimension of 0.125″ thick x
+    approx_offset: 9145
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0042
+  name: perforated metal
+  status: confirmed
+  acceptable_forms:
+  - Perforated Metal
+  - Perforated Steel
+  evidence:
+  - quote: Perforated Metal
+    approx_offset: 5002
+  - quote: Perforated Steel Grill Audio
+    approx_offset: 92804
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0050
+  name: phosphorous bronze
+  status: confirmed
+  acceptable_forms:
+  - Phosphorous Bronze
+  evidence:
+  - quote: Phosphorous Bronze
+    approx_offset: 5020
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0043
+  name: prepainted material
+  status: confirmed
+  acceptable_forms:
+  - Prepainted Material
+  evidence:
+  - quote: Prepainted Material
+    approx_offset: 5040
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0051
+  name: spring steel
+  status: confirmed
+  acceptable_forms:
+  - Spring Steel
+  evidence:
+  - quote: Spring Steel
+    approx_offset: 5061
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0059
+  name: square wire
+  status: confirmed
+  acceptable_forms:
+  - Square Wire
+  evidence:
+  - quote: Square Wire
+    approx_offset: 5075
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0015
+  name: stainless steel
+  status: confirmed
+  acceptable_forms:
+  - 'Stainless Steel (2B, #3 & #8)'
+  - Stainless Steel
+  - stainless steel
+  - Stainless
+  evidence:
+  - quote: 'Stainless Steel (2B, #3 & #8)'
+    approx_offset: 5088
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0003
+  name: steel
+  status: confirmed
+  acceptable_forms:
+  - Steel (CRS, HRPO & HRS)
+  - Steel
+  - steel
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 5119
+  - quote: wide range of materials that we can work with; this includes aluminum, steel, stainless steel, various
+      alloys, exotics, engineered plastics and many more.
+    approx_offset: 64938
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0016
+  name: cold rolled steel (CRS)
+  status: confirmed
+  acceptable_forms:
+  - CRS
+  - Cold Rolled Sheet Metal
+  - cold rolled sheet metal
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 5119
+  - quote: Center, and several welding operations. Using cold rolled sheet metal, steel tubing, angle iron, steel
+      channels, clear acrylic, and rubber gaskets for
+    approx_offset: 37711
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0017
+  name: HRPO steel
+  status: confirmed
+  acceptable_forms:
+  - HRPO
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 5119
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0018
+  name: hot rolled steel (HRS)
+  status: confirmed
+  acceptable_forms:
+  - HRS
+  evidence:
+  - quote: Steel (CRS, HRPO & HRS)
+    approx_offset: 5119
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0029
+  name: chrome / chromium
+  status: confirmed
+  acceptable_forms:
+  - Chrome
+  - Black Chrome
+  - Hard Chrome
+  evidence:
+  - quote: Chrome
+    approx_offset: 5640
+  - quote: Hexavalent
+    approx_offset: 5951
+  notes: plating deposit; hexavalent/trivalent name the chromium valence
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: '''Hexavalent'' and ''Trivalent (RoHs Compliant)'' are sub-items of the Zinc row of the plating list,
+      not of Chrome, and would mis-credit chromium on a zinc-chromate phrase; the chrome forms are kept and the
+      second evidence quote is moved to the plating-list ''Chrome'' line'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0068
+  name: black oxide
+  status: candidate
+  acceptable_forms:
+  - Black Oxide
+  evidence:
+  - quote: Black Oxide
+    approx_offset: 5648
+  notes: Plating Services list; a conversion coating named after the oxide it forms on the work
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0030
+  name: nickel
+  status: confirmed
+  acceptable_forms:
+  - Bright Nickel
+  - Electroless Nickel
+  - Nickel Plated
+  evidence:
+  - quote: Bright Nickel
+    approx_offset: 5661
+  - quote: Electroless Nickel
+    approx_offset: 5788
+  notes: plating deposit
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0031
+  name: cadmium
+  status: confirmed
+  acceptable_forms:
+  - Cadmium
+  evidence:
+  - quote: Cadmium
+    approx_offset: 5690
+  notes: plating deposit
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0069
+  name: chromate / iridite / chem film
+  status: candidate
+  acceptable_forms:
+  - Chromate
+  - Iridite
+  - Chem Film
+  evidence:
+  - quote: Chromate (Clear or Yellow)(Also known as Iridite or Chem Film)
+    approx_offset: 5699
+  notes: named after the chromate it deposits; the trade names Iridite and Chem Film are given in the same cell
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0032
+  name: gold
+  status: confirmed
+  acceptable_forms:
+  - Gold
+  - Gold Plated
+  evidence:
+  - quote: Gold
+    approx_offset: 5823
+  - quote: Gold Plated Stamped Brass Clip
+    approx_offset: 92736
+  notes: named as a plating deposit; the prompt says a treatment named after a substance it deposits qualifies
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0070
+  name: phosphate
+  status: candidate
+  acceptable_forms:
+  - Phosphate (Pretreat)
+  - Phosphate
+  evidence:
+  - quote: Phosphate (Pretreat)
+    approx_offset: 5874
+  notes: phosphate conversion pretreat; named after the substance it deposits
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0033
+  name: rhodium
+  status: confirmed
+  acceptable_forms:
+  - Rhodium
+  evidence:
+  - quote: Rhodium
+    approx_offset: 5896
+  notes: plating deposit
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0035
+  name: tin
+  status: confirmed
+  acceptable_forms:
+  - Tin
+  evidence:
+  - quote: Tin
+    approx_offset: 5913
+  notes: plating deposit
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0036
+  name: zinc
+  status: confirmed
+  acceptable_forms:
+  - Zinc (Clear, Yellow or Black)
+  - Zinc Cobalt
+  - Zinc Plated
+  evidence:
+  - quote: Zinc (Clear, Yellow or Black)
+    approx_offset: 5918
+  - quote: Zinc Cobalt
+    approx_offset: 5991
+  notes: plating deposit
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0066
+  name: dielectric paint
+  status: candidate
+  acceptable_forms:
+  - Dielectric Paint
+  evidence:
+  - quote: Dielectric Paint
+    approx_offset: 6078
+  notes: Coating Services list; a coating named after the substance it deposits, which the material clause says
+    qualifies. The seed applied that rule to the plated metals and PTFE but not to the non-metal deposits
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0060
+  name: PTFE
+  status: confirmed
+  acceptable_forms:
+  - PTFE
+  evidence:
+  - quote: PTFE
+    approx_offset: 6123
+  notes: coating material
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0067
+  name: wet paint
+  status: candidate
+  acceptable_forms:
+  - Wet Paint
+  - wet painting
+  evidence:
+  - quote: Wet Paint
+    approx_offset: 6129
+  notes: "same deposit rule; paint is the substance put on the work (also 'Material Finish\tTwo Colors of Paint')"
+  provenance:
+  - action: added
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0019
+  name: titanium
+  status: confirmed
+  acceptable_forms:
+  - Titanium
+  - titanium
+  evidence:
+  - quote: Titanium
+    approx_offset: 8812
+  - quote: area vendor of pendants, rings, and bracelets, required the manufacture of titanium and silver cross
+      pendants with an overall part dimension of 0.125″ thick
+    approx_offset: 9140
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0062
+  name: exotics / exotic materials
+  status: confirmed
+  acceptable_forms:
+  - exotics
+  - exotic materials
+  evidence:
+  - quote: design. We offer a full range of machining processes designed to work with precious metals or exotic
+      materials.
+    approx_offset: 9019
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0063
+  name: precious metals
+  status: confirmed
+  acceptable_forms:
+  - precious metals
+  evidence:
+  - quote: design. We offer a full range of machining processes designed to work with precious metals or exotic
+      materials.
+    approx_offset: 9019
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0052
+  name: 6061-T651 aluminum
+  status: confirmed
+  acceptable_forms:
+  - 6061-T651 Aluminum
+  - 6061-T651
+  evidence:
+  - quote: x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed to QQ-A-250/11F specifications.
+      Each part was produced using a single machine
+    approx_offset: 11757
+  actor: client
+  notes: material specified by the military servo-body customer
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0037
+  name: AKDQ steel
+  status: confirmed
+  acceptable_forms:
+  - AKDQ Steel
+  - AKDQ
+  evidence:
+  - quote: during production and requested our assistance. The part was to be made of AKDQ Steel with 2b material
+      finish, sized at ¼” x 3/8″, with tolerances of +/−
+    approx_offset: 20312
+  actor: client
+  notes: material specified by the hot-water-heater customer
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0038
+  name: 2B mill finish
+  status: disputed
+  acceptable_forms:
+  - 2B
+  - 2b material finish
+  evidence:
+  - quote: during production and requested our assistance. The part was to be made of AKDQ Steel with 2b material
+      finish, sized at ¼” x 3/8″, with tolerances of +/−
+    approx_offset: 20312
+  notes: "a stainless/steel surface-finish designation carried on the material | the text labels 2B a finish, not\
+    \ a substance: 'Material Finish\t2B' and 'AKDQ Steel with 2b material finish'; 2B/#3/#8 are stainless mill-surface\
+    \ designations rather than the material the work is made from, so membership in a field defined as 'a substance\
+    \ that the work is made from or performed in' is genuinely arguable"
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: "the text labels 2B a finish, not a substance: 'Material Finish\t2B' and 'AKDQ Steel with 2b material\
+      \ finish'; 2B/#3/#8 are stainless mill-surface designations rather than the material the work is made from,\
+      \ so membership in a field defined as 'a substance that the work is made from or performed in' is genuinely\
+      \ arguable"
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0046
+  name: conductive material
+  status: confirmed
+  acceptable_forms:
+  - Any conductive material
+  - conductive material
+  evidence:
+  - quote: Any conductive material can be machined via EDM, with hard metals greatly benefiting from electrical
+    approx_offset: 23116
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0047
+  name: hard metals
+  status: confirmed
+  acceptable_forms:
+  - hard metals
+  - hard metal
+  evidence:
+  - quote: conductive material can be machined via EDM, with hard metals greatly benefiting from electrical discharge
+      machining. When precision tolerances on hard metal
+    approx_offset: 23120
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0004
+  name: aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum (All Alloys)
+  - Aluminum
+  - aluminum
+  - raw aluminum extrusions
+  evidence:
+  - quote: Aluminum (All Alloys)
+    approx_offset: 24766
+  - quote: materials that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more. We can also provide
+    approx_offset: 64952
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0020
+  name: tool steel
+  status: confirmed
+  acceptable_forms:
+  - Tool Steel
+  - A2 Tool Steel
+  evidence:
+  - quote: Tool Steel
+    approx_offset: 24971
+  - quote: A2 Tool Steel Wire EDM Block
+    approx_offset: 80390
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0006
+  name: acrylic
+  status: confirmed
+  acceptable_forms:
+  - Acrylic
+  - Clear Acrylic
+  - clear acrylic
+  evidence:
+  - quote: Acrylic
+    approx_offset: 31684
+  - quote: rolled sheet metal, steel tubing, angle iron, steel channels, clear acrylic, and rubber gaskets for waterproofing,
+      we produced 13 units within 6 weeks after
+    approx_offset: 37762
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0039
+  name: armor plate
+  status: confirmed
+  acceptable_forms:
+  - Armor Plate
+  evidence:
+  - quote: Armor Plate
+    approx_offset: 31714
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0040
+  name: expanded metal
+  status: confirmed
+  acceptable_forms:
+  - Expanded Metal
+  evidence:
+  - quote: Expanded Metal
+    approx_offset: 31746
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0011
+  name: G10
+  status: confirmed
+  acceptable_forms:
+  - G10
+  evidence:
+  - quote: G10
+    approx_offset: 31761
+  notes: glass-epoxy laminate grade; 3 characters, so matched case-sensitively on word boundaries
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0012
+  name: lexan
+  status: confirmed
+  acceptable_forms:
+  - Lexan
+  evidence:
+  - quote: Lexan
+    approx_offset: 31818
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0027
+  name: tubing
+  status: confirmed
+  acceptable_forms:
+  - Tubing
+  - Steel Tubing
+  - steel tubing
+  evidence:
+  - quote: Tubing
+    approx_offset: 39131
+  - quote: Center, and several welding operations. Using cold rolled sheet metal, steel tubing, angle iron, steel
+      channels, clear acrylic, and rubber gaskets for
+    approx_offset: 37711
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0022
+  name: angle / angle iron
+  status: confirmed
+  acceptable_forms:
+  - Angle
+  - angle iron
+  evidence:
+  - quote: Angle
+    approx_offset: 66668
+  - quote: several welding operations. Using cold rolled sheet metal, steel tubing, angle iron, steel channels,
+      clear acrylic, and rubber gaskets for waterproofing, we
+    approx_offset: 37723
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0061
+  name: rubber gaskets
+  status: confirmed
+  acceptable_forms:
+  - Rubber Gaskets
+  - rubber gaskets
+  - Rubber
+  - rubber
+  evidence:
+  - quote: Rubber Gaskets for Weatherproofing
+    approx_offset: 39176
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: the text's own 'Material Used' cell reads 'Rubber Gaskets for Weatherproofing' and the prose 'rubber
+      gaskets for waterproofing'; the substance is rubber, and a search emitting 'rubber' could not credit any seeded
+      form
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0002
+  name: extrusions
+  status: confirmed
+  acceptable_forms:
+  - Extrusions
+  - raw aluminum extrusions
+  evidence:
+  - quote: Extrusions
+    approx_offset: 66693
+  - quote: Does Decimal Engineering work with raw aluminum extrusions?
+    approx_offset: 45128
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0044
+  name: ferrous and non-ferrous metals
+  status: confirmed
+  acceptable_forms:
+  - ferrous and non-ferrous metals
+  - non-ferrous metals
+  evidence:
+  - quote: Most any material, including ferrous and non-ferrous metals, can be cut with an accuracy of ±0.005″.
+    approx_offset: 54779
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0005
+  name: plastics
+  status: confirmed
+  acceptable_forms:
+  - Plastics (Various)
+  - engineered plastics
+  - some plastics
+  evidence:
+  - quote: Plastics (Various)
+    approx_offset: 66539
+  - quote: materials that we can work with; this includes aluminum, steel, stainless steel, various alloys, exotics,
+      engineered plastics and many more. We can also provide
+    approx_offset: 64952
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0013
+  name: nylon
+  status: candidate
+  acceptable_forms:
+  - Nylon
+  - Nickel AlloysNylon
+  evidence:
+  - quote: '**Acrylic Aluminum (All Alloys) Brass Bronze Delrin Copper G10 Lexan Nickel Alloys:** Nylon'
+    approx_offset: 66436
+  notes: reanchored to the design-engineering-manufacturability materials list; 'Nylon' now has a real left word
+    boundary ('Alloys:** Nylon') so the fused-cell legacy form is obsolete but left for the record
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0009
+  name: delrin
+  status: confirmed
+  acceptable_forms:
+  - Delrin
+  evidence:
+  - quote: Delrin
+    approx_offset: 66481
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0014
+  name: phenolic
+  status: confirmed
+  acceptable_forms:
+  - Phenolic
+  evidence:
+  - quote: Phenolic
+    approx_offset: 66529
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0021
+  name: ultem
+  status: confirmed
+  acceptable_forms:
+  - Ultem
+  evidence:
+  - quote: Ultem
+    approx_offset: 66637
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0025
+  name: plate
+  status: candidate
+  acceptable_forms:
+  - Plate
+  - PipePlate
+  evidence:
+  - quote: '**Angle Bar Stock Castings Extrusions Pipe:** Plate'
+    approx_offset: 66666
+  notes: reanchored to the design-engineering-manufacturability materials list ('Extrusions Pipe:** Plate'); 'Plate'
+    and 'Pipe' (material_caps-0026) now share one cleanly-delimited line instead of the fused 'PipePlate'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0026
+  name: pipe
+  status: candidate
+  acceptable_forms:
+  - Pipe
+  - PipePlate
+  evidence:
+  - quote: '**Angle Bar Stock Castings Extrusions Pipe:** Plate'
+    approx_offset: 66666
+  notes: reanchored to the same line as plate (0025); see that entry's notes
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0023
+  name: bar stock
+  status: confirmed
+  acceptable_forms:
+  - Bar Stock
+  evidence:
+  - quote: Bar Stock
+    approx_offset: 66674
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0024
+  name: castings
+  status: confirmed
+  acceptable_forms:
+  - Castings
+  evidence:
+  - quote: Castings
+    approx_offset: 66684
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0028
+  name: structural shapes
+  status: confirmed
+  acceptable_forms:
+  - Structural Shapes
+  - steel channels
+  - Steel Tubing/Angles and Channels
+  evidence:
+  - quote: Structural Shapes
+    approx_offset: 66734
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0045
+  name: carbon steel
+  status: confirmed
+  acceptable_forms:
+  - Carbon Steel
+  - carbon steel
+  evidence:
+  - quote: thickness will vary depending on the material and ranges from 1.18″ for aluminum to 1.18″ for carbon
+      steel. Features such as holes, slots, and other custom
+    approx_offset: 70178
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0065
+  name: CARC paint
+  status: confirmed
+  acceptable_forms:
+  - CARC Painted
+  - CARC
+  evidence:
+  - quote: CARC Painted Aluminum Marine Display Military
+    approx_offset: 79145
+  notes: Chemical Agent Resistant Coating; a paint material named on two album parts
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0064
+  name: 6061-T6 aluminum
+  status: confirmed
+  acceptable_forms:
+  - Aluminum 6061-T6 Block
+  - 6061-T6
+  evidence:
+  - quote: Aluminum 6061-T6 Block
+    approx_offset: 98805
+  actor: client
+  notes: album caption for a customer part
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-material_caps-0071
+  name: Sheet (material form)
+  status: candidate
+  acceptable_forms:
+  - Sheet
+  evidence:
+  - quote: ' Sheet'
+    approx_offset: 177
+  notes: Precision Machining Materials Forms table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0072
+  name: 430 stainless (Bright annealed)
+  status: candidate
+  acceptable_forms:
+  - 430 Bright annealed
+  evidence:
+  - quote: '**430 Bright annealed Aluminum (All Alloys in soft, ¼ hard, ½ hard & annealed) Beryllium Copper Brass
+      Bronze Copper Copper Nickel Galvanized (G30 – G90) Galvannealed (G30 – G90) Hipernik:** Kovar'
+    approx_offset: 4775
+  notes: Metal Stamping Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0073
+  name: Galvanized (G30-G90)
+  status: candidate
+  acceptable_forms:
+  - Galvanized
+  evidence:
+  - quote: '**430 Bright annealed Aluminum (All Alloys in soft, ¼ hard, ½ hard & annealed) Beryllium Copper Brass
+      Bronze Copper Copper Nickel Galvanized (G30 – G90) Galvannealed (G30 – G90) Hipernik:** Kovar'
+    approx_offset: 4775
+  notes: Metal Stamping Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0074
+  name: Galvannealed (G30-G90)
+  status: candidate
+  acceptable_forms:
+  - Galvannealed
+  evidence:
+  - quote: '**430 Bright annealed Aluminum (All Alloys in soft, ¼ hard, ½ hard & annealed) Beryllium Copper Brass
+      Bronze Copper Copper Nickel Galvanized (G30 – G90) Galvannealed (G30 – G90) Hipernik:** Kovar'
+    approx_offset: 4775
+  notes: Metal Stamping Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0075
+  name: 'Stainless Steel (2B, #3 & #8)'
+  status: candidate
+  acceptable_forms:
+  - Stainless Steel
+  evidence:
+  - quote: ' Stainless Steel (2B, #3 & #8)'
+    approx_offset: 5088
+  notes: Metal Stamping Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0076
+  name: Steel (CRS, HRPO & HRS)
+  status: candidate
+  acceptable_forms:
+  - CRS
+  - HRPO
+  - HRS
+  evidence:
+  - quote: ' Steel (CRS, HRPO & HRS)'
+    approx_offset: 5119
+  notes: Metal Stamping Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0077
+  name: 6061-T651
+  status: candidate
+  acceptable_forms:
+  - 6061-T651
+  evidence:
+  - quote: '**Material Used:** 6061-T651'
+    approx_offset: 13108
+  notes: Servo Body project highlights, Material Used
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0078
+  name: Aluminum (All Alloys)
+  status: candidate
+  acceptable_forms:
+  - Aluminum
+  evidence:
+  - quote: '**Aluminum (All Alloys) Beryllium Copper Brass Bronze Copper Nickel Copper Nickel Alloys:** Nickel Silver'
+    approx_offset: 24764
+  notes: Wire EDM Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0079
+  name: Copper Nickel Alloys
+  status: candidate
+  acceptable_forms:
+  - Copper Nickel Alloys
+  evidence:
+  - quote: '**Aluminum (All Alloys) Beryllium Copper Brass Bronze Copper Nickel Copper Nickel Alloys:** Nickel Silver'
+    approx_offset: 24764
+  notes: Wire EDM Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0080
+  name: Cold Rolled Sheet Metal
+  status: candidate
+  acceptable_forms:
+  - Cold Rolled Sheet Metal
+  evidence:
+  - quote: '**Cold Rolled Sheet Metal Steel Tubing/Angles and Channels:** Clear Acrylic'
+    approx_offset: 39099
+  notes: Locomotive project Material Used
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0081
+  name: Steel Tubing
+  status: candidate
+  acceptable_forms:
+  - Steel Tubing
+  evidence:
+  - quote: '**Cold Rolled Sheet Metal Steel Tubing/Angles and Channels:** Clear Acrylic'
+    approx_offset: 39099
+  notes: Locomotive project Material Used
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0082
+  name: Clear Acrylic
+  status: candidate
+  acceptable_forms:
+  - Clear Acrylic
+  evidence:
+  - quote: '**Cold Rolled Sheet Metal Steel Tubing/Angles and Channels:** Clear Acrylic'
+    approx_offset: 39099
+  notes: Locomotive project Material Used
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0083
+  name: Plastics (Various)
+  status: candidate
+  acceptable_forms:
+  - Plastics
+  evidence:
+  - quote: ' Plastics (Various)'
+    approx_offset: 66539
+  notes: Precision Machining Materials table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0084
+  name: Angle (bar stock form)
+  status: candidate
+  acceptable_forms:
+  - Angle
+  evidence:
+  - quote: '**Angle Bar Stock Castings Extrusions Pipe:** Plate'
+    approx_offset: 66666
+  notes: Precision Machining Materials Forms table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0085
+  name: Castings (material form)
+  status: candidate
+  acceptable_forms:
+  - Castings
+  evidence:
+  - quote: '**Angle Bar Stock Castings Extrusions Pipe:** Plate'
+    approx_offset: 66666
+  notes: Precision Machining Materials Forms table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0086
+  name: Extrusions (material form)
+  status: candidate
+  acceptable_forms:
+  - Extrusions
+  evidence:
+  - quote: '**Angle Bar Stock Castings Extrusions Pipe:** Plate'
+    approx_offset: 66666
+  notes: Precision Machining Materials Forms table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0087
+  name: Pipe (material form)
+  status: candidate
+  acceptable_forms:
+  - Pipe
+  evidence:
+  - quote: '**Angle Bar Stock Castings Extrusions Pipe:** Plate'
+    approx_offset: 66666
+  notes: Precision Machining Materials Forms table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0088
+  name: Plate (material form)
+  status: candidate
+  acceptable_forms:
+  - Plate
+  evidence:
+  - quote: '**Angle Bar Stock Castings Extrusions Pipe:** Plate'
+    approx_offset: 66666
+  notes: Precision Machining Materials Forms table; fused with 'Pipe' in the legacy innerText scrape, now a separate
+    bold:value pair
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-material_caps-0089
+  name: A2 Tool Steel
+  status: candidate
+  acceptable_forms:
+  - A2 Tool Steel
+  evidence:
+  - quote: ' A2 Tool Steel Wire EDM Block'
+    approx_offset: 80390
+  notes: Wire EDM album caption, specific tool-steel grade
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Lead
+  reason: 'anticipatory: only ''Lead Times Available'' / ''Lead Time'' occur - the metal never does'
+- form: China
+  reason: ISO country dropdown; never the ceramic material
+- form: Toilet Paper
+  reason: contents of a staff care package, not a work material
+- form: Hand Sanitizer
+  reason: care-package contents, not a work material
+- form: Slipstick
+  reason: an inspection gauge in the Testing & Inspection column, not a substance
+- form: Deltronic Pins
+  reason: gage pins - metrology hardware, not stock material
+- form: Bandana
+  reason: care-package contents
+- form: Titanium White
+  reason: 'anticipatory: word-association from Titanium plus the painting services'

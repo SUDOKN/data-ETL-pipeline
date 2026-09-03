@@ -1,0 +1,2648 @@
+subject: lucasmilhaupt.com
+field: material_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/lucasmilhaupt.com.txt
+  sha256: f84ad55ab82bc1fc47d34ac0917856ac7ccbac19ec6eb6697a67302b71441f93
+eval_set_version: 3
+expected_empty: false
+notes: 'The corpus''s densest material inventory, and its only subject whose PRODUCT IS A MATERIAL: Lucas Milhaupt
+  makes brazing filler metals, fluxes and pastes, so every own-brand product name (Sil-Fos, Silvaloy, Premabraze,
+  AL 718, AL 822, Handy One, Handy Flux) is legitimately BOTH a material_caps entry and a products entry -- both
+  are seeded, on purpose, rather than one being chosen. Four separate strata: (1) elements and generic metals in
+  prose; (2) the Pastes-page filter facets, which enumerate alloy families and base materials as bare list items;
+  (3) the Technical-and-Safety-Data-Sheets page, whose first 30 of 517 rows are raw composition designations (78ZN/22AL,
+  97.5PB/2.5AG, 35AU/62CU/3NI VTG); (4) ''Nominal Composition'' lines on the product detail pages. Brazing atmospheres
+  are seeded because the field clause covers a substance the work is ''performed in''.'
+entries:
+- id: lucasmilhaupt_com-material_caps-0001
+  name: 500 custom alloys
+  status: confirmed
+  acceptable_forms:
+  - 500 custom alloys
+  - 500 alloy formulations
+  - 400 custom alloys
+  - 500+ custom brazing alloys
+  evidence:
+  - quote: help bring their innovations to market quickly. With more than 500 custom alloys, and decades of materials
+      science expertise, Lucas Milhaupt develops custom joining solutions
+    approx_offset: 1467
+  notes: the portfolio size is stated as 500 on most pages and 400 on /About -- an internal inconsistency worth
+    a judged look, not a material as such
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0002
+  name: brazing alloy
+  status: candidate
+  acceptable_forms:
+  - brazing alloys
+  - brazing alloy
+  - braze alloy
+  - braze alloys
+  evidence:
+  - quote: We offer a full portfolio of custom solutions designed to meet your metal joining needs. From custom
+      brazing alloys to fluxes to precision metal joining components.
+    approx_offset: 3096
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0029
+  name: base metal
+  status: candidate
+  acceptable_forms:
+  - base metal
+  - base metals
+  - Base Material
+  - base materials
+  evidence:
+  - quote: for a given thickness of base metals
+    approx_offset: 7437
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0057
+  name: Monel
+  status: confirmed
+  acceptable_forms:
+  - Monel
+  evidence:
+  - quote: What length of lap do you need to join .050" annealed Monel sheet to a metal of equal or greater strength?
+    approx_offset: 10472
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0026
+  name: silver
+  status: candidate
+  acceptable_forms:
+  - silver
+  - Silver
+  - fine silver
+  evidence:
+  - quote: L = 25,000 psi (Typical shear strength for silver brazing filler metals)
+    approx_offset: 10653
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0031
+  name: steel
+  status: candidate
+  acceptable_forms:
+  - steel
+  - Steel
+  - steels
+  evidence:
+  - quote: to 3/4" I.D. steel tubing?
+    approx_offset: 11518
+  notes: broad entry; a substring of 'stainless steel' and 'carbon steels', so its coverage number carries no information
+    of its own
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0006
+  name: copper
+  status: candidate
+  acceptable_forms:
+  - copper
+  - Copper
+  evidence:
+  - quote: ' T = 33,000 psi (annealed copper)'
+    approx_offset: 11590
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0012
+  name: gold
+  status: candidate
+  acceptable_forms:
+  - gold
+  - Gold
+  - karat gold
+  evidence:
+  - quote: such elements as silver, gold or palladium, which are inherently corrosion-resistant.
+    approx_offset: 15470
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0024
+  name: palladium
+  status: candidate
+  acceptable_forms:
+  - palladium
+  - Palladium
+  evidence:
+  - quote: such elements as silver, gold or palladium, which are inherently corrosion-resistant.
+    approx_offset: 15470
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0023
+  name: precious metal
+  status: confirmed
+  acceptable_forms:
+  - precious metal
+  - precious-metal
+  - Precious metals
+  - precious metals
+  evidence:
+  - quote: 'At the core are our Filler Metals: a comprehensive line of silver, aluminum, copper, nickel, precious-metal,
+      and specialized alloy forms (wire, strip, rings, preforms, and powders) engineered'
+    approx_offset: 17583
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0011
+  name: filler metal
+  status: candidate
+  acceptable_forms:
+  - filler metal
+  - filler metals
+  - Filler Metals
+  - brazing filler metal
+  evidence:
+  - quote: At the core are our Filler Metals
+    approx_offset: 17583
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0008
+  name: aluminum
+  status: candidate
+  acceptable_forms:
+  - aluminum
+  - Aluminum
+  evidence:
+  - quote: a comprehensive line of silver, aluminum, copper, nickel, precious-metal
+    approx_offset: 17618
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0020
+  name: nickel
+  status: candidate
+  acceptable_forms:
+  - nickel
+  - Nickel
+  evidence:
+  - quote: silver, aluminum, copper, nickel, precious-metal
+    approx_offset: 17642
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0105
+  name: alloy powder
+  status: candidate
+  acceptable_forms:
+  - alloy powders
+  - braze alloy powders
+  - solder alloy powder
+  - karat gold braze powders
+  - atomized filler metal powder
+  - powders
+  evidence:
+  - quote: preforms, and powders
+    approx_offset: 17741
+  notes: Matching form is 'powders' (single word); 'alloy powders' itself is no longer contiguous in the surviving
+    text ('alloy forms (wire, strip, rings, preforms, and powders)').
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0003
+  name: flux
+  status: candidate
+  acceptable_forms:
+  - flux
+  - fluxes
+  - Fluxes
+  evidence:
+  - quote: To complement those alloys, we formulate Fluxes that provide optimal wetting and oxide removal over a
+      full temperature spectrum
+    approx_offset: 17873
+  notes: flux is both the company's own product line and a consumable substance applied to the work
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0075
+  name: rheology modifier
+  status: confirmed
+  acceptable_forms:
+  - rheology modifiers
+  evidence:
+  - quote: For operations that demand turnkey simplicity, our Pastes blend precisely metered alloy powders with
+      flux and rheology modifiers, ensuring accurate deposit control in automated
+    approx_offset: 18150
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-lucasmilhaupt
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0128
+  name: paste
+  status: candidate
+  acceptable_forms:
+  - paste
+  - Paste products
+  - pastes
+  evidence:
+  - quote: our Pastes blend precisely metered alloy powders with flux and rheology modifiers
+    approx_offset: 18197
+  notes: the paste itself is a substance (alloy powder + flux + binder); products-0054 seeds 'pastes' but material_caps
+    has only the branded Handy Paste and 502 SSK Copper Paste
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0004
+  name: Sil-Fos
+  status: candidate
+  acceptable_forms:
+  - Sil-Fos
+  - Sil-Fos®
+  - SilFos
+  - Sil-Fos alloys
+  evidence:
+  - quote: Brazing Copper to Copper with Sil-Fos
+    approx_offset: 25042
+  notes: own-brand silver-copper-phosphorus brazing alloy -- also a products entry
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0005
+  name: silver-copper eutectic alloy
+  status: retired
+  acceptable_forms:
+  - silver-copper eutectic alloy
+  - silver-copper-phosphorus
+  evidence:
+  - quote: Silvaloy 721 is a silver-copper eutectic alloy that can flow into long, narrow joints.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''silver-copper eutectic alloy'', ''silver-copper-phosphorus'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0007
+  name: AL 822
+  status: retired
+  acceptable_forms:
+  - AL 822
+  - AL822
+  evidence:
+  - quote: AL 822 is a low temperature alloy ideal for brazing or soldering aluminum
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AL 822'', ''AL822''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0009
+  name: high-purity alloy
+  status: retired
+  acceptable_forms:
+  - high-purity alloys
+  - high purity
+  - vacuum-grade alloys
+  - vacuum tube grade filler metals
+  evidence:
+  - quote: largest braze and solder alloy manufacturer, Lucas Milhaupt’s high-purity alloy offerings, including
+      the Premabraze® Series (AuSn Premabraze
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''high-purity alloys'', ''high purity'',
+    ''vacuum-grade alloys'', ''vacuum tube grade filler metals''); the alloy/flux catalogue that named this material
+    lived under the removed /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0010
+  name: gold-tin eutectic solder
+  status: retired
+  acceptable_forms:
+  - gold-tin eutectic solder
+  - AuSn
+  - gold-tin
+  evidence:
+  - quote: Premabraze 800 is a high purity gold-tin eutectic solder
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''gold-tin eutectic solder'', ''AuSn'',
+    ''gold-tin''); the alloy/flux catalogue that named this material lived under the removed /EN/Products tree;
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0013
+  name: lead
+  status: retired
+  acceptable_forms:
+  - lead-free
+  - Tin-Lead
+  - lead or silver are not permissible
+  - lead and silver-free
+  evidence:
+  - quote: Milhaupt offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys. Our
+      Premabraze® 800 and 880 series, provides
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''lead-free'', ''Tin-Lead'', ''lead or
+    silver are not permissible'', ''lead and silver-free''); the alloy/flux catalogue that named this material lived
+    under the removed /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0014
+  name: solder
+  status: retired
+  acceptable_forms:
+  - solder
+  - solders
+  - soft solder
+  evidence:
+  - quote: Milhaupt offers an industry-leading portfolio ranging from gold-based solders to lead-free alloys. Our
+      Premabraze® 800 and 880 series, provides
+  notes: 'retired at the markdown cutover: searched ''solder'', ''solders'', ''soft solder''; no STANDALONE occurrence
+    of the word ''solder'' survives (only ''soldering'' and ''soldered'' appear, which do not whole-word-cover the
+    acceptable forms); retiring rather than borrowing the process-word ''soldering'' into a materials entry.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0015
+  name: Silvaloy
+  status: retired
+  acceptable_forms:
+  - Silvaloy
+  - Silvaloy®
+  - Silvaloy 721
+  - SILVALOY 721 VTG Gr1
+  evidence:
+  - quote: SILVALOY 721 VTG Gr1
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silvaloy'', ''Silvaloy®'', ''Silvaloy
+    721'', ''SILVALOY 721 VTG Gr1''); the alloy/flux catalogue that named this material lived under the removed
+    /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0016
+  name: Premabraze 880
+  status: retired
+  acceptable_forms:
+  - Premabraze 880
+  - Premabraze® 880
+  - PREMABRAZE 880
+  evidence:
+  - quote: PREMABRAZE 880
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Premabraze 880'', ''Premabraze® 880'',
+    ''PREMABRAZE 880''); the alloy/flux catalogue that named this material lived under the removed /EN/Products
+    tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0017
+  name: germanium
+  status: retired
+  acceptable_forms:
+  - germanium
+  - Germanium
+  - AuGe
+  - Ge
+  evidence:
+  - quote: Gold 88.00, Germanium 12.00
+  notes: 'retired at the markdown cutover: searched ''germanium'', ''Germanium'', ''AuGe'', ''Ge''; the apparent
+    ''Ge'' hits are substrings inside unrelated words (e.g. ''Design'', ''General''), not a real occurrence; no
+    genuine mention of germanium survives.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0018
+  name: Premabraze 800
+  status: retired
+  acceptable_forms:
+  - Premabraze 800
+  - Premabraze® 800
+  - PREMABRAZE 800
+  evidence:
+  - quote: PREMABRAZE 800
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Premabraze 800'', ''Premabraze® 800'',
+    ''PREMABRAZE 800''); the alloy/flux catalogue that named this material lived under the removed /EN/Products
+    tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0019
+  name: ceramic
+  status: retired
+  acceptable_forms:
+  - ceramic
+  - Ceramic
+  - ceramics
+  - metallized ceramic
+  evidence:
+  - quote: in your fixture that are poor heat conductors, such as stainless steel, Inconel or ceramics. Since these
+      are poor conductors, they draw the
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ceramic'', ''Ceramic'', ''ceramics'',
+    ''metallized ceramic''); the alloy/flux catalogue that named this material lived under the removed /EN/Products
+    tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0021
+  name: nickel plating
+  status: retired
+  acceptable_forms:
+  - nickel-plated
+  - nickel-plated substrates
+  evidence:
+  - quote: designed for high-reliability hermetic seals. Excellent wetting on nickel-plated substrates enables leak-tight
+      micro-packages and RF lid seals. Eutectic melt point of 356
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''nickel-plated'', ''nickel-plated substrates'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0022
+  name: biocompatible material
+  status: retired
+  acceptable_forms:
+  - biocompatible materials
+  - biocompatible
+  evidence:
+  - quote: orthodontic appliances) that require precise, durable joints and biocompatible materials to ensure safe,
+      long-lasting performance in patient care.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''biocompatible materials'', ''biocompatible'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0025
+  name: gold-nickel filler metal
+  status: retired
+  acceptable_forms:
+  - Gold-nickel
+  - gold-nickel
+  evidence:
+  - quote: Gold-nickel and other high-purity filler metals for assemblies exposed to sustained temps
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Gold-nickel'', ''gold-nickel''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0027
+  name: zinc
+  status: retired
+  acceptable_forms:
+  - zinc
+  - Zinc
+  evidence:
+  - quote: amplifiers. We provide vacuum-grade brazing alloys free of elements like zinc or cadmium that could outgas
+      and contaminate the vacuum. The result is strong,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''zinc'', ''Zinc''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0028
+  name: cadmium
+  status: retired
+  acceptable_forms:
+  - cadmium
+  - Cadmium
+  - cadmium-bearing
+  evidence:
+  - quote: amplifiers. We provide vacuum-grade brazing alloys free of elements like zinc or cadmium that could outgas
+      and contaminate the vacuum. The result is strong,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''cadmium'', ''Cadmium'', ''cadmium-bearing'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0030
+  name: Easy-Flo
+  status: retired
+  acceptable_forms:
+  - Easy-Flo
+  - Easy-Flo®
+  evidence:
+  - quote: The following chart is based on brazing butt joints of stainless steel, using Easy-Flo® filler metal.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Easy-Flo'', ''Easy-Flo®''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0032
+  name: brass
+  status: retired
+  acceptable_forms:
+  - brass
+  - Brass
+  evidence:
+  - quote: As an example, let’s say you’re brazing a brass bushing into a steel sleeve. Brass expands, when heated,
+      more than steel.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''brass'', ''Brass''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0033
+  name: boron
+  status: retired
+  acceptable_forms:
+  - boron
+  - metallic boron
+  - Boron-modified
+  evidence:
+  - quote: The addition of metallic boron changes white flux to black. Black flux is beneficial for fast induction
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''boron'', ''metallic boron'', ''Boron-modified'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0034
+  name: black flux / white flux
+  status: retired
+  acceptable_forms:
+  - black flux
+  - white flux
+  - white versus black flux
+  evidence:
+  - quote: The addition of metallic boron changes white flux to black. Black flux is beneficial for fast induction
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''black flux'', ''white flux'', ''white
+    versus black flux''); the alloy/flux catalogue that named this material lived under the removed /EN/Products
+    tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0035
+  name: Handy Flux
+  status: retired
+  acceptable_forms:
+  - Handy Flux
+  - Handy® Flux
+  - Handy Flux™
+  - Handy & Harman's Handy Flux
+  evidence:
+  - quote: Fortunately for your inventory, general-purpose fluxes, such as Handy & Harman's Handy Flux, are suitable
+      for most typical brazing jobs.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Handy Flux'', ''Handy® Flux'', ''Handy
+    Flux™'', "Handy & Harman''s Handy Flux"); the alloy/flux catalogue that named this material lived under the
+    removed /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0036
+  name: Fos-Flo 7
+  status: retired
+  acceptable_forms:
+  - Fos-Flo 7
+  - Fos-Flo
+  evidence:
+  - quote: filler metal specially formulated for the job, such as Handy & Harman's Sil-Fos or Fos-Flo 7. (The phosphorus
+      in these alloys acts as a fluxing
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Fos-Flo 7'', ''Fos-Flo''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0037
+  name: hydrogen
+  status: retired
+  acceptable_forms:
+  - hydrogen
+  evidence:
+  - quote: an enclosed space, usually a brazing furnace). The atmosphere (such as hydrogen, nitrogen or dissociated
+      ammonia) completely envelops the assemblies and, by excluding
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''hydrogen''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0038
+  name: nitrogen
+  status: retired
+  acceptable_forms:
+  - nitrogen
+  evidence:
+  - quote: space, usually a brazing furnace). The atmosphere (such as hydrogen, nitrogen or dissociated ammonia)
+      completely envelops the assemblies and, by excluding
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''nitrogen''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0039
+  name: dissociated ammonia
+  status: retired
+  acceptable_forms:
+  - dissociated ammonia
+  evidence:
+  - quote: usually a brazing furnace). The atmosphere (such as hydrogen, nitrogen or dissociated ammonia) completely
+      envelops the assemblies and, by excluding
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''dissociated ammonia''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0040
+  name: stainless steel
+  status: retired
+  acceptable_forms:
+  - stainless steel
+  - Stainless Steel
+  - stainless steels
+  - 300-series, non-magnetic stainless steel
+  evidence:
+  - quote: Construct fixtures from 300-series, non-magnetic stainless steel
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''stainless steel'', ''Stainless Steel'',
+    ''stainless steels'', ''300-series, non-magnetic stainless steel''); the alloy/flux catalogue that named this
+    material lived under the removed /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0041
+  name: Inconel
+  status: retired
+  acceptable_forms:
+  - Inconel
+  evidence:
+  - quote: in your fixture that are poor heat conductors, such as stainless steel, Inconel or ceramics. Since these
+      are poor conductors, they draw the
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Inconel''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0042
+  name: acetylene
+  status: retired
+  acceptable_forms:
+  - acetylene
+  - oxy-acetylene
+  - oxy/acetylene
+  evidence:
+  - quote: In torch brazing, a variety of fuels are available—natural gas, acetylene, propane, propylene, etc.,
+      combusted with either oxygen or air. The
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''acetylene'', ''oxy-acetylene'', ''oxy/acetylene'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0043
+  name: natural gas
+  status: retired
+  acceptable_forms:
+  - natural gas
+  evidence:
+  - quote: In torch brazing, a variety of fuels are available—natural gas, acetylene, propane, propylene, etc.,
+      combusted with either
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''natural gas''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0044
+  name: propane
+  status: retired
+  acceptable_forms:
+  - propane
+  evidence:
+  - quote: torch brazing, a variety of fuels are available—natural gas, acetylene, propane, propylene, etc., combusted
+      with either oxygen or air. The
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''propane''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0045
+  name: propylene
+  status: retired
+  acceptable_forms:
+  - propylene
+  evidence:
+  - quote: a variety of fuels are available—natural gas, acetylene, propane, propylene, etc., combusted with either
+      oxygen or air. The most
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''propylene''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0046
+  name: oxygen
+  status: retired
+  acceptable_forms:
+  - oxygen
+  - Oxygen
+  evidence:
+  - quote: available—natural gas, acetylene, propane, propylene, etc., combusted with either oxygen or air. The
+      most popular is still the oxy/acetylene
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''oxygen'', ''Oxygen''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0047
+  name: cadmium coating
+  status: retired
+  acceptable_forms:
+  - cadmium coating
+  evidence:
+  - quote: A cadmium coating on a base metal will volatilize and produce toxic fume during heating. Zinc coatings
+      (galvanized) will
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''cadmium coating''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0048
+  name: zinc coating (galvanized)
+  status: retired
+  acceptable_forms:
+  - Zinc coatings
+  - galvanized
+  - Zinc coatings (galvanized)
+  evidence:
+  - quote: volatilize and produce toxic fume during heating. Zinc coatings (galvanized) will also fume when heated.
+      Learn to recognize these coatings. It is recommended
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Zinc coatings'', ''galvanized'', ''Zinc
+    coatings (galvanized)''); the alloy/flux catalogue that named this material lived under the removed /EN/Products
+    tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0049
+  name: hydrochloric acid
+  status: retired
+  acceptable_forms:
+  - hydrochloric acid
+  evidence:
+  - quote: flux has to be removed by a mild acid solution. A 25% hydrochloric acid bath (heated to 140-160°F/60-70°C)
+      will usually dissolve the most stubborn flux
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''hydrochloric acid''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0050
+  name: nitric acid
+  status: retired
+  acceptable_forms:
+  - nitric acid
+  - nitric dip
+  evidence:
+  - quote: you’re using. Highly oxidizing pickling solutions, such as bright dips containing nitric acid, should
+      be avoided if possible, as they attack the silver filler metal. If you
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''nitric acid'', ''nitric dip''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0051
+  name: bronze
+  status: retired
+  acceptable_forms:
+  - bronze
+  - Bronze
+  evidence:
+  - quote: Oxide removal from copper, brass, bronze, nickel silver
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''bronze'', ''Bronze''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0052
+  name: nickel silver
+  status: retired
+  acceptable_forms:
+  - nickel silver
+  evidence:
+  - quote: copper, brass, bronze, nickel silver and other copper alloys containing high percentages
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''nickel silver''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0053
+  name: sulphuric acid
+  status: retired
+  acceptable_forms:
+  - sulphuric acid
+  - sulphuric
+  evidence:
+  - quote: "10 to 25% hot sulphuric acid with 5-10% potassium dichromate added.\tPickling can be done at same time\
+      \ flux is removed."
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''sulphuric acid'', ''sulphuric''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0054
+  name: potassium dichromate
+  status: retired
+  acceptable_forms:
+  - potassium dichromate
+  evidence:
+  - quote: "10 to 25% hot sulphuric acid with 5-10% potassium dichromate added.\tPickling can be done at same time\
+      \ flux is removed."
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''potassium dichromate''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0055
+  name: carbon steel
+  status: retired
+  acceptable_forms:
+  - carbon steels
+  - carbon steel
+  evidence:
+  - quote: Pickling can be done at same time flux is removed. Will work on carbon steels, but if pickle is contaminated
+      with copper, the copper will plate out on the steel and will
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''carbon steels'', ''carbon steel'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0056
+  name: iron
+  status: retired
+  acceptable_forms:
+  - irons
+  - iron
+  evidence:
+  - quote: Oxide removal from irons and steels.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''irons'', ''iron''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0058
+  name: chromium
+  status: retired
+  acceptable_forms:
+  - chromium
+  - Chromium
+  evidence:
+  - quote: Oxide removal from stainless steels and alloys containing chromium.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''chromium'', ''Chromium''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0059
+  name: phosphorus
+  status: retired
+  acceptable_forms:
+  - phosphorous
+  - phosphorus
+  - phos-copper
+  evidence:
+  - quote: was patented in 1931. Sil-Fos alloys combine silver (Ag), copper (Cu), and phosphorous (P) to produce
+      consistent, quality joints while saving
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''phosphorous'', ''phosphorus'', ''phos-copper'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0060
+  name: electroplated finish
+  status: retired
+  acceptable_forms:
+  - electroplated finish
+  - plated or tinned
+  evidence:
+  - quote: further finishing operations are seldom needed. The assembly is ready for use, or for the application
+      of an electroplated finish. In the few instances where you need an ultra-clean
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''electroplated finish'', ''plated or
+    tinned''); the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form
+    occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0061
+  name: helium
+  status: retired
+  acceptable_forms:
+  - helium
+  evidence:
+  - quote: refrigeration equipment and detection of minute leaks, employing a mass spectrometer and a helium atmosphere.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''helium''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0062
+  name: emery cloth
+  status: retired
+  acceptable_forms:
+  - emery cloth
+  - fine emery cloth
+  evidence:
+  - quote: instances where you need an ultra-clean finish, you can get it by polishing the assembly with a fine
+      emery cloth. If the assemblies are going to be stored for
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''emery cloth'', ''fine emery cloth'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0063
+  name: binder
+  status: retired
+  acceptable_forms:
+  - binders
+  - binder
+  - flux binders
+  - flux-free binders
+  evidence:
+  - quote: Paste products are a custom blend of braze filler metal and specially formulated binders,
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''binders'', ''binder'', ''flux binders'',
+    ''flux-free binders''); the alloy/flux catalogue that named this material lived under the removed /EN/Products
+    tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0064
+  name: Active Filler Metals
+  status: retired
+  acceptable_forms:
+  - Active Filler Metals
+  evidence:
+  - quote: Active Filler Metals(4)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Active Filler Metals''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0065
+  name: Aluminum Filler Metals
+  status: retired
+  acceptable_forms:
+  - Aluminum Filler Metals
+  evidence:
+  - quote: Aluminum Filler Metals(1)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Aluminum Filler Metals''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0066
+  name: Cadmium-Bearing Silver Filler Metals
+  status: retired
+  acceptable_forms:
+  - Cadmium-Bearing Silver Filler Metals
+  evidence:
+  - quote: Cadmium-Bearing Silver Filler Metals(1)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Cadmium-Bearing Silver Filler Metals'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0067
+  name: Copper Filler Metals
+  status: retired
+  acceptable_forms:
+  - Copper Filler Metals
+  evidence:
+  - quote: Copper Filler Metals(3)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Copper Filler Metals''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0068
+  name: Copper-Phosphorous Filler Metals
+  status: retired
+  acceptable_forms:
+  - Copper-Phosphorous Filler Metals
+  evidence:
+  - quote: Copper-Phosphorous Filler Metals(2)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Copper-Phosphorous Filler Metals'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0069
+  name: Gold and/or Palladium Filler Metals
+  status: retired
+  acceptable_forms:
+  - Gold and/or Palladium Filler Metals
+  evidence:
+  - quote: Gold and/or Palladium Filler Metals(4)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Gold and/or Palladium Filler Metals'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0070
+  name: Nickel Filler Metals
+  status: retired
+  acceptable_forms:
+  - Nickel Filler Metals
+  evidence:
+  - quote: Nickel Filler Metals(3)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Nickel Filler Metals''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0071
+  name: Silver Filler Metals
+  status: retired
+  acceptable_forms:
+  - Silver Filler Metals
+  evidence:
+  - quote: Silver Filler Metals(4)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silver Filler Metals''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0072
+  name: Silver-Copper-Phosphorous Filler Metals
+  status: retired
+  acceptable_forms:
+  - Silver-Copper-Phosphorous Filler Metals
+  evidence:
+  - quote: Silver-Copper-Phosphorous Filler Metals(2)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silver-Copper-Phosphorous Filler Metals'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0073
+  name: Soldering Filler Metals
+  status: retired
+  acceptable_forms:
+  - Soldering Filler Metals
+  evidence:
+  - quote: Soldering Filler Metals(1)
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Soldering Filler Metals''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0074
+  name: carbide
+  status: retired
+  acceptable_forms:
+  - carbide
+  - Carbide
+  evidence:
+  - quote: that is sized specifically for your assemblies. Our carbide and diamond dies produce wire diameters from
+      .187” to .005” (4.75mm to .127mm). The ability to draw wire
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''carbide'', ''Carbide''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0076
+  name: tungsten carbide
+  status: retired
+  acceptable_forms:
+  - tungsten carbide
+  evidence:
+  - quote: 'steel and copper: Highlighted solutions include Silvacut® and Silvaloy® silver-braze alloys for bonding
+      tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper and copper-to-brass'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''tungsten carbide''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0077
+  name: Silvacut
+  status: retired
+  acceptable_forms:
+  - Silvacut
+  - Silvacut®
+  - SilvaCut
+  evidence:
+  - quote: 'steel and copper: Highlighted solutions include Silvacut® and Silvaloy® silver-braze alloys for bonding
+      tungsten carbide to alloy steels, plus Sil-Fos® for copper-to-copper'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silvacut'', ''Silvacut®'', ''SilvaCut'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0078
+  name: alloy steel
+  status: retired
+  acceptable_forms:
+  - alloy steels
+  - alloy steel
+  evidence:
+  - quote: Highlighted solutions include Silvacut® and Silvaloy® silver-braze alloys for bonding tungsten carbide
+      to alloy steels, plus Sil-Fos® for copper-to-copper and copper-to-brass
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''alloy steels'', ''alloy steel''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0079
+  name: Handy Paste
+  status: retired
+  acceptable_forms:
+  - Handy Paste
+  - Handy Paste™
+  evidence:
+  - quote: copper-to-copper and copper-to-brass assemblies and Handy Flux™/Handy Paste™ options for clean, repeatable
+      results.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Handy Paste'', ''Handy Paste™''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0080
+  name: rock / shale / hard-metal ores
+  status: retired
+  acceptable_forms:
+  - Rock, shale, and hard-metal ores
+  - shale
+  - hard-metal ores
+  evidence:
+  - quote: Rock, shale, and hard-metal ores destroy ordinary joints in minutes.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Rock, shale, and hard-metal ores'',
+    ''shale'', ''hard-metal ores''); the alloy/flux catalogue that named this material lived under the removed /EN/Products
+    tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0081
+  name: 12-009 Commercial Grade Fine Silver
+  status: retired
+  acceptable_forms:
+  - 12-009 Commercial Grade Fine Silver
+  - Commercial Grade Fine Silver
+  evidence:
+  - quote: 12-009 Commercial Grade Fine Silver TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''12-009 Commercial Grade Fine Silver'',
+    ''Commercial Grade Fine Silver''); the alloy/flux catalogue that named this material lived under the removed
+    /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0082
+  name: magnesium
+  status: retired
+  acceptable_forms:
+  - Magnesium
+  - magnesium
+  evidence:
+  - quote: 280 Magnesium TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Magnesium'', ''magnesium''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0083
+  name: 280 Magnesium
+  status: retired
+  acceptable_forms:
+  - 280 Magnesium
+  evidence:
+  - quote: 280 Magnesium TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''280 Magnesium''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0084
+  name: 35AU/62CU/3NI VTG
+  status: retired
+  acceptable_forms:
+  - 35AU/62CU/3NI VTG
+  - 35AU/62CU/3NI
+  evidence:
+  - quote: 35AU/62CU/3NI VTG SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''35AU/62CU/3NI VTG'', ''35AU/62CU/3NI'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0085
+  name: 35AU/65CU VTG
+  status: retired
+  acceptable_forms:
+  - 35AU/65CU VTG
+  - 35AU/65CU
+  evidence:
+  - quote: 35AU/65CU VTG SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''35AU/65CU VTG'', ''35AU/65CU''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0086
+  name: 40/60 Tin-Lead Soft Solder
+  status: retired
+  acceptable_forms:
+  - 40/60 Tin-Lead Soft Solder
+  evidence:
+  - quote: 40/60 Tin-Lead Soft Solder SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''40/60 Tin-Lead Soft Solder''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0087
+  name: 40AG/60CU
+  status: retired
+  acceptable_forms:
+  - 40AG/60CU
+  evidence:
+  - quote: 40AG/60CU SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''40AG/60CU''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0088
+  name: Stop-Off
+  status: retired
+  acceptable_forms:
+  - Stop-Off
+  - 460 Stop-Off
+  - 470 Stop-Off
+  evidence:
+  - quote: 460 Stop-Off TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Stop-Off'', ''460 Stop-Off'', ''470
+    Stop-Off''); the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no
+    form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0089
+  name: 50/50 solder
+  status: retired
+  acceptable_forms:
+  - 50/50
+  evidence:
+  - quote: 50/50 SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''50/50''); the alloy/flux catalogue that
+    named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0090
+  name: 502 SSK Copper Paste
+  status: retired
+  acceptable_forms:
+  - 502 SSK Copper Paste
+  evidence:
+  - quote: 502 SSK Copper Paste TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''502 SSK Copper Paste''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0091
+  name: 60/40 Tin-Lead Soft Solder
+  status: retired
+  acceptable_forms:
+  - 60/40 Tin-Lead Soft Solder
+  evidence:
+  - quote: 60/40 Tin-Lead Soft Solder SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''60/40 Tin-Lead Soft Solder''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0092
+  name: 60-112 (99.4 Min Copper)
+  status: retired
+  acceptable_forms:
+  - 60-112 (99.4 Min Copper)
+  - 99.4 Min Copper
+  evidence:
+  - quote: 60-112 (99.4 Min Copper) SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''60-112 (99.4 Min Copper)'', ''99.4 Min
+    Copper''); the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form
+    occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0093
+  name: 60AU/20CU/20AG VTG
+  status: retired
+  acceptable_forms:
+  - 60AU/20CU/20AG VTG
+  - 60AU/20CU/20AG
+  evidence:
+  - quote: 60AU/20CU/20AG VTG SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''60AU/20CU/20AG VTG'', ''60AU/20CU/20AG'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0094
+  name: tin
+  status: retired
+  acceptable_forms:
+  - tin
+  - Tin
+  evidence:
+  - quote: Gold 80.00, Tin 20.00
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''tin'', ''Tin''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0095
+  name: 62/36/2 Silver-Tin-Lead Soft Solder
+  status: retired
+  acceptable_forms:
+  - 62/36/2 Silver-Tin-Lead Soft Solder
+  - Silver-Tin-Lead Soft Solder
+  evidence:
+  - quote: 62/36/2 Silver-Tin-Lead Soft Solder TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''62/36/2 Silver-Tin-Lead Soft Solder'',
+    ''Silver-Tin-Lead Soft Solder''); the alloy/flux catalogue that named this material lived under the removed
+    /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0096
+  name: 63/37 Tin-Lead Soft Solder
+  status: retired
+  acceptable_forms:
+  - 63/37 Tin-Lead Soft Solder
+  evidence:
+  - quote: 63/37 Tin-Lead Soft Solder SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''63/37 Tin-Lead Soft Solder''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0097
+  name: 69-285 VTG
+  status: retired
+  acceptable_forms:
+  - 69-285 VTG
+  - 69-285
+  evidence:
+  - quote: 69-285 VTG TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''69-285 VTG'', ''69-285''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0098
+  name: 75AU/20CU/5AG VTG
+  status: retired
+  acceptable_forms:
+  - 75AU/20CU/5AG VTG
+  - 75AU/20CU/5AG
+  evidence:
+  - quote: 75AU/20CU/5AG VTG SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''75AU/20CU/5AG VTG'', ''75AU/20CU/5AG'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0099
+  name: 78ZN/22AL
+  status: retired
+  acceptable_forms:
+  - 78ZN/22AL
+  evidence:
+  - quote: 78ZN/22AL SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''78ZN/22AL''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0100
+  name: 81.5AU/16.5CU/2NI VTG
+  status: retired
+  acceptable_forms:
+  - 81.5AU/16.5CU/2NI VTG
+  - 81.5AU/16.5CU/2NI
+  evidence:
+  - quote: 81.5AU/16.5CU/2NI VTG SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''81.5AU/16.5CU/2NI VTG'', ''81.5AU/16.5CU/2NI'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0101
+  name: 88AL/12SI
+  status: retired
+  acceptable_forms:
+  - 88AL/12SI
+  evidence:
+  - quote: 88AL/12SI TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''88AL/12SI''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0102
+  name: 97.5PB/1.5AG/1SN
+  status: retired
+  acceptable_forms:
+  - 97.5PB/1.5AG/1SN
+  evidence:
+  - quote: 97.5PB/1.5AG/1SN SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''97.5PB/1.5AG/1SN''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0103
+  name: 97.5PB/2.5AG
+  status: retired
+  acceptable_forms:
+  - 97.5PB/2.5AG
+  evidence:
+  - quote: 97.5PB/2.5AG SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''97.5PB/2.5AG''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0104
+  name: diamond
+  status: retired
+  acceptable_forms:
+  - diamond
+  evidence:
+  - quote: well as non-metals such as tungsten carbide, alumina, graphite and diamond.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''diamond''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0106
+  name: alumina
+  status: retired
+  acceptable_forms:
+  - alumina
+  evidence:
+  - quote: including copper and steel as well as non-metals such as tungsten carbide, alumina, graphite and diamond.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''alumina''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0107
+  name: graphite
+  status: retired
+  acceptable_forms:
+  - graphite
+  evidence:
+  - quote: copper and steel as well as non-metals such as tungsten carbide, alumina, graphite and diamond.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''graphite''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0108
+  name: corrosive flux
+  status: retired
+  acceptable_forms:
+  - corrosive flux
+  - Non corrosive flux
+  - AL CC
+  evidence:
+  - quote: Non corrosive flux does not require removal after brazing.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''corrosive flux'', ''Non corrosive flux'',
+    ''AL CC''); the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no
+    form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0109
+  name: silicon
+  status: retired
+  acceptable_forms:
+  - silicon
+  - Silicon
+  - Al-Si
+  evidence:
+  - quote: Aluminum 88.00, Silicon 12.00
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''silicon'', ''Silicon'', ''Al-Si'');
+    the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0110
+  name: AL 718
+  status: retired
+  acceptable_forms:
+  - AL 718
+  - AL718
+  evidence:
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''AL 718'', ''AL718''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0111
+  name: nickel-based high-temperature brazing alloy
+  status: retired
+  acceptable_forms:
+  - nickel-based / high-temperature brazing alloys
+  - nickel-based
+  - high-temperature brazing alloys
+  evidence:
+  - quote: oxidation and attack at elevated temperatures. Many diesel builders specify nickel-based / high-temperature
+      brazing alloys for these assemblies because they maintain joint
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''nickel-based / high-temperature brazing
+    alloys'', ''nickel-based'', ''high-temperature brazing alloys''); the alloy/flux catalogue that named this material
+    lived under the removed /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0112
+  name: aluminum-silicon brazing alloy
+  status: retired
+  acceptable_forms:
+  - aluminum-silicon brazing alloy
+  - eutectic aluminum-silicon brazing alloy
+  - aluminum-silicon
+  evidence:
+  - quote: AL 718 is a eutectic aluminum-silicon brazing alloy meant for joining of aluminum base materials.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''aluminum-silicon brazing alloy'', ''eutectic
+    aluminum-silicon brazing alloy'', ''aluminum-silicon''); the alloy/flux catalogue that named this material lived
+    under the removed /EN/Products tree; no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0113
+  name: Handy One
+  status: retired
+  acceptable_forms:
+  - Handy One
+  - Handy One®
+  - HANDY ONE
+  evidence:
+  - quote: HANDY ONE AL CORROSIVE CORED
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Handy One'', ''Handy One®'', ''HANDY
+    ONE''); the alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form
+    occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0114
+  name: Aluminum 22.00, Zinc 78.00
+  status: retired
+  acceptable_forms:
+  - Aluminum 22.00, Zinc 78.00
+  evidence:
+  - quote: Aluminum 22.00, Zinc 78.00
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Aluminum 22.00, Zinc 78.00''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0115
+  name: Silver 72.00, Copper 28.00
+  status: retired
+  acceptable_forms:
+  - Silver 72.00, Copper 28.00
+  evidence:
+  - quote: Silver 72.00, Copper 28.00
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silver 72.00, Copper 28.00''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0116
+  name: Gold 88.00, Germanium 12.00
+  status: retired
+  acceptable_forms:
+  - Gold 88.00, Germanium 12.00
+  evidence:
+  - quote: Gold 88.00, Germanium 12.00
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Gold 88.00, Germanium 12.00''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0117
+  name: Gold 80.00, Tin 20.00
+  status: retired
+  acceptable_forms:
+  - Gold 80.00, Tin 20.00
+  evidence:
+  - quote: Gold 80.00, Tin 20.00
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Gold 80.00, Tin 20.00''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0118
+  name: exothermic atmosphere
+  status: retired
+  acceptable_forms:
+  - exothermic
+  evidence:
+  - quote: copper, nickel, and bronze. These binders are best suited for high temperature furnace brazing application
+      in exothermic, dissociated ammonia, or vacuum atmosphere. Contact
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''exothermic''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0119
+  name: Aluminum 88.00, Silicon 12.00
+  status: retired
+  acceptable_forms:
+  - Aluminum 88.00, Silicon 12.00
+  evidence:
+  - quote: Aluminum 88.00, Silicon 12.00
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Aluminum 88.00, Silicon 12.00''); the
+    alloy/flux catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere
+    in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0120
+  name: 69-054
+  status: retired
+  acceptable_forms:
+  - 69-054
+  evidence:
+  - quote: 69-054 TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''69-054''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0121
+  name: 77-525
+  status: retired
+  acceptable_forms:
+  - 77-525
+  evidence:
+  - quote: 77-525 TDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''77-525''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0122
+  name: Silvaloy 720
+  status: retired
+  acceptable_forms:
+  - Silvaloy 720
+  evidence:
+  - quote: Silvaloy 720 SDS
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Silvaloy 720''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0123
+  name: AWS BCuP-5
+  status: retired
+  acceptable_forms:
+  - BCuP-5
+  evidence:
+  - quote: or a self-fluxing filler metal such as the Lucas Milhaupt Sil-Fos alloys (BCuP-5) in copper-based assemblies
+      must be used.  
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''BCuP-5''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0124
+  name: AWS BAlSi-4
+  status: retired
+  acceptable_forms:
+  - BAlSi-4
+  - 'AWS: BAlSi-4'
+  evidence:
+  - quote: 'AWS: BAlSi-4'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''BAlSi-4'', ''AWS: BAlSi-4''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0125
+  name: AWS BVAg-8 Grade 1
+  status: retired
+  acceptable_forms:
+  - BVAg-8 Grade 1
+  - BVAg-8
+  evidence:
+  - quote: 'AWS: BVAg-8 Grade 1'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''BVAg-8 Grade 1'', ''BVAg-8''); the alloy/flux
+    catalogue that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the
+    readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0126
+  name: ISO 17672 Ag 272
+  status: retired
+  acceptable_forms:
+  - Ag 272
+  evidence:
+  - quote: 'ISO 17672: Ag 272'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Ag 272''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0127
+  name: ISO 17672 Al 112
+  status: retired
+  acceptable_forms:
+  - Al 112
+  evidence:
+  - quote: 'ISO 17672: Al 112'
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''Al 112''); the alloy/flux catalogue
+    that named this material lived under the removed /EN/Products tree; no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-material_caps-0129
+  name: alloy
+  status: candidate
+  acceptable_forms:
+  - alloys
+  evidence:
+  - quote: With more than 500 custom alloys, and decades of materials science expertise
+    approx_offset: 1515
+  provenance:
+  - action: added
+    by: seed-agent-lucasmilhaupt-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Sterling
+  reason: 'witnessed: occurs only in a distributor street address (''100 Sterling Pkwy''), never as sterling silver'
+- form: Steel Partners
+  reason: 'witnessed 7x: the parent holding company''s name -- ''Steel'' in it is not the metal'
+- form: Steel Sports
+  reason: 'witnessed: the parent''s youth-sports charity'
+- form: The Strength of Steel
+  reason: 'witnessed: a heading on /About/History announcing the Steel Partners acquisition; no metal is meant'
+- form: Titanium
+  reason: 'anticipatory: does not occur anywhere; heavy word-association from aerospace brazing'
+- form: Hastelloy
+  reason: 'anticipatory: does not occur; word-association from Monel and Inconel'
+- form: Kovar
+  reason: 'anticipatory: does not occur; word-association from hermetic ceramic-to-metal sealing'
+- form: '6061'
+  reason: 'anticipatory: no numeric aluminium grades occur -- the aluminium designations here are AL 718 / AL 822
+    / 88AL/12SI, which are filler-metal names, not wrought grades'
+- form: 304 Stainless
+  reason: 'anticipatory: does not occur; the only stainless designation is ''300-series, non-magnetic stainless
+    steel'''
+- form: Lead
+  reason: the bare token occurs ~24x and is 'lead time' or 'leading' in all but three places; the real lead senses
+    are 'lead-free', 'Tin-Lead Soft Solder' and '97.5PB'
+- form: Cone Cored
+  reason: a preform GEOMETRY brand (a flux-cored washer shape), not a substance -- belongs in products; listed here
+    because its sibling brands are genuine materials

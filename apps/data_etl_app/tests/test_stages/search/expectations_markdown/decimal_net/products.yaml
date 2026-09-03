@@ -1,0 +1,2083 @@
+subject: decimal.net
+field: products
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/decimal.net.txt
+  sha256: ba4fce9db47e08d89fb6bfa97546a93fa70d2544931101547fbd57aecf982d99
+eval_set_version: 3
+expected_empty: false
+notes: 'NOT empty, but there is no own-brand catalogue: every named artifact is a customer part. 85 entries, almost
+  all actor: client - 5 case-study parts (Loram''s locomotive power locker, a Mexican maker''s hot water heater,
+  a spray shower tester, military servo bodies, Tiffany & Co. cross pendants) plus ~70 photo-album captions across
+  the CNC/sheet-metal/wire-EDM/stamping/assembly albums. The owned machines announced in the acquisition blog are
+  the false_friends here.'
+entries:
+- id: decimal_net-products-0006
+  name: value added assemblies
+  status: confirmed
+  acceptable_forms:
+  - value added assemblies
+  - custom assemblies
+  - complex custom assemblies
+  evidence:
+  - quote: materials as well as thicker materials. In addition, we manufacture value added assemblies, taking your
+      stamped part and then adding pems, rivets, hardware
+    approx_offset: 2592
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0007
+  name: stamped parts
+  status: confirmed
+  acceptable_forms:
+  - stamped part
+  - stamped parts
+  - STAMPED PARTS
+  - Stamped Parts
+  evidence:
+  - quote: value added assemblies, taking your stamped part and then adding pems, rivets, hardware and even spotwelding/welding
+      when needed. While most stampers don’t
+    approx_offset: 2660
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: the file has 'SEE STAMPED PARTS >>' and 'nonconforming stamped parts'; the seeded 'Stamped Parts' occurs
+      nowhere and the plain plural 'stamped parts' is missing, so a search output of 'stamped parts' could not credit
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0008
+  name: pems, rivets and hardware
+  status: disputed
+  acceptable_forms:
+  - pems, rivets, hardware
+  - rivets
+  - pems
+  evidence:
+  - quote: value added assemblies, taking your stamped part and then adding pems, rivets, hardware and even spotwelding/welding
+      when needed. While most stampers don’t
+    approx_offset: 2660
+  notes: pems, rivets and hardware go INTO the assembly rather than coming out of the work - 'taking your stamped
+    part and then adding pems, rivets, hardware' - and the clause makes 'coming out of the work' the qualifying
+    test; they are bought-in fasteners, so membership is genuinely arguable
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: pems, rivets and hardware go INTO the assembly rather than coming out of the work - 'taking your stamped
+      part and then adding pems, rivets, hardware' - and the clause makes 'coming out of the work' the qualifying
+      test; they are bought-in fasteners, so membership is genuinely arguable
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0009
+  name: progressive die and stage tooling
+  status: disputed
+  acceptable_forms:
+  - progressive die and stage tooling
+  - progressive die
+  evidence:
+  - quote: manufacturer, we can also design and fabricate all of the required tooling and fixturing in-house; this
+      includes progressive die and stage tooling. This ability
+    approx_offset: 3055
+  notes: tooling they DESIGN AND FABRICATE in-house, so it is an artifact coming out of their work | a progressive
+    die is tooling, which the products clause names in its exclusion list ('the machinery, tooling, and facilities
+    the work is done with'); the counter-argument is that Decimal fabricates it in-house so it does come out of
+    their work - genuinely arguable either way
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: a progressive die is tooling, which the products clause names in its exclusion list ('the machinery,
+      tooling, and facilities the work is done with'); the counter-argument is that Decimal fabricates it in-house
+      so it does come out of their work - genuinely arguable either way
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0013
+  name: pendants, rings and bracelets
+  status: confirmed
+  acceptable_forms:
+  - pendants, rings, and bracelets
+  - rings
+  - bracelets
+  evidence:
+  - quote: A local area vendor of pendants, rings, and bracelets, required the manufacture of titanium and silver
+      cross pendants with an overall
+    approx_offset: 9132
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0012
+  name: cross pendants
+  status: candidate
+  acceptable_forms:
+  - Cross Pendants
+  - cross pendants
+  - Cross pendant jewelry
+  evidence:
+  - quote: '**Project Description:** Cross pendant jewelry for Tiffany & Co.'
+    approx_offset: 10499
+  actor: client
+  notes: reanchored to the cross-pendants project-highlights table; still names Tiffany & Co. as the customer
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0005
+  name: servo body
+  status: candidate
+  acceptable_forms:
+  - Servo Body
+  - Servo body
+  - SERVO BODY
+  - servo body
+  - servo bodies
+  evidence:
+  - quote: '**Project Description:** Servo body used in a Military application.'
+    approx_offset: 12829
+  actor: client
+  notes: reanchored to the servo-body project-highlights table
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0049
+  name: in-die tapped brass terminal
+  status: confirmed
+  acceptable_forms:
+  - Stamped In-Die Tapped Brass Terminal
+  - Brass Terminal
+  evidence:
+  - quote: Stamped In-Die Tapped Brass Terminal
+    approx_offset: 19914
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0003
+  name: hot water heater (stamped parts)
+  status: confirmed
+  acceptable_forms:
+  - Hot Water Heater
+  - hot water heaters
+  - home hot water heaters
+  evidence:
+  - quote: A Mexican manufacturer of home hot water heaters lacked the ability to perform multiple operations on
+      single pieces during production
+    approx_offset: 20196
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0081
+  name: wire EDM parts
+  status: candidate
+  acceptable_forms:
+  - WIRE EDM PARTS
+  - wire EDM parts
+  - Wire EDM Parts
+  - wire edm Parts
+  evidence:
+  - quote: See wire edm Parts »
+    approx_offset: 24215
+  notes: 'the old ''SEE WIRE EDM PARTS »'' link now renders as ''See wire edm Parts »'' (mixed case, lowercase ''edm'');
+    added the actual surface form to acceptable_forms. Same body-CTA-link pattern as sheet metal parts (0004), stamped
+    parts and machined parts -- not a Navigation: line.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0011
+  name: power conversion locker
+  status: candidate
+  acceptable_forms:
+  - Power Conversion Locker
+  - POWER CONVERSION LOCKER
+  - Power distribution locker
+  - power distribution locker
+  - locomotive power distribution locker
+  evidence:
+  - quote: '**Project Description:** Power distribution locker used in locomotive application for Loram.'
+    approx_offset: 38563
+  actor: client
+  notes: reanchored to the power-conversion-locker project-highlights table; still names Loram as the customer
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0001
+  name: metal products
+  status: confirmed
+  acceptable_forms:
+  - METAL PRODUCTS
+  - metal products
+  - metal parts
+  evidence:
+  - quote: Decimal Engineering, Inc. has been making metal products better since 1967.
+    approx_offset: 40420
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0004
+  name: sheet metal parts
+  status: candidate
+  acceptable_forms:
+  - SHEET METAL PARTS
+  - Sheet Metal Parts
+  - sheet metal parts
+  evidence:
+  - quote: This is not a firm rule, as other factors can play a role, such as the size and assembly of the sheet
+      metal parts required.
+    approx_offset: 43786
+  notes: the old 'SEE SHEET METAL PARTS »' call-to-action link is gone; reanchored to a body sentence on the homepage
+    lead-times paragraph that uses the lowercase form
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0002
+  name: machined parts / components
+  status: confirmed
+  acceptable_forms:
+  - machined parts
+  - machined components
+  - precision-machined parts
+  - premium quality machined components
+  evidence:
+  - quote: processes, we are able to provide customers with premium quality machined components while remaining
+      very price competitive.
+    approx_offset: 63728
+  - quote: advanced equipment and software available. With ever-increasing complexity and precision requirements
+      for machined parts, set-ups and specialized tooling can
+    approx_offset: 63138
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0060
+  name: booking station cabinet
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Booking Station Cabinet Security
+  - Booking Station Cabinet
+  evidence:
+  - quote: Aluminum Booking Station Cabinet Security
+    approx_offset: 69104
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0010
+  name: spray shower tester
+  status: candidate
+  acceptable_forms:
+  - Spray Shower Tester
+  - Spray shower tester
+  - SPRAY SHOWER TESTER
+  - spray shower tester
+  evidence:
+  - quote: '**Project Description:** Spray shower tester for a scientific environmental testing device.'
+    approx_offset: 76472
+  actor: client
+  notes: reanchored to the spray-shower-tester project-highlights table
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0025
+  name: rack mount electronics chassis
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Rack Mount Electronics Chassis Military
+  - Rack Mount Electronics Chassis
+  evidence:
+  - quote: Aluminum Rack Mount Electronics Chassis Military
+    approx_offset: 79041
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0026
+  name: marine display housing
+  status: confirmed
+  acceptable_forms:
+  - CARC Painted Aluminum Marine Display Military
+  - Aluminum Marine Display
+  evidence:
+  - quote: CARC Painted Aluminum Marine Display Military
+    approx_offset: 79145
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0027
+  name: mil-spec welded raw aluminum assembly
+  status: confirmed
+  acceptable_forms:
+  - Mil-Spec Welded Raw Aluminum Assembly Military
+  - Raw Aluminum Assembly
+  evidence:
+  - quote: Mil-Spec Welded Raw Aluminum Assembly Military
+    approx_offset: 79243
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0028
+  name: NEMA box
+  status: confirmed
+  acceptable_forms:
+  - Painted Nema Box
+  - Nema Box
+  evidence:
+  - quote: Painted Nema Box
+    approx_offset: 79343
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0029
+  name: silkscreened bracket
+  status: confirmed
+  acceptable_forms:
+  - Painted Silkscreened Bracket Electronics
+  - Silkscreened Bracket
+  evidence:
+  - quote: Painted Silkscreened Bracket Electronics
+    approx_offset: 79383
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0030
+  name: steel back panel
+  status: confirmed
+  acceptable_forms:
+  - Painted Steel Back Panel Electronics
+  - Steel Back Panel
+  evidence:
+  - quote: Painted Steel Back Panel Electronics
+    approx_offset: 79471
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0031
+  name: steel cabinet
+  status: confirmed
+  acceptable_forms:
+  - Painted Steel Cabinet Telecommunications
+  - Steel Cabinet
+  evidence:
+  - quote: Painted Steel Cabinet Telecommunications
+    approx_offset: 79551
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0032
+  name: key storage drawer
+  status: confirmed
+  acceptable_forms:
+  - Powdercaoted Steel Key Storage Drawer Security
+  - Key Storage Drawer
+  evidence:
+  - quote: Powdercaoted Steel Key Storage Drawer Security
+    approx_offset: 79639
+  actor: client
+  notes: '''Powdercaoted'' is the site''s own typo'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0033
+  name: pump housing
+  status: confirmed
+  acceptable_forms:
+  - Powdercoated Aluminum Pump Housing Environmental
+  - Aluminum Pump Housing
+  evidence:
+  - quote: Powdercoated Aluminum Pump Housing Environmental
+    approx_offset: 79739
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0034
+  name: riveted formed aluminum assembly
+  status: confirmed
+  acceptable_forms:
+  - Riveted Formed Aluminum Assembly Aerospace
+  - Formed Aluminum Assembly
+  evidence:
+  - quote: Riveted Formed Aluminum Assembly Aerospace
+    approx_offset: 79843
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0035
+  name: tubular aluminum rack assembly
+  status: confirmed
+  acceptable_forms:
+  - Welded Painted Tubular Aluminum Rack Assembly Defense
+  - Tubular Aluminum Rack Assembly
+  evidence:
+  - quote: Welded Painted Tubular Aluminum Rack Assembly Defense
+    approx_offset: 79935
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0036
+  name: zinc plated steel bracket
+  status: confirmed
+  acceptable_forms:
+  - Zinc Plated Steel Bracket Electronics
+  - Steel Bracket
+  evidence:
+  - quote: Zinc Plated Steel Bracket Electronics
+    approx_offset: 80049
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0037
+  name: steel chassis with card guides
+  status: confirmed
+  acceptable_forms:
+  - Zinc Plated Steel Chassis with Card Guides
+  - Steel Chassis with Card Guides
+  evidence:
+  - quote: Zinc Plated Steel Chassis with Card Guides
+    approx_offset: 80131
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0038
+  name: A2 tool steel wire EDM block
+  status: confirmed
+  acceptable_forms:
+  - A2 Tool Steel Wire EDM Block
+  - Wire EDM Block
+  evidence:
+  - quote: A2 Tool Steel Wire EDM Block
+    approx_offset: 80390
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0039
+  name: wire EDM fixture
+  status: disputed
+  acceptable_forms:
+  - Wire EDM Fixture
+  evidence:
+  - quote: Wire EDM Fixture
+    approx_offset: 80454
+  actor: client
+  notes: a fixture is tooling and is EXCLUDED from equipments, but here it is an artifact Decimal produced, which
+    is what products asks for | 'Wire EDM Fixture' is the one album line with no industry tag, so unlike the customer
+    parts around it, it reads as Decimal's own workholding fixture - and a fixture is named in the products clause's
+    exclusion list. It is arguable the other way (it sits in a gallery of parts they machined), which is why this
+    is a dispute not a retire
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: '''Wire EDM Fixture'' is the one album line with no industry tag, so unlike the customer parts around
+      it, it reads as Decimal''s own workholding fixture - and a fixture is named in the products clause''s exclusion
+      list. It is arguable the other way (it sits in a gallery of parts they machined), which is why this is a dispute
+      not a retire'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0040
+  name: copper center conductor
+  status: confirmed
+  acceptable_forms:
+  - Thick Wire EDM Copper Center Conductor
+  - Copper Center Conductor
+  evidence:
+  - quote: Thick Wire EDM Copper Center Conductor
+    approx_offset: 80494
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0041
+  name: caster leveler foot
+  status: confirmed
+  acceptable_forms:
+  - Clear Zinc Plated Stamped Caster Leveler Foot
+  - Caster Leveler Foot
+  evidence:
+  - quote: Clear Zinc Plated Stamped Caster Leveler Foot
+    approx_offset: 92638
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0042
+  name: stamped brass clip
+  status: confirmed
+  acceptable_forms:
+  - Gold Plated Stamped Brass Clip
+  - Stamped Brass Clip
+  - Brass Clip
+  evidence:
+  - quote: Gold Plated Stamped Brass Clip
+    approx_offset: 92736
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0043
+  name: perforated steel grill
+  status: confirmed
+  acceptable_forms:
+  - Perforated Steel Grill Audio
+  - Steel Grill
+  evidence:
+  - quote: Perforated Steel Grill Audio
+    approx_offset: 92804
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0044
+  name: aluminum stamped bracket
+  status: confirmed
+  acceptable_forms:
+  - Round Edge Aluminum Stamped Bracket
+  - Aluminum Stamped Bracket
+  evidence:
+  - quote: Round Edge Aluminum Stamped Bracket
+    approx_offset: 92868
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0045
+  name: reel to reel stamped terminals
+  status: confirmed
+  acceptable_forms:
+  - Silver Plated Reel to Reel Stamped Terminals
+  - Reel to Reel Stamped Terminals
+  evidence:
+  - quote: Silver Plated Reel to Reel Stamped Terminals
+    approx_offset: 92946
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0046
+  name: stamped anodized aluminum plate
+  status: confirmed
+  acceptable_forms:
+  - Stamped Anodized Aluminum Plate
+  - Anodized Aluminum Plate
+  evidence:
+  - quote: Stamped Anodized Aluminum Plate
+    approx_offset: 93042
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0047
+  name: brass clip sleeve
+  status: confirmed
+  acceptable_forms:
+  - Stamped Brass Clip Sleeve
+  - Brass Clip Sleeve
+  evidence:
+  - quote: Stamped Brass Clip Sleeve
+    approx_offset: 93112
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0048
+  name: brass ring plate
+  status: confirmed
+  acceptable_forms:
+  - Stamped Brass Ring Plate
+  - Brass Ring Plate
+  evidence:
+  - quote: Stamped Brass Ring Plate
+    approx_offset: 93170
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0050
+  name: steel arm connector
+  status: confirmed
+  acceptable_forms:
+  - Stamped Nickel Plated Steel Arm Connector
+  - Steel Arm Connector
+  evidence:
+  - quote: Stamped Nickel Plated Steel Arm Connector
+    approx_offset: 93306
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0051
+  name: stainless latch coupling
+  status: confirmed
+  acceptable_forms:
+  - Stamped Passivated Stainless Latch Coupling Marine
+  - Stainless Latch Coupling
+  evidence:
+  - quote: Stamped Passivated Stainless Latch Coupling Marine
+    approx_offset: 93396
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0052
+  name: reel to reel shield
+  status: confirmed
+  acceptable_forms:
+  - Stamped Reel to Reel Shield
+  - Reel to Reel Shield
+  evidence:
+  - quote: Stamped Reel to Reel Shield
+    approx_offset: 93502
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0053
+  name: stainless anchor disk
+  status: confirmed
+  acceptable_forms:
+  - Stamped Stainless Anchor Disk
+  - Anchor Disk
+  evidence:
+  - quote: Stamped Stainless Anchor Disk
+    approx_offset: 93534
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0054
+  name: stainless locker bracket
+  status: confirmed
+  acceptable_forms:
+  - Stamped Stainless Locker Bracket
+  - Locker Bracket
+  evidence:
+  - quote: Stamped Stainless Locker Bracket
+    approx_offset: 93600
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0055
+  name: steel motor bracket
+  status: confirmed
+  acceptable_forms:
+  - Stamped Steel Motor Bracket
+  - Motor Bracket
+  evidence:
+  - quote: Stamped Steel Motor Bracket
+    approx_offset: 93672
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0056
+  name: steel hold down clamp
+  status: confirmed
+  acceptable_forms:
+  - Stamping Steel Hold Down Clamp
+  - Hold Down Clamp
+  evidence:
+  - quote: Stamping Steel Hold Down Clamp
+    approx_offset: 93734
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0057
+  name: yellow zinc plated steel ring
+  status: confirmed
+  acceptable_forms:
+  - Stamping Yellow Zinc Plated Steel Ring
+  - Steel Ring
+  evidence:
+  - quote: Stamping Yellow Zinc Plated Steel Ring
+    approx_offset: 93802
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0058
+  name: steel spring clip
+  status: confirmed
+  acceptable_forms:
+  - Steel Spring Clip Military
+  - Spring Clip
+  evidence:
+  - quote: Steel Spring Clip Military
+    approx_offset: 93886
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0059
+  name: stamped cover plate
+  status: confirmed
+  acceptable_forms:
+  - Yellow Zinc Plated Stamped Cover Plate
+  - Cover Plate
+  evidence:
+  - quote: Yellow Zinc Plated Stamped Cover Plate
+    approx_offset: 93946
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0014
+  name: aluminum 6061-T6 block
+  status: confirmed
+  acceptable_forms:
+  - Aluminum 6061-T6 Block
+  evidence:
+  - quote: Aluminum 6061-T6 Block
+    approx_offset: 98805
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0015
+  name: anodized aluminum caps
+  status: confirmed
+  acceptable_forms:
+  - Anodized Aluminum Caps Defense
+  - Aluminum Caps
+  evidence:
+  - quote: Anodized Aluminum Caps Defense
+    approx_offset: 98857
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0016
+  name: LED light heatsink
+  status: confirmed
+  acceptable_forms:
+  - Anodized Aluminum LED Light Heatsink
+  - LED Light Heatsink
+  evidence:
+  - quote: Anodized Aluminum LED Light Heatsink
+    approx_offset: 98925
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0017
+  name: turned aluminum cylinder
+  status: confirmed
+  acceptable_forms:
+  - Anodized Turned Aluminum Cyllinder
+  - Aluminum Cyllinder
+  evidence:
+  - quote: Anodized Turned Aluminum Cyllinder
+    approx_offset: 99005
+  actor: client
+  notes: '''Cyllinder'' is the site''s own misspelling - copy it verbatim'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0018
+  name: turned copper spool
+  status: confirmed
+  acceptable_forms:
+  - Gold Plated Turned Copper Spool
+  - Copper Spool
+  evidence:
+  - quote: Gold Plated Turned Copper Spool
+    approx_offset: 99081
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0019
+  name: aluminum side panel
+  status: confirmed
+  acceptable_forms:
+  - Machined Iridited Aluminum Side Panel
+  - Aluminum Side Panel
+  evidence:
+  - quote: Machined Iridited Aluminum Side Panel
+    approx_offset: 99151
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0020
+  name: RF machined aluminum box
+  status: confirmed
+  acceptable_forms:
+  - RF Machined Aluminum Box
+  - Aluminum Box
+  evidence:
+  - quote: RF Machined Aluminum Box
+    approx_offset: 99233
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0021
+  name: ruggedized aluminum computer screen
+  status: confirmed
+  acceptable_forms:
+  - Ruggedized Aluminum Computer Screen
+  - Computer Screen
+  evidence:
+  - quote: Ruggedized Aluminum Computer Screen
+    approx_offset: 99289
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0022
+  name: ruggedized aluminum machine chassis
+  status: confirmed
+  acceptable_forms:
+  - Ruggedized Aluminum Machine Chassis 01
+  - Aluminum Machine Chassis
+  evidence:
+  - quote: Ruggedized Aluminum Machine Chassis 01
+    approx_offset: 99367
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0023
+  name: stainless knurled knob
+  status: confirmed
+  acceptable_forms:
+  - Stainless Knurled Knob Audio
+  - Knurled Knob
+  evidence:
+  - quote: Stainless Knurled Knob Audio
+    approx_offset: 99451
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0024
+  name: steel front panel for speaker
+  status: confirmed
+  acceptable_forms:
+  - Steel Front Panel for Speaker Audio
+  - Steel Front Panel
+  evidence:
+  - quote: Steel Front Panel for Speaker Audio
+    approx_offset: 99515
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0061
+  name: espresso machine assembly
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Espresso Machine Assembly Food
+  - Espresso Machine Assembly
+  evidence:
+  - quote: Aluminum Espresso Machine Assembly Food
+    approx_offset: 100365
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0062
+  name: eye exam chin rest
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Eye Exam Chin Rest Medical
+  - Eye Exam Chin Rest
+  evidence:
+  - quote: Aluminum Eye Exam Chin Rest Medical
+    approx_offset: 100451
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0063
+  name: fabric test fixture
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Fabric Test Fixture Textile
+  - Fabric Test Fixture
+  evidence:
+  - quote: Aluminum Fabric Test Fixture Textile
+    approx_offset: 100529
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0064
+  name: fountain pump cabinet
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Fountain Pump Cabinet
+  - Fountain Pump Cabinet
+  evidence:
+  - quote: Aluminum Fountain Pump Cabinet
+    approx_offset: 100609
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0065
+  name: aluminum front panel
+  status: confirmed
+  acceptable_forms:
+  - Aluminum Front Panel Avionics
+  - Aluminum Front Panel
+  evidence:
+  - quote: Aluminum Front Panel Avionics
+    approx_offset: 100677
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0066
+  name: news rack
+  status: confirmed
+  acceptable_forms:
+  - Aluminum News Rack Street Furniture
+  - News Rack
+  evidence:
+  - quote: Aluminum News Rack Street Furniture
+    approx_offset: 100743
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0067
+  name: airplane seating assembly
+  status: confirmed
+  acceptable_forms:
+  - Anodized Aluminum Airplane Seating Assembly Aerospace 01
+  - Airplane Seating Assembly
+  evidence:
+  - quote: Anodized Aluminum Airplane Seating Assembly Aerospace 01
+    approx_offset: 100821
+  - quote: Anodized Aluminum Airplane Seating Assembly 02
+    approx_offset: 100941
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0068
+  name: anodized aluminum assembly with buckles
+  status: confirmed
+  acceptable_forms:
+  - Anodized Aluminum Assembly with Buckles Defense
+  - Assembly with Buckles
+  evidence:
+  - quote: Anodized Aluminum Assembly with Buckles Defense
+    approx_offset: 101041
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0069
+  name: aluminum cabinet handle
+  status: confirmed
+  acceptable_forms:
+  - Anodized Aluminum Cabinet Handle
+  - Cabinet Handle
+  evidence:
+  - quote: Anodized Aluminum Cabinet Handle
+    approx_offset: 101143
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0070
+  name: copper bus bars
+  status: confirmed
+  acceptable_forms:
+  - Copper Bus Bars Energy
+  - Copper Bus Bars
+  - Bus Bars
+  evidence:
+  - quote: Copper Bus Bars Energy
+    approx_offset: 101215
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0071
+  name: telecommunications rack
+  status: confirmed
+  acceptable_forms:
+  - Rack Telecommunications
+  - Rack
+  evidence:
+  - quote: Rack Telecommunications
+    approx_offset: 101267
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: the album line names the artifact 'Rack' with 'Telecommunications' as the trailing industry tag (the
+      same convention as every other line in that album); the single seeded compound form is a scrape artifact that
+      a search would never emit, so bare 'Rack' is added
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0072
+  name: chicken breast flattening machine
+  status: confirmed
+  acceptable_forms:
+  - Stainless Chicken Breast Flattening Machine
+  - Chicken Breast Flattening Machine
+  evidence:
+  - quote: Stainless Chicken Breast Flattening Machine
+    approx_offset: 101321
+  actor: client
+  notes: a machine Decimal BUILT for a customer - a made artifact, so a product here; also seeded in equipments
+    under recall-first
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0073
+  name: stainless oil tank
+  status: confirmed
+  acceptable_forms:
+  - Stainless Oil Tank Energy
+  - Oil Tank
+  evidence:
+  - quote: Stainless Oil Tank Energy
+    approx_offset: 101415
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0074
+  name: stainless tank
+  status: confirmed
+  acceptable_forms:
+  - Stainless Tank Aerospace
+  - Stainless Tank
+  evidence:
+  - quote: Stainless Tank Aerospace
+    approx_offset: 101473
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0075
+  name: CARC painted ammo box
+  status: confirmed
+  acceptable_forms:
+  - Steel CARC Painted Ammo Box Defense
+  - Ammo Box
+  evidence:
+  - quote: Steel CARC Painted Ammo Box Defense
+    approx_offset: 101529
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0076
+  name: CARC painted stairs
+  status: confirmed
+  acceptable_forms:
+  - Steel CARC Painted Stairs Defense
+  - Painted Stairs
+  evidence:
+  - quote: Steel CARC Painted Stairs Defense
+    approx_offset: 101607
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0077
+  name: arcade cabinet
+  status: confirmed
+  acceptable_forms:
+  - Steel Painted Arcade Cabinet
+  - Arcade Cabinet
+  evidence:
+  - quote: Steel Painted Arcade Cabinet
+    approx_offset: 101681
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0078
+  name: steel painted assembly with springs
+  status: confirmed
+  acceptable_forms:
+  - Steel Painted Assembly With Springs
+  - Assembly With Springs
+  evidence:
+  - quote: Steel Painted Assembly With Springs
+    approx_offset: 101745
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0079
+  name: locomotive power tubular frame assembly
+  status: confirmed
+  acceptable_forms:
+  - Steel Tubular Frame Assembly for Locomotive Power Transportation
+  - Tubular Frame Assembly
+  evidence:
+  - quote: Steel Tubular Frame Assembly for Locomotive Power Transportation
+    approx_offset: 101823
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0080
+  name: steel welded stamped assembly
+  status: confirmed
+  acceptable_forms:
+  - Steel Welded Stamped Assembly Defense
+  - Welded Stamped Assembly
+  evidence:
+  - quote: Steel Welded Stamped Assembly Defense
+    approx_offset: 101959
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-products-0082
+  name: Cross pendant jewelry
+  status: candidate
+  acceptable_forms:
+  - Cross pendant jewelry
+  evidence:
+  - quote: '**Project Description:** Cross pendant jewelry for Tiffany'
+    approx_offset: 10499
+  notes: Cross Pendant project description
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0083
+  name: servo bodies
+  status: candidate
+  acceptable_forms:
+  - servo bodies
+  evidence:
+  - quote: required extremely tight geometric tolerances, true positions, and complex features for the production
+      of servo bodies.
+    approx_offset: 11379
+  notes: Servo Body project narrative
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0084
+  name: Hot Water Heater
+  status: candidate
+  acceptable_forms:
+  - Hot Water Heater
+  evidence:
+  - quote: '# Progressive Stamping In-Die Tapping of a Hot Water Heater for a Household Appliance Application'
+    approx_offset: 19813
+  notes: Hot Water Heater project title
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0085
+  name: power distribution locker
+  status: candidate
+  acceptable_forms:
+  - power distribution locker
+  evidence:
+  - quote: requested the manufacturing of a locomotive power distribution locker with over 100 individual parts.
+    approx_offset: 37041
+  notes: Locomotive project narrative
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0086
+  name: Aluminum Rack Mount Electronics Chassis
+  status: candidate
+  acceptable_forms:
+  - Aluminum Rack Mount Electronics Chassis
+  evidence:
+  - quote: ' Aluminum Rack Mount Electronics Chassis Military'
+    approx_offset: 79041
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0087
+  name: Aluminum Marine Display
+  status: candidate
+  acceptable_forms:
+  - Aluminum Marine Display
+  evidence:
+  - quote: ' CARC Painted Aluminum Marine Display Military'
+    approx_offset: 79145
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0088
+  name: Aluminum Pump Housing
+  status: candidate
+  acceptable_forms:
+  - Aluminum Pump Housing
+  evidence:
+  - quote: ' Powdercoated Aluminum Pump Housing Environmental'
+    approx_offset: 79739
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0089
+  name: Aluminum Assembly
+  status: candidate
+  acceptable_forms:
+  - Formed Aluminum Assembly
+  evidence:
+  - quote: ' Riveted Formed Aluminum Assembly Aerospace'
+    approx_offset: 79843
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0090
+  name: Wire EDM Block
+  status: candidate
+  acceptable_forms:
+  - Wire EDM Block
+  evidence:
+  - quote: ' A2 Tool Steel Wire EDM Block'
+    approx_offset: 80390
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0091
+  name: Steel Grill
+  status: candidate
+  acceptable_forms:
+  - Perforated Steel Grill
+  evidence:
+  - quote: ' Perforated Steel Grill Audio'
+    approx_offset: 92804
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0092
+  name: Latch Coupling
+  status: candidate
+  acceptable_forms:
+  - Latch Coupling
+  evidence:
+  - quote: ' Stamped Passivated Stainless Latch Coupling Marine'
+    approx_offset: 93396
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0093
+  name: Aluminum LED Light Heatsink
+  status: candidate
+  acceptable_forms:
+  - Aluminum LED Light Heatsink
+  evidence:
+  - quote: ' Anodized Aluminum LED Light Heatsink'
+    approx_offset: 98925
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0094
+  name: Aluminum Machine Chassis
+  status: candidate
+  acceptable_forms:
+  - Ruggedized Aluminum Machine Chassis
+  evidence:
+  - quote: ' Ruggedized Aluminum Machine Chassis 01'
+    approx_offset: 99367
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-products-0095
+  name: Steel Tubular Frame Assembly
+  status: candidate
+  acceptable_forms:
+  - Steel Tubular Frame Assembly
+  evidence:
+  - quote: ' Steel Tubular Frame Assembly for Locomotive Power Transportation'
+    approx_offset: 101823
+  notes: Album/gallery image caption, now ordinary prose
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Salvagnini P2-L-2520
+  reason: 'THE OWNED-MACHINE LEAK: a panel bender Decimal BOUGHT (blog post ''our New Salvagnini P2-L-2520 is here'');
+    the old pipeline emitted it as a product they make. It belongs in equipments'
+- form: Salvagini P2L-2520 Automated Panel Bender
+  reason: same owned machine, capability-table spelling
+- form: Makino A71NX-571
+  reason: a machining centre they purchased, not something they make
+- form: Bystronic ByStar 12,000 Fiber Laser
+  reason: a laser cutter they bought, not a product
+- form: Mori Seiki NT3150
+  reason: a machine used to make the part, not the part
+- form: Mitsubishi FX10
+  reason: the wire EDM used on the cross-pendant job, not a product
+- form: Keyence IM-8000
+  reason: a measurement system they purchased for the quality department
+- form: D.E.B.R.A.
+  reason: the nickname of a bending robot they bought
+- form: Box Truck
+  reason: a delivery vehicle they own; the post is about donating it
+- form: SFMA Manufacturer of the Year
+  reason: an award - the products prompt explicitly excludes awards
+- form: Care Packages
+  reason: staff welfare parcels (toilet paper, bandana, hand sanitizer, meals), not manufactured goods
+- form: Toilet Paper
+  reason: care-package contents, not a made artifact
+- form: Decimal Challenge
+  reason: a marketing call to action, not a product
+- form: Coral Glades High School
+  reason: a school that won a video contest; an organization, not an artifact
+- form: Modern Machine Shop
+  reason: a trade magazine, not a product
+- form: Huron Machine Products
+  reason: an affiliated company name, not an artifact
+- form: SolidWorks
+  reason: CAD software listed under File Formats, not something they make
+- form: Customer Portal Management
+  reason: an inventory service, not an artifact
+- form: Loading Dock
+  reason: a facility they added, not a made artifact
+- form: Custom tooling (stage or progressive)
+  reason: listed in the FAQ one-stop-shop bullet list but tooling is explicitly excluded from products by the clause
+    ('separates it from the machinery, tooling...')

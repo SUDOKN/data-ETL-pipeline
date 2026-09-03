@@ -1,0 +1,451 @@
+subject: superiortech.org
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/superiortech.org.txt
+  sha256: 6de032283382c2ead7409e34541f2743fea3c67efb4a165eb47c68a1a93ab01a
+eval_set_version: 2
+expected_empty: false
+notes: 'Narrow but heavily repeated: ISO 9001:2015 is stated 36 times, 30 of them in an identical page footer, which
+  makes it window-scoped almost everywhere and makes the OTHER attestations the only informative ones. Everything
+  real here is either ISO 9001, a welding standard, a specification family the parts are traceable to, or a customer-quality
+  methodology. The interesting property is the ABSENCE: this shop sells into Aerospace, Medical, Military and Defense
+  and holds none of the certifications those markets normally imply, so AS9100, ISO 13485, IATF 16949, NADCAP and
+  ITAR are all zero-occurrence and are seeded as anticipatory traps.'
+entries:
+- id: superiortech_org-conformity_attestations-0001
+  name: ISO 9001:2015
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001:2015
+  - ISO 9001-2015
+  - ISO 9001:2015 CERTIFIED
+  - ISO 9001:2015 certified
+  evidence:
+  - quote: ISO 9001:2015 CERTIFIED
+    approx_offset: 28531
+  - quote: ISO 9001:2015 certified 81,000sq. ft. manufacturing facility.
+    approx_offset: 520
+  notes: '36 occurrences: 30 in the repeated page footer plus 6 in prose, in four different casings (''CERTIFIED'',
+    ''Certified'', ''certified'', plus ''ISO 9001:2015 quality management system'' and ''ISO 9001:2015 system'')'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: Adding the hyphenated spelling the text actually uses on the quality page -- 'Our Quality Management
+      System is ISO 9001-2015 compliant.' -- so this one entry carries both spellings of the one certification.
+      Paired with retiring conformity_attestations-0009, which was the same certification seeded a second time under
+      that spelling.
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0002
+  name: Journeyman
+  status: disputed
+  acceptable_forms:
+  - journeyman machinists and toolmakers
+  - journeyman
+  evidence:
+  - quote: journeyman machinists and toolmakers
+    approx_offset: 37419
+  - quote: highly skilled journeyman toolmakers
+    approx_offset: 27788
+  notes: DISPUTED — 'journeyman' names a completed apprenticeship — a real, issuable trade qualification — which
+    is a stronger claim than a plain job title. But the text uses it descriptively about staff, names no issuing
+    body, and the company separately says it merely 'offer[s] apprenticeships'. Seeded disputed as the cleanest
+    instance of the licence/credential boundary on this subject. | 'journeyman machinists and toolmakers' / 'highly
+    skilled journeyman toolmakers' -- journeyman is a trade grade held by staff, exactly the staff-qualification
+    case SEEDING_BRIEF section 4 says has been argued both ways. No issuing body, number or mark is named, so what
+    the company could be shown to hold is unclear.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: '''journeyman machinists and toolmakers'' / ''highly skilled journeyman toolmakers'' -- journeyman is
+      a trade grade held by staff, exactly the staff-qualification case SEEDING_BRIEF section 4 says has been argued
+      both ways. No issuing body, number or mark is named, so what the company could be shown to hold is unclear.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0003
+  name: Quality Inspector
+  status: disputed
+  acceptable_forms:
+  - Quality Inspector
+  - quality inspector
+  evidence:
+  - quote: Quality Inspector
+    approx_offset: 38617
+  - quote: quality inspector, maintenance technicians
+    approx_offset: 37457
+  notes: 'DISPUTED — a STAFF JOB TITLE from the careers page, not a credential. SEEDING_BRIEF §4 names job titles
+    as a repeatedly-argued case to seed disputed. The careers page also lists ''CMM Programmer'', ''CNC Set-Up Technicians'',
+    ''CNC Machine Operators'' and ''Maintenance Technician'' — same category, and ''journeyman machinists and toolmakers''
+    on line 97 is the closest thing to a real apprenticeship credential in the file. | A job title, not a certification.
+    Both quotes are staffing text: ''Quality Inspector'' is a line in ''Current Positions Available'' on the careers
+    page, and the other is ''quality inspector, maintenance technicians'' in a list of roles. SEEDING_BRIEF section
+    4 names staff job titles as a seed-disputed class.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'A job title, not a certification. Both quotes are staffing text: ''Quality Inspector'' is a line in
+      ''Current Positions Available'' on the careers page, and the other is ''quality inspector, maintenance technicians''
+      in a list of roles. SEEDING_BRIEF section 4 names staff job titles as a seed-disputed class.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0004
+  name: Made in The USA
+  status: disputed
+  acceptable_forms:
+  - “Made in The USA”
+  - Made in The USA
+  - US made parts
+  evidence:
+  - quote: are “Made in The USA” by highly skilled staff
+    approx_offset: 34519
+  - quote: proud to make quality US made parts
+    approx_offset: 37760
+  notes: DISPUTED — a country-of-origin CLAIM, not something 'a company, its people, its sites, or its products
+    could specifically hold, meet, or follow' from an issuing body. Kept because origin marking is a regulated claim
+    in some regimes and the text presents it in quotation marks as a formal designation. Note the CURLY quotes around
+    it — the only two U+201C in the file. | 'Made in The USA' / 'US made parts' is a country-of-origin claim the
+    company makes about its own products, not a certification, accreditation, registration or standard with an issuing
+    body. It has a recognizable identity as a regulated marking claim, which is what makes it arguable rather than
+    wrong.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: '''Made in The USA'' / ''US made parts'' is a country-of-origin claim the company makes about its own
+      products, not a certification, accreditation, registration or standard with an issuing body. It has a recognizable
+      identity as a regulated marking claim, which is what makes it arguable rather than wrong.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0005
+  name: Mil-Spec
+  status: confirmed
+  acceptable_forms:
+  - Mil-Spec’s
+  - Mil-Spec
+  evidence:
+  - quote: traceable to many Mil-Spec’s and commercial specifications
+    approx_offset: 23612
+  - quote: traceable parts to many industrial and Mil-Spec
+    approx_offset: 24949
+  notes: 4 occurrences, always as the possessive-apostrophe plural 'Mil-Spec’s' with a RIGHT SINGLE QUOTATION MARK
+    (U+2019), never a straight apostrophe. A run that returns "Mil-Spec's" has normalized the character and is not
+    quoting the text
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0006
+  name: Commercial specifications
+  status: disputed
+  acceptable_forms:
+  - commercial specifications for all processes
+  - commercial specifications
+  evidence:
+  - quote: commercial specifications for all processes
+    approx_offset: 23645
+  notes: DISPUTED — unnamed. The clause requires 'an identity of its own, such as a name, number, mark, or issuing
+    body'; 'commercial specifications' has none — it is a category label sitting beside the real Mil-Spec reference.
+    Kept because it is the likeliest over-generation on this line and the pairing makes it look specific. | 'commercial
+    specifications for all processes' has no identity of its own -- no name, number, mark or issuing body -- which
+    is the explicit test in the field's clause. It is the generic other half of 'traceable to many Mil-Spec's and
+    commercial specifications'; Mil-Spec (0005) passes that test, this does not.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: '''commercial specifications for all processes'' has no identity of its own -- no name, number, mark
+      or issuing body -- which is the explicit test in the field''s clause. It is the generic other half of ''traceable
+      to many Mil-Spec''s and commercial specifications''; Mil-Spec (0005) passes that test, this does not.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0007
+  name: ASME AWS standards
+  status: confirmed
+  acceptable_forms:
+  - ASME AWS standards
+  - ASME AWS certifiable
+  - ASME AWS
+  - ASME
+  evidence:
+  - quote: certifiable to ASME AWS standards
+    approx_offset: 27130
+  - quote: WELDING   (ASME AWS certifiable)
+    approx_offset: 14929
+  notes: 'named twice: once in the Welding & Brazing prose (''certifiable to ASME AWS standards'') and once as the
+    census section header ''WELDING   (ASME AWS certifiable)'', which carries a triple space'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0008
+  name: AWS
+  status: confirmed
+  acceptable_forms:
+  - AWS
+  evidence:
+  - quote: WELDING   (ASME AWS certifiable)
+    approx_offset: 14929
+  notes: three-character form, matched case-sensitively on word boundaries; 3 occurrences, always immediately after
+    ASME
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0009
+  name: ISO 9001-2015
+  status: retired
+  acceptable_forms:
+  - ISO 9001-2015
+  evidence:
+  - quote: Our Quality Management System is ISO 9001-2015 compliant.
+    approx_offset: 26557
+  notes: 'the SAME certification punctuated with a HYPHEN instead of a colon, once, on the facilities-list quality
+    header (line 582). A distinct surface form, and a good test of whether a run normalizes punctuation it should
+    be copying | Duplicate: this is the same certification as conformity_attestations-0001, differing only in punctuation
+    (''ISO 9001-2015'' on the quality page vs ''ISO 9001:2015'' everywhere else). Kept as its own entry it counts
+    one certification twice in the recall denominator, and -- because forms_overlap is containment and neither spelling
+    contains the other -- it also books a guaranteed FALSE MISS whenever search returns only the colon spelling,
+    which is the spelling used in the site footer of every page. I have amended 0001 to carry the hyphenated form,
+    so nothing is lost.'
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: retired
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: 'Duplicate: this is the same certification as conformity_attestations-0001, differing only in punctuation
+      (''ISO 9001-2015'' on the quality page vs ''ISO 9001:2015'' everywhere else). Kept as its own entry it counts
+      one certification twice in the recall denominator, and -- because forms_overlap is containment and neither
+      spelling contains the other -- it also books a guaranteed FALSE MISS whenever search returns only the colon
+      spelling, which is the spelling used in the site footer of every page. I have amended 0001 to carry the hyphenated
+      form, so nothing is lost.'
+- id: superiortech_org-conformity_attestations-0010
+  name: Quality Management System
+  status: disputed
+  acceptable_forms:
+  - Total Quality Management System
+  - Quality Management System
+  - quality management system
+  evidence:
+  - quote: Total Quality Management System
+    approx_offset: 16250
+  - quote: Our Quality Management System
+    approx_offset: 15115
+  notes: DISPUTED — a management SYSTEM the company operates, not a certification with an identity of its own —
+    the certification behind it is ISO 9001:2015, which is already an entry. Kept because the text capitalizes it
+    as a proper noun and line 582 attaches a conformance claim directly to it. | 'Total Quality Management System'
+    / 'Our Quality Management System' names the company's own internal system, not a standard with an identity of
+    its own. What it is certified AGAINST is separately seeded as ISO 9001:2015; the sentence is literally 'Our
+    Quality Management System is ISO 9001-2015 compliant', which puts the identity in the ISO number, not in the
+    phrase.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: '''Total Quality Management System'' / ''Our Quality Management System'' names the company''s own internal
+      system, not a standard with an identity of its own. What it is certified AGAINST is separately seeded as ISO
+      9001:2015; the sentence is literally ''Our Quality Management System is ISO 9001-2015 compliant'', which puts
+      the identity in the ISO number, not in the phrase.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0011
+  name: APQP
+  status: confirmed
+  acceptable_forms:
+  - APQP
+  evidence:
+  - quote: industry wide systems such as APQP, PPAP.
+    approx_offset: 17125
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0012
+  name: PPAP
+  status: confirmed
+  acceptable_forms:
+  - PPAP
+  evidence:
+  - quote: such as APQP, PPAP.
+    approx_offset: 17147
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0013
+  name: NIST
+  status: confirmed
+  acceptable_forms:
+  - NIST
+  evidence:
+  - quote: traceable to NIST & ISO national and International Standards
+    approx_offset: 17590
+  notes: named once, as the traceability chain for calibration; the same clause names 'ISO' bare, which is the file's
+    only bare 'ISO' outside the 9001 forms
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0014
+  name: National and International Standards
+  status: disputed
+  acceptable_forms:
+  - national and International Standards
+  evidence:
+  - quote: national and International Standards
+    approx_offset: 17614
+  notes: DISPUTED — same objection as 'commercial specifications' — no identity of its own. The counter-argument
+    is that the clause's issuing bodies ARE named in the same breath ('traceable to NIST & ISO'), so the phrase
+    inherits an identity. | 'national and International Standards' is a generic closing phrase, not a standard with
+    an identity of its own; the identities in that sentence are NIST and ISO, both seeded separately (0013, 0001).
+    Fails the clause's 'identity of its own, such as a name, number, mark, or issuing body' test.
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-superiortech
+    date: '2026-08-27'
+    reason: '''national and International Standards'' is a generic closing phrase, not a standard with an identity
+      of its own; the identities in that sentence are NIST and ISO, both seeded separately (0013, 0001). Fails the
+      clause''s ''identity of its own, such as a name, number, mark, or issuing body'' test.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: superiortech_org-conformity_attestations-0015
+  name: ASME AWS
+  status: candidate
+  acceptable_forms:
+  - ASME
+  - AWS
+  evidence:
+  - quote: WELDING (ASME AWS certifiable)
+    approx_offset: 14929
+  provenance:
+  - action: added
+    by: seed-agent-superiortech-org
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: AS9100
+  reason: 'ZERO occurrences. The single most likely fabrication on this subject: Aerospace is named 5 times and
+    is the first industry in every list, and AS9100 is the certification that market normally requires. The text
+    claims ISO 9001:2015 only'
+- form: ISO 13485
+  reason: zero occurrences; 'Medical' and 'Medical Equipment' are both named, which is the association that mints
+    it
+- form: IATF 16949
+  reason: zero occurrences; 'Automotive', 'Automotive & Alternative Fuels' and 'Automotive Fuel Systems' are all
+    named, and the text does cite APQP and PPAP, which are the automotive-quality toolkit — so the association is
+    unusually strong
+- form: ITAR
+  reason: 'ZERO word-boundary occurrences — all 9 hits are the substring inside ''Military''. Both a substring trap
+    AND an association trap: Military and Defense are named and parts are traceable to Mil-Spec, so ITAR registration
+    is the natural inference'
+- form: NADCAP
+  reason: zero occurrences; baited by the outsourced heat-treatment, plating and NDT lists, which are exactly the
+    special processes NADCAP accredits
+- form: RoHS
+  reason: zero occurrences; baited by 'Electronics' and by the plating and surface-treatment chemistry list
+- form: FDA
+  reason: zero occurrences; baited by 'Medical' and 'clean room'
+- form: Six Sigma
+  reason: zero occurrences; baited by 'continuous process improvement', 'Total Quality Management System' and the
+    real SPC reference
+- form: Fortune 500
+  reason: a customer-size tier, not a certification the company holds; occurs twice and both times in a sentence
+    about credibility, which is where attestations usually sit
+- form: ISO 9001:2008
+  reason: zero occurrences — the text is consistently the 2015 revision. A run returning the older revision has
+    substituted a memorized version number for the printed one

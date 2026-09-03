@@ -1,0 +1,76 @@
+subject: fzemanufacturing.com
+slug: fzemanufacturing_com
+role: genre_probe
+business_type: contract manufacturer with Thomas-directory spec tables and a third-person SEO process encyclopedia
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/fzemanufacturing.com.txt
+  sha256: 29f9da1f8d601d220cf801bb8a496ba1e873febead70176f1f431a667253e773
+eval_set_version: 1
+context: 'FZE Manufacturing Solutions LLC, North Fond du Lac, Wisconsin - a 50-year full-service contract machine
+  shop (CNC HMC/VMC, Swiss, shaft machining, welding & fabrication, laser marking, electropolishing, passivation,
+  part assembly, inspection). 53 pages. Three distinct text registers in one site: first-party capability prose,
+  machine-readable Thomas-directory spec tables, and a third-person SEO process-encyclopedia blog.'
+scrape_hazards:
+- hazard: Thomas-directory spec tables are flattened to tab-terminated header lines followed by bare one-word cells;
+    the same table body repeats verbatim on 4 capability pages (hydraulic, Swiss, HMC/VMC, shaft), so the same 60
+    material/process designations occur 4x each
+  quote: Materials (Exotic & Precious Metals)
+- hazard: 'NEGATION / CONTRAST ECHO, live: electropolishing is defined as ''the reverse of electroplating''. Electroplating
+    is named ONLY in that contrast; the old pipeline tagged Electroplating from this sentence'
+  quote: is best understood as the reverse of electroplating
+- hazard: 'third-person SEO process-encyclopedia blog: general explainer articles name processes and machines the
+    subject never claims. The waterjet / plasma / oxy-fuel / chemical cutting list is a generic ''types of CNC cutting''
+    aside inside a prototyping explainer'
+  quote: 'Other types of CNC cutting that benefit from new technological developments include:'
+- hazard: the owned-equipment roster mixes production machines with metrology (Sheffield Discovery CMMs, Keyence
+    IM7030T, J&L Optical Comparator, granite tables, hand gages) under one 'Equipment' heading, and with areas/inventory
+    (Central Tooling Set-up Area, Finished Goods Inventory)
+  quote: -(2) Sheffield Discovery CMM
+- hazard: 'brand names are misspelled inconsistently across the two equipment listings on the same page: Hanwha
+    / Hanwa / HANHWA, and Doosan TT1800SY / DOOSAN TT18000SY'
+  quote: HANHWA XD32/38II
+- hazard: 'the second ''Equipment List'' block on the same page mis-copies specs: NOMURA NN32YB is given the OKK
+    HM600 horizontal-machining-center specs'
+  quote: NOMURA NN32YB
+- hazard: the welding page's Industry Focus table has a merged/lost line break - 'Material Handling' and 'Medical'
+    arrive as one cell
+  quote: Material Handling Medical
+- hazard: sentences with words dropped by the scrape, leaving dangling lists ('metals, plastics, and .', 'materials
+    like or metal', 'organic or en parts', 'reaming missing, knurling')
+  quote: Laser engraving can be used on various materials, including metals, plastics, and .
+- hazard: curly quotes and primes throughout dimensions (2.65″, 12′, 0.0002”) and 150 non-breaking spaces, many
+    mid-sentence
+  quote: Multi-Axis, 2.65” Dia x 12’ bar feeder
+- hazard: '''FZE Manufacturing, Inc.'' on the oil & gas page contradicts ''FZE Manufacturing Solutions LLC'' everywhere
+    else'
+  quote: FZE Manufacturing, Inc. offers machining and manufacturing services to oil & gas customers
+- hazard: the author archive page (/author/doug-pribyl.../) is a byte-identical duplicate of the homepage; the videos
+    page and blog index are pure title lists (Miller Welding Cobot, FZE “Ballizer”) with no prose
+  quote: Miller Welding Cobot
+- hazard: every one of the 53 pages ends in the same 8-line footer, so the phone number and company name dominate
+    any frequency count
+  quote: © 2025 FZE Manufacturing Solutions LLC, All Rights Reserved
+sampling_notes: 'READ EXHAUSTIVELY. All 4,907 lines / 259,621 bytes read in 13 sed slices (1-50, 50-330, 330-640,
+  640-990, 990-1300, 1300-1660, 1660-2115, 2112-2380, 2380-2620, 2620-3010, 3010-3370, 3370-3760, 3760-4120, 4120-4520,
+  4520-4907). All 53 page boundaries enumerated by grep ''^https://''. Targeted sweeps run afterwards: every tab-terminated
+  spec-table header cell (39 distinct, enumerated); ISO/ASTM/ANSI/NADCAP/UL/Mil-Spec/PPAP/APQP/ISIR/FDA/DOT/DOD/DOE/Thomas
+  Verified/Made in Wisconsin/Six Sigma/Kaizen; every -ing token by frequency (full tail down to hapax); machine
+  brand names (OKK, Doosan, Daewoo, Haas, Hanwha, Nomura, Nakamura, Hwacheon, Sheffield, Keyence, Beamer, Miller,
+  SST); alloy/grade digit patterns (NONE present - the only 3-4 digit runs are the phone number and machine model
+  numbers); non-breaking spaces (150 occurrences).'
+notes: 'All six fields non-empty and dense. The distinguishing feature of this subject is REGISTER MIXING: (a) first-party
+  capability claims, (b) Thomas-directory spec tables repeated verbatim on 4 pages, (c) a third-person SEO process
+  encyclopedia that names processes/machines/industries nobody claims. Under recall-first every explainer designation
+  is still an entry, carried as actor: unknown with the explainer context in notes - see the waterjet/plasma/oxy-fuel
+  cutting entries and the Electroplating contrast echo. products.yaml doubles as the contract_products expectation;
+  the subject is a contract machine shop, so most product designations are customer parts (actor: client) or generic
+  explainer artifacts (actor: unknown).'
+provenance:
+- action: added
+  by: seed-agent-fzemanufacturing-com
+  date: '2026-08-27'
+  source: corpus-seed
+- action: ported
+  by: port_corpus.py
+  date: '2026-08-29'
+  source: markdown-cutover

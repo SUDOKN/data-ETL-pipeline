@@ -1,0 +1,469 @@
+subject: lucasmilhaupt.com
+field: equipments
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/lucasmilhaupt.com.txt
+  sha256: f84ad55ab82bc1fc47d34ac0917856ac7ccbac19ec6eb6697a67302b71441f93
+eval_set_version: 3
+expected_empty: false
+notes: 'SEEDED TO THE PROMPT''S BOUNDARY, NOT THE WORD ''EQUIPMENT''. The subject sells consumables, so most of
+  its own plant is described only as ''high precision equipment'' / ''high speed machines''; the named hardware
+  sits in the Brazing Fundamentals manual, and most of it is EXCLUDED by the clause: dies, fixtures, grinding wheels
+  and wire brushes are tooling; the mass spectrometer and transducer only test; cylinders, regulators, check valves,
+  flashback arrestors, ventilating fans and exhaust hoods power or condition the plant; spools carry. Those are
+  all false_friends, not entries. What survives as a production machine: furnaces, torches, the induction work coil,
+  the stamping/preform machines, the flux applicator gun, and the cleaning tanks the work is immersed in. This is
+  the field where the alecmfg false-RED lesson bites hardest.'
+entries:
+- id: lucasmilhaupt_com-equipments-0001
+  name: production line
+  status: retired
+  acceptable_forms:
+  - production line
+  evidence:
+  - quote: Trust our team of brazing experts to help you improve robust processes on your production line. Learn
+      about the cutting-edge joining solutions
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''production line''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0002
+  name: pilot equipment
+  status: retired
+  acceptable_forms:
+  - pilot equipment
+  evidence:
+  - quote: to prototype next-gen electrical assemblies. State-of-the-art analytical labs and pilot equipment accelerate
+      alloy development, joint design validation, and scale-up, so customers
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''pilot equipment''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0003
+  name: flux applicator gun
+  status: retired
+  acceptable_forms:
+  - applicator gun
+  evidence:
+  - quote: more effective to apply the flux by dipping or dispensing a pre-measured deposit of high-viscosity dispensable
+      flux from an applicator gun. Why dispensable flux? Many companies find the
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''applicator gun''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0004
+  name: automated flux dispensing machines
+  status: retired
+  acceptable_forms:
+  - automated machines
+  evidence:
+  - quote: refractory oxides, fluxes for long heating cycles, and fluxes for dispensing by automated machines.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''automated machines''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0005
+  name: brazing furnace
+  status: retired
+  acceptable_forms:
+  - brazing furnace
+  - furnace
+  - vacuum furnace
+  - furnace brazing
+  evidence:
+  - quote: brazing occurs in a controlled atmosphere (i.e. a gaseous mixture contained in an enclosed space, usually
+      a brazing furnace). The atmosphere (such as hydrogen, nitrogen
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''brazing furnace'', ''furnace'', ''vacuum
+    furnace'', ''furnace brazing''); the /Services/Capabilities page and the whole equipment-bearing Industries/Products
+    tree return only duplicate-page placeholders in this crawl (''[duplicate — content identical to a previously
+    scraped page]''); no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0006
+  name: induction work coil
+  status: retired
+  acceptable_forms:
+  - work coil
+  evidence:
+  - quote: When fixturing for induction heating, keep fixtures away from the work coil, so they will not act as
+      heat sinks or interfere
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''work coil''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0007
+  name: induction heating equipment
+  status: retired
+  acceptable_forms:
+  - induction heating
+  - induction brazing
+  - induction
+  evidence:
+  - quote: When fixturing for induction heating, keep fixtures away from the work coil, so they will not act as
+      heat sinks or interfere
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''induction heating'', ''induction brazing'',
+    ''induction''); the /Services/Capabilities page and the whole equipment-bearing Industries/Products tree return
+    only duplicate-page placeholders in this crawl (''[duplicate — content identical to a previously scraped page]'');
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0008
+  name: torch
+  status: retired
+  acceptable_forms:
+  - torch
+  - hand held torch
+  - hand-held torch
+  - oxy-acetylene torch
+  - oxy-acetylene torches
+  evidence:
+  - quote: brazing, resistance brazing, and vacuum brazing. The heating method most commonly used in brazing a single
+      assembly is the hand held torch, therefore most of this guide will focus on manual
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''torch'', ''hand held torch'', ''hand-held
+    torch'', ''oxy-acetylene torch''); the /Services/Capabilities page and the whole equipment-bearing Industries/Products
+    tree return only duplicate-page placeholders in this crawl (''[duplicate — content identical to a previously
+    scraped page]''); no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0009
+  name: soak tank
+  status: retired
+  acceptable_forms:
+  - soak tank
+  - soak bath
+  evidence:
+  - quote: Use hot water with agitation in a soak tank to remove excess flux immediately following the braze operation,
+      and
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''soak tank'', ''soak bath''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0010
+  name: ultrasonic cleaning tank
+  status: retired
+  acceptable_forms:
+  - ultrasonic cleaning tank
+  evidence:
+  - quote: 'more elaborate methods of removing flux as well—an ultrasonic cleaning tank to speed the action of the
+      hot water, or live steam. Additional cleaning methods include:'
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''ultrasonic cleaning tank''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0011
+  name: machine tool
+  status: retired
+  acceptable_forms:
+  - machine tool
+  evidence:
+  - quote: in machine repair. A broken or damaged metal shaft, bearing or gear could put a vitally-needed machine
+      tool out of production. Replacement of the part might take as long as
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''machine tool''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0012
+  name: high precision equipment
+  status: retired
+  acceptable_forms:
+  - high precision equipment
+  evidence:
+  - quote: produce simple, compound or progressive dies, utilizing high precision equipment to manufacture washers,
+      discs, perforated strip and irregular configurations.
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''high precision equipment''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0013
+  name: high speed machines
+  status: retired
+  acceptable_forms:
+  - high speed machines
+  evidence:
+  - quote: Manufactured by high speed machines, rings maintain a true radius and may be partial turn, full turn
+      or multiple
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''high speed machines''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0014
+  name: heating station
+  status: retired
+  acceptable_forms:
+  - heating station
+  evidence:
+  - quote: possible to automate this tracing operation, moving the joint line, for example, past a heating station
+      and feeding filler wire automatically from big
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''heating station''); the /Services/Capabilities
+    page and the whole equipment-bearing Industries/Products tree return only duplicate-page placeholders in this
+    crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs anywhere in the readable
+    text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0015
+  name: HVAC/R brazing equipment
+  status: retired
+  acceptable_forms:
+  - HVAC/R brazing equipment
+  - brazing equipment
+  evidence:
+  - quote: Lucas Milhaupt offers the best brazing alloys, soldering products, and HVAC/R brazing equipment on the
+      market.
+  actor: reseller_inventory
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''HVAC/R brazing equipment'', ''brazing
+    equipment''); the /Services/Capabilities page and the whole equipment-bearing Industries/Products tree return
+    only duplicate-page placeholders in this crawl (''[duplicate — content identical to a previously scraped page]'');
+    no form occurs anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0016
+  name: steam lance
+  status: retired
+  acceptable_forms:
+  - steam lance
+  - Steam lance cleaning
+  evidence:
+  - quote: Steam lance cleaning - This process employs superheated steam under pressure to dissolve and blast away
+      flux residue.
+  actor: unknown
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''steam lance'', ''Steam lance cleaning'');
+    the /Services/Capabilities page and the whole equipment-bearing Industries/Products tree return only duplicate-page
+    placeholders in this crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: lucasmilhaupt_com-equipments-0017
+  name: automated pick-and-place
+  status: retired
+  acceptable_forms:
+  - automated pick-and-place
+  - pick-and-place
+  evidence:
+  - quote: Available as laser-cut frames, washer preforms, or ribbon for automated pick-and-place, this Au88/Ge12
+      eutectuc is designed for high-reliability hermetic seals. Excellent
+  actor: client
+  notes: 'retired at the markdown cutover: searched all acceptable forms (''automated pick-and-place'', ''pick-and-place'');
+    the /Services/Capabilities page and the whole equipment-bearing Industries/Products tree return only duplicate-page
+    placeholders in this crawl (''[duplicate — content identical to a previously scraped page]''); no form occurs
+    anywhere in the readable text.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: retire
+    by: repair-agent-lucasmilhaupt-com
+    date: '2026-08-29'
+    source: markdown-cutover
+false_friends:
+- form: dies
+  reason: 'witnessed heavily (4,000 dies, stock dies, progressive dies, carbide and diamond dies): TOOLING, which
+    the equipment clause excludes by name'
+- form: progressive dies
+  reason: 'witnessed: tooling the stamping press holds, not the machine'
+- form: carbide and diamond dies
+  reason: 'witnessed: wire-drawing tooling; the metals in it belong to material_caps'
+- form: fixture
+  reason: 'witnessed ~20x with a whole ''Fixture Facts'' and ''Fixturing Tips'' section: tooling, excluded by name.
+    The densest equipment-shaped trap in this subject.'
+- form: brazing support fixture
+  reason: 'witnessed: tooling, excluded by name'
+- form: grinding wheel
+  reason: 'witnessed: an abrasive the machine acts through -- tooling, and the operation (''abrasive cleaning'')
+    belongs in process_caps'
+- form: wire brush
+  reason: 'witnessed 3x: a hand tool for flux removal, not a production machine'
+- form: spray bottle
+  reason: 'witnessed: a hand applicator, not a production machine'
+- form: mass spectrometer
+  reason: 'witnessed: leak-detection instrumentation -- equipment that only tests, excluded by name; the operation
+    ''Vacuum testing'' is a process_caps entry'
+- form: transducer
+  reason: 'witnessed: ultrasonic inspection instrumentation -- measures only'
+- form: ventilating fans
+  reason: 'witnessed: plant ventilation -- conditions the plant, excluded by name'
+- form: exhaust hoods
+  reason: 'witnessed: plant ventilation, excluded by name'
+- form: respirators
+  reason: 'witnessed: personal protective equipment, not a production machine'
+- form: Oxygen cylinders
+  reason: 'witnessed: gas storage -- stores and carries, excluded by name'
+- form: regulators
+  reason: 'witnessed: gas pressure conditioning, not acting on the work'
+- form: check valves
+  reason: 'witnessed: torch gas-line safety hardware'
+- form: flashback arrestors
+  reason: 'witnessed: torch gas-line safety hardware'
+- form: spools
+  reason: 'witnessed: ''feeding filler wire automatically from big spools'' and ''package the material on either
+    spools or coils'' -- carries and stores, and is also packaging'
+- form: stencil
+  reason: 'witnessed: paste-application tooling (''automated dispensing, stencil, or syringe'')'
+- form: lab equipment
+  reason: 'witnessed: ''state of the art lab equipment'' -- testing and analysis, excluded'
+- form: analytical labs
+  reason: 'witnessed: a facility for testing, excluded'
+- form: clean lab room
+  reason: 'witnessed: a facility, not a machine'
+- form: MRI
+  reason: 'witnessed: a CUSTOMER''S medical device that brazed joints go into -- a product, not a production machine
+    (belongs in products)'
+- form: X-ray
+  reason: 'witnessed twice with different senses: the customer''s diagnostic machine, and ''X-ray absorption ratios''
+    inside radiographic examination -- neither is a production machine'
+- form: compressors
+  reason: 'witnessed: HVAC/R components the customer builds -- a product, and an air compressor would be plant utility
+    anyway'
+- form: evaporators
+  reason: 'witnessed: HVAC/R components the customer builds -- a product'
+- form: condensers
+  reason: 'witnessed: HVAC/R components the customer builds -- a product'
+- form: CNC machine
+  reason: 'anticipatory: does not occur anywhere; word-association from ''precision'', ''stamping'', ''tolerances'''
+- form: press brake
+  reason: 'anticipatory: does not occur; word-association from ''stamping'' and ''strip'''
+- form: rolling mill
+  reason: 'anticipatory: does not occur -- the text says ''Strip Rolling'' and ''not available directly from the
+    mills'', never a named mill machine'

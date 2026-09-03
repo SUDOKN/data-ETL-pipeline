@@ -1,0 +1,920 @@
+subject: med-tekinc.com
+field: process_caps
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/med-tekinc.com.txt
+  sha256: 1ace86accab9f77cd8cbdcebb9afda9c27f198cfc8b7e22de92ec05153d68023
+eval_set_version: 2
+expected_empty: false
+notes: 'Richest field on the site and the reason it is in the corpus: 32 entries, most of them from the BARE KEYWORD
+  LIST at lines 78-97 where each process is a whole line with no sentence around it. Three surface spellings of
+  the core capability coexist (''heat treating'', ''heat-treating'', ''heat‑treating'' with U+2011) - see hazards.
+  DEFENSIBLE BORDERLINES deliberately NOT seeded and NOT listed as false friends, per the 101machine convention
+  for code-B forms: ''Distortion Minimization'' (line 109 - an outcome of the polymer quench, not an operation),
+  ''accuracy-verified against the standard block'' (line 32 - a measurement performed on the MACHINE, not on the
+  work, so outside the prompt''s ''performed on the work'' clause) and ''Controlled Atmospheres'' was kept as an
+  entry rather than a borderline because it is a listed service line.'
+entries:
+- id: med-tekinc_com-process_caps-0001
+  name: heat treating
+  status: confirmed
+  acceptable_forms:
+  - heat treating
+  - heat-treating
+  - heat‑treating
+  - heat treated
+  - Heat Treating Services
+  - Heat Treating Metal
+  - HEAT TREATING
+  evidence:
+  - quote: specializes in heat-treating metal for commercial purposes
+    approx_offset: 332
+  - quote: to meet all of your heat treating needs
+    approx_offset: 1074
+  - quote: meet your heat‑treating needs
+    approx_offset: 2403
+  - quote: Heat Treating Services
+    approx_offset: 2328
+  notes: the subject's single core capability, named in three different spellings; the U+2011 form on lines 74 and
+    100 is a distinct surface form from the ASCII-hyphen form on lines 19/21/27
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0002
+  name: inspection and testing
+  status: confirmed
+  acceptable_forms:
+  - inspection and testing procedures
+  - inspection and testing
+  - inspection
+  evidence:
+  - quote: at the forefront of inspection and testing procedures for heat-treating
+    approx_offset: 634
+  notes: this field's clause explicitly admits inspection, testing and measurement performed on the work
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0003
+  name: Rockwell and Brinell hardness testing
+  status: confirmed
+  acceptable_forms:
+  - Rockwell & Brinell Testing
+  - Rockwell
+  - Brinell
+  - Rockwell Hardness
+  evidence:
+  - quote: Rockwell & Brinell Testing
+    approx_offset: 2720
+  - quote: Our Rockwell Hardness Machines are certified every six months
+    approx_offset: 1710
+  notes: 'kept as ONE entry although the prompt asks the model to split bundles - the text only ever names the pair
+    in one span. Note the same words are an EQUIPMENT false friend: a hardness tester only measures the work, so
+    ''Rockwell Hardness Machines'' is excluded from equipments and belongs here instead'
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0004
+  name: brazing
+  status: confirmed
+  acceptable_forms:
+  - brazing
+  evidence:
+  - quote: like brazing and induction
+    approx_offset: 2036
+  notes: named only in one home-page sentence, not in the services keyword list
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0005
+  name: induction hardening
+  status: confirmed
+  acceptable_forms:
+  - Induction Hardening
+  - induction
+  evidence:
+  - quote: like brazing and induction
+    approx_offset: 2036
+  - quote: Low and High-Frequency Induction Hardening Equipment
+    approx_offset: 4005
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0006
+  name: aging
+  status: confirmed
+  acceptable_forms:
+  - aging
+  - Aging Aluminum
+  evidence:
+  - quote: Whether you need aging, annealing, or batch hardening
+    approx_offset: 2434
+  - quote: Solution Annealing, and Aging Aluminum
+    approx_offset: 4523
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0007
+  name: annealing
+  status: confirmed
+  acceptable_forms:
+  - annealing
+  - Annealing
+  evidence:
+  - quote: Whether you need aging, annealing, or batch hardening
+    approx_offset: 2434
+  - quote: Electric Furnaces for Annealing
+    approx_offset: 4490
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0008
+  name: batch hardening
+  status: confirmed
+  acceptable_forms:
+  - batch hardening
+  evidence:
+  - quote: Whether you need aging, annealing, or batch hardening
+    approx_offset: 2434
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0009
+  name: austempering
+  status: confirmed
+  acceptable_forms:
+  - Austempering
+  - Austemper
+  - Austemper Bath
+  evidence:
+  - quote: Austempering
+    approx_offset: 2553
+  - quote: Austemper Bath
+    approx_offset: 4196
+  notes: '''Austemper'' carried as a form so the equipment line''s ''Austemper Bath'' credits the entity - ''Austempering''
+    alone does not contain it'
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0010
+  name: carbonitriding
+  status: confirmed
+  acceptable_forms:
+  - Carbonitriding
+  - carbonitriding
+  evidence:
+  - quote: Carbonitriding
+    approx_offset: 2568
+  - quote: our equipment can perform subzero stabilizing, carbonitriding, and spheroidizing
+    approx_offset: 3087
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0011
+  name: carburizing
+  status: confirmed
+  acceptable_forms:
+  - Carburizing
+  evidence:
+  - quote: Carburizing
+    approx_offset: 2585
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0012
+  name: controlled atmosphere processing
+  status: confirmed
+  acceptable_forms:
+  - Controlled Atmospheres
+  - Controlled Atmosphere
+  evidence:
+  - quote: Controlled Atmospheres
+    approx_offset: 2599
+  notes: listed as a service line; the specific atmospheres it names (vacuum, nitrogen, endothermic, air) are seeded
+    under material_caps as substances the work is performed in
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0013
+  name: laboratory / metallurgical testing services
+  status: confirmed
+  acceptable_forms:
+  - Laboratory Services
+  - metallurgical laboratory
+  - laboratory
+  evidence:
+  - quote: Laboratory Services
+    approx_offset: 2624
+  - quote: Our complete metallurgical laboratory facilities
+    approx_offset: 2937
+  notes: inspection/testing explicitly qualifies under this field's clause
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0014
+  name: martempering
+  status: confirmed
+  acceptable_forms:
+  - Martempering
+  evidence:
+  - quote: Martempering
+    approx_offset: 2646
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0015
+  name: neutral hardening
+  status: confirmed
+  acceptable_forms:
+  - Neutral Hardening
+  evidence:
+  - quote: Neutral Hardening
+    approx_offset: 2661
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0016
+  name: nitriding
+  status: confirmed
+  acceptable_forms:
+  - Nitriding
+  evidence:
+  - quote: Nitriding
+    approx_offset: 2681
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0017
+  name: normalizing
+  status: confirmed
+  acceptable_forms:
+  - Normalizing
+  evidence:
+  - quote: Normalizing
+    approx_offset: 2693
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0018
+  name: quenching
+  status: confirmed
+  acceptable_forms:
+  - Quenching
+  - Quench
+  evidence:
+  - quote: Quenching
+    approx_offset: 2707
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0019
+  name: salt bath hardening
+  status: confirmed
+  acceptable_forms:
+  - Salt Bath Hardening
+  - Salt Bath
+  - Neutral Salt Bath
+  evidence:
+  - quote: Salt Bath Hardening
+    approx_offset: 2749
+  - quote: For neutral Salt Bath, Austemper Bath, and Marquench Bath Processing
+    approx_offset: 4173
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0020
+  name: spheroidizing
+  status: confirmed
+  acceptable_forms:
+  - Spheroidizing
+  - spheroidizing
+  evidence:
+  - quote: Spheroidizing
+    approx_offset: 2771
+  - quote: carbonitriding, and spheroidizing
+    approx_offset: 3134
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0021
+  name: spin hardening
+  status: confirmed
+  acceptable_forms:
+  - Spin Hardening
+  evidence:
+  - quote: Spin Hardening
+    approx_offset: 2787
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0022
+  name: straightening
+  status: confirmed
+  acceptable_forms:
+  - Straightening
+  evidence:
+  - quote: Straightening
+    approx_offset: 2804
+  notes: the one forming (non-thermal) operation on the list; straightening distorted parts after heat treat
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0023
+  name: stress relieving
+  status: confirmed
+  acceptable_forms:
+  - Stress Relieving
+  evidence:
+  - quote: Stress Relieving
+    approx_offset: 2820
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0024
+  name: sub-zero stabilizing
+  status: confirmed
+  acceptable_forms:
+  - Sub Zero Stabilizing
+  - subzero stabilizing
+  - Sub Zero
+  - subzero
+  evidence:
+  - quote: Sub Zero Stabilizing
+    approx_offset: 2839
+  - quote: our equipment can perform subzero stabilizing
+    approx_offset: 3087
+  notes: two spellings, spaced and closed up, on two different pages
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0025
+  name: tempering
+  status: confirmed
+  acceptable_forms:
+  - Tampering Steel
+  - tempering steel
+  - Tampering
+  - tempering
+  evidence:
+  - quote: Tampering Steel
+    approx_offset: 2862
+  - quote: In addition to tempering steel
+    approx_offset: 3055
+  notes: 'TYPO HAZARD: the service list misspells it ''Tampering''; line 102 has the correct ''tempering steel''.
+    Both spellings carried so a model that silently corrects the typo still credits'
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0026
+  name: tool hardening
+  status: confirmed
+  acceptable_forms:
+  - Tool Hardening
+  evidence:
+  - quote: Tool Hardening
+    approx_offset: 2880
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0027
+  name: vacuum heat treating
+  status: confirmed
+  acceptable_forms:
+  - Vacuum Heat Treating
+  evidence:
+  - quote: Vacuum Heat Treating
+    approx_offset: 2897
+  notes: second quote is window insurance - the services keyword list and the equipment block can fall in different
+    search windows
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: amended
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+    reason: 'entity is right (''Vacuum Heat Treating'' is a listed service, line 97). Mechanics: the second evidence
+      quote ''Surface Combustion Single Chamber Vacuum Furnaces'' contains NO acceptable form, so it can never credit,
+      and because recall is window-scoped it drags the entry into the equipment window where the phrase ''Vacuum
+      Heat Treating'' does not occur. Dropping it leaves the services-list quote, which does cover the form.'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0028
+  name: two-bar pressure gas quenching
+  status: confirmed
+  acceptable_forms:
+  - Two Bar Pressure Quench
+  - Pressure Quench
+  evidence:
+  - quote: With Up To Two Bar Pressure Quench
+    approx_offset: 3320
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0029
+  name: warm oil quenching
+  status: confirmed
+  acceptable_forms:
+  - Warm Oil Quench
+  - Oil Quench
+  evidence:
+  - quote: All Case Furnaces with Warm Oil Quench
+    approx_offset: 3582
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0030
+  name: marquenching
+  status: confirmed
+  acceptable_forms:
+  - Marquench Bath
+  - Marquench
+  - Marquench Baths
+  evidence:
+  - quote: and Marquench Bath Processing
+    approx_offset: 4212
+  - quote: The Austemper and Marquench Baths Operate At Temperatures
+    approx_offset: 4360
+  notes: same family as martempering but a separate surface form, present only in the salt-bath equipment line
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0031
+  name: solution annealing
+  status: confirmed
+  acceptable_forms:
+  - Solution Annealing
+  evidence:
+  - quote: Electric Furnaces for Annealing, Solution Annealing, and Aging Aluminum
+    approx_offset: 4490
+  notes: distinct from plain annealing; named only in the electric-furnace equipment line
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0032
+  name: polymer quenching
+  status: confirmed
+  acceptable_forms:
+  - Polymer Quench
+  evidence:
+  - quote: Polymer Quench for Distortion Minimization
+    approx_offset: 4702
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0033
+  name: metal treating
+  status: candidate
+  acceptable_forms:
+  - metal treating
+  evidence:
+  - quote: our proximity to an auxiliary metal treating facilities results in lower shipping costs
+    approx_offset: 1432
+  actor: unknown
+  notes: line 27 names 'metal treating' as a distinct designation from 'heat treating'; no packet entry lists it
+    as an acceptable form, so a run returning it gets no credit anywhere. Actor is ambiguous in the text ('an auxiliary
+    metal treating facilities' - own annex or a neighbour), which under recall-first does not affect the entry's
+    existence.
+  provenance:
+  - action: added
+    by: verify-agent-med-tekinc
+    date: '2026-08-27'
+    source: verification-pass-miss
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: med-tekinc_com-process_caps-0034
+  name: Inspection
+  status: candidate
+  acceptable_forms:
+  - inspection
+  evidence:
+  - quote: For more than 50 years, our 48,000-square-foot facility containing state-of-the-art equipment has been
+      at the forefront of inspection and testing procedures for heat-treating.
+    approx_offset: 531
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0035
+  name: Testing
+  status: candidate
+  acceptable_forms:
+  - testing
+  evidence:
+  - quote: For more than 50 years, our 48,000-square-foot facility containing state-of-the-art equipment has been
+      at the forefront of inspection and testing procedures for heat-treating.
+    approx_offset: 531
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0036
+  name: Rockwell Hardness Testing
+  status: candidate
+  acceptable_forms:
+  - Rockwell Hardness
+  evidence:
+  - quote: Our Rockwell Hardness Machines are certified every six months and accuracy-verified against the standard
+      block at the start of every shift to help make your metals more durable.
+    approx_offset: 1710
+  notes: the text calls the tester a 'Machine', but per the equipments field's own exclusion clause a hardness tester
+    measures/tests the work and does not qualify as equipment — the underlying operation belongs here instead.
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0037
+  name: Induction
+  status: candidate
+  acceptable_forms:
+  - induction
+  evidence:
+  - quote: like brazing and induction, with our state-of-the-art equipment.
+    approx_offset: 2036
+  notes: generic mention distinct from the more specific 'Induction Hardening' named on the equipment page.
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0038
+  name: Controlled Atmospheres
+  status: disputed
+  acceptable_forms:
+  - Controlled Atmospheres
+  evidence:
+  - quote: Controlled Atmospheres
+    approx_offset: 2599
+  notes: listed among the 'Other services we provide' bullets, but names a furnace condition as much as an operation;
+    kept as process_caps, disputed.
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0039
+  name: Laboratory Services
+  status: candidate
+  acceptable_forms:
+  - Laboratory Services
+  evidence:
+  - quote: Laboratory Services
+    approx_offset: 2624
+  notes: metallurgical lab/testing services, listed among the services bullets.
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0040
+  name: Rockwell & Brinell Testing
+  status: candidate
+  acceptable_forms:
+  - Rockwell & Brinell Testing
+  - Brinell
+  evidence:
+  - quote: Rockwell & Brinell Testing
+    approx_offset: 2720
+  notes: kept as the single listed phrase; 'Brinell' added as an additional acceptable form since it is a whole
+    word inside it.
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0041
+  name: Sub Zero Stabilizing
+  status: candidate
+  acceptable_forms:
+  - Sub Zero Stabilizing
+  - subzero stabilizing
+  evidence:
+  - quote: Sub Zero Stabilizing
+    approx_offset: 2839
+  notes: the equipment-page prose respells this one-word ('subzero stabilizing') — both surface forms captured on
+    one entity.
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: med-tekinc_com-process_caps-0042
+  name: Tempering Steel
+  status: candidate
+  acceptable_forms:
+  - Tampering Steel
+  - tempering steel
+  evidence:
+  - quote: Tampering Steel
+    approx_offset: 2862
+  notes: the services bullet list misspells 'Tempering' as 'Tampering' — the literal (misspelled) text is the acceptable
+    form; the equipment-page prose uses the correct spelling ('tempering steel').
+  provenance:
+  - action: added
+    by: seed-agent-med-tekinc-com
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: Flame Hardening
+  reason: ANTICIPATORY - zero occurrences in the file (grep -i flame = 0). An earlier pipeline run emitted it for
+    this subject; only fabrication can hit it. The site does list Induction, Spin, Neutral, Salt Bath and Tool Hardening,
+    which is where the word association comes from
+- form: Case Hardening
+  reason: ANTICIPATORY - zero occurrences. Strong association with the carburizing/carbonitriding that IS listed,
+    and with the equipment line's 'All Case Furnaces' (where 'Case' names the furnace type, not a hardening process)
+- form: Cryogenic Treatment
+  reason: ANTICIPATORY - zero occurrences. Word association from 'Sub Zero Stabilizing'
+- form: Machining
+  reason: ANTICIPATORY - zero occurrences on a word boundary. The file has 'machine shops' (the customers) and 'Rockwell
+    Hardness Machines' (a tester); MED-TEK machines nothing
+- form: shipping
+  reason: WITNESSED - 'lower shipping costs' (line 27) and 'handle shipments' (line 21) are logistics. This field's
+    boundary runs 'from raw material through to finished goods ready to ship', so shipping itself is past the end
+    of it
+- form: processing
+  reason: '''faster processing for clients'' — generic business-speed claim, not a named operation.'

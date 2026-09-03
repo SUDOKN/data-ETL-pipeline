@@ -1,0 +1,959 @@
+subject: decimal.net
+field: conformity_attestations
+snapshot:
+  file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/decimal.net.txt
+  sha256: ba4fce9db47e08d89fb6bfa97546a93fa70d2544931101547fbd57aecf982d99
+eval_set_version: 3
+expected_empty: false
+notes: Six credentials repeat in a footer on all 51 pages (AS9100, ISO 9001, ITAR, DFAR, RoHs, SVHC); the Industry
+  Standards table adds REACH and Conflict Materials; case studies add customer-imposed specs (MIL-A-8625, QQ-A-250/11F,
+  P.S. 806-x, four IEC standards, two GB standards). NADCAP is the supplier-held trap. Awards (SFMA Manufacturer
+  of the Year, city Large Business Award) are false_friends.
+entries:
+- id: decimal_net-conformity_attestations-0003
+  name: RoHS compliance
+  status: confirmed
+  acceptable_forms:
+  - RoHs Compliant
+  - RoHS compliant
+  - RoHs
+  - RoHS
+  evidence:
+  - quote: RoHs Compliant
+    approx_offset: 5975
+  - quote: Can Decimal Engineering provide RoHS compliant parts?
+    approx_offset: 43095
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0006
+  name: plating certified to AS9100, ISO, ITAR & NADCAP
+  status: disputed
+  acceptable_forms:
+  - Plating Certified to AS9100, ISO, ITAR & NADCAP
+  evidence:
+  - quote: Plating Certified to AS9100, ISO, ITAR & NADCAP
+    approx_offset: 6004
+  actor: supplier
+  notes: 'a Plating Services footnote; the plating itself is outsourced, so the certification is the plater''s |
+    not an attestation with an identity of its own: ''Plating Certified to AS9100, ISO, ITAR & NADCAP'' is a table-cell
+    sentence restating four certifications already seeded separately (0007 AS9100, 0009 ISO 9001, 0001 ITAR, 0005
+    NADCAP); its only acceptable form is the whole cell, which a search stage would not emit as a phrase'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: 'not an attestation with an identity of its own: ''Plating Certified to AS9100, ISO, ITAR & NADCAP''
+      is a table-cell sentence restating four certifications already seeded separately (0007 AS9100, 0009 ISO 9001,
+      0001 ITAR, 0005 NADCAP); its only acceptable form is the whole cell, which a search stage would not emit as
+      a phrase'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0001
+  name: ITAR registration
+  status: candidate
+  acceptable_forms:
+  - ITAR Registered (M23878)
+  - ITAR Registered
+  - ITAR registered
+  - ITAR
+  evidence:
+  - quote: '**AS9100 Revision C Certified (#12912) Conflict Materials Compliant DFAR Compliant ISO 9001:2008 Certified
+      (#12912):** ITAR Registered (M23878)'
+    approx_offset: 7212
+  notes: reanchored to the metal-stamping Industry Standards table (also repeated verbatim on 5 other service pages)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0007
+  name: AS9100
+  status: confirmed
+  acceptable_forms:
+  - AS9100 Certified
+  - AS9100 Revision C Certified (#12912)
+  - AS9100C
+  - AS 9100D
+  - AS9100
+  evidence:
+  - quote: AS9100 Revision C Certified (#12912)
+    approx_offset: 7214
+  - quote: Decimal Engineering’s Quality Management System is Certified to AS 9100D and ISO
+    approx_offset: 70917
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0008
+  name: Conflict Materials compliance
+  status: confirmed
+  acceptable_forms:
+  - Conflict Materials Compliant
+  - Conflict Materials
+  evidence:
+  - quote: Conflict Materials Compliant
+    approx_offset: 7251
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0002
+  name: DFAR compliance
+  status: confirmed
+  acceptable_forms:
+  - DFAR Compliant
+  - DFAR
+  evidence:
+  - quote: DFAR Compliant
+    approx_offset: 7280
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0010
+  name: REACH compliance
+  status: confirmed
+  acceptable_forms:
+  - Reach Compliant
+  - Reach
+  evidence:
+  - quote: Reach Compliant
+    approx_offset: 7357
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0004
+  name: SVHC compliance
+  status: confirmed
+  acceptable_forms:
+  - SVHC Compliant
+  - SVHC
+  evidence:
+  - quote: SVHC Compliant
+    approx_offset: 7390
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0016
+  name: Mil-Spec welding certification
+  status: confirmed
+  acceptable_forms:
+  - Certified Mil-Spec Welding
+  - Mil-Spec
+  - military grade standards
+  evidence:
+  - quote: Die, Progressive, Single-Hit), Wire EDM, 2D/3D Laser Cutting, Certified Mil-Spec Welding, Engineering
+      & Design Services, Value-Added Assembly, Tool & Die
+    approx_offset: 40983
+  - quote: material and machining requirements, including a serialization procedure that conformed to military grade
+      standards. Using our Mori Seiki NT3150 9-axis Mill/Turn
+    approx_offset: 11530
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0017
+  name: QQ-A-250/11F
+  status: confirmed
+  acceptable_forms:
+  - QQ-A-250/11F
+  - QQ-A-250/11
+  evidence:
+  - quote: x 3/641″ at a tolerance of +/− 0.00019″ using 6061-T651 Aluminum that conformed to QQ-A-250/11F specifications.
+      Each part was produced using a single machine
+    approx_offset: 11757
+  actor: client
+  notes: an aluminium plate specification imposed by the military servo-body customer
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0018
+  name: MIL-A-8625
+  status: confirmed
+  acceptable_forms:
+  - MIL-A-8625
+  evidence:
+  - quote: Coordinate Measuring Machine (CMM). Upon completion, each servo body was anodized according to MIL-A-8625
+      requirements. Over the course of several months,
+    approx_offset: 11954
+  actor: client
+  notes: an anodize specification imposed by the military servo-body customer
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0019
+  name: ISO 9000:2008
+  status: confirmed
+  acceptable_forms:
+  - ISO 9000:2008
+  evidence:
+  - quote: At Decimal Engineering, we are ISO 9000:2008 compliant and had to adhere to several standards related
+      to this project, including
+    approx_offset: 12161
+  notes: almost certainly a typo for ISO 9001:2008, but it is what the text says on the servo-body page
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0020
+  name: P.S. 806-1-1
+  status: confirmed
+  acceptable_forms:
+  - P.S. 806-1-1
+  evidence:
+  - quote: including AS9100 quality management for Aerospace components, P.S. 806-1-1, and P.S. 806-3-20A. Our client
+      was extremely pleased with the entire cycle of
+    approx_offset: 12280
+  actor: client
+  notes: a customer process specification the servo-body job had to meet
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0021
+  name: P.S. 806-3-20A
+  status: confirmed
+  acceptable_forms:
+  - P.S. 806-3-20A
+  - P.S.806-3-20A
+  evidence:
+  - quote: including AS9100 quality management for Aerospace components, P.S. 806-1-1, and P.S. 806-3-20A. Our client
+      was extremely pleased with the entire cycle of
+    approx_offset: 12280
+  actor: client
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0011
+  name: Certified Welders
+  status: disputed
+  acceptable_forms:
+  - Certified Welders
+  - certified welders
+  evidence:
+  - quote: Certified Welders
+    approx_offset: 32233
+  - quote: provide welding, spot welding, brazing and soldering, all performed by highly trained certified welders.
+      We specialize in PQR and WPS compliant welding; though
+    approx_offset: 29548
+  notes: a staff qualification claim with no certification identity - the text says only 'Certified Welders' / 'highly
+    trained certified welders' and never names the credential or issuing body; the identified weld credentials in
+    the same table (CWI, D1.1 & D1.2, PQR, WPS) are seeded separately. SEEDING_BRIEF sec.4 flags staff qualifications
+    as seed-disputed
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: disputed
+    by: verify-agent-decimal
+    date: '2026-08-27'
+    reason: a staff qualification claim with no certification identity - the text says only 'Certified Welders'
+      / 'highly trained certified welders' and never names the credential or issuing body; the identified weld credentials
+      in the same table (CWI, D1.1 & D1.2, PQR, WPS) are seeded separately. SEEDING_BRIEF sec.4 flags staff qualifications
+      as seed-disputed
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0012
+  name: WPS (Welding Procedure Specification)
+  status: confirmed
+  acceptable_forms:
+  - WPS
+  - WPS compliant welding
+  evidence:
+  - quote: WPS
+    approx_offset: 29678
+  - quote: soldering, all performed by highly trained certified welders. We specialize in PQR and WPS compliant
+      welding; though these standards are mostly for the defense industry,
+    approx_offset: 29591
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0013
+  name: PQR (Procedure Qualification Record)
+  status: confirmed
+  acceptable_forms:
+  - PQR’s
+  - PQR
+  - PQR and WPS compliant welding
+  evidence:
+  - quote: PQR’s
+    approx_offset: 32370
+  - quote: soldering, all performed by highly trained certified welders. We specialize in PQR and WPS compliant
+      welding; though these standards are mostly for the defense industry,
+    approx_offset: 29591
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0005
+  name: NADCAP (held by a finishing supplier)
+  status: confirmed
+  acceptable_forms:
+  - NADCAP certified finishing
+  - NADCAP requirement
+  - NADCAP
+  evidence:
+  - quote: variety of plating. For NADCAP certified finishing, we work with a number of trusted suppliers who can
+      provide full process compliance.
+    approx_offset: 65236
+  - quote: variety of plating. If your project has a NADCAP requirement, we accommodate with certified finishing
+      from one of our trusted suppliers that provide full
+    approx_offset: 30179
+  actor: supplier
+  notes: 'THE SUPPLIER-HELD ACCREDITATION TRAP: Decimal is explicit that NADCAP finishing comes from outside suppliers,
+    not from its own shop. Recall-first keeps it as an entry with actor: supplier'
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0014
+  name: CWI (Certified Weld Inspection)
+  status: confirmed
+  acceptable_forms:
+  - CWI (Certified Weld Inspection)
+  - CWI
+  evidence:
+  - quote: CWI (Certified Weld Inspection)
+    approx_offset: 32251
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0015
+  name: AWS D1.1 & D1.2
+  status: confirmed
+  acceptable_forms:
+  - D1.1 & D1.2 Compliant
+  - D1.1
+  - D1.2
+  evidence:
+  - quote: D1.1 & D1.2 Compliant
+    approx_offset: 32283
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0009
+  name: ISO 9001
+  status: confirmed
+  acceptable_forms:
+  - ISO 9001 Certified
+  - ISO 9001:2008 Certified (#12912)
+  - ISO 9001:2008
+  - ISO 9001
+  evidence:
+  - quote: Decimal is ITAR registered, DFAR, RoHS and SVHC compliant as well as ISO 9001 & AS9100 Certified.
+    approx_offset: 41879
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0022
+  name: PPAP (Production Part Approval Process)
+  status: disputed
+  acceptable_forms:
+  - PPAP (Production Part Approval Process)
+  - Production Part Approval Process
+  - PPAP
+  evidence:
+  - quote: '**Dimensional Inspection FMEA (Failure Mode & Effects Analysis) Non-destructive Testing:** PPAP (Production
+      Part Approval Process)'
+    approx_offset: 60952
+  notes: 'DISPUTE STANDS: same line as process_caps-0122; PPAP is a customer approval process with an identity of
+    its own (arguable attestation) but also arguably a process -- seeded in both fields, one home is wrong.'
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: dispute
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0023
+  name: IEC and GB national standards
+  status: confirmed
+  acceptable_forms:
+  - IEC and GB national standards
+  evidence:
+  - quote: additional projects currently underway. Backed by our ISO compliance as well as IEC and GB national standards
+      for quality control, we’ve built a reputation as a
+    approx_offset: 76087
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-decimal
+    date: '2026-08-27'
+  - action: ported
+    by: port_corpus.py
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0024
+  name: IEC 60529
+  status: candidate
+  acceptable_forms:
+  - IEC 60529
+  evidence:
+  - quote: '**Standards Met:** ISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB 4208,
+      GB 7000.1'
+    approx_offset: 77047
+  actor: client
+  notes: reanchored to the spray-shower-tester Standards Met table row, which now also carries ISO 9001:2008 and
+    AS9100 on the same line (all six IEC/GB standards for this subject share this one line)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0025
+  name: IEC 60598-1
+  status: candidate
+  acceptable_forms:
+  - IEC 60598-1
+  evidence:
+  - quote: '**Standards Met:** ISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB 4208,
+      GB 7000.1'
+    approx_offset: 77047
+  actor: client
+  notes: same Standards Met line as IEC 60529 (0024)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0026
+  name: IEC 60335-1
+  status: candidate
+  acceptable_forms:
+  - IEC 60335-1
+  evidence:
+  - quote: '**Standards Met:** ISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB 4208,
+      GB 7000.1'
+    approx_offset: 77047
+  actor: client
+  notes: same Standards Met line as IEC 60529 (0024)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0027
+  name: IEC 60745-1
+  status: candidate
+  acceptable_forms:
+  - IEC 60745-1
+  evidence:
+  - quote: '**Standards Met:** ISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB 4208,
+      GB 7000.1'
+    approx_offset: 77047
+  actor: client
+  notes: same Standards Met line as IEC 60529 (0024)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0028
+  name: GB 4208
+  status: candidate
+  acceptable_forms:
+  - GB 4208
+  evidence:
+  - quote: '**Standards Met:** ISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB 4208,
+      GB 7000.1'
+    approx_offset: 77047
+  actor: client
+  notes: same Standards Met line as IEC 60529 (0024); the Chinese national standard the spray-shower-tester job
+    was held to
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0029
+  name: GB 7000.1
+  status: candidate
+  acceptable_forms:
+  - GB 7000.1
+  evidence:
+  - quote: '**Standards Met:** ISO 9001:2008, AS9100, IEC 60529, IEC 60598-1, IEC 60335-1, IEC 60745-1, GB 4208,
+      GB 7000.1'
+    approx_offset: 77047
+  actor: client
+  notes: same Standards Met line as IEC 60529 (0024)
+  provenance:
+  - action: added
+    by: corpus-seed
+    date: '2026-08-27'
+    source: legacy-corpus
+  - action: reanchor
+    by: repair-agent-decimal-net
+    date: '2026-08-29'
+    source: markdown-cutover
+- id: decimal_net-conformity_attestations-0030
+  name: RoHs Compliant
+  status: candidate
+  acceptable_forms:
+  - RoHs Compliant
+  evidence:
+  - quote: ' RoHs Compliant'
+    approx_offset: 5975
+  notes: Industry Standards table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0031
+  name: AS9100 Revision C
+  status: candidate
+  acceptable_forms:
+  - AS9100 Revision C
+  evidence:
+  - quote: '**AS9100 Revision C Certified (#12912) Conflict Materials Compliant DFAR Compliant ISO 9001:2008 Certified
+      (#12912):** ITAR Registered (M23878)'
+    approx_offset: 7212
+  notes: Industry Standards table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0032
+  name: Conflict Materials Compliant
+  status: disputed
+  acceptable_forms:
+  - Conflict Materials Compliant
+  evidence:
+  - quote: '**AS9100 Revision C Certified (#12912) Conflict Materials Compliant DFAR Compliant ISO 9001:2008 Certified
+      (#12912):** ITAR Registered (M23878)'
+    approx_offset: 7212
+  notes: Industry Standards table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0033
+  name: DFAR Compliant
+  status: candidate
+  acceptable_forms:
+  - DFAR Compliant
+  evidence:
+  - quote: '**AS9100 Revision C Certified (#12912) Conflict Materials Compliant DFAR Compliant ISO 9001:2008 Certified
+      (#12912):** ITAR Registered (M23878)'
+    approx_offset: 7212
+  notes: Industry Standards table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0034
+  name: ISO 9001:2008
+  status: candidate
+  acceptable_forms:
+  - ISO 9001:2008
+  evidence:
+  - quote: '**AS9100 Revision C Certified (#12912) Conflict Materials Compliant DFAR Compliant ISO 9001:2008 Certified
+      (#12912):** ITAR Registered (M23878)'
+    approx_offset: 7212
+  notes: Industry Standards table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0035
+  name: ITAR Registered
+  status: candidate
+  acceptable_forms:
+  - ITAR Registered
+  evidence:
+  - quote: '**AS9100 Revision C Certified (#12912) Conflict Materials Compliant DFAR Compliant ISO 9001:2008 Certified
+      (#12912):** ITAR Registered (M23878)'
+    approx_offset: 7212
+  notes: Industry Standards table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0036
+  name: Reach Compliant
+  status: candidate
+  acceptable_forms:
+  - Reach Compliant
+  evidence:
+  - quote: ' Reach Compliant'
+    approx_offset: 7357
+  notes: Industry Standards table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0037
+  name: AS9100 (Cross Pendant project)
+  status: candidate
+  acceptable_forms:
+  - AS9100
+  evidence:
+  - quote: '**Standards Met:** ISO 9001:2008, AS9100'
+    approx_offset: 11024
+  notes: Cross Pendant project Standards Met
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0038
+  name: QQ-A-250/11
+  status: candidate
+  acceptable_forms:
+  - QQ-A-250/11
+  evidence:
+  - quote: '**Standards Met:** ISO 9000:2008, AS9100, QQ-A-250/11, MIL-A-8625, P.S. 806-1-1, P.S.806-3-20A'
+    approx_offset: 13357
+  notes: Servo Body project Standards Met
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0039
+  name: P.S.806-3-20A
+  status: candidate
+  acceptable_forms:
+  - P.S.806-3-20A
+  evidence:
+  - quote: '**Standards Met:** ISO 9000:2008, AS9100, QQ-A-250/11, MIL-A-8625, P.S. 806-1-1, P.S.806-3-20A'
+    approx_offset: 13357
+  notes: Servo Body project Standards Met
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0040
+  name: PQR compliant welding
+  status: candidate
+  acceptable_forms:
+  - PQR
+  evidence:
+  - quote: We specialize in PQR and WPS compliant welding; though these standards are mostly for the defense industry
+    approx_offset: 29653
+  notes: Sheet Metal Fabrication
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0041
+  name: WPS compliant welding
+  status: candidate
+  acceptable_forms:
+  - WPS
+  evidence:
+  - quote: We specialize in PQR and WPS compliant welding; though these standards are mostly for the defense industry
+    approx_offset: 29653
+  notes: Sheet Metal Fabrication
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0042
+  name: NADCAP
+  status: candidate
+  acceptable_forms:
+  - NADCAP
+  evidence:
+  - quote: If your project has a NADCAP requirement, we accommodate with certified finishing from one of our trusted
+      suppliers
+    approx_offset: 30199
+  notes: Sheet Metal Fabrication
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0043
+  name: D1.1 & D1.2 Compliant
+  status: candidate
+  acceptable_forms:
+  - D1.1
+  - D1.2
+  evidence:
+  - quote: '**3rd Party Weld Inspection as Needed Certified Welders CWI (Certified Weld Inspection) D1.1 & D1.2
+      Compliant Dye Penetrant Testing Leak Testing:** Magnetic Particle Testing'
+    approx_offset: 32195
+  notes: Sheet Metal Fabrication Welding Inspection table
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0044
+  name: SVHC compliant
+  status: candidate
+  acceptable_forms:
+  - SVHC
+  evidence:
+  - quote: Decimal is ITAR registered, DFAR, RoHS and SVHC compliant as well as ISO 9001 & AS9100 Certified.
+    approx_offset: 41879
+  notes: Why Decimal certifications
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0045
+  name: AS9100C
+  status: candidate
+  acceptable_forms:
+  - AS9100C
+  evidence:
+  - quote: As an ISO 9001:2008 and AS9100C certified manufacturer
+    approx_offset: 60081
+  notes: Design & Engineering for Manufacturability
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+- id: decimal_net-conformity_attestations-0046
+  name: AS 9100D
+  status: candidate
+  acceptable_forms:
+  - AS 9100D
+  evidence:
+  - quote: Decimal Engineering’s Quality Management System is Certified to AS 9100D and ISO
+    approx_offset: 70917
+  notes: Laser Cutting Services
+  provenance:
+  - action: added
+    by: seed-agent-decimal-net
+    date: '2026-08-27'
+    source: corpus-seed
+false_friends:
+- form: SFMA Manufacturer of the Year
+  reason: an award, not a certification or standard
+- form: Large Business Award
+  reason: a city award, not an attestation
+- form: Business Excellence Awards
+  reason: an awards ceremony, not an attestation
+- form: Presidents Award
+  reason: an internal staff award
+- form: Award of Excellence
+  reason: an internal staff award
+- form: SFMA
+  reason: South Florida Manufacturers Association appears only as an award-giver and event host - no membership
+    is claimed
+- form: FloridaMakes
+  reason: a hashtag in a social post, not an accreditation
+- form: Trust Agreement
+  reason: a family ownership instrument from the About page
+- form: ABB Contract
+  reason: a customer contract won in 2019, not a certification
+- form: SPC (Statistical Process Control)
+  reason: a quality technique in the Inspection & Process Control column, not something a company holds
+- form: FMEA (Failure Mode & Effects Analysis)
+  reason: a quality technique, not an attestation
+- form: Job Title
+  reason: an RFQ form field label
+- form: Any .STP File
+  reason: a CAD file format in the File Formats column, not a standard a company holds
+- form: Privacy Policy
+  reason: a website document, not a compliance credential
+- form: D-U-N-S
+  reason: not present in this text; anticipatory false friend for a business-registry identifier a model may mint
+    for a manufacturer subject
