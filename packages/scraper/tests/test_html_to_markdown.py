@@ -423,3 +423,16 @@ if __name__ == "__main__":
     import sys
 
     sys.exit(pytest.main([__file__, "-q"]))
+
+    def test_ordered_list_items_are_not_prefixed(self):
+        items = "".join(f"<li>Brochure {i}x</li>" for i in range(6))
+        md = html_to_markdown(f"<h2>The Latest Brochures</h2><ol>{items}</ol>")
+        assert "The Latest Brochures: " not in md
+        assert "1. Brochure 0x" in md
+
+    def test_colon_ended_heading_never_doubles_the_colon(self):
+        md = html_to_markdown(
+            "<h2>Our Brochures:</h2>" + "".join(f"<div>Item {i}x</div>" for i in range(5))
+        )
+        assert "Our Brochures: Item 0x" in md
+        assert "Brochures:: " not in md

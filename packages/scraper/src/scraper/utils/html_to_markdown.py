@@ -129,7 +129,10 @@ list-heavy windows, so it is deliberately absent — evidence in
   sit inside the run) is rewritten so each label carries the nearest
   preceding heading of any level: ``58BD (1)`` under ``# WELLSAW`` becomes
   ``WELLSAW: 58BD (1)`` — the heading's text, a colon, a space, the exact
-  shape the A/B measured. A heading longer than 60 chars propagates nothing
+  shape the A/B measured (a heading that itself ends in a colon contributes
+  its text without it — never ``::``; list lines include ordered ``1.``
+  markers, fixed 2026-09-03 when the first corpus render prefixed them
+  against this contract). A heading longer than 60 chars propagates nothing
   (sentence-shaped headings would bloat every line); a label that already
   starts with the heading's text is left alone. WHY: catalog tiles and
   inventory lines print bare designations whose kind and brand live only in
@@ -496,6 +499,8 @@ def _is_label_line(line: str) -> bool:
         return False
     if s.startswith(("#", "|", "-", "*", ">", "<", "http", "Navigation:")):
         return False
+    if re.match(r"^\d+[.)] ", s):
+        return False  # ordered-list items are list lines too (the contract)
     return re.search(r"[.!?:]$", s) is None
 
 
@@ -530,6 +535,7 @@ def _propagate_headings(text: str) -> str:
                 title = nearest[k]
                 label = lines[k].strip()
                 if title and not label.lower().startswith(title.lower()):
-                    out[k] = lines[k].replace(label, f"{title}: {label}", 1)
+                    prefix = title.rstrip(":")  # a colon-ended heading must not yield "::"
+                    out[k] = lines[k].replace(label, f"{prefix}: {label}", 1)
         i = j
     return "\n".join(out)
