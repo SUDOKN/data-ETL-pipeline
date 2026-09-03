@@ -26,7 +26,7 @@ from paths import DUMP_ROOT, SEARCH_FIELDS  # noqa: E402
 
 SEARCH_ID_RE = re.compile(
     r"^(?P<subject>[^>]+)>(?P<field>[^>]+)>llm_search>chunk>(?P<chunk>[0-9:]+)"
-    r">sub>(?P<sub>[0-9:]+)>(?P<segment>.+)$"
+    r">sub>(?P<sub>[0-9:]+)>(?:pass>(?P<pass_index>\d+)>)?(?P<segment>.+)$"
 )
 RECURSIVE_ID_RE = re.compile(
     r"^(?P<subject>[^>]+)>(?P<field>[^>]+)>llm_recursive_search>round>(?P<round>\d+)"
@@ -46,6 +46,12 @@ class WindowRecord:
     sub_bounds: str
     custom_id: str
     round_index: Optional[int] = None  # None = first search; 0.. = recursive
+    # Retry-and-union (2026-09-03): pass 1 is unmarked, pass 2 carries
+    # `>pass>2>` in its id. After load_run's merge a first-search record IS
+    # the window (the pipeline's union view) and `pass_records` holds the
+    # per-pass raw detail; before the merge, pass_index tells passes apart.
+    pass_index: Optional[int] = None
+    pass_records: list[dict] = dc_field(default_factory=list)
     phrases: Optional[list[str]] = None  # None = response unavailable
     phrases_note: Optional[str] = None
     wire_text: Optional[str] = None
@@ -91,7 +97,9 @@ class FieldRun:
 def _parse_custom_id(custom_id: str) -> Optional[dict[str, Any]]:
     m = SEARCH_ID_RE.match(custom_id)
     if m:
-        return {**m.groupdict(), "round": None}
+        d = m.groupdict()
+        d["pass_index"] = int(d["pass_index"]) if d.get("pass_index") else None
+        return {**d, "round": None}
     m = RECURSIVE_ID_RE.match(custom_id)
     if m:
         d = m.groupdict()
@@ -139,6 +147,9 @@ def load_run(run_id: str, pulled_file: Optional[Path] = None) -> list[FieldRun]:
         for chunk_bounds, chunk in (payload.get("chunks") or {}).items():
             requests = (chunk or {}).get("requests") or {}
             entries = list(requests.get("llm_phrase_search") or [])
+            # retry-and-union (2026-09-03): the opt-in second pass dumps as its
+            # own block; absent on default-off and pre-cutover runs
+            entries.extend(requests.get("llm_phrase_search_pass2") or [])
             recursive = requests.get("llm_phrase_recursive_search") or {}
             for sub_rounds in recursive.values():
                 entries.extend(sub_rounds)
@@ -146,6 +157,7 @@ def load_run(run_id: str, pulled_file: Optional[Path] = None) -> list[FieldRun]:
                 record = _window_from_entry(entry, pulled)
                 if record is not None:
                     fr.windows.append(record)
+        fr.windows = _merge_first_search_passes(fr.windows)
         fr.windows.sort(
             key=lambda w: (
                 int(w.chunk_bounds.split(":")[0]),
@@ -173,6 +185,7 @@ def _window_from_entry(
         sub_bounds=parsed["sub"],
         custom_id=custom_id,
         round_index=parsed["round"],
+        pass_index=parsed.get("pass_index"),
         input_tokens=entry.get("input_tokens"),
         output_tokens=entry.get("output_tokens"),
         created_at=entry.get("created_at"),
@@ -210,6 +223,92 @@ def _window_from_entry(
                 else:
                     record.unparseable_content = True
     return record
+
+
+
+
+def _merge_first_search_passes(windows: list[WindowRecord]) -> list[WindowRecord]:
+    """ONE record per first-search window, whatever its pass count — the
+    PIPELINE's view (retry-and-union, 2026-09-03): phrases are the union of
+    the parseable passes, a window is unparseable only when EVERY pass is,
+    a length stop on any pass is surfaced, and token counts sum (the cost
+    view). Per-pass raw detail lands in ``pass_records`` so degeneration
+    stays visible per pass. Single-pass runs merge to themselves; recursive
+    rounds pass through untouched."""
+    merged: dict[tuple[str, str], WindowRecord] = {}
+    out: list[WindowRecord] = []
+    for record in windows:
+        if record.round_index is not None:
+            out.append(record)
+            continue
+        key = (record.chunk_bounds, record.sub_bounds)
+        base = merged.get(key)
+        if base is None:
+            base = record if record.pass_index is None else _as_base(record)
+            merged[key] = base
+            base.pass_records = [_pass_detail(record)]
+            if record.pass_index is not None and base is not record:
+                _fold_pass(base, record)
+            out.append(base)
+            continue
+        base.pass_records.append(_pass_detail(record))
+        if record.pass_index is None and base.custom_id != record.custom_id:
+            # a pass-1 record arriving after pass 2 seeded the base: adopt
+            # its identity (custom_id/pv/cap read off pass 1)
+            base.custom_id = record.custom_id
+            base.created_at = base.created_at or record.created_at
+        _fold_pass(base, record)
+    return out
+
+
+def _as_base(record: WindowRecord) -> WindowRecord:
+    """A pass-2-seeded base before its pass-1 sibling arrives: same window
+    coordinates, folded content."""
+    return WindowRecord(
+        subject=record.subject,
+        field=record.field,
+        chunk_bounds=record.chunk_bounds,
+        sub_bounds=record.sub_bounds,
+        custom_id=record.custom_id,
+        round_index=None,
+        created_at=record.created_at,
+    )
+
+
+def _pass_detail(record: WindowRecord) -> dict:
+    return {
+        "pass": record.pass_index or 1,
+        "custom_id": record.custom_id,
+        "n_phrases": None if record.phrases is None else len(record.phrases),
+        "phrases": record.phrases,
+        "finish_reason": record.finish_reason,
+        "unparseable": record.unparseable_content,
+        "output_tokens": record.output_tokens,
+    }
+
+
+def _fold_pass(base: WindowRecord, record: WindowRecord) -> None:
+    if record is base:
+        return
+    if record.phrases is not None:
+        if base.phrases is None:
+            base.phrases = list(record.phrases)
+        else:
+            seen = set(base.phrases)
+            base.phrases = base.phrases + [p for p in record.phrases if p not in seen]
+        base.unparseable_content = False
+    elif base.phrases is None:
+        base.unparseable_content = base.unparseable_content and record.unparseable_content \
+            if base.pass_records[:-1] else record.unparseable_content
+    if record.finish_reason == "length":
+        base.finish_reason = "length"
+    elif base.finish_reason is None:
+        base.finish_reason = record.finish_reason
+    base.input_tokens = (base.input_tokens or 0) + (record.input_tokens or 0) or None
+    base.output_tokens = (base.output_tokens or 0) + (record.output_tokens or 0) or None
+    if base.wire_text is None and record.wire_text is not None:
+        base.wire_text = record.wire_text
+        base.domain = record.domain
 
 
 def run_started_at(run_id: str) -> datetime:

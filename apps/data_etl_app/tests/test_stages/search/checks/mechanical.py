@@ -115,6 +115,13 @@ def length_metrics(windows: list[WindowRecord]) -> Optional[dict[str, Any]]:
 # ---------------------------------------------------------------- degeneration
 
 def degeneration_metrics(windows: list[WindowRecord]) -> dict[str, Any]:
+    """Degeneration is judged per PASS (retry-and-union, 2026-09-03): a
+    repetition loop or unparseable answer in one pass is an event even when
+    the window's sibling pass healed it — the merged record's union would
+    hide exactly what this metric watches. Healed events carry the pass and
+    a healed flag; a window is listed in ``unparseable_windows`` only when
+    NO pass parsed (the pipeline's own failure condition). Old snapshots
+    without pass_records degrade to the merged record itself."""
     loops = []
     near_cap = []
     length_stops = []
@@ -122,18 +129,27 @@ def degeneration_metrics(windows: list[WindowRecord]) -> dict[str, Any]:
     for w in windows:
         if w.unparseable_content:
             unparseable.append(w.sub_bounds)
-        if w.finish_reason == "length":
-            length_stops.append(w.sub_bounds)
         cap = w.completion_cap
-        if cap and w.output_tokens and w.output_tokens >= 0.95 * cap:
-            near_cap.append(w.sub_bounds)
-        phrases = w.phrases or []
-        unique = len({p.casefold() for p in phrases})
-        # the production warning threshold: >=50 elements, >=2x unique
-        if len(phrases) >= 50 and unique and len(phrases) >= 2 * unique:
-            most, count = Counter(p.casefold() for p in phrases).most_common(1)[0]
-            loops.append({"window": w.sub_bounds, "elements": len(phrases),
-                          "unique": unique, "top": most, "top_count": count})
+        passes = w.pass_records or [{
+            "pass": 1, "phrases": w.phrases, "finish_reason": w.finish_reason,
+            "unparseable": w.unparseable_content, "output_tokens": w.output_tokens,
+        }]
+        for detail in passes:
+            label = (w.sub_bounds if len(passes) == 1
+                     else f"{w.sub_bounds}#p{detail.get('pass', 1)}")
+            if detail.get("finish_reason") == "length":
+                length_stops.append(label)
+            tokens_out = detail.get("output_tokens")
+            if cap and tokens_out and tokens_out >= 0.95 * cap:
+                near_cap.append(label)
+            phrases = detail.get("phrases") or []
+            unique = len({p.casefold() for p in phrases})
+            # the production warning threshold: >=50 elements, >=2x unique
+            if len(phrases) >= 50 and unique and len(phrases) >= 2 * unique:
+                most, count = Counter(p.casefold() for p in phrases).most_common(1)[0]
+                loops.append({"window": label, "elements": len(phrases),
+                              "unique": unique, "top": most, "top_count": count,
+                              "healed": not w.unparseable_content and len(passes) > 1})
     return {
         "repetition_loops": loops,
         "near_cap_windows": near_cap,

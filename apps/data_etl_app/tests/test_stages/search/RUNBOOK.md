@@ -167,3 +167,15 @@ run twice, keep only the later row per (run, subject, field) and say so.
 - **An unverified expectation set gates nothing.** `confirmed_recall: null`
   means "not gated", never "no misses"; check
   `expectations/VERIFICATION_LEDGER.md` before reading a subject's recall.
+
+## Runs with the search union pass enabled (2026-09-03)
+
+When a run used `search_union_pass=True`, every sub-window has TWO search
+requests (`>pass>2>` in the second's id). The loader merges them into ONE
+window record — the pipeline's own union view — so every window-level metric
+keeps its meaning; per-pass raw detail rides in `pass_records`, and
+`degeneration_metrics` reports loop/length/near-cap events PER PASS
+(`0:100#p2`-style labels, `healed: true` when the sibling pass carried the
+window). Two consequences to remember at reading time: request counts and
+token costs are per pass, not per window; and `aa_probe.py` numbers are
+per-request, so quote them per pass.

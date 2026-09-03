@@ -68,7 +68,7 @@ def test_search_and_recursive_custom_ids_parse():
     parsed = _parse_custom_id(f"a.com>equipments>llm_search>chunk>0:96974>sub>0:23771>{SEG}")
     assert parsed == {
         "subject": "a.com", "field": "equipments", "chunk": "0:96974",
-        "sub": "0:23771", "segment": SEG, "round": None,
+        "sub": "0:23771", "segment": SEG, "round": None, "pass_index": None,
     }
     parsed = _parse_custom_id(
         f"a.com>products>llm_recursive_search>round>2>chunk>0:96974>sub>0:23771>{SEG}"
@@ -881,3 +881,58 @@ def test_an_entry_shadowed_by_its_siblings_is_flagged_not_failed(tmp_path, monke
     shadowed = [w for w in warnings if "never independently miss" in w]
     assert len(shadowed) == 1
     assert "process_caps-0001" in shadowed[0]  # `brazing` ⊂ `vacuum brazing`
+
+
+# ------------------------------------------------- retry-and-union pass merge
+
+
+def test_pass2_custom_id_parses_and_pass1_stays_unmarked():
+    from loading import _parse_custom_id
+
+    p2 = _parse_custom_id(f"s.com>products>llm_search>chunk>0:1000>sub>0:100>pass>2>{SEG}")
+    assert p2 and p2["sub"] == "0:100" and p2["pass_index"] == 2
+    p1 = _parse_custom_id(f"s.com>products>llm_search>chunk>0:1000>sub>0:100>{SEG}")
+    assert p1 and p1["pass_index"] is None
+
+
+def _two_pass_records(p1_phrases, p2_phrases, *, p1_unparseable=False):
+    from loading import _merge_first_search_passes
+
+    first = _window(phrases=p1_phrases)
+    first.unparseable_content = p1_unparseable
+    second = _window(phrases=p2_phrases)
+    second.pass_index = 2
+    second.custom_id = f"s.com>products>llm_search>chunk>0:1000>sub>0:100>pass>2>{SEG}"
+    return _merge_first_search_passes([first, second])
+
+
+def test_merge_unions_the_passes_into_one_window():
+    (merged,) = _two_pass_records(["steel", "brass"], ["brass", "lathe"])
+    assert merged.phrases == ["steel", "brass", "lathe"]
+    assert ">pass>" not in merged.custom_id  # identity reads off pass 1
+    assert [d["pass"] for d in merged.pass_records] == [1, 2]
+
+
+def test_merge_heals_an_unparseable_pass_and_degeneration_still_sees_it():
+    (merged,) = _two_pass_records(None, ["salt spray chamber"], p1_unparseable=True)
+    assert merged.phrases == ["salt spray chamber"]
+    assert merged.unparseable_content is False  # the pipeline's own condition
+    degen = mechanical.degeneration_metrics([merged])
+    assert degen["unparseable_windows"] == []
+    # ...but the healed loop-shaped pass stays visible per pass
+    loopy = ["products"] * 60
+    (merged2,) = _two_pass_records(loopy, ["real phrase"])
+    degen2 = mechanical.degeneration_metrics([merged2])
+    assert len(degen2["repetition_loops"]) == 1
+    assert degen2["repetition_loops"][0]["window"] == "0:100#p1"
+    assert degen2["repetition_loops"][0]["healed"] is True
+
+
+def test_single_pass_runs_merge_to_themselves():
+    from loading import _merge_first_search_passes
+
+    only = _window(phrases=["steel"])
+    (merged,) = _merge_first_search_passes([only])
+    assert merged is only and merged.phrases == ["steel"]
+    degen = mechanical.degeneration_metrics([merged])
+    assert degen["repetition_loops"] == [] and degen["unparseable_windows"] == []
