@@ -100,6 +100,18 @@ ExtractionMetadata = Union[
 ]
 
 
+class EagerDispatchFailure(Exception):
+    """One or more eager dispatches raised, AFTER every answer that did arrive was recorded.
+
+    Raised only by the non-recursive eager path, which has no convergence loop to
+    re-ask on: swallowing it there would leave the field incomplete, skip
+    ``next_node`` and return normally — the silently-vanished-field shape
+    ``BaseLLMRecursiveExtractionNode`` documents. Recursive nodes let their
+    failures fall back into their own loop instead, bounded by
+    ``MAX_UNPRODUCTIVE_PASSES``.
+    """
+
+
 # Strategy Pattern
 class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
     """
@@ -311,6 +323,71 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
     ) -> GPTBatchResponse:
         pass
 
+    async def dispatch_and_record_eagerly(
+        self,
+        subject_unique_id: str,
+        requests_to_dispatch: list[GPTBatchRequest],
+        metadata: ExtractionMetadata,
+        timestamp: datetime,
+    ) -> list[tuple[GPTBatchRequest, BaseException]]:
+        """Dispatch every request, record every answer that arrived, return the failures.
+
+        ``return_exceptions=True`` is the load-bearing part. A bare ``gather``
+        raises on the FIRST failure, and ``bulk_record_gpt_batch_responses`` ran
+        only after it returned — so one rate-limited request (the provider 429
+        that survives the LiteLLM proxy's ``num_retries`` and the OpenAI client's
+        own ``max_retries``) threw away the answers of every sibling in the same
+        gather. Those siblings had been answered and paid for, were never
+        written to Mongo, and the next run re-sent and re-paid for all of them.
+
+        Recording is now per request, so the unanswered set is exactly the set
+        that actually failed — which is also the set both callers re-ask, since
+        ``find_incomplete_gpt_batch_requests_by_custom_ids`` selects on
+        ``response == None``.
+        """
+        if not requests_to_dispatch:
+            return []
+
+        results = await asyncio.gather(
+            *[
+                self.dispatch_batch_request(
+                    gpt_batch_request=req,
+                    metadata=metadata,
+                )
+                for req in requests_to_dispatch
+            ],
+            return_exceptions=True,
+        )
+
+        answered: list[GPTBatchRequest] = []
+        response_blobs: list[GPTBatchResponse] = []
+        failures: list[tuple[GPTBatchRequest, BaseException]] = []
+        for req, result in zip(requests_to_dispatch, results):
+            if isinstance(result, BaseException):
+                failures.append((req, result))
+            else:
+                answered.append(req)
+                response_blobs.append(result)
+
+        modified_count = failed_updates = 0
+        if answered:
+            modified_count, failed_updates = await bulk_record_gpt_batch_responses(
+                batch_requests=answered,
+                response_blobs=response_blobs,
+                timestamp=timestamp,
+            )
+        logger.info(
+            f"[{subject_unique_id}] ✅ Eagerly dispatched {len(requests_to_dispatch)} batch requests for "
+            f"{self.__class__.__name__} ('{self.field_type.name}'): {modified_count} response(s) recorded, "
+            f"{failed_updates} failed update(s), {len(failures)} dispatch failure(s)."
+        )
+        for failed_req, exc in failures:
+            logger.error(
+                f"[{subject_unique_id}] ❌ {self.__class__.__name__} ('{self.field_type.name}') dispatch failed "
+                f"for {failed_req.request.custom_id}: {type(exc).__name__}: {exc}"
+            )
+        return failures
+
     async def execute(
         self,
         subject: AbstractExtractionSubject,
@@ -397,24 +474,28 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
             logger.info(
                 f"[{subject.subject_unique_id}] 🚀 Eager execution enabled. Dispatching {len(incomplete_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') immediately."
             )
-            # execute all using asyncio.gather with dispatch_gpt_batch_request
-            batch_response_blobs = await asyncio.gather(
-                *[
-                    self.dispatch_batch_request(
-                        gpt_batch_request=req,
-                        metadata=extraction_requests.metadata,
-                    )
-                    for req in incomplete_requests.values()
-                ]
-            )
-            modified_count, failed_updates = await bulk_record_gpt_batch_responses(
-                batch_requests=list(incomplete_requests.values()),
-                response_blobs=batch_response_blobs,
+            failures = await self.dispatch_and_record_eagerly(
+                subject_unique_id=subject.subject_unique_id,
+                requests_to_dispatch=list(incomplete_requests.values()),
+                metadata=extraction_requests.metadata,
                 timestamp=timestamp,
             )
-            logger.info(
-                f"[{subject.subject_unique_id}] ✅ Eagerly dispatched {len(incomplete_requests)} batch requests for {self.__class__.__name__} ('{self.field_type.name}') with {modified_count} successful response recordings and {failed_updates} failed updates."
-            )
+            if failures:
+                # Recorded first, then raised. This node has no loop to re-ask
+                # on, and an incomplete field returns without calling next_node
+                # and without an error — so the raise is what keeps the failure
+                # visible (an ExtractionError row naming this field, written by
+                # the orchestrator's per-field handler).
+                first_failed_req, first_exc = failures[0]
+                raise EagerDispatchFailure(
+                    f"{self.__class__.__name__} ('{self.field_type.name}') for "
+                    f"{subject.subject_unique_id}: {len(failures)} of "
+                    f"{len(incomplete_requests)} eager dispatches failed. The answers "
+                    f"that arrived were recorded, so only the failed request(s) are "
+                    f"still unanswered. First failure on "
+                    f"{first_failed_req.request.custom_id}: "
+                    f"{type(first_exc).__name__}: {first_exc}"
+                ) from first_exc
 
         # check if all requests are complete
         if await self.are_all_requests_complete(

@@ -14,6 +14,7 @@ would otherwise rot.
 from __future__ import annotations
 
 import ast
+import inspect
 from datetime import datetime
 from enum import Enum
 from pathlib import Path
@@ -28,6 +29,12 @@ from core.models.extraction_schemas.relationship import (
 )
 from core.models.extraction_schemas.screening import CandidateScreeningVerdict
 from core.models.pipeline_nodes.base.base_node import BaseNode, PipelineContext
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_mention_collection_node import (
+    LLMPhraseMentionCollectionNode,
+)
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_synthesis_node import (
+    LLMPhraseSynthesisNode,
+)
 from core.models.pipeline_nodes.base.pipeline_stage import (
     PipelineStage,
     StageToggles,
@@ -662,3 +669,88 @@ def test_the_tripwire_actually_inspects_something():
     assert "ConceptReconcileNode" in inspected
     assert "BaseLLMExtractionNode" in inspected
     assert len(inspected - _EXEMPT_CLASSES) >= 5
+
+
+# --- the second tripwire --------------------------------------------------
+
+_DUMP_SOURCE = (
+    Path(__file__).resolve().parents[3]
+    / "core/src/core/services/pipeline_nodes/partial_run_dump.py"
+)
+
+# The stage each ``node_class.get_result`` call site in the dump reads, and the
+# class ``node_class`` is bound to there. Only the base classes define
+# ``get_result``; no node subclass overrides it, so binding against the base is
+# binding against what the dump actually calls.
+_DUMP_CALL_TARGETS = {
+    "synthesis": LLMPhraseSynthesisNode,
+    "mention_collection": LLMPhraseMentionCollectionNode,
+}
+
+
+def _dump_get_result_kwargs() -> dict[str, set[str]]:
+    """The keyword names the partial dump passes to ``get_result``, per stage.
+
+    Each call sits inside an ``if PipelineStage.<stage> in completed_by_stage``
+    guard; the stage named first in that guard is the one whose node the call
+    reaches through ``completed_by_stage[...]``.
+    """
+    tree = ast.parse(_DUMP_SOURCE.read_text(encoding="utf-8"))
+    by_stage: dict[str, set[str]] = {}
+    for branch in ast.walk(tree):
+        if not isinstance(branch, ast.If):
+            continue
+        stages = [
+            node.attr
+            for node in ast.walk(branch.test)
+            if isinstance(node, ast.Attribute)
+            and isinstance(node.value, ast.Name)
+            and node.value.id == "PipelineStage"
+        ]
+        if not stages:
+            continue
+        for node in ast.walk(branch):
+            if (
+                isinstance(node, ast.Call)
+                and isinstance(node.func, ast.Attribute)
+                and node.func.attr == "get_result"
+            ):
+                by_stage.setdefault(stages[0], set()).update(
+                    keyword.arg for keyword in node.keywords if keyword.arg
+                )
+    return by_stage
+
+
+def test_the_partial_dump_passes_only_kwargs_its_nodes_accept():
+    """The dump's call and the node's signature must not drift apart.
+
+    The fold dials (``verb_fold``, ``snippet_radius``, ``collapse_compounds``)
+    are threaded service → node → dump by hand, and the dump swallows whatever
+    the call raises so a run never dies over a dump. So a dial added to the
+    service and the dump but not to the node fails invisibly: one ERROR line,
+    then every dump silently loses its synthesis block and its rows lose their
+    spine. That is what happened to ``collapse_compounds`` (bbfc42b), and it is
+    caught here instead.
+    """
+    passed = _dump_get_result_kwargs()
+    rejected = []
+    for stage, node_class in _DUMP_CALL_TARGETS.items():
+        signature = inspect.signature(node_class.get_result)
+        for name in sorted(passed.get(stage, set())):
+            try:
+                signature.bind_partial(**{name: None})
+            except TypeError:
+                rejected.append(f"{node_class.__name__}.get_result(<{name}>) [{stage}]")
+
+    assert not rejected, (
+        "the partial dump passes keywords these nodes do not accept, so the "
+        f"dump loses the stage silently at runtime: {rejected}"
+    )
+
+
+def test_the_second_tripwire_actually_inspects_something():
+    """Guards the guard: a moved file or renamed guard would make it vacuous."""
+    passed = _dump_get_result_kwargs()
+    assert set(_DUMP_CALL_TARGETS) <= set(passed)
+    assert "collapse_compounds" in passed["synthesis"]
+    assert "collapse_compounds" in passed["mention_collection"]

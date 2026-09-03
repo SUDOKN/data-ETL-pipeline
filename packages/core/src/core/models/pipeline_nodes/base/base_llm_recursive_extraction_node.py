@@ -1,5 +1,4 @@
 from __future__ import annotations
-import asyncio
 import logging
 
 from core.models.extraction_subject import (
@@ -20,7 +19,6 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
     RepeatedParseFailure,
-    bulk_record_gpt_batch_responses,
     bulk_upsert_gpt_batch_requests_with_only_req_bodies,
 )
 
@@ -110,6 +108,10 @@ class BaseLLMRecursiveExtractionNode(
         # were discovered. Count passes that create nothing and shrink nothing.
         unproductive_passes = 0
         previously_incomplete: set[BatchRequestIDType] | None = None
+        # Kept so the give-up error can say WHY the requests stayed unanswered.
+        # Without it a run killed by rate limiting reports only "made no
+        # progress in 3 passes", and the 429 never reaches the error row.
+        last_dispatch_error: BaseException | None = None
 
         while True:
             extraction_requests = getattr(deferred_subject, self.field_type.name)
@@ -230,13 +232,19 @@ class BaseLLMRecursiveExtractionNode(
             ):
                 unproductive_passes += 1
                 if unproductive_passes >= MAX_UNPRODUCTIVE_PASSES:
+                    cause = (
+                        f" Last dispatch error: {type(last_dispatch_error).__name__}: "
+                        f"{last_dispatch_error}"
+                        if last_dispatch_error is not None
+                        else ""
+                    )
                     raise ValueError(
                         f"{self.__class__.__name__} ('{self.field_type.name}') for "
                         f"{subject.subject_unique_id} made no progress in "
                         f"{MAX_UNPRODUCTIVE_PASSES} passes: {len(incomplete_ids)} request(s) "
                         f"are still unanswered after being dispatched. Incomplete request "
-                        f"ids: {sorted(incomplete_ids)}"
-                    )
+                        f"ids: {sorted(incomplete_ids)}.{cause}"
+                    ) from last_dispatch_error
             else:
                 unproductive_passes = 0
             previously_incomplete = incomplete_ids
@@ -248,26 +256,26 @@ class BaseLLMRecursiveExtractionNode(
                 f"{self.__class__.__name__} ('{self.field_type.name}') immediately."
             )
 
-            batch_response_blobs = await asyncio.gather(
-                *[
-                    self.dispatch_batch_request(
-                        gpt_batch_request=req,
-                        metadata=metadata,
-                    )
-                    for req in requests_to_dispatch
-                ]
-            )
-            modified_count, failed_updates = await bulk_record_gpt_batch_responses(
-                batch_requests=requests_to_dispatch,
-                response_blobs=batch_response_blobs,
+            # A dispatch failure is NOT raised here. Every answer that arrived is
+            # already recorded, so the requests that failed are the only ones left
+            # unanswered — which is exactly what the next pass re-dispatches. That
+            # makes this loop the retry a rate-limited request never had, and it is
+            # already bounded: a pass that shrinks the unanswered set resets the
+            # counter, one that does not counts toward MAX_UNPRODUCTIVE_PASSES.
+            dispatch_failures = await self.dispatch_and_record_eagerly(
+                subject_unique_id=subject.subject_unique_id,
+                requests_to_dispatch=requests_to_dispatch,
+                metadata=metadata,
                 timestamp=timestamp,
             )
-            logger.info(
-                f"[{subject.subject_unique_id}] ✅ Eagerly dispatched {len(requests_to_dispatch)} "
-                f"batch requests for {self.__class__.__name__} ('{self.field_type.name}') with "
-                f"{modified_count} successful response recordings and {failed_updates} "
-                f"failed updates."
-            )
+            if dispatch_failures:
+                last_dispatch_error = dispatch_failures[0][1]
+                logger.warning(
+                    f"[{subject.subject_unique_id}] {self.__class__.__name__} "
+                    f"('{self.field_type.name}') had {len(dispatch_failures)} of "
+                    f"{len(requests_to_dispatch)} dispatch(es) fail; they stay unanswered "
+                    f"and the next pass re-asks them."
+                )
 
         extraction_requests = getattr(deferred_subject, self.field_type.name)
         if not extraction_requests:

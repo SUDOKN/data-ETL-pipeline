@@ -22,6 +22,7 @@ from typing import Any, cast
 
 import pytest
 
+import core.models.pipeline_nodes.base.base_llm_extraction_node as base_module
 import core.models.pipeline_nodes.base.base_llm_recursive_extraction_node as recursive_module
 from core.models.pipeline_nodes.base.base_llm_recursive_extraction_node import (
     MAX_UNPRODUCTIVE_PASSES,
@@ -59,6 +60,9 @@ class _Node(BaseLLMRecursiveExtractionNode):
         self.created: list[tuple[str, bool]] = [("dummy", True), ("real", False)]
         self.missing_on_first_pass: set[str] = {"dummy", "real"}
         self.complete: bool = True
+        # Dispatch failures: ids that raise, and how many attempts keep raising.
+        self.fail_ids: set[str] = set()
+        self.fail_times: int = 1
 
     async def embed_request_ids(self, *args, **kwargs) -> None: ...
 
@@ -79,8 +83,13 @@ class _Node(BaseLLMRecursiveExtractionNode):
         return [_request(cid, answered=a) for cid, a in self.created]
 
     async def dispatch_batch_request(self, gpt_batch_request, metadata):  # type: ignore[override]
-        self.dispatched.append(gpt_batch_request.request.custom_id)
-        return SimpleNamespace(request_custom_id=gpt_batch_request.request.custom_id)
+        custom_id = gpt_batch_request.request.custom_id
+        self.dispatched.append(custom_id)
+        if custom_id in self.fail_ids and self.dispatched.count(custom_id) <= (
+            self.fail_times
+        ):
+            raise RuntimeError(f"Error code: 429 - rate limit reached for {custom_id}")
+        return SimpleNamespace(request_custom_id=custom_id)
 
     async def are_all_requests_complete(self, *args, **kwargs):  # type: ignore[override]
         return self.complete
@@ -131,7 +140,9 @@ def _install(monkeypatch, store: _Store) -> None:
         "bulk_upsert_gpt_batch_requests_with_only_req_bodies",
         store.upsert,
     )
-    monkeypatch.setattr(recursive_module, "bulk_record_gpt_batch_responses", store.record)
+    # Recording lives on the base class now (dispatch_and_record_eagerly), so the
+    # name to patch is the base module's, not this one's.
+    monkeypatch.setattr(base_module, "bulk_record_gpt_batch_responses", store.record)
     monkeypatch.setattr(
         recursive_module,
         "find_incomplete_gpt_batch_requests_by_custom_ids",
@@ -310,3 +321,54 @@ async def test_a_parse_error_that_repeats_is_bounded(monkeypatch):
     with pytest.raises(ValueError, match="made no progress"):
         await _run(node)
     assert node.dispatched == ["stored"] * MAX_UNPRODUCTIVE_PASSES
+
+
+@pytest.mark.asyncio
+async def test_a_failed_dispatch_does_not_discard_its_siblings_answers(monkeypatch):
+    """One request's 429 used to throw away every answer gathered beside it.
+
+    ``asyncio.gather`` without ``return_exceptions`` raises on the first failure,
+    and recording ran only after it returned — so the siblings were answered,
+    paid for, and never written. Here "b" fails once: "a" must still be recorded
+    on that same pass, and only "b" is left for the next one to re-ask.
+    """
+    node = _Node()
+    node.embedded_ids = {"a", "b"}
+    node.created = [("a", False), ("b", False)]
+    node.missing_on_first_pass = {"a", "b"}
+    node.fail_ids = {"b"}
+    node.fail_times = 1
+    store = _Store()
+    _install(monkeypatch, store)
+
+    await _run(node)
+
+    assert store.recorded == [["a"], ["b"]]
+    assert node.dispatched.count("a") == 1, "a was answered; it must not be re-sent"
+    assert node.dispatched.count("b") == 2, "b failed once, so it is asked twice"
+
+
+@pytest.mark.asyncio
+async def test_a_dispatch_that_keeps_failing_is_bounded_and_names_its_cause(monkeypatch):
+    """The loop is the retry, and MAX_UNPRODUCTIVE_PASSES is its bound.
+
+    The give-up error used to say only that no progress was made, which for a
+    rate-limited run hid the 429 from the ExtractionError row the orchestrator
+    writes from ``str(e)``.
+    """
+    node = _Node()
+    node.embedded_ids = {"a", "b"}
+    node.created = [("a", False), ("b", False)]
+    node.missing_on_first_pass = {"a", "b"}
+    node.fail_ids = {"b"}
+    node.fail_times = 10_000
+    store = _Store()
+    _install(monkeypatch, store)
+
+    with pytest.raises(ValueError) as excinfo:
+        await _run(node)
+
+    assert store.recorded == [["a"]], "the one good answer is still recorded"
+    assert "429" in str(excinfo.value)
+    assert isinstance(excinfo.value.__cause__, RuntimeError)
+    assert node.dispatched.count("b") == MAX_UNPRODUCTIVE_PASSES + 1
