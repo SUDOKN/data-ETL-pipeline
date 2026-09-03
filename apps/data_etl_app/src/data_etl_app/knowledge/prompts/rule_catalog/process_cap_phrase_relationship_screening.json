@@ -1,5 +1,5 @@
 {
-  "catalog_version": "process_cap_phrase_relationship_screening.2026.08.8",
+  "catalog_version": "process_cap_phrase_relationship_screening.2026.08.9",
   "prompt_name": "process_cap_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -49,6 +49,13 @@
               "reportable": false,
               "report_when": "never",
               "text": "The manufacturer in question is NAMED at the top of the request; records may refer to it by that name, as \"the manufacturer\", or by any of its brands. Other companies may appear by name or by their standing. A brand, trade name, former name, division, plant, or business unit of the manufacturer IS the manufacturer itself. A statement about the manufacturer's parent company or a sister brand counts as one about the manufacturer itself, and does not fail this condition merely for being attributed to them — unless the record shows the activity belongs to that company alone and not to the manufacturer."
+            },
+            {
+              "id": "SCR-2b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Where the work is physically done does not decide this. A plant the manufacturer owns outright, a plant it part-owns, and a partner plant producing to its direction are all the manufacturer itself, and the record does not have to say which. What still fails this condition is a candidate {{entity_noun}} that another party {{entity_relationships.third_person}} as its own business rather than for the manufacturer."
             }
           ]
         }
@@ -70,8 +77,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "E5NVHj1IVtXVz6LVcCbjgPwej7M91Y3x",
-    "rendered_sha256": "36d6600c65be03b119eb6f478d5475f657f3a9d71ccb920190fd0a48c268ca4d",
-    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
+    "s3_version_id": "qg90o9rkXwEfzSBjkcOXFA72PZW16VOp",
+    "rendered_sha256": "78466325e14b885ff093c86d40495a87b72a51f68dab3a4b327af02ccbba38f3",
+    "uploaded_at": "2026-08-29T22:30:32.109325+00:00"
   }
 }

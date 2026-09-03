@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_relationship_screening.2026.08.9",
+  "catalog_version": "equipment_phrase_relationship_screening.2026.08.10",
   "prompt_name": "equipment_phrase_relationship_screening",
   "stage": "phrase_relationship_screening",
   "field_types": [
@@ -55,7 +55,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "How the manufacturer comes to have the {{entity_noun}} does not matter: direct ownership, leasing, partnership, and access through a parent or sister company all count as the manufacturer itself. The record does not have to state who owns it."
+              "text": "How the manufacturer comes to have the {{entity_noun}} does not matter, and neither does where it sits: direct ownership, leasing, partnership, a plant the manufacturer part-owns, a partner plant running it to the manufacturer's direction, and access through a parent or sister company all count as the manufacturer itself. The record does not have to state who owns it or where it is."
             }
           ]
         }
@@ -84,8 +84,8 @@
     }
   ],
   "published": {
-    "s3_version_id": "KtAWfUH5y.vXeUUrMZmYR8aFbygso2.R",
-    "rendered_sha256": "f0b8e64482f0927ffbfe6984b677807de6958f06dbe9c15274186490bbd22579",
-    "uploaded_at": "2026-08-25T19:43:45.000015+00:00"
+    "s3_version_id": "OyRC6qHuw_laWKZS1LV2RhEcdfNjTc61",
+    "rendered_sha256": "42a3a9f230d5bb3c8dd490f00749669fc8ba849e8444fc4ee4ce3ae89405442d",
+    "uploaded_at": "2026-08-29T22:30:32.109325+00:00"
   }
 }

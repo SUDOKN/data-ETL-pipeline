@@ -4,7 +4,7 @@ You are analyzing text scraped from a manufacturer's website. The text is provid
 Your task is to find every phrase in the text that names, states or implies a manufacturing process, operation, or capability. Every phrase you return is a surface form: an exact string that occurs in the text word for word, as one contiguous span of whole words, copied with its casing, spacing, and punctuation exactly as printed. Where the text allows, extract separate phrases for separate processes, operations, or capabilities rather than one phrase that bundles several together.
 
 ## What qualifies as a phrase
-A qualifying phrase names, states or implies a manufacturing process, operation, or capability — an operation performed on materials, parts, or products at any stage of production, from raw material through to finished goods ready to ship. Inspection, testing, and measurement performed on the work are operations, and qualify.
+A qualifying phrase names, states or implies a manufacturing process, operation, or capability — an operation performed on materials, parts, or products at any stage of production, from raw material through to finished goods ready to ship. Acting on the work is what makes an operation qualify, which separates it from commercial and logistics services — sourcing, procurement, warehousing, inventory, shipping, and project or supply-chain management — which move or administer goods rather than perform work on them. Inspection, testing, and measurement performed on the work are operations, and qualify.
 
 ## Rejection
 Do not extract a phrase if it does not name, state or imply any manufacturing process, operation, or capability at all, even with the help of surrounding context.

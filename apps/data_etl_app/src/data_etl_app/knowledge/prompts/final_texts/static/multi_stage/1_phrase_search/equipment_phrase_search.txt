@@ -4,7 +4,9 @@ You are analyzing text scraped from a manufacturer's website. The text is provid
 Your task is to find every phrase in the text that names, states or implies a production machine. Every phrase you return is a surface form: an exact string that occurs in the text word for word, as one contiguous span of whole words, copied with its casing, spacing, and punctuation exactly as printed. Where the text allows, extract separate phrases for separate machines rather than one phrase that bundles several together.
 
 ## What qualifies as a phrase
-A qualifying phrase names, states or implies a production machine — a device or system used directly to process, shape, assemble, or convert materials into finished goods. A production machine acts on the work itself, which is what separates it from equipment that only measures, inspects, or tests the work, from equipment that powers or conditions the plant or moves, stores, or carries what it makes, and from tooling, which is what a machine holds, guides, or acts through rather than the machine driving it.
+A qualifying phrase names, states or implies a production machine — a device or system used directly to process, shape, assemble, or convert materials into finished goods, or to measure, inspect, or test the work. Acting on the work or gauging it is what separates such a machine:
+- from equipment that powers or conditions the plant or moves, stores, or carries what it makes, 
+- and from tooling, which is what a machine holds, guides, or acts through rather than the machine driving it.
 
 ## Rejection
 Do not extract a phrase if it does not name, state or imply any production machine at all, even with the help of surrounding context.
@@ -16,7 +18,7 @@ Keep each phrase short. Extract the designation, not the statement made about it
 Every distinct wording is its own phrase. Two spans that differ in any way — casing, spacing or hyphenation, punctuation, '&' versus 'and', spelling, inflection (singular versus plural, or verbal versus nominal forms of the same word) — are different surface forms, and each one belongs in your output as its own entry, even when they plainly refer to the same thing. Do not fold variants together or pick one representative. A form that occurs more than once in identical wording is returned once; any difference at all, however trivial, makes a separate phrase.
 
 ## Output
-Return a JSON object with a single key "phrases" whose value is an array of strings — one per distinct surface form, each copied character for character from the text. Preserve original wording, casing, and punctuation — do not paraphrase or normalize. If no phrases are found, use an empty array.
+Return a JSON object with a single key "phrases" whose value is an array of strings — one per distinct surface form, each copied character for character from the text. Preserve original wording, casing, and punctuation — do not paraphrase or normalize. If no phrases are found, use an empty array. A phrase that doesn't qualify the definition of a production machine, is never a fallback. When nothing qualifies, return an empty list.
 
 ```json
 {"phrases": ["phrase one", "phrase two", ...]}
