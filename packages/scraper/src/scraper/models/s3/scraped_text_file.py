@@ -2,10 +2,11 @@ from __future__ import (
     annotations,
 )  # This allows you to write self-referential types without quotes, because type annotations are no longer evaluated at function/class definition time
 from abc import ABC, abstractmethod
+import json
 import litellm
 import logging
 from datetime import datetime
-from typing import Self
+from typing import Optional, Self
 from pydantic import BaseModel, ConfigDict, Field, computed_field
 
 from llm_providers.models.llm_model import LLM_Model
@@ -43,6 +44,10 @@ class ScrapedTextFile(BaseModel, ABC):
     urls_scraped: int
     urls_failed: int
     etld1_accessible_at: str  # eTLD+1 of the final landing URL reached during scraping
+    # The rendering that produced `text` (2026-08-28; a format-version string
+    # from scraper.utils.html_to_markdown, e.g. "markdown_v1"). None on objects
+    # uploaded before the tag existed — those are legacy innerText.
+    text_format: Optional[str] = None
 
     # meta
     success_rate: float  # TODO: computed property
@@ -96,6 +101,8 @@ class ScrapedTextFile(BaseModel, ABC):
             etld1_accessible_at = (
                 tags.get("etld1_accessible_at") if tags else None
             ) or subject_unique_id
+            # Absent on pre-2026-08-28 objects (legacy innerText renderings).
+            text_format = tags.get("text_format") if tags else None
             success_rate = ScrapingResult.get_success_rate(urls_scraped, urls_failed)
 
             is_valid = ScrapingResult.is_scrape_valid(
@@ -113,6 +120,7 @@ class ScrapedTextFile(BaseModel, ABC):
                 success_rate=success_rate,
                 is_valid=is_valid,
                 last_modified_on=last_modified_on,
+                text_format=text_format,
             )
         except Exception as e:
             logger.error(
@@ -158,9 +166,10 @@ class ScrapedTextFile(BaseModel, ABC):
                 f"num_tokens: {scrape_result.num_tokens}."
             )
 
+        text_file_name = get_file_name_from_subject_unique_id(subject_unique_id)
         version_id, s3_text_file_full_url = await upload_scraped_text_to_s3(
             scrape_result.content,
-            get_file_name_from_subject_unique_id(subject_unique_id),
+            text_file_name,
             {
                 "batch_title": batch.title,
                 "batch_timestamp": batch.timestamp.isoformat(),
@@ -169,11 +178,39 @@ class ScrapedTextFile(BaseModel, ABC):
                 "success_rate": f"{scrape_result.success_rate:.2}",
                 "num_tokens": str(scrape_result.num_tokens),
                 "etld1_accessible_at": scrape_result.final_landing_etld1,
+                # which rendering produced this text (2026-08-28; see
+                # scraper.utils.html_to_markdown) — stored texts outlive code
+                "text_format": scrape_result.text_format,
             },
         )
         logger.info(f"Uploaded to S3: {s3_text_file_full_url}")
+
+        # The provenance sidecar (2026-08-29; scraper.models.scrape_manifest):
+        # `<etld1>.manifest.json` next to the text, its `s3_text_version_id`
+        # naming the text version it describes. Best-effort — a manifest
+        # failure must never lose a valid scrape.
+        if scrape_result.manifest is not None:
+            try:
+                manifest = dict(scrape_result.manifest)
+                manifest["s3_text_version_id"] = version_id
+                manifest_version_id, manifest_url = await upload_scraped_text_to_s3(
+                    json.dumps(manifest, indent=1, sort_keys=True),
+                    f"{subject_unique_id}.manifest.json",
+                    {
+                        "text_version_id": version_id,
+                        "manifest_version": str(manifest.get("manifest_version", "")),
+                        "text_format": scrape_result.text_format,
+                    },
+                )
+                logger.info(f"Uploaded manifest sidecar: {manifest_url}")
+            except Exception:
+                logger.error(
+                    f"Manifest sidecar upload failed for {subject_unique_id}; text version {version_id} has no manifest.",
+                    exc_info=True,
+                )
+
         last_modified_on = await get_scraped_text_file_exist_last_modified_on(
-            get_file_name_from_subject_unique_id(subject_unique_id), version_id
+            text_file_name, version_id
         )
         assert (
             last_modified_on is not None
@@ -190,4 +227,5 @@ class ScrapedTextFile(BaseModel, ABC):
             success_rate=scrape_result.success_rate,
             is_valid=is_valid,
             last_modified_on=last_modified_on,
+            text_format=scrape_result.text_format,
         )

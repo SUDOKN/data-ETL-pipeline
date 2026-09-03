@@ -11,8 +11,23 @@ reconcile (D13). Every layer below errs toward under-merging.
 LAYERS (D10)
 ------------
 L0 — case/punct: casefold; strip ™ ® ©; hyphens, dashes and slashes become
-     spaces; ``&`` becomes ``and``; edge punctuation is stripped off tokens;
-     whitespace collapses. Always on.
+     spaces; ``&`` becomes ``and``; **a letter↔digit boundary inside a token is
+     a word break** (``ISO9001``→``iso 9001``, ``DL95``→``dl 95``); edge
+     punctuation is stripped off tokens; whitespace collapses. Always on.
+
+     The letter↔digit break completes a decision L0 already made. Turning a
+     hyphen into a space had made ``6061-T6`` and ``6061 T6`` one key while
+     leaving ``DL-95`` and ``DL95`` apart — the pipeline held that a separator
+     between letters and digits is meaningless but its ABSENCE is meaningful,
+     which is an oversight rather than a design. Measured over the 20-subject
+     corpus (20,888 distinct keys, run 20260829T022413) it merges 17 groups and
+     nothing else: lathe models (``DAINICHI DLX-75A``/``DLX75A``), printers
+     (``SLM 500``/``SLM500``) and standards (``ISO 9001``/``ISO9001``,
+     ``AS 9100``/``AS9100``, ``IATF 16949``/``IATF16949``). It is deliberately
+     NOT the sibling rule that would strip a ``:YYYY`` edition: that one fires
+     only on certificates, and it cannot tell ``ISO 9001`` vs ``ISO 9001:2015``
+     (base vs edition) from ``ISO 9001:2000`` vs ``ISO 9001:2015`` (two
+     different editions, measured live on mathewsco.com).
 L1 — plural: per-token NOUN lemma from lemminflect's DICTIONARY, never its
      rule-based OOV guesser (measured 2026-08-21: the guesser is suffix
      stripping in disguise — ``continuous``→``continuou``, ``abs``→``ab``,
@@ -54,7 +69,7 @@ from typing import Iterable
 import lemminflect
 from lemminflect import getAllLemmas, getLemma
 
-NORMALIZER_VERSION = "1"
+NORMALIZER_VERSION = "2"
 
 LEMMATIZER_NAME = "lemminflect"
 LEMMATIZER_PINNED_VERSION = "0.2.3"
@@ -86,6 +101,9 @@ assert_lemmatizer_pinned()
 _TRADEMARK_SYMBOLS = re.compile(r"[™®©]")  # ™ ® ©
 # ASCII hyphen, the Unicode hyphen/dash block (‐ ‑ ‒ – — ―), and slashes.
 _SEPARATORS = re.compile(r"[\-‐-―/]+")
+# A letter immediately followed by a digit, or vice versa: the join in ISO9001,
+# DL95, DLX75A. Zero-width, so it inserts a break without consuming a character.
+_LETTER_DIGIT_JOIN = re.compile(r"(?<=[^\W\d_])(?=\d)|(?<=\d)(?=[^\W\d_])", re.UNICODE)
 _EDGE_PUNCTUATION = "()[]{}'\",.;:!?"
 
 
@@ -94,6 +112,7 @@ def l0_tokens(form: str) -> list[str]:
     text = unicodedata.normalize("NFC", form)
     text = _TRADEMARK_SYMBOLS.sub("", text)
     text = _SEPARATORS.sub(" ", text)
+    text = _LETTER_DIGIT_JOIN.sub(" ", text)
     text = text.replace("&", " and ")
     tokens = (token.strip(_EDGE_PUNCTUATION) for token in text.split())
     return [token for token in tokens if token]

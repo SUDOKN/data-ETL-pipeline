@@ -45,6 +45,17 @@ B. CLIP. The snippet is the sentence holding the occurrence within its line,
    behaviour every stored mention id rests on). The snippet hash is the
    mention id, so the radius is part of the mention stage's request identity.
 
+   MARKDOWN TEXTS (2026-08-28, the scraper's markdown_v1 cutover): the clip
+   needs no mode flag — it is line-oriented and Markdown is a line-oriented
+   format, so a bullet, a heading or a pipe-table row is simply a line-shaped
+   unit, and its ``- `` / ``## `` / ``|`` markers stay IN the snippet
+   deliberately (verbatim text, and a location signal: the marker tells the
+   Location model it is reading a list entry / heading / table row). The one
+   markdown-specific rule: DECORATION lines — a pipe table's ``|---|``
+   separator row, legacy ``-----`` dividers (``_DECORATION_LINE_RE``) — are
+   not units, so a radius clip skips them exactly like blank lines and a
+   radius-1 clip around a table data row reaches the header row.
+
 C. WIRE. The window's DISTINCT snippets, in first-occurrence order, are the
    Location request's items ``{mention_id, mention}`` — 2,880 items for 4,907
    occurrences on that run. ``mention_id = hash(snippet)``.
@@ -249,6 +260,19 @@ def _owning_hits(text: str, scan: FloorScan, sent_forms: Sequence[str]) -> list[
 
 _SENTENCE_BREAK = re.compile(r"(?<=[.!?])\s+")
 
+# A DECORATION line (2026-08-28, with the scraper's markdown_v1 cutover —
+# ``scraper.utils.html_to_markdown``): only pipes/colons/dashes/whitespace with
+# at least one dash. Markdown pipe tables carry a ``|---|---|`` separator row
+# under the header row, and legacy text has its own ``-----`` divider lines;
+# neither is prose. Shape-neutral by construction: any line with a word
+# character stays a unit. Decoration lines are not units — like blank lines
+# they are skipped and do NOT break the page block — so a ``radius > 0`` clip
+# never wastes a context unit on one, and a radius-1 clip around a table DATA
+# row reaches the HEADER row across the separator (the mitigation for header
+# rows orphaned from their data by window splits). No occurrence can sit on
+# one (the scan only hits word text), so ``_unit_index_at`` is unaffected.
+_DECORATION_LINE_RE = re.compile(r"[ \t|:-]*-[ \t|:-]*")
+
 
 @dataclass(frozen=True)
 class _Unit:
@@ -299,7 +323,9 @@ class _Lines:
 
     def units(self) -> list[_Unit]:
         """Every sentence unit of the window in text order. Barrier lines are
-        not units and advance the block index; blank lines are neither."""
+        not units and advance the block index; blank lines and decoration
+        lines (``_DECORATION_LINE_RE`` — pipe-table separator rows, divider
+        runs) are neither units nor block breaks."""
         if self._units is None:
             units: list[_Unit] = []
             block = 0
@@ -308,6 +334,8 @@ class _Lines:
                     block += 1
                     continue
                 if not line.strip():
+                    continue
+                if _DECORATION_LINE_RE.fullmatch(line):
                     continue
                 line_start = self.starts[li]
                 cuts = self._cuts(line)

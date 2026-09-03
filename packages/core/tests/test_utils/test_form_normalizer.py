@@ -49,6 +49,12 @@ GOLDEN_CORPUS = [
     # code-token guard
     "6061-T6 aluminum", "ISO9001", "AccuGrips", "AccuGrip", "iPhones", "CNCs", "OEMs",
     "Paladin", "paladins", "HVAC systems",
+    # L0 letter<->digit break (NORMALIZER_VERSION 2). Each pair must share a key;
+    # the ISO edition pairs must NOT — see test_letter_digit_break_* below.
+    "ISO 9001", "AS9100", "AS 9100", "IATF16949", "IATF 16949", "DL-95", "DL95",
+    "SLM500", "SLM 500", "DAINICHI DLX-75A", "DAINICHI DLX75A", "TS16949", "TS 16949",
+    "ICC500-2014", "ICC 500-2014", "3.3mm", "3.3 mm",
+    "ISO 9001:2015", "ISO9001:2015", "ISO 9001:2000",
     # L2 candidates (keyed with verb_fold=False here; the L2 corpus is below)
     "CNC milled", "CNC milling", "Polished", "Polishing", "surface finishing",
     "injection molds", "Injection Molding", "mounting brackets", "cutting", "coatings",
@@ -71,11 +77,14 @@ def _digest(pairs) -> str:
     return hashlib.sha256(blob).hexdigest()
 
 
-# Recorded for NORMALIZER_VERSION == "1" with lemminflect 0.2.3.
+# Recorded for NORMALIZER_VERSION == "2" with lemminflect 0.2.3.
+# v1 -> v2: L0 gained the letter<->digit word break. Measured over the
+# 20-subject corpus (15,208 distinct real forms, run 20260829T022413) it merges
+# 17 groups and produces ZERO wrong merges.
 GOLDEN_DIGESTS = {
-    "1": {
-        "l1": "4589f6813ef892847c75f380baccf1590a9ee2138f6a481f72addf92ef430138",
-        "l2": "b9acf60c6c6188ee9a3182bce0bd2171b0dc8763b8590ed518a39d3c862745d0",
+    "2": {
+        "l1": "cf2ad77200b2b4f0777ae3b260a680d2eefe1c02db4b55413f51eb52437d90d2",
+        "l2": "611123babfe6affb45394d7861aabf8af3df24b5955e44a86a4de9df2e3555ee",
     }
 }
 
@@ -223,7 +232,14 @@ def test_guarded_tokens_keep_their_casefolded_spelling():
     assert normalize("AccuGrips") == "accugrips"
     assert normalize("AccuGrip") == "accugrip"
     assert normalize("AccuGrips") != normalize("AccuGrip")  # by design (D10)
-    assert normalize("6061-T6 aluminum") == "6061 t6 aluminum"
+    # NORMALIZER_VERSION 2: the letter<->digit break splits `T6` into `t 6`, so
+    # the temper is no longer ONE guarded token. Measured to be an improvement,
+    # not a regression: `6061T6` now shares a key with `6061-T6` and `6061 T6`
+    # (under v1 the unseparated spelling was alone), while `T6` and `T651` stay
+    # distinct — a temper is a real product difference and must never merge.
+    assert normalize("6061-T6 aluminum") == "6061 t 6 aluminum"
+    assert normalize("6061T6") == normalize("6061-T6") == normalize("6061 T6")
+    assert normalize("6061-T6") != normalize("6061-T651")
     assert normalize("CNCs") == "cncs"  # too short for the fallback; CNC stays apart
     assert normalize("HVACs") == normalize("HVAC") == "hvac"
     assert normalize("Texas") == "texas"
@@ -356,3 +372,59 @@ def test_assign_group_ids_orders_dedupes_and_detects_collisions(monkeypatch):
     monkeypatch.setattr(form_normalizer, "group_id_for_key", lambda key: "g0000000")
     with pytest.raises(GroupIdCollisionError):
         assign_group_ids(["x", "y"])
+
+
+# ---------------------------------------------------------------------------
+# L0 letter<->digit break (NORMALIZER_VERSION 2)
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "spaced, joined",
+    [
+        ("ISO 9001", "ISO9001"),
+        ("AS 9100", "AS9100"),
+        ("IATF 16949", "IATF16949"),
+        ("TS 16949", "TS16949"),
+        ("DL-95", "DL95"),
+        ("SLM 500", "SLM500"),
+        ("DAINICHI DLX-75A", "DAINICHI DLX75A"),
+        ("ICC 500-2014", "ICC500-2014"),
+        ("3.3 mm", "3.3mm"),
+    ],
+)
+def test_letter_digit_break_merges_separated_and_joined_designators(spaced, joined):
+    """Every one of these is a real pair measured on the 20-subject corpus.
+
+    L0 already turned a hyphen between letters and digits into a space, so
+    `6061-T6` and `6061 T6` were one key while `DL-95` and `DL95` were two —
+    the pipeline held that a separator is meaningless but its absence is
+    meaningful. This closes that.
+    """
+    assert normalize(spaced) == normalize(joined)
+
+
+@pytest.mark.parametrize(
+    "left, right",
+    [
+        # base standard vs a specific edition: different claims, stay apart
+        ("ISO 9001", "ISO 9001:2015"),
+        # two different editions: the case that kills the ":YYYY" strip rule,
+        # measured live on mathewsco.com
+        ("ISO 9001:2000 certified", "ISO 9001:2015 certified"),
+        # material temper is a real product difference, not noise
+        ("6061-T6", "6061-T651"),
+    ],
+)
+def test_letter_digit_break_does_not_merge_genuinely_different_things(left, right):
+    assert normalize(left) != normalize(right)
+
+
+def test_letter_digit_break_is_consistent_with_the_hyphen_rule():
+    """The three spellings of one steelcraft hinge, differing only by unit
+    spacing and a hyphen — a PRODUCT, which is why this rule is not
+    certificate-specific."""
+    a = normalize('standard weight .134" (3.3 mm) thick hinges')
+    b = normalize('standard weight .134" (3.3mm) thick hinges')
+    c = normalize('standard-weight .134" (3.3mm) thick hinges')
+    assert a == b == c

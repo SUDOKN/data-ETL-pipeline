@@ -12,9 +12,11 @@ requires-python = ">=3.12"
 
 # Any dependencies that your common code needs:
 dependencies = [
-  "playwright>=1.40.0", # For web scraping
-  "selenium >=4.20.0",  # For web scraping with Selenium
-  "litellm>=0.1.0",     # For LLM integration
+  "playwright>=1.40.0",     # For web scraping
+  "selenium >=4.20.0",      # For web scraping with Selenium
+  "litellm>=0.1.0",         # For LLM integration
+  "beautifulsoup4>=4.12.0", # DOM parsing for the markdown rendering (utils/html_to_markdown.py, 2026-08-28)
+  "pdfplumber>=0.11.0",     # PDF text+table extraction (utils/pdf_to_markdown.py, 2026-08-29; include_pdfs flag, default off)
 
   "core>=0.1.0",
   # ^ This means: “install core from that path as version 0.1.0”

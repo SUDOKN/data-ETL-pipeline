@@ -445,6 +445,43 @@ def test_negative_radius_is_refused_and_radius_is_recorded_on_the_fold():
     assert fold_document([WindowInput(WINDOW, SENT, {})]).snippet_radius == 0
 
 
+# ---------------------------------------------------------------------------
+# Markdown-shaped text (2026-08-28, the scraper's markdown_v1 cutover): the
+# clip is line-oriented and needs no mode flag — markers stay in snippets as
+# location signals; decoration lines (pipe-table separator rows, dividers)
+# are not units (module docstring, B)
+# ---------------------------------------------------------------------------
+
+
+def test_markdown_markers_stay_in_line_shaped_snippets():
+    text = "## Certifications\n- Swiss machining\n| Haas | 3 |\n"
+    assert _snippets(text, ["Certifications"], 0) == ["## Certifications"]
+    assert _snippets(text, ["Swiss machining"], 0) == ["- Swiss machining"]
+    assert _snippets(text, ["Haas"], 0) == ["| Haas | 3 |"]
+
+
+def test_pipe_separator_row_is_not_a_unit_so_radius_reaches_the_header_row():
+    table = "| Machine | Qty |\n|---|---|\n| Haas | 3 |\n| Mazak | 2 |\n"
+    # radius 1 around the first DATA row: one unit up is the HEADER row — the
+    # |---| separator between them consumes no radius (it is inside the slice,
+    # a well-formed mini table, but not a unit)
+    (snippet,) = _snippets(table, ["Haas"], 1)
+    assert snippet == "| Machine | Qty |\n|---|---|\n| Haas | 3 |\n| Mazak | 2 |"
+
+
+def test_divider_runs_in_legacy_text_are_not_units_either():
+    text = "Steel plate stock.\n-----\nCut to size.\n"
+    # shape-neutral: the same rule spares legacy divider lines from radius
+    assert _snippets(text, ["Steel plate"], 1) == ["Steel plate stock.\n-----\nCut to size."]
+
+
+def test_no_occurrence_ever_sits_on_a_decoration_line():
+    # the scan matches word text; a separator row has none, so the unit lookup
+    # (_unit_index_at) never has to answer for a decoration offset
+    c = collect_window("| Alpha |\n|---|\n| Beta |\n", ["Alpha", "Beta"], snippet_radius=2)
+    assert [m.snippet for m in c.mentions] == ["| Alpha |\n|---|\n| Beta |"] * 2
+
+
 @settings(max_examples=150, deadline=None)
 @given(_text, _forms, st.integers(min_value=1, max_value=3))
 def test_radius_invariants(text, forms, radius):

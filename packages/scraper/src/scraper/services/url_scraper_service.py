@@ -5,7 +5,8 @@ import random
 import sys
 import signal
 import atexit
-from typing import Optional
+from datetime import datetime, timezone
+from typing import Literal, Optional
 from urllib.parse import urlparse
 from queue import Queue, Empty
 from concurrent.futures import ThreadPoolExecutor
@@ -26,6 +27,21 @@ from scraper.utils.selenium import (
 )
 from scraper.utils.social_media_blocker import social_media_blocker
 from scraper.utils.dedup_util import deduplicate_scraped_content
+from scraper.utils.html_to_markdown import (
+    FORMAT_LEGACY_TEXT,
+    FORMAT_MARKDOWN,
+    html_to_markdown,
+)
+from scraper.models.scrape_manifest import (
+    assemble_manifest,
+    fetch_sitemap_lastmods,
+    sha256_text,
+)
+from scraper.utils.pdf_to_markdown import (
+    MAX_PDFS_PER_SITE,
+    fetch_pdf,
+    pdf_to_markdown,
+)
 from pure_utils.url_util import (
     get_final_landing_url,
     get_etld1_from_host,
@@ -60,7 +76,35 @@ class ScraperService:
         scrape_timeout: int = 60,  # in minutes
         headless: bool = True,
         driver_module: Optional[str] = None,  # For backward compatibility
+        # The page-body rendering (2026-08-28, user decision — direct cutover,
+        # see scraper.utils.html_to_markdown for the contract + measurements):
+        # "markdown" renders the post-JS DOM as Markdown with HTML-island
+        # tables; "text" is the legacy innerText flattening, kept as the
+        # rollback / comparison escape hatch. ONE flag, TWO frozen renderings —
+        # a rendering-rule change is a format-version bump in html_to_markdown,
+        # never a new toggle (output bytes are load-bearing: dedup line
+        # matching, phrase identity, eval baselines). The page-block envelope
+        # (separator/URL/blank/body) is identical in both modes.
+        output_format: Literal["markdown", "text"] = "markdown",
+        # Fetch same-domain linked PDFs and render them as page blocks
+        # (utils/pdf_to_markdown.py). DEFAULT OFF (2026-08-29, user decision):
+        # built, tested, flagged off until the corpus-wide PDF inventory the
+        # manifest now records (skipped_by_extension) justifies enabling —
+        # measured 78 PDF links on 22 sample pages, mostly ISO/IATF
+        # certificates. A crawl-scope flag like max_depth, not a rendering
+        # version: the manifest records which way it was set.
+        include_pdfs: bool = False,
     ):
+        if output_format not in ("markdown", "text"):
+            raise ValueError(f"output_format must be 'markdown' or 'text', got {output_format!r}")
+        self.output_format = output_format
+        self.include_pdfs = include_pdfs
+        # what the S3 `text_format` object tag will carry (provenance: stored
+        # texts outlive code — downstream must be able to tell a text's shape
+        # without sniffing it)
+        self.text_format_version = (
+            FORMAT_MARKDOWN if output_format == "markdown" else FORMAT_LEGACY_TEXT
+        )
         # Locks & core state to avoid corrupt read/write to python non-thread-safe structures
         self.discovered_lock = threading.Lock()
         self.results_lock = threading.Lock()
@@ -171,44 +215,84 @@ class ScraperService:
 
     def _extract_text_with_fallback(self, driver, url: str) -> str:
         """
-        Wait for body/main, short DOM-stability loop, then <body>.text; fallback to innerText only.
-        Includes redirect protection to prevent scraping social media sites via redirects.
+        Navigate (with social-media redirect protection), wait for DOM
+        stability, then extract the page body under ``self.output_format``:
+
+        - "markdown": the post-JS DOM's outerHTML rendered by
+          ``html_to_markdown`` (the ``markdown_v1`` contract — headings,
+          nested lists, pipe/island tables, accordion content; see that
+          module's docstring for the rules and the 20-manufacturer
+          measurements). An empty or failed conversion falls back to the
+          legacy path below, with a warning — a bad page degrades to flat
+          text, never to a lost page.
+        - "text" (legacy): Selenium's ``<body>.text``, then innerText via JS.
+
+        The JS innerText step is a REAL fallback since 2026-08-28: it
+        previously ran unconditionally and OVERWROTE the primary extraction
+        (and blanked it when the JS threw after a good primary read) — benign
+        while both paths produced the same flat text, fatal once the primary
+        could be Markdown.
+
+        Navigation errors propagate to the worker, which records them per-URL
+        (until 2026-08-28 they were swallowed into an empty string and
+        surfaced as a generic "Empty content" error; the real exception is the
+        better diagnostic).
         """
         if not url:
             raise ValueError("URL cannot be empty")
 
-        try:
-            logger.info(f"driver {driver.session_id} navigating to {url}")
-            driver.get(url)
+        logger.info(f"driver {driver.session_id} navigating to {url}")
+        driver.get(url)
 
-            # Check if redirects led us to a social media site
-            final_url = driver.current_url
-            if social_media_blocker.is_social_media_url(final_url):
-                raise ValueError(
-                    f"URL redirected to blocked social media site: {final_url}"
+        # Check if redirects led us to a social media site
+        final_url = driver.current_url
+        if social_media_blocker.is_social_media_url(final_url):
+            raise ValueError(
+                f"URL redirected to blocked social media site: {final_url}"
+            )
+
+        self._wait_dom_stable(driver)
+        self._accept_cookies(driver)
+
+        if self.output_format == "markdown":
+            try:
+                html = (
+                    driver.execute_script(
+                        "return document.documentElement ? document.documentElement.outerHTML : ''"
+                    )
+                    or ""
+                )
+                text = html_to_markdown(html)
+                if text.strip():
+                    return text
+                logger.warning(
+                    f"markdown rendering empty for {url}; falling back to legacy text extraction"
+                )
+            except Exception:
+                logger.warning(
+                    f"markdown rendering failed for {url}; falling back to legacy text extraction",
+                    exc_info=True,
                 )
 
-            self._wait_dom_stable(driver)
-            self._accept_cookies(driver)
-
+        try:
             body_el = driver.find_element(By.TAG_NAME, "body")
             text = (body_el.text or "").strip()
-        except Exception as e:
-            # If it's our social media block, re-raise to maintain the specific error
-            if "redirected to blocked social media site" in str(e):
-                raise
-            text = ""
-
-        # Fallback 1: try innerText via JS
-        try:
-            text = (
-                driver.execute_script(
-                    "return document.body ? document.body.innerText : ''"
-                )
-                or ""
-            ).strip()
         except Exception:
             text = ""
+
+        # Fallback: innerText via JS — ONLY when the primary read came back
+        # empty (the pre-2026-08-28 version ran this unconditionally; see the
+        # docstring).
+        if not text:
+            try:
+                text = (
+                    driver.execute_script(
+                        "return document.body ? document.body.innerText : ''"
+                    )
+                    or ""
+                ).strip()
+            except Exception:
+                text = ""
 
         return text
 
@@ -279,6 +363,8 @@ class ScraperService:
         resolved_start_url: str,
         stats: dict,
         cancel_event: threading.Event,
+        manifest_pages: dict[str, dict],
+        link_ledger: dict,
     ):
         logger.info("Creating new driver for worker")
         driver = self._new_driver()
@@ -323,6 +409,14 @@ class ScraperService:
                 )
                 with self.results_lock:
                     results.append(block)
+                    # Manifest fingerprint, PRE-dedup by construction: the
+                    # hash depends only on this page's rendered DOM, never on
+                    # which other pages the crawl found (scrape_manifest.py).
+                    manifest_pages[url] = {
+                        "sha256": sha256_text(content),
+                        "chars": len(content),
+                        "depth": depth,
+                    }
 
                 with self.stats_lock:
                     stats["scraped"] += 1
@@ -343,9 +437,22 @@ class ScraperService:
                         if parsed_href.netloc != parsed_start.netloc:
                             continue
 
-                        # Skip unwanted file extensions
+                        # Skip unwanted file extensions — but RECORD them
+                        # (2026-08-29): previously these links vanished
+                        # without a trace; the manifest now carries them
+                        # (skipped_by_extension), which is how a site's
+                        # certificate-PDF inventory becomes visible even with
+                        # PDF fetching off.
                         path_lower = parsed_href.path.lower()
-                        if any(path_lower.endswith(ext) for ext in SKIP_EXTENSIONS):
+                        skipped_ext = next(
+                            (ext for ext in SKIP_EXTENSIONS if path_lower.endswith(ext)),
+                            None,
+                        )
+                        if skipped_ext is not None:
+                            with self.discovered_lock:
+                                link_ledger["skipped_by_url"][href] = skipped_ext
+                                if skipped_ext == ".pdf":
+                                    link_ledger["pdf_urls"].add(href)
                             continue
 
                         # Check if already discovered/visited
@@ -381,6 +488,17 @@ class ScraperService:
 
     # --------------------------- Orchestrator --------------------------
     def scrape(self, start_url: str, llm_model: LLM_Model) -> ScrapingResult:
+        # Bound before the try so every exception handler can build a partial
+        # manifest without locals() guards (2026-08-29).
+        scrape_started_at = datetime.now(timezone.utc)
+        manifest_pages: dict[str, dict] = {}
+        discovered: set[str] = set()
+        errors: list[dict] = []
+        final_landing_url = start_url
+        # links seen but not crawled: extension-skipped urls (url -> ext) and
+        # the pdf candidates among them (fetched only when include_pdfs)
+        link_ledger: dict = {"skipped_by_url": {}, "pdf_urls": set()}
+        pdf_meta: dict[str, dict] = {}
         try:
             # Hard check: Block social media sites from being scraped
             social_media_blocker.validate_start_url(start_url)
@@ -404,9 +522,8 @@ class ScraperService:
             logger.info("Final landing URL: %s", final_landing_url)
             final_landing_etld1 = get_etld1_from_host(final_landing_url)
 
-            discovered: set[str] = {final_landing_url}
+            discovered = {final_landing_url}
             results: list[str] = []
-            errors: list[dict] = []
             stats = {"scraped": 0, "failed": 0}
 
             work_q = Queue()
@@ -431,6 +548,8 @@ class ScraperService:
                         final_landing_url,
                         stats,
                         cancel_event,
+                        manifest_pages,
+                        link_ledger,
                     )
 
                 # Monitor for completion or timeout
@@ -478,10 +597,55 @@ class ScraperService:
 
             total_time_taken = time.monotonic() - start_time
 
+            # ---- linked PDFs (include_pdfs; OFF by default 2026-08-29) ----
+            # Each fetched PDF becomes one ordinary page block appended before
+            # dedup, so downstream sees it as just another page. Failures are
+            # manifest facts, never scrape errors — they must not move
+            # success_rate, which gates upload validity.
+            if self.include_pdfs and link_ledger["pdf_urls"]:
+                candidates = sorted(link_ledger["pdf_urls"])[:MAX_PDFS_PER_SITE]
+                logger.info(
+                    "Fetching %d linked PDFs (%d found)",
+                    len(candidates),
+                    len(link_ledger["pdf_urls"]),
+                )
+                for pdf_url in candidates:
+                    try:
+                        data = fetch_pdf(pdf_url)
+                        text, meta = pdf_to_markdown(data)
+                        meta["sha256"] = sha256_text(text)
+                        meta["bytes"] = len(data)
+                        pdf_meta[pdf_url] = meta
+                        if text.strip():
+                            results.append(
+                                "##################################################\n"
+                                f"{pdf_url}\n\n"
+                                f"{text}\n"
+                            )
+                    except Exception as e:
+                        pdf_meta[pdf_url] = {"error": f"{type(e).__name__}: {e}"}
+                        logger.warning("PDF fetch/render failed: %s: %s", pdf_url, e)
+
             combined = "".join(results)
             results.clear()  # free the list before dedup allocates its own structures
             deduped_content = deduplicate_scraped_content(combined)
             del combined  # free the raw joined string once dedup is done
+
+            origin = f"{urlparse(final_landing_url).scheme}://{urlparse(final_landing_url).netloc}"
+            manifest = assemble_manifest(
+                text_format=self.text_format_version,
+                start_url=start_url,
+                final_landing_url=final_landing_url,
+                started_at=scrape_started_at,
+                finished_at=datetime.now(timezone.utc),
+                pages=manifest_pages,
+                discovered=sorted(discovered),
+                failed={e["url"]: e.get("error_type", "") for e in errors},
+                sitemap=fetch_sitemap_lastmods(origin),
+                skipped_by_extension=link_ledger["skipped_by_url"],
+                pdfs=pdf_meta,
+                include_pdfs=self.include_pdfs,
+            )
             return ScrapingResult(
                 content=deduped_content,
                 errors=errors,
@@ -492,6 +656,8 @@ class ScraperService:
                 timed_out=False,
                 llm_model=llm_model,
                 final_landing_etld1=final_landing_etld1,
+                text_format=self.text_format_version,
+                manifest=manifest,
             )
 
         except TimeoutError:
@@ -514,6 +680,22 @@ class ScraperService:
                 timed_out=True,
                 llm_model=llm_model,
                 final_landing_etld1=final_landing_etld1,
+                text_format=self.text_format_version,
+                # partial manifest: what was fingerprinted before the timeout
+                # (no sitemap fetch on this path — the scrape already overran)
+                manifest=assemble_manifest(
+                    text_format=self.text_format_version,
+                    start_url=start_url,
+                    final_landing_url=final_landing_url,
+                    started_at=scrape_started_at,
+                    finished_at=datetime.now(timezone.utc),
+                    pages=manifest_pages,
+                    discovered=sorted(discovered),
+                    failed={e["url"]: e.get("error_type", "") for e in errors},
+                    skipped_by_extension=link_ledger["skipped_by_url"],
+                    pdfs=pdf_meta,
+                    include_pdfs=self.include_pdfs,
+                ),
             )
         except Exception as e:
             total_time_taken = (
@@ -538,4 +720,5 @@ class ScraperService:
                 final_landing_etld1=(
                     start_landing_etld1 if "start_landing_etld1" in locals() else ""
                 ),
+                text_format=self.text_format_version,
             )

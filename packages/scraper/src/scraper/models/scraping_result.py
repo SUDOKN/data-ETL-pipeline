@@ -7,6 +7,8 @@ from typing import List, Optional
 
 from llm_providers.models.llm_model import LLM_Model
 
+from scraper.utils.html_to_markdown import FORMAT_LEGACY_TEXT
+
 # -------------------------------- Logging --------------------------------
 logging.basicConfig(
     level=logging.INFO,
@@ -28,6 +30,17 @@ class ScrapingResult:
     timed_out: bool
     llm_model: LLM_Model
     final_landing_etld1: str
+    # Which rendering produced `content` (2026-08-28): a format-version string
+    # from scraper.utils.html_to_markdown (FORMAT_MARKDOWN / FORMAT_LEGACY_TEXT).
+    # ScraperService always passes it explicitly; the default only spares
+    # legacy constructions. Uploaded as the S3 `text_format` object tag so a
+    # stored text's shape is knowable without sniffing it.
+    text_format: str = FORMAT_LEGACY_TEXT
+    # The scrape's provenance fingerprint (2026-08-29; scraper.models.
+    # scrape_manifest): per-page PRE-dedup body hashes, the URL sets, sitemap
+    # lastmod claims, timestamps. Uploaded as a `<etld1>.manifest.json` S3
+    # sidecar so a later crawl can tell "site changed" from "scrape skipped".
+    manifest: Optional[dict] = None
 
     @property
     def has_errors(self) -> bool:

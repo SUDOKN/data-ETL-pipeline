@@ -141,6 +141,14 @@ class ChromeDriverManager:
         if binary_path:
             opts.binary_location = binary_path
 
+        # Pinned desktop viewport (2026-08-28). No size was set before, so
+        # headless Chrome rendered at its 800x600 default — right at many
+        # sites' mobile breakpoints, a layout lottery (stacked columns,
+        # hamburger menus, hidden desktop nav). A fixed desktop viewport makes
+        # rendering — and so the scraped text — reproducible across runs, and
+        # is a prerequisite for any future CSS-aware extraction.
+        opts.add_argument("--window-size=1920,1080")
+
         # Profile and sandbox options
         opts.add_argument(
             f"--user-data-dir={profile_dir}"
