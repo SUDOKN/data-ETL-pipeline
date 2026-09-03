@@ -2,7 +2,7 @@ subject: howcogroup.com
 field: conformity_attestations
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
-  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+  sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
 eval_set_version: 3
 expected_empty: false
 entries:
@@ -43,6 +43,7 @@ entries:
 - id: howcogroup_com-conformity_attestations-0026
   name: PCN Level II / Level III
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - PCN Level III consultancy
   - PCN Level II Operators
@@ -71,6 +72,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0001
   name: UK Modern Slavery Act statement
   status: disputed
@@ -119,8 +125,6 @@ entries:
     approx_offset: 103325
   - quote: 'UNS N06625: ASTM B446 & B564'
     approx_offset: 18203
-  - quote: 'UNS N07718 : ASTM B637 GRADE 630 AMS 5662, 5663 & 5664'
-    approx_offset: 49327
   notes: 'the nickel-alloy supply standards cited across the Alloy 625/718/825/28/625-Plus datasheets: B425, B446,
     B564, B637, B423, B805. ''ASTM B668'' is deliberately NOT an acceptable form: line 3150 is a scrape run-on,
     ''ASTM B668GENERAL SCOPE'', so no word-boundary matcher can find it'
@@ -140,6 +144,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-conformity_attestations-0005
   name: NACE MR0175
   status: confirmed
@@ -172,6 +180,7 @@ entries:
 - id: howcogroup_com-conformity_attestations-0009
   name: GDPR
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - GDPR Privacy Notice & Retention Policy
   - GDPR
@@ -198,9 +207,15 @@ entries:
     by: assistant
     date: '2026-09-03'
     source: user-boundary-ruling-2026-09-03:R7-governance-out
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0010
   name: Conflict minerals statement
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Statement on Conflict Minerals during Steel Production
   - Conflict Minerals Policy
@@ -225,9 +240,15 @@ entries:
     by: assistant
     date: '2026-09-03'
     source: user-boundary-ruling-2026-09-03:R7-governance-out
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0011
   name: Norwegian Transparency Act report
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Report on the Norwegian Transparency Act
   - Norwegian Transparency Act
@@ -253,9 +274,15 @@ entries:
     by: assistant
     date: '2026-09-03'
     source: user-boundary-ruling-2026-09-03:R7-governance-out
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0012
   name: Section 172 statement
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Section 172 Statement
   evidence:
@@ -280,9 +307,15 @@ entries:
     by: assistant
     date: '2026-09-03'
     source: user-boundary-ruling-2026-09-03:R7-governance-out
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0013
   name: Streamlined Energy and Carbon Reporting (SECR)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Streamlined Energy and Carbon Reporting
   - Energy & Carbon Report
@@ -302,6 +335,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0006
   name: ASTM A29
   status: confirmed
@@ -331,8 +369,6 @@ entries:
   evidence:
   - quote: 'UNS S31803 – F51 : DUPLEX STAINLESS : ASTM A182, A276, A479, BS EN 10088'
     approx_offset: 56355
-  - quote: 'UNS S32760 – F55 : SUPER DUPLEX : ASTM A182, A276, A479, BS EN 10088'
-    approx_offset: 29940
   notes: the only BS EN standard in the file; cited on both duplex datasheets
   provenance:
   - action: added
@@ -346,9 +382,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-conformity_attestations-0027
   name: ASME 1X (Section IX) welder qualification
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ASME 1X
   - ASME
@@ -372,9 +413,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0028
   name: EN ISO 9606-1
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - EN ISO 9606-1
   - ISO 9606-1
@@ -397,9 +444,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0014
   name: ISO 3834-2
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ISO 3834-2
   - 'ISO 3834 : 2'
@@ -424,9 +477,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0029
   name: ISO 45001
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ISO 45001:2018
   - ISO 45001
@@ -451,9 +510,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0030
   name: CSWIP 3.2
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Weld Inspection CSWIP 3.2
   - CSWIP 3.2
@@ -476,6 +541,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0021
   name: API 5CT
   status: confirmed
@@ -522,6 +592,7 @@ entries:
 - id: howcogroup_com-conformity_attestations-0031
   name: AMS 5662 / 5663 / 5664
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - AMS 5662, 5663 & 5664
   - AMS 5662
@@ -541,9 +612,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0023
   name: ASTM A182
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ASTM A182
   evidence:
@@ -564,6 +641,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0038
   name: ASTM A276 / A479
   status: confirmed
@@ -602,11 +684,6 @@ entries:
     approx_offset: 96962
   - quote: 'Certified: ISO 9001: 2015'
     approx_offset: 259313
-  - quote: 'ISO 9001 : 2015 Quality Management System'
-    approx_offset: 64912
-  - quote: 'recognition complements the site’s long standing ISO accreditations  ISO 9001:2015, ISO 14001: 2015,
-      ISO 45001:2018 & ISO 50001:2018.'
-    approx_offset: 355141
   notes: 'SITE SCOPE: ''Howco Group Global'' (3526) - the only group-wide certificate on the accreditations page.
     Also asserted on the Irvine coating page (1429, spaced colons), the Precision Fabrication page (2673), the Sheffield
     news post (6824, no spaces), the AM article as ''ISO9001'' (6530), and in the legal footer of all 97 pages as
@@ -623,9 +700,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 2 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-conformity_attestations-0015
   name: ISO 14001
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - 'ISO 14001 : 2015'
   - 'ISO 14001: 2015'
@@ -652,9 +734,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0016
   name: BS OHSAS 18001
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - BS OHSAS 18001
   - OHSAS 18001
@@ -676,6 +764,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0017
   name: ISO 50001
   status: confirmed
@@ -687,10 +780,6 @@ entries:
   evidence:
   - quote: LRQA ISO 50001 ENERGY STANDARD – HELD BY ALL UNITED KINGDOM MANUFACTURING SITES
     approx_offset: 97238
-  - quote: ISO 50,001 Energy Management Systems
-    approx_offset: 65097
-  - quote: 'ISO accreditations  ISO 9001:2015, ISO 14001: 2015, ISO 45001:2018 & ISO 50001:2018.'
-    approx_offset: 355190
   notes: 'SITE SCOPE: ''HELD BY ALL UNITED KINGDOM MANUFACTURING SITES'' (3540), enumerated at 3543 as ''Bredbury
     | Cumbernauld | Drummond | Irvine | Sheffield'' - five UK sites, Norway dropped from the ISO 14001/45001 row.
     PRINTING TRAP: the Irvine page writes it ''50,001'' WITH A COMMA (1433)'
@@ -706,9 +795,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 2 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-conformity_attestations-0018
   name: Norsok M-501
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Norsok M-501 System 7 B & C, System 1 coatings
   - Norsok M-501
@@ -730,9 +824,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0019
   name: ICorr Level 3
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ICorr level 3
   - ICorr
@@ -754,9 +854,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0020
   name: NACE Level 2 coating inspector
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Nace level 2
   evidence:
@@ -776,9 +882,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0041
   name: Cleanroom Class 10,000
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Cleanroom technology (Class 10,000)
   - Class 10,000
@@ -800,6 +912,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0042
   name: AMS 5854
   status: confirmed
@@ -824,6 +941,7 @@ entries:
 - id: howcogroup_com-conformity_attestations-0024
   name: AMS 2750 Class 3
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - AMS 2750 Class 3
   - AMS 2750
@@ -844,6 +962,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0025
   name: AS9100D
   status: confirmed
@@ -854,11 +977,6 @@ entries:
   evidence:
   - quote: 'LRQA AS9100D: QUALITY ASSURANCE'
     approx_offset: 97039
-  - quote: AS9100
-    approx_offset: 77812
-  - quote: AS9100 approved for Manufacture of Additively Manufactured Parts including Machining, Heat Treatment,
-      Testing and Hot Isostatic Pressing.
-    approx_offset: 77820
   notes: 'SITE SCOPE: ''Howco Houston, USA'' (3532) ONLY - the additive-manufacturing division. Scope at 1900: ''Manufacture
     of Additively Manufactured Parts including Machining, Heat Treatment, Testing and Hot Isostatic Pressing''.
     The bare ''AS9100'' (no D) form is used on the AM pages'
@@ -874,6 +992,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 2 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-conformity_attestations-0004
   name: ASTM A564
   status: confirmed
@@ -1031,9 +1153,6 @@ entries:
   evidence:
   - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
     approx_offset: 107400
-  - quote: Today, it’s also the site of our UKAS approved test laboratory. Just minutes away from the well-known
-      ‘Five
-    approx_offset: 355275
   notes: 'SITE SCOPE: the Sheffield laboratory (6826 is in the ''Made in Sheffield'' post about the Carbrook Street
     site); 3866 says only ''In-house'' on the heat-treatment page. UKAS is the accreditation BODY behind the ISO
     17025 row, but the two are never printed together'
@@ -1049,9 +1168,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-conformity_attestations-0003
   name: Registered in Scotland No. SC79844
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Registered in Scotland No. SC79844
   - SC79844
@@ -1078,9 +1202,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0043
   name: Made in Sheffield
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ‘Made in Sheffield’ mark
   - Made in Sheffield
@@ -1108,6 +1238,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0036
   name: API 7-2
   status: retired
@@ -1132,6 +1267,7 @@ entries:
 - id: howcogroup_com-conformity_attestations-0044
   name: ASME 1X
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - ASME 1X
   evidence:
@@ -1144,9 +1280,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0045
   name: ISO 3834-2 Quality Requirements for Welding
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - ISO 3834-2
   evidence:
@@ -1158,9 +1300,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0046
   name: PCN NDE Level II
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - PCN NDE Level II
   evidence:
@@ -1172,9 +1320,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0047
   name: Nace level 2 (coating inspection personnel)
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Nace level 2
   evidence:
@@ -1187,9 +1341,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0048
   name: ICorr level 3 (coating inspection personnel)
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - ICorr level 3
   evidence:
@@ -1202,9 +1362,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0049
   name: AS9100 approved for Manufacture of Additively Manufactured Parts
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - AS9100
   evidence:
@@ -1216,6 +1382,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0050
   name: ISO 17025
   status: candidate
@@ -1245,6 +1416,7 @@ entries:
 - id: howcogroup_com-conformity_attestations-0052
   name: AS9100D accreditation
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - AS9100D
   evidence:
@@ -1256,9 +1428,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0053
   name: Midlands Aerospace Alliance (MAA)
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Midlands Aerospace Alliance
   evidence:
@@ -1271,9 +1449,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0054
   name: North West Aerospace Alliance (NWAA)
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - North West Aerospace Alliance
   evidence:
@@ -1286,9 +1470,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-conformity_attestations-0055
   name: Made in Sheffield mark
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Made In Sheffield
   - Made in Sheffield
@@ -1301,6 +1491,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: CE
   reason: ZERO occurrences in 7,573 lines. A Scottish/UK manufacturer selling pressure-containing oil-and-gas components

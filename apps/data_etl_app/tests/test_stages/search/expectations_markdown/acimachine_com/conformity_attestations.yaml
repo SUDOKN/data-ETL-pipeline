@@ -2,7 +2,7 @@ subject: acimachine.com
 field: conformity_attestations
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
-  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+  sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
 eval_set_version: 3
 expected_empty: true
 notes: 'Word-boundary greps for ISO/AS9100/IATF/NADCAP/ASTM/ANSI/ASME: zero hits in 3.9MB. ACI itself claims no
@@ -20,6 +20,7 @@ entries:
 - id: acimachine_com-conformity_attestations-0001
   name: CSA/CUS
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CSA/CUS
   - CSA/CUS Certified
@@ -47,9 +48,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-conformity_attestations-0002
   name: CSA
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - CSA
   evidence:
@@ -62,9 +69,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-conformity_attestations-0003
   name: UL
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - UL
   evidence:
@@ -77,6 +90,11 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: certified
   reason: bare adjective appears only in third-party machine marketing; G code without the CSA/CUS designation attached

@@ -2,7 +2,7 @@ subject: acimachine.com
 field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
-  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+  sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
 eval_set_version: 3
 expected_empty: false
 notes: 'DELIBERATELY NOT AN INVENTORY. The file carries 1,291 /equipment/ resale listings; recall on this subject
@@ -23,6 +23,7 @@ entries:
 - id: acimachine_com-equipments-0001
   name: CHEVALIER FSG-3A1224
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CHEVALIER FSG-3A1224
   - FSG-3A1224
@@ -43,6 +44,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0002
   name: WINEMA RV 10 FLEXMASTER
   status: confirmed
@@ -69,6 +75,7 @@ entries:
 - id: acimachine_com-equipments-0003
   name: JET HP-5
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - JET HP-5
   - HP-5
@@ -93,9 +100,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0004
   name: HURCO HM1700RI
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - HURCO HM1700RI
   - HM1700RI
@@ -115,9 +128,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0005
   name: CHEVALIER SMART-B1224III
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CHEVALIER SMART-B1224III
   - SMART-B1224III
@@ -137,9 +156,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0006
   name: ACER E-LATHE 1760G
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ACER E-LATHE 1760G
   - E-LATHE 1760G
@@ -159,9 +184,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0007
   name: SHARP SVL-2416SE-F
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - SHARP SVL-2416SE-F
   - SVL-2416SE-F
@@ -181,9 +212,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0008
   name: ACER DYNAMIC 7060G
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ACER DYNAMIC 7060G
   - DYNAMIC 7060G
@@ -204,9 +241,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0009
   name: SHARP STA-38
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - SHARP STA-38
   - STA-38
@@ -226,9 +269,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0010
   name: ACER SUPRA-618II
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ACER SUPRA-618II
   - SUPRA-618II
@@ -248,9 +297,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0011
   name: JET BP-2248H
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - JET BP-2248H
   - BP-2248H
@@ -271,9 +326,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0012
   name: WELLSAW 1200
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - WELLSAW 1200
   evidence:
@@ -293,6 +354,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0013
   name: HURCO VMX42I
   status: confirmed
@@ -319,6 +385,7 @@ entries:
 - id: acimachine_com-equipments-0014
   name: FANUC Oi-TD control
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - FANUC Oi-TD
   evidence:
@@ -339,6 +406,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-equipments-0015
   name: Drilling & Tapping Centers
   status: candidate

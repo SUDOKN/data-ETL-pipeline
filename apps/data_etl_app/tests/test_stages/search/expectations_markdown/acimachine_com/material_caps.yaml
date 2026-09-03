@@ -2,7 +2,7 @@ subject: acimachine.com
 field: material_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
-  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+  sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
 eval_set_version: 3
 expected_empty: true
 notes: 'The subject is a dealer: it works no material. Every material mention in 3.9MB is (a) construction of a
@@ -54,6 +54,7 @@ entries:
 - id: acimachine_com-material_caps-0003
   name: non-ferrous metal
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - non-ferrous metal
   evidence:
@@ -65,9 +66,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-material_caps-0004
   name: composite material
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - composite material
   evidence:
@@ -79,6 +86,11 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-material_caps-0005
   name: Meehanite cast iron
   status: candidate
@@ -157,6 +169,7 @@ entries:
 - id: acimachine_com-material_caps-0010
   name: brass
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - brass
   evidence:
@@ -168,9 +181,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-material_caps-0011
   name: copper
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - copper
   evidence:
@@ -182,9 +201,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-material_caps-0012
   name: lead
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - lead
   evidence:
@@ -197,9 +222,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-material_caps-0013
   name: plastic
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - plastic
   evidence:
@@ -211,9 +242,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-material_caps-0014
   name: zinc
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - zinc
   evidence:
@@ -225,6 +262,11 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: mild steel
   reason: 'spec-capacity rating of resold machines: label ''Capacity (Mild Steel)(in)'' and JET marketing ''precision

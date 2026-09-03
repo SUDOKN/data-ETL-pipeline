@@ -2,22 +2,19 @@ subject: superiortech.org
 field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/superiortech.org.txt
-  sha256: 6de032283382c2ead7409e34541f2743fea3c67efb4a165eb47c68a1a93ab01a
+  sha256: f29844803215581d1f500767f528c381ac8f521986e6f6cf3900fe5842420ad1
 eval_set_version: 2
 expected_empty: false
-notes: 'The richest equipment inventory in the corpus: the facilities-list page (lines 376-606)
-  enumerates roughly 100 machine UNITS as ~75 distinct designations, in a ''(N)  BRAND MODEL;
-  spec; spec'' census, plus a dozen more machines named in capability prose. SEEDED STRICTLY
-  TO THE PROMPT''S CLAUSE, not to the everyday sense of ''equipment'': a production machine
-  must act on the work itself. That EXCLUDES the entire QUALITY ASSURANCE block (3 CMMs, a
-  video measuring system, height gages, optical comparators, profilometers, a laser micrometer,
-  microscopes, micrometers, calipers, bore/thread/plug gages), the MPI non-destructive testing
-  machines, the leak-test stations, torque tools and electrical testers, the overhead crane
-  (material handling), the in-house customer tooling and fixtures (tooling), and the three
-  CAD/CAM and two quality software packages. Those measurement operations are seeded under
-  `process_caps`, where the clause explicitly admits them. A small number of named-brand metrology
-  machines are kept here as DISPUTED so the boundary argument survives on the record without
-  ever gating recall.'
+notes: 'The richest equipment inventory in the corpus: the facilities-list page (lines 376-606) enumerates roughly
+  100 machine UNITS as ~75 distinct designations, in a ''(N)  BRAND MODEL; spec; spec'' census, plus a dozen more
+  machines named in capability prose. SEEDED STRICTLY TO THE PROMPT''S CLAUSE, not to the everyday sense of ''equipment'':
+  a production machine must act on the work itself. That EXCLUDES the entire QUALITY ASSURANCE block (3 CMMs, a
+  video measuring system, height gages, optical comparators, profilometers, a laser micrometer, microscopes, micrometers,
+  calipers, bore/thread/plug gages), the MPI non-destructive testing machines, the leak-test stations, torque tools
+  and electrical testers, the overhead crane (material handling), the in-house customer tooling and fixtures (tooling),
+  and the three CAD/CAM and two quality software packages. Those measurement operations are seeded under `process_caps`,
+  where the clause explicitly admits them. A small number of named-brand metrology machines are kept here as DISPUTED
+  so the boundary argument survives on the record without ever gating recall.'
 entries:
 - id: superiortech_org-equipments-0001
   name: CNC machine tools
@@ -74,8 +71,8 @@ entries:
   evidence:
   - quote: Specialized machines are used to accomplish the customer requirements
     approx_offset: 24398
-  notes: the hobbing/broaching/gear-cutting page's unnamed collective reference; the named
-    instances are the BOURNE & KOCH, BARBER COLEMAN and MILES census lines
+  notes: the hobbing/broaching/gear-cutting page's unnamed collective reference; the named instances are the BOURNE
+    & KOCH, BARBER COLEMAN and MILES census lines
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -120,13 +117,11 @@ entries:
     approx_offset: 6802
   - quote: latest Mazak Palletech CNC Milling
     approx_offset: 6706
-  notes: FAILS the exclusion clause on 'moves, stores, or carries'. As named -- 'Palletech
-    - Flexible 12 Pallet Pool Manufacturing System' -- the entity is a twelve-station pallet
-    pool that stores workpieces and shuttles them to the machines; it cuts nothing. The machine
-    it feeds is separately seeded as equipments-0039 (MAZAK PALLETECH NEXUS HCN 5000-II),
-    so nothing is lost by demoting this. Arguable because a second form, 'Mazak Palletech',
-    is used attributively in 'latest Mazak Palletech CNC Milling', where it does name the
-    milling system.
+  notes: FAILS the exclusion clause on 'moves, stores, or carries'. As named -- 'Palletech - Flexible 12 Pallet
+    Pool Manufacturing System' -- the entity is a twelve-station pallet pool that stores workpieces and shuttles
+    them to the machines; it cuts nothing. The machine it feeds is separately seeded as equipments-0039 (MAZAK PALLETECH
+    NEXUS HCN 5000-II), so nothing is lost by demoting this. Arguable because a second form, 'Mazak Palletech',
+    is used attributively in 'latest Mazak Palletech CNC Milling', where it does name the milling system.
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -135,13 +130,12 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: FAILS the exclusion clause on 'moves, stores, or carries'. As named -- 'Palletech
-      - Flexible 12 Pallet Pool Manufacturing System' -- the entity is a twelve-station pallet
-      pool that stores workpieces and shuttles them to the machines; it cuts nothing. The
-      machine it feeds is separately seeded as equipments-0039 (MAZAK PALLETECH NEXUS HCN
-      5000-II), so nothing is lost by demoting this. Arguable because a second form, 'Mazak
-      Palletech', is used attributively in 'latest Mazak Palletech CNC Milling', where it
-      does name the milling system.
+    reason: FAILS the exclusion clause on 'moves, stores, or carries'. As named -- 'Palletech - Flexible 12 Pallet
+      Pool Manufacturing System' -- the entity is a twelve-station pallet pool that stores workpieces and shuttles
+      them to the machines; it cuts nothing. The machine it feeds is separately seeded as equipments-0039 (MAZAK
+      PALLETECH NEXUS HCN 5000-II), so nothing is lost by demoting this. Arguable because a second form, 'Mazak
+      Palletech', is used attributively in 'latest Mazak Palletech CNC Milling', where it does name the milling
+      system.
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -204,10 +198,9 @@ entries:
     approx_offset: 36594
   - quote: Horizontal CNC Machining Center
     approx_offset: 29563
-  notes: THE OWNED-MACHINE / OWN-PRODUCT LEAK. This is a machine Superior operates — the sentence
-    continues 'allow milling of complex Hydraulic & Pneumatic Manifolds' — and the old pipeline
-    emitted it as a PRODUCT Superior makes. It belongs here and is seeded as a false_friend
-    under `products`
+  notes: THE OWNED-MACHINE / OWN-PRODUCT LEAK. This is a machine Superior operates — the sentence continues 'allow
+    milling of complex Hydraulic & Pneumatic Manifolds' — and the old pipeline emitted it as a PRODUCT Superior
+    makes. It belongs here and is seeded as a false_friend under `products`
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -286,8 +279,7 @@ entries:
   acceptable_forms:
   - HARDINGE CONQUEST GT
   evidence:
-  - quote: (4)  HARDINGE CONQUEST GT; Super Precision; 1” Capacity; .00001 programmability;
-      bar feeders
+  - quote: (4)  HARDINGE CONQUEST GT; Super Precision; 1” Capacity; .00001 programmability; bar feeders
     approx_offset: 8806
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -350,8 +342,8 @@ entries:
   acceptable_forms:
   - HARDINGE CONQUEST T42 Long Bed
   evidence:
-  - quote: (1)  HARDINGE CONQUEST T42 Long Bed; 1 5/8″ thru spindle; 8″ chucking; 21” turn
-      length; live tooling; bar feeder
+  - quote: (1)  HARDINGE CONQUEST T42 Long Bed; 1 5/8″ thru spindle; 8″ chucking; 21” turn length; live tooling;
+      bar feeder
     approx_offset: 9165
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -372,8 +364,7 @@ entries:
   acceptable_forms:
   - HARDINGE CONQUEST T42
   evidence:
-  - quote: (1)  HARDINGE CONQUEST T42; 2.0″ thru spindle; 10″ chucking; 16C sub spindle; bar
-      feeder
+  - quote: (1)  HARDINGE CONQUEST T42; 2.0″ thru spindle; 10″ chucking; 16C sub spindle; bar feeder
     approx_offset: 9458
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -499,8 +490,7 @@ entries:
   acceptable_forms:
   - OKUMA LU-15MW
   evidence:
-  - quote: (1)  OKUMA LU-15MW; Twin spindle; Twin turret; 1 ¾” thru spindle; live tooling;
-      bar feeder
+  - quote: (1)  OKUMA LU-15MW; Twin spindle; Twin turret; 1 ¾” thru spindle; live tooling; bar feeder
     approx_offset: 10106
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -542,8 +532,7 @@ entries:
   acceptable_forms:
   - OKUMA LT-10M
   evidence:
-  - quote: (1)  OKUMA LT-10M; Twin spindle; Twin turret; 1 ¾” thru spindle; live tooling;
-      bar feeder
+  - quote: (1)  OKUMA LT-10M; Twin spindle; Twin turret; 1 ¾” thru spindle; live tooling; bar feeder
     approx_offset: 10277
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -585,8 +574,7 @@ entries:
   acceptable_forms:
   - MORI SEIKI SL-15MC
   evidence:
-  - quote: (3)  MORI SEIKI SL-15MC; 2” thru spindle; 8” chucks; live tooling; C-Axis; bar
-      feeders
+  - quote: (3)  MORI SEIKI SL-15MC; 2” thru spindle; 8” chucks; live tooling; C-Axis; bar feeders
     approx_offset: 10413
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -607,8 +595,8 @@ entries:
   acceptable_forms:
   - KIA SKT250 MS
   evidence:
-  - quote: (2)  KIA SKT250 MS; 10” chuck main spindle; 8” chuck sub spindle; live tooling;
-      C-axis on both spindles;    3″ thru spindle
+  - quote: (2)  KIA SKT250 MS; 10” chuck main spindle; 8” chuck sub spindle; live tooling; C-axis on both spindles;   
+      3″ thru spindle
     approx_offset: 10500
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -629,8 +617,7 @@ entries:
   acceptable_forms:
   - HYUNDAI KIA SKT21LMS
   evidence:
-  - quote: (1)  HYUNDAI KIA SKT21LMS; 2” thru spindle; live tools; C-axis on both spindles;
-      16C sub spindle; barfeeder
+  - quote: (1)  HYUNDAI KIA SKT21LMS; 2” thru spindle; live tools; C-axis on both spindles; 16C sub spindle; barfeeder
     approx_offset: 10621
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -651,8 +638,7 @@ entries:
   acceptable_forms:
   - MORI SEIKI SL-303-AMC-700
   evidence:
-  - quote: (1)  MORI SEIKI SL-303-AMC-700; 3” thru spindle; 12” chuck; live tooling; C-axis;
-      tail stock
+  - quote: (1)  MORI SEIKI SL-303-AMC-700; 3” thru spindle; 12” chuck; live tooling; C-axis; tail stock
     approx_offset: 10729
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -673,8 +659,8 @@ entries:
   acceptable_forms:
   - DOOSAN PUMA 240MSC
   evidence:
-  - quote: (1)  DOOSAN PUMA 240MSC; 2.5” thru spindle; 10” chuck on main; 6” chuck on sub
-      spindle; live tooling;  C-axis on both spindles
+  - quote: (1)  DOOSAN PUMA 240MSC; 2.5” thru spindle; 10” chuck on main; 6” chuck on sub spindle; live tooling; 
+      C-axis on both spindles
     approx_offset: 10822
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -695,8 +681,7 @@ entries:
   acceptable_forms:
   - DOOSAN PUMA V550 VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  DOOSAN PUMA V550 VERTICAL TURNING CENTER; 24” chuck; 29” turn diameter; 30”
-      turn length
+  - quote: (1)  DOOSAN PUMA V550 VERTICAL TURNING CENTER; 24” chuck; 29” turn diameter; 30” turn length
     approx_offset: 10948
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -717,8 +702,7 @@ entries:
   acceptable_forms:
   - HWACHEON VT650R VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  HWACHEON VT650R VERTICAL TURNING CENTER 18” chuck; live tooling, 32″ turn
-      diameter, 30″ turn length
+  - quote: (1)  HWACHEON VT650R VERTICAL TURNING CENTER 18” chuck; live tooling, 32″ turn diameter, 30″ turn length
     approx_offset: 11041
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -739,8 +723,7 @@ entries:
   acceptable_forms:
   - DOOSAN V850M VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  DOOSAN V850M VERTICAL TURNING CENTER; 36” chuck; 40″ turn diameter; 34″ turn
-      length
+  - quote: (1)  DOOSAN V850M VERTICAL TURNING CENTER; 36” chuck; 40″ turn diameter; 34″ turn length
     approx_offset: 11146
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -761,8 +744,7 @@ entries:
   acceptable_forms:
   - DOOSAN V850L VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  DOOSAN V850L VERTICAL TURNING CENTER; 36” chuck; 34″ turn diameter; 34″ turn
-      length
+  - quote: (1)  DOOSAN V850L VERTICAL TURNING CENTER; 36” chuck; 34″ turn diameter; 34″ turn length
     approx_offset: 11235
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -783,8 +765,7 @@ entries:
   acceptable_forms:
   - DOOSAN PUMA VT900 VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  DOOSAN PUMA VT900 VERTICAL TURNING CENTER; 32” chuck, 40″ turn diameter 35.5″
-      turn length
+  - quote: (1)  DOOSAN PUMA VT900 VERTICAL TURNING CENTER; 32” chuck, 40″ turn diameter 35.5″ turn length
     approx_offset: 11324
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -805,8 +786,8 @@ entries:
   acceptable_forms:
   - DOOSAN PUMA VT900M VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  DOOSAN PUMA VT900M VERTICAL TURNING CENTER; 32” chuck; live tooling, 40″ turn
-      diameter, 35.5″ turn length.
+  - quote: (1)  DOOSAN PUMA VT900M VERTICAL TURNING CENTER; 32” chuck; live tooling, 40″ turn diameter, 35.5″ turn
+      length.
     approx_offset: 11419
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -827,8 +808,7 @@ entries:
   acceptable_forms:
   - HWACHEON VT950R VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  HWACHEON VT950R VERTICAL TURNING CENTER 32” chuck; live tooling, 44″ turn
-      diameter, 34″ turn length
+  - quote: (1)  HWACHEON VT950R VERTICAL TURNING CENTER 32” chuck; live tooling, 44″ turn diameter, 34″ turn length
     approx_offset: 11531
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -849,8 +829,8 @@ entries:
   acceptable_forms:
   - YOUJI YV-800 ATC+C VERTICAL TURNING CENTER
   evidence:
-  - quote: (1)  YOUJI YV-800 ATC+C VERTICAL TURNING CENTER; 42” chuck; live tooling, 50″ turn
-      diameter, 28″ turn length
+  - quote: (1)  YOUJI YV-800 ATC+C VERTICAL TURNING CENTER; 42” chuck; live tooling, 50″ turn diameter, 28″ turn
+      length
     approx_offset: 11636
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -871,8 +851,8 @@ entries:
   acceptable_forms:
   - MAZAK PALLETECH NEXUS HCN 5000-II Horizontal Machining Center
   evidence:
-  - quote: (1) MAZAK PALLETECH NEXUS HCN 5000-II Horizontal Machining Center (28”/28”/32”)
-      – with Flexible 12 Pallet Pool Manufacturing System
+  - quote: (1) MAZAK PALLETECH NEXUS HCN 5000-II Horizontal Machining Center (28”/28”/32”) – with Flexible 12 Pallet
+      Pool Manufacturing System
     approx_offset: 11811
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -940,9 +920,8 @@ entries:
     approx_offset: 12160
   - quote: (1)  MAZAK VCN 530C Machining Center (41”/21”/20”)
     approx_offset: 13405
-  notes: facilities-list census; the page appears once, so this entry has a single window;
-    the same model is listed twice, once as 'Vertical Machining Center' (line 456) and once
-    as 'Machining Center' (line 496)
+  notes: facilities-list census; the page appears once, so this entry has a single window; the same model is listed
+    twice, once as 'Vertical Machining Center' (line 456) and once as 'Machining Center' (line 496)
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -1318,8 +1297,7 @@ entries:
   acceptable_forms:
   - MITSUBISHI M-V60C Machining Center
   evidence:
-  - quote: (2)  MITSUBISHI M-V60C Machining Center; Cat 50; (40”/24”/22”); two 4th axis indexers
-      in each
+  - quote: (2)  MITSUBISHI M-V60C Machining Center; Cat 50; (40”/24”/22”); two 4th axis indexers in each
     approx_offset: 13255
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -1615,13 +1593,11 @@ entries:
   evidence:
   - quote: (1)  HOFFMAN Dynamic balancer; 60” max diameter
     approx_offset: 14124
-  notes: 'facilities-list census; the page appears once, so this entry has a single window
-    | FAILS the exclusion clause on ''only measures, inspects, or tests''. A balancing machine
-    spins the part and reports unbalance; the text itself puts the material removal elsewhere
-    -- ''Out of balance material is removed by various methods'' -- so the HOFFMAN is the
-    instrument that measures, and some other machine does the correcting. Genuinely arguable:
-    balancers with integrated correction units do act on the work, and the text does not say
-    which this is.'
+  notes: 'facilities-list census; the page appears once, so this entry has a single window | FAILS the exclusion
+    clause on ''only measures, inspects, or tests''. A balancing machine spins the part and reports unbalance; the
+    text itself puts the material removal elsewhere -- ''Out of balance material is removed by various methods''
+    -- so the HOFFMAN is the instrument that measures, and some other machine does the correcting. Genuinely arguable:
+    balancers with integrated correction units do act on the work, and the text does not say which this is.'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -1630,12 +1606,11 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: 'FAILS the exclusion clause on ''only measures, inspects, or tests''. A balancing
-      machine spins the part and reports unbalance; the text itself puts the material removal
-      elsewhere -- ''Out of balance material is removed by various methods'' -- so the HOFFMAN
-      is the instrument that measures, and some other machine does the correcting. Genuinely
-      arguable: balancers with integrated correction units do act on the work, and the text
-      does not say which this is.'
+    reason: 'FAILS the exclusion clause on ''only measures, inspects, or tests''. A balancing machine spins the
+      part and reports unbalance; the text itself puts the material removal elsewhere -- ''Out of balance material
+      is removed by various methods'' -- so the HOFFMAN is the instrument that measures, and some other machine
+      does the correcting. Genuinely arguable: balancers with integrated correction units do act on the work, and
+      the text does not say which this is.'
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -1648,16 +1623,14 @@ entries:
   evidence:
   - quote: (2)  (MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines
     approx_offset: 14172
-  notes: 'DISPUTED — EXCLUDED by the clause — it tests the work. Unusually strong counter-argument
-    though: the text calls them ''Machines'' outright and elsewhere ''a purpose built high
-    powered testing machine'' (line 200). Recorded so that argument survives; the operation
-    is seeded under process_caps as magnetic particle inspection. | FAILS the exclusion clause
-    on ''only measures, inspects, or tests'' -- as explicitly as it can be written, since
-    the entity''s own name is ''(MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing
-    Machines''. Crack detection reveals flaws in the work without changing it. The operation
-    belongs in process_caps, where it is already seeded as process_caps-0052. | UN-DISPUTED
-    by user ruling 2026-09-02: metrology IS in-field for equipments; the prompt''s measure/inspect/test
-    exclusion is the defect, not this entry.'
+  notes: 'DISPUTED — EXCLUDED by the clause — it tests the work. Unusually strong counter-argument though: the text
+    calls them ''Machines'' outright and elsewhere ''a purpose built high powered testing machine'' (line 200).
+    Recorded so that argument survives; the operation is seeded under process_caps as magnetic particle inspection.
+    | FAILS the exclusion clause on ''only measures, inspects, or tests'' -- as explicitly as it can be written,
+    since the entity''s own name is ''(MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines''. Crack
+    detection reveals flaws in the work without changing it. The operation belongs in process_caps, where it is
+    already seeded as process_caps-0052. | UN-DISPUTED by user ruling 2026-09-02: metrology IS in-field for equipments;
+    the prompt''s measure/inspect/test exclusion is the defect, not this entry.'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -1666,10 +1639,10 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: FAILS the exclusion clause on 'only measures, inspects, or tests' -- as explicitly
-      as it can be written, since the entity's own name is '(MPI) MAGNETIC PARTICLE INSPECTION
-      Non-Destructive Testing Machines'. Crack detection reveals flaws in the work without
-      changing it. The operation belongs in process_caps, where it is already seeded as process_caps-0052.
+    reason: FAILS the exclusion clause on 'only measures, inspects, or tests' -- as explicitly as it can be written,
+      since the entity's own name is '(MPI) MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines'. Crack
+      detection reveals flaws in the work without changing it. The operation belongs in process_caps, where it is
+      already seeded as process_caps-0052.
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -1727,14 +1700,12 @@ entries:
   evidence:
   - quote: (6)  Manual Assembly Work Stations,
     approx_offset: 14366
-  notes: DISPUTED — a manned bench is closer to a FACILITY than to 'a device or system used
-    directly to process, shape, assemble'. Kept because the clause names 'assemble' explicitly
-    and these stations are where assembly happens, so a reader could fairly call the station
-    the system that does it. | Arguable against 'a production machine ... a device or system'.
-    '(6)  Manual Assembly Work Stations' are benches at which people assemble by hand -- the
-    assembling is done by the operator, not by a machine acting on the work. Assembly qualifies
-    as an operation, so the process side is safe; what is doubtful is whether a work station
-    is a machine at all.
+  notes: DISPUTED — a manned bench is closer to a FACILITY than to 'a device or system used directly to process,
+    shape, assemble'. Kept because the clause names 'assemble' explicitly and these stations are where assembly
+    happens, so a reader could fairly call the station the system that does it. | Arguable against 'a production
+    machine ... a device or system'. '(6)  Manual Assembly Work Stations' are benches at which people assemble by
+    hand -- the assembling is done by the operator, not by a machine acting on the work. Assembly qualifies as an
+    operation, so the process side is safe; what is doubtful is whether a work station is a machine at all.
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -1743,11 +1714,10 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: Arguable against 'a production machine ... a device or system'. '(6)  Manual Assembly
-      Work Stations' are benches at which people assemble by hand -- the assembling is done
-      by the operator, not by a machine acting on the work. Assembly qualifies as an operation,
-      so the process side is safe; what is doubtful is whether a work station is a machine
-      at all.
+    reason: Arguable against 'a production machine ... a device or system'. '(6)  Manual Assembly Work Stations'
+      are benches at which people assemble by hand -- the assembling is done by the operator, not by a machine acting
+      on the work. Assembly qualifies as an operation, so the process side is safe; what is doubtful is whether
+      a work station is a machine at all.
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -1760,15 +1730,13 @@ entries:
   evidence:
   - quote: (1)  Component Optical Verification System,
     approx_offset: 14402
-  notes: 'DISPUTED — EXCLUDED by the clause — it verifies rather than acting on the work.
-    Recorded because it sits inside the ASSEMBLY & TEST census block among real production
-    machines, so a run that returns it is making a defensible reading rather than hallucinating.
-    The verification operation is seeded under process_caps. | FAILS the exclusion clause
-    on ''only measures, inspects, or tests''. ''Component Optical Verification System'' verifies
-    components optically -- it is a vision gauge sitting in the assembly-cell list between
-    presses and hand tools. It confirms the work is right; it does not make it. | UN-DISPUTED
-    by user ruling 2026-09-02: metrology IS in-field for equipments; the prompt''s measure/inspect/test
-    exclusion is the defect, not this entry.'
+  notes: 'DISPUTED — EXCLUDED by the clause — it verifies rather than acting on the work. Recorded because it sits
+    inside the ASSEMBLY & TEST census block among real production machines, so a run that returns it is making a
+    defensible reading rather than hallucinating. The verification operation is seeded under process_caps. | FAILS
+    the exclusion clause on ''only measures, inspects, or tests''. ''Component Optical Verification System'' verifies
+    components optically -- it is a vision gauge sitting in the assembly-cell list between presses and hand tools.
+    It confirms the work is right; it does not make it. | UN-DISPUTED by user ruling 2026-09-02: metrology IS in-field
+    for equipments; the prompt''s measure/inspect/test exclusion is the defect, not this entry.'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -1777,10 +1745,9 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: FAILS the exclusion clause on 'only measures, inspects, or tests'. 'Component
-      Optical Verification System' verifies components optically -- it is a vision gauge sitting
-      in the assembly-cell list between presses and hand tools. It confirms the work is right;
-      it does not make it.
+    reason: FAILS the exclusion clause on 'only measures, inspects, or tests'. 'Component Optical Verification System'
+      verifies components optically -- it is a vision gauge sitting in the assembly-cell list between presses and
+      hand tools. It confirms the work is right; it does not make it.
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -1905,9 +1872,9 @@ entries:
   evidence:
   - quote: (2) TIMESAVER  Liner Wet Sander, Deburring, Finishing & Graining to 36’ Wide
     approx_offset: 14751
-  notes: facilities-list census; the page appears once, so this entry has a single window;
-    the brand token carries a trailing NBSP ('TIMESAVER\u00a0 Liner'), and the same machine
-    is referred to in prose as 'Time-Saver machine graining' with a hyphen (line 165)
+  notes: facilities-list census; the page appears once, so this entry has a single window; the brand token carries
+    a trailing NBSP ('TIMESAVER\u00a0 Liner'), and the same machine is referred to in prose as 'Time-Saver machine
+    graining' with a hyphen (line 165)
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -1916,11 +1883,10 @@ entries:
   - action: amended
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: The machine is right and clearly in-field (it sands, deburrs, finishes and grains
-      the work), but the text names it two ways and the entry only carried one. The value-added
-      page says 'abrasive vibratory tumbling, sandblasting, and Time-Saver machine graining'
-      -- hyphenated, no 'Liner Wet Sander'. Under containment matching 'TIMESAVER  Liner Wet
-      Sander' does not cover a returned 'Time-Saver machine', and 'TIMESAVER' does not cover
+    reason: The machine is right and clearly in-field (it sands, deburrs, finishes and grains the work), but the
+      text names it two ways and the entry only carried one. The value-added page says 'abrasive vibratory tumbling,
+      sandblasting, and Time-Saver machine graining' -- hyphenated, no 'Liner Wet Sander'. Under containment matching
+      'TIMESAVER  Liner Wet Sander' does not cover a returned 'Time-Saver machine', and 'TIMESAVER' does not cover
       'Time-Saver' either, because of the hyphen. Both spellings now count.
   - action: ported
     by: port_corpus.py
@@ -1932,8 +1898,7 @@ entries:
   acceptable_forms:
   - Vertical Bandsaw
   evidence:
-  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal
-      Bender & Shear'
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
     approx_offset: 14828
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -1954,8 +1919,7 @@ entries:
   acceptable_forms:
   - Sandblaster
   evidence:
-  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal
-      Bender & Shear'
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
     approx_offset: 14828
   notes: facilities-list census; the page appears once, so this entry has a single window
   provenance:
@@ -1976,12 +1940,10 @@ entries:
   acceptable_forms:
   - 50T Hydraulic Press Sheetmetal Bender & Shear
   evidence:
-  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal
-      Bender & Shear'
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
     approx_offset: 14828
-  notes: facilities-list census; the page appears once, so this entry has a single window;
-    note 'Sheetmetal' is one word here — the two-word 'Sheet Metal' has zero occurrences in
-    the file
+  notes: facilities-list census; the page appears once, so this entry has a single window; note 'Sheetmetal' is
+    one word here — the two-word 'Sheet Metal' has zero occurrences in the file
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -2086,15 +2048,14 @@ entries:
   evidence:
   - quote: (1) WENZEL  XO97 CMM (36”/60”/24”) Resolution 0.000004” (4 millionths). 0.1µm
     approx_offset: 15174
-  notes: 'DISPUTED — EXCLUDED by the clause — a coordinate measuring machine only measures.
-    This is precisely the alecmfg false-RED case, so it is recorded rather than promoted;
-    CMM inspection is seeded under process_caps. Note the NBSP inside the designation (''WENZEL\u00a0
-    XO97''). | FAILS the exclusion clause on ''only measures, inspects, or tests''. A coordinate
-    measuring machine is the canonical excluded device -- the alecmfg false alarm recorded
-    in SEEDING_BRIEF section 2 fired on exactly this. ''WENZEL  XO97 CMM (36”/60”/24”) Resolution
-    0.000004”'' is quoted with its resolution, which is what you state about an instrument,
-    not a production machine. | UN-DISPUTED by user ruling 2026-09-02: metrology IS in-field
-    for equipments; the prompt''s measure/inspect/test exclusion is the defect, not this entry.'
+  notes: 'DISPUTED — EXCLUDED by the clause — a coordinate measuring machine only measures. This is precisely the
+    alecmfg false-RED case, so it is recorded rather than promoted; CMM inspection is seeded under process_caps.
+    Note the NBSP inside the designation (''WENZEL\u00a0 XO97''). | FAILS the exclusion clause on ''only measures,
+    inspects, or tests''. A coordinate measuring machine is the canonical excluded device -- the alecmfg false alarm
+    recorded in SEEDING_BRIEF section 2 fired on exactly this. ''WENZEL  XO97 CMM (36”/60”/24”) Resolution 0.000004”''
+    is quoted with its resolution, which is what you state about an instrument, not a production machine. | UN-DISPUTED
+    by user ruling 2026-09-02: metrology IS in-field for equipments; the prompt''s measure/inspect/test exclusion
+    is the defect, not this entry.'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -2103,11 +2064,10 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: FAILS the exclusion clause on 'only measures, inspects, or tests'. A coordinate
-      measuring machine is the canonical excluded device -- the alecmfg false alarm recorded
-      in SEEDING_BRIEF section 2 fired on exactly this. 'WENZEL  XO97 CMM (36”/60”/24”) Resolution
-      0.000004”' is quoted with its resolution, which is what you state about an instrument,
-      not a production machine.
+    reason: FAILS the exclusion clause on 'only measures, inspects, or tests'. A coordinate measuring machine is
+      the canonical excluded device -- the alecmfg false alarm recorded in SEEDING_BRIEF section 2 fired on exactly
+      this. 'WENZEL  XO97 CMM (36”/60”/24”) Resolution 0.000004”' is quoted with its resolution, which is what you
+      state about an instrument, not a production machine.
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -2123,12 +2083,10 @@ entries:
   evidence:
   - quote: (1) ZEISS  C-400 CMM (15”/30”/12”)
     approx_offset: 15252
-  notes: 'DISPUTED — EXCLUDED by the clause (measures only); see WENZEL XO97 CMM. NBSP inside
-    the designation. | FAILS the exclusion clause on ''only measures, inspects, or tests'':
-    ''ZEISS  C-400 CMM'' is a coordinate measuring machine, listed under QUALITY ASSURANCE.
-    Same argument as equipments-0093. | UN-DISPUTED by user ruling 2026-09-02: metrology IS
-    in-field for equipments; the prompt''s measure/inspect/test exclusion is the defect, not
-    this entry.'
+  notes: 'DISPUTED — EXCLUDED by the clause (measures only); see WENZEL XO97 CMM. NBSP inside the designation. |
+    FAILS the exclusion clause on ''only measures, inspects, or tests'': ''ZEISS  C-400 CMM'' is a coordinate measuring
+    machine, listed under QUALITY ASSURANCE. Same argument as equipments-0093. | UN-DISPUTED by user ruling 2026-09-02:
+    metrology IS in-field for equipments; the prompt''s measure/inspect/test exclusion is the defect, not this entry.'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -2137,9 +2095,8 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: 'FAILS the exclusion clause on ''only measures, inspects, or tests'': ''ZEISS  C-400
-      CMM'' is a coordinate measuring machine, listed under QUALITY ASSURANCE. Same argument
-      as equipments-0093.'
+    reason: 'FAILS the exclusion clause on ''only measures, inspects, or tests'': ''ZEISS  C-400 CMM'' is a coordinate
+      measuring machine, listed under QUALITY ASSURANCE. Same argument as equipments-0093.'
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -2155,12 +2112,11 @@ entries:
   evidence:
   - quote: (1) BROWN  & SHARPE Microval PEx CMM, (15”/18”/12”)
     approx_offset: 15287
-  notes: 'DISPUTED — EXCLUDED by the clause (measures only); see WENZEL XO97 CMM. NBSP inside
-    the designation. | FAILS the exclusion clause on ''only measures, inspects, or tests'':
-    ''BROWN  & SHARPE Microval PEx CMM'' is a coordinate measuring machine, listed under QUALITY
-    ASSURANCE. Same argument as equipments-0093. | UN-DISPUTED by user ruling 2026-09-02:
-    metrology IS in-field for equipments; the prompt''s measure/inspect/test exclusion is
-    the defect, not this entry.'
+  notes: 'DISPUTED — EXCLUDED by the clause (measures only); see WENZEL XO97 CMM. NBSP inside the designation. |
+    FAILS the exclusion clause on ''only measures, inspects, or tests'': ''BROWN  & SHARPE Microval PEx CMM'' is
+    a coordinate measuring machine, listed under QUALITY ASSURANCE. Same argument as equipments-0093. | UN-DISPUTED
+    by user ruling 2026-09-02: metrology IS in-field for equipments; the prompt''s measure/inspect/test exclusion
+    is the defect, not this entry.'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -2169,9 +2125,8 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: 'FAILS the exclusion clause on ''only measures, inspects, or tests'': ''BROWN  &
-      SHARPE Microval PEx CMM'' is a coordinate measuring machine, listed under QUALITY ASSURANCE.
-      Same argument as equipments-0093.'
+    reason: 'FAILS the exclusion clause on ''only measures, inspects, or tests'': ''BROWN  & SHARPE Microval PEx
+      CMM'' is a coordinate measuring machine, listed under QUALITY ASSURANCE. Same argument as equipments-0093.'
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -2185,14 +2140,13 @@ entries:
   acceptable_forms:
   - OGP SMART  SCOPE FLASH 200 Video Measuring System
   evidence:
-  - quote: (1) OGP SMART  SCOPE FLASH 200 Video Measuring System (8”/8”/6”) Resolution 0.00002”
-      (20 millionths). 0.5µm
+  - quote: (1) OGP SMART  SCOPE FLASH 200 Video Measuring System (8”/8”/6”) Resolution 0.00002” (20 millionths).
+      0.5µm
     approx_offset: 15339
-  notes: DISPUTED — EXCLUDED by the clause (measures only). NBSP inside the designation ('SMART\u00a0
-    SCOPE'). | FAILS the exclusion clause on 'only measures, inspects, or tests'. 'OGP SMART  SCOPE
-    FLASH 200 Video Measuring System' measures by video and is quoted with a resolution figure;
-    the quality page groups it as 'Video & Optical Gaging'. Measuring the work is the exclusion,
-    verbatim.
+  notes: DISPUTED — EXCLUDED by the clause (measures only). NBSP inside the designation ('SMART\u00a0 SCOPE'). |
+    FAILS the exclusion clause on 'only measures, inspects, or tests'. 'OGP SMART  SCOPE FLASH 200 Video Measuring
+    System' measures by video and is quoted with a resolution figure; the quality page groups it as 'Video & Optical
+    Gaging'. Measuring the work is the exclusion, verbatim.
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -2201,10 +2155,9 @@ entries:
   - action: disputed
     by: verify-agent-superiortech
     date: '2026-08-27'
-    reason: FAILS the exclusion clause on 'only measures, inspects, or tests'. 'OGP SMART  SCOPE
-      FLASH 200 Video Measuring System' measures by video and is quoted with a resolution
-      figure; the quality page groups it as 'Video & Optical Gaging'. Measuring the work is
-      the exclusion, verbatim.
+    reason: FAILS the exclusion clause on 'only measures, inspects, or tests'. 'OGP SMART  SCOPE FLASH 200 Video
+      Measuring System' measures by video and is quoted with a resolution figure; the quality page groups it as
+      'Video & Optical Gaging'. Measuring the work is the exclusion, verbatim.
   - action: ported
     by: port_corpus.py
     date: '2026-08-29'
@@ -2218,8 +2171,8 @@ entries:
   evidence:
   - quote: many lathes are controlled to 0.00001” (ten millionths
     approx_offset: 4946
-  notes: broad form; 'lathes' also appears inside 'Vertical Turning Lathes' and 'Precision
-    Toolroom Lathes', so it cannot independently miss
+  notes: broad form; 'lathes' also appears inside 'Vertical Turning Lathes' and 'Precision Toolroom Lathes', so
+    it cannot independently miss
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -2242,8 +2195,8 @@ entries:
   - quote: started as a small screw machine house
     approx_offset: 3270
   actor: unknown
-  notes: 'historical — the 1964 predecessor shop''s machine type, not current plant. Recall-first:
-    the text names a production machine, so it is an entry'
+  notes: 'historical — the 1964 predecessor shop''s machine type, not current plant. Recall-first: the text names
+    a production machine, so it is an entry'
   provenance:
   - action: added
     by: seed-agent-superiortech-org
@@ -2264,16 +2217,14 @@ entries:
   - CNC Cylindrical grinders
   - cylindrical grinders
   evidence:
-  - quote: ultra-precision CNC cylindrical grinders, Surface Grinding, Lapping, and Honing
-      machines
+  - quote: ultra-precision CNC cylindrical grinders, Surface Grinding, Lapping, and Honing machines
     approx_offset: 7780
   - quote: 'CNC Cylindrical grinders up to 9” diameter x 24: long'
     approx_offset: 8005
-  notes: A production machine that acts on the work, named twice on the grinding/lapping/honing
-    page and absent from the equipments packet. Its neighbours in the same sentence were both
-    seeded -- honing machines as equipments-0010 and lapping machines as equipments-0011 --
-    and the facilities list entries only cover angle grinders (0062-0064) and surface grinders
-    (0070, 0084), so no existing form covers a returned 'cylindrical grinders'. The seed did
+  notes: A production machine that acts on the work, named twice on the grinding/lapping/honing page and absent
+    from the equipments packet. Its neighbours in the same sentence were both seeded -- honing machines as equipments-0010
+    and lapping machines as equipments-0011 -- and the facilities list entries only cover angle grinders (0062-0064)
+    and surface grinders (0070, 0084), so no existing form covers a returned 'cylindrical grinders'. The seed did
     use this phrase, but as the acceptable form of the PROCESS entry process_caps-0081.
   provenance:
   - action: added
@@ -2290,8 +2241,7 @@ entries:
   acceptable_forms:
   - DOOSAN PUMA V550
   evidence:
-  - quote: (1) DOOSAN PUMA V550 VERTICAL TURNING CENTER; 24” chuck; 29” turn diameter; 30”
-      turn length
+  - quote: (1) DOOSAN PUMA V550 VERTICAL TURNING CENTER; 24” chuck; 29” turn diameter; 30” turn length
     approx_offset: 10948
   provenance:
   - action: added
@@ -2304,8 +2254,7 @@ entries:
   acceptable_forms:
   - HWACHEON VT650R
   evidence:
-  - quote: (1) HWACHEON VT650R VERTICAL TURNING CENTER 18” chuck; live tooling, 32″ turn diameter,
-      30″ turn length
+  - quote: (1) HWACHEON VT650R VERTICAL TURNING CENTER 18” chuck; live tooling, 32″ turn diameter, 30″ turn length
     approx_offset: 11041
   provenance:
   - action: added
@@ -2318,8 +2267,7 @@ entries:
   acceptable_forms:
   - DOOSAN V850M
   evidence:
-  - quote: (1) DOOSAN V850M VERTICAL TURNING CENTER; 36” chuck; 40″ turn diameter; 34″ turn
-      length
+  - quote: (1) DOOSAN V850M VERTICAL TURNING CENTER; 36” chuck; 40″ turn diameter; 34″ turn length
     approx_offset: 11146
   provenance:
   - action: added
@@ -2332,8 +2280,7 @@ entries:
   acceptable_forms:
   - DOOSAN V850L
   evidence:
-  - quote: (1) DOOSAN V850L VERTICAL TURNING CENTER; 36” chuck; 34″ turn diameter; 34″ turn
-      length
+  - quote: (1) DOOSAN V850L VERTICAL TURNING CENTER; 36” chuck; 34″ turn diameter; 34″ turn length
     approx_offset: 11235
   provenance:
   - action: added
@@ -2346,8 +2293,7 @@ entries:
   acceptable_forms:
   - DOOSAN PUMA VT900
   evidence:
-  - quote: (1) DOOSAN PUMA VT900 VERTICAL TURNING CENTER; 32” chuck, 40″ turn diameter 35.5″
-      turn length
+  - quote: (1) DOOSAN PUMA VT900 VERTICAL TURNING CENTER; 32” chuck, 40″ turn diameter 35.5″ turn length
     approx_offset: 11324
   provenance:
   - action: added
@@ -2360,8 +2306,8 @@ entries:
   acceptable_forms:
   - DOOSAN PUMA VT900M
   evidence:
-  - quote: (1) DOOSAN PUMA VT900M VERTICAL TURNING CENTER; 32” chuck; live tooling, 40″ turn
-      diameter, 35.5″ turn length.
+  - quote: (1) DOOSAN PUMA VT900M VERTICAL TURNING CENTER; 32” chuck; live tooling, 40″ turn diameter, 35.5″ turn
+      length.
     approx_offset: 11419
   provenance:
   - action: added
@@ -2374,8 +2320,7 @@ entries:
   acceptable_forms:
   - HWACHEON VT950R
   evidence:
-  - quote: (1) HWACHEON VT950R VERTICAL TURNING CENTER 32” chuck; live tooling, 44″ turn diameter,
-      34″ turn length
+  - quote: (1) HWACHEON VT950R VERTICAL TURNING CENTER 32” chuck; live tooling, 44″ turn diameter, 34″ turn length
     approx_offset: 11531
   provenance:
   - action: added
@@ -2388,8 +2333,8 @@ entries:
   acceptable_forms:
   - YOUJI YV-800 ATC+C
   evidence:
-  - quote: (1) YOUJI YV-800 ATC+C VERTICAL TURNING CENTER; 42” chuck; live tooling, 50″ turn
-      diameter, 28″ turn length
+  - quote: (1) YOUJI YV-800 ATC+C VERTICAL TURNING CENTER; 42” chuck; live tooling, 50″ turn diameter, 28″ turn
+      length
     approx_offset: 11636
   provenance:
   - action: added
@@ -2402,8 +2347,8 @@ entries:
   acceptable_forms:
   - MAZAK PALLETECH NEXUS HCN 5000-II
   evidence:
-  - quote: (1) MAZAK PALLETECH NEXUS HCN 5000-II Horizontal Machining Center (28”/28”/32”)
-      – with Flexible 12 Pallet Pool Manufacturing System
+  - quote: (1) MAZAK PALLETECH NEXUS HCN 5000-II Horizontal Machining Center (28”/28”/32”) – with Flexible 12 Pallet
+      Pool Manufacturing System
     approx_offset: 11811
   provenance:
   - action: added
@@ -2611,8 +2556,7 @@ entries:
   acceptable_forms:
   - MITSUBISHI M-V60C
   evidence:
-  - quote: (2) MITSUBISHI M-V60C Machining Center; Cat 50; (40”/24”/22”); two 4th axis indexers
-      in each
+  - quote: (2) MITSUBISHI M-V60C Machining Center; Cat 50; (40”/24”/22”); two 4th axis indexers in each
     approx_offset: 13255
   provenance:
   - action: added
@@ -2742,8 +2686,7 @@ entries:
   acceptable_forms:
   - Hydraulic Press
   evidence:
-  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal
-      Bender & Shear'
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
     approx_offset: 14828
   provenance:
   - action: added
@@ -2756,8 +2699,7 @@ entries:
   acceptable_forms:
   - Sheetmetal Bender
   evidence:
-  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal
-      Bender & Shear'
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
     approx_offset: 14828
   provenance:
   - action: added
@@ -2770,8 +2712,7 @@ entries:
   acceptable_forms:
   - Shear
   evidence:
-  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal
-      Bender & Shear'
+  - quote: 'Misc Tools: Vertical Bandsaw, Broaching, Sandblaster, 50T Hydraulic Press Sheetmetal Bender & Shear'
     approx_offset: 14828
   provenance:
   - action: added
@@ -2793,9 +2734,9 @@ entries:
     source: corpus-seed
 false_friends:
 - form: Coordinate Measuring Machines
-  reason: metrology. The clause separates a production machine from 'equipment that only measures,
-    inspects, or tests the work' — the three named CMMs are recorded as DISPUTED entries,
-    and CMM inspection is a process_caps entry
+  reason: metrology. The clause separates a production machine from 'equipment that only measures, inspects, or
+    tests the work' — the three named CMMs are recorded as DISPUTED entries, and CMM inspection is a process_caps
+    entry
 - form: TESA height gages
   reason: metrology, excluded by the clause; 6 units on the quality census line 592
 - form: Optical comparators
@@ -2805,61 +2746,56 @@ false_friends:
 - form: Mitutoyo laser micrometer
   reason: metrology, excluded by the clause; a named-brand instrument that measures only
 - form: Digital Microscopes
-  reason: metrology, excluded by the clause; 'Bore microscopes' and the line-165 inspection
-    microscope are the same case
+  reason: metrology, excluded by the clause; 'Bore microscopes' and the line-165 inspection microscope are the same
+    case
 - form: Thread & Plug Gages
-  reason: gauging, excluded by the clause; line 602 also names Micrometers, Calipers and Bore
-    Gages, all the same case
+  reason: gauging, excluded by the clause; line 602 also names Micrometers, Calipers and Bore Gages, all the same
+    case
 - form: overhead crane
-  reason: material handling — the clause excludes 'equipment that ... moves, stores, or carries
-    what it makes'. Occurs once, line 845, in the plant-expansion history
+  reason: material handling — the clause excludes 'equipment that ... moves, stores, or carries what it makes'.
+    Occurs once, line 845, in the plant-expansion history
 - form: Customer specific Tooling
-  reason: tooling — 'what a machine holds, guides, or acts through rather than the machine
-    driving it'. Census line 546 says it is manufactured in house, which makes it tempting
+  reason: tooling — 'what a machine holds, guides, or acts through rather than the machine driving it'. Census line
+    546 says it is manufactured in house, which makes it tempting
 - form: fixtures
-  reason: tooling, excluded by the clause; 'test fixtures', 'Fixturing' and 'in-house fixture
-    design' all occur and are all held BY a machine, not machines
+  reason: tooling, excluded by the clause; 'test fixtures', 'Fixturing' and 'in-house fixture design' all occur
+    and are all held BY a machine, not machines
 - form: bar feeder
-  reason: a machine accessory, not a machine — and the clause's tooling/handling exclusions
-    cover it. 11 occurrences, all as census spec suffixes
+  reason: a machine accessory, not a machine — and the clause's tooling/handling exclusions cover it. 11 occurrences,
+    all as census spec suffixes
 - form: live tooling
-  reason: tooling by name and by function; 13 occurrences as a census spec suffix, which makes
-    it the most repeated non-machine token in the equipment window
+  reason: tooling by name and by function; 13 occurrences as a census spec suffix, which makes it the most repeated
+    non-machine token in the equipment window
 - form: pallet changer
-  reason: a machine accessory listed as a spec suffix on 8 census lines; also 'interchangeable
-    pallet systems', '4th axis indexer', 'sub spindle', 'tail stock' and 'Twin turret'
+  reason: a machine accessory listed as a spec suffix on 8 census lines; also 'interchangeable pallet systems',
+    '4th axis indexer', 'sub spindle', 'tail stock' and 'Twin turret'
 - form: SolidWorks
-  reason: CAD software, not a production machine; line 301 also names MasterCam and Fusion
-    360
+  reason: CAD software, not a production machine; line 301 also names MasterCam and Fusion 360
 - form: MasterCam
   reason: CAM software, not a production machine
 - form: GAGETRACK
-  reason: gage-calibration software on the quality census; 'ANSTAT SPC data collection software'
-    on the next line is the same case
+  reason: gage-calibration software on the quality census; 'ANSTAT SPC data collection software' on the next line
+    is the same case
 - form: Press Brake
-  reason: 'anticipatory: zero occurrences. Heavily baited — the text has ''Hydraulic Press'',
-    ''Manual Presses'', ''Pneumatic and Hydraulic Presses'', a ''Bender'' and a ''Shear''
-    all within two census lines'
+  reason: 'anticipatory: zero occurrences. Heavily baited — the text has ''Hydraulic Press'', ''Manual Presses'',
+    ''Pneumatic and Hydraulic Presses'', a ''Bender'' and a ''Shear'' all within two census lines'
 - form: Wire EDM
   reason: 'anticipatory: zero occurrences; the standard companion machine on a shop this size'
 - form: Laser Cutter
-  reason: 'anticipatory: zero occurrences. Baited by the real ''laser marking'' and ''Mitutoyo
-    laser micrometer'''
+  reason: 'anticipatory: zero occurrences. Baited by the real ''laser marking'' and ''Mitutoyo laser micrometer'''
 - form: CMM
-  reason: a coordinate measuring machine only measures/inspects the work; excluded from equipments,
-    recorded instead as process_caps inspection
+  reason: a coordinate measuring machine only measures/inspects the work; excluded from equipments, recorded instead
+    as process_caps inspection
 - form: Video Measuring System
   reason: measures/inspects the work rather than acting on it; excluded from equipments
 - form: MAGNETIC PARTICLE INSPECTION Non-Destructive Testing Machines
-  reason: an inspection/testing machine, excluded from equipments; the operation itself is
-    seeded as process_caps
+  reason: an inspection/testing machine, excluded from equipments; the operation itself is seeded as process_caps
 - form: Fusion 360
   reason: CAD/CAM software, not a production machine
 - form: ANSTAT SPC data collection software
   reason: statistical process-control software, not a production machine
 - form: Torque Tools
-  reason: hand tooling used to apply/measure torque, not a production machine acting on the
-    work
+  reason: hand tooling used to apply/measure torque, not a production machine acting on the work
 - form: Leak Tests Stations
   reason: a test station that only measures/tests the work; excluded from equipments
 - form: Electrical Testers

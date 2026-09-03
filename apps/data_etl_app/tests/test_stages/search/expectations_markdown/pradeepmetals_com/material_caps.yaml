@@ -2,7 +2,7 @@ subject: pradeepmetals.com
 field: material_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/pradeepmetals.com.txt
-  sha256: 7a36ae8691171d311de2a755a3a7d14f4e70d85c4b2ed90a3271b389de048586
+  sha256: 30ce7836ad629d5064484f6734d52ffbe47fffede39ae610b806a19ff3573875
 eval_set_version: 2
 expected_empty: false
 notes: 'The single densest in-field block on the site is the MATERIAL GRADES USED table - 48 lines carrying about
@@ -147,8 +147,6 @@ entries:
   evidence:
   - quote: Carbon Steel
     approx_offset: 7279
-  - quote: carbon steel, alloy steel, stainless steel
-    approx_offset: 218633
   notes: fourth column of the grade table
   provenance:
   - action: added
@@ -162,6 +160,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: pradeepmetals_com-material_caps-0007
   name: Die Steel
   status: confirmed
@@ -1035,8 +1037,6 @@ entries:
   evidence:
   - quote: Suitable for all kinds of materials like steel, brass and aluminium
     approx_offset: 119226
-  - quote: copper, brass and aluminium
-    approx_offset: 218700
   actor: unknown
   notes: named only in generic 'metals that can be forged' lists, never as a stocked material; it is absent from
     the grade table
@@ -1052,6 +1052,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: pradeepmetals_com-material_caps-0042
   name: iron ore / low grade iron ores
   status: confirmed
@@ -1566,8 +1570,6 @@ entries:
   acceptable_forms:
   - titanium
   evidence:
-  - quote: super alloy, titanium, copper, brass and aluminium
-    approx_offset: 218677
   - quote: stainless steel, brass, carbon, titanium, copper, brass, etc
     approx_offset: 215018
   actor: unknown
@@ -1584,9 +1586,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: pradeepmetals_com-material_caps-0065
   name: super alloy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - super alloy
   evidence:
@@ -1606,6 +1613,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-material_caps-0066
   name: ingot
   status: confirmed

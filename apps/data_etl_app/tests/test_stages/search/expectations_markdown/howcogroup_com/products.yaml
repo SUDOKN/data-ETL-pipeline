@@ -2,7 +2,7 @@ subject: howcogroup.com
 field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
-  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+  sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
 eval_set_version: 3
 expected_empty: false
 entries:
@@ -43,9 +43,6 @@ entries:
   evidence:
   - quote: variety of surface and subsea applications such as flanges, casing hangers, riser spools and hose connectors.
     approx_offset: 7471
-  - quote: also excellent, being extensively used in the manufacture of Valve Bodies, Flanges, Seats, Gates, and
-      Tubulars.
-    approx_offset: 55008
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -58,6 +55,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-products-0010
   name: ingot / billet
   status: confirmed
@@ -91,9 +92,6 @@ entries:
   - complete turnkey assembled packages
   - turnkey packages
   evidence:
-  - quote: With our supply chain partners we can to provide you with turnkey components, including HIP and post
-      machining.
-    approx_offset: 35771
   - quote: round and flat bar, semi and finish machined components. And even complete turnkey assembled packages.
     approx_offset: 13490
   provenance:
@@ -108,6 +106,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-products-0048
   name: drill bit components
   status: confirmed
@@ -316,9 +318,6 @@ entries:
     approx_offset: 13938
   - quote: Valves
     approx_offset: 13938
-  - quote: also excellent, being extensively used in the manufacture of Valve Bodies, Flanges, Seats, Gates, and
-      Tubulars.
-    approx_offset: 55008
   notes: the most repeated product word in the file; appears in the upstream, mid/downstream and energy application
     lists and on most alloy datasheets
   provenance:
@@ -333,6 +332,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-products-0018
   name: tubing hangers
   status: confirmed
@@ -778,6 +781,7 @@ entries:
 - id: howcogroup_com-products-0035
   name: running tools
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - running tools
   evidence:
@@ -796,9 +800,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0036
   name: seals
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - seals
   - high-integrity seals
@@ -822,6 +832,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0068
   name: jigs, tooling skids and tool trolleys
   status: confirmed
@@ -830,9 +845,6 @@ entries:
   - jig and tool trolleys
   - tooling skids
   evidence:
-  - quote: range of components and material grades. From simple jigs and tooling skids to complex oil & gas wellhead
-      structures and assemblies, these components can
-    approx_offset: 34377
   - quote: across a wide range of components and materials. From simple jig and tool trolleys to complex wellhead
       structures and assemblies.
     approx_offset: 101836
@@ -850,9 +862,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-products-0069
   name: wellhead components
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Wellhead Components
   - wellhead structures and assemblies
@@ -875,9 +892,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0070
   name: duplex connector body flowloop weldments
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - DUPLEX CONNECTOR BODY FLOWLOOP WELDMENTS
   - Duplex Connector Body Flowloop Weldments
@@ -897,9 +920,15 @@ entries:
     by: repair-agent-howcogroup-com
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0071
   name: general fabrications / weldments
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - GENERAL FABRICATIONS / WELDMENTS
   - General Fabrications / Weldments
@@ -918,6 +947,11 @@ entries:
     by: repair-agent-howcogroup-com
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0017
   name: tubulars
   status: confirmed
@@ -928,8 +962,6 @@ entries:
   evidence:
   - quote: Tubulars i.e. Mechanical Tube, Coupling Stock, Hollow Bar, OCTG
     approx_offset: 46624
-  - quote: Used extensively as tubulars, structural and pressure containing members.
-    approx_offset: 38700
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -942,6 +974,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-products-0075
   name: springs
   status: confirmed
@@ -1250,9 +1286,6 @@ entries:
   evidence:
   - quote: Polished Bore Receptacles (PBRs)
     approx_offset: 47356
-  - quote: Howco Norway has been a trusted name in the manufacture and supply of polished bore receptacle (PBR)
-      extensions, providing critical components to the oil
-    approx_offset: 286954
   - quote: PBR
     approx_offset: 63893
   notes: 'the subject''s most-elaborated single product: a whole news post (6205-6246) describes Howco Norway''s
@@ -1269,6 +1302,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-products-0027
   name: mandrels
   status: confirmed
@@ -1448,6 +1485,7 @@ entries:
 - id: howcogroup_com-products-0074
   name: down hole tools
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Auxiliary and Down Hole Tools
   - downhole tools
@@ -1468,9 +1506,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0034
   name: gates and seats
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Seats, Gates
   - valve seat facings
@@ -1489,9 +1533,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0004
   name: near net shape components
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - near net shape component
   - near net shape components
@@ -1510,9 +1560,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0077
   name: electromechanical assemblies and sub-assemblies
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - turnkey electromechanical assemblies and sub-assemblies
   - electromechanical assemblies
@@ -1533,6 +1589,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0078
   name: boiler nozzles, clamps and shields
   status: confirmed
@@ -2019,6 +2080,7 @@ entries:
 - id: howcogroup_com-products-0089
   name: additively manufactured lunar lander components
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - additively manufactured metal components
   - precision-engineered components crafted by Howco Additive Manufacturing
@@ -2043,9 +2105,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0090
   name: fabricated cylinder monobloc
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - fabricated cylinder monobloc
   - cylinder monobloc
@@ -2069,6 +2137,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0091
   name: machined components for Formula Student cars
   status: retired
@@ -2260,6 +2333,7 @@ entries:
 - id: howcogroup_com-products-0104
   name: landing nipples
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - landing nipples
   evidence:
@@ -2271,9 +2345,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0105
   name: tool joints
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - tool joints
   evidence:
@@ -2285,6 +2365,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0106
   name: Distillation Tower Packings / Distillation Trays
   status: candidate
@@ -2302,6 +2387,7 @@ entries:
 - id: howcogroup_com-products-0107
   name: polished bore receptacle (PBR) extensions
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - PBR extensions
   - polished bore receptacle
@@ -2314,9 +2400,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0108
   name: liner hanger
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - liner hanger
   evidence:
@@ -2328,9 +2420,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0109
   name: liner packer or setting sleeve
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - liner packer
   - setting sleeve
@@ -2342,9 +2440,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0110
   name: high-integrity seals
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - seals
   evidence:
@@ -2356,9 +2460,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-products-0111
   name: cylinder monobloc
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - cylinder monobloc
   evidence:
@@ -2369,6 +2479,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: SLM280
   reason: the old pipeline emitted this as a PRODUCT. It is the model name of a metal 3D PRINTER at Howco AM Houston

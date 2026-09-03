@@ -2,7 +2,7 @@ subject: anchor-mfg.com
 role: inventory_subject
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/anchor-mfg.com.txt
-  sha256: 3e85dd05ab75ae6deb3ff745a338b4cf9cb90484da8146f321b3f0ac99c91845
+  sha256: 1ef00fefa70380b4482e778d3dcecb9fafe6d9918b4c6a8dc5511dc34c9c68f1
 scrape_hazards:
 - hazard: nav/footer block repeats on every one of the 15 pages (the footer line below occurs 15 times verbatim,
     plus the matching portal/menu header block on each page - the nav pump)
@@ -57,3 +57,4 @@ provenance:
   date: '2026-08-29'
   source: markdown-cutover
 eval_set_version: 1
+entries: []

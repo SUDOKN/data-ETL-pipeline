@@ -2,7 +2,7 @@ subject: taylordunn.com
 field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
-  sha256: 973bd30712ecbd8754d31aef6041a5b07356215a7425214d0330074b59bba489
+  sha256: 798b65a09fb8ed15a5199b44a95a4e5b7e14c201f69a658f3c89c92100506d54
 eval_set_version: 2
 expected_empty: false
 notes: 'This file also serves the contract_products field: the text contains zero contract-manufacturing prose,
@@ -455,6 +455,7 @@ entries:
 - id: taylordunn_com-products-0032
   name: cargo box
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - cargo boxes
   - cargo box
@@ -467,9 +468,15 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: taylordunn_com-products-0033
   name: ladder rack
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - ladder racks
   - ladder rack
@@ -482,9 +489,15 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: taylordunn_com-products-0034
   name: tool chest
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - tool chests
   - tool chest
@@ -497,9 +510,15 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: taylordunn_com-products-0035
   name: dump bed
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - dump beds
   - dump bed
@@ -512,6 +531,11 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: taylordunn_com-products-0036
   name: Bigfoot
   status: candidate
@@ -915,6 +939,7 @@ entries:
 - id: taylordunn_com-products-0065
   name: SS-534
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - SS-534
   evidence:
@@ -925,9 +950,15 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: taylordunn_com-products-0066
   name: C-342
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - C-342
   evidence:
@@ -938,6 +969,11 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: Elementor
   reason: WordPress page-builder plugin; appears only in the 'Placed cookies' vendor table ('Consent to service

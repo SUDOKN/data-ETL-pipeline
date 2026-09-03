@@ -153,6 +153,24 @@ def validate_subject(slug: str) -> tuple[list[str], list[str], dict[str, int]]:
             if status == "retired":
                 continue
 
+            # An OUT-OF-SNAPSHOT entry (v3 port, 2026-09-03) is verified
+            # judgment whose evidence left the snapshot slice — the 100k
+            # crawl cutoff or site drift, per the user's reserved ruling:
+            # held, never retired. The quote contract cannot apply (that is
+            # the condition itself); the eval already buckets these
+            # out_of_coverage, which is the reserved state. A marker on an
+            # entry whose quote DOES occur is stale — re-run the port.
+            if entry.get("out_of_snapshot"):
+                counts["out_of_snapshot"] = counts.get("out_of_snapshot", 0) + 1
+                for quote in (str(q.get("quote", "")) for q in (entry.get("evidence") or [])):
+                    if quote.strip() and _occurs(quote, text, case_sensitive=True):
+                        errors.append(
+                            f"{eid}: marked out_of_snapshot but a quote occurs in the "
+                            f"snapshot — stale marker, re-run the v3 port: {quote[:60]!r}"
+                        )
+                        break
+                continue
+
             forms = [str(f) for f in (entry.get("acceptable_forms") or [])]
             if not forms:
                 errors.append(f"{eid}: no acceptable_forms")
@@ -187,7 +205,7 @@ def validate_subject(slug: str) -> tuple[list[str], list[str], dict[str, int]]:
             for form in (entry.get("acceptable_forms") or [])
         ).casefold()
         for entry in exp.entries:
-            if entry.get("status") in {"retired", "disputed"}:
+            if entry.get("status") in {"retired", "disputed"} or entry.get("out_of_snapshot"):
                 continue
             forms = [str(f) for f in (entry.get("acceptable_forms") or [])]
             shadowed = []

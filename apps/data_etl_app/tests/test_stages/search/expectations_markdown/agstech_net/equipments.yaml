@@ -2,7 +2,7 @@ subject: agstech.net
 field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
-  sha256: f44c4f092492ebb864526e17bbfbec4ee3ce52c3e80c00ba3ca0683ff757cf21
+  sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
 eval_set_version: 5
 expected_empty: false
 notes: Deliberately small relative to the subject's size. This site sells and describes hundreds of test instruments,
@@ -12,6 +12,7 @@ entries:
 - id: agstech_net-equipments-0001
   name: CNC machines
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - automated CNC machines
   - CNC machines
@@ -35,9 +36,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0002
   name: manual machines / conventional machine tools
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - manual machines
   - conventional machine tools
@@ -58,6 +65,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0003
   name: hose crimping machine
   status: confirmed
@@ -87,6 +99,7 @@ entries:
 - id: agstech_net-equipments-0004
   name: power tools
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Power Tools
   evidence:
@@ -113,6 +126,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0005
   name: flowlines
   status: confirmed
@@ -464,6 +482,7 @@ entries:
 - id: agstech_net-equipments-0021
   name: miniature lathes
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Miniature lathes
   evidence:
@@ -485,9 +504,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0022
   name: miniature milling machines and presses
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - miniature machine tools
   evidence:
@@ -511,6 +536,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0023
   name: robotic machines
   status: confirmed
@@ -1266,6 +1296,7 @@ entries:
 - id: agstech_net-equipments-0058
   name: electron beam gun
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electron beam gun
   - electron beam guns
@@ -1293,9 +1324,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0059
   name: EBM machine / electron-beam machining equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - EBM machines
   - EBM-Machines
@@ -1326,9 +1363,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0060
   name: CNC table
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - CNC table
   evidence:
@@ -1356,9 +1399,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0061
   name: electron beam welding machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electron beam welding machines
   evidence:
@@ -1378,9 +1427,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0062
   name: electrical discharge machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electrical discharge machines
   - EDM machines
@@ -1405,9 +1460,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0063
   name: sinker EDM machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - SINKER EDM
   - Sinker EDM
@@ -1431,9 +1492,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0064
   name: CNC machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CNC machine
   - Modern CNC machines
@@ -1458,9 +1525,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0065
   name: band saw
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - band saw
   evidence:
@@ -1482,9 +1555,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0066
   name: multi axis EDM wire-cutting machining center
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - multi axis EDM wire-cutting machining centers
   - EDM wire-cutting machining centers
@@ -1508,9 +1587,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0067
   name: drop hammer
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - drop hammer
   evidence:
@@ -1533,9 +1618,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0068
   name: wire-cut EDM machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - wire-cut EDM machines
   - wire-cut machines
@@ -1559,9 +1650,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0069
   name: small hole drilling EDM machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - stand-alone small hole drilling EDM machines
   - small hole drilling EDM machines
@@ -1586,9 +1683,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0070
   name: industrial laser cutter
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial laser cutters
   - laser cutters
@@ -1613,9 +1716,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0071
   name: CO2 laser
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CO2 LASER
   - CO2 lasers
@@ -1640,9 +1749,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0072
   name: Nd-YAG laser
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Nd-YAG) LASERS
   - Nd-YAG laser
@@ -1668,9 +1783,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0073
   name: excimer laser
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - EXCIMER
   - excimer laser
@@ -1695,9 +1816,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0074
   name: laser-beam torch
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - LASER-BEAM TORCH
   evidence:
@@ -1720,9 +1847,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0075
   name: pulsed laser
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - PULSED LASERS
   - pulsed laser
@@ -1747,9 +1880,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0076
   name: plasma cutting machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - plasma cutting machines
   - plasma machines
@@ -1773,9 +1912,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0077
   name: laser marking and engraving equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - laser marking and engraving equipment
   evidence:
@@ -1798,9 +1943,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0078
   name: numerically controlled machining center
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - numerically controlled machining centers
   - machining centers
@@ -1823,9 +1974,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0079
   name: electrochemical machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Commercial electrochemical machines
   - electrochemical machines
@@ -1849,9 +2006,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0080
   name: grinder
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - grinder
   evidence:
@@ -1874,9 +2037,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0081
   name: etching line
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - etching lines
   evidence:
@@ -1899,9 +2068,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0082
   name: plasma torch
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - plasma torch
   - plasma torches
@@ -1926,9 +2101,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0083
   name: hand-held torch
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - hand-held torches
   - computer-controlled torches
@@ -1952,9 +2133,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0084
   name: plasma cutter
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Plasma cutters
   - plasma cutters
@@ -1979,9 +2166,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0085
   name: vertical CNC plasma cutting machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - vertical CNC plasma cutting machines
   - CNC plasma equipment
@@ -2005,9 +2198,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0086
   name: brazing machines (resold)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Brazing Machines
   evidence:
@@ -2029,9 +2228,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0087
   name: oxyacetylene torch
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - oxyacetylene gas torch
   - Oxyacetylene torch
@@ -2055,9 +2260,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0088
   name: automated welding equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Automated welding equipment
   evidence:
@@ -2080,9 +2291,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0089
   name: spot welding equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - spot welding equipment
   evidence:
@@ -2105,9 +2322,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0090
   name: press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - press
   evidence:
@@ -2130,9 +2353,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0091
   name: furnace
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - furnace
   - in a furnace
@@ -2156,9 +2385,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0092
   name: waterjet cutting machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - waterjet cutting machines
   - waterjet cutters
@@ -2183,9 +2418,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0093
   name: CNC controlled waterjet machining equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CNC controlled waterjet machining equipment
   - multiple-axis, CNC controlled waterjet
@@ -2209,9 +2450,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0094
   name: multiple-axis robotic control machines
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - multiple-axis robotic control machines
   - robotic control machines
@@ -2235,9 +2482,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0095
   name: fusion splicing machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Fusion splicing machines
   - fusion splicer
@@ -2260,9 +2513,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0096
   name: portable fiber optic polishing machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - portable fiber optic polishing machine
   evidence:
@@ -2283,9 +2542,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0097
   name: shell-hardening oven
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - heated in an oven
   evidence:
@@ -2307,9 +2572,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0098
   name: die casting machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - die casting machine
   evidence:
@@ -2330,9 +2601,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0099
   name: rolling mill
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - rolling mill
   - rolling mills
@@ -2355,9 +2632,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0100
   name: lathe
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - lathe
   - lathes
@@ -2380,9 +2663,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0101
   name: milling machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - milling machine
   evidence:
@@ -2404,9 +2693,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0102
   name: drill press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Drill presses
   evidence:
@@ -2427,9 +2722,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0103
   name: Swiss-type lathe / turning center
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Swiss-type lathe
   - Swiss-type turning centers
@@ -2451,9 +2752,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0104
   name: press (stamping)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - press
   - stamping press
@@ -2476,9 +2783,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0105
   name: brazing furnace / vacuum furnace
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - furnace
   - furnace of vacuum
@@ -2502,9 +2815,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0106
   name: induction coil
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - induction coil
   - copper coil
@@ -2531,9 +2850,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0107
   name: soldering iron
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - soldering iron
   evidence:
@@ -2556,9 +2881,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0108
   name: wave soldering machine
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - an equipment that contains molten solder
   evidence:
@@ -2585,9 +2916,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0109
   name: reflow oven
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - reflow oven
   evidence:
@@ -2607,9 +2944,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0110
   name: stapling gun
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - stapling guns
   evidence:
@@ -2632,9 +2975,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0111
   name: hydraulic press / hand operated press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - hydraulic press or a hand operated press
   - hydraulic press
@@ -2656,9 +3005,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0112
   name: extrusion press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - press
   - extrusion press
@@ -2682,9 +3037,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0113
   name: extrusion machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - barrel of the extrusion machine
   - extrusion machine
@@ -2705,9 +3066,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0114
   name: twin-screw extruder
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - twin-screw extruders
   - multiple extruders
@@ -2729,9 +3096,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0115
   name: mechanical press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - mechanical press
   evidence:
@@ -2752,9 +3125,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0116
   name: hydraulic press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - hydraulic presses
   evidence:
@@ -2774,9 +3153,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0117
   name: double action press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - double action presses
   evidence:
@@ -2795,9 +3180,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0118
   name: multiple action press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - multiple action presses
   evidence:
@@ -2816,9 +3207,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0119
   name: sintering furnace
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - batch and continuous furnaces
   - sintering furnace
@@ -2839,9 +3236,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0120
   name: CNC wire former
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CNC wire formers
   - wire formers
@@ -2863,9 +3266,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0121
   name: coiler
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - coiler
   evidence:
@@ -2884,9 +3293,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0122
   name: power press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - power presses
   evidence:
@@ -2905,9 +3320,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0123
   name: fourslide
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - fourslide
   evidence:
@@ -2926,9 +3347,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0124
   name: multi-slide
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - multi-slide
   evidence:
@@ -2947,9 +3374,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0125
   name: annealing oven
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - annealing oven
   evidence:
@@ -2970,9 +3403,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0126
   name: Westlake machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Westlake machines
   evidence:
@@ -2994,9 +3433,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0127
   name: glass drawing machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - drawing machine
   evidence:
@@ -3017,9 +3462,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0128
   name: stereolithography equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - stereolithography equipment
   evidence:
@@ -3038,9 +3489,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0129
   name: extruder head
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - extruder head
   evidence:
@@ -3067,9 +3524,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0130
   name: automated pick-and-place machines
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - automated pick-and-place machines
   - pick-and-place machines
@@ -3098,9 +3561,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0131
   name: marking laser
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - advanced lasers
   evidence:
@@ -3120,9 +3589,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0132
   name: automated assembly machines
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - automated assembly machines
   evidence:
@@ -3141,9 +3616,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0133
   name: robotic systems
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - robotic systems
   evidence:
@@ -3162,9 +3643,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0134
   name: robotic workcell
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - robotic workcell
   evidence:
@@ -3182,9 +3669,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0135
   name: CAD-driven workcells
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CAD-driven workcells
   evidence:
@@ -3202,9 +3695,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0136
   name: nano manipulator
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - nano manipulator
   evidence:
@@ -3224,9 +3723,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0137
   name: focused ion beam machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - microscale capable machine
   - FIB
@@ -3246,9 +3751,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0138
   name: high precision milling machines
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - high precision milling machines
   evidence:
@@ -3266,9 +3777,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0139
   name: YAG laser
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - YAG lasers
   evidence:
@@ -3287,9 +3804,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0140
   name: Ti-sapphire femtosecond laser
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Ti-sapphire femtosecond laser
   - femtosecond laser
@@ -3308,9 +3831,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0141
   name: micro-EDM machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - micro-EDM machines
   - micro-EDM machine
@@ -3329,9 +3858,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0142
   name: wire micro-EDM machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - wire micro-EDM machine
   evidence:
@@ -3350,9 +3885,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0143
   name: heat treatment furnace
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - heat treatment furnaces
   evidence:
@@ -3371,9 +3912,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0144
   name: hot press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - hot press
   evidence:
@@ -3391,9 +3938,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0145
   name: test and cutting station
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - test and cutting station
   evidence:
@@ -3414,9 +3967,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0146
   name: GS 600 laser drilling system
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - GS 600 LASER DRILLING SYSTEM
   - GS600
@@ -3439,9 +3998,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0147
   name: custom automation systems
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CUSTOM AUTOMATION SYSTEMS
   - custom automation systems
@@ -3463,9 +4028,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0148
   name: pick and place systems
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - pick and place systems
   evidence:
@@ -3486,9 +4057,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0149
   name: hose cut-off skive machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Hose-Cut-Off-Skive-Machine
   evidence:
@@ -3508,9 +4085,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0150
   name: mini lathe
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mini Lathe
   evidence:
@@ -3530,9 +4113,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0151
   name: mini milling machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mini Milling Machine
   evidence:
@@ -3552,9 +4141,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0152
   name: mini hobbing machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mini Hobbing Machine
   evidence:
@@ -3574,9 +4169,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0153
   name: mini stamping press
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mini Stamping Press
   evidence:
@@ -3596,9 +4197,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0154
   name: mini laser cutter
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mini Laser Cutter
   evidence:
@@ -3618,9 +4225,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0155
   name: mini waterjet cutter
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mini Waterjet Cutter
   evidence:
@@ -3640,9 +4253,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0156
   name: mini plasma cutter
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mini Plasma Cutter
   evidence:
@@ -3662,9 +4281,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0157
   name: ultrasonic drill
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Ultrasonic Drill
   evidence:
@@ -3684,9 +4309,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0158
   name: kiln
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - kiln
   evidence:
@@ -3708,9 +4339,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0159
   name: industrial sewing machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Industrial Sewing Machines
   evidence:
@@ -3732,9 +4369,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0160
   name: factory machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - factory machines
   evidence:
@@ -3755,9 +4398,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0161
   name: heat treating and curing oven
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - heat treating and curing ovens
   evidence:
@@ -3779,6 +4428,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0162
   name: lathe
   status: candidate
@@ -3801,6 +4455,7 @@ entries:
 - id: agstech_net-equipments-0163
   name: hose endforming machine
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Hose Endforming Machines
   evidence:
@@ -3817,6 +4472,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0164
   name: equipment to cut, drill, polish
   status: candidate
@@ -3840,6 +4500,7 @@ entries:
 - id: agstech_net-equipments-0165
   name: EDM head
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Separate EDM heads
   - EDM heads
@@ -3858,6 +4519,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0166
   name: mini grinder
   status: retired
@@ -3882,6 +4548,7 @@ entries:
 - id: agstech_net-equipments-0167
   name: electrolytic polisher
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - electrolytic polisher
   evidence:
@@ -3904,9 +4571,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0168
   name: sinker EDM machine
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - sinker EDM machine
   evidence:
@@ -3924,9 +4597,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0169
   name: furnace
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - furnace
   evidence:
@@ -3943,9 +4622,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0170
   name: robotic laser welding workstation
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Robotic Laser Welding Workstation
   evidence:
@@ -3962,9 +4647,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0171
   name: welding robots
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Welding Robots
   evidence:
@@ -3981,9 +4672,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0172
   name: milling machine
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - milling machine
   evidence:
@@ -4000,9 +4697,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-equipments-0173
   name: servo C-frame utility press
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Servo C-Frame Utility Press
   evidence:
@@ -4018,6 +4721,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: Hardness Testers
   reason: 'witnessed (93, 109, 452): real, but a TEST instrument, which the equipments clause excludes; it belongs

@@ -4,7 +4,7 @@ role: full_unit
 business_type: build-to-print machining shop; ~100-machine equipment census, stratified in-house vs outsourced tiers
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/superiortech.org.txt
-  sha256: 6de032283382c2ead7409e34541f2743fea3c67efb4a165eb47c68a1a93ab01a
+  sha256: f29844803215581d1f500767f528c381ac8f521986e6f6cf3900fe5842420ad1
 eval_set_version: 1
 context: 'Superior Technology, Inc. (superiortech.org) — a 50-year-old family-owned Rochester NY build-to-print
   precision CNC machine shop, 81,000 sq ft, ISO 9001:2015, ~70 CNC machines. Chosen for STRATIFIED DEPTH: five in-house
@@ -58,3 +58,4 @@ provenance:
   by: port_corpus.py
   date: '2026-08-29'
   source: markdown-cutover
+entries: []

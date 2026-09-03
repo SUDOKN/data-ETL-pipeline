@@ -2,7 +2,7 @@ subject: agstech.net
 field: industries
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
-  sha256: f44c4f092492ebb864526e17bbfbec4ee3ce52c3e80c00ba3ca0683ff757cf21
+  sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
 eval_set_version: 5
 expected_empty: false
 entries:
@@ -12,8 +12,6 @@ entries:
   acceptable_forms:
   - nanotechnology
   evidence:
-  - quote: transportation, nanotechnology, information security, and others. The
-    approx_offset: 102419
   - quote: microfabrication,nanotechnology coatings & thin film,custom mechanical &
     approx_offset: 1635
   actor: unknown
@@ -31,6 +29,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: agstech_net-industries-0002
   name: Construction
   status: confirmed
@@ -198,6 +200,7 @@ entries:
 - id: agstech_net-industries-0009
   name: auto glass repair and replacement
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Auto Glass Repair and Replacement
   evidence:
@@ -216,6 +219,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0010
   name: Toys
   status: confirmed
@@ -282,6 +290,7 @@ entries:
 - id: agstech_net-industries-0013
   name: Military / defense
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - NATO and military standards
   - Military Keyboards
@@ -302,6 +311,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0014
   name: A/C refrigeration
   status: confirmed
@@ -377,6 +391,7 @@ entries:
 - id: agstech_net-industries-0017
   name: Semiconductor
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Semiconductor Manufacturing
   - semiconductors
@@ -395,9 +410,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0018
   name: Information technology
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Information technology
   evidence:
@@ -419,9 +440,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0019
   name: optical data storage
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - optical data storage
   evidence:
@@ -439,9 +466,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0020
   name: Lighting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - 'Lighting: Systems based on LEDs'
   - Lighting
@@ -463,9 +496,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0021
   name: Safety and Security Systems
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Safety and Security Systems
   evidence:
@@ -486,9 +525,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0022
   name: optical communication & telecommunication
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Optical Communication & Telecommunication
   - telecommunication
@@ -508,9 +553,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0023
   name: smart structures
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Smart structures
   evidence:
@@ -528,6 +579,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0024
   name: Solar energy
   status: confirmed
@@ -1047,6 +1103,7 @@ entries:
 - id: agstech_net-industries-0047
   name: Solar
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Solar Application
   evidence:
@@ -1065,9 +1122,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0048
   name: Automotive industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - automotive industry
   - automotive-related products
@@ -1091,9 +1154,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0049
   name: Aerospace industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - aerospace industry
   - aerospace components
@@ -1116,9 +1185,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0050
   name: Medical devices
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - medical devices
   - medical device
@@ -1140,9 +1215,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0051
   name: Defense / military
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - defense or military norm
   - military or government agencies
@@ -1171,9 +1252,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0052
   name: Utility / industrial / commercial / institutional / residential
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - utility, industrial, commercial, institutional, and residential applications
   evidence:
@@ -1194,9 +1281,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0053
   name: Medical imaging
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - medical diagnostic imaging
   - Medical Imaging
@@ -1219,6 +1312,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0054
   name: Transportation equipment
   status: confirmed
@@ -1229,8 +1327,6 @@ entries:
   - quote: test and metrology equipment, transportation equipment, construction machines and practically anywhere
       you
     approx_offset: 179848
-  - quote: Principal emphasis is placed on transport industries including automotive, aerospace, and commercial
-    approx_offset: 95163
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1243,9 +1339,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: agstech_net-industries-0055
   name: Passenger cars and commercial vehicles
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - passenger cars
   - commercial vehicles
@@ -1268,6 +1369,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0056
   name: Consumer Electronics
   status: confirmed
@@ -1276,8 +1382,6 @@ entries:
   evidence:
   - quote: Consumer Electronics
     approx_offset: 100048
-  - quote: CEA – Consumer Electronics Association
-    approx_offset: 100042
   actor: reseller_inventory
   provenance:
   - action: added
@@ -1291,9 +1395,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: agstech_net-industries-0057
   name: Power and energy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - power and energy
   evidence:
@@ -1313,9 +1422,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0058
   name: Biomedical and health care
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - biomedical and health care
   evidence:
@@ -1335,6 +1450,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0059
   name: Retail
   status: confirmed
@@ -1421,8 +1541,6 @@ entries:
   evidence:
   - quote: Screws for Furniture and Wood
     approx_offset: 232314
-  - quote: a good fit for household products, toys, furniture among others.
-    approx_offset: 684093
   actor: reseller_inventory
   provenance:
   - action: added
@@ -1436,6 +1554,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: agstech_net-industries-0063
   name: furniture and wood
   status: confirmed
@@ -1606,6 +1728,7 @@ entries:
 - id: agstech_net-industries-0071
   name: Communication Industry (China)
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Communication Industry
   evidence:
@@ -1634,9 +1757,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0072
   name: Communication industry
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Communication Industry
   evidence:
@@ -1660,9 +1789,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0073
   name: Household products
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - household products
   evidence:
@@ -1683,9 +1818,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0074
   name: electrical
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Construction, Electrical, Industrial Assembly
   evidence:
@@ -1708,9 +1849,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0075
   name: manufacturing industries
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - manufacturing industries
   evidence:
@@ -1733,9 +1880,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0076
   name: automobile
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - automobile
   - automotive
@@ -1759,9 +1912,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0077
   name: electronics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electronics industries
   - electronics industry
@@ -1786,9 +1945,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0078
   name: industrial manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial manufacturing applications
   evidence:
@@ -1811,9 +1976,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0079
   name: microelectronic industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - microelectronic industry
   evidence:
@@ -1836,9 +2007,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0080
   name: high-tech product manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - high-tech product manufacturing
   - high-tech products manufacturing
@@ -1862,9 +2039,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0081
   name: electronics manufacturing industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electronics manufacturing industry
   evidence:
@@ -1887,9 +2070,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0082
   name: medical
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - medical industries
   - medical
@@ -1913,9 +2102,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0083
   name: buildings and energy systems
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - buildings and energy systems
   evidence:
@@ -1937,9 +2132,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0084
   name: aircraft engines
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - aircraft engines
   evidence:
@@ -1967,9 +2168,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0085
   name: laboratories
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - labs
   - laboratory
@@ -1998,9 +2205,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0086
   name: cellular communications
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - cellular communications
   - satellite communications
@@ -2023,9 +2236,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0087
   name: broadcasting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - broadcasting
   - broadcast
@@ -2048,9 +2267,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0088
   name: radars
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - radars
   evidence:
@@ -2072,9 +2297,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0089
   name: electronics industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electronics industry
   evidence:
@@ -2096,9 +2327,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0090
   name: electroplating
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electroplating plants
   evidence:
@@ -2120,9 +2357,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0091
   name: plumbing fixtures
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - plumbing fixtures
   evidence:
@@ -2148,9 +2391,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0092
   name: food
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - food such as butter, french fries, coffee
   - food
@@ -2173,9 +2422,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0093
   name: dye manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - dye manufacturing industries
   - dye making
@@ -2198,9 +2453,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0094
   name: printing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - printing products
   - printed products
@@ -2224,9 +2485,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0095
   name: schools and research institutions
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - schools, scientific research institutions
   - scientific research institutions
@@ -2249,9 +2516,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0096
   name: research and development (R&D)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Manufacturing and R&D
   - research and development
@@ -2274,9 +2547,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0097
   name: data centers
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Data Center
   evidence:
@@ -2297,9 +2576,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0098
   name: submarine networks
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Submarine Networks
   evidence:
@@ -2320,9 +2605,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0099
   name: network equipment manufacturers
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Network Equipment Manufacturers
   evidence:
@@ -2343,9 +2634,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0100
   name: mobile backhaul
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Mobile Backhaul
   evidence:
@@ -2366,9 +2663,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0101
   name: high volume manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - high volume manufacturing
   - industry and high volume manufacturing
@@ -2390,9 +2693,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0102
   name: CATV / cable television
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - analog CATV systems
   - CATV
@@ -2414,9 +2723,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0103
   name: FTTH / fiber to the home
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - FTTH
   - FIBER TO THE HOME
@@ -2439,9 +2754,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0104
   name: building and bridge construction
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ordinary building and bridge construction
   - bridge construction
@@ -2462,9 +2783,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0105
   name: machine building industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - machine building industries
   evidence:
@@ -2486,9 +2813,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0106
   name: power industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - power, petrochemical
   - power industry
@@ -2516,9 +2849,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0107
   name: petrochemical industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - petrochemical
   evidence:
@@ -2540,9 +2879,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0108
   name: laboratories and research institutes
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - research institutes, industrial labs and QC departments
   - industrial labs
@@ -2565,9 +2910,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0109
   name: colleges and scientific institutions
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - colleges and scientific institutions
   - scientific & research institutes
@@ -2589,9 +2940,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0110
   name: shipbuilding
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - shipbuilding
   evidence:
@@ -2611,9 +2968,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0111
   name: pipelines and pipe manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - pipelines and pipe manufacturing
   evidence:
@@ -2634,9 +2997,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0112
   name: container and tank manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - container and tank manufacturing
   evidence:
@@ -2657,9 +3026,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0113
   name: plastic packaging industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - plastic packaging industry
   evidence:
@@ -2679,9 +3054,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0114
   name: aircraft maintenance
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - skins of aircraft
   - aircraft skin
@@ -2708,9 +3089,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0115
   name: retail stores
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Retail Stores
   evidence:
@@ -2731,9 +3118,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0116
   name: process industries
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - process industries
   evidence:
@@ -2755,9 +3148,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0117
   name: environmental monitoring
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - environmental monitoring
   evidence:
@@ -2777,9 +3176,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0118
   name: chemical research
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - chemical research
   evidence:
@@ -2800,9 +3205,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0119
   name: industrial chemical field
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial chemical fields
   evidence:
@@ -2823,9 +3234,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0120
   name: beverage industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - beverage
   evidence:
@@ -2846,9 +3263,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0121
   name: pharmaceutical industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - pharmaceutical industries
   - pharmaceutical
@@ -2870,9 +3293,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0122
   name: mineralogy
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - mineralogy
   evidence:
@@ -2897,9 +3326,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0123
   name: medicine / medical
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - medicine
   - medical
@@ -2923,9 +3358,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0124
   name: veterinary
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - veterinary
   evidence:
@@ -2945,9 +3386,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0125
   name: sports
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - sports
   evidence:
@@ -2970,9 +3417,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0126
   name: warehouse management
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - warehouse management
   evidence:
@@ -2993,9 +3446,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0127
   name: wind energy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - wind turbines
   evidence:
@@ -3015,9 +3474,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0128
   name: food packaging
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - food packaging equipment
   evidence:
@@ -3036,9 +3501,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0129
   name: boilers and heat exchangers
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - boilers, heat exchangers
   evidence:
@@ -3056,9 +3527,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0130
   name: micromotors
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - micromotors
   - micromotor
@@ -3079,9 +3556,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0131
   name: electronic industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electronic industry
   - electric & electronic
@@ -3103,9 +3586,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0132
   name: construction industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - construction industry
   - construction industries
@@ -3128,9 +3617,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0133
   name: photovoltaic / solar panels
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - photovoltaic panels
   evidence:
@@ -3149,9 +3644,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0134
   name: sports and recreation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - sports and recreational equipment
   - sporting goods
@@ -3172,9 +3673,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0135
   name: consumer products
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - consumer products
   - consumer to industrial markets
@@ -3196,9 +3703,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0136
   name: global markets
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - global markets
   evidence:
@@ -3221,9 +3734,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0137
   name: welding
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - from automotive to welding
   evidence:
@@ -3252,9 +3771,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0138
   name: industrial markets
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial markets
   - consumer to industrial markets
@@ -3279,9 +3804,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0139
   name: mining
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - mining
   evidence:
@@ -3302,9 +3833,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0140
   name: vacuum industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - vacuum industry
   evidence:
@@ -3324,9 +3861,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0141
   name: hand-held tool industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - hand-held tool industry
   evidence:
@@ -3346,9 +3889,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0142
   name: dentistry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - dentistry
   evidence:
@@ -3368,9 +3917,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0143
   name: medicine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - medicine
   evidence:
@@ -3390,9 +3945,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0144
   name: DIY market
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - DIY (Do it yourself) market
   - DIY
@@ -3413,9 +3974,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0145
   name: food and packaging
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - food and packaging
   - food & beverage
@@ -3438,9 +4005,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0146
   name: beverage
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - food & beverage
   - beverage
@@ -3461,9 +4034,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0147
   name: natural gas
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - natural gas
   evidence:
@@ -3483,9 +4062,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0148
   name: wastewater treatment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - wastewater-treatment
   evidence:
@@ -3505,9 +4090,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0149
   name: mobile hydraulics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - mobile hydraulics
   - mobile pneumatics
@@ -3528,9 +4119,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0150
   name: semiconductors
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - semiconductors
   - semiconductor
@@ -3551,9 +4148,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0151
   name: liquid crystals
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - liquid crystals
   - LCD
@@ -3574,9 +4177,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0152
   name: fine chemicals
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - fine chemicals
   evidence:
@@ -3596,9 +4205,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0153
   name: LED
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - LED
   evidence:
@@ -3619,9 +4234,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0154
   name: space development
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - space development
   evidence:
@@ -3641,9 +4262,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0155
   name: particle accelerators
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - accelerator
   evidence:
@@ -3663,9 +4290,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0156
   name: packaging
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - packaging
   evidence:
@@ -3685,9 +4318,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0157
   name: robotics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - robotics
   evidence:
@@ -3707,9 +4346,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0158
   name: industrial automation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial automation
   - automation
@@ -3730,9 +4375,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0159
   name: microelectronics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - MICROELECTRONICS MANUFACTURING
   - microelectronics
@@ -3752,9 +4403,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0160
   name: wireless and internet markets
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - wireless and internet markets
   evidence:
@@ -3773,9 +4430,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0161
   name: networking
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - networking
   evidence:
@@ -3794,9 +4457,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0162
   name: graphics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - graphics
   evidence:
@@ -3815,9 +4484,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0163
   name: computing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - computing
   evidence:
@@ -3836,9 +4511,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0164
   name: RF / wireless
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - RF / wireless
   evidence:
@@ -3857,9 +4538,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0165
   name: fiber-optic communication
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - fiber-optic communication
   evidence:
@@ -3878,9 +4565,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0166
   name: photonic computing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - photonic computing
   evidence:
@@ -3899,9 +4592,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0167
   name: textiles
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - textiles
   evidence:
@@ -3922,9 +4621,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0168
   name: surgical
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - surgical products
   - surgical tools
@@ -3946,9 +4651,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0169
   name: disk storage technology
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - disk storage technology
   evidence:
@@ -3970,9 +4681,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0170
   name: ophthalmology
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ophthalmology
   evidence:
@@ -3993,9 +4710,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0171
   name: clinical diagnostic laboratories
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - clinical diagnostic laboratories
   evidence:
@@ -4013,9 +4736,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0172
   name: earth science & engineering
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - earth science & engineering
   evidence:
@@ -4037,9 +4766,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0173
   name: environmental testing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - environmental testing
   evidence:
@@ -4061,9 +4796,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0174
   name: cosmetics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - cosmetics
   evidence:
@@ -4085,9 +4826,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0175
   name: paint industries
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - paint industries
   evidence:
@@ -4109,9 +4856,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0176
   name: biotechnology
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - biotechnology
   evidence:
@@ -4129,9 +4882,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0177
   name: plastic electronics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - plastic electronics
   evidence:
@@ -4149,9 +4908,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0178
   name: architecture
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - architecture
   evidence:
@@ -4173,9 +4938,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0179
   name: materials science
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - materials science
   evidence:
@@ -4197,9 +4968,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0180
   name: optics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - optics
   evidence:
@@ -4221,9 +4998,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0181
   name: aviation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - airplane fuel lines
   - airplane
@@ -4249,9 +5032,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0182
   name: surveillance and security
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - surveillance and security applications
   evidence:
@@ -4269,9 +5058,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0183
   name: satellite / space
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ODIN satellite
   - upper atmosphere research satellite
@@ -4292,9 +5087,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0184
   name: CATV
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CATV products
   evidence:
@@ -4312,9 +5113,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0185
   name: advertising
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Holography Advertising
   - Display Advertising
@@ -4333,9 +5140,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0186
   name: alternative energy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - alternative energy
   - renewable alternative energy
@@ -4355,9 +5168,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0187
   name: industrial power
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial power
   evidence:
@@ -4377,9 +5196,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0188
   name: research
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - research
   evidence:
@@ -4406,9 +5231,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0189
   name: production plants
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - production plants
   evidence:
@@ -4434,9 +5265,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0190
   name: defense
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - defense
   evidence:
@@ -4457,9 +5294,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0191
   name: railway
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - railway
   evidence:
@@ -4480,9 +5323,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0192
   name: residential
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - residential
   evidence:
@@ -4501,9 +5350,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0193
   name: commercial
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - commercial use
   evidence:
@@ -4524,9 +5379,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0194
   name: touch technology
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Touch Technology
   evidence:
@@ -4546,9 +5407,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0195
   name: industrial electronics
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Industrial Electronics
   evidence:
@@ -4568,9 +5435,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0196
   name: security
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Security
   evidence:
@@ -4590,9 +5463,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0197
   name: white goods
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - White Goods
   evidence:
@@ -4612,9 +5491,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0198
   name: renewable energy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Renewable Energy
   evidence:
@@ -4634,9 +5519,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0199
   name: broadcast television
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - broadcast television
   evidence:
@@ -4657,9 +5548,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0200
   name: satellite communications
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - satellite communications systems
   evidence:
@@ -4680,9 +5577,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0201
   name: air traffic control
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - air traffic control
   evidence:
@@ -4703,9 +5606,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0202
   name: radio astronomy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - radio astronomy
   evidence:
@@ -4726,9 +5635,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0203
   name: marine (ships and boats)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ships, boats
   evidence:
@@ -4748,9 +5663,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0204
   name: chemical plants
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - chemical plants
   evidence:
@@ -4770,9 +5691,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0205
   name: submarine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - submarine
   evidence:
@@ -4792,9 +5719,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0206
   name: automotive lighting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - automotive lighting
   evidence:
@@ -4814,9 +5747,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0207
   name: architectural lighting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - architectural lighting
   evidence:
@@ -4836,9 +5775,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0208
   name: biolab
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - biolab
   evidence:
@@ -4858,9 +5803,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0209
   name: health care and hospitals
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Health Care and Hospital
   evidence:
@@ -4880,9 +5831,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0210
   name: warehousing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Warehousing
   - Warehouse Logistics
@@ -4902,9 +5859,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0211
   name: video gaming
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - video gaming
   evidence:
@@ -4925,9 +5888,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0212
   name: surgery
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - surgery
   evidence:
@@ -4948,9 +5917,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0213
   name: electronics & computer industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electronics & computer industry
   evidence:
@@ -4970,9 +5945,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0214
   name: dental
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - dental
   evidence:
@@ -4992,9 +5973,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0215
   name: precision instrumentation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - precision instrumentation
   evidence:
@@ -5014,9 +6001,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0216
   name: solar glass
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Solar Glass
   evidence:
@@ -5038,9 +6031,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0217
   name: carpentry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - professional carpenters
   - carpenters
@@ -5064,9 +6063,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0218
   name: furniture production
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - furniture production plants
   - furniture production
@@ -5088,9 +6093,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0219
   name: forestry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - forestry workers
   - forestry
@@ -5113,9 +6124,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0220
   name: hobby shops
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - hobby shops
   evidence:
@@ -5135,9 +6152,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0221
   name: masonry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Masonry
   evidence:
@@ -5157,9 +6180,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0222
   name: woodworking
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Woodworking
   evidence:
@@ -5178,9 +6207,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0223
   name: motorcycles
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - motorcycles
   evidence:
@@ -5200,9 +6235,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0224
   name: trucks and trailers
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - trucks, trailers
   - trucks
@@ -5226,9 +6267,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0225
   name: lawn mowers
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - lawn movers
   evidence:
@@ -5248,9 +6295,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0226
   name: industrial machines
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial machines
   evidence:
@@ -5270,9 +6323,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0227
   name: conveyor systems
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - conveyor systems
   evidence:
@@ -5292,9 +6351,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0228
   name: machine industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - machine industry
   evidence:
@@ -5314,9 +6379,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0229
   name: material handling
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Material Handling
   evidence:
@@ -5335,9 +6406,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0230
   name: transportation industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - transportation industry
   evidence:
@@ -5356,9 +6433,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0231
   name: agricultural
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - agricultural belts
   - agricultural
@@ -5378,9 +6461,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0232
   name: construction machinery
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - construction machinery
   evidence:
@@ -5399,9 +6488,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0233
   name: petrochemistry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - petrochemistry
   evidence:
@@ -5420,9 +6515,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0234
   name: chemical manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - chemical manufacturing
   evidence:
@@ -5441,9 +6542,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0235
   name: pharmaceuticals
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - pharmaceuticals
   - pharmaceutical industry
@@ -5463,9 +6570,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0236
   name: oil and gas
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - oil and gas
   evidence:
@@ -5483,9 +6596,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0237
   name: wastewater recycling
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - wastewater recycling
   evidence:
@@ -5503,9 +6622,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0238
   name: food and beverage industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - food and beverage industry
   - food & beverage industries
@@ -5525,9 +6650,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0239
   name: oil production
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Oil production
   evidence:
@@ -5546,9 +6677,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0240
   name: recycling
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - recycling facilities
   evidence:
@@ -5567,9 +6704,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0241
   name: brewage
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - brewage
   evidence:
@@ -5588,9 +6731,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0242
   name: silencer manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - silencer manufacturing
   evidence:
@@ -5609,9 +6758,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0243
   name: food processing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - food processing
   evidence:
@@ -5630,9 +6785,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0244
   name: ventilation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - ventilation
   evidence:
@@ -5651,9 +6812,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0245
   name: agricultural storage
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - agricultural storage
   evidence:
@@ -5672,9 +6839,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0246
   name: landscaping
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - landscaping
   evidence:
@@ -5693,9 +6866,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0247
   name: home improvement
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - home improvement
   evidence:
@@ -5714,9 +6893,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0248
   name: gardening
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - gardening
   evidence:
@@ -5735,9 +6920,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0249
   name: road building
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - road building
   evidence:
@@ -5756,9 +6947,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0250
   name: petroleum
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - petroleum
   evidence:
@@ -5777,9 +6974,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0251
   name: metallurgy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - metallurgy
   evidence:
@@ -5798,9 +7001,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0252
   name: glass industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - glass industry
   evidence:
@@ -5819,9 +7028,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0253
   name: meat industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - meat industry
   evidence:
@@ -5840,9 +7055,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0254
   name: industrial cleaning
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial cleaning
   evidence:
@@ -5860,9 +7081,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0255
   name: rainwater collection
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - Rainwater Collection
   evidence:
@@ -5888,9 +7115,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0256
   name: water treatment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Water Treatment
   evidence:
@@ -5908,9 +7141,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0257
   name: irrigation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Irrigation
   evidence:
@@ -5928,9 +7167,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0258
   name: fire fighting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Fire fighting
   evidence:
@@ -5948,9 +7193,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0259
   name: motor vehicle industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - automotive and motor vehicle industries
   - motor vehicle industries
@@ -5970,9 +7221,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0260
   name: optical industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - optical industry
   evidence:
@@ -5991,9 +7248,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0261
   name: clean rooms
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - clean rooms
   evidence:
@@ -6012,9 +7275,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0262
   name: medical facilities
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - medical facilities
   evidence:
@@ -6033,9 +7302,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0263
   name: pharmaceutical plants
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - pharmaceutical plants
   evidence:
@@ -6054,9 +7329,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0264
   name: pulp & paper
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - pulp & paper
   evidence:
@@ -6075,9 +7356,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0265
   name: steel industries
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - steel industries
   evidence:
@@ -6096,9 +7383,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0266
   name: textile
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - textile, food, beverage industries
   - textile
@@ -6118,9 +7411,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0267
   name: semiconductor industry
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - semiconductor industry
   - semiconductor manufacturing
@@ -6140,9 +7439,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0268
   name: building automation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - factory and building automation
   - building control
@@ -6164,9 +7469,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0269
   name: petroleum & gas
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - petroleum & gas
   - oil & natural gas
@@ -6186,9 +7497,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0270
   name: industrial processing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - industrial processing
   evidence:
@@ -6207,9 +7524,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0271
   name: poultry, fish or beef processing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - poultry, fish or beef processing facilities
   evidence:
@@ -6228,9 +7551,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0272
   name: petrochemical refineries
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - petrochemical refineries
   evidence:
@@ -6249,9 +7578,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0273
   name: offshore drilling
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - offshore drilling platforms
   evidence:
@@ -6270,9 +7605,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0274
   name: electric power transmission
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electric power transmission
   evidence:
@@ -6293,9 +7634,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0275
   name: power plants
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Power plant systems
   - power and energy plants
@@ -6316,9 +7663,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0276
   name: nuclear power
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - nuclear power plants
   evidence:
@@ -6338,9 +7691,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0277
   name: water management
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Water management systems
   evidence:
@@ -6360,9 +7719,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0278
   name: metal manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Metal manufacturing plants
   evidence:
@@ -6382,9 +7747,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0279
   name: machine and factory construction
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - machine and factory construction
   - machine and plant construction
@@ -6405,9 +7776,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0280
   name: bioinstrumentation
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - bioinstrumentation
   evidence:
@@ -6427,9 +7804,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0281
   name: navy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - navy
   evidence:
@@ -6448,9 +7831,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0282
   name: medical technology
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - medical technology
   evidence:
@@ -6470,9 +7859,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0283
   name: manufacturing engineering
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - production and manufacturing engineering
   evidence:
@@ -6492,6 +7887,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0284
   name: Transportation
   status: candidate
@@ -6654,6 +8054,7 @@ entries:
 - id: agstech_net-industries-0292
   name: jewelry
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - producing jewelry and badges
   - jewelry and badges
@@ -6672,9 +8073,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0293
   name: automotive
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - automotive industry
   - automotive
@@ -6698,9 +8105,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0294
   name: aerospace
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - aerospace
   evidence:
@@ -6718,6 +8131,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0295
   name: construction
   status: retired
@@ -6741,6 +8159,7 @@ entries:
 - id: agstech_net-industries-0296
   name: healthcare (hospitals and clinics)
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - hospitals, clinics
   - hospitals
@@ -6760,9 +8179,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0297
   name: education (schools)
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - schools, public buildings
   - schools
@@ -6781,9 +8206,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0298
   name: pharmaceutical
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - pharmaceutical
   evidence:
@@ -6800,9 +8231,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0299
   name: marine
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - marine applications
   - marine
@@ -6820,9 +8257,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0300
   name: electronics
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - electronics
   evidence:
@@ -6840,9 +8283,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0301
   name: medical
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - medical and food
   - medical
@@ -6860,9 +8309,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0302
   name: automotive
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - automotive
   evidence:
@@ -6880,9 +8335,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0303
   name: aerospace
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - aerospace
   evidence:
@@ -6899,9 +8360,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0304
   name: agriculture
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - agricultural quick couplings
   - agricultural
@@ -6920,9 +8387,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0305
   name: medical
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - medical
   evidence:
@@ -6940,9 +8413,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0306
   name: semiconductors
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Semiconductors
   evidence:
@@ -6958,9 +8437,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0307
   name: automotive
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - automotive
   - automobiles
@@ -6979,9 +8464,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: agstech_net-industries-0308
   name: consumer electronics
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - consumer electronics
   evidence:
@@ -6998,6 +8489,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: Nuclear
   reason: 'anticipatory: never occurs anywhere in lines 1-4463.'

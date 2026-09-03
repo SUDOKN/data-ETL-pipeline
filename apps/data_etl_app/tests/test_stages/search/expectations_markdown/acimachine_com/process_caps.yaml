@@ -2,7 +2,7 @@ subject: acimachine.com
 field: process_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
-  sha256: caa54a4c6628a1054bd865be09ea977cb15487d560557fffd7dc08d2ca83587b
+  sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
 eval_set_version: 3
 expected_empty: false
 notes: 'The subject''s OWN process capabilities are exactly the field-service operations on the /support page (plus
@@ -235,6 +235,7 @@ entries:
 - id: acimachine_com-process_caps-0010
   name: precision sawing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - precision sawing
   evidence:
@@ -256,6 +257,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0011
   name: die/mold work
   status: candidate
@@ -392,6 +398,7 @@ entries:
 - id: acimachine_com-process_caps-0020
   name: drilling
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - drilling
   evidence:
@@ -404,9 +411,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0021
   name: boring mill machining
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - boring mill
   evidence:
@@ -419,9 +432,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0022
   name: fluting and veining
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - fluting
   - veining
@@ -435,9 +454,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0023
   name: polishing
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - polishing
   evidence:
@@ -450,9 +475,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0024
   name: buffing
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - buffing
   evidence:
@@ -464,9 +495,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0025
   name: shearing
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - shearing
   evidence:
@@ -479,6 +516,11 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0026
   name: induction hardened
   status: candidate
@@ -510,6 +552,7 @@ entries:
 - id: acimachine_com-process_caps-0028
   name: turning
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - turning
   evidence:
@@ -521,9 +564,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0029
   name: grinding, deburr and chamfer
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - deburr
   - chamfer
@@ -537,9 +586,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0030
   name: sanding
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - sanding
   evidence:
@@ -551,9 +606,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0031
   name: mortising
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - mortising
   evidence:
@@ -565,9 +626,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0032
   name: shaping
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - shaping
   evidence:
@@ -579,9 +646,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0033
   name: routing
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - routing
   evidence:
@@ -593,9 +666,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: acimachine_com-process_caps-0034
   name: plating
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - plating
   evidence:
@@ -607,6 +686,11 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: Machining
   reason: overwhelmingly a machine-category name fragment ('Vertical Machining Centers' x3878, 'Gantry Machining

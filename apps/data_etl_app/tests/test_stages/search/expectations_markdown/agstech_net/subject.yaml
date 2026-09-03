@@ -5,7 +5,7 @@ business_type: sourcing and integration intermediary with partial equity in offs
   arm
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
-  sha256: f44c4f092492ebb864526e17bbfbec4ee3ce52c3e80c00ba3ca0683ff757cf21
+  sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
 eval_set_version: 1
 context: 'AGS-TECH Inc self-describes as ''Global Custom Manufacturer, Integrator, Consolidator, Outsourcing Partner''
   - three of those four are intermediary roles - and states plainly that it owns some manufacturing plants and holds
@@ -59,3 +59,4 @@ provenance:
   by: port_corpus.py
   date: '2026-08-29'
   source: markdown-cutover
+entries: []

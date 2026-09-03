@@ -2,7 +2,7 @@ subject: howcogroup.com
 field: process_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
-  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+  sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
 eval_set_version: 2
 expected_empty: false
 entries:
@@ -33,6 +33,7 @@ entries:
 - id: howcogroup_com-process_caps-0002
   name: impact / CVN testing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - CVN Impacts
   - Impact.
@@ -52,6 +53,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0003
   name: cold working
   status: confirmed
@@ -63,8 +69,6 @@ entries:
   - quote: alloy cannot be hardened by heat-treatment, but enhanced mechanical properties can be obtained by cold
       working, especially in sour well tubing strings, and
     approx_offset: 103695
-  - quote: 'Condition: UNS N08825 Cold Worked'
-    approx_offset: 68300
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -77,9 +81,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0004
   name: first stage machining
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - FIRST STAGE MACHINING
   - first stage machining
@@ -100,6 +109,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0005
   name: near net shape production
   status: confirmed
@@ -107,8 +121,6 @@ entries:
   - near net shape component
   - near net shape
   evidence:
-  - quote: 'Supplying a near net shape component provides :'
-    approx_offset: 58258
   - quote: Nickel Alloys, Stainless Steel and Low Alloy from raw ingot through to fully heat treated near net shape
       components.
     approx_offset: 52246
@@ -124,6 +136,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0006
   name: turnkey manufacturing
   status: confirmed
@@ -150,6 +166,7 @@ entries:
 - id: howcogroup_com-process_caps-0007
   name: hot isostatic pressing (HIP)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Hot Isostatic Pressing
   - HIP
@@ -174,6 +191,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0008
   name: sawing
   status: confirmed
@@ -273,6 +295,7 @@ entries:
 - id: howcogroup_com-process_caps-0012
   name: phosphating
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Phospating process
   - Phosphate dip process
@@ -295,9 +318,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0013
   name: shot blasting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Shot blasting
   - shot blasting
@@ -318,9 +347,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0014
   name: spray painting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Spray painters
   - spray booths
@@ -342,9 +377,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0015
   name: alkaline degreasing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Alkaline degreasing
   evidence:
@@ -362,9 +403,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0016
   name: curing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - curing ovens
   evidence:
@@ -382,6 +429,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0017
   name: weld cladding / weld overlay
   status: confirmed
@@ -513,6 +565,7 @@ entries:
 - id: howcogroup_com-process_caps-0022
   name: additive manufacturing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Additive manufacturing
   - additive manufacturing
@@ -536,9 +589,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0023
   name: laser powder bed fusion
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - powder bed fusion
   - laser powder bed fusion
@@ -560,9 +619,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0024
   name: reverse engineering
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - REVERSE ENGINEERING
   - reverse engineering
@@ -584,9 +649,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0025
   name: 3D scanning
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - 3D scanning
   evidence:
@@ -607,6 +678,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0026
   name: non-destructive testing
   status: confirmed
@@ -634,6 +710,7 @@ entries:
 - id: howcogroup_com-process_caps-0027
   name: failure analysis
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - failure analysis
   evidence:
@@ -651,9 +728,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0028
   name: destructive testing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - both destructive testing
   evidence:
@@ -677,9 +760,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0029
   name: metallurgical testing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - METALLURGICAL TESTS
   - metallurgical testing
@@ -703,9 +792,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0030
   name: grain size and ferrite count
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Grain Size. Ferrite Count.
   - Ferrite Count
@@ -726,6 +821,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0031
   name: corrosion testing
   status: confirmed
@@ -735,9 +835,6 @@ entries:
   evidence:
   - quote: Corrosion testing
     approx_offset: 107473
-  - quote: Grain Size. Ferrite Count. Cleanliness Test. Corrosion Test. Micro Examination (including API 6A CRA).
-      Macro Examination.
-    approx_offset: 9499
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -750,6 +847,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0032
   name: mechanical testing
   status: confirmed
@@ -759,8 +860,6 @@ entries:
   - mechanical testing
   - mechanical and metallurgical testing
   evidence:
-  - quote: 'MECHANICAL TESTS:'
-    approx_offset: 9622
   - quote: In-house UKAS approved mechanical and metallurgical testing laboratory
     approx_offset: 107400
   provenance:
@@ -775,9 +874,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0033
   name: weld procedure and welder qualification testing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - WELDING TESTS
   - Fillet weld fracture
@@ -801,6 +905,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0034
   name: phased array ultrasonic testing
   status: confirmed
@@ -808,9 +917,6 @@ entries:
   - Phased Array Ultrasonic testing
   - phased array
   evidence:
-  - quote: scan plan writing in all disciplines. PCN Level II Operators. Phased Array Ultrasonic testing. Ultrasonic
-      Testing (UT) – Forgings / Wrought Products & the
-    approx_offset: 9890
   - quote: Non-destructive testing (ultrasonic, magnetic particle, dye penetrant, phased array)
     approx_offset: 107493
   provenance:
@@ -825,9 +931,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0035
   name: ultrasonic testing
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Ultrasonic Testing (UT)
   - Ultrasonic testing
@@ -848,9 +959,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0036
   name: magnetic particle inspection
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Magnetic Particle Inspection (MT)
   - Magnetic Particle Inspection
@@ -871,9 +988,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0037
   name: dye penetrant inspection
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Dye Penetrant Inspection (PT)
   - Dye Penetrant Inspection
@@ -897,9 +1020,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0038
   name: positive material identification
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Positive Material Inspection (PMI)
   - Positive Material Inspection
@@ -922,9 +1051,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0039
   name: visual inspection
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Visual Inspection (VT)
   - Visual Inspection
@@ -943,6 +1078,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0040
   name: forging
   status: confirmed
@@ -993,6 +1133,7 @@ entries:
 - id: howcogroup_com-process_caps-0042
   name: electromechanical assembly
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Electromechanical Assembly
   - electromechanical assemblies
@@ -1016,9 +1157,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0043
   name: precision fabrication
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - PRECISION FABRICATION
   - fabrication services
@@ -1041,9 +1188,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0044
   name: welding
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - WELDING & FABRICATION CAPABILITIES
   - welding capabilities
@@ -1068,9 +1221,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0045
   name: FCAW welding
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - FCAW
   evidence:
@@ -1091,9 +1250,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0046
   name: TIG welding
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - TiG
   - TiG welding
@@ -1119,9 +1284,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0047
   name: MMA welding
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - MMA
   evidence:
@@ -1141,9 +1312,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0048
   name: submerged arc welding
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Sub Arc welding
   - Sub Arc
@@ -1165,6 +1342,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0049
   name: quality control inspection
   status: confirmed
@@ -1318,9 +1500,6 @@ entries:
   evidence:
   - quote: counter and pull boring techniques, as well as offering skiving and honing as finishing processes.
     approx_offset: 64305
-  - quote: The polished bore receptacle (PBR) is a precision-engineered honed tubular, produced with extremely tight
-      manufacturing tolerances to
-    approx_offset: 315867
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -1333,9 +1512,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0056
   name: vacuum induction melting / vacuum arc remelting
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - vacuum induction melting
   - VIM/VAR
@@ -1360,9 +1544,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0057
   name: electro slag refining (ESR)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - electro slag refining
   - VIM/ESR
@@ -1385,6 +1575,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0058
   name: quenching
   status: confirmed
@@ -1463,8 +1658,6 @@ entries:
   evidence:
   - quote: Annealing, normalising, age & precipitation hardening, tempering
     approx_offset: 107043
-  - quote: 'Condition: Normalised, Hardened and Tempered to 75 KSI'
-    approx_offset: 109383
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -1477,6 +1670,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0062
   name: age and precipitation hardening
   status: confirmed
@@ -1488,9 +1685,6 @@ entries:
   evidence:
   - quote: Annealing, normalising, age & precipitation hardening, tempering
     approx_offset: 107043
-  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress relief, solution
-      annealing and age hardening.
-    approx_offset: 47995
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -1503,6 +1697,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0063
   name: solution annealing
   status: confirmed
@@ -1513,9 +1711,6 @@ entries:
   evidence:
   - quote: Solution annealing
     approx_offset: 107110
-  - quote: The G-M model HVF 101-XB (2 bar) Horizontal front loading vacuum furnace is used for stress relief, solution
-      annealing and age hardening.
-    approx_offset: 47995
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -1528,6 +1723,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0064
   name: straightening
   status: confirmed
@@ -1628,8 +1827,6 @@ entries:
   - clean room facility
   - Cleanroom technology
   evidence:
-  - quote: Cleanroom technology (Class 10,000)
-    approx_offset: 66524
   - quote: Howco’s clean room facility is fully equipped with the latest manufacturing equipment, and staffed
     approx_offset: 102934
   provenance:
@@ -1644,6 +1841,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-process_caps-0069
   name: assembly and pressure testing
   status: confirmed
@@ -1718,6 +1919,7 @@ entries:
 - id: howcogroup_com-process_caps-0072
   name: aqueous UHV cleaning
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Aqueous UHV cleaning
   evidence:
@@ -1735,9 +1937,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0073
   name: helium leak checking
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Helium leak checking
   evidence:
@@ -1755,9 +1963,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0074
   name: direct metal laser melting (DMLM)
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - direct metal laser melting
   - DMLM
@@ -1779,9 +1993,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0075
   name: grinding
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - grinding
   evidence:
@@ -1800,9 +2020,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0076
   name: milling
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - milling
   - Milling Heads
@@ -1822,9 +2048,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0077
   name: tapping
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - tapping
   evidence:
@@ -1843,9 +2075,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0078
   name: drilling
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - drilling, tapping, boring, U-drilling, regular drilling and turning
   - U-drilling
@@ -1866,9 +2104,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0079
   name: turning
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - regular drilling and turning
   - turning
@@ -1888,6 +2132,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0080
   name: solution treatment
   status: candidate
@@ -1915,6 +2164,7 @@ entries:
 - id: howcogroup_com-process_caps-0081
   name: cleanliness testing
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Cleanliness Test
   evidence:
@@ -1932,6 +2182,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0082
   name: API thread measurement
   status: candidate
@@ -1979,6 +2234,7 @@ entries:
 - id: howcogroup_com-process_caps-0084
   name: hot working
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - hot working
   evidence:
@@ -1995,9 +2251,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0085
   name: high temperature forming
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - high temp forming
   evidence:
@@ -2014,6 +2276,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0086
   name: facing and contouring
   status: candidate
@@ -2038,6 +2305,7 @@ entries:
 - id: howcogroup_com-process_caps-0087
   name: air melting
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - air melt
   evidence:
@@ -2055,6 +2323,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0088
   name: cast analysis
   status: candidate
@@ -2139,6 +2412,7 @@ entries:
 - id: howcogroup_com-process_caps-0094
   name: FCAW, TiG, MMA & Sub Arc welding capabilities
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - FCAW
   - TiG
@@ -2155,6 +2429,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0095
   name: Solution Treated and Age Hardened
   status: candidate
@@ -2171,6 +2450,7 @@ entries:
 - id: howcogroup_com-process_caps-0096
   name: VIM/VAR (vacuum induction melting, followed by vacuum arc remelting)
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - vacuum induction melting
   - vacuum arc remelting
@@ -2183,9 +2463,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0097
   name: electro slag refining
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - electro slag refining
   evidence:
@@ -2197,6 +2483,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0098
   name: band sawing
   status: candidate
@@ -2243,6 +2534,7 @@ entries:
 - id: howcogroup_com-process_caps-0101
   name: Phosphate dip process
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Phosphate dip process
   evidence:
@@ -2253,9 +2545,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0102
   name: Cold Worked
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Cold Worked
   evidence:
@@ -2266,9 +2564,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0103
   name: powder bed fusion technology
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - powder bed fusion
   evidence:
@@ -2279,9 +2583,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0104
   name: Hot Isostatic Pressing
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Hot Isostatic Pressing
   evidence:
@@ -2293,6 +2603,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0105
   name: fully-automated GTAW build-up
   status: candidate
@@ -2439,6 +2754,7 @@ entries:
 - id: howcogroup_com-process_caps-0115
   name: Normalised
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Normalised
   evidence:
@@ -2449,9 +2765,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0116
   name: laser powder bed fusion processes
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - laser powder bed fusion
   evidence:
@@ -2463,9 +2785,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-process_caps-0117
   name: direct metal laser melting, or DMLM
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - direct metal laser melting
   - DMLM
@@ -2478,6 +2806,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: Selective Laser Melting
   reason: ZERO occurrences. The old pipeline minted this process out of the machine model name 'SLM280'/'SLM500'

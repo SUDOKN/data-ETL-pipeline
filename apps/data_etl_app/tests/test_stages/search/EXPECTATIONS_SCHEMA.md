@@ -227,3 +227,20 @@ row). Seed to these boundaries:
    organizations, association memberships). A certification, approval, or
    standard designation ISSUED by a body stays in (`SDI Certification`,
    `CAAC Maintenance Organization` approval, `ITU grid`, `AISI 304`).
+
+## `out_of_snapshot` — reserved by the snapshot itself (v3 port, 2026-09-03)
+
+The 100k crawl cutoff (and ordinary site drift) can remove the pages an
+entry's evidence lives on. Such an entry is verified judgment, not a defect —
+the reserved ruling applies — so the port marks it `out_of_snapshot: true`
+with a provenance row instead of retiring it. Consequences: the validator
+exempts it from the quote contract (and errors on a STALE marker whose quote
+does occur — re-run the port); the eval needs no special handling, because an
+entity absent from the snapshot is absent from every run window and lands in
+`out_of_coverage` — the reserved state — mechanically. A future port against
+a larger snapshot clears the marker and the entry reactivates, gating again.
+Kept entries whose evidence list mixed surviving and dead quotes have the
+dead ones pruned (`pruned-dead-quotes` provenance); the surviving evidence
+carries the entry. v3-port outcome: 5,421 kept (83 quotes pruned across 78),
+4,770 held (agstech 4,495 — its 165-page site read at 38 pages), 637 retired
+carried, all snapshot pins updated.

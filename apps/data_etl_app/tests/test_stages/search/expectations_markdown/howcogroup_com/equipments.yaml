@@ -2,7 +2,7 @@ subject: howcogroup.com
 field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
-  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+  sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
 eval_set_version: 2
 expected_empty: false
 entries:
@@ -69,9 +69,6 @@ entries:
   - quote: A typical day in my role involves setting up and operating CNC machines with the professional shadowing
       me, performing maintenance
     approx_offset: 60295
-  - quote: Howco’s global first stage machining capabilities utilise both conventional and CNC machinery. Our worldwide
-      resources offer capacities up to
-    approx_offset: 57801
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -84,9 +81,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-equipments-0004
   name: horizontal CNC turning centres
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Horizontal and Vertical CNC Turning Centres
   - Horizontal CNC Turning Centres
@@ -111,6 +113,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0005
   name: band saws
   status: confirmed
@@ -141,6 +148,7 @@ entries:
 - id: howcogroup_com-equipments-0006
   name: spray booths
   status: disputed
+  out_of_snapshot: true
   acceptable_forms:
   - X 2 medium spray booths
   - X 1 Large spray booth
@@ -172,9 +180,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0007
   name: shot blasting chamber
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Large shot blasting chamber
   - shot blasting chamber
@@ -195,9 +209,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0008
   name: alkaline degreasing equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Alkaline degreasing equipment
   evidence:
@@ -216,9 +236,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0009
   name: curing and pre-heat ovens
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - 5 curing ovens
   - 2 pre-heat ovens
@@ -242,6 +268,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0010
   name: compact and vertical cladding systems
   status: confirmed
@@ -318,6 +349,7 @@ entries:
 - id: howcogroup_com-equipments-0013
   name: metal 3D printers
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - 3D printers
   evidence:
@@ -336,6 +368,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0014
   name: deep hole drilling machines
   status: confirmed
@@ -345,9 +382,6 @@ entries:
   evidence:
   - quote: Deep Hole Drilling machines – 18
     approx_offset: 64074
-  - quote: This cutting-edge machine complements the four existing deep hole boring and honing machines already
-      in operation at the Singapore site, creating
-    approx_offset: 291832
   notes: a fleet count of 18 worldwide on the deep-hole-boring page
   provenance:
   - action: added
@@ -361,6 +395,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-equipments-0015
   name: heat treatment furnaces
   status: confirmed
@@ -397,8 +435,6 @@ entries:
   - quote: A wide range of Millturn’s, Vertical Borers and Horizontal Borers are operated by a dedicated team of
       machinists
     approx_offset: 73230
-  - quote: Vertical borers are high precision, specialist lathes. They boast an impressive machining capacity, are
-    approx_offset: 349708
   provenance:
   - action: added
     by: seed-agent-howcogroup-com
@@ -411,6 +447,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: howcogroup_com-equipments-0017
   name: Millturns
   status: confirmed
@@ -436,6 +476,7 @@ entries:
 - id: howcogroup_com-equipments-0018
   name: G-M HVF 101-XB vacuum furnace
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - HVF 101-XB
   - HVF 101-xb
@@ -459,9 +500,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0019
   name: 4 metre deep hole boring machine
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - 4 Metre Deep Hole Boring Machine
   - Deep Hole Boring Machine
@@ -482,9 +529,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0020
   name: vertical CNC turning centres
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - Vertical CNC Turning Centres
   - Vertical CNC Turning Centre
@@ -511,9 +564,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0021
   name: lathes (horizontal and vertical)
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - vertical lathe
   - horizontal lathe
@@ -534,9 +593,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0022
   name: HVF 101-XB Horizontal front loading vacuum furnace
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - HVF 101-XB
   - vacuum furnace
@@ -549,9 +614,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0023
   name: medium spray booths
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - spray booths
   evidence:
@@ -562,9 +633,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0024
   name: Large spray booth
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - spray booth
   evidence:
@@ -575,9 +652,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0025
   name: large shot blasting chamber
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - shot blasting chamber
   evidence:
@@ -588,9 +671,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0026
   name: curing ovens
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - curing ovens
   evidence:
@@ -601,9 +690,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0027
   name: pre-heat ovens
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - pre-heat ovens
   evidence:
@@ -614,6 +709,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0028
   name: Millturn's
   status: candidate
@@ -729,6 +829,7 @@ entries:
 - id: howcogroup_com-equipments-0036
   name: 4m Deep Hole Borer
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Deep Hole Borer
   evidence:
@@ -740,9 +841,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0037
   name: Geminis GT5i G4 1200 x 6000 horizontal lathe
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - Geminis GT5i G4
   - horizontal lathe
@@ -755,9 +862,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0038
   name: YOU-JI VTL1800ATC+C-I vertical borer
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - YOU-JI VTL1800ATC
   - vertical borer
@@ -770,9 +883,15 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: howcogroup_com-equipments-0039
   name: vertical turning lathes (VTLs)
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - vertical turning lathes
   - VTL
@@ -785,6 +904,11 @@ entries:
     by: seed-agent-howcogroup-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 false_friends:
 - form: CMM
   reason: the equipments clause explicitly excludes equipment that 'only measures, inspects, or tests the work'.

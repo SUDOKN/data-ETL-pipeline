@@ -2,7 +2,7 @@ subject: pradeepmetals.com
 field: industries
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/pradeepmetals.com.txt
-  sha256: 7a36ae8691171d311de2a755a3a7d14f4e70d85c4b2ed90a3271b389de048586
+  sha256: 30ce7836ad629d5064484f6734d52ffbe47fffede39ae610b806a19ff3573875
 eval_set_version: 2
 expected_empty: false
 notes: 'Two clean sources and three trap sources. Clean: the five-line INDUSTRIES WE SERVE strip repeated on the
@@ -270,8 +270,6 @@ entries:
     approx_offset: 103945
   - quote: This project was conducted for defense
     approx_offset: 61900
-  - quote: defense, construction equipment and power sector
-    approx_offset: 220913
   notes: 'three unrelated sources: an approved-supplier line on the Quality page, an IMRC transparent-ceramics project,
     and a blog list. American spelling throughout'
   provenance:
@@ -286,6 +284,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: pradeepmetals_com-industries-0012
   name: railways
   status: disputed
@@ -457,8 +459,6 @@ entries:
   evidence:
   - quote: Impression die to forge is generally used in the automobile industry
     approx_offset: 119430
-  - quote: increased demand from the automobile sector
-    approx_offset: 220221
   actor: unknown
   notes: the blogs' central claim is that the AUTOMOBILE INDUSTRY takes 60-65% of Indian forgings - an industry-wide
     statistic, not this company's mix. Its own strip does not list automotive
@@ -474,6 +474,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: pradeepmetals_com-industries-0019
   name: forging industry
   status: confirmed
@@ -629,8 +633,6 @@ entries:
   evidence:
   - quote: pharmaceutical
     approx_offset: 45688
-  - quote: petrochemical industry, pharmaceutical industry, dairy industry
-    approx_offset: 220475
   actor: unknown
   provenance:
   - action: added
@@ -644,6 +646,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: pradeepmetals_com-industries-0026
   name: high-pressure water and steam services
   status: confirmed
@@ -827,6 +833,7 @@ entries:
 - id: pradeepmetals_com-industries-0033
   name: construction equipment
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - construction equipment
   evidence:
@@ -847,9 +854,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0034
   name: dairy
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - dairy industry
   evidence:
@@ -869,14 +882,17 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0035
   name: aerospace
   status: confirmed
   acceptable_forms:
   - aerospace
   evidence:
-  - quote: non-automotive sectors which includes aerospace, energy, oil and gas
-    approx_offset: 220823
   - quote: high precision industries like aerospace, automotive, water circulation
     approx_offset: 213328
   actor: unknown
@@ -894,9 +910,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: pruned-dead-quotes
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: 1 quote(s) absent from the markdown_v3 snapshot; surviving evidence retained'
 - id: pradeepmetals_com-industries-0036
   name: energy / power sector
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - energy, oil and gas
   - power sector
@@ -916,9 +937,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0037
   name: banking and real estate
   status: confirmed
+  out_of_snapshot: true
   acceptable_forms:
   - banking sector
   - real estate
@@ -941,6 +968,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0038
   name: automation
   status: confirmed
@@ -992,6 +1024,7 @@ entries:
 - id: pradeepmetals_com-industries-0040
   name: heavy engine parts
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - heavy engine parts
   evidence:
@@ -1010,6 +1043,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0041
   name: defense (R&D project sector)
   status: candidate
@@ -1055,6 +1093,7 @@ entries:
 - id: pradeepmetals_com-industries-0044
   name: petrochemical industry
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - petrochemical industry
   evidence:
@@ -1066,9 +1105,15 @@ entries:
     by: seed-agent-pradeepmetals-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0045
   name: pharmaceutical industry
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - pharmaceutical industry
   evidence:
@@ -1079,9 +1124,15 @@ entries:
     by: seed-agent-pradeepmetals-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0046
   name: dairy industry
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - dairy industry
   evidence:
@@ -1092,9 +1143,15 @@ entries:
     by: seed-agent-pradeepmetals-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0047
   name: energy (sector)
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - energy
   evidence:
@@ -1106,9 +1163,15 @@ entries:
     by: seed-agent-pradeepmetals-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0048
   name: power sector
   status: candidate
+  out_of_snapshot: true
   acceptable_forms:
   - power sector
   evidence:
@@ -1119,6 +1182,11 @@ entries:
     by: seed-agent-pradeepmetals-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: held-out-of-snapshot
+    by: assistant
+    date: '2026-09-03'
+    source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
+      reserved, not retired'
 - id: pradeepmetals_com-industries-0049
   name: chemicals (industry)
   status: candidate

@@ -2,7 +2,7 @@ subject: alecmfg.com
 role: full_unit
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/alecmfg.com.txt
-  sha256: 1b7016ecac0a734538029b6e2fed1c6ba60473d7dd9c9dc0ef73a5e670c900ae
+  sha256: 9a9251e12e7eacd3e420315bc612411883f313f8f81b007b9e3ba644af70e700
 scrape_hazards:
 - hazard: the homepage block contains the site's Cookie Policy, not homepage content; its services table lists WordPress/Google
     Analytics/Elementor etc. (equipment-junk pressure)
@@ -52,3 +52,4 @@ provenance:
   date: '2026-08-29'
   source: markdown-cutover
 eval_set_version: 1
+entries: []

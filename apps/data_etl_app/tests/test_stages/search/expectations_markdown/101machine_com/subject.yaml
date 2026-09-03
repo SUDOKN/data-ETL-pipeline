@@ -2,7 +2,7 @@ subject: 101machine.com
 role: inventory_subject
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
-  sha256: 6e351d8fdc5317848d99f37551218329a4a0a6359267213bcec847e6b44aaa40
+  sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
 scrape_hazards:
 - hazard: nav bar repeats on all 9 pages
   quote: 101 Machine Capabilities Contact Us FAQ NEW
@@ -33,3 +33,4 @@ provenance:
   date: '2026-08-29'
   source: markdown-cutover
 eval_set_version: 1
+entries: []

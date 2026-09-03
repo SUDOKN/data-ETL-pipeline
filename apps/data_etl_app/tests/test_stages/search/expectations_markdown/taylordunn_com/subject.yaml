@@ -3,7 +3,7 @@ slug: taylordunn_com
 role: degenerate_input_probe
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
-  sha256: 973bd30712ecbd8754d31aef6041a5b07356215a7425214d0330074b59bba489
+  sha256: 798b65a09fb8ed15a5199b44a95a4e5b7e14c201f69a658f3c89c92100506d54
 eval_purpose: 'Degenerate-input probe: the scrape failed. All 31 page blocks rendered the cookie-consent modal (a
   Complianz cookie policy, last updated January 7, 2025) instead of page content; every block body is byte-identical
   once the URL header line is stripped (verified by per-block sha256, 2026-08-26). The only real signal is the nav/footer
@@ -50,3 +50,4 @@ provenance:
   date: '2026-08-29'
   source: markdown-cutover
 eval_set_version: 1
+entries: []

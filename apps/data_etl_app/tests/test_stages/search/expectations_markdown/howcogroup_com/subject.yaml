@@ -4,7 +4,7 @@ role: attribution_negative
 business_type: Scottish metal stockholder/distributor, vertically integrated forward into processing; Sumitomo subsidiary
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
-  sha256: 086d9ea58ed69294b0728745dd735cbbc9883e4db02b827a1da33ee8aa02f1e6
+  sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
 eval_set_version: 1
 scrape_hazards:
 - hazard: 'identical 17-line legal/registration footer repeated on 97 of 97 pages; it carries a certification (''Certified:
@@ -90,3 +90,4 @@ provenance:
   by: port_corpus.py
   date: '2026-08-29'
   source: markdown-cutover
+entries: []

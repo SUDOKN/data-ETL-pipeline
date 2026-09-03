@@ -4,7 +4,7 @@ role: empty_field_probe
 business_type: commercial heat-treating toll processor; sells process time, designs and makes nothing
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/med-tekinc.com.txt
-  sha256: 1ace86accab9f77cd8cbdcebb9afda9c27f198cfc8b7e22de92ec05153d68023
+  sha256: 7ed418d9a144bb99e67c873f1468279c915f3c116a2be4f37228f92c2cb692ab
 eval_set_version: 1
 context: 'MED-TEK, INC. (Minneapolis, MN) is a COMMERCIAL HEAT-TREATING TOLL PROCESSOR: it sells furnace/bath time
   on other companies'' parts and designs, makes and sells nothing of its own. Three unique pages (home, /services/,
@@ -62,3 +62,4 @@ provenance:
   by: port_corpus.py
   date: '2026-08-29'
   source: markdown-cutover
+entries: []
