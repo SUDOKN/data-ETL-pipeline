@@ -47,7 +47,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import traceback
-from dataclasses import dataclass
+from dataclasses import dataclass, field, replace
 from datetime import datetime
 from typing import Optional
 
@@ -91,6 +91,7 @@ from core.services.phrase_blocks_contract import (
     render_synthesis_record_blocks,
     sent_record_ids_from_user_message,
 )
+from core.utils.designation_tokens import designation_coverage, missing_designations
 from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
     fold_collapse_compounds_of,
     fold_snippet_radius_of,
@@ -518,12 +519,19 @@ class ChunkAnswer:
     """ONE chunk's synthesis answer, merged across its group requests and (when
     one ran) its retry pass: the sent record ids in request order, the held
     syntheses, the ids the model answered that were never sent, and the ids the
-    retry pass re-asked for."""
+    retry pass re-asked for.
+
+    ``syntheses`` is the RESOLVED map (one answer per record). Where a record
+    was re-asked for UNDER-ENUMERATION (2026-09-02: it had a first answer that
+    dropped designations), both answers exist for a while — the retry's is kept
+    in ``retry_syntheses`` and ``resolve_under_enumeration`` picks the better
+    of the two by designation coverage, retry winning ties."""
 
     sent_ids: list[str]
     syntheses: SynthesesByGroupId
     unknown_answer_ids: list[str]
     retried_record_ids: list[str]
+    retry_syntheses: SynthesesByGroupId = field(default_factory=dict)
 
     @property
     def missing_ids(self) -> list[str]:
@@ -554,8 +562,12 @@ async def get_chunk_syntheses(
     retry_req_ids = extraction_bundle.llm_phrase_synthesis_retry_req_ids if include_retry else []
     sent_ids: list[str] = []
     syntheses: SynthesesByGroupId = {}
+    retry_syntheses: SynthesesByGroupId = {}
     unknown_answer_ids: list[str] = []
-    for request_id in [*group_req_ids, *retry_req_ids]:
+    for request_id, is_retry in [
+        *((rid, False) for rid in group_req_ids),
+        *((rid, True) for rid in retry_req_ids),
+    ]:
         group_sent, held, unknown = await parse_synthesis_group_result(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
@@ -564,15 +576,24 @@ async def get_chunk_syntheses(
             timestamp=timestamp,
         )
         unknown_answer_ids.extend(unknown)
-        sent_ids.extend(rid for rid in group_sent if rid not in sent_ids)
+        if not is_retry:
+            sent_ids.extend(rid for rid in group_sent if rid not in sent_ids)
+        target = retry_syntheses if is_retry else syntheses
         for record_id, synthesis in held.items():
-            if record_id in syntheses:
+            if record_id in target:
                 logger.warning(
-                    f"synthesis: record id {record_id!r} answered in two requests of chunk "
-                    f"{chunk_bounds} in {subject_unique_id}:{field_type.name}; keeping the first"
+                    f"synthesis: record id {record_id!r} answered in two requests of one "
+                    f"pass of chunk {chunk_bounds} in {subject_unique_id}:{field_type.name}; "
+                    f"keeping the first"
                 )
                 continue
-            syntheses[record_id] = synthesis
+            target[record_id] = synthesis
+    # A record only the retry answered (the original missing-answer case) is
+    # resolved here; a record BOTH passes answered (an under-enumeration
+    # re-ask) stays in retry_syntheses for resolve_under_enumeration, which
+    # has the records and can compare designation coverage.
+    for record_id, synthesis in retry_syntheses.items():
+        syntheses.setdefault(record_id, synthesis)
     return ChunkAnswer(
         sent_ids=sent_ids,
         syntheses=syntheses,
@@ -582,7 +603,76 @@ async def get_chunk_syntheses(
             if include_retry
             else []
         ),
+        retry_syntheses=retry_syntheses,
     )
+
+
+# --- under-enumeration (2026-09-02, Phase B of the search-recall roadmap) --------------------
+
+
+def _record_entry_texts(record: SynthesisRecordInput) -> list[str]:
+    """The verbatim evidence a record's designations are read from: snippets
+    only — the Location stage's descriptions are model-authored, never a
+    source of demanded tokens."""
+    return [entry.snippet for entry in record.entries]
+
+
+def under_enumerated_record_ids(
+    records: list[SynthesisRecordInput], syntheses: SynthesesByGroupId
+) -> list[str]:
+    """Records whose ANSWERED synthesis drops designation-shaped tokens their
+    entries carry (the conservation check; see ``core.utils.designation_tokens``
+    for the tiers and why they are precision-first). Records with no answer are
+    the missing-answer path's business, not this one's. Order follows
+    *records* — bundle order, like every other id list here."""
+    flagged: list[str] = []
+    for record in records:
+        synthesis = syntheses.get(record.record_id)
+        if synthesis is None:
+            continue
+        missing = missing_designations(
+            _record_entry_texts(record), synthesis, focal_form=record.focal_form
+        )
+        if missing:
+            flagged.append(record.record_id)
+    return flagged
+
+
+def resolve_under_enumeration(
+    answer: ChunkAnswer, records: list[SynthesisRecordInput]
+) -> tuple[ChunkAnswer, dict[str, str]]:
+    """One answer per record where both passes answered: keep whichever names
+    more of the record's designations, the retry winning ties (it ran under
+    the same prompt with a fresh sample — the measured recovery path). Returns
+    the resolved answer and ``{record_id: "first"|"retry"}`` provenance for
+    the records that were actually contested."""
+    contested = [
+        record
+        for record in records
+        if record.record_id in answer.retry_syntheses
+        and record.record_id in answer.syntheses
+        and answer.retry_syntheses[record.record_id] != answer.syntheses[record.record_id]
+    ]
+    if not contested:
+        return answer, {}
+    resolved = dict(answer.syntheses)
+    provenance: dict[str, str] = {}
+    for record in contested:
+        entry_texts = _record_entry_texts(record)
+        first_text = answer.syntheses[record.record_id]
+        retry_text = answer.retry_syntheses[record.record_id]
+        first_present, _ = designation_coverage(
+            entry_texts, first_text, focal_form=record.focal_form
+        )
+        retry_present, _ = designation_coverage(
+            entry_texts, retry_text, focal_form=record.focal_form
+        )
+        if retry_present >= first_present:
+            resolved[record.record_id] = retry_text
+            provenance[record.record_id] = "retry"
+        else:
+            provenance[record.record_id] = "first"
+    return replace(answer, syntheses=resolved), provenance
 
 
 # --- the result ------------------------------------------------------------------------------
@@ -601,6 +691,10 @@ class ChunkSynthesisResult:
     answer: ChunkAnswer
     group_request_count: int
     retry_request_count: int
+    # {record_id: "first"|"retry"} for records where BOTH passes answered and
+    # the under-enumeration comparator picked one (2026-09-02). Empty when
+    # nothing was contested — the pre-extension shape.
+    under_enumeration_resolved: dict[str, str] = field(default_factory=dict)
 
     @property
     def syntheses(self) -> SynthesesByGroupId:
@@ -664,6 +758,14 @@ async def get_chunk_synthesis_result(
             f"{sorted(set(record_ids) - set(answer.sent_ids))}); the text or mention state "
             f"changed under the stored request ids (re-defer)."
         )
+    answer, under_enumeration_resolved = resolve_under_enumeration(answer, records)
+    if under_enumeration_resolved:
+        kept_retry = sum(1 for v in under_enumeration_resolved.values() if v == "retry")
+        logger.info(
+            f"[{subject_unique_id}] synthesis: chunk {chunk_bounds} "
+            f"({field_type.name}) had {len(under_enumeration_resolved)} "
+            f"under-enumeration re-ask(s) resolved ({kept_retry} kept the retry)."
+        )
     return ChunkSynthesisResult(
         fold=fold,
         records=records,
@@ -671,6 +773,7 @@ async def get_chunk_synthesis_result(
         answer=answer,
         group_request_count=len(extraction_bundle.llm_phrase_synthesis_req_ids),
         retry_request_count=len(extraction_bundle.llm_phrase_synthesis_retry_req_ids),
+        under_enumeration_resolved=under_enumeration_resolved,
     )
 
 # --- downstream records (D16) ----------------------------------------------------------------

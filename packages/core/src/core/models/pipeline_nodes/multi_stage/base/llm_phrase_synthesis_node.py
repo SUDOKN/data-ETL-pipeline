@@ -8,10 +8,16 @@ stage's, applied here). The node is a recursive node so ``embed_request_ids``
 runs until it adds nothing: pass 1 embeds every chunk's group requests (the
 fold recomputed from the text + the mention stage's completed answers); once
 those are complete, pass 2 ASSESSES each chunk — the record ids its answers
-left unsynthesized are stored, and a chunk with any gets ONE retry request set
-for just those records; a third entry finds nothing to add. Eager runs loop
-in-process (``BaseLLMRecursiveExtractionNode.execute``); batch runs take one
-pass per invocation.
+left unsynthesized are stored, PLUS (2026-09-02, Phase B of the search-recall
+roadmap) the ids whose answer dropped designation-shaped tokens their entries
+carry (``under_enumerated_record_ids`` — the conservation check behind the
+hardened preserve-specifics prompt sentence), and a chunk with any gets ONE
+retry request set for just those records; a third entry finds nothing to add.
+For an under-enumerated record both passes hold an answer and the read path
+keeps whichever names more designations, the retry winning ties
+(``resolve_under_enumeration``). Eager runs loop in-process
+(``BaseLLMRecursiveExtractionNode.execute``); batch runs take one pass per
+invocation.
 """
 
 from __future__ import annotations
@@ -69,6 +75,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service 
     pack_records,
     require_synthesis_metadata,
     retry_records_of_chunk,
+    under_enumerated_record_ids,
 )
 from core.utils.request_custom_id_util import upstream_digest_segment
 
@@ -215,17 +222,26 @@ class LLMPhraseSynthesisNode(
                 timestamp=timestamp,
                 include_retry=False,
             )
+            records = await records_of(chunk_bounds, bundle)
             missing = answer.missing_ids
-            bundle.llm_phrase_synthesis_retry_record_ids = missing
-            if not missing:
+            # 2026-09-02 (Phase B): the retry also re-asks ANSWERED records
+            # whose synthesis dropped designation-shaped tokens their entries
+            # carry — the under-enumeration conservation check. The read path
+            # keeps the better of the two answers per record
+            # (resolve_under_enumeration), so a worse retry can never regress
+            # a record.
+            under_enumerated = under_enumerated_record_ids(records, answer.syntheses)
+            retry_ids = missing + [rid for rid in under_enumerated if rid not in missing]
+            bundle.llm_phrase_synthesis_retry_record_ids = retry_ids
+            if not retry_ids:
                 continue
             retry_groups = pack_records(
                 retry_records_of_chunk(
                     subject_unique_id,
                     self.field_type,
                     chunk_bounds,
-                    await records_of(chunk_bounds, bundle),
-                    missing,
+                    records,
+                    retry_ids,
                 ),
                 synthesis_metadata.max_entries_per_request,
             )
@@ -247,9 +263,10 @@ class LLMPhraseSynthesisNode(
                 else ""
             )
             logger.info(
-                f"[{subject_unique_id}] synthesis: {len(missing)} of {len(answer.sent_ids)} "
-                f"record(s) in chunk {chunk_bounds} ({self.field_type.name}) came back "
-                f"unsynthesized{unknown_note}; embedding {len(retry_groups)} retry request(s)."
+                f"[{subject_unique_id}] synthesis: chunk {chunk_bounds} "
+                f"({self.field_type.name}): {len(missing)} of {len(answer.sent_ids)} "
+                f"record(s) unsynthesized, {len(under_enumerated)} under-enumerated"
+                f"{unknown_note}; embedding {len(retry_groups)} retry request(s)."
             )
 
     def get_embedded_request_ids(
@@ -344,9 +361,12 @@ class LLMPhraseSynthesisNode(
         verb_fold: bool,
         snippet_radius: int,
         include_location: bool,
+        collapse_compounds: bool = False,
     ) -> ChunkSynthesisResult:
         """The chunk's fold, its records and the held syntheses (needs the
-        mention stage's completed map and the text: the fold is recomputed)."""
+        mention stage's completed map and the text: the fold is recomputed;
+        ``collapse_compounds`` = D21's dial, which decides the fold's groups
+        and so the records the syntheses were keyed by)."""
         return await get_chunk_synthesis_result(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
@@ -359,6 +379,7 @@ class LLMPhraseSynthesisNode(
             verb_fold=verb_fold,
             snippet_radius=snippet_radius,
             include_location=include_location,
+            collapse_compounds=collapse_compounds,
         )
 
     async def validate_own_responses(

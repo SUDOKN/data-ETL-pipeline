@@ -337,6 +337,136 @@ async def test_pass_two_assesses_once_retries_only_the_missing_and_the_result_re
     assert rows[sent[0]]["entries"] == 3 and rows[sent[0]]["status"] == "synthesized"
 
 
+DESIG_TEXT = (
+    f"{SEP}\nhttps://acme.example/alloys\n\n"
+    "Aluminum castings in 319 and A357 alloys ship daily.\n"
+)
+DESIG_CHUNK = f"0:{len(DESIG_TEXT)}"
+
+
+async def _designation_mention_state(metadata):
+    """One chunk over designation-bearing text, mentions answered — the
+    under-enumeration flow's upstream."""
+    node = _MentionNode({"s0": _search(["Aluminum"])})
+    bundle = LLMPhraseExtractionRequestBundle(
+        search_sub_bounds=[DESIG_CHUNK], llm_phrase_search_req_ids=["s0"]
+    )
+    ctx = PipelineContext(subject_name="Acme Example", subject_text=DESIG_TEXT)
+    await node.embed_request_ids(SUBJECT, ctx, metadata, {DESIG_CHUNK: bundle}, T0)
+    (group_id,) = bundle.llm_phrase_mention_req_ids[DESIG_CHUNK]
+    radius = metadata.llm_phrase_mention_collection.snippet_radius
+    collection = collect_sub_window(
+        DESIG_TEXT, DESIG_CHUNK, bundle.llm_phrase_mention_sent_forms[DESIG_CHUNK],
+        snippet_radius=radius,
+    )
+    answered = {item.mention_id: f"loc of {item.mention[:12]}" for item in collection.items}
+    mention_map = {
+        group_id: _request(
+            _locations(answered),
+            render_mention_location_context(
+                window_text_of(DESIG_TEXT, DESIG_CHUNK), collection.items
+            ),
+        )
+    }
+    return bundle, mention_map, ctx
+
+
+@pytest.mark.asyncio
+async def test_an_answered_record_that_drops_designations_is_retried_and_the_better_answer_wins():
+    """2026-09-02 (Phase B): the under-enumeration conservation check. The
+    first answer names the focal form but drops the designations its entries
+    carry (319, A357); the assess pass re-asks the record even though it WAS
+    answered, and the read path keeps whichever answer names more
+    designations — here the retry's."""
+    metadata = _metadata(max_entries=50)
+    bundle, mention_map, ctx = await _designation_mention_state(metadata)
+    node = _SynthesisNode(mention_map)
+    await node.embed_request_ids(SUBJECT, ctx, metadata, {DESIG_CHUNK: bundle}, T0)
+    (group_req_id,) = bundle.llm_phrase_synthesis_req_ids
+    (req,) = await node.create_batch_requests(
+        subject_unique_id=SUBJECT,
+        scraped_text_file=cast(Any, SimpleNamespace(text=DESIG_TEXT)),
+        missing_request_ids={group_req_id},
+        metadata=metadata,
+        chunked_request_map={DESIG_CHUNK: bundle},
+        pipeline_context=ctx,
+        timestamp=T0,
+        eager=True,
+    )
+    user_message = req.request.body.user_message()
+    from core.services.phrase_blocks_contract import sent_record_ids_from_user_message
+
+    (record_id,) = sent_record_ids_from_user_message(user_message) or []
+    # the first answer ELIDES: no 319, no A357
+    node.complete = True
+    node.completed = {
+        group_req_id: _request(
+            _syntheses({record_id: "The entries show aluminum castings, various alloys."}),
+            user_message,
+        )
+    }
+    await node.embed_request_ids(SUBJECT, ctx, metadata, {DESIG_CHUNK: bundle}, T0)
+    assert bundle.llm_phrase_synthesis_retry_record_ids == [record_id]
+    (retry_id,) = bundle.llm_phrase_synthesis_retry_req_ids
+    (retry_req,) = await node.create_batch_requests(
+        subject_unique_id=SUBJECT,
+        scraped_text_file=cast(Any, SimpleNamespace(text=DESIG_TEXT)),
+        missing_request_ids={retry_id},
+        metadata=metadata,
+        chunked_request_map={DESIG_CHUNK: bundle},
+        pipeline_context=ctx,
+        timestamp=T0,
+        eager=True,
+    )
+    retry_message = retry_req.request.body.user_message()
+    good = "The entries show Aluminum castings in 319 and A357 alloys."
+    node.completed[retry_id] = _request(_syntheses({record_id: good}), retry_message)
+    result = await node.get_result(
+        subject_unique_id=SUBJECT,
+        field_type=cast(Any, _Field()),
+        chunk_bounds=DESIG_CHUNK,
+        extraction_bundle=bundle,
+        completed_request_map=node.completed,
+        timestamp=T0,
+        mention_completed_request_map=mention_map,
+        subject_text=DESIG_TEXT,
+        verb_fold=False,
+        snippet_radius=0,
+        include_location=True,
+    )
+    assert result.syntheses == {record_id: good}
+    assert result.under_enumeration_resolved == {record_id: "retry"}
+    assert result.not_synthesized == []
+
+
+@pytest.mark.asyncio
+async def test_a_worse_retry_never_regresses_the_first_answer():
+    """The comparator half of the check: when the re-ask comes back WORSE
+    (fewer designations named), the first answer is kept and the provenance
+    says so."""
+    from core.models.extraction_schemas.synthesis import SynthesisEntry, SynthesisRecordInput
+    from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
+        ChunkAnswer,
+        resolve_under_enumeration,
+    )
+
+    record = SynthesisRecordInput(
+        record_id="g1",
+        focal_form="Aluminum",
+        entries=[SynthesisEntry(snippet="Aluminum castings in 319 and A357 alloys.")],
+    )
+    answer = ChunkAnswer(
+        sent_ids=["g1"],
+        syntheses={"g1": "Aluminum in 319 and A357 alloys."},
+        unknown_answer_ids=[],
+        retried_record_ids=["g1"],
+        retry_syntheses={"g1": "Aluminum in A357 alloy, among others."},
+    )
+    resolved, provenance = resolve_under_enumeration(answer, [record])
+    assert resolved.syntheses["g1"] == "Aluminum in 319 and A357 alloys."
+    assert provenance == {"g1": "first"}
+
+
 @pytest.mark.asyncio
 async def test_a_chunk_with_no_records_gets_one_dummy_that_is_never_dispatched():
     metadata = _metadata()
