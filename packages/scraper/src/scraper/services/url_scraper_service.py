@@ -94,6 +94,16 @@ class ScraperService:
         # certificates. A crawl-scope flag like max_depth, not a rendering
         # version: the manifest records which way it was set.
         include_pdfs: bool = False,
+        # Soft token cutoff (2026-09-03, user decision): stop CRAWLING once
+        # the accumulated page text reaches ~this many estimated tokens
+        # (chars // 4 — an estimate is all a soft stop needs). "Soft" means:
+        # pages already being scraped finish, the queue's unstarted URLs are
+        # dropped, link discovery stops. None = crawl everything (the
+        # pre-cutoff behavior). A crawl-scope flag like max_depth, not a
+        # rendering version; the manifest records the setting and whether it
+        # fired. Validity is untouched: dropped URLs were never attempted,
+        # so they are not failures and success_rate does not move.
+        soft_token_cutoff: Optional[int] = None,
     ):
         if output_format not in ("markdown", "text"):
             raise ValueError(f"output_format must be 'markdown' or 'text', got {output_format!r}")
@@ -113,6 +123,7 @@ class ScraperService:
 
         self.max_concurrent_browsers = max_concurrent_browsers
         self.max_depth = max_depth
+        self.soft_token_cutoff = soft_token_cutoff
         self.scrape_timeout = scrape_timeout  # in minutes
 
         # Track active drivers for cleanup
@@ -365,6 +376,7 @@ class ScraperService:
         cancel_event: threading.Event,
         manifest_pages: dict[str, dict],
         link_ledger: dict,
+        cutoff_event: Optional[threading.Event] = None,
     ):
         logger.info("Creating new driver for worker")
         driver = self._new_driver()
@@ -396,6 +408,13 @@ class ScraperService:
                 queue.task_done()
                 break
 
+            # Soft cutoff reached: drop queued-but-unstarted URLs (in-flight
+            # pages in OTHER workers finish on their own). Not a failure, not
+            # a timeout — just the end of the crawl's appetite.
+            if cutoff_event is not None and cutoff_event.is_set():
+                queue.task_done()
+                continue
+
             try:
                 # Page readiness & content extraction -----
                 content = self._extract_text_with_fallback(driver, url)
@@ -420,11 +439,33 @@ class ScraperService:
 
                 with self.stats_lock:
                     stats["scraped"] += 1
+                    stats["content_chars"] = stats.get("content_chars", 0) + len(content)
                     remaining = queue.qsize()
                     logger.info(f"Scraped: {url} | Remaining: {remaining}")
+                    if (
+                        self.soft_token_cutoff is not None
+                        and cutoff_event is not None
+                        and not cutoff_event.is_set()
+                        and stats["content_chars"] // 4 >= self.soft_token_cutoff
+                    ):
+                        cutoff_event.set()
+                        logger.info(
+                            "Soft token cutoff reached: ~%d estimated tokens "
+                            "(%d chars) over %d pages >= %d; finishing in-flight "
+                            "pages and dropping %d queued URLs.",
+                            stats["content_chars"] // 4,
+                            stats["content_chars"],
+                            stats["scraped"],
+                            self.soft_token_cutoff,
+                            remaining,
+                        )
 
                 # ----- Single-pass discovery per page + BFS until max_depth
-                if depth < self.max_depth and not cancel_event.is_set():
+                if (
+                    depth < self.max_depth
+                    and not cancel_event.is_set()
+                    and not (cutoff_event is not None and cutoff_event.is_set())
+                ):
                     new_hrefs = self._collect_links_js(driver, resolved_start_url)
                     logger.debug(
                         f"Found {len(new_hrefs)} links on {url} at depth {depth}"
@@ -492,6 +533,7 @@ class ScraperService:
         # manifest without locals() guards (2026-08-29).
         scrape_started_at = datetime.now(timezone.utc)
         manifest_pages: dict[str, dict] = {}
+        cutoff_event = threading.Event()
         discovered: set[str] = set()
         errors: list[dict] = []
         final_landing_url = start_url
@@ -550,6 +592,7 @@ class ScraperService:
                         cancel_event,
                         manifest_pages,
                         link_ledger,
+                        cutoff_event,
                     )
 
                 # Monitor for completion or timeout
@@ -558,6 +601,16 @@ class ScraperService:
                     if time.monotonic() >= deadline:
                         timed_out = True
                         break
+                    # Soft cutoff: drop what nobody started yet so
+                    # unfinished_tasks can reach zero once in-flight pages
+                    # land (workers drain too; this just speeds it up).
+                    if cutoff_event.is_set():
+                        try:
+                            while True:
+                                _ = work_q.get_nowait()
+                                work_q.task_done()
+                        except Empty:
+                            pass
                     # Avoid Queue.join() so we can bail out on timeout
                     if getattr(work_q, "unfinished_tasks", 0) == 0:
                         break
@@ -645,6 +698,8 @@ class ScraperService:
                 skipped_by_extension=link_ledger["skipped_by_url"],
                 pdfs=pdf_meta,
                 include_pdfs=self.include_pdfs,
+                soft_token_cutoff=self.soft_token_cutoff,
+                cutoff_reached=cutoff_event.is_set(),
             )
             return ScrapingResult(
                 content=deduped_content,
@@ -695,6 +750,8 @@ class ScraperService:
                     skipped_by_extension=link_ledger["skipped_by_url"],
                     pdfs=pdf_meta,
                     include_pdfs=self.include_pdfs,
+                    soft_token_cutoff=self.soft_token_cutoff,
+                    cutoff_reached=cutoff_event.is_set(),
                 ),
             )
         except Exception as e:

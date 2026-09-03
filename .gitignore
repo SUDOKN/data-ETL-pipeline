@@ -130,4 +130,7 @@ apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/
 # same class: the markdown_v2 reseeded corpus (14M of scraped site text) and
 # the 24M scraper output-format sample — pinned locally, never in git
 apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/
-pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/
+pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/*
+# ...but the machinery in it is re-runnable instrument, not data
+!pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/*.py
+!pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/README.md

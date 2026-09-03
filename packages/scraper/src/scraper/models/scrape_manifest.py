@@ -158,6 +158,8 @@ def assemble_manifest(
     skipped_by_extension: Optional[Mapping[str, str]] = None,
     pdfs: Optional[Mapping[str, dict]] = None,
     include_pdfs: bool = False,
+    soft_token_cutoff: Optional[int] = None,
+    cutoff_reached: bool = False,
 ) -> dict:
     """The manifest dict (schema ``MANIFEST_VERSION``). Pure.
 
@@ -194,6 +196,11 @@ def assemble_manifest(
         or {"fetched": False, "url": None, "lastmod": {}, "error": "not attempted"},
         "skipped_by_extension": by_ext,
         "include_pdfs": include_pdfs,
+        # crawl-scope soft stop (2026-09-03): the configured estimated-token
+        # cutoff (None = crawl everything) and whether this scrape hit it —
+        # a cutoff_reached manifest describes a deliberately partial crawl.
+        "soft_token_cutoff": soft_token_cutoff,
+        "cutoff_reached": cutoff_reached,
         "pdfs": {url: dict(meta) for url, meta in sorted((pdfs or {}).items())},
         "s3_text_version_id": None,
     }
