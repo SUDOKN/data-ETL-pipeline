@@ -108,7 +108,8 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
     parse_recursive_search_round_result,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_search_node_service import (
-    parse_search_sub_request_result,
+    parse_search_window_union,
+    window_pass_request_ids,
 )
 from core.utils.aggregation_fold import (
     FoldResult,
@@ -196,11 +197,14 @@ async def get_window_forms(
             f"mention_collection: no first-search request embedded for sub-window "
             f"{sub_bounds} of chunk {chunk_bounds} in {subject_unique_id}:{field_type.name}"
         )
+    # Retry-and-union (2026-09-03): the window's forms are the union of its
+    # parseable search passes — see parse_search_window_union for the
+    # missing-vs-unparseable distinction.
     forms: set[str] = set(
-        await parse_search_sub_request_result(
+        await parse_search_window_union(
             subject_unique_id=subject_unique_id,
             field_type=field_type,
-            llm_phrase_search_request_id=extraction_bundle.llm_phrase_search_req_ids[index],
+            window_request_ids=window_pass_request_ids(extraction_bundle, index),
             all_phrase_search_req_responses_map=llm_phrase_search_gpt_request_map,
             deferred_at=timestamp,
         )
@@ -244,6 +248,38 @@ async def get_chunk_forms(
                 field_type=field_type,
                 chunk_bounds=chunk_bounds,
                 sub_bounds=sub_bounds,
+                extraction_bundle=extraction_bundle,
+                llm_phrase_search_gpt_request_map=llm_phrase_search_gpt_request_map,
+                llm_phrase_recursive_search_gpt_request_map=llm_phrase_recursive_search_gpt_request_map,
+                timestamp=timestamp,
+            )
+        )
+    return sorted(forms)
+
+
+async def get_subject_forms(
+    subject_unique_id: str,
+    field_type: ExtractionFieldType,
+    chunked_request_map,
+    llm_phrase_search_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    llm_phrase_recursive_search_gpt_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    timestamp: datetime,
+) -> list[str]:
+    """The SUBJECT's pooled forms: the union of every chunk's
+    ``get_chunk_forms``, sorted. 2026-09-02 (Phase B of the search-recall
+    roadmap): the mention scan pools subject-wide rather than chunk-wide, so a
+    form the search stage returned only in one chunk still has its mentions
+    collected in every OTHER chunk whose text carries it — the measured
+    cross-chunk gap was 61 of the census's 1,419 missed entities.
+    ``forms_occurring_in_window`` still filters each window to the forms it
+    can actually anchor, so a window is never sent a form its text lacks."""
+    forms: set[str] = set()
+    for chunk_bounds, extraction_bundle in chunked_request_map.items():
+        forms.update(
+            await get_chunk_forms(
+                subject_unique_id=subject_unique_id,
+                field_type=field_type,
+                chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_bundle,
                 llm_phrase_search_gpt_request_map=llm_phrase_search_gpt_request_map,
                 llm_phrase_recursive_search_gpt_request_map=llm_phrase_recursive_search_gpt_request_map,

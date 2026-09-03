@@ -59,7 +59,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node
     create_missing_mention_collection_requests,
     forms_occurring_in_window,
     get_chunk_fold,
-    get_chunk_forms,
+    get_subject_forms,
     get_window_locations,
     group_digest_payload,
     require_mention_metadata,
@@ -132,9 +132,13 @@ class LLMPhraseMentionCollectionNode(
 
         # PASS 1 — the group requests. Both search passes are complete by now (a
         # node only reaches its successor once its own requests are), so the
-        # chunk's pooled form list is final and each window's collection + group
-        # count can be computed once, upfront.
+        # pooled form list is final and each window's collection + group
+        # count can be computed once, upfront. 2026-09-02 (Phase B): the pool
+        # is SUBJECT-wide, not chunk-wide — a form found by search in one
+        # chunk anchors mention collection in every chunk whose text carries
+        # it (the measured cross-chunk gap; see ``get_subject_forms``).
         embedded_groups = False
+        subject_forms: list[str] | None = None
         for chunk_bounds, bundle in chunked_request_map.items():
             if not bundle.search_sub_bounds:
                 raise ValueError(
@@ -148,17 +152,17 @@ class LLMPhraseMentionCollectionNode(
             ]
             if not pending:
                 continue  # already embedded; forms stored and group count stable
-            chunk_forms = await get_chunk_forms(
-                subject_unique_id=subject_unique_id,
-                field_type=self.field_type,
-                chunk_bounds=chunk_bounds,
-                extraction_bundle=bundle,
-                llm_phrase_search_gpt_request_map=search_map,
-                llm_phrase_recursive_search_gpt_request_map=recursive_map,
-                timestamp=timestamp,
-            )
+            if subject_forms is None:
+                subject_forms = await get_subject_forms(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunked_request_map=chunked_request_map,
+                    llm_phrase_search_gpt_request_map=search_map,
+                    llm_phrase_recursive_search_gpt_request_map=recursive_map,
+                    timestamp=timestamp,
+                )
             for sub_bounds in pending:
-                forms = forms_occurring_in_window(subject_text, sub_bounds, chunk_forms)
+                forms = forms_occurring_in_window(subject_text, sub_bounds, subject_forms)
                 bundle.llm_phrase_mention_sent_forms[sub_bounds] = forms
                 collection = collect_sub_window(
                     subject_text, sub_bounds, forms, snippet_radius=mention_metadata.snippet_radius

@@ -159,6 +159,38 @@ async def test_pass_one_pools_the_chunks_forms_and_filters_each_window_by_occurr
 
 
 @pytest.mark.asyncio
+async def test_pass_one_pools_forms_subject_wide_across_chunks():
+    """2026-09-02 (Phase B): a form search found only in chunk A anchors
+    mention collection in chunk B when B's text carries it — the measured
+    cross-chunk gap (61 of the census's 1,419 missed entities). Occurrence
+    filtering still keeps a form out of any window whose text lacks it."""
+    page_c = "https://acme.example/c"
+    text = (
+        f"{SEP}\nhttps://acme.example/a\n\n"
+        "We stock Brass here.\n"
+        f"{SEP}\n{page_c}\n\n"
+        "Brass and Steel ship worldwide.\n"
+    )
+    split = text.index(f"{SEP}\n{page_c}")
+    chunk_a, chunk_b = f"0:{split}", f"{split}:{len(text)}"
+    node = _Node({"sa": _search(["Brass"]), "sb": _search(["Steel"])})
+    bundle_a = LLMPhraseExtractionRequestBundle(
+        search_sub_bounds=[chunk_a], llm_phrase_search_req_ids=["sa"]
+    )
+    bundle_b = LLMPhraseExtractionRequestBundle(
+        search_sub_bounds=[chunk_b], llm_phrase_search_req_ids=["sb"]
+    )
+    ctx = PipelineContext(subject_text=text)
+    await node.embed_request_ids(
+        SUBJECT, ctx, _metadata(50), {chunk_a: bundle_a, chunk_b: bundle_b}, T0
+    )
+    # chunk B never returned 'Brass' but its text carries it: the subject pool
+    # sends it; chunk A's text has no 'Steel', so occurrence filtering holds.
+    assert bundle_a.llm_phrase_mention_sent_forms == {chunk_a: ["Brass"]}
+    assert bundle_b.llm_phrase_mention_sent_forms == {chunk_b: ["Brass", "Steel"]}
+
+
+@pytest.mark.asyncio
 async def test_pass_two_assesses_every_window_once_and_retries_only_the_undescribed():
     node = _Node({"s0": _search(["Aluminum", "Brass"]), "s1": _search(["Lead"])})
     bundle = LLMPhraseExtractionRequestBundle(
