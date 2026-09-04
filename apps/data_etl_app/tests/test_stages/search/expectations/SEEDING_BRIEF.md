@@ -93,12 +93,18 @@ are all **not** equipment here. Most of them are `process_caps` (inspection and
 testing qualify there) or `material_caps`, so they are rarely lost — put them
 where they belong instead of dropping them.
 
-> **2026-09-04 drift note.** The IN-REPO `equipment_phrase_search.txt` now
-> carries a drafted metrology-INCLUSION change ("...or to measure, inspect, or
-> test the work") that is NOT yet published to the pins production runs use.
-> Seed to the clause quoted ABOVE (the published boundary) until the user
-> publishes; when that happens, re-copy the clause here and re-check every
-> `equipments` inventory (CMMs, testers and gauges become in-field).
+> **2026-09-04 drift note.** The IN-REPO search statics carry drafted changes
+> NOT yet published to the pins production runs use: equipments gains
+> metrology INCLUSION ("...or to measure, inspect, or test the work") and an
+> explicit software EXCLUSION; products gains a tooling carve-back (dies,
+> molds, jigs, fixtures the shop MAKES are products); process_caps gains a
+> software exclusion beside its engineering-inclusion sentence (user ruling
+> 2026-09-04: software is excluded from EVERY field until a SoftwareCapability
+> class exists in the ontology). Seed to the clauses quoted ABOVE (the
+> published boundary) until the user publishes; at publish, re-copy every
+> clause here and re-check the affected inventories (`equipments`: CMMs,
+> testers and gauges become in-field; `products`: made tooling entries
+> promote; software false-friends stay valid everywhere).
 
 ### `conformity_attestations`
 > A qualifying phrase names, states or implies a certification, accreditation,
