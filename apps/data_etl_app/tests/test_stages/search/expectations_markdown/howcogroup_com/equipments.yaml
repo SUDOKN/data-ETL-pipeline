@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
   sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 entries:
 - id: howcogroup_com-equipments-0001
@@ -909,6 +909,32 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+- id: howcogroup_com-equipments-0040
+  name: Full range of manual measuring equipment
+  status: candidate
+  acceptable_forms:
+  - Full range of manual measuring equipment
+  evidence:
+  - quote: Full range of manual measuring equipment
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: howcogroup_com-equipments-0041
+  name: Hardness testing (HBW, HRC, HRB)
+  status: candidate
+  acceptable_forms:
+  - Hardness testing (HBW, HRC, HRB)
+  evidence:
+  - quote: Hardness testing (HBW, HRC, HRB)
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
 false_friends:
 - form: CMM
   reason: the equipments clause explicitly excludes equipment that 'only measures, inspects, or tests the work'.

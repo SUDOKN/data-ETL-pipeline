@@ -271,6 +271,26 @@ port updated only field YAMLs) — harmless to the eval (loaders/validator use
 field pins) but `export_verify_packet.py` reads subject.yaml and would hand
 verifiers the OLD text; repin subject.yaml before using that tool.
 
+## Post-publish boundary work (2026-09-04, after the user published)
+
+The user published the drafted statics (metrology inclusion + software
+exclusions + tooling carve-back + engineering sentence + synthesis
+hardening) and re-ruled boundary ruling 4: **purely-sold machines are
+products, never equipments** (equipments = described production use only).
+Applied same day: SEEDING_BRIEF §4 re-copied from the published clauses;
+schema ruling 4 rewritten; 127 reseller_inventory equipments entries retired
+(acimachine 95, agstech 32 — merchandise lives in products); 15 metrology
+miss rows harvested into candidate equipments entries (5 skipped on
+quote-normalization mismatches — reseed targets); 9 made-tooling products
+promotions (agstech workholding ×5, anchor dies, decimal progressive die +
+EDM fixture, tanfel carbide tools) + 1 duplicate retired. F2's SHARP finding
+REVISED: the equipments/products split on dealer catalogs is now correct
+behavior by definition. Formal union-pass diff (owed item) DONE from the
+baseline dump: pass2 contributes 3,534 unique forms (17.3% of pass1 volume),
+1,284 judged in-field (+6.3%) — the union harvests the A/A nondeterminism
+even at temp 0; keep `search_union_pass=True` for baseline-comparable runs.
+`raw/union_pass_diff` numbers quoted here were computed 2026-09-04.
+
 ## A/A floor to print beside every judged number
 
 73/100 fresh pairs byte-identical (old 28.4%); per-form Jaccard 0.897

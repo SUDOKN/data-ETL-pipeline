@@ -205,10 +205,18 @@ row). Seed to these boundaries:
 3. **Plant and material handling stay OUT of equipments** (the prompt's
    powers/conditions/moves/stores/carries clause stands). A furnace or oven
    that treats the WORK is production equipment and stays in.
-4. **Merchandise machines are IN by nature**: a production machine qualifies
-   whether the subject uses it or sells it (actor flags carry the
-   relationship). Non-machine components a subject sells (valves, sensors)
-   are products, never equipments.
+4. **RE-RULED 2026-09-04 (user): purely-sold machines are PRODUCTS, not
+   equipments.** A machine appearing only as sale inventory (dealer
+   catalogs, resale listings, build-to-sell lines) is a made artifact —
+   seed it in `products` with `actor: reseller_inventory`. `equipments`
+   keeps only machines in DESCRIBED PRODUCTION USE by someone in the text
+   (the subject's shop, a client's line, a principal manufacturer's plant —
+   actor flags carry whose). Non-machine components a subject sells
+   (valves, sensors) were always products. The original 2026-09-03 form of
+   this ruling ("merchandise machines are IN by nature" for equipments) is
+   superseded; 127 reseller_inventory equipments entries (acimachine 95,
+   agstech 32) were retired under this re-ruling, their merchandise living
+   in `products`.
 5. **Engineering and design work IS a process capability** (SUDOKN
    EngineeringCapability / EngineeringDesignCapability / ToolDesign /
    RapidPrototyping / ReverseEngineering...). The search static now carries

@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/tanfel.com.txt
   sha256: 53677e8f457e9d5eb0d8ecccd9c480887f6af4f67e5383c03a2d014c4a14d2ff
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: 71 entries (51 own, 18 unknown, 2 client, 1 disputed); this file doubles as the contract_products inventory.
   Two clear own-brand groups (the four Tanfel-branded thread plug gage SKUs plus the gage line itself, and the silicone/membrane-switch
@@ -1384,7 +1384,7 @@ entries:
     source: markdown-cutover
 - id: tanfel_com-products-0051
   name: Carbide cutting tools
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - end mills
   - drill bits
@@ -1417,6 +1417,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: verified
+    by: assistant
+    date: '2026-09-04'
+    source: 'published tooling carve-back (products static, 2026-09-04): tooling made to order or for sale is a
+      made artifact; dispute reason was the old boundary only'
 - id: tanfel_com-products-0052
   name: Carbide custom parts, rods, bars and strips
   status: confirmed

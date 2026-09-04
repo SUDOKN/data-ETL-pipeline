@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
   sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: 'Sparse by nature of the text: exactly one named machine, on the New page. Any sizable yield beyond this
   entry is junk-minting signal; the company name ''101 Machine'' is the standing trap.'
@@ -48,6 +48,19 @@ entries:
     by: seed-agent-101machine-com
     date: '2026-08-27'
     source: corpus-seed
+- id: 101machine_com-equipments-0003
+  name: depth micrometer
+  status: candidate
+  acceptable_forms:
+  - depth micrometer
+  evidence:
+  - quote: Photo of depth micrometer
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
 false_friends:
 - form: 101 Machine
   reason: the subject's company name (nav + footer on every page), not equipment

@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
   sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
-eval_set_version: 6
+eval_set_version: 7
 expected_empty: false
 entries:
 - id: agstech_net-products-0001
@@ -6045,7 +6045,7 @@ entries:
       L1957 window and containment-matches 'smart sensors' too
 - id: agstech_net-products-0247
   name: power chucks
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - power chucks
   evidence:
@@ -6071,9 +6071,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: verified
+    by: assistant
+    date: '2026-09-04'
+    source: 'published tooling carve-back (products static, 2026-09-04): tooling made to order or for sale is a
+      made artifact; dispute reason was the old boundary only'
 - id: agstech_net-products-0248
   name: mandrels
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - mandrels
   evidence:
@@ -6097,9 +6102,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: verified
+    by: assistant
+    date: '2026-09-04'
+    source: 'published tooling carve-back (products static, 2026-09-04): tooling made to order or for sale is a
+      made artifact; dispute reason was the old boundary only'
 - id: agstech_net-products-0249
   name: collets
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - collets
   evidence:
@@ -6123,9 +6133,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: verified
+    by: assistant
+    date: '2026-09-04'
+    source: 'published tooling carve-back (products static, 2026-09-04): tooling made to order or for sale is a
+      made artifact; dispute reason was the old boundary only'
 - id: agstech_net-products-0250
   name: tombstone fixtures
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - tombstone fixtures
   evidence:
@@ -6151,9 +6166,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: verified
+    by: assistant
+    date: '2026-09-04'
+    source: 'published tooling carve-back (products static, 2026-09-04): tooling made to order or for sale is a
+      made artifact; dispute reason was the old boundary only'
 - id: agstech_net-products-0251
   name: bed-of-nails devices
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - bed-of-nails devices
   evidence:
@@ -6177,6 +6197,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: verified
+    by: assistant
+    date: '2026-09-04'
+    source: 'published tooling carve-back (products static, 2026-09-04): tooling made to order or for sale is a
+      made artifact; dispute reason was the old boundary only'
 - id: agstech_net-products-0252
   name: QualityLine manufacturing analytics software
   status: disputed

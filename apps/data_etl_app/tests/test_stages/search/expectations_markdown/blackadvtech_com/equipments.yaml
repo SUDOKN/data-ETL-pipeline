@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/blackadvtech.com.txt
   sha256: 40a6e76de90db2477b362b973f21897e40db88f0fd40b790c475bfe250ed6e65
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: 'The richest equipments inventory in the corpus: /about-us/facility/ publishes 92 numbered machines and /capabilities/machinery/
   publishes a second, partly different fleet with capacities. SEEDED TO THE PROMPT''S BOUNDARY, not to the everyday
@@ -3430,6 +3430,73 @@ entries:
     by: seed-agent-blackadvtech-com
     date: '2026-08-27'
     source: corpus-seed
+- id: blackadvtech_com-equipments-0190
+  name: calipers
+  status: candidate
+  acceptable_forms:
+  - calipers
+  evidence:
+  - quote: including calipers, CMM and micrometers
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: blackadvtech_com-equipments-0191
+  name: CMM
+  status: candidate
+  acceptable_forms:
+  - CMM
+  evidence:
+  - quote: including calipers, CMM and micrometers
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: blackadvtech_com-equipments-0192
+  name: gauges
+  status: candidate
+  acceptable_forms:
+  - gauges
+  evidence:
+  - quote: High-accuracy gauges, coordinate measuring machines (CMMs), and 3D laser scanners provide precise measurements
+      during production.
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: blackadvtech_com-equipments-0193
+  name: micrometers
+  status: candidate
+  acceptable_forms:
+  - micrometers
+  evidence:
+  - quote: including calipers, CMM and micrometers
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: blackadvtech_com-equipments-0194
+  name: vision systems
+  status: candidate
+  acceptable_forms:
+  - vision systems
+  evidence:
+  - quote: By integrating sensors, vision systems, and advanced software, robots can perform tasks with unparalleled
+      precision, consistency, and speed.
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
 false_friends:
 - form: Faro Arm Edge
   reason: METROLOGY. Listed under the facility list's QUALITY CONTROL heading; a portable CMM measures the work,

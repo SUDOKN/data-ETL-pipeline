@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/anchor-mfg.com.txt
   sha256: 1ef00fefa70380b4482e778d3dcecb9fafe6d9918b4c6a8dc5511dc34c9c68f1
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: SHARED OUTPUT NOTE - products and contract_products share one search output; this file serves as the expectation
   set for BOTH fields. Products appear as offering categories (metal stampings, welded assemblies, fabricated parts,
@@ -422,7 +422,7 @@ entries:
     source: corpus-seed
 - id: anchor-mfg_com-products-0023
   name: dies
-  status: disputed
+  status: confirmed
   acceptable_forms:
   - tool and die
   evidence:
@@ -436,6 +436,11 @@ entries:
     by: seed-agent-anchor-mfg-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: assistant
+    date: '2026-09-04'
+    source: 'published tooling carve-back (products static, 2026-09-04): tooling made to order or for sale is a
+      made artifact; dispute reason was the old boundary only'
 - id: anchor-mfg_com-products-0024
   name: metal safety assemblies
   status: candidate

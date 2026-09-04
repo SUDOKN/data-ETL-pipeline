@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
   sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
-eval_set_version: 4
+eval_set_version: 5
 expected_empty: false
 notes: 'DELIBERATELY NOT AN INVENTORY. The file carries 1,291 /equipment/ resale listings; recall on this subject
   is measured mainly by the mechanical brand/model sweep over listing pages, not by this entry list. The entries
@@ -22,7 +22,7 @@ notes: 'DELIBERATELY NOT AN INVENTORY. The file carries 1,291 /equipment/ resale
 entries:
 - id: acimachine_com-equipments-0001
   name: CHEVALIER FSG-3A1224
-  status: confirmed
+  status: retired
   acceptable_forms:
   - CHEVALIER FSG-3A1224
   - FSG-3A1224
@@ -30,7 +30,8 @@ entries:
   - quote: New CHEVALIER FSG-3A1224 | Reciprocating Surface Grinders
     approx_offset: 332892
   actor: reseller_inventory
-  notes: reciprocating surface grinder; also a homepage Featured Equipment item
+  notes: 'reciprocating surface grinder; also a homepage Featured Equipment item | retired 2026-09-04: sale-inventory
+    machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -48,10 +49,15 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
 - id: acimachine_com-equipments-0002
   name: WINEMA RV 10 FLEXMASTER
-  status: confirmed
+  status: retired
   acceptable_forms:
   - WINEMA RV 10 FLEXMASTER
   - RV 10 FLEXMASTER
@@ -59,7 +65,8 @@ entries:
   - quote: New WINEMA RV 10 FLEXMASTER | Rotary, Trunnion (Horizontal & Vertical) Transfer Machines
     approx_offset: 161758
   actor: reseller_inventory
-  notes: rotary indexing/transfer machine; long prose description on its listing
+  notes: 'rotary indexing/transfer machine; long prose description on its listing | retired 2026-09-04: sale-inventory
+    machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -72,9 +79,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0003
   name: JET HP-5
-  status: confirmed
+  status: retired
   acceptable_forms:
   - JET HP-5
   - HP-5
@@ -86,7 +98,8 @@ entries:
     is a proper substring of ''JET HP-5A'', a DIFFERENT machine with its own listing (/equipment/7191327-jet-hp-5a-h-frame-presses,
     8 ''JET HP-5'' vs 7 ''JET HP-5A'' occurrences). Under the schema''s containment-either-way matching a run that
     returned only ''JET HP-5A'' would falsely credit this entry. Narrow to ''JET HP-5'' only - the same caution
-    the seed itself applied to WELLSAW 1200.'
+    the seed itself applied to WELLSAW 1200. | retired 2026-09-04: sale-inventory machine, re-homed to products
+    by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -104,10 +117,15 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
 - id: acimachine_com-equipments-0004
   name: HURCO HM1700RI
-  status: confirmed
+  status: retired
   acceptable_forms:
   - HURCO HM1700RI
   - HM1700RI
@@ -132,10 +150,16 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0005
   name: CHEVALIER SMART-B1224III
-  status: confirmed
+  status: retired
   acceptable_forms:
   - CHEVALIER SMART-B1224III
   - SMART-B1224III
@@ -160,10 +184,16 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0006
   name: ACER E-LATHE 1760G
-  status: confirmed
+  status: retired
   acceptable_forms:
   - ACER E-LATHE 1760G
   - E-LATHE 1760G
@@ -188,10 +218,16 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0007
   name: SHARP SVL-2416SE-F
-  status: confirmed
+  status: retired
   acceptable_forms:
   - SHARP SVL-2416SE-F
   - SVL-2416SE-F
@@ -216,10 +252,16 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0008
   name: ACER DYNAMIC 7060G
-  status: confirmed
+  status: retired
   acceptable_forms:
   - ACER DYNAMIC 7060G
   - DYNAMIC 7060G
@@ -227,7 +269,8 @@ entries:
   - quote: New ACER DYNAMIC 7060G | Oil Field & Hollow Spindle Lathes
     approx_offset: 5277826
   actor: reseller_inventory
-  notes: category name contains the industries false friend 'Oil Field'
+  notes: 'category name contains the industries false friend ''Oil Field'' | retired 2026-09-04: sale-inventory
+    machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -245,10 +288,15 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
 - id: acimachine_com-equipments-0009
   name: SHARP STA-38
-  status: confirmed
+  status: retired
   acceptable_forms:
   - SHARP STA-38
   - STA-38
@@ -273,10 +321,16 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0010
   name: ACER SUPRA-618II
-  status: confirmed
+  status: retired
   acceptable_forms:
   - ACER SUPRA-618II
   - SUPRA-618II
@@ -301,10 +355,16 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0011
   name: JET BP-2248H
-  status: confirmed
+  status: retired
   acceptable_forms:
   - JET BP-2248H
   - BP-2248H
@@ -312,7 +372,8 @@ entries:
   - quote: New JET BP-2248H | Box & Pan Brakes including Finger
     approx_offset: 6553069
   actor: reseller_inventory
-  notes: sheet-metal brake; probes fabrication-equipment types
+  notes: 'sheet-metal brake; probes fabrication-equipment types | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -330,17 +391,23 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
 - id: acimachine_com-equipments-0012
   name: WELLSAW 1200
-  status: confirmed
+  status: retired
   acceptable_forms:
   - WELLSAW 1200
   evidence:
   - quote: New WELLSAW 1200 | Horizontal Band Saws
     approx_offset: 572646
   actor: reseller_inventory
-  notes: bare model '1200' deliberately NOT an acceptable form (numeric collision risk)
+  notes: 'bare model ''1200'' deliberately NOT an acceptable form (numeric collision risk) | retired 2026-09-04:
+    sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -358,10 +425,15 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
 - id: acimachine_com-equipments-0013
   name: HURCO VMX42I
-  status: confirmed
+  status: retired
   acceptable_forms:
   - HURCO VMX42I
   - VMX42I
@@ -369,7 +441,8 @@ entries:
   - quote: HURCO VMX42I
     approx_offset: 1668
   actor: reseller_inventory
-  notes: homepage Featured Equipment item; also has its own listing pages
+  notes: 'homepage Featured Equipment item; also has its own listing pages | retired 2026-09-04: sale-inventory
+    machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -382,17 +455,23 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0014
   name: FANUC Oi-TD control
-  status: confirmed
+  status: retired
   acceptable_forms:
   - FANUC Oi-TD
   evidence:
   - quote: This is a high precision CNC flat bed lathe with FANUC Oi-TD control.
     approx_offset: 1645507
   actor: reseller_inventory
-  notes: CNC control unit fitted to resold SHARP STA-series lathes; taxonomy-T (software/tooling) ambiguity acknowledged.
-    Representative of control-brand mentions in listing prose (FANUC 18iMB and Fanuc Oi-Mate MD also occur).
+  notes: 'CNC control unit fitted to resold SHARP STA-series lathes; taxonomy-T (software/tooling) ambiguity acknowledged.
+    Representative of control-brand mentions in listing prose (FANUC 18iMB and Fanuc Oi-Mate MD also occur). | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine
@@ -410,10 +489,15 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
   out_of_snapshot: true
 - id: acimachine_com-equipments-0015
   name: Drilling & Tapping Centers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Drilling & Tapping Centers
   evidence:
@@ -425,24 +509,36 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0016
   name: CNC Lathes
-  status: candidate
+  status: retired
   acceptable_forms:
   - CNC Lathes
   evidence:
   - quote: '## CNC Lathes'
     approx_offset: 643
   actor: reseller_inventory
-  notes: Equipment-category taxonomy, /categories index page.
+  notes: 'Equipment-category taxonomy, /categories index page. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0017
   name: Engine Lathes
-  status: candidate
+  status: retired
   acceptable_forms:
   - Engine Lathes
   evidence:
@@ -454,9 +550,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0018
   name: Gantry Machining Centers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Gantry Machining Centers
   evidence:
@@ -468,9 +570,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0019
   name: Vertical Machining Centers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Vertical Machining Centers
   evidence:
@@ -482,9 +590,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0020
   name: Vertical Mills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Vertical Mills
   evidence:
@@ -496,9 +610,15 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: acimachine_com-equipments-0021
   name: EDM/Laser Markers
-  status: candidate
+  status: retired
   acceptable_forms:
   - EDM/Laser Markers
   - EDM
@@ -506,1122 +626,1572 @@ entries:
   - quote: '# EDM/Laser Markers'
     approx_offset: 761
   actor: reseller_inventory
-  notes: Category page heading for the EDM/Laser Markers equipment type.
+  notes: 'Category page heading for the EDM/Laser Markers equipment type. | retired 2026-09-04: sale-inventory machine,
+    re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0022
   name: Rotary, Trunnion (Horizontal & Vertical) Transfer Machines
-  status: candidate
+  status: retired
   acceptable_forms:
   - Rotary, Trunnion (Horizontal & Vertical) Transfer Machines
   evidence:
   - quote: Rotary, Trunnion (Horizontal & Vertical) Transfer Machines
     approx_offset: 875
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0023
   name: Reciprocating Surface Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Reciprocating Surface Grinders
   evidence:
   - quote: Reciprocating Surface Grinders
     approx_offset: 2031
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0024
   name: Ironworkers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Ironworkers
   evidence:
   - quote: Ironworkers
     approx_offset: 2272
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0025
   name: Power Squaring Shears (Inch)
-  status: candidate
+  status: retired
   acceptable_forms:
   - Power Squaring Shears (Inch)
   evidence:
   - quote: Power Squaring Shears (Inch)
     approx_offset: 2290
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0026
   name: Horizontal Band Saws
-  status: candidate
+  status: retired
   acceptable_forms:
   - Horizontal Band Saws
   evidence:
   - quote: Horizontal Band Saws
     approx_offset: 26138
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0027
   name: Vertical Band Saws
-  status: candidate
+  status: retired
   acceptable_forms:
   - Vertical Band Saws
   evidence:
   - quote: Vertical Band Saws
     approx_offset: 26165
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0028
   name: Waterjet Cutters
-  status: candidate
+  status: retired
   acceptable_forms:
   - Waterjet Cutters
   evidence:
   - quote: Waterjet Cutters
     approx_offset: 47701
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0029
   name: Horizontal Machining Centers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Horizontal Machining Centers
   evidence:
   - quote: Horizontal Machining Centers
     approx_offset: 54266
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0030
   name: Horizontal Table Type Boring Mills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Horizontal Table Type Boring Mills
   evidence:
   - quote: Horizontal Table Type Boring Mills
     approx_offset: 65931
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0031
   name: Horizontal Floor Type Boring Mills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Horizontal Floor Type Boring Mills
   evidence:
   - quote: Horizontal Floor Type Boring Mills
     approx_offset: 66157
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0032
   name: Oil Field & Hollow Spindle Lathes
-  status: candidate
+  status: retired
   acceptable_forms:
   - Oil Field & Hollow Spindle Lathes
   evidence:
   - quote: Oil Field & Hollow Spindle Lathes
     approx_offset: 66586
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0033
   name: Universal Cylindrical Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Universal Cylindrical Grinders
   evidence:
   - quote: Universal Cylindrical Grinders
     approx_offset: 66678
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0034
   name: Arbor Presses
-  status: candidate
+  status: retired
   acceptable_forms:
   - Arbor Presses
   evidence:
   - quote: Arbor Presses
     approx_offset: 66976
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0035
   name: Belt Grinders Including Sanders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Belt Grinders Including Sanders
   evidence:
   - quote: Belt Grinders Including Sanders
     approx_offset: 66995
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0036
   name: Box & Pan Brakes including Finger
-  status: candidate
+  status: retired
   acceptable_forms:
   - Box & Pan Brakes including Finger
   evidence:
   - quote: Box & Pan Brakes including Finger
     approx_offset: 67032
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0037
   name: Circular Cold Saws
-  status: candidate
+  status: retired
   acceptable_forms:
   - Circular Cold Saws
   evidence:
   - quote: Circular Cold Saws
     approx_offset: 67071
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0038
   name: Combo 3-in-1 Sheet Metal Machines
-  status: candidate
+  status: retired
   acceptable_forms:
   - Combo 3-in-1 Sheet Metal Machines
   evidence:
   - quote: Combo 3-in-1 Sheet Metal Machines
     approx_offset: 67095
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0039
   name: Disc Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Disc Grinders
   evidence:
   - quote: Disc Grinders
     approx_offset: 67134
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0040
   name: Drilling & Tapping Machines
-  status: candidate
+  status: retired
   acceptable_forms:
   - Drilling & Tapping Machines
   evidence:
   - quote: Drilling & Tapping Machines
     approx_offset: 67153
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0041
   name: Foot Power Shears
-  status: candidate
+  status: retired
   acceptable_forms:
   - Foot Power Shears
   evidence:
   - quote: Foot Power Shears
     approx_offset: 67227
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0042
   name: Gear Head Drills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Gear Head Drills
   evidence:
   - quote: Gear Head Drills
     approx_offset: 67250
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0043
   name: H-Frame Presses
-  status: candidate
+  status: retired
   acceptable_forms:
   - H-Frame Presses
   evidence:
   - quote: H-Frame Presses
     approx_offset: 67272
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0044
   name: Hand Shears
-  status: candidate
+  status: retired
   acceptable_forms:
   - Hand Shears
   evidence:
   - quote: Hand Shears
     approx_offset: 67293
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0045
   name: Heavy Duty & Sensitive Single Spindle Drills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Heavy Duty & Sensitive Single Spindle Drills
   evidence:
   - quote: Heavy Duty & Sensitive Single Spindle Drills
     approx_offset: 67310
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0046
   name: High Speed Circular Saws (non-ferrous)
-  status: candidate
+  status: retired
   acceptable_forms:
   - High Speed Circular Saws (non-ferrous)
   evidence:
   - quote: High Speed Circular Saws (non-ferrous)
     approx_offset: 67361
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0047
   name: Milling & Drilling Machines (Combo)
-  status: candidate
+  status: retired
   acceptable_forms:
   - Milling & Drilling Machines (Combo)
   evidence:
   - quote: Milling & Drilling Machines (Combo)
     approx_offset: 67457
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0048
   name: Mixers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Mixers
   evidence:
   - quote: Mixers
     approx_offset: 67498
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0049
   name: Notching Machines
-  status: candidate
+  status: retired
   acceptable_forms:
   - Notching Machines
   evidence:
   - quote: Notching Machines
     approx_offset: 67510
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0050
   name: Pedestal Type Grinders (Double End)
-  status: candidate
+  status: retired
   acceptable_forms:
   - Pedestal Type Grinders (Double End)
   evidence:
   - quote: Pedestal Type Grinders (Double End)
     approx_offset: 67552
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0051
   name: Plate Bending Rolls including Pinch
-  status: candidate
+  status: retired
   acceptable_forms:
   - Plate Bending Rolls including Pinch
   evidence:
   - quote: Plate Bending Rolls including Pinch
     approx_offset: 67593
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0052
   name: Power Squaring Shears (Gauge)
-  status: candidate
+  status: retired
   acceptable_forms:
   - Power Squaring Shears (Gauge)
   evidence:
   - quote: Power Squaring Shears (Gauge)
     approx_offset: 67634
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0053
   name: Radial Drills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Radial Drills
   evidence:
   - quote: Radial Drills
     approx_offset: 67669
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0054
   name: Shapers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Shapers
   evidence:
   - quote: Shapers
     approx_offset: 67745
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0055
   name: Trimming, Beading & Flanging Machines
-  status: candidate
+  status: retired
   acceptable_forms:
   - Trimming, Beading & Flanging Machines
   evidence:
   - quote: Trimming, Beading & Flanging Machines
     approx_offset: 67772
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0056
   name: Woodworking Band Saws
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Band Saws
   evidence:
   - quote: Woodworking Band Saws
     approx_offset: 67861
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0057
   name: Woodworking Jointers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Jointers
   evidence:
   - quote: Woodworking Jointers
     approx_offset: 67888
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0058
   name: Woodworking Lathes
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Lathes
   evidence:
   - quote: Woodworking Lathes
     approx_offset: 67914
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0059
   name: Woodworking Mortisers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Mortisers
   evidence:
   - quote: Woodworking Mortisers
     approx_offset: 67938
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0060
   name: Woodworking Planers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Planers
   evidence:
   - quote: Woodworking Planers
     approx_offset: 67965
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0061
   name: Woodworking Sanders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Sanders
   evidence:
   - quote: Woodworking Sanders
     approx_offset: 67990
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0062
   name: Woodworking Saws
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Saws
   evidence:
   - quote: Woodworking Saws
     approx_offset: 68015
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0063
   name: Woodworking Shapers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Shapers
   evidence:
   - quote: Woodworking Shapers
     approx_offset: 68037
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0064
   name: Woodworking Table Saws
-  status: candidate
+  status: retired
   acceptable_forms:
   - Woodworking Table Saws
   evidence:
   - quote: Woodworking Table Saws
     approx_offset: 68062
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0065
   name: Bed Type Mills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Bed Type Mills
   evidence:
   - quote: Bed Type Mills
     approx_offset: 90449
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0066
   name: Portable Drills including Magnetic Base
-  status: candidate
+  status: retired
   acceptable_forms:
   - Portable Drills including Magnetic Base
   evidence:
   - quote: Portable Drills including Magnetic Base
     approx_offset: 90680
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0067
   name: Way or Reciprocating Table Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Way or Reciprocating Table Grinders
   evidence:
   - quote: Way or Reciprocating Table Grinders
     approx_offset: 90871
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0068
   name: 5-Axis or More CNC Lathes
-  status: candidate
+  status: retired
   acceptable_forms:
   - 5-Axis or More CNC Lathes
   evidence:
   - quote: 5-Axis or More CNC Lathes
     approx_offset: 120821
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0069
   name: Creep Feed Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Creep Feed Grinders
   evidence:
   - quote: Creep Feed Grinders
     approx_offset: 121058
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0070
   name: Gap Lathes
-  status: candidate
+  status: retired
   acceptable_forms:
   - Gap Lathes
   evidence:
   - quote: Gap Lathes
     approx_offset: 121164
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0071
   name: Plain Horizontal Mills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Plain Horizontal Mills
   evidence:
   - quote: Plain Horizontal Mills
     approx_offset: 121635
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0072
   name: Precision Lathes
-  status: candidate
+  status: retired
   acceptable_forms:
   - Precision Lathes
   evidence:
   - quote: Precision Lathes
     approx_offset: 121803
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0073
   name: Profile Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Profile Grinders
   evidence:
   - quote: Profile Grinders
     approx_offset: 121822
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0074
   name: Robots
-  status: candidate
+  status: retired
   acceptable_forms:
   - Robots
   evidence:
   - quote: Robots
     approx_offset: 121890
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0075
   name: Rotary Surface Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Rotary Surface Grinders
   evidence:
   - quote: Rotary Surface Grinders
     approx_offset: 121899
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0076
   name: Swiss Type Automatic Screw Machines
-  status: candidate
+  status: retired
   acceptable_forms:
   - Swiss Type Automatic Screw Machines
   evidence:
   - quote: Swiss Type Automatic Screw Machines
     approx_offset: 122025
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0077
   name: Universal Machining Centers
-  status: candidate
+  status: retired
   acceptable_forms:
   - Universal Machining Centers
   evidence:
   - quote: Universal Machining Centers
     approx_offset: 122136
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0078
   name: Vertical & Horizontal Mills
-  status: candidate
+  status: retired
   acceptable_forms:
   - Vertical & Horizontal Mills
   evidence:
   - quote: Vertical & Horizontal Mills
     approx_offset: 122166
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0079
   name: Vertical Boring Mills (incld VTL)
-  status: candidate
+  status: retired
   acceptable_forms:
   - Vertical Boring Mills (incld VTL)
   evidence:
   - quote: Vertical Boring Mills (incld VTL)
     approx_offset: 122217
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0080
   name: Vertical Universal Grinders
-  status: candidate
+  status: retired
   acceptable_forms:
   - Vertical Universal Grinders
   evidence:
   - quote: Vertical Universal Grinders
     approx_offset: 122253
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0081
   name: Welding Robots
-  status: candidate
+  status: retired
   acceptable_forms:
   - Welding Robots
   evidence:
   - quote: Welding Robots
     approx_offset: 122340
   actor: reseller_inventory
-  notes: /types index page, 'Additional Types' catalog list.
+  notes: '/types index page, ''Additional Types'' catalog list. | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0082
   name: OB7
-  status: candidate
+  status: retired
   acceptable_forms:
   - OB7
   evidence:
   - quote: PRODUCTIVE ROBOTICS OB7
     approx_offset: 154823
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0083
   name: OB7 Max 8
-  status: candidate
+  status: retired
   acceptable_forms:
   - OB7 Max 8
   evidence:
   - quote: PRODUCTIVE ROBOTICS OB7 Max 8
     approx_offset: 154849
   actor: reseller_inventory
-  notes: Own equipment detail page.
+  notes: 'Own equipment detail page. | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0084
   name: OB7 Stretch
-  status: candidate
+  status: retired
   acceptable_forms:
   - OB7 Stretch
   evidence:
   - quote: PRODUCTIVE ROBOTICS OB7 Stretch
     approx_offset: 154881
   actor: reseller_inventory
-  notes: Own equipment detail page.
+  notes: 'Own equipment detail page. | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0085
   name: Blaze MIG
-  status: candidate
+  status: retired
   acceptable_forms:
   - Blaze MIG
   evidence:
   - quote: PRODUCTIVE ROBOTICS Blaze MIG
     approx_offset: 154915
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0086
   name: Lathe Package - All inclusive lathe tending package
-  status: candidate
+  status: retired
   acceptable_forms:
   - Lathe Package
   evidence:
   - quote: PRODUCTIVE ROBOTICS Lathe Package - All inclusive lathe tending package
     approx_offset: 154947
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0087
   name: Mill Package - All inclusive mill package
-  status: candidate
+  status: retired
   acceptable_forms:
   - Mill Package
   evidence:
   - quote: PRODUCTIVE ROBOTICS Mill Package - All inclusive mill package
     approx_offset: 155021
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0088
   name: OB7 Max 12
-  status: candidate
+  status: retired
   acceptable_forms:
   - OB7 Max 12
   evidence:
   - quote: PRODUCTIVE ROBOTICS OB7 Max 12
     approx_offset: 155085
   actor: reseller_inventory
-  notes: Own equipment detail page.
+  notes: 'Own equipment detail page. | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0089
   name: OB7 Max 16
-  status: candidate
+  status: retired
   acceptable_forms:
   - OB7 Max 16
   evidence:
   - quote: PRODUCTIVE ROBOTICS OB7 Max 16
     approx_offset: 155118
   actor: reseller_inventory
-  notes: Own equipment detail page.
+  notes: 'Own equipment detail page. | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0090
   name: Blaze MAX Mobile - Laser or MIG Welder
-  status: candidate
+  status: retired
   acceptable_forms:
   - Blaze MAX Mobile
   evidence:
   - quote: PRODUCTIVE ROBOTICS Blaze MAX Mobile - Laser or MIG Welder
     approx_offset: 157771
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0091
   name: Blaze Mobile - Laser or MIG Welder
-  status: candidate
+  status: retired
   acceptable_forms:
   - Blaze Mobile
   evidence:
   - quote: PRODUCTIVE ROBOTICS Blaze Mobile - Laser or MIG Welder
     approx_offset: 157832
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0092
   name: Blaze LF - Laser or MIG Welder
-  status: candidate
+  status: retired
   acceptable_forms:
   - Blaze LF
   evidence:
   - quote: PRODUCTIVE ROBOTICS Blaze LF - Laser or MIG Welder
     approx_offset: 157889
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0093
   name: Blaze Laser Cell
-  status: candidate
+  status: retired
   acceptable_forms:
   - Blaze Laser Cell
   evidence:
   - quote: PRODUCTIVE ROBOTICS Blaze Laser Cell
     approx_offset: 157942
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0094
   name: Blaze Laser and Laser Max
-  status: candidate
+  status: retired
   acceptable_forms:
   - Blaze Laser and Laser Max
   evidence:
   - quote: PRODUCTIVE ROBOTICS Blaze Laser and Laser Max
     approx_offset: 157981
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0095
   name: Blaze MIG Cell
-  status: candidate
+  status: retired
   acceptable_forms:
   - Blaze MIG Cell
   evidence:
   - quote: PRODUCTIVE ROBOTICS Blaze MIG Cell
     approx_offset: 158029
   actor: reseller_inventory
-  notes: Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page.
+  notes: 'Productive Robotics welding-cobot / machine-tending-cobot model, /brands/productive-robotics page. | retired
+    2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: acimachine_com-equipments-0096
   name: Miller OptX
   status: candidate

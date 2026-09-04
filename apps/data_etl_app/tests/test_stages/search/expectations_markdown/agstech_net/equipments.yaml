@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
   sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
-eval_set_version: 6
+eval_set_version: 8
 expected_empty: false
 notes: Deliberately small relative to the subject's size. This site sells and describes hundreds of test instruments,
   hand tools, material-handling gear and tooling, all of which the equipments clause excludes; they are seeded as
@@ -72,7 +72,7 @@ entries:
       reserved, not retired'
 - id: agstech_net-equipments-0003
   name: hose crimping machine
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Hose Crimping Machines
   evidence:
@@ -81,9 +81,10 @@ entries:
   - quote: Hose Crimping Machines
     approx_offset: 46412
   actor: reseller_inventory
-  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+  notes: 'Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
     Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
-    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products. | retired 2026-09-04:
+    sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -96,9 +97,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0004
   name: power tools
-  status: disputed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Power Tools
@@ -110,7 +116,7 @@ entries:
     so products is the likelier home. | ''Private Label Power Tools'' is a merchandise category the site itself
     groups with hand tools (''We can private label these hand tools'' sits under the Power Tools heading). A hand-held
     tool the operator drives is arguable as a production machine; the power tools that do act on the work are already
-    covered by products-0124'
+    covered by products-0124 | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -131,6 +137,11 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0005
   name: flowlines
   status: confirmed
@@ -1000,14 +1011,15 @@ entries:
     source: markdown-cutover
 - id: agstech_net-equipments-0045
   name: brazing machines
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Brazing Machines
   evidence:
   - quote: Brazing Machines (We private label these with your brand name and logo if you wish)
     approx_offset: 45697
   actor: reseller_inventory
-  notes: private-labelled machine AGS-TECH resells
+  notes: 'private-labelled machine AGS-TECH resells | retired 2026-09-04: sale-inventory machine, re-homed to products
+    by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1020,9 +1032,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0046
   name: collaborative robots
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Collaborative Robots
   evidence:
@@ -1041,9 +1058,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: agstech_net-equipments-0047
   name: hose crimping machines
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Hose Crimping Machines
   evidence:
@@ -1062,16 +1085,23 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: agstech_net-equipments-0048
   name: hose cut-off / skive machine
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Hose-Cut-Off-Skive-Machine
   evidence:
   - quote: Hose-Cut-Off-Skive-Machine  (We private label these with your brand name and logo if you wish)
     approx_offset: 46503
   actor: reseller_inventory
-  notes: 'NOTE: the line carries two non-breaking spaces before the parenthetical'
+  notes: 'NOTE: the line carries two non-breaking spaces before the parenthetical | retired 2026-09-04: sale-inventory
+    machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1084,9 +1114,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0049
   name: hose endforming machines
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Hose Endforming Machines
   evidence:
@@ -1105,9 +1140,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: agstech_net-equipments-0050
   name: robot palletizing workstation
-  status: disputed
+  status: retired
   acceptable_forms:
   - Robot Palletizing Workstation
   evidence:
@@ -1116,7 +1157,8 @@ entries:
   actor: reseller_inventory
   notes: 'palletizing stacks finished goods, i.e. it ''moves, stores, or carries what it makes'', which the equipment
     clause excludes. (The palletizing operation is still sound under process_caps-0260, whose clause carries no
-    handling exclusion.) | RULING 2026-09-03 (R3-plant-handling-out): material handling stays OUT of equipments'
+    handling exclusion.) | RULING 2026-09-03 (R3-plant-handling-out): material handling stays OUT of equipments
+    | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1136,9 +1178,14 @@ entries:
     by: assistant
     date: '2026-09-03'
     source: user-boundary-ruling-2026-09-03:R3-plant-handling-out
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0051
   name: robotic laser welding workstation
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Robotic Laser Welding Workstation
   evidence:
@@ -1157,9 +1204,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: agstech_net-equipments-0052
   name: servo C-frame utility press
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Servo C-Frame Utility Press
   evidence:
@@ -1178,9 +1231,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: agstech_net-equipments-0053
   name: tube bending machines
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Tube Bending Machines
   evidence:
@@ -1199,9 +1258,15 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
+  notes: 'retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
 - id: agstech_net-equipments-0054
   name: tube bending machine
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Tube Bending Machines
   evidence:
@@ -1210,9 +1275,10 @@ entries:
   - quote: Tube Bending Machines
     approx_offset: 47662
   actor: reseller_inventory
-  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+  notes: 'Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
     Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
-    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products. | retired 2026-09-04:
+    sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1225,16 +1291,22 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0055
   name: welding robots
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Welding Robots
   evidence:
   - quote: Welding Robots Brochure
     approx_offset: 47752
   actor: reseller_inventory
-  notes: brochure of machines AGS-TECH supplies and integrates
+  notes: 'brochure of machines AGS-TECH supplies and integrates | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1247,18 +1319,24 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0056
   name: brazing machine
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Brazing Machines
   evidence:
   - quote: '- Brazing Machines'
     approx_offset: 230754
   actor: reseller_inventory
-  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+  notes: 'Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
     Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
-    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products. | retired 2026-09-04:
+    sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1271,9 +1349,14 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0057
   name: hose / tube endforming machine
-  status: confirmed
+  status: retired
   acceptable_forms:
   - Hose Endforming Machines
   - Tube Endforming Machine
@@ -1283,9 +1366,10 @@ entries:
   - quote: Tube Endforming Machine
     approx_offset: 243466
   actor: reseller_inventory
-  notes: Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
+  notes: 'Named in a private-label / white-label CATALOG LIST of goods AGS-TECH resells, not as a machine they run.
     Seeded here as DISPUTED because it is unambiguously a production machine under the equipments clause (it acts
-    on the work) while the actor is reseller_inventory; the primary entry for it is under products.
+    on the work) while the actor is reseller_inventory; the primary entry for it is under products. | retired 2026-09-04:
+    sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -1298,6 +1382,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0058
   name: electron beam gun
   status: confirmed
@@ -2210,7 +2299,7 @@ entries:
       reserved, not retired'
 - id: agstech_net-equipments-0086
   name: brazing machines (resold)
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Brazing Machines
@@ -2220,7 +2309,7 @@ entries:
   actor: reseller_inventory
   notes: 'resold and private-labelled, not run by AGS-TECH: ''Brazing Machines (We private label these with your
     brand name and logo if you wish. This way you can promote your  brand name when you resell these machines to
-    your customers)'''
+    your customers)'' | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -2238,6 +2327,11 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0087
   name: oxyacetylene torch
   status: confirmed
@@ -2494,7 +2588,7 @@ entries:
       reserved, not retired'
 - id: agstech_net-equipments-0095
   name: fusion splicing machine
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Fusion splicing machines
@@ -2505,7 +2599,8 @@ entries:
     approx_offset: 1009935
   actor: reseller_inventory
   notes: 'DISPUTED: a resold instrument, so the seeding brief files it under products; recorded here too because
-    a fusion splicer does act on the work and so reads as a production machine'
+    a fusion splicer does act on the work and so reads as a production machine | retired 2026-09-04: sale-inventory
+    machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -2523,9 +2618,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0096
   name: portable fiber optic polishing machine
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - portable fiber optic polishing machine
@@ -2534,7 +2634,8 @@ entries:
       ribbon fiber buff stripper, FTTH tool bag, portable fiber optic polishing machine.
     approx_offset: 1024834
   actor: reseller_inventory
-  notes: 'DISPUTED: a resold FTTH tool; a polishing machine acts on the work, so the equipments boundary is arguable'
+  notes: 'DISPUTED: a resold FTTH tool; a polishing machine acts on the work, so the equipments boundary is arguable
+    | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -2552,6 +2653,11 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0097
   name: shell-hardening oven
   status: confirmed
@@ -4069,7 +4175,7 @@ entries:
       reserved, not retired'
 - id: agstech_net-equipments-0149
   name: hose cut-off skive machine
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Hose-Cut-Off-Skive-Machine
@@ -4077,7 +4183,8 @@ entries:
   - quote: - Hose-Cut-Off-Skive-Machine  (We private label these with your brand name and logo if you wish)
     approx_offset: 466739
   actor: reseller_inventory
-  notes: equipment page, resold and private-labelled machine
+  notes: 'equipment page, resold and private-labelled machine | retired 2026-09-04: sale-inventory machine, re-homed
+    to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4095,9 +4202,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0150
   name: mini lathe
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Mini Lathe
@@ -4105,7 +4217,8 @@ entries:
   - quote: '- Mini Lathe'
     approx_offset: 466839
   actor: reseller_inventory
-  notes: equipment page; a resold tabletop production machine, not one AGS-TECH is said to run
+  notes: 'equipment page; a resold tabletop production machine, not one AGS-TECH is said to run | retired 2026-09-04:
+    sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4123,9 +4236,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0151
   name: mini milling machine
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Mini Milling Machine
@@ -4133,7 +4251,8 @@ entries:
   - quote: '- Mini Milling Machine'
     approx_offset: 466853
   actor: reseller_inventory
-  notes: equipment page, resold machine
+  notes: 'equipment page, resold machine | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4151,9 +4270,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0152
   name: mini hobbing machine
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Mini Hobbing Machine
@@ -4161,7 +4285,8 @@ entries:
   - quote: '- Mini Hobbing Machine'
     approx_offset: 466877
   actor: reseller_inventory
-  notes: equipment page, resold machine
+  notes: 'equipment page, resold machine | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4179,9 +4304,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0153
   name: mini stamping press
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Mini Stamping Press
@@ -4189,7 +4319,8 @@ entries:
   - quote: '- Mini Stamping Press'
     approx_offset: 466901
   actor: reseller_inventory
-  notes: equipment page, resold machine
+  notes: 'equipment page, resold machine | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4207,9 +4338,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0154
   name: mini laser cutter
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Mini Laser Cutter
@@ -4217,7 +4353,8 @@ entries:
   - quote: '- Mini Laser Cutter'
     approx_offset: 466924
   actor: reseller_inventory
-  notes: equipment page, resold machine
+  notes: 'equipment page, resold machine | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4235,9 +4372,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0155
   name: mini waterjet cutter
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Mini Waterjet Cutter
@@ -4245,7 +4387,8 @@ entries:
   - quote: '- Mini Waterjet Cutter'
     approx_offset: 466945
   actor: reseller_inventory
-  notes: equipment page, resold machine
+  notes: 'equipment page, resold machine | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4263,9 +4406,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0156
   name: mini plasma cutter
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Mini Plasma Cutter
@@ -4273,7 +4421,8 @@ entries:
   - quote: '- Mini Plasma Cutter'
     approx_offset: 466969
   actor: reseller_inventory
-  notes: equipment page, resold machine
+  notes: 'equipment page, resold machine | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4291,9 +4440,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0157
   name: ultrasonic drill
-  status: confirmed
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Ultrasonic Drill
@@ -4301,7 +4455,8 @@ entries:
   - quote: '- Ultrasonic Drill'
     approx_offset: 467201
   actor: reseller_inventory
-  notes: equipment page, resold machine
+  notes: 'equipment page, resold machine | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4
+    revision'
   provenance:
   - action: added
     by: seed-agent-agstech-net
@@ -4319,6 +4474,11 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0158
   name: kiln
   status: confirmed
@@ -4459,7 +4619,7 @@ entries:
     source: markdown-cutover
 - id: agstech_net-equipments-0163
   name: hose endforming machine
-  status: candidate
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Hose Endforming Machines
@@ -4467,7 +4627,8 @@ entries:
   - quote: Hose Endforming Machines and Tools
     approx_offset: 201416
   actor: reseller_inventory
-  notes: the sibling of 'Hose Crimping Machines' (equipments-0003); an end-forming machine forms the hose itself
+  notes: 'the sibling of ''Hose Crimping Machines'' (equipments-0003); an end-forming machine forms the hose itself
+    | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: verify-agents-agstech-p1-p10
@@ -4482,17 +4643,23 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0164
   name: equipment to cut, drill, polish
-  status: candidate
+  status: retired
   acceptable_forms:
   - Equipment to Cut Drill Polish
   evidence:
   - quote: Equipment to Cut Drill Polish
     approx_offset: 154714
   actor: reseller_inventory
-  notes: line 4022, the last submenu on the cutting-tools page; machines that cut, drill and polish act on the work,
-    and every other submenu on that page was seeded (as products).
+  notes: 'line 4022, the last submenu on the cutting-tools page; machines that cut, drill and polish act on the
+    work, and every other submenu on that page was seeded (as products). | retired 2026-09-04: sale-inventory machine,
+    re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: verify-agents-agstech-p1-p10
@@ -4502,6 +4669,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0165
   name: EDM head
   status: candidate
@@ -4552,7 +4724,7 @@ entries:
     reason: no acceptable form occurs in the text; the miss could not be evidenced
 - id: agstech_net-equipments-0167
   name: electrolytic polisher
-  status: candidate
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - electrolytic polisher
@@ -4562,7 +4734,7 @@ entries:
     approx_offset: 976609
   actor: reseller_inventory
   notes: 'same list and same argument as the mini grinder: polishing removes material from the work. Seeded only
-    as products-0686'
+    as products-0686 | retired 2026-09-04: sale-inventory machine, re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: verify-agents-agstech-p1-p10
@@ -4581,6 +4753,11 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0168
   name: sinker EDM machine
   status: candidate
@@ -4634,7 +4811,7 @@ entries:
       reserved, not retired'
 - id: agstech_net-equipments-0170
   name: robotic laser welding workstation
-  status: candidate
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Robotic Laser Welding Workstation
@@ -4642,7 +4819,8 @@ entries:
   - quote: '- Robotic Laser Welding Workstation'
     approx_offset: 775579
   actor: reseller_inventory
-  notes: a machine that welds the work; passes the equipments clause
+  notes: 'a machine that welds the work; passes the equipments clause | retired 2026-09-04: sale-inventory machine,
+    re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: verify-agents-agstech-p1-p10
@@ -4657,9 +4835,14 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0171
   name: welding robots
-  status: candidate
+  status: retired
   out_of_snapshot: true
   acceptable_forms:
   - Welding Robots
@@ -4667,7 +4850,8 @@ entries:
   - quote: '- Welding Robots Brochure'
     approx_offset: 775885
   actor: reseller_inventory
-  notes: a machine that welds the work; passes the equipments clause
+  notes: 'a machine that welds the work; passes the equipments clause | retired 2026-09-04: sale-inventory machine,
+    re-homed to products by ruling-4 revision'
   provenance:
   - action: added
     by: verify-agents-agstech-p1-p10
@@ -4682,6 +4866,11 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: 'user-boundary-re-ruling-2026-09-04: purely-sold machines are products (schema ruling 4 revised); merchandise
+      lives in products with actor reseller_inventory'
 - id: agstech_net-equipments-0172
   name: milling machine
   status: candidate
@@ -4731,6 +4920,32 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+- id: agstech_net-equipments-0174
+  name: Hardness Testers
+  status: candidate
+  acceptable_forms:
+  - Hardness Testers
+  evidence:
+  - quote: '#### Hardness Testers'
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: agstech_net-equipments-0175
+  name: Thickness and Flaw Gauges & Detectors
+  status: candidate
+  acceptable_forms:
+  - Thickness and Flaw Gauges & Detectors
+  evidence:
+  - quote: '#### Thickness and Flaw Gauges & Detectors'
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
 false_friends:
 - form: Hardness Testers
   reason: 'witnessed (93, 109, 452): real, but a TEST instrument, which the equipments clause excludes; it belongs

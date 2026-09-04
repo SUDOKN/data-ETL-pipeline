@@ -68,8 +68,19 @@ changes, re-copy them here and re-check the affected inventories.
 > A qualifying phrase names, states or implies a manufacturing process,
 > operation, or capability — an operation performed on materials, parts, or
 > products at any stage of production, from raw material through to finished
-> goods ready to ship. **Inspection, testing, and measurement performed on the
-> work are operations, and qualify.**
+> goods ready to ship. Acting on the work is what makes an operation qualify,
+> which separates it from commercial and logistics services — sourcing,
+> procurement, warehousing, inventory, shipping, and project or supply-chain
+> management — which move or administer goods rather than perform work on
+> them. **Inspection, testing, and measurement performed on the work are
+> operations, and qualify.** Engineering, design, and development work that
+> shapes how the work will be made — designing parts, tooling, or processes,
+> programming, prototyping, simulation, and analysis — is itself a
+> capability, and qualifies. The software worked in is not itself a
+> capability: a phrase naming a software system or program, rather than the
+> work done with it, does not qualify.
+
+(Re-copied at the 2026-09-04 publish.)
 
 ### `material_caps`
 > A qualifying phrase names, states or implies a material — a substance that the
@@ -80,31 +91,25 @@ changes, re-copy them here and re-check the affected inventories.
 
 ### `equipments`
 > A qualifying phrase names, states or implies a production machine — a device
-> or system used directly to process, shape, assemble, or convert materials into
-> finished goods. A production machine **acts on the work itself**, which is what
-> separates it from equipment that only **measures, inspects, or tests** the
-> work, from equipment that **powers or conditions the plant** or **moves,
-> stores, or carries** what it makes, and from **tooling**, which is what a
-> machine holds, guides, or acts through rather than the machine driving it.
+> or system used directly to process, shape, assemble, or convert materials
+> into finished goods, or to measure, inspect, or test the work. Acting on the
+> work or gauging it is what separates such a machine:
+> - from equipment that powers or conditions the plant or moves, stores, or
+>   carries what it makes,
+> - from tooling, which is what a machine holds, guides, or acts through
+>   rather than the machine driving it,
+> - and from software, which is a program the shop works in — for design,
+>   programming, planning, or business — rather than a machine, even when the
+>   text names it like one.
 
-Read that exclusion list twice. A CMM, a hardness tester, an air compressor, a
-forklift, a storage rack, a die, a mold, a jig, a fixture and a cutting insert
-are all **not** equipment here. Most of them are `process_caps` (inspection and
-testing qualify there) or `material_caps`, so they are rarely lost — put them
-where they belong instead of dropping them.
-
-> **2026-09-04 drift note.** The IN-REPO search statics carry drafted changes
-> NOT yet published to the pins production runs use: equipments gains
-> metrology INCLUSION ("...or to measure, inspect, or test the work") and an
-> explicit software EXCLUSION; products gains a tooling carve-back (dies,
-> molds, jigs, fixtures the shop MAKES are products); process_caps gains a
-> software exclusion beside its engineering-inclusion sentence (user ruling
-> 2026-09-04: software is excluded from EVERY field until a SoftwareCapability
-> class exists in the ontology). Seed to the clauses quoted ABOVE (the
-> published boundary) until the user publishes; at publish, re-copy every
-> clause here and re-check the affected inventories (`equipments`: CMMs,
-> testers and gauges become in-field; `products`: made tooling entries
-> promote; software false-friends stay valid everywhere).
+(Re-copied at the 2026-09-04 publish.) Metrology now QUALIFIES: a CMM, a
+hardness tester, an optical comparator gauge the work and are in-field. Still
+out: air compressors, forklifts, storage racks (plant/handling), dies, molds,
+jigs, fixtures, cutting inserts (tooling — but tooling the shop MAKES is a
+`products` entry), and every software system. And per the merchandise
+re-ruling (schema ruling 4, 2026-09-04): a machine appearing ONLY as sale
+inventory is a `products` entry with `actor: reseller_inventory`, never an
+equipments one — equipments keeps machines in described production use.
 
 ### `conformity_attestations`
 > A qualifying phrase names, states or implies a certification, accreditation,
@@ -123,7 +128,13 @@ either way. Seed them `disputed` with the argument in `notes`.
 > of the work is what qualifies an artifact**, which separates it from the
 > machinery, tooling, and facilities the work is done with, and from awards,
 > memberships, training, documents, and the names of companies, brands, or
-> customer groups.
+> customer groups. **Tooling is excluded only as the shop's own working gear:
+> dies, molds, jigs, and fixtures that themselves come out of the work — made
+> to order or made for sale — are made artifacts, and qualify.**
+
+(Re-copied at the 2026-09-04 publish. Also per the merchandise re-ruling:
+machines listed purely as sale inventory are products entries,
+`actor: reseller_inventory`.)
 
 `products.yaml` doubles as the `contract_products` inventory — they share one
 physical search request. Do not write a separate file.

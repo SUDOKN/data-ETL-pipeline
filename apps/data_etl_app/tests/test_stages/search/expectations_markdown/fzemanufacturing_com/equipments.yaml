@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/fzemanufacturing.com.txt
   sha256: 41bc08973f13f73074f858a2ac6fc7aeca398f9302b733d638b201ec3683d223
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 notes: 'The strongest owned-machine roster in the corpus: two listings on /equipment/ naming ~35 machines by make
   and model. SEEDED TO THE PROMPT''S BOUNDARY, not to the everyday sense of ''equipment'': the Sheffield Discovery
@@ -1372,6 +1372,46 @@ entries:
     by: seed-agent-fzemanufacturing-com
     date: '2026-08-27'
     source: corpus-seed
+- id: fzemanufacturing_com-equipments-0064
+  name: CMM
+  status: candidate
+  acceptable_forms:
+  - CMM
+  evidence:
+  - quote: Inspection, including visual inspection, CMM, and optical monitoring
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: fzemanufacturing_com-equipments-0065
+  name: gages
+  status: candidate
+  acceptable_forms:
+  - gages
+  evidence:
+  - quote: using gages and visual acceptance while machining, grinding, polishing, deburring, broaching, sawing,
+      assembly
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
+- id: fzemanufacturing_com-equipments-0066
+  name: Granite Tables W/Ht. Gages
+  status: candidate
+  acceptable_forms:
+  - Granite Tables W/Ht. Gages
+  evidence:
+  - quote: Granite Tables W/Ht. Gages
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
 false_friends:
 - form: Harvesters
   reason: the agriculture page's explainer calls them 'machines designed to harvest crops', but they are a CUSTOMER'S

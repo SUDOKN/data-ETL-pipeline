@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
   sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
-eval_set_version: 5
+eval_set_version: 6
 expected_empty: true
 notes: 'SHARED OUTPUT NOTE: products and contract_products share one search output; this file serves as the expectation
   set for BOTH fields. expected_empty: pure job shop - the text names no catalog product designations. Outputs of
@@ -89,21 +89,26 @@ entries:
       service prose'').'
 - id: 101machine_com-products-0004
   name: Injection Molds
-  status: disputed
+  status: retired
   acceptable_forms:
   - injection molds
   evidence:
   - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
       engineering prototypes, piece parts and injection molds.
     approx_offset: 2878
-  notes: text frames these as an output of the shop's CNC machining work ('produce ... injection molds'), so treated
-    as a made artifact rather than tooling; disputed because injection molds are typically tooling used by others
-    downstream.
+  notes: 'text frames these as an output of the shop''s CNC machining work (''produce ... injection molds''), so
+    treated as a made artifact rather than tooling; disputed because injection molds are typically tooling used
+    by others downstream. | retired 2026-09-04: superseded by 101machine_com-products-0005 (same entity, seeded+confirmed
+    via the zero-gate verification pass)'
   provenance:
   - action: added
     by: seed-agent-101machine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retire
+    by: assistant
+    date: '2026-09-04'
+    source: duplicate of confirmed 0005; tooling carve-back makes the entity in-field, 0005 carries it
 - id: 101machine_com-products-0005
   name: Injection Molds
   status: confirmed

@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/alecmfg.com.txt
   sha256: 9a9251e12e7eacd3e420315bc612411883f313f8f81b007b9e3ba644af70e700
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 notes: 'Honest sparse-but-nonempty set: mostly generic machine categories; the only named models are the Zeiss CONTURA
   G2 CMM and the Taiwan Hashuo HS-V55LS VMCs. Cookie-policy software names and clients'' machines are the junk pressure.'
@@ -478,6 +478,19 @@ entries:
     by: seed-agent-alecmfg-com
     date: '2026-08-27'
     source: corpus-seed
+- id: alecmfg_com-equipments-0021
+  name: surface flushness gauge
+  status: candidate
+  acceptable_forms:
+  - surface flushness gauge
+  evidence:
+  - quote: 100% verified with torque test and surface flushness gauge.
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  provenance:
+  - action: added
+    by: census-miss-harvest
+    date: '2026-09-04'
+    source: metrology-inclusion publish; census 20260903T212112 equipments miss
 false_friends:
 - form: equipment
   reason: generic (G)

@@ -53,6 +53,17 @@ dealer facet/heading lists that the products prompt embraces, although
 merchandise machines are ruled in-field by nature. This is the main driver of
 equipments' lowest mechanical recall (92.6%).
 
+**REVISED 2026-09-04 (user re-ruling of boundary ruling 4): purely-sold
+machines are PRODUCTS, not equipments** — equipments keeps only machines in
+described production use. Under the revised boundary this finding INVERTS:
+equipments declining the dealer facet list is CORRECT behavior, products
+capturing it is the intended division of labor, and the 114 SHARP "misses"
+stop being a recall defect. 127 reseller_inventory equipments entries
+(acimachine 95, agstech 32) were retired from the eval set; the merchandise
+lives in products (actor reseller_inventory). Equipments' recall story after
+the re-ruling is dominated by the metrology-inclusion publish instead (15
+harvested metrology candidates now awaiting verification).
+
 ## F3. The union pass adds almost nothing (probe-level; formal diff owed)
 
 Every probed window returned near-identical pass1/pass2 sets (SHARP window:
