@@ -87,8 +87,13 @@ def summarize(forms: list[dict[str, Any]], misses: list[dict[str, Any]]) -> dict
     actors = Counter(r.get("actor") for r in forms if r.get("actor"))
     wrong_actor = sum(
         count for actor, count in actors.items()
-        if actor in {"client", "supplier", "lab", "parent_sibling", "reseller_inventory"}
+        if actor in {"client", "supplier", "partner", "lab", "parent_sibling", "reseller_inventory"}
     )
+    # Misses a sibling part's forms already cover (annotated by
+    # reconcile_split_misses.py) are phantom: a judge holding one slice of a
+    # split window cannot see the other slices. They stay in the list for
+    # audit but never in the count.
+    surviving = [m for m in misses if m.get("reconciled") != "covered-by-sibling"]
     return {
         "forms_judged": judged,
         "codes": dict(sorted(codes.items())),
@@ -98,7 +103,8 @@ def summarize(forms: list[dict[str, Any]], misses: list[dict[str, Any]]) -> dict
         "actors": dict(sorted(actors.items())),
         "wrong_actor_share": round(wrong_actor / judged, 4) if judged else None,
         "misses": misses,
-        "miss_count": len(misses),
+        "miss_count": len(surviving),
+        "misses_cancelled_cross_part": len(misses) - len(surviving),
     }
 
 
@@ -144,10 +150,19 @@ def main() -> None:
         slug, _, field = stem.partition("__")
         forms, misses = read_judgments(path)
         summary = summarize(forms, misses)
-        second_path = path.with_name(f"{stem}.judge2.jsonl")
+        # A double-judge may cover the whole unit (<stem>.judge2.jsonl) or a
+        # single split packet (<stem>__partNN.judge2.jsonl); pool whatever
+        # exists — the (window, form) join restricts to the covered slice.
+        # Rows whose note starts with "MISS" are miss annotations some judge2
+        # agents wrote in form schema (their prompt had no miss shape); they
+        # code entities the run never returned, not returned forms.
         second_forms: list[dict[str, Any]] = []
-        if second_path.is_file():
-            second_forms, _ = read_judgments(second_path)
+        for second_path in sorted(directory.glob(f"{stem}*.judge2.jsonl")):
+            part_forms, _ = read_judgments(second_path)
+            second_forms.extend(
+                r for r in part_forms
+                if not str(r.get("note", "")).lstrip().startswith("MISS")
+            )
         summary["judge_agreement"] = agreement(forms, second_forms)
 
         scorecard_path = run_dir(args.run) / f"scorecard_{slug}_{field}.json"

@@ -74,16 +74,22 @@ def main() -> None:
     print("=" * 78)
     agg: dict[str, Counter] = defaultdict(Counter)
     actor_flag: Counter = Counter()
+    WRONG_ACTORS = {"client", "supplier", "partner", "lab", "parent_sibling", "reseller_inventory"}
     for (subj, field), recs in units.items():
         for r in recs:
             if r.get("type") == "miss":
-                agg[field]["misses"] += 1
+                # cross-part phantoms (annotated by reconcile_split_misses.py)
+                # are counted apart, never as pipeline misses
+                if r.get("reconciled") == "covered-by-sibling":
+                    agg[field]["misses_phantom"] += 1
+                else:
+                    agg[field]["misses"] += 1
                 continue
             cat = ROLLUP.get(str(r.get("code", "")).strip().upper(), "unknown")
             agg[field][cat] += 1
             agg[field]["judged"] += 1
             actor = str(r.get("actor", "") or "").strip().lower()
-            if actor and actor not in ("own", "subject", ""):
+            if actor in WRONG_ACTORS:
                 agg[field]["wrong_actor"] += 1
     hdr = f"{'field':26s} {'judged':>7s} {'in-field':>9s} {'adjacent':>9s} {'generic':>8s} {'junk':>6s} {'wrong-actor':>11s} {'misses':>7s}"
     print(hdr); print("-" * len(hdr))
@@ -97,8 +103,12 @@ def main() -> None:
     print("-" * len(hdr))
     print(f"{'ALL':26s} {tot['judged']:7d} {tot['in_field']/j:9.1%} {tot['adjacent_field']/j:9.1%} "
           f"{tot['generic']/j:8.1%} {tot['junk']/j:6.1%} {tot['wrong_actor']/j:11.1%} {tot['misses']:7d}")
-    print("\nNOTE mixed provenance (double-judged, miss union): alecmfg material_caps"
-          " (+2 misses), alecmfg process_caps (+5) vs single-judged peers.")
+    if tot["misses_phantom"]:
+        print(f"\n  (+{tot['misses_phantom']} cross-part phantom misses cancelled by "
+              "reconcile_split_misses.py — excluded everywhere above and below)")
+    if args.run == "20260901T013332":
+        print("\nNOTE mixed provenance (double-judged, miss union): alecmfg material_caps"
+              " (+2 misses), alecmfg process_caps (+5) vs single-judged peers.")
 
     # ---------- B: pooled confirmed recall ----------
     print("\n" + "=" * 78)
@@ -130,6 +140,8 @@ def main() -> None:
     for (subj, field), recs in units.items():
         per_win: dict[str, Counter] = defaultdict(Counter)
         for r in recs:
+            if r.get("type") == "miss" and r.get("reconciled") == "covered-by-sibling":
+                continue
             w = normalize_window(r.get("window"))
             per_win[w]["miss" if r.get("type") == "miss" else "form"] += 1
         for w, c in per_win.items():
@@ -229,7 +241,8 @@ def main() -> None:
     for (subj, field), recs in sorted(units.items()):
         if field != "equipments":
             continue
-        misses = [r for r in recs if r.get("type") == "miss"]
+        misses = [r for r in recs if r.get("type") == "miss"
+                  and r.get("reconciled") != "covered-by-sibling"]
         if not misses:
             continue
         met = [r for r in misses if METROLOGY.search(str(r.get("entity", "")))]
@@ -242,7 +255,7 @@ def main() -> None:
     print("G. anchor-mfg process_caps MISSES (equipment nouns = candidate re-files)")
     print("=" * 78)
     for r in units.get(("anchor-mfg_com", "process_caps"), []):
-        if r.get("type") == "miss":
+        if r.get("type") == "miss" and r.get("reconciled") != "covered-by-sibling":
             tag = " <-- equipment noun" if EQUIP_NOUN.search(str(r.get("entity", ""))) else ""
             print(f"  {str(r.get('entity',''))[:70]:70s}{tag}")
 
@@ -267,7 +280,7 @@ def main() -> None:
             if s != key_subj:
                 continue
             for r in recs:
-                if r.get("type") != "miss":
+                if r.get("type") != "miss" or r.get("reconciled") == "covered-by-sibling":
                     continue
                 q = collapse(str(r.get("quote", "") or "")).strip()
                 if len(q) < 8:
