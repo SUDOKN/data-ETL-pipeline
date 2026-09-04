@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/fzemanufacturing.com.txt
   sha256: 41bc08973f13f73074f858a2ac6fc7aeca398f9302b733d638b201ec3683d223
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: 'The strongest owned-machine roster in the corpus: two listings on /equipment/ naming ~35 machines by make
   and model. SEEDED TO THE PROMPT''S BOUNDARY, not to the everyday sense of ''equipment'': the Sheffield Discovery
@@ -1374,7 +1374,7 @@ entries:
     source: corpus-seed
 - id: fzemanufacturing_com-equipments-0064
   name: CMM
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - CMM
   evidence:
@@ -1385,9 +1385,13 @@ entries:
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: verified
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: the shop's own inspection offering names CMM
 - id: fzemanufacturing_com-equipments-0065
   name: gages
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - gages
   evidence:
@@ -1399,9 +1403,13 @@ entries:
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: verified
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: gages used on the work during the shop's own machining/finishing QC
 - id: fzemanufacturing_com-equipments-0066
   name: Granite Tables W/Ht. Gages
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - Granite Tables W/Ht. Gages
   evidence:
@@ -1412,6 +1420,10 @@ entries:
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: verified
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: facility equipment list line; height gages on granite tables are inspection equipment in described use
 false_friends:
 - form: Harvesters
   reason: the agriculture page's explainer calls them 'machines designed to harvest crops', but they are a CUSTOMER'S

@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
   sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 entries:
 - id: howcogroup_com-equipments-0001
@@ -911,7 +911,7 @@ entries:
       reserved, not retired'
 - id: howcogroup_com-equipments-0040
   name: Full range of manual measuring equipment
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - Full range of manual measuring equipment
   evidence:
@@ -922,19 +922,29 @@ entries:
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: verified
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: own quality-lab equipment bullet; broad form but the text's own wording
 - id: howcogroup_com-equipments-0041
   name: Hardness testing (HBW, HRC, HRB)
-  status: candidate
+  status: disputed
   acceptable_forms:
   - Hardness testing (HBW, HRC, HRB)
   evidence:
   - quote: Hardness testing (HBW, HRC, HRB)
-  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass | names
+    the testing OPERATION (with hardness scales), not a device; process_caps carries hardness testing already
   provenance:
   - action: added
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: disputed
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: names the testing OPERATION (with hardness scales), not a device; process_caps carries hardness testing
+      already
 false_friends:
 - form: CMM
   reason: the equipments clause explicitly excludes equipment that 'only measures, inspects, or tests the work'.

@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
   sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
-eval_set_version: 8
+eval_set_version: 9
 expected_empty: false
 notes: Deliberately small relative to the subject's size. This site sells and describes hundreds of test instruments,
   hand tools, material-handling gear and tooling, all of which the equipments clause excludes; they are seeded as
@@ -4922,30 +4922,42 @@ entries:
       reserved, not retired'
 - id: agstech_net-equipments-0174
   name: Hardness Testers
-  status: candidate
+  status: disputed
   acceptable_forms:
   - Hardness Testers
   evidence:
   - quote: '#### Hardness Testers'
-  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass | hardness
+    testers appear as sale-catalog headings on this supplier's site - merchandise, which the 2026-09-04 re-ruling
+    routes to products, not equipments
   provenance:
   - action: added
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: disputed
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: hardness testers appear as sale-catalog headings on this supplier's site - merchandise, which the 2026-09-04
+      re-ruling routes to products, not equipments
 - id: agstech_net-equipments-0175
   name: Thickness and Flaw Gauges & Detectors
-  status: candidate
+  status: disputed
   acceptable_forms:
   - Thickness and Flaw Gauges & Detectors
   evidence:
   - quote: '#### Thickness and Flaw Gauges & Detectors'
-  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass | same
+    sale-catalog context as 0174; merchandise metrology belongs in products per the re-ruling
   provenance:
   - action: added
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: disputed
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: same sale-catalog context as 0174; merchandise metrology belongs in products per the re-ruling
 false_friends:
 - form: Hardness Testers
   reason: 'witnessed (93, 109, 452): real, but a TEST instrument, which the equipments clause excludes; it belongs

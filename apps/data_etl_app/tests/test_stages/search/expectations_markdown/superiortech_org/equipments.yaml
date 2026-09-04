@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/superiortech.org.txt
   sha256: f29844803215581d1f500767f528c381ac8f521986e6f6cf3900fe5842420ad1
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: 'The richest equipment inventory in the corpus: the facilities-list page (lines 376-606) enumerates roughly
   100 machine UNITS as ~75 distinct designations, in a ''(N)  BRAND MODEL; spec; spec'' census, plus a dozen more
@@ -2734,17 +2734,24 @@ entries:
     source: corpus-seed
 - id: superiortech_org-equipments-0138
   name: GAGETRACK Gage calibration software
-  status: candidate
+  status: retired
   acceptable_forms:
   - GAGETRACK Gage calibration software
   evidence:
   - quote: GAGETRACK Gage calibration software
-  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass
+  notes: metrology inclusion published 2026-09-04; harvested from census miss row, needs verification pass | GAGETRACK
+    is calibration SOFTWARE - excluded from every field by the 2026-09-04 software ruling until a SoftwareCapability
+    class exists
   provenance:
   - action: added
     by: census-miss-harvest
     date: '2026-09-04'
     source: metrology-inclusion publish; census 20260903T212112 equipments miss
+  - action: retired
+    by: verify-pass-assistant-metrology
+    date: '2026-09-04'
+    reason: GAGETRACK is calibration SOFTWARE - excluded from every field by the 2026-09-04 software ruling until
+      a SoftwareCapability class exists
 false_friends:
 - form: Coordinate Measuring Machines
   reason: metrology. The clause separates a production machine from 'equipment that only measures, inspects, or
