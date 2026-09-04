@@ -3,7 +3,7 @@ field: process_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
   sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 notes: 'Bulk of the field comes from the two Services lists (turning: 13 items, milling: 18 items) which overlap
   heavily; overlapping items are merged into single entities with spec_table evidence. Both lists sit between a

@@ -3,15 +3,16 @@ field: material_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
   sha256: 798b65a09fb8ed15a5199b44a95a4e5b7e14c201f69a658f3c89c92100506d54
-eval_set_version: 2
-expected_empty: true
-notes: No material, alloy, or grade is named anywhere. Word-boundary greps for steel/aluminum/alloy/rubber/copper/brass/iron/nylon/polymer/composite/
+eval_set_version: 5
+expected_empty: false
+notes: 'No material, alloy, or grade is named anywhere. Word-boundary greps for steel/aluminum/alloy/rubber/copper/brass/iron/nylon/polymer/composite/
   fiberglass (and earlier stainless/titanium/plastic/lithium) return zero hits across the whole file (verified 2026-08-26).
-  Any yield here is junk minted from cookie-consent boilerplate.
+  Any yield here is junk minted from cookie-consent boilerplate. | expected_empty flipped false 2026-09-04 (zero-gate
+  reseeding): 12 confirmed material entities (+3TG candidates)'
 entries:
 - id: taylordunn_com-material_caps-0001
   name: lithium-ion
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - lithium-ion
   - lithium ion
@@ -23,9 +24,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0002
   name: AGM
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - AGM
   evidence:
@@ -36,9 +40,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0003
   name: steel
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - steel
   evidence:
@@ -49,9 +56,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0004
   name: lead-acid
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - lead-acid
   - lead acid
@@ -63,9 +73,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0005
   name: vinyl
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - vinyl
   evidence:
@@ -76,9 +89,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0006
   name: aluminum
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - aluminum
   evidence:
@@ -90,9 +106,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0007
   name: treadplate steel
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - treadplate steel
   evidence:
@@ -104,9 +123,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0008
   name: bargrate steel
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - bargrate steel
   evidence:
@@ -118,9 +140,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0009
   name: TommyTraction
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - TommyTraction
   evidence:
@@ -133,9 +158,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0010
   name: FLA
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - FLA
   evidence:
@@ -147,9 +175,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0011
   name: fiberglass
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - fiberglass
   evidence:
@@ -161,9 +192,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-material_caps-0012
   name: rubber
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - rubber
   evidence:
@@ -176,6 +210,83 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+- id: taylordunn_com-material_caps-0013
+  name: Tungsten
+  status: confirmed
+  acceptable_forms:
+  - Tungsten
+  evidence:
+  - quote: the products supplied to Waev contain 3TGs (Tungsten, Tantalum, Tin and Gold) sourced from the Democratic
+      Republic of the Congo
+    approx_offset: 22301
+  actor: supplier
+  provenance:
+  - action: added
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: verified
+    by: verify-pass-assistant
+    date: '2026-09-04'
+- id: taylordunn_com-material_caps-0014
+  name: Tantalum
+  status: confirmed
+  acceptable_forms:
+  - Tantalum
+  evidence:
+  - quote: the products supplied to Waev contain 3TGs (Tungsten, Tantalum, Tin and Gold) sourced from the Democratic
+      Republic of the Congo
+    approx_offset: 22301
+  actor: supplier
+  provenance:
+  - action: added
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: verified
+    by: verify-pass-assistant
+    date: '2026-09-04'
+- id: taylordunn_com-material_caps-0015
+  name: Tin
+  status: confirmed
+  acceptable_forms:
+  - Tin
+  evidence:
+  - quote: the products supplied to Waev contain 3TGs (Tungsten, Tantalum, Tin and Gold) sourced from the Democratic
+      Republic of the Congo
+    approx_offset: 22301
+  actor: supplier
+  provenance:
+  - action: added
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: verified
+    by: verify-pass-assistant
+    date: '2026-09-04'
+- id: taylordunn_com-material_caps-0016
+  name: Gold
+  status: confirmed
+  acceptable_forms:
+  - Gold
+  evidence:
+  - quote: the products supplied to Waev contain 3TGs (Tungsten, Tantalum, Tin and Gold) sourced from the Democratic
+      Republic of the Congo
+    approx_offset: 22301
+  actor: supplier
+  provenance:
+  - action: added
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: verified
+    by: verify-pass-assistant
+    date: '2026-09-04'
+    reason: 3TG mineral named on the supplier-conduct page; note the one 'Premier Gold' dealer-tier collision elsewhere
+      — matching is window-scoped so it does not credit
 false_friends:
 - form: cookies
   reason: all 837 occurrences are the web-cookie sense in the consent policy; zero food/material sense in any window

@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
   sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
-eval_set_version: 5
+eval_set_version: 6
 expected_empty: false
 notes: Deliberately small relative to the subject's size. This site sells and describes hundreds of test instruments,
   hand tools, material-handling gear and tooling, all of which the equipments clause excludes; they are seeded as
@@ -546,6 +546,7 @@ entries:
   status: confirmed
   acceptable_forms:
   - Robotic Machines, Robots
+  - robotic machines
   evidence:
   - quote: '- Robotic Machines, Robots'
     approx_offset: 43172
@@ -561,6 +562,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: agstech_net-equipments-0024
   name: high vacuum equipment
   status: disputed

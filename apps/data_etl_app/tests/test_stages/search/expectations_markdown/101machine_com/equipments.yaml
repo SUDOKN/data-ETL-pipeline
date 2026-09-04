@@ -3,7 +3,7 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
   sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 notes: 'Sparse by nature of the text: exactly one named machine, on the New page. Any sizable yield beyond this
   entry is junk-minting signal; the company name ''101 Machine'' is the standing trap.'

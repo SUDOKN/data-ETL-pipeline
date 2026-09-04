@@ -3,7 +3,7 @@ field: conformity_attestations
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/med-tekinc.com.txt
   sha256: 7ed418d9a144bb99e67c873f1468279c915f3c116a2be4f37228f92c2cb692ab
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: true
 notes: 'expected_empty=true, and BAITED: the site talks about certification twice while holding none. Word-boundary
   greps for ISO, ISO 9001, AS9100, IATF, NADCAP, ASTM, ANSI, ASME, AMS, API, UL, CE, EN, ITAR, RoHS, OSHA, FDA,
@@ -52,3 +52,11 @@ false_friends:
 - form: certified
   reason: '''Rockwell Hardness Machines are certified every six months'' — routine equipment calibration, not a
     named certification/standard the company holds.'
+- form: AMS 2750
+  reason: ANTICIPATORY - zero occurrences of 'AMS' or '2750' anywhere in the v3 snapshot. The aerospace furnace-pyrometry/instrumentation
+    standard paired with NADCAP heat-treat accreditation; the text's own calibration language ('certified every
+    six months', 'accuracy-verified against the standard block') is exactly the detail that invites this fabrication
+    for a heat treater
+- form: CQI-9
+  reason: ANTICIPATORY - zero occurrences. The AIAG Heat Treat System Assessment, the automotive-industry analog
+    to NADCAP for heat-treating suppliers; as plausible an invention as the already-recorded NADCAP/AS9100/ISO 9001

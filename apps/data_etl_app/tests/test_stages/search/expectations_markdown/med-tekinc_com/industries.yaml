@@ -3,7 +3,7 @@ field: industries
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/med-tekinc.com.txt
   sha256: 7ed418d9a144bb99e67c873f1468279c915f3c116a2be4f37228f92c2cb692ab
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 notes: 'TWO entries, both from one clause on line 19. The prior corpus-vetting note claimed this field was hard-empty;
   that is REFUTED - ''machine shops and fabricators'' names the market MED-TEK''s services serve, which is exactly

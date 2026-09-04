@@ -3,20 +3,1236 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
   sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
-eval_set_version: 3
-expected_empty: true
-notes: 'This file also serves the contract_products field. The subject manufactures nothing and offers no contract
-  manufacturing: every salable good in the file is a resold third-party machine, which belongs to the equipments
-  field. Any brand/model form returned under products is adjacent_field (equipment, S code) — judge it there, do
-  not credit or false-friend-count it here to avoid double-counting against the equipments entries. Any sizable
-  products yield on this subject is junk-minting signal. VERIFY 2026-08-26 (second independent pass): expected_empty=true
-  AGREED. I enumerated every non-/equipment/ page independently (home, /support, /About_Us, /brands, /types, /machines,
-  /categories, /new- machinery, /active-inventory, /equipment index, /Request_A_Quote, /contact, /Buy_Equipment,
-  /policies/*, /blog and all 14 blog posts) and read the substantive ones: no ACI-manufactured or ACI-branded good
-  appears anywhere, and the blog posts are shop-humour columns whose ''Suggested Assets'' blocks list only more
-  resold brand/model pairs. Every salable item in the file is a resold third-party machine belonging to equipments,
-  so the no-double-count instruction is sound and should be kept.'
-entries: []
+eval_set_version: 5
+expected_empty: false
+notes: 'REVERSED from the pre-cutoff seed''s exclusion policy, per current task instruction: the dealer''s resold
+  third-party machines ARE made artifacts this field should find (actor=reseller_inventory) - a finished machine
+  is itself a product that came out of manufacturing work, a separate question from the equipments field''s ''production
+  capability''. This is deliberate double-coverage with equipments, not a mistake. Seeded a representative, brand-spread
+  SAMPLE (not exhaustive) across every one of the 16 brand regions present in this v3 snapshot: front-page featured
+  tiles, ACER, SHARP (facet-list bare codes and full description cards), JET (facet-list bare codes incl. the J-2550
+  example plus described hoist/sander/lathe cards), HURCO, WATERJET CORP, NOMURA, DAINICHI, EXPAND MACHINERY (incl.
+  the GEN MILL 4024 also seeded under material_caps), WILLIS, CHEVALIER, WELLSAW, AKIRA SEIKI, SHIMADA, PRODUCTIVE
+  ROBOTICS (welding-cobot cells and tending packages), and UNI-HYDRO. SKIPPED: the great majority of each brand''s
+  facet-listed models (hundreds more JET/HURCO/ACER/SHARP/AKIRA SEIKI codes exist unseeded in this same snapshot
+  - this is a sample, not an inventory), the EDM/Laser Markers category (zero listings in this snapshot: ''There
+  are no results to display''), and all nav/spec-table/form-label noise.'
+entries:
+- id: acimachine_com-products-0001
+  name: WINEMA RV 10 FLEXMASTER
+  status: confirmed
+  acceptable_forms:
+  - WINEMA RV 10 FLEXMASTER
+  evidence:
+  - quote: '### WINEMA RV 10 FLEXMASTER'
+    approx_offset: 846
+  actor: reseller_inventory
+  notes: front-page featured tile; also WINEMA's only listing in this snapshot
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0002
+  name: HURCO VMX42I
+  status: confirmed
+  acceptable_forms:
+  - HURCO VMX42I
+  evidence:
+  - quote: '### HURCO VMX42I'
+    approx_offset: 1664
+  actor: reseller_inventory
+  notes: front-page featured tile
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0003
+  name: CHEVALIER FSG-3A1224
+  status: confirmed
+  acceptable_forms:
+  - CHEVALIER FSG-3A1224
+  evidence:
+  - quote: '### CHEVALIER FSG-3A1224'
+    approx_offset: 2075
+  actor: reseller_inventory
+  notes: front-page featured tile
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0004
+  name: ACER ATB 29
+  status: confirmed
+  acceptable_forms:
+  - ACER ATB 29
+  evidence:
+  - quote: '## ACER ATB 29'
+    approx_offset: 5062
+  actor: reseller_inventory
+  notes: CNC lathe listing card
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0005
+  name: SHARP STA-38
+  status: confirmed
+  acceptable_forms:
+  - 'SHARP: STA-38'
+  - STA-38
+  evidence:
+  - quote: 'SHARP: STA-38 (1)'
+    approx_offset: 14693
+  actor: reseller_inventory
+  notes: 'facet-list bare model code, undescribed (task example region: SHARP facet lists)'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0006
+  name: SHARP 1118H
+  status: confirmed
+  acceptable_forms:
+  - SHARP 1118H
+  evidence:
+  - quote: '## SHARP 1118H'
+    approx_offset: 15869
+  actor: reseller_inventory
+  notes: precision lathe, full description card
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0007
+  name: SHARP 1118HCNC
+  status: confirmed
+  acceptable_forms:
+  - SHARP 1118HCNC
+  evidence:
+  - quote: '## SHARP 1118HCNC'
+    approx_offset: 16334
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0008
+  name: SHARP 1340VS
+  status: confirmed
+  acceptable_forms:
+  - SHARP 1340VS
+  evidence:
+  - quote: '## SHARP 1340VS'
+    approx_offset: 16672
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0009
+  name: SHARP 1640L
+  status: confirmed
+  acceptable_forms:
+  - SHARP 1640L
+  evidence:
+  - quote: '## SHARP 1640L'
+    approx_offset: 17825
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0010
+  name: SHARP 1860L
+  status: confirmed
+  acceptable_forms:
+  - SHARP 1860L
+  evidence:
+  - quote: '## SHARP 1860L'
+    approx_offset: 19385
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0011
+  name: AKIRA SEIKI PC1000HSC
+  status: confirmed
+  acceptable_forms:
+  - AKIRA SEIKI PC1000HSC
+  evidence:
+  - quote: '## AKIRA SEIKI PC1000HSC'
+    approx_offset: 24374
+  actor: reseller_inventory
+  notes: drilling & tapping center
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0012
+  name: AKIRA SEIKI PC460
+  status: confirmed
+  acceptable_forms:
+  - AKIRA SEIKI PC460
+  evidence:
+  - quote: '## AKIRA SEIKI PC460'
+    approx_offset: 25650
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0013
+  name: AKIRA SEIKI PC700HSC
+  status: confirmed
+  acceptable_forms:
+  - AKIRA SEIKI PC700HSC
+  evidence:
+  - quote: '## AKIRA SEIKI PC700HSC'
+    approx_offset: 27766
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0014
+  name: EXPAND MACHINERY T-500
+  status: confirmed
+  acceptable_forms:
+  - EXPAND MACHINERY T-500
+  evidence:
+  - quote: '## EXPAND MACHINERY T-500'
+    approx_offset: 28413
+  actor: reseller_inventory
+  notes: drilling & tapping center, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0015
+  name: EXPAND MACHINERY T-700
+  status: confirmed
+  acceptable_forms:
+  - EXPAND MACHINERY T-700
+  evidence:
+  - quote: '## EXPAND MACHINERY T-700'
+    approx_offset: 29045
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0016
+  name: JET BP-2248H
+  status: confirmed
+  acceptable_forms:
+  - 'JET: BP-2248H'
+  - BP-2248H
+  evidence:
+  - quote: 'JET: BP-2248H (1)'
+    approx_offset: 36956
+  actor: reseller_inventory
+  notes: facet-list bare code (box & pan brake), undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0017
+  name: JET HVBS-7M
+  status: confirmed
+  acceptable_forms:
+  - 'JET: HVBS-7M'
+  - HVBS-7M
+  evidence:
+  - quote: 'JET: HVBS-7M (1)'
+    approx_offset: 38308
+  actor: reseller_inventory
+  notes: facet-list bare code (vertical band saw), undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0018
+  name: JET J-2550
+  status: confirmed
+  acceptable_forms:
+  - 'JET: J-2550'
+  - J-2550
+  evidence:
+  - quote: 'JET: J-2550 (1)'
+    approx_offset: 38560
+  actor: reseller_inventory
+  notes: facet-list bare model code, undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0019
+  name: JET JTM-1050
+  status: confirmed
+  acceptable_forms:
+  - 'JET: JTM-1050'
+  - JTM-1050
+  evidence:
+  - quote: 'JET: JTM-1050 (1)'
+    approx_offset: 40155
+  actor: reseller_inventory
+  notes: facet-list bare code (knee mill), undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0020
+  name: JET JWL-1642EVS
+  status: confirmed
+  acceptable_forms:
+  - 'JET: JWL-1642EVS'
+  - JWL-1642EVS
+  evidence:
+  - quote: 'JET: JWL-1642EVS (1)'
+    approx_offset: 40791
+  actor: reseller_inventory
+  notes: facet-list bare code (woodworking lathe), undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0021
+  name: JET VOLT-1000-13P-10
+  status: confirmed
+  acceptable_forms:
+  - 'JET: VOLT-1000-13P-10'
+  - VOLT-1000-13P-10
+  evidence:
+  - quote: 'JET: VOLT-1000-13P-10 (1)'
+    approx_offset: 42241
+  actor: reseller_inventory
+  notes: facet-list bare code (hoist), undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0022
+  name: JET 1/2SS-1C-10
+  status: confirmed
+  acceptable_forms:
+  - JET 1/2SS-1C-10
+  evidence:
+  - quote: '## JET 1/2SS-1C-10'
+    approx_offset: 43056
+  actor: reseller_inventory
+  notes: SSC-series electric hoist, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0023
+  name: JET 10-20 PLUS
+  status: confirmed
+  acceptable_forms:
+  - JET 10-20 PLUS
+  evidence:
+  - quote: '## JET 10-20 PLUS'
+    approx_offset: 49686
+  actor: reseller_inventory
+  notes: benchtop sander, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0024
+  name: JET 1015
+  status: confirmed
+  acceptable_forms:
+  - JET 1015
+  evidence:
+  - quote: '## JET 1015'
+    approx_offset: 50169
+  actor: reseller_inventory
+  notes: mini-lathe, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0025
+  name: JET 1221VS
+  status: confirmed
+  acceptable_forms:
+  - JET 1221VS
+  evidence:
+  - quote: '## JET 1221VS'
+    approx_offset: 51271
+  actor: reseller_inventory
+  notes: woodworking lathe, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0026
+  name: ACER E-MILL 3VK
+  status: confirmed
+  acceptable_forms:
+  - ACER E-MILL 3VK
+  evidence:
+  - quote: '## ACER E-MILL 3VK'
+    approx_offset: 62011
+  actor: reseller_inventory
+  notes: vertical mill listing card
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0027
+  name: CHEVALIER UNI5X-400
+  status: confirmed
+  acceptable_forms:
+  - CHEVALIER UNI5X-400
+  evidence:
+  - quote: '## CHEVALIER UNI5X-400'
+    approx_offset: 65005
+  actor: reseller_inventory
+  notes: 5-axis VMC, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0028
+  name: HURCO VMX60SWI
+  status: confirmed
+  acceptable_forms:
+  - 'HURCO: VMX60SWI'
+  - VMX60SWI
+  evidence:
+  - quote: 'HURCO: VMX60SWI (1)'
+    approx_offset: 119110
+  actor: reseller_inventory
+  notes: facet-list bare code, undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0029
+  name: HURCO AUTOBEND LP11
+  status: confirmed
+  acceptable_forms:
+  - HURCO AUTOBEND LP11
+  evidence:
+  - quote: '## HURCO AUTOBEND LP11'
+    approx_offset: 119574
+  actor: reseller_inventory
+  notes: press-brake backgauge, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0030
+  name: HURCO AUTOBEND S6
+  status: confirmed
+  acceptable_forms:
+  - HURCO AUTOBEND S6
+  evidence:
+  - quote: '## HURCO AUTOBEND S6'
+    approx_offset: 120327
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0031
+  name: HURCO BX40I
+  status: confirmed
+  acceptable_forms:
+  - HURCO BX40I
+  evidence:
+  - quote: '## HURCO BX40I'
+    approx_offset: 120970
+  actor: reseller_inventory
+  notes: VMC, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0032
+  name: HURCO BX60I
+  status: confirmed
+  acceptable_forms:
+  - HURCO BX60I
+  evidence:
+  - quote: '## HURCO BX60I'
+    approx_offset: 122818
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0033
+  name: ACER EMC 2240A
+  status: confirmed
+  acceptable_forms:
+  - ACER EMC 2240A
+  evidence:
+  - quote: '## ACER EMC 2240A'
+    approx_offset: 129187
+  actor: reseller_inventory
+  notes: VMC listing card
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0034
+  name: WATERJET CORP CLASSICA CL44
+  status: confirmed
+  acceptable_forms:
+  - WATERJET CORP CLASSICA CL44
+  evidence:
+  - quote: '## WATERJET CORP CLASSICA CL44'
+    approx_offset: 145475
+  actor: reseller_inventory
+  notes: waterjet cutter, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0035
+  name: WATERJET CORP EVOLUTION X5 1020
+  status: confirmed
+  acceptable_forms:
+  - WATERJET CORP EVOLUTION X5 1020
+  evidence:
+  - quote: '## WATERJET CORP EVOLUTION X5 1020'
+    approx_offset: 147243
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0036
+  name: WATERJET CORP EVOLUTION X5 820
+  status: confirmed
+  acceptable_forms:
+  - WATERJET CORP EVOLUTION X5 820
+  evidence:
+  - quote: '## WATERJET CORP EVOLUTION X5 820'
+    approx_offset: 150263
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0037
+  name: NOMURA 130 SWP
+  status: confirmed
+  acceptable_forms:
+  - NOMURA 130 SWP
+  evidence:
+  - quote: '## NOMURA 130 SWP'
+    approx_offset: 156299
+  actor: reseller_inventory
+  notes: horizontal table-type boring mill
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0038
+  name: NOMURA B-100
+  status: confirmed
+  acceptable_forms:
+  - NOMURA B-100
+  evidence:
+  - quote: '## NOMURA B-100'
+    approx_offset: 156646
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0039
+  name: NOMURA B135QF
+  status: confirmed
+  acceptable_forms:
+  - NOMURA B135QF
+  evidence:
+  - quote: '## NOMURA B135QF'
+    approx_offset: 158774
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0040
+  name: ACER AGS-1020AH
+  status: confirmed
+  acceptable_forms:
+  - ACER AGS-1020AH
+  evidence:
+  - quote: '## ACER AGS-1020AH'
+    approx_offset: 166635
+  actor: reseller_inventory
+  notes: gantry machining center listing card
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0041
+  name: ACER DCM 2004S
+  status: confirmed
+  acceptable_forms:
+  - ACER DCM 2004S
+  evidence:
+  - quote: '## ACER DCM 2004S'
+    approx_offset: 173456
+  actor: reseller_inventory
+  notes: gantry machining center listing card
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0042
+  name: DAINICHI DL-95
+  status: confirmed
+  acceptable_forms:
+  - DAINICHI DL-95
+  evidence:
+  - quote: '## DAINICHI DL-95'
+    approx_offset: 202095
+  actor: reseller_inventory
+  notes: CNC lathe
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0043
+  name: DAINICHI DL120
+  status: confirmed
+  acceptable_forms:
+  - DAINICHI DL120
+  evidence:
+  - quote: '## DAINICHI DL120'
+    approx_offset: 202596
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0044
+  name: DAINICHI DL530X1500
+  status: confirmed
+  acceptable_forms:
+  - DAINICHI DL530X1500
+  evidence:
+  - quote: '## DAINICHI DL530X1500'
+    approx_offset: 203091
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0045
+  name: EXPAND MACHINERY 4024 (GEN MILL 4024)
+  status: confirmed
+  acceptable_forms:
+  - EXPAND MACHINERY 4024
+  - GEN MILL 4024
+  evidence:
+  - quote: '## EXPAND MACHINERY 4024'
+    approx_offset: 212298
+  - quote: The GEN MILL 4024 combines strength and speed for high productivity
+    approx_offset: 212366
+  actor: reseller_inventory
+  notes: vertical mill; body prose brands it 'GEN MILL 4024' - same listing as the material_caps GEN MILL 4024 capability
+    entries (stainless steel/titanium/aluminum/Inconell)
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0046
+  name: EXPAND MACHINERY GEN MILL 5X-12
+  status: confirmed
+  acceptable_forms:
+  - EXPAND MACHINERY GEN MILL 5X-12
+  evidence:
+  - quote: '## EXPAND MACHINERY GEN MILL 5X-12'
+    approx_offset: 216830
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0047
+  name: WILLIS 1020-3A
+  status: confirmed
+  acceptable_forms:
+  - WILLIS 1020-3A
+  evidence:
+  - quote: '## WILLIS 1020-3A'
+    approx_offset: 230340
+  actor: reseller_inventory
+  notes: surface grinder, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0048
+  name: Willis 1050 Knee Mill
+  status: confirmed
+  acceptable_forms:
+  - 1050 Knee Mill
+  evidence:
+  - quote: '## 1050 Knee Mill'
+    approx_offset: 231310
+  actor: reseller_inventory
+  notes: the listing heading omits the WILLIS brand prefix; body prose says 'Willis conventional knee mill model
+    1050'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0049
+  name: WILLIS 2060
+  status: confirmed
+  acceptable_forms:
+  - WILLIS 2060
+  evidence:
+  - quote: '## WILLIS 2060'
+    approx_offset: 243977
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0050
+  name: CHEVALIER CGP-1224
+  status: confirmed
+  acceptable_forms:
+  - CHEVALIER CGP-1224
+  evidence:
+  - quote: '## CHEVALIER CGP-1224'
+    approx_offset: 270880
+  actor: reseller_inventory
+  notes: universal cylindrical grinder
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0051
+  name: CHEVALIER CGP-816
+  status: confirmed
+  acceptable_forms:
+  - CHEVALIER CGP-816
+  evidence:
+  - quote: '## CHEVALIER CGP-816'
+    approx_offset: 275777
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0052
+  name: CHEVALIER EM1620L
+  status: confirmed
+  acceptable_forms:
+  - CHEVALIER EM1620L
+  evidence:
+  - quote: '## CHEVALIER EM1620L'
+    approx_offset: 276172
+  actor: reseller_inventory
+  notes: VMC
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0053
+  name: WELLSAW 1016
+  status: confirmed
+  acceptable_forms:
+  - WELLSAW 1016
+  evidence:
+  - quote: '## WELLSAW 1016'
+    approx_offset: 283178
+  actor: reseller_inventory
+  notes: horizontal band saw, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0054
+  name: WELLSAW 1316S
+  status: confirmed
+  acceptable_forms:
+  - WELLSAW 1316S
+  evidence:
+  - quote: '## WELLSAW 1316S'
+    approx_offset: 284281
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0055
+  name: WELLSAW 1338
+  status: confirmed
+  acceptable_forms:
+  - WELLSAW 1338
+  evidence:
+  - quote: '## WELLSAW 1338'
+    approx_offset: 287981
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0056
+  name: AKIRA SEIKI SV1000
+  status: confirmed
+  acceptable_forms:
+  - AKIRA SEIKI SV1000
+  evidence:
+  - quote: '- AKIRA SEIKI SV1000'
+    approx_offset: 303430
+  actor: reseller_inventory
+  notes: Active Inventory bullet-list region, undescribed
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0057
+  name: Uni-Hydro 30 Ton Ironworker
+  status: confirmed
+  acceptable_forms:
+  - Uni-Hydro 30 Ton Ironworker
+  evidence:
+  - quote: '- Uni-Hydro 30 Ton Ironworker'
+    approx_offset: 313791
+  actor: reseller_inventory
+  notes: Active Inventory bullet-list region; UNI-HYDRO's own brand page lists only category names (Ironworkers,
+    Power Squaring Shears), no models - this and the next entry are the only named UNI-HYDRO models in this snapshot
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0058
+  name: Uni-Hydro Plate Shear Model 2551
+  status: confirmed
+  acceptable_forms:
+  - Uni-Hydro Plate Shear Model 2551
+  evidence:
+  - quote: '- Uni-Hydro Plate Shear Model 2551'
+    approx_offset: 315520
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0059
+  name: AKIRA SEIKI H250RT
+  status: confirmed
+  acceptable_forms:
+  - AKIRA SEIKI H250RT
+  evidence:
+  - quote: '## AKIRA SEIKI H250RT'
+    approx_offset: 328764
+  actor: reseller_inventory
+  notes: 5-axis gantry machining center
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0060
+  name: AKIRA SEIKI HV10A
+  status: confirmed
+  acceptable_forms:
+  - AKIRA SEIKI HV10A
+  evidence:
+  - quote: '## AKIRA SEIKI HV10A'
+    approx_offset: 330967
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0061
+  name: SHIMADA 2SI-10
+  status: confirmed
+  acceptable_forms:
+  - SHIMADA 2SI-10
+  evidence:
+  - quote: '## SHIMADA 2SI-10'
+    approx_offset: 340012
+  actor: reseller_inventory
+  notes: CNC lathe, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0062
+  name: SHIMADA HS4200
+  status: confirmed
+  acceptable_forms:
+  - SHIMADA HS4200
+  evidence:
+  - quote: '## SHIMADA HS4200'
+    approx_offset: 344846
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0063
+  name: SHIMADA ST-32 3-Spindle 2NC lathe
+  status: confirmed
+  acceptable_forms:
+  - SHIMADA ST-32 3-Spindle 2NC lathe
+  evidence:
+  - quote: '## SHIMADA ST-32 3-Spindle 2NC lathe'
+    approx_offset: 346300
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0064
+  name: ACER DYNAMIC 1224E
+  status: confirmed
+  acceptable_forms:
+  - ACER DYNAMIC 1224E
+  evidence:
+  - quote: '## ACER DYNAMIC 1224E'
+    approx_offset: 363175
+  actor: reseller_inventory
+  notes: engine lathe listing card
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0065
+  name: PRODUCTIVE ROBOTICS Blaze MIG
+  status: confirmed
+  acceptable_forms:
+  - PRODUCTIVE ROBOTICS Blaze MIG
+  evidence:
+  - quote: '## PRODUCTIVE ROBOTICS Blaze MIG'
+    approx_offset: 380247
+  actor: reseller_inventory
+  notes: welding cobot
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0066
+  name: PRODUCTIVE ROBOTICS Lathe Package
+  status: confirmed
+  acceptable_forms:
+  - PRODUCTIVE ROBOTICS Lathe Package - All inclusive lathe tending package
+  - Lathe Package
+  evidence:
+  - quote: '## PRODUCTIVE ROBOTICS Lathe Package - All inclusive lathe tending package'
+    approx_offset: 382985
+  actor: reseller_inventory
+  notes: cobot machine-tending bundle sold as a packaged product
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0067
+  name: PRODUCTIVE ROBOTICS Mill Package
+  status: confirmed
+  acceptable_forms:
+  - PRODUCTIVE ROBOTICS Mill Package - All inclusive mill package
+  - Mill Package
+  evidence:
+  - quote: '## PRODUCTIVE ROBOTICS Mill Package - All inclusive mill package'
+    approx_offset: 383634
+  actor: reseller_inventory
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-products-0068
+  name: PRODUCTIVE ROBOTICS OB7
+  status: confirmed
+  acceptable_forms:
+  - PRODUCTIVE ROBOTICS OB7
+  evidence:
+  - quote: '## PRODUCTIVE ROBOTICS OB7'
+    approx_offset: 384315
+  actor: reseller_inventory
+  notes: collaborative robot arm, described
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
 false_friends:
 - form: Products
   reason: nav label in the Quick Links footer on all 1,430 pages; U/G code, no designation content
@@ -28,3 +1244,9 @@ false_friends:
     OR SERVICES)
 - form: Machine Shop Funnies
   reason: blog post title (9 lines) — document/literature title, D code
+- form: products or services
+  reason: legal/consent boilerplate repeated across every contact-type form ('similar products or services we offer',
+    5 occurrences) and the Terms of Service heading 'SECTION 5 - PRODUCTS OR SERVICES' - no designation content
+- form: product
+  reason: generic ToS/form-label usage only ('product descriptions', 'discontinue any product', the Request-a-Quote
+    form's 'product information' field) - never names a specific artifact

@@ -3,12 +3,13 @@ field: process_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/taylordunn.com.txt
   sha256: 798b65a09fb8ed15a5199b44a95a4e5b7e14c201f69a658f3c89c92100506d54
-eval_set_version: 2
-expected_empty: true
-notes: The text names zero performed operations on work. Word-boundary greps for machin-/weld-/cast-/mold-/assembl-/fabricat-/coat-/paint-/stamp-/forg-/
+eval_set_version: 5
+expected_empty: false
+notes: 'The text names zero performed operations on work. Word-boundary greps for machin-/weld-/cast-/mold-/assembl-/fabricat-/coat-/paint-/stamp-/forg-/
   extrud-/inspect-/test- return zero hits across the whole file (verified 2026-08-26). The only process-shaped vocabulary
   is data-privacy prose ("processing of your data") and the "Manufacturing" inside the nav industry label "Manufacturing
-  & Warehousing". Any yield here is junk minted from cookie-consent boilerplate or from nav labels.
+  & Warehousing". Any yield here is junk minted from cookie-consent boilerplate or from nav labels. | expected_empty
+  flipped false 2026-09-04 (zero-gate reseeding): 4 confirmed operations (welded, paint, assembly, extruded)'
 entries:
 - id: taylordunn_com-process_caps-0001
   name: rapid prototyping
@@ -28,7 +29,7 @@ entries:
     source: corpus-seed
 - id: taylordunn_com-process_caps-0002
   name: welded
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - welded
   evidence:
@@ -39,9 +40,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-process_caps-0003
   name: paint
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - paint
   evidence:
@@ -55,9 +59,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-process_caps-0004
   name: assembly
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - assembly
   evidence:
@@ -71,9 +78,12 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
 - id: taylordunn_com-process_caps-0005
   name: extruded
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - extruded
   evidence:
@@ -86,6 +96,49 @@ entries:
     by: seed-agent-taylordunn-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+- id: taylordunn_com-process_caps-0006
+  name: rapid prototyping
+  status: confirmed
+  acceptable_forms:
+  - rapid prototyping
+  evidence:
+  - quote: brought in a German built precision laser cutter and an engineering software to allow for rapid prototyping
+      of engineered drawings for the highly
+    approx_offset: 133013
+  provenance:
+  - action: added
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: verified
+    by: verify-pass-assistant
+    date: '2026-09-04'
+    reason: engineering software 'to allow for rapid prototyping... all of which are still used today' — boundary
+      ruling 5 includes RapidPrototyping
+- id: taylordunn_com-process_caps-0007
+  name: lean manufacturing
+  status: disputed
+  acceptable_forms:
+  - lean manufacturing
+  - just-in-time
+  evidence:
+  - quote: Arthur Goodwin introduced lean manufacturing, a "just-in-time" method.
+    approx_offset: 132902
+  provenance:
+  - action: added
+    by: verify-agent-taylordunn
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: disputed
+    by: verify-pass-assistant
+    date: '2026-09-04'
+    reason: lean manufacturing / just-in-time is a production methodology, not an operation performed on materials,
+      parts, or products
+  notes: lean manufacturing / just-in-time is a production methodology, not an operation performed on materials,
+    parts, or products
 false_friends:
 - form: Manufacturing
   reason: occurs only inside the footer industry label 'Manufacturing & Warehousing'; a sector word, not an operation

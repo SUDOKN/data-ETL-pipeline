@@ -9,7 +9,11 @@ by hand (305 rows + outlier disagreements; 1 correction).
 A/A reproducibility (100-window fresh-pair sample): identical sets 73%,
 per-form Jaccard 0.897, 19% deterministically empty (`AA_PROBE.md`).
 Double-judge floor: raw code 85.3%, rollup 89.7%, actor 91.7%
-(`raw/double_judge_agreement.json`). Mechanical eval: RED=0 / OK=108.
+(`raw/double_judge_agreement.json`). Mechanical eval at census time:
+**62 OK / 46 RED** on the recall-only gates (the REDs are the
+confirmed-recall misses this census judged; packet coverage was the clean
+number — 260/260 packets, 108/108 units, 0 problems. An earlier revision
+misquoted this as "RED=0/OK=108"; corrected 2026-09-04).
 A judged difference smaller than these disagreement rates is not a result.
 
 ## Headline (pooled rollup, judged forms)

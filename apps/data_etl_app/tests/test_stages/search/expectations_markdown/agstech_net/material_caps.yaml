@@ -3,7 +3,7 @@ field: material_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
   sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
-eval_set_version: 5
+eval_set_version: 6
 expected_empty: false
 entries:
 - id: agstech_net-material_caps-0001
@@ -468,6 +468,7 @@ entries:
   - Machine Elements from Steel
   - EDM Machined Steel Part
   - Steel Chains
+  - steel
   evidence:
   - quote: Machine Elements from Steel
     approx_offset: 285947
@@ -483,6 +484,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: agstech_net-material_caps-0023
   name: zinc chromate
   status: confirmed
@@ -1173,6 +1178,7 @@ entries:
   status: confirmed
   acceptable_forms:
   - Iron and Steel Castings
+  - iron
   evidence:
   - quote: Iron and Steel Castings from AGS-TECH Inc.
     approx_offset: 172503
@@ -1188,6 +1194,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: agstech_net-material_caps-0049
   name: RO4003C laminate
   status: confirmed
@@ -1352,6 +1362,7 @@ entries:
   status: confirmed
   acceptable_forms:
   - Wood Cutting Shaping Tools
+  - wood
   evidence:
   - quote: Wood Cutting Shaping Tools
     approx_offset: 154442
@@ -1369,11 +1380,16 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: agstech_net-material_caps-0057
   name: masonry
   status: confirmed
   acceptable_forms:
   - Masonry Cutting Shaping Tools
+  - masonry
   evidence:
   - quote: Masonry Cutting Shaping Tools
     approx_offset: 154483
@@ -1391,11 +1407,16 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: agstech_net-material_caps-0058
   name: diamond
   status: confirmed
   acceptable_forms:
   - Diamond Tools
+  - diamond
   evidence:
   - quote: Diamond Tools
     approx_offset: 154565
@@ -1413,6 +1434,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: agstech_net-material_caps-0059
   name: zinc
   status: confirmed

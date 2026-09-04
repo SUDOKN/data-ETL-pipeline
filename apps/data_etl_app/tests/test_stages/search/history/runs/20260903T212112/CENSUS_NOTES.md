@@ -219,8 +219,67 @@ client<->own actor on served-industries prose (95 cases). Judge2 rows with
 note "MISS:*" are miss annotations in form schema (their prompt had no miss
 shape) — excluded from agreement by the merger.
 
+## Eval-vote resolutions (user votes 2026-09-04, applied same day)
+
+- **Absent must-finds (blackadvtech 2, howco 3+, CSA/CUS)** — reserved test
+  run against the v3 markdown snapshots: every flagged entry's quote occurs
+  in the FULL snapshot (validator green proves it set-wide) but outside the
+  run's read coverage, so the mechanical eval had already excluded them all
+  as `confirmed_out_of_coverage`; the acimachine CSA/CUS entry (and its 2
+  siblings) were already `out_of_snapshot: true` from the v3 port. ZERO
+  eval-set edits needed — none of these ever gated recall. The judges'
+  flags close as "reserved by coverage, working as designed."
+- **alecmfg nav-only must-finds** — measured: alecmfg products had ZERO
+  baseline misses; the nav-title entities (mounting brackets, baseplates,
+  sensor ring, heat sink) are confirmed AND covered via real content
+  elsewhere in coverage. No entry gates on nav-only evidence; no
+  reclassification needed.
+- **Too-narrow acceptable_forms** — re-derived mechanically against the
+  baseline run: 11 live cases (the 09-01 list was 8; corpus moved). All 11
+  repaired by appending the entry's name as an acceptable form with a
+  provenance row (`user-approved too-narrow acceptable_forms repair`);
+  agstech products-0003 also needed a covering homepage quote. Validator
+  0 errors. Files: agstech equipments/material_caps/products, blackadvtech
+  products, howcogroup material_caps, mathewsco products (each +1 version).
+- **16 zero-gate units** — DONE 2026-09-04 (6 wave-1 sonnet agents + 1
+  wave-2 agent + assistant second passes; every gating promotion carries a
+  two-reader provenance chain). Outcomes: taylordunn 21 candidates
+  confirmed + 5 new entries confirmed (3TG minerals, rapid prototyping) +
+  2 disputes (GSA/DLA, lean mfg) — expected_empty flipped false on
+  conformity/materials/process; acimachine products seeded+confirmed 68
+  reseller_inventory entries (expected_empty false) + 4 industries + 4
+  material confirms with the machine-construction-material class (Meehanite/
+  Nichrome/SNCM-220/Turcite) disputed; lucasmilhaupt conformity rebuilt
+  (ISO 9001 reactivated from its cutover-retired row after the merge's
+  name-dedupe silently dropped the fresh seed — MERGE GAP to remember:
+  re-seeding a retired name needs reactivation, not a new row; NATE
+  confirmed; Sil-Fos patent disputed); 101machine products candidates all
+  retired as generic-noun seeds, Injection Molds confirmed instead;
+  5 honest expected_empty re-confirmations (101machine conformity,
+  acimachine conformity — CSA/CUS brand absent from v3 entirely,
+  lucasmilhaupt+steelcraft equipments, med-tek both) with 23 new
+  false-friend traps across them. Post-evolution mechanical state:
+  **61 OK / 47 RED, recall 95.4% overall on 2,960 gated entries**
+  (conformity 98.6 / equipments 93.1 / industries 95.1 / materials 96.4 /
+  process 95.3 / products 95.0). Validator 18 subjects / 0 errors.
+
+Census-machinery notes for the NEXT census: (a) packet must-find lists
+included out-of-coverage/out_of_snapshot entries, which is what produced the
+judges' "absent must-find" flags — filter them at export time; (b)
+`subject.yaml` snapshot pins still point at the pre-markdown corpus (the v3
+port updated only field YAMLs) — harmless to the eval (loaders/validator use
+field pins) but `export_verify_packet.py` reads subject.yaml and would hand
+verifiers the OLD text; repin subject.yaml before using that tool.
+
 ## A/A floor to print beside every judged number
 
 73/100 fresh pairs byte-identical (old 28.4%); per-form Jaccard 0.897
 non-empty (old 0.769); 19/100 windows deterministically empty. Fresh vs
-stored 80/100. See `AA_PROBE.md`. Mechanical eval: RED=0 / OK=108.
+stored 80/100. See `AA_PROBE.md`.
+
+**CORRECTION 2026-09-04**: earlier revisions here said "Mechanical eval:
+RED=0 / OK=108" — that conflated the packet-coverage check (260 packets /
+108 units assembled, 0 problems) with the verdicts. The mechanical eval at
+census time was **62 OK / 46 RED** (recall-only gates; the REDs are exactly
+the confirmed-recall misses the census then judged), verified from
+`history/metrics.jsonl` (2026-09-03T21:32–21:36 batch).

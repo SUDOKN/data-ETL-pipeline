@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/blackadvtech.com.txt
   sha256: 40a6e76de90db2477b362b973f21897e40db88f0fd40b790c475bfe250ed6e65
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: 'Doubles as the contract_products inventory. TWO distinct product populations. (a) An OWN-BRAND CATALOGUE:
   seven named standard military & marine furniture items on /industries-served/military/, the strongest own-product
@@ -749,6 +749,7 @@ entries:
   status: confirmed
   acceptable_forms:
   - making hydraulic cylinders
+  - hydraulic cylinders
   evidence:
   - quote: making hydraulic cylinders
     approx_offset: 183205
@@ -767,6 +768,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: blackadvtech_com-products-0051
   name: industrial blades and knives
   status: confirmed
@@ -795,6 +800,7 @@ entries:
   status: confirmed
   acceptable_forms:
   - making automotive valves
+  - automotive valves
   evidence:
   - quote: making automotive valves
     approx_offset: 183328
@@ -813,6 +819,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: blackadvtech_com-products-0016
   name: prototypes, components and final assemblies
   status: confirmed

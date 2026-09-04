@@ -3,7 +3,7 @@ field: industries
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/steelcraft.com.txt
   sha256: be9cd0aee5977a78a9601d430e2d38deb624336fcf5e3e2ff839d43c02de1a93
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 notes: 'Application-framed corpus: the institutional/commercial/industrial triple is the backbone designation (repeated
   on landing pages), plus application segments from Typical-applications blocks. Judgment calls: (1) the sterile-environments

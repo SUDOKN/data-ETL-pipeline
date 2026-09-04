@@ -3,7 +3,7 @@ field: material_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/howcogroup.com.txt
   sha256: 6037a2e58b75bb2b30d015cdc6dc9759413d52f2e1a69f06e429bd2575a835de
-eval_set_version: 3
+eval_set_version: 4
 expected_empty: false
 entries:
 - id: howcogroup_com-material_caps-0012
@@ -80,6 +80,7 @@ entries:
   status: confirmed
   acceptable_forms:
   - Iron and Chromium
+  - iron
   evidence:
   - quote: This is an age-hardenable Nickel based alloy containing Iron and Chromium as major additions, and also
       additions of Molybdenum, Copper, Titanium
@@ -105,6 +106,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: howcogroup_com-material_caps-0048
   name: titanium
   status: confirmed

@@ -3,7 +3,7 @@ field: material_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
   sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 notes: 'All entries come from the materials.html list (spec_table between nav and footer). Source typo preserved
   verbatim in evidence: ''Structual''. Slash-lists merged into family entities. ''Solid Surfacing'' (milling ops

@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
   sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
-eval_set_version: 2
+eval_set_version: 5
 expected_empty: true
 notes: 'SHARED OUTPUT NOTE: products and contract_products share one search output; this file serves as the expectation
   set for BOTH fields. expected_empty: pure job shop - the text names no catalog product designations. Outputs of
@@ -16,47 +16,77 @@ notes: 'SHARED OUTPUT NOTE: products and contract_products share one search outp
 entries:
 - id: 101machine_com-products-0001
   name: Parts
-  status: candidate
+  status: retired
   acceptable_forms:
   - parts
   evidence:
   - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
       engineering prototypes, piece parts and injection molds.
     approx_offset: 2878
-  notes: generic but literally what the text says is produced.
+  notes: generic but literally what the text says is produced. | 'parts' is a bare generic output noun (the field
+    clause's own vocabulary - 'a product, part, component...'), not a designation naming a specific artifact; matches
+    the corpus's generic-noun convention (alecmfg false_friend 'parts' = 'generic (G)') and this subject's own sibling
+    term 'piece parts' in the identical sentence, already treated as a generic false friend.
   provenance:
   - action: added
     by: seed-agent-101machine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retired
+    by: verify-agent-101machine
+    date: '2026-09-04'
+    reason: '''parts'' is a bare generic output noun (the field clause''s own vocabulary - ''a product, part, component...''),
+      not a designation naming a specific artifact; matches the corpus''s generic-noun convention (alecmfg false_friend
+      ''parts'' = ''generic (G)'') and this subject''s own sibling term ''piece parts'' in the identical sentence,
+      already treated as a generic false friend.'
 - id: 101machine_com-products-0002
   name: Engineering Prototypes
-  status: candidate
+  status: retired
   acceptable_forms:
   - engineering prototypes
   evidence:
   - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
       engineering prototypes, piece parts and injection molds.
     approx_offset: 2878
+  notes: '''engineering prototypes'' names the purpose/stage of the output (''engineering'' = for development/validation),
+    not what is made - contrast the corpus''s confirmed ''SLA/SLS printed prototypes'' (alecmfg), qualified by process.
+    Same generic-output-noun class as this site''s own false-friend ''prototype'' self-descriptor and the corpus
+    convention ''prototypes'' = ''generic (G) when bare''.'
   provenance:
   - action: added
     by: seed-agent-101machine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retired
+    by: verify-agent-101machine
+    date: '2026-09-04'
+    reason: '''engineering prototypes'' names the purpose/stage of the output (''engineering'' = for development/validation),
+      not what is made - contrast the corpus''s confirmed ''SLA/SLS printed prototypes'' (alecmfg), qualified by
+      process. Same generic-output-noun class as this site''s own false-friend ''prototype'' self-descriptor and
+      the corpus convention ''prototypes'' = ''generic (G) when bare''.'
 - id: 101machine_com-products-0003
   name: Piece Parts
-  status: candidate
+  status: retired
   acceptable_forms:
   - piece parts
   evidence:
   - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
       engineering prototypes, piece parts and injection molds.
     approx_offset: 2878
+  notes: '''piece parts'' is a bare generic output noun from the same laundry-list sentence as ''parts''; this exact
+    string is already this subject''s own recorded false friend in the corpus (''generic output noun from service
+    prose'').'
   provenance:
   - action: added
     by: seed-agent-101machine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: retired
+    by: verify-agent-101machine
+    date: '2026-09-04'
+    reason: '''piece parts'' is a bare generic output noun from the same laundry-list sentence as ''parts''; this
+      exact string is already this subject''s own recorded false friend in the corpus (''generic output noun from
+      service prose'').'
 - id: 101machine_com-products-0004
   name: Injection Molds
   status: disputed
@@ -74,6 +104,31 @@ entries:
     by: seed-agent-101machine-com
     date: '2026-08-27'
     source: corpus-seed
+- id: 101machine_com-products-0005
+  name: Injection Molds
+  status: confirmed
+  acceptable_forms:
+  - injection molds
+  evidence:
+  - quote: Our CNC machining capabilities enable us to produce the finest, highly accurate parts, full-functioning
+      engineering prototypes, piece parts and injection molds.
+    approx_offset: 1332
+  actor: client
+  notes: 'unlike the sentence''s other 3 generic nouns, ''injection mold'' is a specific, recognized tooling designation,
+    not a bare category noun. Boundary ruling #1 (EXPECTATIONS_SCHEMA, 2026-09-03) resolves ''tooling sold is a
+    product'' and names molds as tooling by example; this CNC mill/turn shop claims no plastics-molding process
+    anywhere else on the site, so ''produce ... injection molds'' reads as mold-fabrication delivered as a customer
+    job, not shop-owned tooling used internally.'
+  provenance:
+  - action: added
+    by: verify-agent-101machine
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: verified
+    by: verify-pass-assistant
+    date: '2026-09-04'
+    reason: 'the machining-page sentence names injection molds as produced output; boundary ruling 1: tooling sold/produced
+      is a product'
 false_friends:
 - form: automobile parts
   reason: explicitly negated capability ('We DO NOT machine automobile parts!') AND a generic part category - not

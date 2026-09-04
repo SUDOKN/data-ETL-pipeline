@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/agstech.net.txt
   sha256: a4bcd643521ba6fe23513d4bb9729574d409210dc03205fe67a76bd2be923a0c
-eval_set_version: 5
+eval_set_version: 6
 expected_empty: false
 entries:
 - id: agstech_net-products-0001
@@ -67,10 +67,13 @@ entries:
   - moulds, dies and tools
   - Plastic Molds & Molding
   - molds
+  - moulds and dies
   evidence:
   - quote: engineering integrator,global supplier of industrial products including moulds,moulded plastic and rubber
       parts,castings,extrusions,sheet metal fabrication, metal stamping & forging
     approx_offset: 1296
+  - quote: We keep ourselves at the forefront of technology in the areas of custom manufacturing of moulds and dies,
+      plastic and rubber parts moulding, CNC machining of metal and alloy parts
   notes: Tooling, which the equipments clause excludes ('what a machine holds, guides, or acts through'); it is
     still a made artifact, so it belongs here.
   provenance:
@@ -85,6 +88,11 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112); added homepage quote containing
+      the form
 - id: agstech_net-products-0004
   name: moulds
   status: confirmed

@@ -3,7 +3,7 @@ field: material_caps
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
   sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
-eval_set_version: 3
+eval_set_version: 6
 expected_empty: true
 notes: 'The subject is a dealer: it works no material. Every material mention in 3.9MB is (a) construction of a
   resold machine (cast iron base, Meehanite frame, stainless blades), (b) a spec-capacity rating (''Capacity (Mild
@@ -23,7 +23,7 @@ notes: 'The subject is a dealer: it works no material. Every material mention in
 entries:
 - id: acimachine_com-material_caps-0001
   name: stainless steel
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - stainless steel
   evidence:
@@ -36,9 +36,12 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine
+    date: '2026-09-04'
 - id: acimachine_com-material_caps-0002
   name: titanium
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - titanium
   evidence:
@@ -51,10 +54,12 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine
+    date: '2026-09-04'
 - id: acimachine_com-material_caps-0003
   name: non-ferrous metal
   status: candidate
-  out_of_snapshot: true
   acceptable_forms:
   - non-ferrous metal
   evidence:
@@ -71,10 +76,10 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  out_of_snapshot: true
 - id: acimachine_com-material_caps-0004
   name: composite material
   status: candidate
-  out_of_snapshot: true
   acceptable_forms:
   - composite material
   evidence:
@@ -91,9 +96,10 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  out_of_snapshot: true
 - id: acimachine_com-material_caps-0005
   name: Meehanite cast iron
-  status: candidate
+  status: disputed
   acceptable_forms:
   - Meehanite
   - cast iron
@@ -102,15 +108,28 @@ entries:
       a high-strength cutting
     approx_offset: 167557
   actor: reseller_inventory
-  notes: Meehanite is a trade-name engineered cast iron used for the GEN MILL 4024's frame casting.
+  notes: Meehanite is a trade-name engineered cast iron used for the GEN MILL 4024's frame casting. | Meehanite
+    here names the resold GEN MILL 4024's own cast-iron frame casting ('the massive Meehanite processed cast iron
+    frame'), not a substance the work is made from or performed in - it is the machine's own construction, the same
+    class this subject's pre-cutoff material_caps pass classified as a false friend ('reads like an alloy designation
+    but is machine construction, not a worked material'). Real entity, verbatim quote, but genuinely arguable field
+    membership under recall-first (actor=reseller_inventory) - disputed, not retired.
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: disputed
+    by: verify-agent-acimachine
+    date: '2026-09-04'
+    reason: Meehanite here names the resold GEN MILL 4024's own cast-iron frame casting ('the massive Meehanite
+      processed cast iron frame'), not a substance the work is made from or performed in - it is the machine's own
+      construction, the same class this subject's pre-cutoff material_caps pass classified as a false friend ('reads
+      like an alloy designation but is machine construction, not a worked material'). Real entity, verbatim quote,
+      but genuinely arguable field membership under recall-first (actor=reseller_inventory) - disputed, not retired.
 - id: acimachine_com-material_caps-0006
   name: aluminum
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - aluminum
   evidence:
@@ -122,9 +141,12 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine
+    date: '2026-09-04'
 - id: acimachine_com-material_caps-0007
   name: Inconell
-  status: candidate
+  status: confirmed
   acceptable_forms:
   - Inconell
   evidence:
@@ -137,39 +159,60 @@ entries:
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine
+    date: '2026-09-04'
 - id: acimachine_com-material_caps-0008
   name: Nichrome steel
-  status: candidate
+  status: disputed
   acceptable_forms:
   - Nichrome steel
   evidence:
   - quote: High-grade Nichrome steel SNCM-220 wheel head
     approx_offset: 257789
   actor: reseller_inventory
+  notes: Nichrome steel SNCM-220 names the CHEVALIER CGP universal cylindrical grinder's own wheel-head material
+    (a machine component), not a substance the work is made from or performed in. Same construction-material class
+    as 0005 (Meehanite) - it describes what the resold machine is built from, not what it processes. Genuinely arguable
+    under recall-first, not retired.
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: disputed
+    by: verify-agent-acimachine
+    date: '2026-09-04'
+    reason: Nichrome steel SNCM-220 names the CHEVALIER CGP universal cylindrical grinder's own wheel-head material
+      (a machine component), not a substance the work is made from or performed in. Same construction-material class
+      as 0005 (Meehanite) - it describes what the resold machine is built from, not what it processes. Genuinely
+      arguable under recall-first, not retired.
 - id: acimachine_com-material_caps-0009
   name: SNCM-220
-  status: candidate
+  status: disputed
   acceptable_forms:
   - SNCM-220
   evidence:
   - quote: Nichrome steel SNCM-220 wheel head
     approx_offset: 257800
   actor: reseller_inventory
-  notes: A specific steel grade designation for the grinding wheel head.
+  notes: 'A specific steel grade designation for the grinding wheel head. | Same reasoning as 0008: SNCM-220 is
+    the grade designation of that same wheel-head, i.e. still describing the CHEVALIER grinder''s own construction,
+    not a worked material. The two entries (0008/0009) are effectively one fact about the machine, named two ways.'
   provenance:
   - action: added
     by: seed-agent-acimachine-com
     date: '2026-08-27'
     source: corpus-seed
+  - action: disputed
+    by: verify-agent-acimachine
+    date: '2026-09-04'
+    reason: 'Same reasoning as 0008: SNCM-220 is the grade designation of that same wheel-head, i.e. still describing
+      the CHEVALIER grinder''s own construction, not a worked material. The two entries (0008/0009) are effectively
+      one fact about the machine, named two ways.'
 - id: acimachine_com-material_caps-0010
   name: brass
   status: candidate
-  out_of_snapshot: true
   acceptable_forms:
   - brass
   evidence:
@@ -186,10 +229,10 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  out_of_snapshot: true
 - id: acimachine_com-material_caps-0011
   name: copper
   status: candidate
-  out_of_snapshot: true
   acceptable_forms:
   - copper
   evidence:
@@ -206,10 +249,10 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  out_of_snapshot: true
 - id: acimachine_com-material_caps-0012
   name: lead
   status: candidate
-  out_of_snapshot: true
   acceptable_forms:
   - lead
   evidence:
@@ -227,10 +270,10 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  out_of_snapshot: true
 - id: acimachine_com-material_caps-0013
   name: plastic
   status: candidate
-  out_of_snapshot: true
   acceptable_forms:
   - plastic
   evidence:
@@ -247,10 +290,10 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  out_of_snapshot: true
 - id: acimachine_com-material_caps-0014
   name: zinc
   status: candidate
-  out_of_snapshot: true
   acceptable_forms:
   - zinc
   evidence:
@@ -267,6 +310,34 @@ entries:
     date: '2026-09-03'
     source: 'v3-port: evidence absent from the 100k-cutoff markdown_v3 snapshot (page not crawled or site drift);
       reserved, not retired'
+  out_of_snapshot: true
+- id: acimachine_com-material_caps-0015
+  name: Turcite
+  status: disputed
+  acceptable_forms:
+  - Turcite
+  evidence:
+  - quote: hardened and ground ways as well as “Turcite” coating the adjacent surfaces
+    approx_offset: 231792
+  actor: reseller_inventory
+  notes: The Willis 1050/1050II Knee Mill descriptions name a 'Turcite' coating on the resold machine's slideways
+    (6 occurrences in this snapshot); absent from the given 7-entry packet entirely. Same construction-material
+    class as 0005/0008/0009 above (the machine's own build, not what it processes), so on my own reasoning this
+    would likely also be disputed rather than confirmed outright - flagging it anyway per the miss-reporting brief,
+    since the seed missed it regardless of its eventual field-membership verdict. | Turcite is the resold Willis
+    mill's own slideway coating — the machine's construction material, not a substance the work is made from or
+    performed in; consistent with the Meehanite/Nichrome/SNCM-220 dispute verdicts
+  provenance:
+  - action: added
+    by: verify-agent-acimachine
+    date: '2026-09-04'
+    source: verification-pass-miss
+  - action: disputed
+    by: verify-pass-assistant
+    date: '2026-09-04'
+    reason: Turcite is the resold Willis mill's own slideway coating — the machine's construction material, not
+      a substance the work is made from or performed in; consistent with the Meehanite/Nichrome/SNCM-220 dispute
+      verdicts
 false_friends:
 - form: mild steel
   reason: 'spec-capacity rating of resold machines: label ''Capacity (Mild Steel)(in)'' and JET marketing ''precision

@@ -3,7 +3,7 @@ field: products
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/mathewsco.com.txt
   sha256: 65791650c81189948bfe50977028cfd141809e36ca848832a61c156eeb867150
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: false
 notes: 'Doubles as the contract_products expectation. Mathews makes nothing; every artifact here is a principal''s
   catalogue or custom part, so actor is supplier or unknown. Two special actors: the founder''s 1906 Ford dealership
@@ -173,6 +173,7 @@ entries:
   acceptable_forms:
   - rings, spindles
   - sleeves, rings
+  - rings
   evidence:
   - quote: hollow sleeves, rings, spindles
     approx_offset: 17829
@@ -195,6 +196,10 @@ entries:
     by: port_corpus.py
     date: '2026-08-29'
     source: markdown-cutover
+  - action: repair
+    by: assistant
+    date: '2026-09-04'
+    source: user-approved too-narrow acceptable_forms repair (census 20260903T212112)
 - id: mathewsco_com-products-0009
   name: spindles
   status: confirmed

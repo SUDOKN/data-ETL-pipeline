@@ -3,22 +3,31 @@ field: equipments
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/steelcraft.com.txt
   sha256: be9cd0aee5977a78a9601d430e2d38deb624336fcf5e3e2ff839d43c02de1a93
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: true
-notes: 'expected_empty: the text names NO machines, shop equipment, or tooling anywhere - verified by full read
-  and by targeted probes (machin*/CNC/press/brake/laser/lathe/mill/robot/saw/punch/shear/stamp/grind/conveyor/tooling/fixture/equipment
-  all absent or false-positive: ''press'' hits are only pressure/express, ''mill'' only ''rolled mill finish'' and
-  a person named Miller, ''robot'' only the terms-of-use scraping clause). The 553,000 sq ft plant is described
-  with zero machine designations. Prior measured failure mode: search returned 68/75 PRODUCT groups under equipments
-  - the false-friend list below is that confusion class. Any sizable yield here is junk-minting signal. VERIFICATION
-  PASS 2026-08-26 (verify-agent-steelcraft): expected_empty: true INDEPENDENTLY CONFIRMED - not flipped, and I agree
-  with it. I re-ran my own probes over the full snapshot rather than trusting the seed''s: machin*/CNC/brake/laser/lathe/saw/punch/shear/stamp/grind/conveyor/tooling/fixture/equipment/welder/forklift/crane/kiln/furnace/router/plasma/turret/''roll
-  form'' all return ZERO hits; ''press'' (105) is entirely pressure/express/impression, ''mill'' (5) is only ''1
-  Million Cycles'' and ''#2B - Smooth, rolled mill finish'', ''oven'' (8) is only the word ''proven'', ''robot''
-  (1) and ''automat'' (2) are the terms-of-use anti-scraping clause. The 553,000 sq ft Blue Ash plant and both service
-  centers are described purely by capability verbs (welding, anchor preps, modifications, labeling, crating) with
-  no machine named. FALSE FRIENDS: agreed as written; they correctly enumerate the measured 68/75 product-under-equipments
-  confusion class.'
+notes: 'Full read of the v3 markdown snapshot end to end, all 2,924 lines / 56 page blocks (54 rendered pages +
+  2 Not Found artifacts): the site is a door/frame product catalogue organized by series, standards/certification
+  listings, ordering/support pages, and Allegion legal boilerplate (privacy policy, cookie notice, terms of use).
+  No production machine is named anywhere. The 553,000 sq ft Blue Ash main plant and the Chino / Kansas City service
+  centers are described purely by capability verbs (welding, anchor preps, modifications, labeling, crating, frame
+  manufacturing) with zero machine designations. Confirmed with a full-text grep sweep of 45+ machine/equipment
+  terms: machine, CNC, press, brake, laser, lathe, mill, robot, saw, punch, shear, stamp, grind, conveyor, tooling,
+  fixture, equipment, welder, forklift, crane, kiln, furnace, router, plasma, turret, roll form, automat(e/ic),
+  oven, extrud(e), inject, mold, drill, cutter, bender, compressor, generator, pump, boiler, hydraulic, coil, slit,
+  blank, 3D print, additive, assembly line, robotic, automation, cell, arm, workstation, booth, hoist, rack - every
+  apparent hit is a false positive. ''press''/''pressure'' is always wind/air pressure testing or the Express-branded
+  shipping programs (5-Day Express Doors, 3-Day Express Frames); ''machine'' occurs exactly once, inside the Chatbot
+  terms-of-use clause (''pre-programmed scripts, machine learning, and generative artificial intelligence''); ''mill''
+  is only ''SDI/A250.4 to 1 Million Cycles'' and the surname Miller (jon.miller@allegion.com); ''robot''/''automat(ic)''
+  are only the anti-scraping clause in the Terms of Use (''deep-link, page-scrape, robot, spider, or other automatic
+  site search/retrieval application''); ''cell'' is only the door core structure (''Honeycomb cell with sanded surfaces'');
+  ''extrusion'' names the FT Series'' polymer thermal-separator strip, a component, not a machine; oven, tooling,
+  fixture, equipment, welder, forklift, crane, kiln, furnace, router, plasma, turret, CNC, lathe, laser, brake,
+  saw, punch, shear, stamp, grind, conveyor, drill, cutter, bender, compressor, generator, pump, boiler, hydraulic,
+  coil, slit, blank, additive, robotic, automation, arm, workstation, and booth all return zero hits. Any sizable
+  yield here would be junk-minting signal, most likely by relabeling a door/frame product series as a machine (the
+  measured failure mode on the legacy corpus: search returned 68/75 product groups under equipments there) or by
+  mistaking a named software/ordering tool for hardware.'
 entries: []
 false_friends:
 - form: doors
@@ -69,3 +78,17 @@ false_friends:
   reason: shipping packaging, not equipment (S)
 - form: rolled mill finish
   reason: stainless finish designation ('#2B - Smooth, rolled mill finish') - a surface finish, not a mill machine
+- form: Paladin
+  reason: 'door/frame product series, and the one place a machine word attaches to it is the product''s own name:
+    "The PW14 Paladin™ Door System is designed and tested to withstand extreme effects of wind and flying debris."
+    It is the product, not a machine that makes it.'
+- form: INPACT
+  reason: door hardware-and-door product bundle, headed on its own page as "INPACT SYSTEM INTEGRATED DOOR SOLUTION"
+    - the word System here names an assembled product (door + factory-installed exit hardware), not shop machinery.
+- form: L Series
+  reason: the site's flagship door product line ("Depend on the Steelcraft L Series door; depend on the strength
+    of steel") - a product designation repeated across many pages, not equipment.
+- form: GRAINTECH
+  reason: trade name for a stained/engrained wood-look finish applied to doors ("Steelcraft’s GRAINTECH™ Series
+    of stainable steel doors provides the beauty of wood") - a finish/product line, not a machine, despite the tech-sounding
+    name.

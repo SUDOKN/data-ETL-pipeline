@@ -3,10 +3,13 @@ field: conformity_attestations
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/101machine.com.txt
   sha256: 37fc4b0e0edb00e4d006f61321d5b9387619299f2f38f1f2148cfff71dc15669
-eval_set_version: 2
+eval_set_version: 3
 expected_empty: true
-notes: 'expected_empty: the text names ZERO standards, certifications, or regulatory designations - no ISO/AS/IATF/ASTM/NADCAP
-  anywhere; no form of ''certif-'' occurs in the file. Any sizable yield here is junk-minting signal.'
+notes: 'Exhaustive read of all 9 pages (~7KB) plus a targeted grep sweep for ISO/ASTM/ANSI/API/AMS/AS/NADCAP/UL/CE/EN/certif/accredit/complian/regist/approv/standard/IATF/ITAR/ROHS/REACH/ASME/qualif/licens:
+  zero standards-body names, certification marks, registrations, or compliance designations occur anywhere. The
+  only ''standard'' hit is the generic adjective in ''standard sizes'' (FAQ, material dimensions). No form of ''certif-''
+  occurs anywhere in the file. Tiny prototype/short-run CNC job shop (Cary, NC); its only quality language is unattributed
+  marketing prose (''high quality work''). Any sizable yield here is junk-minting signal.'
 entries: []
 false_friends:
 - form: .step file
@@ -18,3 +21,6 @@ false_friends:
   reason: generic quality prose ('high quality work', 'quality of our work') with no standard id (code G)
 - form: 1 inch = 25.4mm
   reason: unit-conversion line in the FAQ, not a standard reference
+- form: standard sizes
+  reason: generic adjective use of 'standard' in the FAQ ('keep material dimension in standard sizes to reduce your
+    material costs') meaning common/typical; names no standard, body, or designation

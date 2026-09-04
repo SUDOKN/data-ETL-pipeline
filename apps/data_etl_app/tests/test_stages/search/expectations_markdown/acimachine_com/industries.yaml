@@ -3,32 +3,108 @@ field: industries
 snapshot:
   file: apps/data_etl_app/tests/test_stages/sample_scraped_markdowns/acimachine.com.txt
   sha256: 8e14c35425ab5f448a25973621d7ceca69fe6043e6d2e9d8d769ff2d584c9ec9
-eval_set_version: 3
+eval_set_version: 5
 expected_empty: true
-notes: 'No ''industries served'' page or sector claims anywhere; greps for industries/industry hit only third-party
-  machine marketing prose and the manufacturer name SHARP Industries. About/Support name only geography (Kentucky,
-  southern Indiana). CORRECTED 2026-08-26 (the seed''s original claim here read ''Aerospace/automotive/medical/defense/agriculture:
-  zero hits'' and was FALSE - see the verification note below for the real counts). What actually holds: no sector
-  is claimed BY ACI anywhere; every sector word in the file sits inside third-party OEM marketing prose on resold-machine
-  listings. Only ''defense'' and ''agricultur'' are genuinely absent. Any sizable industries yield on this subject
-  is still junk-minting signal, but a run returning ''aerospace'' is echoing real text, not hallucinating. VERIFY
-  2026-08-26 (second independent pass): expected_empty=true is NOT flipped, but two factual claims supporting it
-  - one here and one in subject.yaml''s targeted_greps - are WRONG and should be corrected before this file is trusted
-  as a junk-minting baseline. (a) ''Aerospace/automotive/medical/defense/agriculture: zero hits'' is false. Case-insensitive
-  counts: aerospace 11 lines, automotive 10, mining 10, medical 1, semiconductor 1. Only ''defense'' and ''agricultur''
-  are genuinely zero. All hits sit in third-party OEM marketing on resold-machine listings: ''grinding medium to
-  large workpieces for aircraft, wind turbine, automotive, power generation, oil exploration, mining, locomotive
-  and heavy machinery'' (10 lines), ''The FMG-B1224 easily adapts to future needs for job shops, medical, automotive,
-  semiconductor and aerospace.'' (line 38665), and Hurco''s ''customers who are suppliers for the aerospace and
-  energy sectors'' (5 lines). (b) The ''Energy'' false-friend reason ''no energy-sector sense in the file'' is false:
-  lines 77842, 91613, 110247, 112024, 145556, 176199, 179672, 219139, 225621 and 228819 read ''aerospace and energy
-  parts'' / ''the aerospace and energy sectors'', an unambiguous sector sense. The Uni-Hydro ''transfer energy''
-  lines the seed cites are a genuine second sense, so ''Energy'' is a polyseme here, not a pure word- association
-  false friend, and judging it should carry the polyseme flag. CONSEQUENCE: under strict recall-first these are
-  named sectors in the text with actor reseller_inventory - the exact analogue of the one representative reseller
-  probe the seed DID keep in process_caps (entry 0010). Either this file owes one such entry or process_caps 0010
-  should go; left at zero entries per the no-add rule and flagged for the user.'
-entries: []
+notes: Genuinely near-empty. Greps for aerospace/automotive/medical/defense/agricultur/mining/semiconductor/energy/marine/sector/market
+  turn up almost nothing ACI-authored in this v3 snapshot. The only real sector language is one AKIRA SEIKI 5-axis
+  machining-center application sentence, repeated verbatim on two listing cards (5AX-AC650 / 5AX-BC650), naming
+  aerospace/medical/semiconductor/optical/'automobile & motorcycle industry' as the MACHINE's target markets - seeded
+  under actor=reseller_inventory per the recall-first rule (the text names a sector, so it is an entry regardless
+  of whose claim it is; ACI itself claims none). 'automotive' and 'energy' (both live in the pre-cutoff snapshot's
+  notes) do not occur at all in this smaller v3 sample. No 'industries served' page anywhere; bare 'industry' occurs
+  only as the generic adjective ('industry proven' on every JET hoist, 'the standard in the industry' on WELLSAW)
+  never a named sector - see false_friends.
+entries:
+- id: acimachine_com-industries-0001
+  name: aerospace
+  status: confirmed
+  acceptable_forms:
+  - aerospace
+  evidence:
+  - quote: Application for Multi-surface machining such as mold, aerospace, medical, semiconductor, optical
+    approx_offset: 327681
+  actor: reseller_inventory
+  notes: AKIRA SEIKI 5AX-AC650/5AX-BC650 listing prose names this as the machine's application domain, not ACI's
+    own served industry
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-industries-0002
+  name: medical
+  status: confirmed
+  acceptable_forms:
+  - medical
+  evidence:
+  - quote: Application for Multi-surface machining such as mold, aerospace, medical, semiconductor, optical
+    approx_offset: 327681
+  actor: reseller_inventory
+  notes: same AKIRA SEIKI sentence
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-industries-0003
+  name: semiconductor
+  status: confirmed
+  acceptable_forms:
+  - semiconductor
+  evidence:
+  - quote: Application for Multi-surface machining such as mold, aerospace, medical, semiconductor, optical
+    approx_offset: 327681
+  actor: reseller_inventory
+  notes: same AKIRA SEIKI sentence
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
+- id: acimachine_com-industries-0004
+  name: optical
+  status: disputed
+  acceptable_forms:
+  - optical
+  evidence:
+  - quote: Application for Multi-surface machining such as mold, aerospace, medical, semiconductor, optical
+    approx_offset: 327681
+  actor: reseller_inventory
+  notes: 'DISPUTED: reads as a sector (optics/optical-instruments industry) by parallelism with its list-mates (mold,
+    aerospace, medical, semiconductor), but could also be read as a machining-type qualifier rather than a named
+    sector - keeping the argument on record rather than dropping it'
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+- id: acimachine_com-industries-0005
+  name: automobile & motorcycle industry
+  status: confirmed
+  acceptable_forms:
+  - automobile & motorcycle industry
+  evidence:
+  - quote: multi-curved machining such as automobile & motorcycle industry.
+    approx_offset: 327782
+  actor: reseller_inventory
+  notes: same AKIRA SEIKI sentence, tail clause
+  provenance:
+  - action: added
+    by: seed-agent-acimachine-com
+    date: '2026-08-27'
+    source: corpus-seed
+  - action: verified
+    by: verify-agent-acimachine-wave2
+    date: '2026-09-04'
 false_friends:
 - form: Oil Field
   reason: machine-category name 'Oil Field & Hollow Spindle Lathes' (1,487 lines) — an equipment type, not a served
@@ -53,3 +129,21 @@ false_friends:
 - form: commercial and industrial
   reason: JET hoist marketing 'operate in commercial and industrial applications' (68 lines) — generic application
     prose, not a sector claim by ACI
+- form: industry proven
+  reason: generic adjective on every JET hoist listing ('the industry proven DC electro-magnetic brake') - 'the
+    trade', not a named sector
+- form: the standard in the industry
+  reason: WELLSAW 1016/1316S-SA marketing claim ('The standard in the industry since 1933') - same generic sense
+    of 'industry' as the trade, not a sector
+- form: commercial and industrial applications
+  reason: JET SSC-hoist marketing ('operate in commercial and industrial applications') - generic application language,
+    not a sector claim
+- form: mining
+  reason: 'substring-of-''examining'' trap: the only case-insensitive hit sits inside the Terms of Service (''...responsible
+    for exam[INING] or evaluating...'') - zero genuine mining-sector mentions'
+- form: mold
+  reason: AKIRA SEIKI application-list item ('mold, aerospace, medical, semiconductor...') names a process/tooling
+    domain, not an economic sector
+- form: market
+  reason: generic business language ('meet the demands of the changing markets', WINEMA marketing; 'marketing emails',
+    privacy policy) - not a named sector

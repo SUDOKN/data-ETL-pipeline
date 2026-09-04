@@ -8,7 +8,19 @@ divisor 4. All future search A/Bs compare here.
 Census depth (user-selected): every returned form judged — 25,440 forms,
 108 units, 18 subjects, 260 judge tasks; 36-packet double-judge; personal
 slice verification (305 rows, 1 correction). Details in `FINDINGS.md`,
-`JUDGED.md`, `CENSUS_REPORT.txt`, `CENSUS_NOTES.md`.
+`JUDGED.md`, `CENSUS_REPORT.md`, `CENSUS_NOTES.md`.
+
+**Eval-set evolution applied 2026-09-04 (user votes, all five executed;
+record in CENSUS_NOTES "Eval-vote resolutions"):** the absent-must-find /
+nav-evidence / CSA-CUS flags all closed with ZERO edits (reserved-by-coverage
+or already `out_of_snapshot` — none ever gated); 11 too-narrow
+acceptable_forms repaired; the 16 zero-gate units reseeded/verified through
+the two-pass protocol (7 agents + assistant second pass). Post-evolution
+mechanical state on this same run: **61 OK / 47 RED; recall vs the evolved
+set 95.4% overall on 2,960 gated entries** (conformity 98.6 / equipments
+93.1 / industries 95.1 / materials 96.4 / process 95.3 / products 95.0).
+Numbers in the table BELOW are the census-time values against the
+census-time eval versions; the scorecards carry both.
 
 ## Floors this run's numbers are read against
 
@@ -19,7 +31,11 @@ slice verification (305 rows, 1 correction). Details in `FINDINGS.md`,
   rollup **89.7%**, actor **91.7%**. Axes: B↔V family/specific, G↔O
   industries, G↔S products, N↔U taper facets, client↔own on
   served-industries prose.
-- **Mechanical eval**: RED=0 / OK=108 (all gates green before judging).
+- **Mechanical eval**: 62 OK / 46 RED at census time on the recall-only
+  gates — the REDs ARE the confirmed-recall misses this census judged.
+  (An earlier revision said "RED=0/OK=108"; that conflated the packet
+  COVERAGE check — 260/260 packets, 108/108 units, 0 problems — with the
+  verdicts. Corrected 2026-09-04.)
 
 ## Per-field verdicts (precision on shared rollup · recall vs eval set)
 
