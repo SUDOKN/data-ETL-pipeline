@@ -17,8 +17,8 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_mention_collection_node import (
-        EquipmentMentionCollectionNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_synthesis_node import (
+        EquipmentSynthesisNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ class EquipmentRecursiveSearchNode(KeywordRecursiveSearchNode):
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: EquipmentMentionCollectionNode,
+        next_node: EquipmentSynthesisNode,
         second_search_prompt: Prompt,
     ):
         super().__init__(

@@ -170,14 +170,6 @@ class LLMPhraseIterativeGroundingNode(
             f"{self.__class__.__name__} must implement get_upstream_screening_map"
         )
 
-    def get_upstream_mention_collection_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        """The completed mention-collection request map — what the fold behind
-        the synthesis result is recomputed from."""
-        raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_upstream_mention_collection_map"
-        )
 
     def get_upstream_synthesis_map(
         self, pipeline_context: PipelineContext
@@ -327,7 +319,6 @@ class LLMPhraseIterativeGroundingNode(
                 f"as the in-vocab grounding req map is empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
         completed_screening_req_map = self.get_upstream_screening_map(pipeline_context)
-        mention_map = self.get_upstream_mention_collection_map(pipeline_context)
         synthesis_map = self.get_upstream_synthesis_map(pipeline_context)
         subject_text = self._subject_text_of(
             pipeline_context, subject_unique_id, self.field_type.name
@@ -413,7 +404,6 @@ class LLMPhraseIterativeGroundingNode(
                 bundle,
                 timestamp,
                 synthesis_completed_request_map=synthesis_map,
-                mention_completed_request_map=mention_map,
                 subject_text=subject_text,
                 metadata=metadata,
             )
@@ -669,9 +659,6 @@ class LLMPhraseIterativeGroundingNode(
             chunked_request_map=chunked_request_map,
             missing_phrase_recursive_grounding_req_ids=missing_request_ids,
             phrase_recursive_grounding_prompt=self.phrase_recursive_grounding_prompt,
-            mention_completed_request_map=self.get_upstream_mention_collection_map(
-                pipeline_context
-            ),
             synthesis_completed_request_map=self.get_upstream_synthesis_map(
                 pipeline_context
             ),

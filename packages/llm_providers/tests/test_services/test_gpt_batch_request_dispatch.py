@@ -38,7 +38,10 @@ STRICT_SCHEMA = {
 
 
 def _batch_request(
-    *, model: str = GPT_4_1.name, response_format: dict = STRICT_SCHEMA
+    *,
+    model: str = GPT_4_1.name,
+    response_format: dict = STRICT_SCHEMA,
+    batch_id: str | None = "Eager",
 ) -> GPTBatchRequest:
     """``model_construct`` rather than the constructor: Beanie 2.0's
     ``Document.__init__`` reaches for the collection, so a plain
@@ -48,7 +51,7 @@ def _batch_request(
         created_at=now,
         updated_at=now,
         subject_unique_id="anchor-mfg.com",
-        batch_id="Eager",
+        batch_id=batch_id,
         num_batches_paired_with=0,
         response=None,
         response_parse_errors=[],
@@ -130,3 +133,20 @@ async def test_dispatch_rejects_a_model_the_body_was_not_built_for(sent):
             gpt_batch_request=_batch_request(), gpt_model=GPT_4o_mini
         )
     assert not sent
+
+
+
+@pytest.mark.asyncio
+async def test_dispatch_refuses_a_pending_row_nobody_claimed(sent):
+    """A row with ``batch_id is None`` is PENDING — the batch-file path's
+    "upload me next" state, and also what ``record_response_parse_error``
+    writes so a parse-failed request is re-asked. The guard refuses to send
+    one eagerly, so the eager path must claim it first
+    (``mark_gpt_batch_requests_eager``); until 2026-09-05 nothing did, and the
+    parse-error retry could never run in eager mode. Pinned so a change to
+    either side is a conscious one."""
+    with pytest.raises(ValueError, match="if batch_id is not 'Eager'"):
+        await dispatch_gpt_batch_request(
+            gpt_batch_request=_batch_request(batch_id=None), gpt_model=GPT_4_1
+        )
+    assert not sent  # never reached the wire

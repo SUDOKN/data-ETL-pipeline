@@ -36,6 +36,7 @@ class _Field:
 def _request(custom_id: str) -> Any:
     return SimpleNamespace(
         request=SimpleNamespace(custom_id=custom_id),
+        batch_id="Eager",  # created eagerly; a parse-nulled row would be None
         response=None,
     )
 

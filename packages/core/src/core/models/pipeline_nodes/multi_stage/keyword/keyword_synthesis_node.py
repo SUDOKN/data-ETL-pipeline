@@ -20,9 +20,9 @@ logger = logging.getLogger(__name__)
 
 class KeywordSynthesisNode(LLMPhraseSynthesisNode[ExtractionFieldType]):
     """BASE class for the keyword branches' v3 phase 3.2: narrows the
-    constructor, leaves the upstream-map accessor abstract — the app-side
+    constructor, leaves the upstream-map accessors abstract — the app-side
     leaves (pure product / contract product / equipment) point at their own
-    mention nodes, and the contract leaf shares the pure-product identity."""
+    search nodes, and the contract leaf shares the pure-product identity."""
 
     def __init__(
         self,

@@ -36,50 +36,44 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
     llm_phrase_recursive_search_req_ids: dict[str, list[BatchRequestIDType]] = Field(
         default_factory=dict
     )
-    # v3 mention collection (PIPELINE_V3_PLAN.md D4–D7, as amended 2026-08-22).
-    # Per sub-window (keyed by its search_sub_bounds entry): the ordered list of
-    # mention-location request groups (group 1 == index 0). Mentions are
-    # collected in CODE from the window text and the window's sent forms; each
-    # group asks the LLM for the location of at most `max_mentions_per_request`
-    # of the window's distinct snippets, against the same window text; the fold
-    # merges the groups back. A window with no mentions gets one dummy request.
+    # v3 mention-collection LLM stage (out of every chain since the
+    # location-stage merge, 2026-09-03 — synthesis absorbed the location task).
+    # The two request-id fields and the retry list stay so stored pre-merge
+    # documents load and keep their provenance, the same posture as the
+    # relationship fields below; no node writes or reads them any more.
     llm_phrase_mention_req_ids: dict[str, list[BatchRequestIDType]] = Field(
         default_factory=dict
     )
-    # Per sub-window: the forms the mention stage was handed for it — the CHUNK's
-    # search ∪ brute casings, filtered to the forms that OCCUR in the sub-window
-    # (user decision 2026-08-22), sorted — written when the group ids are embedded.
-    # Stored so the fold can re-collect from the text + these forms alone — the
-    # request carries snippets, not forms (user decision), and the fold has no
-    # search map.
+    # Per sub-window: the sent forms — the SUBJECT's search ∪ brute casings,
+    # filtered to the forms that OCCUR in the sub-window (user decisions
+    # 2026-08-22 / 2026-09-02), sorted. LIVE: written by the synthesis node's
+    # embed pass (pass 0, ported from the retired mention node — the field
+    # keeps its historical name so stored documents stay valid); the fold
+    # re-collects from the text + these forms alone.
     llm_phrase_mention_sent_forms: dict[str, list[str]] = Field(default_factory=dict)
-    # Location-stage under-answer policy (user decision 2026-08-22): once a
-    # sub-window's group requests are complete it is ASSESSED — the mention ids
-    # the model left undescribed are stored here (an empty list = assessed, none
-    # missing; a key absent = not yet assessed) and, when any are missing, ONE
-    # retry pass asks for those items again (split by `max_mentions_per_request`
-    # into the request ids below, parallel to the stored ids' grouping). The fold
-    # reads the retry answers after the groups'; nothing is retried twice.
+    # Retired with the mention stage (see llm_phrase_mention_req_ids).
     llm_phrase_mention_retry_mention_ids: dict[str, list[str]] = Field(default_factory=dict)
     llm_phrase_mention_retry_req_ids: dict[str, list[BatchRequestIDType]] = Field(
         default_factory=dict
     )
     # v3 synthesis (PIPELINE_V3_PLAN.md D15 as amended 2026-08-22, D16; Phase
-    # 3.2). Per CHUNK (this bundle): the ordered list of synthesis request
-    # groups (group 1 == index 0). The chunk's fold records — one per non-empty
-    # group, focal form + entries — are packed in bundle order into requests of
-    # at most `max_entries_per_request` entries, a record never split; a chunk
-    # with no records gets one dummy request. Records are recomputed from the
-    # text + the stored mention state (the fold is deterministic), so nothing
-    # but the ids is stored.
+    # 3.2; merged with the location task 2026-09-03). Per CHUNK (this bundle):
+    # the ordered list of synthesis request groups (group 1 == index 0). The
+    # chunk's fold records — one per non-empty group, focal form + snippets —
+    # are packed in bundle order into requests of at most
+    # `max_entries_per_request` snippets, a record never split; a chunk with no
+    # records gets one dummy request. Records are recomputed from the text +
+    # the stored sent forms (the fold is pure code), so nothing but the ids is
+    # stored.
     llm_phrase_synthesis_req_ids: list[BatchRequestIDType] = Field(default_factory=list)
-    # Under-answer policy (user decision 2026-08-22, same family as the Location
-    # stage's): once the chunk's group requests are complete it is ASSESSED —
-    # the record ids no answer synthesized are stored here (an empty list =
-    # assessed, none missing; None = not yet assessed) and, when any are
-    # missing, ONE retry pass re-asks for just those records (packed the same
-    # way into the ids below). The result reads group answers first, then the
-    # retry's; what is still missing after that is reported, never retried twice.
+    # Under-answer policy (user decision 2026-08-22): once the chunk's group
+    # requests are complete it is ASSESSED — the record ids no answer
+    # synthesized, the answered ids whose synthesis dropped designations
+    # (2026-09-02) are stored here (an empty list = assessed, none missing;
+    # None = not yet assessed) and, when any exist, ONE retry pass re-asks for
+    # just those records (packed the same way into the ids below). The result
+    # reads group answers first, then the retry's; what is still missing after
+    # that is reported, never retried twice.
     llm_phrase_synthesis_retry_record_ids: Optional[list[str]] = None
     llm_phrase_synthesis_retry_req_ids: list[BatchRequestIDType] = Field(default_factory=list)
     # v2 relationship (out of every chain since v3 3.1; retired at 3.3).

@@ -10,7 +10,6 @@ from core.models.extraction_results.keyword_extraction_results import (
     BatchedFreehandGroundingNodeMetadata,
 )
 from core.models.extraction_results.extraction_node_metadata import (
-    BatchedMentionCollectionNodeMetadata,
     BatchedRelationshipNodeMetadata,
     BatchedSynthesisNodeMetadata,
     BatchedScreeningNodeMetadata,
@@ -41,9 +40,6 @@ def test_every_batched_stage_carries_its_group_size():
     )
 
     assert relationship.to_custom_id_segment().endswith("|gs=50")
-    # v3: mentions (distinct snippets) per sub-window location request
-    mention = BatchedMentionCollectionNodeMetadata(**_COMMON, max_mentions_per_request=50)
-    assert mention.to_custom_id_segment().endswith("|gs=50")
     assert screening.to_custom_id_segment().endswith("|gs=15")
     assert grounding.to_custom_id_segment().endswith("|gs=15")
     assert freehand.to_custom_id_segment().endswith("|gs=50")
@@ -58,23 +54,9 @@ def test_changing_the_cap_changes_request_identity():
     assert fifty.to_custom_id_segment() != twenty_five.to_custom_id_segment()
 
 
-def test_synthesis_carries_its_cap_and_its_location_arm():
-    """v3 3.2: the soft entry cap AND the A/B arm are request identity — the two
-    arms must coexist in Mongo, so `|loc=` is always present."""
-    with_loc = BatchedSynthesisNodeMetadata(**_COMMON, max_entries_per_request=50, include_location=True)
-    without = BatchedSynthesisNodeMetadata(**_COMMON, max_entries_per_request=50, include_location=False)
-    assert with_loc.to_custom_id_segment().endswith("|gs=50|loc=1")
-    assert without.to_custom_id_segment().endswith("|gs=50|loc=0")
-    assert with_loc.to_custom_id_segment() != without.to_custom_id_segment()
-
-
-def test_mention_snippet_radius_is_identity_only_when_set():
-    """The radius knob was added after five runs: at 0 (the clip those runs
-    used) the segment is unchanged so every stored id still matches; any other
-    value is a different question."""
-    legacy = BatchedMentionCollectionNodeMetadata(**_COMMON, max_mentions_per_request=50)
-    zero = BatchedMentionCollectionNodeMetadata(**_COMMON, max_mentions_per_request=50, snippet_radius=0)
-    two = BatchedMentionCollectionNodeMetadata(**_COMMON, max_mentions_per_request=50, snippet_radius=2)
-    assert legacy.to_custom_id_segment() == zero.to_custom_id_segment()
-    assert "|rad=" not in zero.to_custom_id_segment()
-    assert two.to_custom_id_segment().endswith("|gs=50|rad=2")
+def test_synthesis_carries_its_cap_and_no_location_arm():
+    """v3 3.2, merged 2026-09-03: the soft entry cap is request identity; the
+    old `|loc=` A/B segment died with the location stage."""
+    synthesis = BatchedSynthesisNodeMetadata(**_COMMON, max_entries_per_request=50)
+    assert synthesis.to_custom_id_segment().endswith("|gs=50")
+    assert "|loc=" not in synthesis.to_custom_id_segment()

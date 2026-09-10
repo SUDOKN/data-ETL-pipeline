@@ -58,14 +58,6 @@ class ConceptIterativeGroundingNode(LLMPhraseIterativeGroundingNode):
 
         return pipeline_context[ConceptRelationshipScreeningNode]
 
-    def get_upstream_mention_collection_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
-            ConceptMentionCollectionNode,
-        )
-
-        return pipeline_context[ConceptMentionCollectionNode]
 
     def get_upstream_synthesis_map(
         self, pipeline_context: PipelineContext

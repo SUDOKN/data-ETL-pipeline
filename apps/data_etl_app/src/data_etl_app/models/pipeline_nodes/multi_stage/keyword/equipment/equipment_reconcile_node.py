@@ -34,14 +34,6 @@ class EquipmentReconcileNode(KeywordReconcileNode):
 
         return pipeline_context[EquipmentRecursiveSearchNode]
 
-    def get_upstream_mention_collection_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_mention_collection_node import (
-            EquipmentMentionCollectionNode,
-        )
-
-        return pipeline_context[EquipmentMentionCollectionNode]
 
     def get_upstream_synthesis_map(self, pipeline_context: PipelineContext) -> dict:
         from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_synthesis_node import (

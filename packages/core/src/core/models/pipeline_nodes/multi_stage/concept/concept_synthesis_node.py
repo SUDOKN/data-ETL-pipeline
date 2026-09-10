@@ -12,8 +12,11 @@ from core.models.pipeline_nodes.base.base_node import PipelineContext
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_synthesis_node import (
     LLMPhraseSynthesisNode,
 )
-from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
-    ConceptMentionCollectionNode,
+from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node import (
+    ConceptPhraseSearchNode,
+)
+from core.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_node import (
+    ConceptRecursiveSearchNode,
 )
 
 if TYPE_CHECKING:
@@ -26,7 +29,8 @@ logger = logging.getLogger(__name__)
 
 class ConceptSynthesisNode(LLMPhraseSynthesisNode[ConceptFieldType]):
     """v3 phase 3.2 for concept fields: one synthesis per group per chunk. Thin
-    wrapper that points the stage at the concept mention node's map."""
+    wrapper that points the stage at the concept search nodes' maps (the
+    sent-forms pooling; the fold itself is pure code)."""
 
     def __init__(
         self,
@@ -40,7 +44,12 @@ class ConceptSynthesisNode(LLMPhraseSynthesisNode[ConceptFieldType]):
             next_node=next_node,
         )
 
-    def get_upstream_mention_collection_map(
+    def get_upstream_phrase_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        return pipeline_context[ConceptMentionCollectionNode]
+        return pipeline_context[ConceptPhraseSearchNode]
+
+    def get_upstream_recursive_search_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        return pipeline_context[ConceptRecursiveSearchNode]

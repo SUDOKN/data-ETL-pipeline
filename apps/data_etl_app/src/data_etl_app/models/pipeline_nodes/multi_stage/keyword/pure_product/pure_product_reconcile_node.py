@@ -34,14 +34,6 @@ class PureProductReconcileNode(KeywordReconcileNode):
 
         return pipeline_context[PureProductRecursiveSearchNode]
 
-    def get_upstream_mention_collection_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_mention_collection_node import (
-            PureProductMentionCollectionNode,
-        )
-
-        return pipeline_context[PureProductMentionCollectionNode]
 
     def get_upstream_synthesis_map(self, pipeline_context: PipelineContext) -> dict:
         from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_synthesis_node import (

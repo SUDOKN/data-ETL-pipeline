@@ -49,15 +49,6 @@ STAGED_PROMPT_FILE_PATHS = {
     "product_phrase_screening_pure_product": "multi_stage/4_phrase_relationship_screening/product_phrase_screening_pure_product.txt",
     "product_phrase_screening_contract": "multi_stage/4_phrase_relationship_screening/product_phrase_screening_contract.txt",
     "equipment_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/equipment_phrase_relationship_screening.txt",
-    # v3 mention collection (PIPELINE_V3_PLAN.md D4–D7) — the stage that
-    # replaced relationship. Six byte-identical, field-agnostic statics; one per
-    # field so the pin/version bookkeeping is per field like every other stage.
-    "conformity_attestation_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/conformity_attestation_phrase_mention_collection.txt",
-    "industry_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/industry_phrase_mention_collection.txt",
-    "material_cap_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/material_cap_phrase_mention_collection.txt",
-    "process_cap_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/process_cap_phrase_mention_collection.txt",
-    "product_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/product_phrase_mention_collection.txt",
-    "equipment_phrase_mention_collection": "multi_stage/3_phrase_mention_collection/equipment_phrase_mention_collection.txt",
     # v3 synthesis (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2) — one description
     # per group from the fold's entries. Six byte-identical, field-agnostic
     # statics; one per field for the same per-field pin bookkeeping.
@@ -364,31 +355,6 @@ class PromptService:
     def product_phrase_relationship_prompt(self) -> Prompt:
         return self._get_prompt("product_phrase_relationship")
 
-    # --- v3 mention collection -------------------------------------------------
-
-    @property
-    def conformity_attestation_phrase_mention_collection_prompt(self) -> Prompt:
-        return self._get_prompt("conformity_attestation_phrase_mention_collection")
-
-    @property
-    def industry_phrase_mention_collection_prompt(self) -> Prompt:
-        return self._get_prompt("industry_phrase_mention_collection")
-
-    @property
-    def material_cap_phrase_mention_collection_prompt(self) -> Prompt:
-        return self._get_prompt("material_cap_phrase_mention_collection")
-
-    @property
-    def process_cap_phrase_mention_collection_prompt(self) -> Prompt:
-        return self._get_prompt("process_cap_phrase_mention_collection")
-
-    @property
-    def product_phrase_mention_collection_prompt(self) -> Prompt:
-        return self._get_prompt("product_phrase_mention_collection")
-
-    @property
-    def equipment_phrase_mention_collection_prompt(self) -> Prompt:
-        return self._get_prompt("equipment_phrase_mention_collection")
 
     # v3 synthesis (Phase 3.2)
     @property

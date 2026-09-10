@@ -41,7 +41,6 @@ from core.models.extraction_results.keyword_extraction_results import (
 from core.models.extraction_results.extraction_node_metadata import (
     AggregationFoldMetadata,
     BaseExtractionMetadata,
-    BatchedMentionCollectionNodeMetadata,
     BatchedSynthesisNodeMetadata,
     BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
@@ -161,14 +160,15 @@ class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
     # carry None and no node reads it.
     llm_phrase_relationship: Optional[BatchedRelationshipNodeMetadata] = None
     llm_phrase_relationship_screening: BatchedScreeningNodeMetadata
-    # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector and the
-    # aggregation fold's identity. Optional so every stored v2 document still
-    # loads; a v3 chain always sets both, and the prefill staleness check turns
-    # None-vs-set into the standard re-defer.
-    llm_phrase_mention_collection: Optional[BatchedMentionCollectionNodeMetadata] = None
+    # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the aggregation fold's identity
+    # (which since 2026-09-03 also carries the snippet-radius clip dial — the
+    # mention-collection LLM stage and its metadata were retired when the
+    # synthesis stage absorbed the location task). Optional so every stored v2
+    # document still loads; a v3 chain always sets it, and the prefill
+    # staleness check turns None-vs-set into the standard re-defer.
     aggregation_fold: Optional[AggregationFoldMetadata] = None
-    # v3 Phase 3.2: the synthesis stage's identity (cap + location arm). Same
-    # Optional-for-loading, always-set-by-the-factory contract as the two above.
+    # v3 Phase 3.2: the synthesis stage's identity. Same Optional-for-loading,
+    # always-set-by-the-factory contract as the one above.
     llm_phrase_synthesis: Optional[BatchedSynthesisNodeMetadata] = None
 
 

@@ -39,8 +39,15 @@ reason:
   that found it.
 * ``page`` — the one derived field whose derivation needs the page-marker scan
   rules rather than a slice or a hash.
-* ``location`` / ``location_source`` — the Location stage's answer, and whether
-  the fold defaulted it. Model-authored; nothing derives it.
+* ``location`` / ``location_source`` — the context line above the mention's
+  snippet: since 2026-09-05 the fold's own, derived in code
+  (``aggregation_fold`` docstring D; source ``"code"``, or ``"none"`` with
+  ``DEFAULT_LOCATION`` where the page block has no heading or table header
+  above the snippet). Kept as text because deriving it needs the window's
+  line geometry, not a slice. Documents written between the location-stage
+  merge (2026-09-03) and that date hold the synthesis model's per-snippet
+  quote under source ``"llm"``; pre-merge documents hold the retired location
+  stage's prose. All load unchanged.
 
 Dropped as pure slices or hashes: ``form``, ``snippet``, ``record_id``,
 ``mention_id``, ``is_discovered_casing``. Dropped as bulk: the whole
@@ -57,6 +64,9 @@ from typing import Optional, Sequence
 from pydantic import BaseModel, Field, model_validator
 
 from core.utils.aggregation_fold import (
+    DEFAULT_LOCATION,
+    LOCATION_SOURCE_CODE,
+    LOCATION_SOURCE_NONE,
     FoldResult,
     FoldedMention,
     MentionBundle,
@@ -117,14 +127,13 @@ def window_base_offset(window: WindowFold) -> int:
 
 
 class StoredMention(BaseModel):
-    """One occurrence of one form, located, as positions into the document.
+    """One occurrence of one form, as positions into the document.
 
     ``[start, end)`` is the occurrence and ``[snippet_start, snippet_end)`` the
     passage holding it, both DOCUMENT-ABSOLUTE into the post-exclusion text.
-    ``window_index`` is kept because it is half the locked order and names the
-    window whose Location request carried this mention — not because the
-    offsets need it.
-    """
+    ``window_index`` is kept because it is half the locked order — not because
+    the offsets need it. ``location`` is the context line above the snippet
+    (see the module docstring)."""
 
     window_index: int
     start: int
@@ -167,7 +176,9 @@ class StoredMention(BaseModel):
         return self.form_in(text) != self.sent_form
 
     def resolve(self, text: str, *, window_base: int) -> FoldedMention:
-        """The full in-memory mention this row was written from.
+        """The full in-memory mention this row was written from. ``location``
+        comes back as the fold computed it (None where the row holds the
+        default), so a fold and its stored twin resolve equal.
 
         *window_base* puts the offsets back where ``FoldedMention`` expects
         them — WINDOW-LOCAL — which is why this takes it rather than guessing:
@@ -186,9 +197,10 @@ class StoredMention(BaseModel):
             snippet=snippet,
             snippet_start=self.snippet_start - window_base,
             mention_id=mention_id_for_snippet(snippet),
-            location=self.location,
-            location_source=self.location_source,
             sent_form=self.sent_form,
+            location=(
+                None if self.location_source == LOCATION_SOURCE_NONE else self.location
+            ),
         )
 
     def _slice(self, text: str, start: int, end: int, what: str) -> str:
@@ -224,12 +236,14 @@ class StoredBundle(BaseModel):
 
 
 class StoredWindowFold(BaseModel):
-    """One window's report: what the scan reached, and what Location covered.
+    """One window's report: what the scan reached.
 
     Counts are not stored where a list is: ``sent_forms`` and
     ``zero_hit_forms`` are what a reader needs to tell a search false positive
     from a scan miss, and neither is recoverable once the run's window text is
-    gone.
+    gone. The four Location-stage coverage lists at the bottom are retired
+    (2026-09-03, the location-stage merge) — kept so stored pre-merge
+    documents load, written empty since.
     """
 
     window_index: int
@@ -317,8 +331,10 @@ def _stored_mention(mention: FoldedMention, base: int) -> StoredMention:
         snippet_end=base + mention.snippet_start + len(mention.snippet),
         page=mention.page,
         sent_form=mention.sent_form,
-        location=mention.location,
-        location_source=mention.location_source,
+        location=DEFAULT_LOCATION if mention.location is None else mention.location,
+        location_source=(
+            LOCATION_SOURCE_NONE if mention.location is None else LOCATION_SOURCE_CODE
+        ),
     )
 
 
@@ -337,15 +353,13 @@ def _stored_window(window: WindowFold, base: int) -> StoredWindowFold:
             for form, casings in collection.discovered_casings.items()
         },
         excluded_pages=list(collection.excluded_pages),
-        described=list(window.described),
-        not_described=list(window.not_described),
-        retried=list(window.retried),
-        unknown_answer_ids=list(window.unknown_answer_ids),
     )
 
 
 def build_stored_fold(result: FoldResult, *, text_version_id: str) -> StoredFold:
-    """The persisted twin of *result*, with document-absolute offsets.
+    """The persisted twin of *result*, with document-absolute offsets. Each
+    mention's ``location`` is the fold's own (code-derived); a mention the
+    fold could not locate stores ``DEFAULT_LOCATION``.
 
     Kept as a conversion rather than by making the fold's own dataclasses
     pydantic: the fold is the pipeline's one hot pure-code loop and its

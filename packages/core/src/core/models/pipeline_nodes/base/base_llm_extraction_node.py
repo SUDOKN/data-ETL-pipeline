@@ -67,8 +67,9 @@ from llm_providers.services.gpt_batch_request.gpt_batch_request_queries import (
     find_incomplete_gpt_batch_requests_by_custom_ids,
 )
 from llm_providers.services.gpt_batch_request.gpt_batch_request_writes import (
-    bulk_upsert_gpt_batch_requests_with_only_req_bodies,
     bulk_record_gpt_batch_responses,
+    bulk_upsert_gpt_batch_requests_with_only_req_bodies,
+    mark_gpt_batch_requests_eager,
 )
 
 logger = logging.getLogger(__name__)
@@ -347,6 +348,30 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
         """
         if not requests_to_dispatch:
             return []
+
+        # Claim every PENDING row (batch_id None) before sending it. That is the
+        # state record_response_parse_error writes so the next pass re-asks —
+        # and the state dispatch_gpt_batch_request refuses, because a pending
+        # row belongs to the batch-file path. Until 2026-09-05 the refusal
+        # made the parse-error retry unreachable in eager mode: the row was
+        # re-found, re-refused, and the pass bound tripped (run
+        # 20260904T184906, one subject lost to one truncated answer). Written
+        # to Mongo first, because completion is judged by batch_id != None AND
+        # response != None, and a dispatch that fails must leave a row the
+        # next pass can send again (see mark_gpt_batch_requests_eager).
+        pending = [req for req in requests_to_dispatch if req.batch_id is None]
+        if pending:
+            await mark_gpt_batch_requests_eager(
+                timestamp=timestamp,
+                custom_ids={req.request.custom_id for req in pending},
+            )
+            for req in pending:
+                req.batch_id = "Eager"
+            logger.info(
+                f"[{subject_unique_id}] {self.__class__.__name__} "
+                f"('{self.field_type.name}') claimed {len(pending)} parse-failed "
+                f"request(s) for eager re-dispatch."
+            )
 
         results = await asyncio.gather(
             *[

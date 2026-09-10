@@ -9,8 +9,11 @@ from llm_providers.models.file_objects.prompt import Prompt
 
 from core.models.extraction_schemas.synthesis import SynthesisRecordInput
 from core.models.pipeline_nodes import PipelineContext
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_mention_collection_node import (
-    ContractProductMentionCollectionNode,
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_phrase_search_node import (
+    ContractProductPhraseSearchNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_recursive_search_node import (
+    ContractProductRecursiveSearchNode,
 )
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_synthesis_node import (
     KeywordSynthesisNode,
@@ -32,9 +35,9 @@ logger = logging.getLogger(__name__)
 
 class ContractProductSynthesisNode(KeywordSynthesisNode):
     """v3 phase 3.2 for the contract-manufacturing product branch. Shared with
-    the pure-product branch the same way as :class:`ContractProductMentionCollectionNode`
+    the pure-product branch the same way as :class:`ContractProductPhraseSearchNode`
     (custom_id computed as if field_type were ``KeywordTypeEnum.products``):
-    the same mention answers fold to the same records, so the LLM is asked once
+    the same search answers fold to the same records, so the LLM is asked once
     and both branches read the one answer."""
 
     def __init__(
@@ -49,10 +52,15 @@ class ContractProductSynthesisNode(KeywordSynthesisNode):
             next_node=next_node,
         )
 
-    def get_upstream_mention_collection_map(
+    def get_upstream_phrase_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        return pipeline_context[ContractProductMentionCollectionNode]
+        return pipeline_context[ContractProductPhraseSearchNode]
+
+    def get_upstream_recursive_search_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        return pipeline_context[ContractProductRecursiveSearchNode]
 
     @staticmethod
     def get_request_custom_id(

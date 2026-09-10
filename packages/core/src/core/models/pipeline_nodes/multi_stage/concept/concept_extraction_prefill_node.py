@@ -43,10 +43,9 @@ from core.models.chunking_strat import (
 )
 from core.models.extraction_results.extraction_node_metadata import (
     AggregationFoldMetadata,
-    BatchedMentionCollectionNodeMetadata,
     BatchedSynthesisNodeMetadata,
 )
-from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+from core.services.pipeline_nodes.multi_stage.aggregation_fold_service import (
     brute_casings_in_window,
     window_text_of,
 )
@@ -81,16 +80,14 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         llm_phrase_recursive_grounding_metadata: ExtractionNodeMetadata,
         # None = the OOV discovery pass is off for this run (run config carried
         # as metadata identity, never a StageToggle).
-        # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the mention collector + the
-        # aggregation fold's identity. Optional only so older construction
-        # sites still compile; the factory always passes both.
+        # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the aggregation fold's identity
+        # (which since the 2026-09-03 location-stage merge also carries the
+        # snippet-radius clip dial). Optional only so older construction
+        # sites still compile; the factory always passes it.
         # v2 relationship — RETIRED at v3 3.3; Optional so older construction
         # sites still compile, and the factory no longer passes it.
         llm_phrase_relationship_metadata: Optional[
             BatchedRelationshipNodeMetadata
-        ] = None,
-        llm_phrase_mention_collection_metadata: Optional[
-            BatchedMentionCollectionNodeMetadata
         ] = None,
         aggregation_fold_metadata: Optional[AggregationFoldMetadata] = None,
         llm_phrase_oov_grounding_metadata: Optional[
@@ -115,7 +112,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_initial_grounding_metadata
         )
         self.llm_phrase_oov_grounding_metadata = llm_phrase_oov_grounding_metadata
-        self.llm_phrase_mention_collection_metadata = llm_phrase_mention_collection_metadata
         self.aggregation_fold_metadata = aggregation_fold_metadata
         self.llm_phrase_synthesis_metadata = llm_phrase_synthesis_metadata
         self.llm_phrase_recursive_grounding_metadata = (
@@ -153,7 +149,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_initial_grounding=self.llm_phrase_initial_grounding_metadata,
             llm_phrase_oov_grounding=self.llm_phrase_oov_grounding_metadata,
             llm_phrase_recursive_grounding=self.llm_phrase_recursive_grounding_metadata,
-            llm_phrase_mention_collection=self.llm_phrase_mention_collection_metadata,
             aggregation_fold=self.aggregation_fold_metadata,
             llm_phrase_synthesis=self.llm_phrase_synthesis_metadata,
         )
@@ -183,7 +178,7 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
                     brute=brute,
                     # v3: the casings of the brute labels as each sub-window
                     # actually spells them — the brute survivors' way into the
-                    # mention stage (exact-string contract). Text is in hand only
+                    # fold's scan (exact-string contract). Text is in hand only
                     # here, so it is written now and read at embed time.
                     brute_by_sub_bounds={
                         sub_bounds: brute_casings_in_window(
@@ -193,7 +188,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
                     },
                     llm_phrase_search_req_ids=[],
                     llm_phrase_recursive_search_req_ids={},
-                    llm_phrase_mention_req_ids={},
                     llm_phrase_relationship_req_ids=[],
                     llm_phrase_relationship_screening_req_ids=[],
                     llm_phrase_initial_grounding_req_ids=[],

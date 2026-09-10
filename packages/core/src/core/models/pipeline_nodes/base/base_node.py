@@ -124,8 +124,9 @@ class PipelineContext:
     pipeline executes so that phrase_relationship nodes can embed the subject name in
     their batch requests without needing it threaded through every method signature.
     ``subject_text`` (the scraped text, 2026-08-22) is populated the same way, for the
-    v3 mention-collection node: it collects a window's mentions in code when it MINTS
-    its request ids, and ``embed_request_ids`` does not receive the text file.
+    v3 synthesis node: it collects each window's mentions in code (the aggregation
+    fold) when it MINTS its request ids, and ``embed_request_ids`` does not receive
+    the text file.
 
     The internal ``_results`` dict preserves the existing keying convention of
     ``pipeline_context[NodeClass]`` used throughout the extraction nodes.
@@ -166,9 +167,10 @@ class PipelineContext:
             raise KeyError(
                 f"{key.__name__}: no completed request map on the pipeline context — "
                 f"that node did not run in this chain (completed so far: {completed}). "
-                f"Under the v3 chain the v2 relationship node is gone, so a downstream "
-                f"v2 node reading it lands here until the re-key of PIPELINE_V3_PLAN.md "
-                f"Phase 3.3; run with StageToggles().stop_after(PipelineStage.mention_collection)."
+                f"Under the v3 chain the v2 relationship node is gone (and the "
+                f"mention-collection node retired 2026-09-03), so a downstream node "
+                f"reading either lands here; run with "
+                f"StageToggles().stop_after(PipelineStage.synthesis)."
             ) from None
 
     def __setitem__(

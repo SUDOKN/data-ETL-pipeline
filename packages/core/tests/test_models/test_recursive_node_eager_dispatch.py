@@ -41,10 +41,11 @@ class _Field:
         return hash(self.name)
 
 
-def _request(custom_id: str, answered: bool) -> Any:
+def _request(custom_id: str, answered: bool, batch_id: str | None = "Eager") -> Any:
     return SimpleNamespace(
         request=SimpleNamespace(custom_id=custom_id),
         response=SimpleNamespace(result="{}") if answered else None,
+        batch_id=batch_id,
     )
 
 
@@ -107,14 +108,26 @@ class _Store:
     def __init__(self, prestored: dict[str, bool] | None = None) -> None:
         # custom_id -> answered
         self.rows: dict[str, bool] = dict(prestored or {})
+        # custom_id -> batch_id. A prestored unanswered row is in the state
+        # record_response_parse_error leaves: batch_id None (PENDING), which
+        # dispatch_gpt_batch_request refuses until the eager path claims it.
+        self.batch_ids: dict[str, str | None] = {cid: None for cid in self.rows}
         self.upserted: list[list[str]] = []
         self.recorded: list[list[str]] = []
+        self.marked_eager: list[list[str]] = []
         self.recording_works = True
 
     async def upsert(self, batch_requests, subject_unique_id):
         self.upserted.append([r.request.custom_id for r in batch_requests])
         for r in batch_requests:
             self.rows.setdefault(r.request.custom_id, r.response is not None)
+            self.batch_ids.setdefault(r.request.custom_id, "Eager")  # created eager
+
+    async def mark_eager(self, timestamp, custom_ids):
+        self.marked_eager.append(sorted(custom_ids))
+        for cid in custom_ids:
+            self.batch_ids[cid] = "Eager"
+        return len(custom_ids)
 
     async def record(self, batch_requests, response_blobs, timestamp):
         assert len(batch_requests) == len(response_blobs)
@@ -128,7 +141,7 @@ class _Store:
     async def find_incomplete(self, subject_unique_id, custom_ids):
         assert custom_ids, "the real query rejects an empty id list"
         return {
-            cid: _request(cid, answered=False)
+            cid: _request(cid, answered=False, batch_id=self.batch_ids.get(cid))
             for cid in custom_ids
             if cid in self.rows and not self.rows[cid]
         }
@@ -143,6 +156,7 @@ def _install(monkeypatch, store: _Store) -> None:
     # Recording lives on the base class now (dispatch_and_record_eagerly), so the
     # name to patch is the base module's, not this one's.
     monkeypatch.setattr(base_module, "bulk_record_gpt_batch_responses", store.record)
+    monkeypatch.setattr(base_module, "mark_gpt_batch_requests_eager", store.mark_eager)
     monkeypatch.setattr(
         recursive_module,
         "find_incomplete_gpt_batch_requests_by_custom_ids",
@@ -269,6 +283,28 @@ async def test_a_held_parse_error_lets_the_request_be_re_dispatched(monkeypatch)
 
     assert node.dispatched == ["stored"]
     assert node.embed_calls == 2  # type: ignore[attr-defined]
+    # 2026-09-05: the nulled row was CLAIMED (batch_id None -> "Eager", persisted)
+    # before it was sent — otherwise dispatch_gpt_batch_request refuses it and
+    # the retry this test proves reachable dies at the guard (run 20260904T184906).
+    assert store.marked_eager == [["stored"]]
+    assert store.batch_ids["stored"] == "Eager"
+
+
+@pytest.mark.asyncio
+async def test_only_pending_rows_are_claimed_before_dispatch(monkeypatch):
+    """A row created eagerly already carries "Eager"; only the parse-nulled
+    (pending) row needs claiming."""
+    store = _Store(prestored={"nulled": False})
+    _install(monkeypatch, store)
+    node = _Node()
+    node.embedded_ids = {"nulled", "fresh"}
+    node.created = [("fresh", False)]
+    node.missing_on_first_pass = {"fresh"}
+
+    await _run(node)
+
+    assert sorted(node.dispatched) == ["fresh", "nulled"]
+    assert store.marked_eager == [["nulled"]]
 
 
 @pytest.mark.asyncio

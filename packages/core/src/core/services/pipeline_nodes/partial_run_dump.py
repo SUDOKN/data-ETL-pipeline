@@ -44,13 +44,12 @@ from core.utils.extraction_dump_util import (
     jsonable_result,
     write_extraction_dump,
 )
-from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+from core.services.pipeline_nodes.multi_stage.aggregation_fold_service import (
     fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
-    synthesis_include_location_of,
     synthesis_max_entries_of,
 )
 from core.utils.fold_dump_util import build_fold_dump
@@ -212,17 +211,12 @@ async def write_partial_run_dump(
 
             # v3 (3.3): the synthesis result — recomputed fold + held
             # syntheses — is the row spine once the stage has run; computed
-            # here so the rows and the synthesis block below share it.
+            # here so the rows, the fold block and the synthesis block below
+            # share it.
             synthesis_result = None
             synthesis_failed = False
-            if (
-                PipelineStage.synthesis in completed_by_stage
-                and PipelineStage.mention_collection in completed_by_stage
-            ):
+            if PipelineStage.synthesis in completed_by_stage:
                 node_class, request_map = completed_by_stage[PipelineStage.synthesis]
-                _mention_node, mention_map = completed_by_stage[
-                    PipelineStage.mention_collection
-                ]
                 try:
                     synthesis_result = await node_class.get_result(
                         subject_unique_id=subject_unique_id,
@@ -231,13 +225,9 @@ async def write_partial_run_dump(
                         extraction_bundle=bundle,
                         completed_request_map=request_map,
                         timestamp=timestamp,
-                        mention_completed_request_map=mention_map,
                         subject_text=scraped_text_file.text,
                         verb_fold=fold_verb_fold_of(extraction_requests.metadata),
                         snippet_radius=fold_snippet_radius_of(
-                            extraction_requests.metadata
-                        ),
-                        include_location=synthesis_include_location_of(
                             extraction_requests.metadata
                         ),
                         collapse_compounds=fold_collapse_compounds_of(
@@ -272,30 +262,15 @@ async def write_partial_run_dump(
                     )
                 )
             }
-            # v3: the mention stage's aggregation fold — groups with member
-            # forms inline, mentions in locked order, and the per-window hold.
-            # Computed here from the completed map and the text (the fold is
-            # code, not a request), so every re-run of a stopped chain shows the
-            # CURRENT fold rules over the stored answers.
-            if PipelineStage.mention_collection in completed_by_stage:
-                node_class, request_map = completed_by_stage[PipelineStage.mention_collection]
+            # v3: the aggregation fold — groups with member forms inline,
+            # mentions in locked order. Since the location-stage merge
+            # (2026-09-03) the fold rides the synthesis result (the fold is
+            # code, not a request), so every re-run of a stopped chain shows
+            # the CURRENT fold rules over the stored forms.
+            if synthesis_result is not None:
                 try:
-                    fold_result = await node_class.get_result(
-                        subject_unique_id=subject_unique_id,
-                        field_type=field_type,
-                        chunk_bounds=chunk_bounds,
-                        extraction_bundle=bundle,
-                        completed_request_map=request_map,
-                        timestamp=timestamp,
-                        subject_text=scraped_text_file.text,
-                        verb_fold=fold_verb_fold_of(extraction_requests.metadata),
-                        snippet_radius=fold_snippet_radius_of(extraction_requests.metadata),
-                        collapse_compounds=fold_collapse_compounds_of(
-                            extraction_requests.metadata
-                        ),
-                    )
                     contents["fold"] = build_fold_dump(
-                        fold_result, subject_name=pipeline_context.subject_name
+                        synthesis_result.fold, subject_name=pipeline_context.subject_name
                     )
                 except Exception as fold_error:
                     logger.error(
@@ -306,9 +281,10 @@ async def write_partial_run_dump(
                     contents["fold"] = None
                     contents["note"] = "fold_failed"
             # v3 (3.2): the synthesis stage — one row per record (group key,
-            # member forms, focal form, entries, the synthesis), the arm, and
-            # what the hold left unsynthesized. The result was computed above,
-            # where the rows read it.
+            # member forms, focal form, snippets, the synthesis with its
+            # context quotes), the context-check audit, and what the hold left
+            # unsynthesized. The result was computed above, where the rows
+            # read it.
             if synthesis_result is not None:
                 contents["synthesis"] = build_synthesis_dump(
                     synthesis_result,

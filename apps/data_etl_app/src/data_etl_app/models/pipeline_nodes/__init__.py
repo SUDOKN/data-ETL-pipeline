@@ -20,9 +20,6 @@ from core.models.pipeline_nodes.multi_stage.base.llm_phrase_search_node import (
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node import (
     LLMPhraseRelationshipNode,
 )
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_mention_collection_node import (
-    LLMPhraseMentionCollectionNode,
-)
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_synthesis_node import (
     LLMPhraseSynthesisNode,
 )
@@ -69,9 +66,6 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.con
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_node import (
     ContractProductRelationshipNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_mention_collection_node import (
-    ContractProductMentionCollectionNode,
-)
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_synthesis_node import (
     ContractProductSynthesisNode,
 )
@@ -94,9 +88,6 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_pr
 )
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_relationship_node import (
     PureProductRelationshipNode,
-)
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_mention_collection_node import (
-    PureProductMentionCollectionNode,
 )
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_synthesis_node import (
     PureProductSynthesisNode,
@@ -121,9 +112,6 @@ from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_node import (
     EquipmentRelationshipNode,
 )
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_mention_collection_node import (
-    EquipmentMentionCollectionNode,
-)
 from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_synthesis_node import (
     EquipmentSynthesisNode,
 )
@@ -146,7 +134,6 @@ __all__ = [
     "BaseLLMRecursiveExtractionNode",
     "LLMPhraseSearchNode",
     "LLMPhraseRelationshipNode",
-    "LLMPhraseMentionCollectionNode",
     "LLMPhraseSynthesisNode",
     "LLMPhraseRelationshipScreeningNode",
     "LLMPhraseRecursiveSearchNode",
@@ -163,7 +150,6 @@ __all__ = [
     "ContractProductPhraseSearchNode",
     "ContractProductRecursiveSearchNode",
     "ContractProductRelationshipNode",
-    "ContractProductMentionCollectionNode",
     "ContractProductSynthesisNode",
     "ContractProductRelationshipScreeningNode",
     "ContractProductFreehandGroundingNode",
@@ -172,7 +158,6 @@ __all__ = [
     "PureProductPhraseSearchNode",
     "PureProductRecursiveSearchNode",
     "PureProductRelationshipNode",
-    "PureProductMentionCollectionNode",
     "PureProductSynthesisNode",
     "PureProductRelationshipScreeningNode",
     "PureProductFreehandGroundingNode",
@@ -181,7 +166,6 @@ __all__ = [
     "EquipmentPhraseSearchNode",
     "EquipmentRecursiveSearchNode",
     "EquipmentRelationshipNode",
-    "EquipmentMentionCollectionNode",
     "EquipmentSynthesisNode",
     "EquipmentRelationshipScreeningNode",
     "EquipmentFreehandGroundingNode",

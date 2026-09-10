@@ -19,8 +19,8 @@ from core.models.field_types import (
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
-        ConceptMentionCollectionNode,
+    from core.models.pipeline_nodes.multi_stage.concept.concept_synthesis_node import (
+        ConceptSynthesisNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -36,7 +36,7 @@ class ConceptRecursiveSearchNode(LLMPhraseRecursiveSearchNode[ConceptFieldType])
     def __init__(
         self,
         concept_type: ConceptFieldType,
-        next_node: ConceptMentionCollectionNode,
+        next_node: ConceptSynthesisNode,
         second_search_prompt: Prompt,
     ):
         super().__init__(

@@ -9,7 +9,7 @@ retry trigger), and the group rows the reconcile dump writes.
 
 from core.models.extraction_schemas.grounding import RecordGroundingEntry
 from core.models.extraction_schemas.screening import CandidateScreeningVerdict
-from core.models.extraction_schemas.synthesis import SynthesisRecordInput
+from core.models.extraction_schemas.synthesis import SynthesisAnswer, SynthesisRecordInput
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     ChunkGroundingAnswer,
 )
@@ -38,7 +38,7 @@ def _result(syntheses_for: dict[int, str] | None = None) -> ChunkSynthesisResult
     one empty bundle (ghost); *syntheses_for* maps record INDEX → synthesis
     text (default: all three answered distinctly)."""
     fold = fold_document(
-        [WindowInput(WINDOW, ["Aluminum", "Brass", "Lead Time", "ghost"], {})]
+        [WindowInput(WINDOW, ["Aluminum", "Brass", "Lead Time", "ghost"])]
     )
     records: list[SynthesisRecordInput] = fold.synthesis_records()
     ids = [r.record_id for r in records]
@@ -46,14 +46,17 @@ def _result(syntheses_for: dict[int, str] | None = None) -> ChunkSynthesisResult
         syntheses_for = {0: "stocks aluminum.", 1: "stocks brass.", 2: "quotes lead time."}
     answer = ChunkAnswer(
         sent_ids=ids,
-        syntheses={ids[i]: text for i, text in syntheses_for.items()},
+        syntheses={
+            ids[i]: SynthesisAnswer(synthesis=text)
+            for i, text in syntheses_for.items()
+        },
         unknown_answer_ids=[],
         retried_record_ids=[],
     )
     return ChunkSynthesisResult(
         fold=fold,
         records=records,
-        include_location=True,
+        wire_text=WINDOW,
         answer=answer,
         group_request_count=1,
         retry_request_count=0,

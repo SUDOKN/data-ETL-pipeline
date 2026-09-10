@@ -1,7 +1,9 @@
 """Phase 3.2 of pipeline v3 (PIPELINE_V3_PLAN.md D15 as amended 2026-08-22,
-D16): the synthesis stage's service — soft-cap packing that never splits a
-record, the request context, the exact hold (unknown ids dropped and reported,
-missing ids left for the retry), the merged chunk answer, the dummy."""
+D16; the location-stage merge, 2026-09-03): the synthesis stage's service —
+soft-cap packing that never splits a record, the request context with the
+chunk's text, the exact hold (unknown ids dropped and reported, missing ids
+left for the retry), the merged chunk answer with per-entry contexts, the
+dummy."""
 
 import json
 from datetime import datetime
@@ -16,7 +18,7 @@ from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 from core.models.deferred_extraction.deferred_phrase_extraction_requests import (
     LLMPhraseExtractionRequestBundle,
 )
-from core.models.extraction_schemas.synthesis import SynthesisEntry, SynthesisRecordInput
+from core.models.extraction_schemas.synthesis import SynthesisRecordInput
 from core.services.phrase_blocks_contract import (
     sent_record_ids_from_user_message,
     sent_records_from_user_message,
@@ -53,16 +55,11 @@ def offline_gpt_batch_request_settings():
     GPTBatchRequest._document_settings = DocumentSettings(**settings_vars)
 
 
-def _record(rid: str, n_entries: int, *, focal: str = "Aluminum", location: bool = True):
+def _record(rid: str, n_snippets: int, *, focal: str = "Aluminum"):
     return SynthesisRecordInput(
         record_id=rid,
         focal_form=focal,
-        entries=[
-            SynthesisEntry(
-                location=f"loc {i}" if location else None, snippet=f"{focal} snippet {i}"
-            )
-            for i in range(n_entries)
-        ],
+        snippets=[f"{focal} snippet {i}" for i in range(n_snippets)],
     )
 
 
@@ -74,7 +71,9 @@ def _request(result_json: str, user_message: str) -> Any:
 
 
 def _answer(by_id: dict[str, str]) -> str:
-    return json.dumps({"syntheses": [{"record_id": i, "synthesis": s} for i, s in by_id.items()]})
+    return json.dumps(
+        {"syntheses": [{"record_id": i, "synthesis": s} for i, s in by_id.items()]}
+    )
 
 
 # --- packing ---------------------------------------------------------------------------------
@@ -93,7 +92,7 @@ def test_pack_is_a_soft_cap_that_never_splits_a_record_and_isolates_a_monster():
     # order kept, every record exactly once, each group's total under the cap unless alone
     assert [r.record_id for g in groups for r in g] == [r.record_id for r in records]
     for g in groups:
-        total = sum(len(r.entries) for r in g)
+        total = sum(len(r.snippets) for r in g)
         assert total <= 5 or len(g) == 1
     assert pack_records(records, 100) == [records]
     assert pack_records([], 5) == [[]]
@@ -117,18 +116,18 @@ def test_retry_records_keep_bundle_order_and_refuse_unknown_ids():
 # --- requests --------------------------------------------------------------------------------
 
 
-def test_context_names_the_manufacturer_and_renders_both_blocks_on_both_arms():
-    with_loc = [_record("g1", 2), _record("g2", 1, focal="Brass")]
-    message = render_synthesis_context("Acme Inc", with_loc)
-    assert message.startswith("the name of the manufacturer in question: Acme Inc\n\n")
+def test_context_carries_the_text_the_manufacturer_and_both_blocks():
+    records = [_record("g1", 2), _record("g2", 1, focal="Brass")]
+    message = render_synthesis_context("the chunk's page text", "Acme Inc", records)
+    assert message.startswith(
+        "text scraped from a manufacturer's website:\nthe chunk's page text\n\n"
+    )
+    assert "\nthe name of the manufacturer in question: Acme Inc\n" in message
     assert sent_record_ids_from_user_message(message) == ["g1", "g2"]
-    assert sent_records_from_user_message(message) == group_digest_payload(with_loc)
+    assert sent_records_from_user_message(message) == group_digest_payload(records)
     assert (sent_records_from_user_message(message) or [])[0]["focal_form"] == "Aluminum"
-    without = [_record("g1", 2, location=False)]
-    message = render_synthesis_context("Acme Inc", without)
+    # snippets are bare strings since the merge — no location, no nulls
     assert '"location"' not in message and "null" not in message
-    # the digest payload differs between the arms → different request identity
-    assert group_digest_payload(with_loc[:1]) != group_digest_payload(without)
 
 
 def test_request_carries_the_strict_schema_and_the_dummy_is_pre_answered():
@@ -136,6 +135,7 @@ def test_request_carries_the_strict_schema_and_the_dummy_is_pre_answered():
         deferred_at=T0,
         subject_unique_id=SUBJECT,
         request_id="r1",
+        wire_text="the chunk's page text",
         subject_name="Acme",
         records=[_record("g1", 1)],
         phrase_synthesis_prompt=Prompt(text="P", s3_version_id="v", name="p", num_tokens=1),
@@ -163,13 +163,13 @@ def test_request_carries_the_strict_schema_and_the_dummy_is_pre_answered():
 @pytest.mark.asyncio
 async def test_parse_holds_exactly_drops_unknown_ids_and_leaves_missing_ones():
     records = [_record("g1", 1), _record("g2", 1)]
-    message = render_synthesis_context("Acme", records)
+    message = render_synthesis_context("text", "Acme", records)
     completed = {
         "r1": _request(_answer({"g2": "two", "gzzzzzz": "never sent"}), message),
     }
     sent, held, unknown = await parse_synthesis_group_result(SUBJECT, _Field(), "r1", completed, T0)
     assert sent == ["g1", "g2"]
-    assert held == {"g2": "two"}
+    assert {rid: a.synthesis for rid, a in held.items()} == {"g2": "two"}
     assert unknown == ["gzzzzzz"]
 
 
@@ -183,11 +183,11 @@ async def test_chunk_answer_merges_groups_then_retry_and_reports_what_is_still_m
         llm_phrase_synthesis_retry_req_ids=["r1-retry"],
     )
     completed = {
-        "r1": _request(_answer({"g1": "one"}), render_synthesis_context("Acme", g1)),
-        "r2": _request(_answer({}), render_synthesis_context("Acme", g2)),
+        "r1": _request(_answer({"g1": "one"}), render_synthesis_context("t", "Acme", g1)),
+        "r2": _request(_answer({}), render_synthesis_context("t", "Acme", g2)),
         "r1-retry": _request(
             _answer({"g2": "two (retry)", "g1": "duplicate, ignored"}),
-            render_synthesis_context("Acme", [g1[1], g2[0]]),
+            render_synthesis_context("t", "Acme", [g1[1], g2[0]]),
         ),
     }
     assessment = await get_chunk_syntheses(
@@ -196,7 +196,10 @@ async def test_chunk_answer_merges_groups_then_retry_and_reports_what_is_still_m
     assert assessment.sent_ids == ["g1", "g2", "g3"]
     assert assessment.missing_ids == ["g2", "g3"] and assessment.retried_record_ids == []
     full = await get_chunk_syntheses(SUBJECT, _Field(), "0:10", bundle, completed, T0)
-    assert full.syntheses == {"g1": "one", "g2": "two (retry)"}
+    assert {rid: a.synthesis for rid, a in full.syntheses.items()} == {
+        "g1": "one",
+        "g2": "two (retry)",
+    }
     assert full.missing_ids == ["g3"]  # asked twice, never answered: reported, not retried again
     assert full.retried_record_ids == ["g2", "g3"]
     assert isinstance(full, ChunkAnswer)

@@ -102,14 +102,6 @@ class LLMPhraseInitialGroundingNode(
         self.known_concepts = known_concepts
         self.match_label_to_concept_map = get_match_label_to_concept_map(known_concepts)
 
-    def get_upstream_mention_collection_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        """The completed mention-collection request map — what the fold behind
-        the synthesis result is recomputed from."""
-        raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_upstream_mention_collection_map"
-        )
 
     def get_upstream_synthesis_map(
         self, pipeline_context: PipelineContext
@@ -149,7 +141,6 @@ class LLMPhraseInitialGroundingNode(
         subject_unique_id: str,
         chunk_bounds: str,
         extraction_bundle: ConceptExtractionRequestBundle,
-        mention_map: dict[BatchRequestIDType, GPTBatchRequest],
         synthesis_map: dict[BatchRequestIDType, GPTBatchRequest],
         subject_text: str,
         metadata: ConceptExtractionMetadata,
@@ -166,7 +157,6 @@ class LLMPhraseInitialGroundingNode(
             extraction_bundle,
             timestamp,
             synthesis_completed_request_map=synthesis_map,
-            mention_completed_request_map=mention_map,
             subject_text=subject_text,
             metadata=metadata,
         )
@@ -192,7 +182,6 @@ class LLMPhraseInitialGroundingNode(
         max_pairs_per_request = (
             metadata.llm_phrase_initial_grounding.max_pairs_per_request
         )
-        mention_map = self.get_upstream_mention_collection_map(pipeline_context)
         synthesis_map = self.get_upstream_synthesis_map(pipeline_context)
         subject_text = self._subject_text_of(
             pipeline_context, subject_unique_id, self.field_type.name
@@ -211,7 +200,6 @@ class LLMPhraseInitialGroundingNode(
                 subject_unique_id=subject_unique_id,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_request_bundle,
-                mention_map=mention_map,
                 synthesis_map=synthesis_map,
                 subject_text=subject_text,
                 metadata=metadata,
@@ -274,7 +262,6 @@ class LLMPhraseInitialGroundingNode(
                 subject_unique_id=subject_unique_id,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=bundle,
-                mention_map=mention_map,
                 synthesis_map=synthesis_map,
                 subject_text=subject_text,
                 metadata=metadata,
@@ -369,7 +356,6 @@ class LLMPhraseInitialGroundingNode(
         timestamp: datetime,
         eager: bool,
     ) -> list[GPTBatchRequest]:
-        mention_map = self.get_upstream_mention_collection_map(pipeline_context)
         synthesis_map = self.get_upstream_synthesis_map(pipeline_context)
         chunk_payload_maps: dict[str, dict[str, dict[str, Any]]] = {}
         group_req_ids_by_chunk: dict[str, list[BatchRequestIDType]] = {}
@@ -399,7 +385,6 @@ class LLMPhraseInitialGroundingNode(
                 subject_unique_id=subject_unique_id,
                 chunk_bounds=chunk_bounds,
                 extraction_bundle=extraction_bundle,
-                mention_map=mention_map,
                 synthesis_map=synthesis_map,
                 subject_text=scraped_text_file.text,
                 metadata=metadata,

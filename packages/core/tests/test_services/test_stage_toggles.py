@@ -29,9 +29,6 @@ from core.models.extraction_schemas.relationship import (
 )
 from core.models.extraction_schemas.screening import CandidateScreeningVerdict
 from core.models.pipeline_nodes.base.base_node import BaseNode, PipelineContext
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_mention_collection_node import (
-    LLMPhraseMentionCollectionNode,
-)
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_synthesis_node import (
     LLMPhraseSynthesisNode,
 )
@@ -217,12 +214,11 @@ def test_context_names_the_missing_node_instead_of_a_bare_keyerror():
         context[_NodeB]
 
 
-def test_stop_after_mention_collection_disables_the_whole_v2_tail():
-    """v3: the chain is search → recursive → mention; everything after is the
-    v2 tail that the Phase 3.3 re-key replaces, and `stop_after(mention)` must
-    leave none of it running."""
-    toggles = StageToggles().stop_after(PipelineStage.mention_collection)
-    assert toggles.is_enabled(_Field.industries, PipelineStage.mention_collection)
+def test_stop_after_synthesis_disables_the_whole_tail():
+    """v3 (merged 2026-09-03): the chain is search → recursive → synthesis;
+    `stop_after(synthesis)` must leave none of the tail running."""
+    toggles = StageToggles().stop_after(PipelineStage.synthesis)
+    assert toggles.is_enabled(_Field.industries, PipelineStage.synthesis)
     assert toggles.is_enabled(_Field.industries, PipelineStage.recursive_search)
     for later in (
         PipelineStage.relationship,
@@ -684,7 +680,6 @@ _DUMP_SOURCE = (
 # binding against what the dump actually calls.
 _DUMP_CALL_TARGETS = {
     "synthesis": LLMPhraseSynthesisNode,
-    "mention_collection": LLMPhraseMentionCollectionNode,
 }
 
 
@@ -753,4 +748,3 @@ def test_the_second_tripwire_actually_inspects_something():
     passed = _dump_get_result_kwargs()
     assert set(_DUMP_CALL_TARGETS) <= set(passed)
     assert "collapse_compounds" in passed["synthesis"]
-    assert "collapse_compounds" in passed["mention_collection"]

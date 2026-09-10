@@ -96,14 +96,6 @@ class LLMPhraseRelationshipScreeningNode(
         )
         self.phrase_relationship_screening_prompt = phrase_relationship_screening_prompt
 
-    def get_upstream_mention_collection_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        """The completed mention-collection request map — what the fold behind
-        the synthesis result is recomputed from."""
-        raise NotImplementedError(
-            f"{self.__class__.__name__} must implement get_upstream_mention_collection_map"
-        )
 
     def get_upstream_synthesis_map(
         self, pipeline_context: PipelineContext
@@ -173,9 +165,6 @@ class LLMPhraseRelationshipScreeningNode(
             extraction_bundle,
             timestamp,
             synthesis_completed_request_map=self.get_upstream_synthesis_map(
-                pipeline_context
-            ),
-            mention_completed_request_map=self.get_upstream_mention_collection_map(
                 pipeline_context
             ),
             subject_text=subject_text,

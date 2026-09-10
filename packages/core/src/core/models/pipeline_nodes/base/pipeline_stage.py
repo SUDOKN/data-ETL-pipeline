@@ -41,15 +41,18 @@ class PipelineStage(StrEnum):
     prefill = "prefill"
     phrase_search = "phrase_search"
     recursive_search = "recursive_search"
-    # v3 (PIPELINE_V3_PLAN.md D1, D4–D7): the LLM mention collector that
-    # replaced relationship — per search sub-window, flat forms in, verbatim
-    # {location, snippet} mentions out, held to the mechanical floor scan. The
-    # aggregation fold that follows it is pure code with no requests, so it is
-    # not a stage: it runs at this stage's parse time.
+    # v3 mention collection — OUT of every chain since the location-stage
+    # merge (2026-09-03): the fold's mention collection is pure code, and the
+    # synthesis stage absorbed the LLM location task. The member stays so
+    # stored request ids can still be scoped and deleted by stage
+    # (`request_id_tokens_from`), the same posture as `relationship`.
     mention_collection = "mention_collection"
-    # v3 (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2): synthesis — one description
-    # per group (record), written from the fold's entries; per chunk, after
-    # the mention stage.
+    # v3 (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2; merged with the location
+    # task 2026-09-03): synthesis — one description per group (record) plus
+    # per-snippet context quotes, written from the fold's snippets with the
+    # chunk's text in view; per chunk, after search. The aggregation fold is
+    # pure code with no requests, so it is not a stage: it runs at this
+    # stage's embed/parse time.
     synthesis = "synthesis"
     # v2 relationship — OUT of every chain since v3 3.1 (2026-08-21). The
     # member stays so stored request ids can still be scoped and deleted by

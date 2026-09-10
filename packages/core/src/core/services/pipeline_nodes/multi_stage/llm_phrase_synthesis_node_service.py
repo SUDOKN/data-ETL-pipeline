@@ -1,24 +1,30 @@
 """Pipeline v3's synthesis stage (PIPELINE_V3_PLAN.md D15 as amended
-2026-08-22, D16; Phase 3.2): one LLM description per GROUP, written from the
-aggregation fold's entries — the stage after mention collection, per chunk.
+2026-08-22, D16; Phase 3.2; the LOCATION-STAGE MERGE of 2026-09-03): one LLM
+description per GROUP, written from the aggregation fold's snippets WITH the
+chunk's text in view — the first LLM stage after search, per chunk.
 
 WHAT A REQUEST CARRIES. The chunk's fold (``get_chunk_fold``, recomputed from
-the text + the stored mention state — the fold is deterministic, nothing is
-stored but request ids) yields one record per NON-EMPTY bundle, in bundle
-order: ``{record_id: group_id, focal_form, entries: [{location, snippet}]}``
+the text + the stored sent forms — the fold is pure code, nothing is stored
+but request ids) yields one record per NON-EMPTY bundle, in bundle order:
+``{record_id: group_id, focal_form, snippets: [str, ...]}``
 (``core.models.extraction_schemas.synthesis``). The FOCAL FORM is the
 bundle's most frequent member form, chosen in code (``MentionBundle.focal_form``);
-the model is told to describe that entity using the entries as evidence (user
-decision 2026-08-22 — reverses D15's faithful-aggregation framing). The
-LOCATION ARM (``BatchedSynthesisNodeMetadata.include_location``) decides
-whether entries carry their Location-stage description or the snippet alone —
-the A/B the user asked for; both arms can coexist (``|loc=1`` / ``|loc=0`` in
-the id). The user message names the manufacturer (the static asks the model to
-mask the name in its output) and carries the two fenced record blocks
-(``render_synthesis_record_blocks``).
+the model is told to describe that entity using the snippets as evidence (user
+decision 2026-08-22 — reverses D15's faithful-aggregation framing). The user
+message opens with the CHUNK'S WIRE TEXT (``floor_scan.wire_window_text`` over
+the chunk bounds — the 20k macro window every record's mentions were folded
+from, so every snippet's passage, its table and its headings are in view; D15's
+"text can be ADDED" escape hatch, exercised by user decision 2026-09-03), then
+names the manufacturer (the static asks the model to mask the name in its
+output), then carries the two fenced record blocks
+(``render_synthesis_record_blocks``). The answer is the synthesis alone: the
+per-snippet context quotes it carried from the merge until 2026-09-05 are
+gone — where a snippet sits is the fold's business, in code
+(``aggregation_fold.locate_context``).
 
 PACKING (D15). Records are packed in bundle order into requests of at most
-``max_entries_per_request`` entries — a SOFT cutoff: a record is never split,
+``max_entries_per_request`` snippets (the field name keeps "entries" — old
+stored run documents pin it) — a SOFT cutoff: a record is never split,
 and a record larger than the cap travels alone. A chunk with no records gets
 one dummy request answering ``{"syntheses": []}`` (the single-dummy-per-unit
 convention every stage shares). A group's records are digested into its custom
@@ -30,12 +36,13 @@ was never sent is DROPPED with a warning and reported (``unknown_answer_ids``
 no fabrication path: an unknown id cannot reach downstream, because results
 are read by sent id.
 
-UNDER-ANSWER POLICY (user decision 2026-08-22, same family as the Location
-stage's). Once a chunk's group requests are complete the node ASSESSES it: the
-record ids no answer synthesized are stored on the bundle
-(``llm_phrase_synthesis_retry_record_ids``; an empty list = assessed, none
-missing; None = not yet assessed) and, when any are missing, ONE retry pass
-re-asks for exactly those records (packed the same way into
+UNDER-ANSWER POLICY (user decision 2026-08-22). Once a chunk's group requests
+are complete the node ASSESSES it: the record ids no answer synthesized are
+stored on the bundle (``llm_phrase_synthesis_retry_record_ids``; an empty list
+= assessed, none missing; None = not yet assessed) — plus the answered ids
+whose synthesis dropped designations (2026-09-02, under-enumeration) — and,
+when any exist, ONE
+retry pass re-asks for exactly those records (packed the same way into
 ``llm_phrase_synthesis_retry_req_ids``, custom id ``…>chunk>{b}>retry>1>group>{j}>…``).
 The result reads group answers first, then the retry's; what is still missing
 after that is reported (``not_synthesized`` in the dump) — nothing is retried
@@ -92,11 +99,13 @@ from core.services.phrase_blocks_contract import (
     sent_record_ids_from_user_message,
 )
 from core.utils.designation_tokens import designation_coverage, missing_designations
-from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+from core.utils.floor_scan import wire_window_text
+from core.services.pipeline_nodes.multi_stage.aggregation_fold_service import (
     fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
     get_chunk_fold,
+    window_bounds,
 )
 from core.utils.aggregation_fold import FoldResult
 
@@ -121,18 +130,11 @@ def require_synthesis_metadata(
     return synthesis
 
 
-def synthesis_include_location_of(metadata: object) -> bool:
-    """The location arm off a metadata object (any shape — the partial dump
-    walks generic metadata). True (the with-location arm) when absent."""
-    synthesis_metadata: Optional[object] = getattr(metadata, "llm_phrase_synthesis", None)
-    value = getattr(synthesis_metadata, "include_location", None)
-    return True if value is None else bool(value)
-
-
 def synthesis_max_entries_of(metadata: object) -> Optional[int]:
-    """The synthesis stage's soft entry cap off any pipeline metadata (duck-
-    typed like ``synthesis_include_location_of``). None when the metadata
-    carries no synthesis node — callers then skip request-level accounting."""
+    """The synthesis stage's soft packing cap (snippets per request; the field
+    keeps its stored name) off any pipeline metadata, duck-typed. None when the
+    metadata carries no synthesis node — callers then skip request-level
+    accounting."""
     synthesis_metadata: Optional[object] = getattr(metadata, "llm_phrase_synthesis", None)
     value = getattr(synthesis_metadata, "max_entries_per_request", None)
     return None if value is None else int(value)
@@ -141,28 +143,25 @@ def synthesis_max_entries_of(metadata: object) -> Optional[int]:
 # --- records + packing ---------------------------------------------------------------------
 
 
-async def chunk_fold(
+def chunk_fold(
     subject_unique_id: str,
     field_type: ExtractionFieldType,
     chunk_bounds: str,
     extraction_bundle: LLMPhraseExtractionRequestBundle,
-    mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
-    timestamp: datetime,
     *,
     subject_text: str,
     verb_fold: bool,
     snippet_radius: int,
     collapse_compounds: bool = False,
 ) -> FoldResult:
-    """The chunk's fold as the mention stage left it — the one computation the
-    node's id-minting pass, request creation and the result all rest on."""
-    return await get_chunk_fold(
+    """The chunk's fold — the one computation the node's id-minting pass,
+    request creation and the result all rest on. Pure code since the
+    location-stage merge: text + the bundle's stored forms, no completed map."""
+    return get_chunk_fold(
         subject_unique_id=subject_unique_id,
         field_type=field_type,
         chunk_bounds=chunk_bounds,
         extraction_bundle=extraction_bundle,
-        completed_request_map=mention_completed_request_map,
-        timestamp=timestamp,
         subject_text=subject_text,
         verb_fold=verb_fold,
         snippet_radius=snippet_radius,
@@ -170,12 +169,21 @@ async def chunk_fold(
     )
 
 
+def chunk_wire_text(subject_text: str, chunk_bounds: str) -> str:
+    """The chunk's text as the request shows it: the macro-window slice with
+    excluded pages omitted and the inherited-page header prepended
+    (``floor_scan.wire_window_text``) — the same text every record of the
+    chunk was folded from, so every snippet's passage is in view."""
+    start, end = window_bounds(chunk_bounds)
+    return wire_window_text(subject_text, start, end)
+
+
 def pack_records(
     records: list[SynthesisRecordInput], max_entries_per_request: int
 ) -> list[list[SynthesisRecordInput]]:
-    """Ordered groups of records under a SOFT entry cap: records are taken in
-    order, a group closes when the next record would push it past the cap, a
-    record is never split, a record over the cap alone fills its own group.
+    """Ordered groups of records under a SOFT snippet cap: records are taken
+    in order, a group closes when the next record would push it past the cap,
+    a record is never split, a record over the cap alone fills its own group.
     Always at least one group — the empty group is what the single-dummy path
     keys off."""
     if max_entries_per_request < 1:
@@ -186,7 +194,7 @@ def pack_records(
     current: list[SynthesisRecordInput] = []
     count = 0
     for record in records:
-        size = len(record.entries)
+        size = len(record.snippets)
         if current and count + size > max_entries_per_request:
             groups.append(current)
             current, count = [], 0
@@ -222,18 +230,24 @@ def retry_records_of_chunk(
 
 def group_digest_payload(records: list[SynthesisRecordInput]) -> list[dict]:
     """What a group's ``|ud=`` digests: its records exactly as the wire shows
-    them (ids, focal forms, entries — location included only on that arm)."""
+    them (ids, focal forms, snippets). The chunk TEXT is deliberately not
+    digested — it is already request identity through the chunk bounds in the
+    id, and the resume-metadata invariant re-defers on text-version drift."""
     return [record.wire_dict() for record in records]
 
 
 # --- requests --------------------------------------------------------------------------------
 
 
-def render_synthesis_context(subject_name: str, records: list[SynthesisRecordInput]) -> str:
-    """The user message: the manufacturer's name (the static asks the model to
-    mask it), then the two fenced record blocks at the very bottom. The hold
-    reads the ids back off the first block."""
+def render_synthesis_context(
+    wire_text: str, subject_name: str, records: list[SynthesisRecordInput]
+) -> str:
+    """The user message: the chunk's text first (a shared prefix across the
+    chunk's groups — prompt-caching friendly), the manufacturer's name (the
+    static asks the model to mask it), then the two fenced record blocks at
+    the very bottom. The hold reads the ids back off the first block."""
     return (
+        f"text scraped from a manufacturer's website:\n{wire_text}\n\n"
         f"the name of the manufacturer in question: {subject_name}\n\n"
         f"{render_synthesis_record_blocks(group_digest_payload(records))}"
     )
@@ -243,6 +257,7 @@ def create_synthesis_gpt_request(
     deferred_at: datetime,
     subject_unique_id: str,
     request_id: BatchRequestIDType,
+    wire_text: str,
     subject_name: str,
     records: list[SynthesisRecordInput],
     phrase_synthesis_prompt: Prompt,
@@ -254,7 +269,7 @@ def create_synthesis_gpt_request(
         deferred_at=deferred_at,
         subject_unique_id=subject_unique_id,
         custom_id=request_id,
-        context=render_synthesis_context(subject_name, records),
+        context=render_synthesis_context(wire_text, subject_name, records),
         prompt_text=phrase_synthesis_prompt.text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(SYNTHESIS_RESPONSE_SCHEMA),
@@ -299,13 +314,11 @@ async def create_missing_synthesis_requests(
     missing_request_ids: set[BatchRequestIDType],
     subject_text: str,
     subject_name: str,
-    mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     phrase_synthesis_prompt: Prompt,
     timestamp: datetime,
     llm_model: LLM_Model,
     model_params: GPTModelParams,
     max_entries_per_request: int,
-    include_location: bool,
     verb_fold: bool,
     snippet_radius: int,
     eager: bool,
@@ -329,19 +342,18 @@ async def create_missing_synthesis_requests(
     batch_requests: list[GPTBatchRequest] = []
     for i in range(0, len(work), BATCH_SIZE):
         for chunk_bounds, bundle in work[i : i + BATCH_SIZE]:
-            fold = await chunk_fold(
+            fold = chunk_fold(
                 subject_unique_id,
                 field_type,
                 chunk_bounds,
                 bundle,
-                mention_completed_request_map,
-                timestamp,
                 subject_text=subject_text,
                 verb_fold=verb_fold,
                 snippet_radius=snippet_radius,
                 collapse_compounds=collapse_compounds,
             )
-            records = fold.synthesis_records(include_location=include_location)
+            wire_text = chunk_wire_text(subject_text, chunk_bounds)
+            records = fold.synthesis_records()
             groups = pack_records(records, max_entries_per_request)
             group_req_ids = bundle.llm_phrase_synthesis_req_ids
             if len(group_req_ids) != len(groups):
@@ -384,6 +396,7 @@ async def create_missing_synthesis_requests(
                             deferred_at=timestamp,
                             subject_unique_id=subject_unique_id,
                             request_id=retry_req_id,
+                            wire_text=wire_text,
                             subject_name=subject_name,
                             records=retry_groups[retry_group_index],
                             phrase_synthesis_prompt=phrase_synthesis_prompt,
@@ -419,8 +432,8 @@ async def create_missing_synthesis_requests(
                     )
                     continue
                 logger.info(
-                    f"Sending {len(group)} record(s) ({sum(len(r.entries) for r in group)} "
-                    f"entries) for synthesis to {subject_unique_id}:{field_type.name} chunk "
+                    f"Sending {len(group)} record(s) ({sum(len(r.snippets) for r in group)} "
+                    f"snippets) for synthesis to {subject_unique_id}:{field_type.name} chunk "
                     f"{chunk_bounds} group {group_index}"
                 )
                 batch_requests.append(
@@ -428,6 +441,7 @@ async def create_missing_synthesis_requests(
                         deferred_at=timestamp,
                         subject_unique_id=subject_unique_id,
                         request_id=group_req_id,
+                        wire_text=wire_text,
                         subject_name=subject_name,
                         records=group,
                         phrase_synthesis_prompt=phrase_synthesis_prompt,
@@ -518,14 +532,14 @@ async def parse_synthesis_group_result(
 class ChunkAnswer:
     """ONE chunk's synthesis answer, merged across its group requests and (when
     one ran) its retry pass: the sent record ids in request order, the held
-    syntheses, the ids the model answered that were never sent, and the ids the
+    answers, the ids the model answered that were never sent, and the ids the
     retry pass re-asked for.
 
     ``syntheses`` is the RESOLVED map (one answer per record). Where a record
     was re-asked for UNDER-ENUMERATION (2026-09-02: it had a first answer that
-    dropped designations), both answers exist for a while — the retry's is kept
-    in ``retry_syntheses`` and ``resolve_under_enumeration`` picks the better
-    of the two by designation coverage, retry winning ties."""
+    dropped designations), both answers exist for a while — the retry's is
+    kept in ``retry_syntheses`` and ``resolve_under_enumeration`` picks the
+    better of the two by designation coverage, retry winning ties."""
 
     sent_ids: list[str]
     syntheses: SynthesesByGroupId
@@ -579,7 +593,7 @@ async def get_chunk_syntheses(
         if not is_retry:
             sent_ids.extend(rid for rid in group_sent if rid not in sent_ids)
         target = retry_syntheses if is_retry else syntheses
-        for record_id, synthesis in held.items():
+        for record_id, record_answer in held.items():
             if record_id in target:
                 logger.warning(
                     f"synthesis: record id {record_id!r} answered in two requests of one "
@@ -587,13 +601,14 @@ async def get_chunk_syntheses(
                     f"keeping the first"
                 )
                 continue
-            target[record_id] = synthesis
+            target[record_id] = record_answer
     # A record only the retry answered (the original missing-answer case) is
     # resolved here; a record BOTH passes answered (an under-enumeration
-    # re-ask) stays in retry_syntheses for resolve_under_enumeration, which
-    # has the records and can compare designation coverage.
-    for record_id, synthesis in retry_syntheses.items():
-        syntheses.setdefault(record_id, synthesis)
+    # re-ask) stays in retry_syntheses for
+    # resolve_under_enumeration, which has the records and can compare
+    # designation coverage.
+    for record_id, record_answer in retry_syntheses.items():
+        syntheses.setdefault(record_id, record_answer)
     return ChunkAnswer(
         sent_ids=sent_ids,
         syntheses=syntheses,
@@ -610,28 +625,28 @@ async def get_chunk_syntheses(
 # --- under-enumeration (2026-09-02, Phase B of the search-recall roadmap) --------------------
 
 
-def _record_entry_texts(record: SynthesisRecordInput) -> list[str]:
-    """The verbatim evidence a record's designations are read from: snippets
-    only — the Location stage's descriptions are model-authored, never a
+def _record_snippet_texts(record: SynthesisRecordInput) -> list[str]:
+    """The verbatim evidence a record's designations are read from: the
+    snippets — model-authored text (the old location descriptions) was never a
     source of demanded tokens."""
-    return [entry.snippet for entry in record.entries]
+    return list(record.snippets)
 
 
 def under_enumerated_record_ids(
     records: list[SynthesisRecordInput], syntheses: SynthesesByGroupId
 ) -> list[str]:
     """Records whose ANSWERED synthesis drops designation-shaped tokens their
-    entries carry (the conservation check; see ``core.utils.designation_tokens``
+    snippets carry (the conservation check; see ``core.utils.designation_tokens``
     for the tiers and why they are precision-first). Records with no answer are
     the missing-answer path's business, not this one's. Order follows
     *records* — bundle order, like every other id list here."""
     flagged: list[str] = []
     for record in records:
-        synthesis = syntheses.get(record.record_id)
-        if synthesis is None:
+        record_answer = syntheses.get(record.record_id)
+        if record_answer is None:
             continue
         missing = missing_designations(
-            _record_entry_texts(record), synthesis, focal_form=record.focal_form
+            _record_snippet_texts(record), record_answer.synthesis, focal_form=record.focal_form
         )
         if missing:
             flagged.append(record.record_id)
@@ -658,17 +673,17 @@ def resolve_under_enumeration(
     resolved = dict(answer.syntheses)
     provenance: dict[str, str] = {}
     for record in contested:
-        entry_texts = _record_entry_texts(record)
-        first_text = answer.syntheses[record.record_id]
-        retry_text = answer.retry_syntheses[record.record_id]
+        snippet_texts = _record_snippet_texts(record)
+        first_answer = answer.syntheses[record.record_id]
+        retry_answer = answer.retry_syntheses[record.record_id]
         first_present, _ = designation_coverage(
-            entry_texts, first_text, focal_form=record.focal_form
+            snippet_texts, first_answer.synthesis, focal_form=record.focal_form
         )
         retry_present, _ = designation_coverage(
-            entry_texts, retry_text, focal_form=record.focal_form
+            snippet_texts, retry_answer.synthesis, focal_form=record.focal_form
         )
         if retry_present >= first_present:
-            resolved[record.record_id] = retry_text
+            resolved[record.record_id] = retry_answer
             provenance[record.record_id] = "retry"
         else:
             provenance[record.record_id] = "first"
@@ -681,13 +696,13 @@ def resolve_under_enumeration(
 @dataclass(frozen=True)
 class ChunkSynthesisResult:
     """What the synthesis stage leaves for one chunk: the fold it was written
-    from, the records it sent (focal forms + entries, on the arm that ran), and
-    the held answer. ``syntheses`` is keyed by group_id — the value that rode
-    the wire as ``record_id`` (D16 naming note)."""
+    from, the records it sent, the wire text the model saw, and the held
+    answer. ``syntheses`` is keyed by group_id — the value that rode the wire
+    as ``record_id`` (D16 naming note)."""
 
     fold: FoldResult
     records: list[SynthesisRecordInput]
-    include_location: bool
+    wire_text: str
     answer: ChunkAnswer
     group_request_count: int
     retry_request_count: int
@@ -706,7 +721,8 @@ class ChunkSynthesisResult:
         return self.answer.missing_ids
 
     def synthesis_of(self, group_id: str) -> Optional[str]:
-        return self.answer.syntheses.get(group_id)
+        record_answer = self.answer.syntheses.get(group_id)
+        return None if record_answer is None else record_answer.synthesis
 
 
 async def get_chunk_synthesis_result(
@@ -717,30 +733,26 @@ async def get_chunk_synthesis_result(
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
     *,
-    mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     subject_text: str,
     verb_fold: bool,
     snippet_radius: int,
-    include_location: bool,
     collapse_compounds: bool = False,
 ) -> ChunkSynthesisResult:
     """The chunk's fold, its records, and the held syntheses (groups, then
     retry). The sent ids the requests carry and the fold's records are the
-    same computation; a disagreement means the text or mention state changed
-    under the stored ids and is raised, never papered over."""
-    fold = await chunk_fold(
+    same computation; a disagreement means the text or stored-forms state
+    changed under the stored ids and is raised, never papered over."""
+    fold = chunk_fold(
         subject_unique_id,
         field_type,
         chunk_bounds,
         extraction_bundle,
-        mention_completed_request_map,
-        timestamp,
         subject_text=subject_text,
         verb_fold=verb_fold,
         snippet_radius=snippet_radius,
         collapse_compounds=collapse_compounds,
     )
-    records = fold.synthesis_records(include_location=include_location)
+    records = fold.synthesis_records()
     answer = await get_chunk_syntheses(
         subject_unique_id=subject_unique_id,
         field_type=field_type,
@@ -766,10 +778,11 @@ async def get_chunk_synthesis_result(
             f"({field_type.name}) had {len(under_enumeration_resolved)} "
             f"under-enumeration re-ask(s) resolved ({kept_retry} kept the retry)."
         )
+    wire_text = chunk_wire_text(subject_text, chunk_bounds)
     return ChunkSynthesisResult(
         fold=fold,
         records=records,
-        include_location=include_location,
+        wire_text=wire_text,
         answer=answer,
         group_request_count=len(extraction_bundle.llm_phrase_synthesis_req_ids),
         retry_request_count=len(extraction_bundle.llm_phrase_synthesis_retry_req_ids),
@@ -810,13 +823,12 @@ async def get_chunk_group_records(
     timestamp: datetime,
     *,
     synthesis_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
-    mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     subject_text: str,
     metadata: object,
 ) -> GroupRecords:
     """ONE derivation for every downstream consumer (grounding, OOV,
     screening, descent, reconcile): the chunk's synthesis result — the fold
-    recomputed from the stored mention answers, the held syntheses — reduced
+    recomputed from the text and stored forms, the held syntheses — reduced
     to its per-group records. The fold knobs are read off *metadata* the same
     way the synthesis node itself reads them, so a consumer can never disagree
     with the stage it consumes about what a group contains."""
@@ -827,11 +839,9 @@ async def get_chunk_group_records(
         extraction_bundle=extraction_bundle,
         completed_request_map=synthesis_completed_request_map,
         timestamp=timestamp,
-        mention_completed_request_map=mention_completed_request_map,
         subject_text=subject_text,
         verb_fold=fold_verb_fold_of(metadata),
         snippet_radius=fold_snippet_radius_of(metadata),
-        include_location=synthesis_include_location_of(metadata),
         collapse_compounds=fold_collapse_compounds_of(metadata),
     )
     return downstream_group_records(result)

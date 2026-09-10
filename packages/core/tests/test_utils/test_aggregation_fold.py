@@ -61,8 +61,8 @@ def _at(text: str, needle: str, nth: int = 0) -> int:
     return pos
 
 
-def _golden(locations=None) -> FoldResult:
-    return fold_document([WindowInput(WINDOW, SENT, locations or {})])
+def _golden() -> FoldResult:
+    return fold_document([WindowInput(WINDOW, SENT)])
 
 
 def test_golden_collection_is_every_occurrence_in_text_order():
@@ -161,42 +161,36 @@ def test_golden_bundles_keys_forms_and_order():
     ]
 
 
-def test_golden_locations_attach_per_snippet_and_default_when_absent():
-    c = collect_window(WINDOW, SENT)
-    intro_id = c.items[0].mention_id
-    result = _golden({intro_id: "materials page, first sentence of the intro"})
-    (w,) = result.windows
-    assert w.described == [intro_id]
-    assert w.not_described == [i.mention_id for i in c.items[1:]]
-    assert w.has_undescribed
-    by_key = {b.key: b for b in result.bundles}
+def test_golden_snippet_sharing_across_owners():
+    """Both owners of one sentence share its snippet and mention_id — the
+    identity the post-synthesis context join keys by (per bundle, per
+    snippet), now that the fold itself carries no locations."""
+    by_key = {b.key: b for b in _golden().bundles}
     aluminum, brass = by_key["aluminum"].mentions, by_key["brass"].mentions
-    # both owners of the intro sentence take its one location
-    assert aluminum[0].location == brass[0].location == "materials page, first sentence of the intro"
-    assert aluminum[0].location_source == LOCATION_SOURCE_LLM
-    assert aluminum[1].location == DEFAULT_LOCATION
-    assert aluminum[1].location_source == LOCATION_SOURCE_NONE
+    assert aluminum[0].snippet == brass[0].snippet == INTRO
+    assert aluminum[0].mention_id == brass[0].mention_id
 
 
-def test_golden_synthesis_entries_are_distinct_snippets_and_skip_empty_bundles():
+def test_golden_synthesis_snippets_are_distinct_and_skip_empty_bundles():
     result = _golden()
     by_key = {b.key: b for b in result.bundles}
-    entries = by_key["aluminum"].synthesis_entries()
-    assert [e.snippet for e in entries] == [INTRO, "aluminum alloys ship daily.", "Aluminum | Brass | Steel"]
+    assert by_key["aluminum"].distinct_snippets() == [
+        INTRO, "aluminum alloys ship daily.", "Aluminum | Brass | Steel",
+    ]
     records = result.synthesis_records()
     assert [r.record_id for r in records] == [b.group_id for b in result.bundles if not b.is_empty]
     rendered = render_synthesis_record_blocks([r.model_dump() for r in records])
     assert "<<<RECORD_IDS" in rendered and INTRO in rendered and "die casting" not in rendered
 
 
-def test_synthesis_entries_dedupe_repeated_lines_across_windows():
+def test_synthesis_snippets_dedupe_repeated_lines_across_windows():
     footer = f"{SEP}\nhttps://acme.example/p1\n\nAluminum | Brass\n"
     result = fold_document(
-        [WindowInput(footer, ["Aluminum"], {}, window_id="a"), WindowInput(footer, ["Aluminum"], {}, window_id="b")]
+        [WindowInput(footer, ["Aluminum"], window_id="a"), WindowInput(footer, ["Aluminum"], window_id="b")]
     )
     (b,) = result.bundles
     assert len(b.mentions) == 2  # both occurrences stay on the bundle
-    assert len(b.synthesis_entries()) == 1  # synthesis sees the line once
+    assert len(b.distinct_snippets()) == 1  # synthesis sees the line once
 
 
 # ---------------------------------------------------------------------------
@@ -205,7 +199,7 @@ def test_synthesis_entries_dedupe_repeated_lines_across_windows():
 
 
 def test_casing_rescue_collects_unsent_casings_into_the_family_group():
-    result = fold_document([WindowInput(WINDOW, ["Aluminum"], {})])
+    result = fold_document([WindowInput(WINDOW, ["Aluminum"])])
     (b,) = [x for x in result.bundles if x.key == "aluminum"]
     assert b.forms == ("Aluminum", "aluminum")  # the discovered casing is a member form
     rescued = [m for m in b.mentions if m.form == "aluminum"]
@@ -286,8 +280,8 @@ def test_window_head_inherits_the_preceding_page():
 
 
 def test_sent_forms_are_window_local_and_blank_forms_are_ignored():
-    a = WindowInput(f"{SEP}\nhttps://x/a\n\nAluminum here\n", ["Aluminum", " "], {})
-    b = WindowInput(f"{SEP}\nhttps://x/b\n\nAluminum there\n", ["Brass"], {})
+    a = WindowInput(f"{SEP}\nhttps://x/a\n\nAluminum here\n", ["Aluminum", " "])
+    b = WindowInput(f"{SEP}\nhttps://x/b\n\nAluminum there\n", ["Brass"])
     result = fold_document([a, b])
     by_key = {x.key: x for x in result.bundles}
     assert len(by_key["aluminum"].mentions) == 1  # b's Aluminum was never sent for b
@@ -297,8 +291,8 @@ def test_sent_forms_are_window_local_and_blank_forms_are_ignored():
 
 def test_verb_fold_is_a_dial_applied_to_the_keys():
     text = f"{SEP}\nhttps://x/a\n\nCNC milled parts; CNC milling too.\n"
-    off = fold_document([WindowInput(text, ["CNC milled", "CNC milling"], {})], verb_fold=False)
-    on = fold_document([WindowInput(text, ["CNC milled", "CNC milling"], {})], verb_fold=True)
+    off = fold_document([WindowInput(text, ["CNC milled", "CNC milling"])], verb_fold=False)
+    on = fold_document([WindowInput(text, ["CNC milled", "CNC milling"])], verb_fold=True)
     assert len(off.bundles) == 2 and len(on.bundles) == 1
     assert on.bundles[0].key == normalize("CNC milled", verb_fold=True)
 
@@ -367,19 +361,16 @@ def test_collection_invariants(text, forms):
 @settings(max_examples=100, deadline=None)
 @given(_text, _forms, st.booleans())
 def test_fold_invariants(text, forms, verb_fold):
-    result = fold_document([WindowInput(text, forms, {})], verb_fold=verb_fold)
+    result = fold_document([WindowInput(text, forms)], verb_fold=verb_fold)
     keys = [b.key for b in result.bundles]
     assert len(set(keys)) == len(keys)
     for b in result.bundles:
         assert all(normalize(f, verb_fold=verb_fold) == b.key for f in b.forms)
         assert list(b.mentions) == sorted(b.mentions)
-        assert all(m.location == DEFAULT_LOCATION for m in b.mentions)
-        assert len(b.synthesis_entries()) == len({m.snippet for m in b.mentions})
+        assert len(b.distinct_snippets()) == len({m.snippet for m in b.mentions})
     filled = [b for b in result.bundles if not b.is_empty]
     assert result.bundles[: len(filled)] == filled  # empties last
     assert [r.record_id for r in result.synthesis_records()] == [b.group_id for b in filled]
-    (w,) = result.windows
-    assert w.described == [] and w.not_described == [i.mention_id for i in w.items]
 
 
 # ---------------------------------------------------------------------------
@@ -440,9 +431,9 @@ def test_radius_completes_an_occurrence_that_spans_a_sentence_break():
 def test_negative_radius_is_refused_and_radius_is_recorded_on_the_fold():
     with pytest.raises(ValueError, match="snippet_radius"):
         collect_window("Aluminum.", ["Aluminum"], snippet_radius=-1)
-    result = fold_document([WindowInput(WINDOW, SENT, {})], snippet_radius=1)
+    result = fold_document([WindowInput(WINDOW, SENT)], snippet_radius=1)
     assert result.snippet_radius == 1
-    assert fold_document([WindowInput(WINDOW, SENT, {})]).snippet_radius == 0
+    assert fold_document([WindowInput(WINDOW, SENT)]).snippet_radius == 0
 
 
 # ---------------------------------------------------------------------------
@@ -506,7 +497,7 @@ def test_focal_form_is_the_most_frequent_member_form_ties_to_the_earliest():
     assert by_key["aluminum"].focal_form == "Aluminum"  # 2 mentions vs 1
     assert by_key["brass"].focal_form == "Brass"
     # a tie goes to the form whose first mention comes first in locked order
-    tie = fold_document([WindowInput("We use steel. Steel is strong.", ["steel"], {})])
+    tie = fold_document([WindowInput("We use steel. Steel is strong.", ["steel"])])
     (b,) = [b for b in tie.bundles if not b.is_empty]
     assert b.forms == ("Steel", "steel") and b.focal_form == "steel"
     # an empty bundle has no focal form and no record
@@ -516,21 +507,15 @@ def test_focal_form_is_the_most_frequent_member_form_ties_to_the_earliest():
         empty.synthesis_record()
 
 
-def test_synthesis_records_carry_the_focal_form_and_honour_the_location_arm():
-    result = _golden({mention_id_for_snippet(INTRO): "the intro line"})
-    with_loc = result.synthesis_records()
-    without = result.synthesis_records(include_location=False)
-    assert [r.record_id for r in with_loc] == [r.record_id for r in without]
-    assert all(r.focal_form for r in with_loc)
-    first = with_loc[0]
+def test_synthesis_records_carry_the_focal_form_and_bare_snippets():
+    records = _golden().synthesis_records()
+    assert all(r.focal_form for r in records)
+    first = records[0]
     assert first.focal_form == "Aluminum"
-    assert first.entries[0].location == "the intro line"
-    assert all(e.location is None for r in without for e in r.entries)
-    assert "location" not in without[0].wire_dict()["entries"][0]
-    assert with_loc[0].wire_dict()["entries"][0]["location"] == "the intro line"
-    # the wire dicts render (the synthesis request's two blocks) on both arms
-    assert render_synthesis_record_blocks([r.wire_dict() for r in with_loc])
-    assert render_synthesis_record_blocks([r.wire_dict() for r in without])
+    assert first.snippets[0] == INTRO
+    assert first.wire_dict()["snippets"][0] == INTRO
+    # the wire dicts render (the synthesis request's two blocks)
+    assert render_synthesis_record_blocks([r.wire_dict() for r in records])
 
 
 # ---------------------------------------------------------------------------
@@ -546,7 +531,7 @@ COORD_FORMS = ["doors and frames", "doors", "frames"]
 
 
 def _coord(**kwargs) -> FoldResult:
-    return fold_document([WindowInput(COORD_TEXT, COORD_FORMS, {})], **kwargs)
+    return fold_document([WindowInput(COORD_TEXT, COORD_FORMS)], **kwargs)
 
 
 def test_collapse_is_off_by_default():
@@ -596,7 +581,7 @@ def test_g2_a_part_that_is_not_a_sibling_group_blocks_the_collapse():
     group — so the compound survives."""
     text = "We serve commercial and institutional buildings and institutional buildings alike."
     result = fold_document(
-        [WindowInput(text, ["commercial and institutional buildings", "institutional buildings"], {})],
+        [WindowInput(text, ["commercial and institutional buildings", "institutional buildings"])],
         collapse_compounds=True,
     )
     by_key = {b.key: b for b in result.bundles}
@@ -608,7 +593,7 @@ def test_g4_a_part_with_no_standing_outside_the_compound_blocks_the_collapse():
     is a fragment, not a sibling entity — the measured steelcraft case."""
     text = "We list fire rated doors and frames.\nOur frames ship daily.\n"
     result = fold_document(
-        [WindowInput(text, ["fire rated doors and frames", "fire rated doors", "frames"], {})],
+        [WindowInput(text, ["fire rated doors and frames", "fire rated doors", "frames"])],
         collapse_compounds=True,
     )
     by_key = {b.key: b for b in result.bundles}
@@ -623,7 +608,7 @@ def test_g3_a_compound_holding_evidence_no_part_covers_blocks_the_collapse():
     part covers and collapsing it would destroy evidence."""
     text = "We supply Door and Frame units.\ndoors and frames are stocked.\n"
     result = fold_document(
-        [WindowInput(text, ["Door and Frame", "doors", "frames"], {})],
+        [WindowInput(text, ["Door and Frame", "doors", "frames"])],
         collapse_compounds=True,
     )
     by_key = {b.key: b for b in result.bundles}

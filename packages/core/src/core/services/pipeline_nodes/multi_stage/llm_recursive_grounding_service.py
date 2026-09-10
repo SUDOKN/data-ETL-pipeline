@@ -732,7 +732,6 @@ async def create_missing_phrase_recursive_grounding_requests(
     missing_phrase_recursive_grounding_req_ids: set[  # will all belong to the same level
         BatchRequestIDType
     ],  # spread across all chunks, can be partially covering a level in req tree
-    mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     synthesis_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     subject_text: str,
     metadata: ConceptExtractionMetadata,
@@ -776,7 +775,6 @@ async def create_missing_phrase_recursive_grounding_requests(
             bundle,
             timestamp,
             synthesis_completed_request_map=synthesis_completed_request_map,
-            mention_completed_request_map=mention_completed_request_map,
             subject_text=subject_text,
             metadata=metadata,
         )

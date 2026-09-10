@@ -50,21 +50,39 @@ B. CLIP. The snippet is the sentence holding the occurrence within its line,
    format, so a bullet, a heading or a pipe-table row is simply a line-shaped
    unit, and its ``- `` / ``## `` / ``|`` markers stay IN the snippet
    deliberately (verbatim text, and a location signal: the marker tells the
-   Location model it is reading a list entry / heading / table row). The one
+   synthesis model it is reading a list entry / heading / table row). The one
    markdown-specific rule: DECORATION lines — a pipe table's ``|---|``
    separator row, legacy ``-----`` dividers (``_DECORATION_LINE_RE``) — are
    not units, so a radius clip skips them exactly like blank lines and a
    radius-1 clip around a table data row reaches the header row.
 
-C. WIRE. The window's DISTINCT snippets, in first-occurrence order, are the
-   Location request's items ``{mention_id, mention}`` — 2,880 items for 4,907
-   occurrences on that run. ``mention_id = hash(snippet)``.
+C. WIRE (2026-09-03, the location-stage merge). The window's DISTINCT snippets,
+   in first-occurrence order, are what the synthesis records send —
+   ``mention_id = hash(snippet)`` is still every snippet's identity. There is
+   no separate Location stage any more: the synthesis stage receives the
+   chunk's text alongside its records and reads where each snippet sits for
+   itself. The fold is fully mechanical.
 
-D. LOCATE. The Location stage's held answer is a ``mention_id → location`` map;
-   every occurrence of a snippet takes its location. A snippet the model did
-   not describe keeps the mention (it is a fact of the text) under
-   ``DEFAULT_LOCATION`` and is reported — the model can no longer lose a
-   mention, only fail to colour it.
+D. LOCATION (2026-09-05, user decision). Each mention's ``location`` is
+   derived in CODE at collection time — ``_Lines.locate_context``: a pipe-table
+   row takes its table's header row (the topmost pipe row of its run, when a
+   ``|---|`` separator follows it); every other snippet takes the nearest
+   Markdown heading STRICTLY ABOVE its first line, table rows and ordinary
+   lines passed over; a page boundary line is never crossed, and None means
+   the page block has nothing above the snippet (the stored fold writes
+   ``DEFAULT_LOCATION``).
+   Between the merge and this date the synthesis model returned one verbatim
+   context line PER SNIPPET instead: a slot nothing downstream read (grounding
+   and screening consume the synthesis alone), that needed its own count-
+   mismatch retry class, and whose enumeration invited a repetition loop — a
+   65-snippet record under one heading drew 4,850 copies of that heading and
+   a truncated answer (run 20260904T184906). Measured on run 20260905T014738
+   before dropping it: this rule agreed with the model's line on 87% of
+   snippets; the rest were the model preferring a page title over a scraper
+   artifact heading (``## Intro``) or attributing nav boilerplate differently.
+   A recurring snippet now gets the heading of EACH occurrence (14 of 15
+   recurring snippets in that run sat under different headings), where the
+   per-distinct-snippet quote could give it only one.
 
 E. GROUP + BUNDLE. Forms bucket by ``normalize()`` (D9/D10: a dict, global
    scope — the union of every window's sent forms AND the casings the scan
@@ -88,12 +106,13 @@ E2. COLLAPSE (D21, the ``collapse_compounds`` dial). A group whose surface form
    occurrences exclusively, so collapsing it destroyed evidence. See
    ``collapsible_groups`` for the split rule and its three guards.
 
-F. SYNTHESIS ENTRIES. A bundle's entries are its DISTINCT snippets in locked
-   order, each with the location of its first occurrence (user decision
-   2026-08-22: a repeated line reaches synthesis once; the per-occurrence
-   mentions stay on the bundle for the dump and ground truth). The synthesis
-   A/B (user decision 2026-08-22) has an arm WITHOUT locations:
-   ``include_location=False`` builds entries of the snippet alone. Each record
+F. SYNTHESIS SNIPPETS. A record sends its bundle's DISTINCT snippets in
+   locked order, as bare verbatim strings (user decision 2026-08-22: a
+   repeated line reaches synthesis once; the per-occurrence mentions stay on
+   the bundle for the dump and ground truth. The ``{location, snippet}`` entry
+   object died in two steps, both 2026-09-03: location with the location-stage
+   merge — the synthesis model reads position from the chunk text itself —
+   and the one-key wrapper right after it). Each record
    also carries the bundle's FOCAL FORM (D15 as amended 2026-08-22): the most
    frequent member form by mention count, ties broken by earliest first mention
    in locked order — code-chosen, deterministic, what synthesis is told the
@@ -105,11 +124,11 @@ from __future__ import annotations
 import bisect
 import re
 from collections import Counter, defaultdict
-from dataclasses import dataclass, field, replace
-from typing import Mapping, Optional, Sequence
+from dataclasses import dataclass, replace
+from typing import Optional, Sequence
 
 from core.models.extraction_schemas.mention_collection import MentionWireItem
-from core.models.extraction_schemas.synthesis import SynthesisEntry, SynthesisRecordInput
+from core.models.extraction_schemas.synthesis import SynthesisRecordInput
 from core.utils.floor_scan import (
     FloorScan,
     Occurrence,
@@ -139,10 +158,20 @@ BUNDLE_STATUS_COLLAPSED = "collapsed"
 # ("CNC/Manual", "ISO 9001/14001" are ambiguous).
 _COORDINATION_SPLIT = re.compile(r"\s*,\s*|\s*&\s*|\b(?:and|or)\b", re.IGNORECASE)
 
-# What a mention carries when the Location stage did not describe its snippet.
+# What a stored mention carries when the fold found no heading or table header
+# above its snippet within the page block (module docstring, D). The field is
+# called "location" for continuity with the retired location stage's prose
+# register; its sources: "code" since 2026-09-05, "llm" for documents written
+# between the location-stage merge and that date (the model's per-snippet
+# quote), "none" for the default.
 DEFAULT_LOCATION = "(location not described)"
+LOCATION_SOURCE_CODE = "code"
 LOCATION_SOURCE_LLM = "llm"
 LOCATION_SOURCE_NONE = "none"
+
+# A Markdown heading line: one to six '#' then a space and a word character.
+# The scraper's page separator (ten or more '#', nothing else) does not match.
+_HEADING_LINE_RE = re.compile(r"[ \t]*#{1,6}[ \t]+\S")
 
 
 # --- input ---------------------------------------------------------------------
@@ -150,24 +179,16 @@ LOCATION_SOURCE_NONE = "none"
 
 @dataclass
 class WindowInput:
-    """One window: its text, the forms search found in it (window-local, D2/D5),
-    and the Location stage's held answer for it (``mention_id → location``,
-    merged across the window's request groups; empty when the stage has not
-    answered). ``preceding_page`` is the page a sub-window cut mid-page inherits
+    """One window: its text and the forms search found in it (window-local,
+    D2/D5). ``preceding_page`` is the page a sub-window cut mid-page inherits
     (see ``floor_scan.page_spans``); ``window_id`` is a free label for dumps — a
     window's POSITION in the document is its index in the sequence given to
     ``fold_document``."""
 
     text: str
     sent_forms: Sequence[str]
-    locations_by_mention_id: Mapping[str, str] = field(default_factory=dict)
     preceding_page: Optional[str] = None
     window_id: Optional[str] = None
-    # Location-stage diagnostics the fold only carries (dump-visible): the
-    # mention ids a retry pass re-asked for, and ids the model answered that were
-    # never sent (dropped by the hold).
-    retried_mention_ids: Sequence[str] = ()
-    unknown_answer_ids: Sequence[str] = ()
 
 
 # --- A–C: the collection ------------------------------------------------------
@@ -175,7 +196,7 @@ class WindowInput:
 
 @dataclass(frozen=True, order=True)
 class CollectedMention:
-    """One occurrence of one form, as code collected it (before location)."""
+    """One occurrence of one form, as code collected it."""
 
     start: int
     end: int
@@ -185,6 +206,7 @@ class CollectedMention:
     snippet: str
     snippet_start: int
     mention_id: str
+    location: Optional[str]  # module docstring, D
 
     @property
     def occurrence(self) -> Occurrence:
@@ -357,6 +379,53 @@ class _Lines:
             )
         return i
 
+    def locate_context(self, snippet_start: int) -> Optional[str]:
+        """The line that introduces the passage starting at ``snippet_start``
+        (module docstring, D), STRICTLY ABOVE the snippet's first line and
+        within its page block; None when the block has none above it.
+
+        A snippet that is a pipe-table row takes its TABLE'S HEADER ROW — the
+        topmost row of the run of pipe rows it sits in, when that row is
+        followed by a decoration row (``|---|---|``); a headerless table, or
+        the header row itself as the snippet, falls through to the heading
+        search above the table. Every other snippet takes the nearest Markdown
+        heading above it; table rows above prose are passed over (a table does
+        not introduce the paragraph under it), as are blank, decoration and
+        ordinary lines. HTML-island tables (``<tr>`` lines) carry no separator
+        marker and take the nearest heading like prose.
+        """
+        li = bisect.bisect_right(self.starts, snippet_start) - 1
+        search_from = li
+        if self._is_pipe_row(li):
+            top = li
+            while top > 0 and (
+                self._is_pipe_row(top - 1) or _DECORATION_LINE_RE.fullmatch(self.lines[top - 1])
+            ):
+                top -= 1
+            if top < li and self._is_pipe_row(top) and self._is_table_header_row(top):
+                return self.lines[top].strip()
+            search_from = top
+        for j in range(search_from - 1, -1, -1):
+            line = self.lines[j]
+            if is_page_barrier_line(line):
+                return None
+            if _HEADING_LINE_RE.match(line):
+                return line.strip()
+        return None
+
+    def _is_pipe_row(self, li: int) -> bool:
+        line = self.lines[li]
+        return line.lstrip().startswith("|") and not _DECORATION_LINE_RE.fullmatch(line)
+
+    def _is_table_header_row(self, li: int) -> bool:
+        """Whether pipe row *li* is a header: the next non-blank line is a
+        decoration (separator) row."""
+        for k in range(li + 1, len(self.lines)):
+            if not self.lines[k].strip():
+                continue
+            return bool(_DECORATION_LINE_RE.fullmatch(self.lines[k]))
+        return False
+
     def _clip_with_radius(self, start: int, end: int, radius: int) -> tuple[str, int]:
         units = self.units()
         i = self._unit_index_at(start)
@@ -420,6 +489,7 @@ def collect_window(
                 snippet=snippet,
                 snippet_start=snippet_start,
                 mention_id=mention_id,
+                location=lines.locate_context(snippet_start),
             )
         )
 
@@ -448,17 +518,18 @@ def collect_window(
 
 @dataclass(frozen=True, order=True)
 class FoldedMention:
-    """One occurrence of one form, located.
+    """One occurrence of one form, as the fold collected it — fully mechanical
+    since the location-stage merge (2026-09-03).
 
     ``(window_index, start, end)`` is the occurrence's position in the
     document (the LOCKED order); ``form`` is the text at ``[start, end)`` — a
     sent form or a discovered casing of one; ``record_id = hash(form)`` is its
     provenance key (D11); ``page`` is code-derived from ``start``; ``snippet``
     is the clipped passage holding the occurrence, at ``snippet_start``;
-    ``mention_id = hash(snippet)`` is the Location wire key; ``location`` is
-    the Location stage's description (``location_source`` says whether the
-    model gave it or the fold defaulted it); ``sent_form`` is the sent form
-    whose scan found the occurrence.
+    ``mention_id = hash(snippet)`` is the snippet's identity; ``sent_form`` is
+    the sent form whose scan found the occurrence; ``location`` is the
+    code-derived context line above the snippet (module docstring, D; None
+    where the page block has none).
     """
 
     window_index: int
@@ -470,9 +541,8 @@ class FoldedMention:
     snippet: str
     snippet_start: int
     mention_id: str
-    location: str
-    location_source: str
     sent_form: str
+    location: Optional[str] = None
 
     @property
     def occurrence(self) -> Occurrence:
@@ -482,12 +552,7 @@ class FoldedMention:
     def is_discovered_casing(self) -> bool:
         return self.form != self.sent_form
 
-    def synthesis_entry(self, *, include_location: bool = True) -> SynthesisEntry:
-        """The entry this mention contributes (step F). ``include_location=False``
-        is the no-location A/B arm: the snippet alone."""
-        return SynthesisEntry(
-            location=self.location if include_location else None, snippet=self.snippet
-        )
+
 
 
 @dataclass(frozen=True)
@@ -536,19 +601,19 @@ class MentionBundle:
             first_index.setdefault(m.form, index)
         return min(counts, key=lambda f: (-counts[f], first_index[f], f))
 
-    def synthesis_entries(self, *, include_location: bool = True) -> list[SynthesisEntry]:
-        """Step F: distinct snippets in locked order, each under the location
-        of its first occurrence (or no location at all on the A/B arm)."""
-        entries: list[SynthesisEntry] = []
+    def distinct_snippets(self) -> list[str]:
+        """Step F: the bundle's distinct snippets in locked order — what the
+        synthesis record sends."""
+        snippets: list[str] = []
         seen: set[str] = set()
         for m in self.mentions:
             if m.snippet in seen:
                 continue
             seen.add(m.snippet)
-            entries.append(m.synthesis_entry(include_location=include_location))
-        return entries
+            snippets.append(m.snippet)
+        return snippets
 
-    def synthesis_record(self, *, include_location: bool = True) -> SynthesisRecordInput:
+    def synthesis_record(self) -> SynthesisRecordInput:
         """The record this bundle sends to synthesis. Raises for an empty
         bundle — it has no focal form and nothing to synthesize; callers go
         through ``FoldResult.synthesis_records``, which skips empties."""
@@ -560,7 +625,7 @@ class MentionBundle:
         return SynthesisRecordInput(
             record_id=self.group_id,
             focal_form=focal,
-            entries=self.synthesis_entries(include_location=include_location),
+            snippets=self.distinct_snippets(),
         )
 
 
@@ -569,18 +634,13 @@ class MentionBundle:
 
 @dataclass
 class WindowFold:
-    """What the fold made of one window: the collection it rests on, the
-    located mentions (locked order), and the Location stage's coverage —
-    ``described`` ids answered, ``not_described`` ids the model left out."""
+    """What the fold made of one window: the collection it rests on and the
+    mentions in locked order."""
 
     window_index: int
     window_id: Optional[str]
     collection: WindowCollection
     mentions: list[FoldedMention]
-    described: list[str] = field(default_factory=list)
-    not_described: list[str] = field(default_factory=list)
-    retried: list[str] = field(default_factory=list)
-    unknown_answer_ids: list[str] = field(default_factory=list)
 
     @property
     def sent_forms(self) -> list[str]:
@@ -589,10 +649,6 @@ class WindowFold:
     @property
     def items(self) -> list[MentionWireItem]:
         return self.collection.items
-
-    @property
-    def has_undescribed(self) -> bool:
-        return bool(self.not_described)
 
 
 @dataclass
@@ -621,13 +677,13 @@ class FoldResult:
     def collapsed_bundles(self) -> list[MentionBundle]:
         return [b for b in self.bundles if b.is_collapsed]
 
-    def synthesis_records(self, *, include_location: bool = True) -> list[SynthesisRecordInput]:
+    def synthesis_records(self) -> list[SynthesisRecordInput]:
         """The synthesis request side: one record per bundle that has something
         to synthesize, in bundle order, each naming its focal form. Skipped:
         EMPTY bundles (nothing to synthesize) and COLLAPSED ones (D21 — their
         parts carry every mention). Both remain in ``bundles`` for the dump."""
         return [
-            b.synthesis_record(include_location=include_location)
+            b.synthesis_record()
             for b in self.bundles
             if not b.is_empty and not b.is_collapsed
         ]
@@ -639,43 +695,35 @@ class FoldResult:
 def fold_window(
     window: WindowInput, *, window_index: int = 0, snippet_radius: int = 0
 ) -> WindowFold:
-    """Steps A–D over one window. Pure; independent of the order of
-    ``sent_forms`` and of the keys of ``locations_by_mention_id``."""
+    """Steps A–C over one window. Pure; independent of the order of
+    ``sent_forms``."""
     collection = collect_window(
         window.text,
         window.sent_forms,
         preceding_page=window.preceding_page,
         snippet_radius=snippet_radius,
     )
-    mentions: list[FoldedMention] = []
-    for m in collection.mentions:
-        location = window.locations_by_mention_id.get(m.mention_id)
-        mentions.append(
-            FoldedMention(
-                window_index=window_index,
-                start=m.start,
-                end=m.end,
-                form=m.form,
-                record_id=record_id_for_phrase(m.form),
-                page=m.page,
-                snippet=m.snippet,
-                snippet_start=m.snippet_start,
-                mention_id=m.mention_id,
-                location=DEFAULT_LOCATION if location is None else location,
-                location_source=LOCATION_SOURCE_NONE if location is None else LOCATION_SOURCE_LLM,
-                sent_form=m.sent_form,
-            )
+    mentions = [
+        FoldedMention(
+            window_index=window_index,
+            start=m.start,
+            end=m.end,
+            form=m.form,
+            record_id=record_id_for_phrase(m.form),
+            page=m.page,
+            snippet=m.snippet,
+            snippet_start=m.snippet_start,
+            mention_id=m.mention_id,
+            sent_form=m.sent_form,
+            location=m.location,
         )
-    sent_ids = [item.mention_id for item in collection.items]
+        for m in collection.mentions
+    ]
     return WindowFold(
         window_index=window_index,
         window_id=window.window_id,
         collection=collection,
         mentions=sorted(mentions),
-        described=[i for i in sent_ids if i in window.locations_by_mention_id],
-        not_described=[i for i in sent_ids if i not in window.locations_by_mention_id],
-        retried=list(window.retried_mention_ids),
-        unknown_answer_ids=list(window.unknown_answer_ids),
     )
 
 
@@ -792,7 +840,7 @@ def fold_document(
     snippet_radius: int = 0,
     collapse_compounds: bool = False,
 ) -> FoldResult:
-    """Steps A–D over every window, then E over the union of sent and
+    """Steps A–C over every window, then E over the union of sent and
     collected forms, then E2 (D21) when *collapse_compounds*. ``snippet_radius``
     is the clip dial (B), uniform over the document — it is run identity, not a
     per-window fact; so is *collapse_compounds*, which decides which groups

@@ -701,6 +701,62 @@ async def bulk_delete_gpt_batch_requests_by_subject_id_and_field(
     return result.deleted_count
 
 
+async def mark_gpt_batch_requests_eager(
+    timestamp: datetime, custom_ids: set[str], chunk_size: int = 5000
+) -> int:
+    """Set ``batch_id = "Eager"`` on the given requests, so an eager pass may
+    dispatch them.
+
+    A request with ``batch_id is None`` is PENDING — the batch-file path's
+    "write me into the next upload" state — and ``dispatch_gpt_batch_request``
+    refuses to send one eagerly, so the two paths never race for a row. That
+    is also the state ``record_response_parse_error`` writes on purpose (the
+    "re-ask me" flag), which until 2026-09-05 made every eager re-dispatch of
+    a parse-failed request die at the guard: run 20260904T184906 lost a whole
+    subject to one truncated synthesis answer whose three retries never left
+    the process (235 ms end to end). The eager path now claims such rows here
+    BEFORE dispatching.
+
+    PERSISTED, not just set in memory, for two reasons: completeness is judged
+    by ``batch_id != None AND response != None``
+    (``find_completed_gpt_batch_request_ids_only``), so an answer recorded on
+    a row whose stored ``batch_id`` stayed None would never count; and a
+    dispatch that fails (a 429) must leave a row the next pass can send again.
+    A later parse failure nulls the field again, returning the row to either
+    path — which is the intended cycle.
+
+    Returns:
+        Number of modified documents
+    """
+    if not custom_ids:
+        return 0
+
+    update_operations = [
+        UpdateOne(
+            {GPTBatchRequest.request.custom_id: custom_id},
+            {
+                "$set": {
+                    GPTBatchRequest.batch_id: "Eager",
+                    GPTBatchRequest.updated_at: timestamp,
+                }
+            },
+            upsert=False,
+        )
+        for custom_id in sorted(custom_ids)
+    ]
+
+    _, modified_count = await bulk_update_gpt_batch_requests(
+        update_one_operations=update_operations,
+        log_id="mark_eager",
+        chunk_size=chunk_size,
+    )
+    logger.info(
+        f"mark_gpt_batch_requests_eager: claimed {modified_count:,} of "
+        f"{len(custom_ids):,} pending request(s) for eager dispatch."
+    )
+    return modified_count
+
+
 async def record_response_parse_error(
     gpt_batch_request: GPTBatchRequest,
     error_message: str,

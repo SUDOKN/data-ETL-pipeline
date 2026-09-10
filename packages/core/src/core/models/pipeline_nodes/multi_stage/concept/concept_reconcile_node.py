@@ -38,9 +38,6 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_phrase_search_node i
 from core.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_node import (
     ConceptRecursiveSearchNode,
 )
-from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
-    ConceptMentionCollectionNode,
-)
 from core.models.pipeline_nodes.multi_stage.concept.concept_synthesis_node import (
     ConceptSynthesisNode,
 )
@@ -64,7 +61,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_recursive_search_node_s
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     get_record_grounding_result,
 )
-from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+from core.services.pipeline_nodes.multi_stage.aggregation_fold_service import (
     fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
@@ -72,7 +69,6 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
     downstream_group_records,
     get_chunk_synthesis_result,
-    synthesis_include_location_of,
     synthesis_max_entries_of,
 )
 from core.services.pipeline_nodes.multi_stage.llm_recursive_grounding_service import (
@@ -144,9 +140,6 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
         completed_recursive_search_req_map = pipeline_context[
             ConceptRecursiveSearchNode
         ]
-        completed_mention_collection_req_map = pipeline_context[
-            ConceptMentionCollectionNode
-        ]
         completed_synthesis_req_map = pipeline_context[ConceptSynthesisNode]
         completed_in_vocab_grounding_req_map = pipeline_context[
             ConceptInitialGroundingNode
@@ -192,7 +185,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             )
 
             # v3 (3.3, D16): the chunk's synthesis result — the fold recomputed
-            # from the stored mention answers, the held syntheses — is the spine
+            # from the text and stored forms, the held syntheses — is the spine
             # every downstream verdict keys against. No repairs sink anywhere:
             # every record-keyed stage holds exactly, and the relationship
             # stage (the one place phrases echoed back) is retired.
@@ -204,11 +197,9 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 extraction_bundle=bundle,
                 completed_request_map=completed_synthesis_req_map,
                 timestamp=timestamp,
-                mention_completed_request_map=completed_mention_collection_req_map,
                 subject_text=scraped_text_file.text,
                 verb_fold=fold_verb_fold_of(metadata),
                 snippet_radius=fold_snippet_radius_of(metadata),
-                include_location=synthesis_include_location_of(metadata),
                 collapse_compounds=fold_collapse_compounds_of(metadata),
             )
             group_records = downstream_group_records(synthesis_result)
@@ -335,6 +326,8 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             # like the dump blocks above: this one is a stored result, and a
             # window whose bounds do not describe its own text would give
             # offsets that resolve to the wrong passage. Fail the run instead.
+            # Each mention's `location` is the fold's own (code-derived since
+            # 2026-09-05), so nothing from the synthesis answer is joined here.
             stored_fold = build_stored_fold(
                 synthesis_result.fold,
                 text_version_id=scraped_text_file.s3_version_id,
@@ -401,7 +394,6 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             completed_requests={
                 **completed_phrase_search_req_map,
                 **completed_recursive_search_req_map,
-                **completed_mention_collection_req_map,
                 **completed_synthesis_req_map,
                 **completed_in_vocab_grounding_req_map,
                 **completed_oov_grounding_req_map,
@@ -450,7 +442,6 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 [
                     *completed_phrase_search_req_map.keys(),
                     *completed_recursive_search_req_map.keys(),
-                    *completed_mention_collection_req_map.keys(),
                     *completed_synthesis_req_map.keys(),
                     *completed_in_vocab_grounding_req_map.keys(),
                     *completed_oov_grounding_req_map.keys(),

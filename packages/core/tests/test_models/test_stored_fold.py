@@ -34,7 +34,7 @@ from core.models.extraction_schemas.stored_fold import (
     window_base_offset,
     window_texts_of,
 )
-from core.utils.aggregation_fold import WindowInput, fold_document
+from core.utils.aggregation_fold import DEFAULT_LOCATION, WindowInput, fold_document
 from core.utils.record_id_util import mention_id_for_snippet, record_id_for_phrase
 
 SEP = "#" * 50
@@ -62,21 +62,20 @@ def _sub_bounds(text: str, count: int) -> list[str]:
     return [f"{cuts[i]}:{cuts[i + 1]}" for i in range(len(cuts) - 1)]
 
 
-def _windows(text: str, bounds: list[str], *, locations: dict[str, str] | None = None):
+def _windows(text: str, bounds: list[str]):
     return [
         WindowInput(
             text=text[int(b.split(":")[0]) : int(b.split(":")[1])],
             sent_forms=FORMS,
-            locations_by_mention_id=locations or {},
             window_id=b,
         )
         for b in bounds
     ]
 
 
-def _fold(text: str = DOCUMENT, *, count: int = 3, locations=None):
+def _fold(text: str = DOCUMENT, *, count: int = 3):
     bounds = _sub_bounds(text, count)
-    return fold_document(_windows(text, bounds, locations=locations)), bounds
+    return fold_document(_windows(text, bounds)), bounds
 
 
 # ---------------------------------------------------------------------------
@@ -143,21 +142,40 @@ def test_resolve_rebuilds_the_folded_bundles_exactly():
     assert stored.resolve(DOCUMENT) == result.bundles
 
 
-def test_resolve_round_trip_carries_the_location_stage_answer():
-    plain, _ = _fold()
-    locations = {
-        m.mention_id: f"location of {m.form}" for m in result_mentions(plain)
-    }
-    result, _ = _fold(locations=locations)
-    stored = build_stored_fold(result, text_version_id="v1")
+HEADED = (
+    f"{SEP}\nhttps://acme.example/materials\n\n"
+    "## Materials\n\nWe stock Aluminum and Brass.\n\n"
+    "| Alloy | Form |\n|---|---|\n| Aluminum | sheet |\n| Brass | rod |\n"
+    f"{SEP}\nhttps://acme.example/about\n\n"
+    "Family owned. We machine Aluminum every day.\n"
+)
 
-    resolved = stored.resolve(DOCUMENT)
-    assert resolved == result.bundles
-    described = [
-        m for b in resolved for m in b.mentions if m.location_source == "llm"
-    ]
-    assert described, "the fixture must describe at least one mention"
-    assert all(m.location.startswith("location of ") for m in described)
+
+def test_the_folds_own_location_rides_the_stored_mention_and_resolves_back():
+    """2026-09-05: ``location`` is the fold's own — the heading or table header
+    row above the snippet, derived in code (aggregation_fold docstring D) —
+    stored under source "code"; a mention with none stores the default under
+    source "none". Resolve is a round trip either way, location included."""
+    result, _ = _fold(HEADED, count=2)
+    stored = build_stored_fold(result, text_version_id="v1")
+    assert stored.resolve(HEADED) == result.bundles
+
+    by_snippet = {
+        m.snippet_in(HEADED): (m.location, m.location_source)
+        for b in stored.bundles
+        for m in b.mentions
+    }
+    assert by_snippet["We stock Aluminum and Brass."] == ("## Materials", "code")
+    assert by_snippet["| Aluminum | sheet |"] == ("| Alloy | Form |", "code")
+    assert by_snippet["| Brass | rod |"] == ("| Alloy | Form |", "code")
+    # the about page has no heading: the default, and the fold's None survives resolve
+    assert by_snippet["We machine Aluminum every day."] == (DEFAULT_LOCATION, "none")
+    assert all(
+        m.location is None
+        for b in stored.resolve(HEADED)
+        for m in b.mentions
+        if m.snippet == "We machine Aluminum every day."
+    )
 
 
 def test_a_single_window_fold_still_stores_absolute_offsets():

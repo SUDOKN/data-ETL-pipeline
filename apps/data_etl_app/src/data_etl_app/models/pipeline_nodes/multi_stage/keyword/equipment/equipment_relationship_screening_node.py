@@ -42,14 +42,6 @@ class EquipmentRelationshipScreeningNode(KeywordRelationshipScreeningNode):
             next_node=next_node,
         )
 
-    def get_upstream_mention_collection_map(
-        self, pipeline_context: PipelineContext
-    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_mention_collection_node import (
-            EquipmentMentionCollectionNode,
-        )
-
-        return pipeline_context[EquipmentMentionCollectionNode]
 
     def get_upstream_synthesis_map(
         self, pipeline_context: PipelineContext

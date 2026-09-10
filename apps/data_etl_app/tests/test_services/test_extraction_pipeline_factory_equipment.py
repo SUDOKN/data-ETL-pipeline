@@ -10,7 +10,6 @@ from core.models.chunking_strat import EQUIPMENT_CHUNKING_STRAT
 from data_etl_app.models.pipeline_nodes import (
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
-    EquipmentMentionCollectionNode,
     EquipmentSynthesisNode,
     EquipmentRelationshipScreeningNode,
     EquipmentFreehandGroundingNode,
@@ -39,7 +38,6 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
         ontology_version_id="test-ontology-version",
         search_prompt=_make_prompt("equipment_phrase_search"),
         recursive_search_prompt=_make_prompt("equipment_phrase_recursive_search"),
-        phrase_mention_collection_prompt=_make_prompt("equipment_phrase_mention_collection"),
         phrase_synthesis_prompt=_make_prompt("equipment_phrase_synthesis"),
         phrase_relationship_screening_prompt=_make_prompt(
             "equipment_phrase_relationship_screening"
@@ -60,33 +58,24 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
     recursive_search_node = search_node.next_node
     assert isinstance(recursive_search_node, EquipmentRecursiveSearchNode)
 
-    # v3 (3.1): mention collection replaced relationship.
-    mention_node = recursive_search_node.next_node
-    assert isinstance(mention_node, EquipmentMentionCollectionNode)
-    assert prefill.llm_phrase_mention_collection_metadata is not None
-    assert prefill.llm_phrase_mention_collection_metadata.max_mentions_per_request == (
-        ExtractionPipelineFactory.DEFAULT_MENTION_COLLECTION_MAX_MENTIONS_PER_REQUEST
-    )
+    # v3 (3.2, merged with the location task 2026-09-03): synthesis follows
+    # recursive search directly; the fold's identity rides its own metadata.
     assert prefill.aggregation_fold_metadata is not None
     assert prefill.aggregation_fold_metadata.verb_fold is False  # keyword field: L2 off
-    assert prefill.llm_phrase_mention_collection_metadata.snippet_radius == (
-        ExtractionPipelineFactory.DEFAULT_MENTION_COLLECTION_SNIPPET_RADIUS
+    assert prefill.aggregation_fold_metadata.snippet_radius == (
+        ExtractionPipelineFactory.DEFAULT_SNIPPET_RADIUS
     )
 
-    # v3 (3.2): synthesis follows mention collection.
-    synthesis_node = mention_node.next_node
+    synthesis_node = recursive_search_node.next_node
     assert isinstance(synthesis_node, EquipmentSynthesisNode)
     assert synthesis_node.phrase_synthesis_prompt.name == "equipment_phrase_synthesis"
     assert prefill.llm_phrase_synthesis_metadata is not None
     assert prefill.llm_phrase_synthesis_metadata.max_entries_per_request == (
         ExtractionPipelineFactory.DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST
     )
-    assert prefill.llm_phrase_synthesis_metadata.include_location is (
-        ExtractionPipelineFactory.DEFAULT_SYNTHESIS_INCLUDE_LOCATION
-    )
 
-    # v2 tail (unreachable until the Phase 3.3 re-key): the freehand pass
-    # ENUMERATES candidates first, screening vets every one of them.
+    # the tail: the freehand pass ENUMERATES candidates first, screening vets
+    # every one of them.
     freehand_grounding_node = synthesis_node.next_node
     assert isinstance(freehand_grounding_node, EquipmentFreehandGroundingNode)
 

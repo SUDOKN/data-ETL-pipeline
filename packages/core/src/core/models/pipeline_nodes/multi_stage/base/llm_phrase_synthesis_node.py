@@ -1,19 +1,27 @@
 """The v3 synthesis node (PIPELINE_V3_PLAN.md D15 as amended 2026-08-22, D16;
-Phase 3.2): per chunk, one LLM description per group, written from the
-aggregation fold's records — focal form + entries — packed into requests under
-a soft entry cap, groups never split. See the node service for the contracts.
+Phase 3.2; the location-stage merge, 2026-09-03): per chunk, one LLM
+description per group, written from the aggregation fold's records — focal
+form + snippets — with the chunk's text in the request, packed under a soft
+snippet cap, groups never split. See the node service for the contracts.
 
-TWO PASSES (user decision 2026-08-22, the under-answer policy — the Location
-stage's, applied here). The node is a recursive node so ``embed_request_ids``
-runs until it adds nothing: pass 1 embeds every chunk's group requests (the
-fold recomputed from the text + the mention stage's completed answers); once
-those are complete, pass 2 ASSESSES each chunk — the record ids its answers
-left unsynthesized are stored, PLUS (2026-09-02, Phase B of the search-recall
-roadmap) the ids whose answer dropped designation-shaped tokens their entries
-carry (``under_enumerated_record_ids`` — the conservation check behind the
-hardened preserve-specifics prompt sentence), and a chunk with any gets ONE
-retry request set for just those records; a third entry finds nothing to add.
-For an under-enumerated record both passes hold an answer and the read path
+Since the merge this is the first LLM stage after search: the node also does
+what the retired mention-collection node's embed pass did — pool the subject's
+sent forms from the completed search maps and store each sub-window's
+occurrence-filtered list on the bundle (``llm_phrase_mention_sent_forms``, the
+field keeping its historical name) — before minting its own ids, so the fold
+stays a pure function of (text, stored forms, knobs).
+
+PASSES (user decision 2026-08-22, the under-answer policy). The node is a
+recursive node so ``embed_request_ids`` runs until it adds nothing: pass 1
+stores the sent forms and embeds every chunk's group requests (the fold
+recomputed from the text + stored forms); once those are complete, pass 2
+ASSESSES each chunk — the record ids its answers left unsynthesized are
+stored, PLUS (2026-09-02, Phase B of the search-recall roadmap) the ids whose
+answer dropped designation-shaped tokens their snippets carry
+(``under_enumerated_record_ids`` — the conservation check behind the hardened
+preserve-specifics prompt sentence), and a chunk with any gets ONE retry
+request set for just those records; a third
+entry finds nothing to add. For a record both passes answered the read path
 keeps whichever names more designations, the retry winning ties
 (``resolve_under_enumeration``). Eager runs loop in-process
 (``BaseLLMRecursiveExtractionNode.execute``); batch runs take one pass per
@@ -60,10 +68,12 @@ from core.models.pipeline_nodes.base.pipeline_stage import (
     STAGE_REQUEST_ID_TOKEN,
     PipelineStage,
 )
-from core.services.pipeline_nodes.multi_stage.llm_phrase_mention_collection_node_service import (
+from core.services.pipeline_nodes.multi_stage.aggregation_fold_service import (
     fold_collapse_compounds_of,
     fold_snippet_radius_of,
     fold_verb_fold_of,
+    forms_occurring_in_window,
+    get_subject_forms,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
     ChunkSynthesisResult,
@@ -97,11 +107,19 @@ class LLMPhraseSynthesisNode(
         self.phrase_synthesis_prompt = phrase_synthesis_prompt
 
     @abstractmethod
-    def get_upstream_mention_collection_map(
+    def get_upstream_phrase_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        """The completed mention-collection request map from the pipeline
-        context — what the chunk's fold is computed from."""
+        """The completed first-search request map from the pipeline context —
+        what the sent-forms pooling reads (the fold itself is pure code over
+        the stored forms)."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_upstream_recursive_search_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        """The completed recursive-search request map (empty when that pass is off)."""
         raise NotImplementedError
 
     @staticmethod
@@ -144,7 +162,6 @@ class LLMPhraseSynthesisNode(
                 f"subject:{subject_unique_id}, field:{self.field_type.name}."
             )
         synthesis_metadata = require_synthesis_metadata(metadata)
-        mention_map = self.get_upstream_mention_collection_map(pipeline_context)
         subject_text = self._subject_text_of(
             pipeline_context, subject_unique_id, self.field_type.name
         )
@@ -152,30 +169,67 @@ class LLMPhraseSynthesisNode(
         snippet_radius = fold_snippet_radius_of(metadata)
         collapse_compounds = fold_collapse_compounds_of(metadata)
 
-        async def records_of(chunk_bounds: str, bundle: LLMPhraseExtractionRequestBundle):
-            fold = await chunk_fold(
+        # PASS 0 — the sent forms (ported from the retired mention-collection
+        # node, 2026-09-03). Both search passes are complete by now (a node
+        # only reaches its successor once its own requests are), so the pooled
+        # form list is final; each sub-window stores the pooled forms that
+        # OCCUR in it, and every later step — the fold, request creation, the
+        # result — reads the stored list, never the search maps. The pool is
+        # SUBJECT-wide (2026-09-02: the measured cross-chunk gap).
+        subject_forms: list[str] | None = None
+        for chunk_bounds, bundle in chunked_request_map.items():
+            if not bundle.search_sub_bounds:
+                raise ValueError(
+                    f"Cannot embed req ids for synthesis: search_sub_bounds is empty for "
+                    f"{subject_unique_id}>{chunk_bounds}, field:{self.field_type.name}."
+                )
+            pending = [
+                sub_bounds
+                for sub_bounds in bundle.search_sub_bounds
+                if sub_bounds not in bundle.llm_phrase_mention_sent_forms
+            ]
+            if not pending:
+                continue  # already stored; the form pool is final once search completes
+            if subject_forms is None:
+                subject_forms = await get_subject_forms(
+                    subject_unique_id=subject_unique_id,
+                    field_type=self.field_type,
+                    chunked_request_map=chunked_request_map,
+                    llm_phrase_search_gpt_request_map=self.get_upstream_phrase_search_map(
+                        pipeline_context
+                    ),
+                    llm_phrase_recursive_search_gpt_request_map=self.get_upstream_recursive_search_map(
+                        pipeline_context
+                    ),
+                    timestamp=timestamp,
+                )
+            for sub_bounds in pending:
+                bundle.llm_phrase_mention_sent_forms[sub_bounds] = forms_occurring_in_window(
+                    subject_text, sub_bounds, subject_forms
+                )
+
+        def records_of(chunk_bounds: str, bundle: LLMPhraseExtractionRequestBundle):
+            fold = chunk_fold(
                 subject_unique_id,
                 self.field_type,
                 chunk_bounds,
                 bundle,
-                mention_map,
-                timestamp,
                 subject_text=subject_text,
                 verb_fold=verb_fold,
                 snippet_radius=snippet_radius,
                 collapse_compounds=collapse_compounds,
             )
-            return fold.synthesis_records(include_location=synthesis_metadata.include_location)
+            return fold.synthesis_records()
 
-        # PASS 1 — the group requests. The mention stage is complete by now (a
-        # node only reaches its successor once its own requests are), so the
-        # chunk's fold is final and its records can be computed once, upfront.
+        # PASS 1 — the group requests. The stored forms are final (pass 0), so
+        # the chunk's fold is final and its records can be computed once,
+        # upfront.
         embedded_groups = False
         for chunk_bounds, bundle in chunked_request_map.items():
             if bundle.llm_phrase_synthesis_req_ids:
                 continue  # already embedded; the fold is a pure function of stored state
             groups = pack_records(
-                await records_of(chunk_bounds, bundle), synthesis_metadata.max_entries_per_request
+                records_of(chunk_bounds, bundle), synthesis_metadata.max_entries_per_request
             )
             bundle.llm_phrase_synthesis_req_ids = [
                 self.get_request_custom_id(
@@ -222,16 +276,19 @@ class LLMPhraseSynthesisNode(
                 timestamp=timestamp,
                 include_retry=False,
             )
-            records = await records_of(chunk_bounds, bundle)
+            records = records_of(chunk_bounds, bundle)
             missing = answer.missing_ids
             # 2026-09-02 (Phase B): the retry also re-asks ANSWERED records
-            # whose synthesis dropped designation-shaped tokens their entries
+            # whose synthesis dropped designation-shaped tokens their snippets
             # carry — the under-enumeration conservation check. The read path
             # keeps the better of the two answers per record
             # (resolve_under_enumeration), so a worse retry can never regress
-            # a record.
+            # a record. (2026-09-03 to 2026-09-05 this also re-asked records
+            # whose per-snippet context quotes miscounted; that emission is
+            # gone — location is the fold's, in code.)
             under_enumerated = under_enumerated_record_ids(records, answer.syntheses)
             retry_ids = missing + [rid for rid in under_enumerated if rid not in missing]
+            retry_ids = list(dict.fromkeys(retry_ids))
             bundle.llm_phrase_synthesis_retry_record_ids = retry_ids
             if not retry_ids:
                 continue
@@ -296,7 +353,7 @@ class LLMPhraseSynthesisNode(
         group_records: list[SynthesisRecordInput],
         retry_index: int | None = None,
     ) -> BatchRequestIDType:
-        # `|ud=` digests the group's own records (ids, focal forms, entries as
+        # `|ud=` digests the group's own records (ids, focal forms, snippets as
         # the wire shows them) into its identity: change what the fold yields
         # and the id changes, so a stale response is never found (D16 — the
         # same F12 discipline every downstream stage follows). A retry request
@@ -332,15 +389,11 @@ class LLMPhraseSynthesisNode(
             subject_name=self._subject_name_of(
                 pipeline_context, subject_unique_id, self.field_type.name
             ),
-            mention_completed_request_map=self.get_upstream_mention_collection_map(
-                pipeline_context
-            ),
             phrase_synthesis_prompt=self.phrase_synthesis_prompt,
             timestamp=timestamp,
             llm_model=synthesis_metadata.llm_model,
             model_params=synthesis_metadata.model_params,
             max_entries_per_request=synthesis_metadata.max_entries_per_request,
-            include_location=synthesis_metadata.include_location,
             verb_fold=fold_verb_fold_of(metadata),
             snippet_radius=fold_snippet_radius_of(metadata),
             collapse_compounds=fold_collapse_compounds_of(metadata),
@@ -356,15 +409,13 @@ class LLMPhraseSynthesisNode(
         completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,
         *,
-        mention_completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
         subject_text: str,
         verb_fold: bool,
         snippet_radius: int,
-        include_location: bool,
         collapse_compounds: bool = False,
     ) -> ChunkSynthesisResult:
         """The chunk's fold, its records and the held syntheses (needs the
-        mention stage's completed map and the text: the fold is recomputed;
+        text: the fold is recomputed from it and the bundle's stored forms;
         ``collapse_compounds`` = D21's dial, which decides the fold's groups
         and so the records the syntheses were keyed by)."""
         return await get_chunk_synthesis_result(
@@ -374,11 +425,9 @@ class LLMPhraseSynthesisNode(
             extraction_bundle=extraction_bundle,
             completed_request_map=completed_request_map,
             timestamp=timestamp,
-            mention_completed_request_map=mention_completed_request_map,
             subject_text=subject_text,
             verb_fold=verb_fold,
             snippet_radius=snippet_radius,
-            include_location=include_location,
             collapse_compounds=collapse_compounds,
         )
 

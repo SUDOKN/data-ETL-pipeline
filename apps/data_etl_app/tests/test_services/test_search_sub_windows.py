@@ -96,7 +96,6 @@ def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetad
         ontology_version_id="test-ontology-version",
         search_prompt=_make_prompt("equipment_phrase_search"),
         recursive_search_prompt=_make_prompt("equipment_phrase_recursive_search"),
-        phrase_mention_collection_prompt=_make_prompt("equipment_phrase_mention_collection"),
         phrase_synthesis_prompt=_make_prompt("equipment_phrase_synthesis"),
         phrase_relationship_screening_prompt=_make_prompt(
             "equipment_phrase_relationship_screening"
@@ -747,7 +746,10 @@ def _search_node_of(prefill) -> Any:
     return node
 
 
-def test_search_union_pass_threads_from_create_pipelines_and_defaults_off():
+def test_search_union_pass_threads_from_create_pipelines():
+    """The knob threads through to every field's search node, and an omitted
+    knob takes the factory default (whose VALUE is the user's dial — pinned by
+    name here, not by literal, so flipping the dial is not a test edit)."""
     kwargs = dict(
         prompt_service=cast(Any, _PromptBox()),
         ontology=cast(Any, _OntologyStub()),
@@ -756,9 +758,16 @@ def test_search_union_pass_threads_from_create_pipelines_and_defaults_off():
         created_at=TIMESTAMP,
     )
     default_pipelines = ExtractionPipelineFactory.create_pipelines(**kwargs)
-    union_pipelines = ExtractionPipelineFactory.create_pipelines(
+    on_pipelines = ExtractionPipelineFactory.create_pipelines(
         **kwargs, search_union_pass=True
     )
+    off_pipelines = ExtractionPipelineFactory.create_pipelines(
+        **kwargs, search_union_pass=False
+    )
     for field in (KeywordTypeEnum.equipments, ConceptTypeEnum.material_caps):
-        assert _search_node_of(default_pipelines[field]).search_union_pass is False
-        assert _search_node_of(union_pipelines[field]).search_union_pass is True
+        assert (
+            _search_node_of(default_pipelines[field]).search_union_pass
+            is ExtractionPipelineFactory.DEFAULT_SEARCH_UNION_PASS
+        )
+        assert _search_node_of(on_pipelines[field]).search_union_pass is True
+        assert _search_node_of(off_pipelines[field]).search_union_pass is False

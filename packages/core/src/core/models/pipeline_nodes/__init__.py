@@ -102,19 +102,10 @@ from core.models.pipeline_nodes.multi_stage.keyword.keyword_recursive_search_nod
     KeywordRecursiveSearchNode,
 )
 
-# v3 (PIPELINE_V3_PLAN.md Phase 3.1): mention collection, the stage that
-# replaced relationship.
-from core.models.pipeline_nodes.multi_stage.base.llm_phrase_mention_collection_node import (
-    LLMPhraseMentionCollectionNode,
-)
-from core.models.pipeline_nodes.multi_stage.concept.concept_mention_collection_node import (
-    ConceptMentionCollectionNode,
-)
-from core.models.pipeline_nodes.multi_stage.keyword.keyword_mention_collection_node import (
-    KeywordMentionCollectionNode,
-)
-
 # v3 (PIPELINE_V3_PLAN.md Phase 3.2): synthesis, one description per group.
+# (The mention-collection LLM stage that Phase 3.1 put between search and
+# synthesis was retired 2026-09-03 — mention collection is pure code in the
+# aggregation fold, and synthesis absorbed the location task.)
 from core.models.pipeline_nodes.multi_stage.base.llm_phrase_synthesis_node import (
     LLMPhraseSynthesisNode,
 )
@@ -140,9 +131,6 @@ __all__ = [
     "LLMPhraseRelationshipNode",
     "LLMPhraseRelationshipScreeningNode",
     "LLMPhraseRecursiveSearchNode",
-    "LLMPhraseMentionCollectionNode",
-    "ConceptMentionCollectionNode",
-    "KeywordMentionCollectionNode",
     "LLMPhraseSynthesisNode",
     "ConceptSynthesisNode",
     "KeywordSynthesisNode",

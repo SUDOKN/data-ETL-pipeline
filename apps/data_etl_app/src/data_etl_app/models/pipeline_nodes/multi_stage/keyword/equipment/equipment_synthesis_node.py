@@ -7,8 +7,11 @@ from llm_providers.db_models.gpt_batch_request import (
 )
 from llm_providers.models.file_objects.prompt import Prompt
 from core.models.pipeline_nodes import PipelineContext
-from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_mention_collection_node import (
-    EquipmentMentionCollectionNode,
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_phrase_search_node import (
+    EquipmentPhraseSearchNode,
+)
+from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_recursive_search_node import (
+    EquipmentRecursiveSearchNode,
 )
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_synthesis_node import (
     KeywordSynthesisNode,
@@ -39,7 +42,12 @@ class EquipmentSynthesisNode(KeywordSynthesisNode):
             next_node=next_node,
         )
 
-    def get_upstream_mention_collection_map(
+    def get_upstream_phrase_search_map(
         self, pipeline_context: PipelineContext
     ) -> dict[BatchRequestIDType, GPTBatchRequest]:
-        return pipeline_context[EquipmentMentionCollectionNode]
+        return pipeline_context[EquipmentPhraseSearchNode]
+
+    def get_upstream_recursive_search_map(
+        self, pipeline_context: PipelineContext
+    ) -> dict[BatchRequestIDType, GPTBatchRequest]:
+        return pipeline_context[EquipmentRecursiveSearchNode]

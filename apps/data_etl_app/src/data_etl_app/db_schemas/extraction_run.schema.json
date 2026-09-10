@@ -870,187 +870,6 @@
                       }
                     }
                   },
-                  "llm_phrase_mention_collection": {
-                    "bsonType": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "llm_model",
-                      "model_params",
-                      "prompt_name",
-                      "prompt_version_id",
-                      "created_at",
-                      "max_mentions_per_request"
-                    ],
-                    "additionalProperties": false,
-                    "properties": {
-                      "llm_model": {
-                        "bsonType": "object",
-                        "required": [
-                          "name",
-                          "max_context_tokens"
-                        ],
-                        "additionalProperties": false,
-                        "properties": {
-                          "name": {
-                            "bsonType": "string"
-                          },
-                          "max_context_tokens": {
-                            "bsonType": "int"
-                          }
-                        }
-                      },
-                      "model_params": {
-                        "bsonType": "object",
-                        "required": [
-                          "max_completion_tokens",
-                          "response_format",
-                          "temperature",
-                          "top_p",
-                          "presence_penalty",
-                          "frequency_penalty"
-                        ],
-                        "additionalProperties": false,
-                        "properties": {
-                          "reasoning_effort": {
-                            "enum": [
-                              "low",
-                              "medium",
-                              "high",
-                              null
-                            ],
-                            "bsonType": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "logit_bias": {
-                            "bsonType": [
-                              "object",
-                              "null"
-                            ],
-                            "additionalProperties": {
-                              "bsonType": "int"
-                            }
-                          },
-                          "user": {
-                            "bsonType": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "tools": {
-                            "bsonType": [
-                              "array",
-                              "null"
-                            ],
-                            "items": {
-                              "bsonType": "object"
-                            }
-                          },
-                          "tool_choice": {
-                            "anyOf": [
-                              {
-                                "bsonType": "string"
-                              },
-                              {
-                                "bsonType": "object"
-                              },
-                              {
-                                "bsonType": "null"
-                              }
-                            ]
-                          },
-                          "parallel_tool_calls": {
-                            "bsonType": [
-                              "bool",
-                              "null"
-                            ]
-                          },
-                          "logprobs": {
-                            "bsonType": [
-                              "bool",
-                              "null"
-                            ]
-                          },
-                          "top_logprobs": {
-                            "bsonType": [
-                              "int",
-                              "null"
-                            ]
-                          },
-                          "max_completion_tokens": {
-                            "bsonType": "int"
-                          },
-                          "stop": {
-                            "anyOf": [
-                              {
-                                "bsonType": "string"
-                              },
-                              {
-                                "bsonType": "array",
-                                "items": {
-                                  "bsonType": "string"
-                                }
-                              },
-                              {
-                                "bsonType": "null"
-                              }
-                            ]
-                          },
-                          "n": {
-                            "bsonType": [
-                              "int",
-                              "null"
-                            ]
-                          },
-                          "response_format": {
-                            "bsonType": "object"
-                          },
-                          "temperature": {
-                            "bsonType": "double"
-                          },
-                          "top_p": {
-                            "bsonType": "double"
-                          },
-                          "presence_penalty": {
-                            "bsonType": "double"
-                          },
-                          "frequency_penalty": {
-                            "bsonType": "double"
-                          },
-                          "seed": {
-                            "bsonType": [
-                              "int",
-                              "null"
-                            ]
-                          }
-                        }
-                      },
-                      "prompt_name": {
-                        "bsonType": "string"
-                      },
-                      "prompt_version_id": {
-                        "bsonType": "string"
-                      },
-                      "catalog_version": {
-                        "bsonType": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "created_at": {
-                        "bsonType": "date"
-                      },
-                      "max_mentions_per_request": {
-                        "bsonType": "int"
-                      },
-                      "snippet_radius": {
-                        "bsonType": "int"
-                      }
-                    }
-                  },
                   "aggregation_fold": {
                     "bsonType": [
                       "object",
@@ -1070,6 +889,9 @@
                       },
                       "collapse_compounds": {
                         "bsonType": "bool"
+                      },
+                      "snippet_radius": {
+                        "bsonType": "int"
                       }
                     }
                   },
@@ -1084,8 +906,7 @@
                       "prompt_name",
                       "prompt_version_id",
                       "created_at",
-                      "max_entries_per_request",
-                      "include_location"
+                      "max_entries_per_request"
                     ],
                     "additionalProperties": false,
                     "properties": {
@@ -1249,9 +1070,6 @@
                       },
                       "max_entries_per_request": {
                         "bsonType": "int"
-                      },
-                      "include_location": {
-                        "bsonType": "bool"
                       }
                     }
                   },
@@ -3238,187 +3056,6 @@
                       }
                     }
                   },
-                  "llm_phrase_mention_collection": {
-                    "bsonType": [
-                      "object",
-                      "null"
-                    ],
-                    "required": [
-                      "llm_model",
-                      "model_params",
-                      "prompt_name",
-                      "prompt_version_id",
-                      "created_at",
-                      "max_mentions_per_request"
-                    ],
-                    "additionalProperties": false,
-                    "properties": {
-                      "llm_model": {
-                        "bsonType": "object",
-                        "required": [
-                          "name",
-                          "max_context_tokens"
-                        ],
-                        "additionalProperties": false,
-                        "properties": {
-                          "name": {
-                            "bsonType": "string"
-                          },
-                          "max_context_tokens": {
-                            "bsonType": "int"
-                          }
-                        }
-                      },
-                      "model_params": {
-                        "bsonType": "object",
-                        "required": [
-                          "max_completion_tokens",
-                          "response_format",
-                          "temperature",
-                          "top_p",
-                          "presence_penalty",
-                          "frequency_penalty"
-                        ],
-                        "additionalProperties": false,
-                        "properties": {
-                          "reasoning_effort": {
-                            "enum": [
-                              "low",
-                              "medium",
-                              "high",
-                              null
-                            ],
-                            "bsonType": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "logit_bias": {
-                            "bsonType": [
-                              "object",
-                              "null"
-                            ],
-                            "additionalProperties": {
-                              "bsonType": "int"
-                            }
-                          },
-                          "user": {
-                            "bsonType": [
-                              "string",
-                              "null"
-                            ]
-                          },
-                          "tools": {
-                            "bsonType": [
-                              "array",
-                              "null"
-                            ],
-                            "items": {
-                              "bsonType": "object"
-                            }
-                          },
-                          "tool_choice": {
-                            "anyOf": [
-                              {
-                                "bsonType": "string"
-                              },
-                              {
-                                "bsonType": "object"
-                              },
-                              {
-                                "bsonType": "null"
-                              }
-                            ]
-                          },
-                          "parallel_tool_calls": {
-                            "bsonType": [
-                              "bool",
-                              "null"
-                            ]
-                          },
-                          "logprobs": {
-                            "bsonType": [
-                              "bool",
-                              "null"
-                            ]
-                          },
-                          "top_logprobs": {
-                            "bsonType": [
-                              "int",
-                              "null"
-                            ]
-                          },
-                          "max_completion_tokens": {
-                            "bsonType": "int"
-                          },
-                          "stop": {
-                            "anyOf": [
-                              {
-                                "bsonType": "string"
-                              },
-                              {
-                                "bsonType": "array",
-                                "items": {
-                                  "bsonType": "string"
-                                }
-                              },
-                              {
-                                "bsonType": "null"
-                              }
-                            ]
-                          },
-                          "n": {
-                            "bsonType": [
-                              "int",
-                              "null"
-                            ]
-                          },
-                          "response_format": {
-                            "bsonType": "object"
-                          },
-                          "temperature": {
-                            "bsonType": "double"
-                          },
-                          "top_p": {
-                            "bsonType": "double"
-                          },
-                          "presence_penalty": {
-                            "bsonType": "double"
-                          },
-                          "frequency_penalty": {
-                            "bsonType": "double"
-                          },
-                          "seed": {
-                            "bsonType": [
-                              "int",
-                              "null"
-                            ]
-                          }
-                        }
-                      },
-                      "prompt_name": {
-                        "bsonType": "string"
-                      },
-                      "prompt_version_id": {
-                        "bsonType": "string"
-                      },
-                      "catalog_version": {
-                        "bsonType": [
-                          "string",
-                          "null"
-                        ]
-                      },
-                      "created_at": {
-                        "bsonType": "date"
-                      },
-                      "max_mentions_per_request": {
-                        "bsonType": "int"
-                      },
-                      "snippet_radius": {
-                        "bsonType": "int"
-                      }
-                    }
-                  },
                   "aggregation_fold": {
                     "bsonType": [
                       "object",
@@ -3438,6 +3075,9 @@
                       },
                       "collapse_compounds": {
                         "bsonType": "bool"
+                      },
+                      "snippet_radius": {
+                        "bsonType": "int"
                       }
                     }
                   },
@@ -3452,8 +3092,7 @@
                       "prompt_name",
                       "prompt_version_id",
                       "created_at",
-                      "max_entries_per_request",
-                      "include_location"
+                      "max_entries_per_request"
                     ],
                     "additionalProperties": false,
                     "properties": {
@@ -3617,9 +3256,6 @@
                       },
                       "max_entries_per_request": {
                         "bsonType": "int"
-                      },
-                      "include_location": {
-                        "bsonType": "bool"
                       }
                     }
                   },
