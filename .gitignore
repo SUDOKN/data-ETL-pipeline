@@ -134,3 +134,7 @@ pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/*
 # ...but the machinery in it is re-runnable instrument, not data
 !pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/*.py
 !pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/README.md
+
+# docs_local tryouts: the *_user.txt files are whole synthesis requests and
+# carry a chunk of verbatim scraped site text — same rule as evidence_snapshots.
+docs_local/synthesis_shape_tryout_*/*/*_user.txt
