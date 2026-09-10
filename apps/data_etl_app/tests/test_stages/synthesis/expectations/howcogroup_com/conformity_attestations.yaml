@@ -1,0 +1,13 @@
+subject: howcogroup.com
+field: conformity_attestations
+eval_set_version: 1
+probes:
+- id: HW-P3
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — document rule applied to catalog grade headings (14 of 18 J2 fails)
+  target: 'records whose evidence is a Materials-catalog grade heading carrying a standard (''LOW ALLOY
+    4130: ASTM A29''; groups gzzvzxsm, ghv1iba0, g90lr9pw)'
+  expectation: A grade heading on the subject's own materials catalog is a conformity claim about stocked
+    material, not an inert document title; the same designation must not be read oppositely across chunks.
+    Both sampled majors were retried records — check the retried share.

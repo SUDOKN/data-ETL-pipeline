@@ -6,6 +6,7 @@ probes:
   status: predicted
   added: 2026-08-26
   motivated_by: corpus survey — cookie-policy legal text under every product URL
+  target: records whose focal form is a cookie-policy vendor name (Google, YouTube, Complianz...) or legal vocabulary
   expectation: 'Cookie-policy vendor names (Google, YouTube, Complianz...) and legal vocabulary must produce
     NO capability records; any such record is an upstream leak worth reporting even though synthesis merely
     inherits it.

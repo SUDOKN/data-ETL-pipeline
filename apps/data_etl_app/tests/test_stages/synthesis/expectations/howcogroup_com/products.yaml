@@ -1,0 +1,21 @@
+subject: howcogroup.com
+field: products
+eval_set_version: 1
+probes:
+- id: HW-P1
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — application-list inversion (C11) — 20 records in one slice
+  target: records whose evidence is 'our alloys are used in <pumps / flow control equipment / crackers
+    ...>' (howcogroup products part2)
+  expectation: '''Used in X'' is the customer''s end product; verified defect ''Howco provides/manufactures
+    X'' minted twenty wrong product tags from one sentence shape. Any record on this sentence shape must
+    keep the used-in relation.'
+- id: HW-P2
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — equipment-relationship conflation
+  target: the 'equipment' rollup merging own QC equipment, equipment-maker customers and end-use equipment
+    (group gvctgwfh)
+  expectation: Three relations to 'equipment' (owns, sells to makers of, supplies material into) must
+    not collapse into 'Howco supplies equipment'.

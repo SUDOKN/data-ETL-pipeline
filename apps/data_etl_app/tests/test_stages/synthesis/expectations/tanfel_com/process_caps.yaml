@@ -1,0 +1,23 @@
+subject: tanfel.com
+field: process_caps
+eval_set_version: 1
+probes:
+- id: TF-P2
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — self-undermining hedge (11 J2 fails in one slice)
+  target: records whose evidence is an unhedged 'Our Capabilities' bullet naming the technique (groups
+    g5s94jt5 'anodizing' and the EDM/welding/powder-coating siblings)
+  expectation: A paragraph must not quote an own-capabilities bullet and then deny 'Tanfel's own dealing'
+    in the same breath; siblings on the identical bullet concluded correctly, so this is per-record, not
+    policy.
+- id: TF-P3
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — one chunk sentence imported into every member of a family (containment
+    cluster)
+  target: the twelve spring-family records whose only evidence is the enumeration line (tanfel process_caps
+    part4)
+  expectation: '''Tanfel is a leading supplier for custom springs'' lives in the chunk, not the evidence;
+    twelve records asserting it is one breach multiplied by co-packing. Count as containment, minor unless
+    a tag changes.'

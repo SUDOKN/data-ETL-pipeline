@@ -1,0 +1,23 @@
+subject: agstech.net
+field: process_caps
+eval_set_version: 1
+probes:
+- id: AG-P4
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — cross-evidence fusion with the reseller catalog; resold SaaS as
+    own AI capability
+  target: the 'Measuring' record fusing own automation-line measuring with 'Industrial Test Equipment'
+    headings (g1t8u76q) and the 'manufacturing' record folding the QualityLine value-added-reseller sentence
+    into own practice (gffb8be5)
+  expectation: Own automation-line 'measuring and testing' and a resold test-equipment catalog are two
+    facts about two parties; the paragraph must not say AGS-TECH uses the resold gear on its own lines,
+    nor that a resold analytics SaaS is AGS-TECH's own AI system.
+- id: AG-P5
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — wire record identifier leaked into prose
+  target: any paragraph naming a record/group id ('This repeats the information in record grhljfj5', group
+    gqic2e33)
+  expectation: Paragraphs must never mention record ids or other wire tokens; the model apparently sees
+    co-packed identifiers. Count occurrences run-wide.

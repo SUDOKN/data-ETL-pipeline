@@ -1,0 +1,20 @@
+subject: decimal.net
+field: process_caps
+eval_set_version: 1
+probes:
+- id: DM-P2
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — table-cell fusion fabricating a compound offering
+  target: records whose focal form fuses two finishes from a flattened table row ('Cadmium Chromate' gwt0xb1b,
+    'Hard Coat Barrel Plating' g1iynzwu)
+  expectation: Lost cell boundaries must not become a distinct offering; the paragraph should name the
+    two finishes or set the compound aside. Verified majors (wrong tags).
+- id: DM-P3
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — cross-snippet sentence splitting; third-party service as own
+  target: the IM-8000 cluster whose one source sentence is split across 2-3 co-packed records, and '3rd
+    Party Weld Inspection as Needed' (gnsfwo43, gqp549zd)
+  expectation: Each half-sentence record must not complete itself with the neighbour's half; a service
+    explicitly labelled third-party must not be rewritten as Decimal's own.

@@ -1,0 +1,21 @@
+subject: agstech.net
+field: industries
+eval_set_version: 1
+probes:
+- id: AG-P2
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — list-register conflation (C7)
+  target: the 'Construction' record whose evidence mixes '- Construction Tools' (private-label PRODUCT
+    list) with '- Construction' (served-SECTOR list) (group g8fmtbw1)
+  expectation: Two same-worded bullets from different list registers must not merge; verified defect erased
+    the served-sector fact and called Construction a private-label product (J1+J6 major).
+- id: AG-P3
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — resold brand's marketing list written as the subject's served sectors
+  target: records whose sole evidence is the DFI seven-industry applications sentence (groups g4exb40x
+    'Gaming', gbp366rp 'Energy', g4dluqv0 'intelligent retail'; contrast g7ousueb 'embedded industries')
+  expectation: A third-party brand's 'our products enable customers in Automation, Medical, Gaming...'
+    is the brand's reach, not AGS-TECH's customer base; 'the manufacturer's dealing is offering DFI's
+    products for use in the Gaming sector' over-reads it (minor unless a sector tag follows unhedged).

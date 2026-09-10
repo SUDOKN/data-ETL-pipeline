@@ -6,6 +6,7 @@ probes:
   status: predicted
   added: 2026-08-26
   motivated_by: corpus survey — 48% Spanish duplicate pages, incl. mistranslations ("comenzó a podar casas")
+  target: records whose evidence comes from the Spanish-language twin pages
   expectation: 'Spanish-page evidence must synthesize coherently: no mangled non-ASCII, no duplicate near-records
     solely from the translated twin page, and no capability minted from a mistranslation.
 
@@ -14,6 +15,7 @@ probes:
   status: predicted
   added: 2026-08-26
   motivated_by: corpus survey — services contractor serving residential builders
+  target: records whose focal form is one of the company's own trades (electrical, HVAC, concrete)
   expectation: 'The served market is residential production builders/homebuilding; the company''s own
     trades (electrical, HVAC, concrete) must not become served industries.
 

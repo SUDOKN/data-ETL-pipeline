@@ -38,12 +38,18 @@ def _flatten_metrics(card: dict[str, Any]) -> list[tuple[str, Any, Any]]:
     for name in (
         "records",
         "synthesized",
+        "retried_records",
         "twin_groups",
-        "single_entry_share",
+        # Named single_entry_share on rows before the 2026-09-05 wire port
+        # (same measure: records whose evidence is one passage).
+        "single_snippet_share",
         "thin_le2_share",
+        "max_snippets_in_a_record",
         "synthesis_chars",
         "chars_per_record_median",
         "own_name_record_rate",
+        "requests",
+        "retry_requests",
         "input_tokens",
         "output_tokens",
         "client_latency_ms_p50",
@@ -51,6 +57,25 @@ def _flatten_metrics(card: dict[str, Any]) -> list[tuple[str, Any, Any]]:
     ):
         if metrics.get(name) is not None:
             rows.append((name, metrics[name], None))
+    location = metrics.get("location_coverage") or {}
+    if location.get("mentions"):
+        rows.append(("location_coverage", location.get("located"), location.get("mentions")))
+    designation = metrics.get("designation_preservation") or {}
+    if designation.get("tokens"):
+        rows.append(
+            (
+                "designation_tokens_preserved",
+                designation.get("tokens_preserved"),
+                designation.get("tokens"),
+            )
+        )
+        rows.append(
+            (
+                "designation_records_preserved",
+                designation.get("records_fully_preserved"),
+                designation.get("records_with_designations"),
+            )
+        )
     ffa = metrics.get("focal_form_absent") or {}
     if ffa:
         rows.append(

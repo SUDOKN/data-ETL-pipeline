@@ -6,6 +6,7 @@ probes:
   status: predicted
   added: 2026-08-26
   motivated_by: corpus survey — four sister legal entities share the site
+  target: records whose evidence names one of the four Anchor entities (e.g. copyright under Anchor Tool & Die Co.)
   expectation: 'Capabilities must not silently migrate between the four Anchor entities; where the evidence
     names a specific entity (copyright under Anchor Tool & Die Co.), the paragraph preserves it.
 
@@ -14,6 +15,7 @@ probes:
   status: predicted
   added: 2026-08-26
   motivated_by: corpus survey — brandless equipment list (60+ presses, 4000W CNC laser, robotic weld cells)
+  target: records from the brandless capability list (tonnage, bed size, axis counts)
   expectation: 'The brandless capability list is genuine owned-equipment evidence; paragraphs should carry
     the parameters (tonnage, bed size) without inventing brands or models.
 

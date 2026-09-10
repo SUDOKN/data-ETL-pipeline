@@ -1,0 +1,34 @@
+subject: fzemanufacturing.com
+field: process_caps
+eval_set_version: 1
+probes:
+- id: FZ-P3
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — group-membership misattribution (C6)
+  target: records whose evidence is the Made-in-Wisconsin sentence 'we join nearly 250 other companies
+    who grow, brew, build, engineer...' (groups glq7xi3z 'grow', gepiw7bm 'brew', go6d8frw 'engineer')
+  expectation: 'The relative clause describes the other member companies; FZE''s only act is ''join''.
+    Verified defect: ''FZE Manufacturing Solutions is recognized as a company that grows/brews'' — J1+J4+J6
+    major on all three.'
+- id: FZ-P4
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — generic third-person industry sentence → first-person capability;
+    contrast inversion (C8)
+  target: records whose sole evidence is 'many metal fabrication manufacturers offer ...' (gmro4tma 'powder
+    coating', g43tfpzi 'finishing options') and the casting contrast sentence (gpa4z2mo)
+  expectation: 'A sentence about what manufacturers in general do is not a first-person claim, even next
+    to ''a metal fabrication manufacturer like us''. ''More rigid materials than those used for casting
+    and forging'' names casting as a DIFFERENT method; verified inversion: ''FZE includes casting as one
+    of the methods''.'
+- id: FZ-P5
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — industries-axis leak into process_caps; substring composite focal
+    form
+  target: records grounded only in 'Industry Focus' served-sector list entries (gv1v3wzh 'Injection Molding',
+    gmv00sa1 'Molding') and the 'Gas Welding' composite of MIG/TIG expansions (gss65exz)
+  expectation: A served-sector list entry must not become the subject's own process; 'Gas Welding' assembled
+    from 'Metal Inert GAS welding' / 'Tungsten Inert GAS welding' names a different trade process (oxy-fuel)
+    and must be disambiguated, not asserted.

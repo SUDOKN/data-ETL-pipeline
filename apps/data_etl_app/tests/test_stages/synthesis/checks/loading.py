@@ -6,6 +6,13 @@ chunks of a field; a bounds-less key silently drops records), contract_products
 is a byte-copy of products through synthesis and must not be double counted,
 and full-run dumps before 2026-08-26 carry the synthesis only on group rows
 (no ``synthesis`` block), so both shapes load here.
+
+Wire shape since 2026-09-05 (location-stage merge, flattened): a synthesis
+record's evidence is ``snippets: [str]`` — bare verbatim passages, no
+per-snippet location. Location is CODE on the fold (``fold.groups[].mentions[]
+.location``: the nearest Markdown heading above the mention, or its table's
+header row) and never reaches the model; the harness reads it off the fold
+block as a watch number and as pointers for judges (``fold_locations``).
 """
 
 from __future__ import annotations
@@ -33,14 +40,30 @@ SYNTHESIS_FIELDS = [
 ]
 SHARED_DUPLICATE = "contract_products"
 
+# The synthesis request stage and its under-answer retry stage, as the dump's
+# ``requests`` map names them. A retried record's accepted paragraph came from
+# the retry request, so both stages are part of the evidence trail.
+SYNTHESIS_STAGE = "llm_phrase_synthesis"
+SYNTHESIS_RETRY_STAGE = "llm_phrase_synthesis_retry"
+
 # subject_name as synthesis prompts received it (PipelineContext.subject_name =
-# business_desc.result.name). The dump does not record it; business_desc dumps
-# only exist on the run that first extracted the field. Extend on each new
-# subject's first run (README §protocol step 2).
+# business_desc.result.name). Since 2026-09-05 the evidence snapshot records
+# the name straight off the wire (pull.load_subject_names) and is preferred;
+# this map and the business_desc dumps are the fallbacks for older runs.
 KNOWN_SUBJECT_NAMES = {
     "alecmfg_com": "Alec Model",
     "steelcraft_com": "Steelcraft",
 }
+
+
+def safe_subject(subject_unique_id: str) -> str:
+    """The dump's own subject-to-filename rule (core's ``_safe_path_segment``):
+    alphanumerics, ``-`` and ``_`` survive, everything else becomes ``_``.
+    ``anchor-mfg.com`` -> ``anchor-mfg_com`` (NOT ``anchor_mfg_com``)."""
+    return "".join(
+        character if character.isalnum() or character in {"-", "_"} else "_"
+        for character in subject_unique_id
+    )
 
 
 @dataclass
@@ -56,8 +79,9 @@ class SynthRecord:
     key: Optional[str] = None
     forms: list[str] = dc_field(default_factory=list)
     status: Optional[str] = None  # row status (full run) or synthesis status
-    entries: Optional[int] = None  # distinct snippets sent (synthesis block only)
+    snippets: Optional[int] = None  # distinct snippets sent (synthesis block only)
     mention_count: Optional[int] = None
+    retried: Optional[bool] = None  # answered by the under-answer retry pass
     raw_row: dict[str, Any] = dc_field(default_factory=dict)
 
     @property
@@ -112,6 +136,9 @@ def iter_records(
         block = chunk.get("synthesis")
         if block and block.get("records"):
             for row in block["records"]:
+                snippets = row.get("snippets")
+                if snippets is None:
+                    snippets = row.get("entries")  # dumps before 2026-09-05
                 yield SynthRecord(
                     subject=subject,
                     field=field_name,
@@ -122,8 +149,9 @@ def iter_records(
                     key=row.get("key"),
                     forms=list(row.get("forms") or []),
                     status=row.get("status"),
-                    entries=row.get("entries"),
+                    snippets=snippets,
                     mention_count=row.get("mention_count"),
+                    retried=row.get("retried"),
                     raw_row=row,
                 )
             continue
@@ -153,20 +181,71 @@ def has_synthesis_block(dump: dict[str, Any]) -> bool:
     )
 
 
-def synthesis_requests(dump: dict[str, Any]) -> list[dict[str, Any]]:
-    """Every synthesis request entry across the dump's chunks (list-shaped
-    stage; excludes nothing — the caller filters dummies by ``note``)."""
+def synthesis_requests(
+    dump: dict[str, Any], include_retries: bool = True
+) -> list[dict[str, Any]]:
+    """Every synthesis request entry across the dump's chunks — the group
+    requests and, by default, the under-answer retry requests too (list-shaped
+    stages; excludes nothing — the caller filters dummies by ``note``)."""
+    stages = [SYNTHESIS_STAGE] + ([SYNTHESIS_RETRY_STAGE] if include_retries else [])
     out: list[dict[str, Any]] = []
     for chunk in (dump.get("chunks") or {}).values():
-        stage = (chunk.get("requests") or {}).get("llm_phrase_synthesis") or []
-        out.extend(stage)
+        requests = chunk.get("requests") or {}
+        for stage in stages:
+            out.extend(requests.get(stage) or [])
+    return out
+
+
+def fold_location_summary(dump: dict[str, Any]) -> dict[str, Any]:
+    """Code-located mentions across the dump's fold blocks — a WATCH number.
+
+    ``mentions_located`` counts mentions whose ``locate_context`` found a
+    heading or table header row above them; the rest fell to
+    ``DEFAULT_LOCATION``. The model never sees either (it reads the chunk
+    text), so coverage is a property of the corpus + locator, not of the
+    synthesis — tracked, never gated.
+    """
+    mentions = 0
+    located = 0
+    chunks_with_fold = 0
+    for chunk in (dump.get("chunks") or {}).values():
+        summary = (chunk.get("fold") or {}).get("summary") or {}
+        if not summary:
+            continue
+        chunks_with_fold += 1
+        mentions += summary.get("mentions") or 0
+        located += summary.get("mentions_located") or 0
+    return {
+        "chunks_with_fold": chunks_with_fold,
+        "mentions": mentions,
+        "located": located,
+        "coverage": round(located / mentions, 4) if mentions else None,
+    }
+
+
+def fold_locations(dump: dict[str, Any]) -> dict[tuple[str, str], list[str]]:
+    """(chunk_bounds, group_id) -> the distinct code-derived locations of the
+    group's mentions, in first-seen order (``None`` = unlocated, dropped).
+
+    These are POINTERS for a judge into the chunk text (the heading or table
+    header the mention sits under), not evidence the model was shown.
+    """
+    out: dict[tuple[str, str], list[str]] = {}
+    for chunk_bounds, chunk in (dump.get("chunks") or {}).items():
+        for group in ((chunk.get("fold") or {}).get("groups") or []):
+            seen: list[str] = []
+            for mention in group.get("mentions") or []:
+                location = mention.get("location")
+                if location and location not in seen:
+                    seen.append(location)
+            out[(chunk_bounds, group.get("group_id", ""))] = seen
     return out
 
 
 def synthesis_pv(dump: dict[str, Any]) -> Optional[str]:
     """The prompt version the header claims for the synthesis stage."""
     meta = ((dump.get("run") or {}).get("extraction_metadata") or {}).get(
-        "llm_phrase_synthesis"
+        SYNTHESIS_STAGE
     ) or {}
     return meta.get("prompt_version_id")
 
@@ -187,7 +266,8 @@ def ud_of_custom_id(custom_id: str) -> Optional[str]:
 
 def subject_display_name(subject: str, run_id: str) -> Optional[str]:
     """The subject_name the prompts saw: the known map, else the run's (or any
-    earlier run's) business_desc dump."""
+    earlier run's) business_desc dump. (run_eval consults the evidence
+    snapshot's wire-recorded names before falling back to this.)"""
     if subject in KNOWN_SUBJECT_NAMES:
         return KNOWN_SUBJECT_NAMES[subject]
     for candidate_run in reversed([r for r in list_runs() if r <= run_id]):

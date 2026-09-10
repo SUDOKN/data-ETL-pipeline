@@ -1,0 +1,14 @@
+subject: fzemanufacturing.com
+field: equipments
+eval_set_version: 1
+probes:
+- id: FZ-P7
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — educational-copy laundering into equipment ownership (C4 at scale)
+  target: records whose only evidence is the unattributed 'Common metal fabrication processes' glossary
+    bullet or a bare definition (groups gk8ic02c 'Press brakes', gun1b6ge 'CNC-controlled back gauges',
+    g0juzygs 'CNC press brakes', g6mksvuq 'Milling machines')
+  expectation: 'A ''how metal fabrication works'' sentence with no ''we/our/FZE'' anywhere in the chunk
+    cannot support ''FZE operates press brakes''. Verified: four ownership claims from one glossary bullet
+    (J1+J6 major each).'

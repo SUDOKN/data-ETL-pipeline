@@ -7,6 +7,7 @@ probes:
   added: 2026-08-26
   motivated_by: corpus survey — MRO shop; airframer makes everywhere; "Authorized Bell Helicopter Service
     Center"
+  target: records whose evidence names Bell or Leonardo components/authorizations, and FAA-PMA replacement-part records
   expectation: 'Repairing/overhauling Bell or Leonardo components, and authorization to service them,
     must never be written as MAKING those manufacturers'' products. FAA-PMA replacement parts are the
     one own-product line — that distinction must survive.
@@ -16,6 +17,7 @@ probes:
   status: predicted
   added: 2026-08-26
   motivated_by: corpus survey — thousands of OEM P/N / Able P/N table lines, near-identical part families
+  target: records minted from the part-number tables (OEM part-number rows beside Able part numbers)
   expectation: 'Records minted from part-number tables must keep OEM part numbers distinct from Able part
     numbers, and must not fuse near-identical part-family rows into one entity (the FE→DE hazard at table
     scale).

@@ -1,0 +1,13 @@
+subject: agstech.net
+field: conformity_attestations
+eval_set_version: 1
+probes:
+- id: AG-P6
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — disjunctive certification collapse (watch)
+  target: records whose evidence is 'all factories are either one of ISO9001:2000, QS9000, TS16949, ISO13485
+    or AS9100 certified' (group g73kcrqw and five siblings)
+  expectation: A disjunction over factories must survive as a disjunction; 'factories that are certified
+    to <this standard>' per record reads as every factory holding every standard. Watch the rate; fail
+    if the hedge disappears entirely.

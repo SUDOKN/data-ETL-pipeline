@@ -1,5 +1,15 @@
 # Mention-stage evaluation
 
+> **STALE — target stage retired 2026-09-03.** The mention-collection LLM
+> stage this instrument judged was merged into the synthesis stage (the
+> location-stage merge): mention collection is pure code in the aggregation
+> fold, and the location task became per-entry verbatim CONTEXT QUOTES on the
+> synthesis wire, audited mechanically by `core/utils/context_check.py` (the
+> fabrication rate rides the synthesis dump's `context_check` block). The
+> location-quality judgments here have no live stage to run against; the
+> golden corpus and taxonomy are kept as history. Location-register quality
+> is now the **synthesis eval's** business.
+
 The permanent, evolving evaluation of the **mention-collection stage** — a
 sibling of `search/`, `grounding/` and `synthesis/`, following their layout and
 protocol vocabulary. Trigger: the user says **"run the mention eval"** → follow

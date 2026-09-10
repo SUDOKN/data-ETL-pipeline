@@ -1,0 +1,11 @@
+subject: pradeepmetals.com
+field: equipments
+eval_set_version: 1
+probes:
+- id: PM-P1
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — table-cell cross-contamination
+  target: records built from the 2-column projects table that pairs unrelated blurbs per row (group gap5jzo2)
+  expectation: Cells in the same row of a layout table are not related facts; the furnace must not be
+    fused with the sintering project in the adjacent cell (fabricated linkage, not containment).

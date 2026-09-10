@@ -3,10 +3,12 @@ field: material_caps
 eval_set_version: 1
 probes:
 - id: AN-P1
-  status: predicted
+  status: active
   added: 2026-08-26
   motivated_by: corpus survey — buyer T&C under /customer-portal/, PO legalese under capability-shaped
     URLs
+  target: records whose evidence is terms-and-conditions legalese ('Special Tooling', 'goods', 'milestones', 'Seller shall...')
+  realized: 2026-09-06 — run 20260905T213127 produced the predicted defect (see the run's observations); status flipped to active
   expectation: 'Legal-contract vocabulary ("Special Tooling", "goods", "milestones") from terms-and-conditions
     text living under non-legal URLs must not ground capability paragraphs; a record whose only evidence
     is legalese should say so or set it aside.

@@ -7,6 +7,7 @@ probes:
   added: 2026-08-26
   motivated_by: corpus survey — buyer T&C under /customer-portal/, PO legalese under capability-shaped
     URLs
+  target: records whose evidence is terms-and-conditions legalese ('Special Tooling', 'goods', 'milestones', 'Seller shall...')
   expectation: 'Legal-contract vocabulary ("Special Tooling", "goods", "milestones") from terms-and-conditions
     text living under non-legal URLs must not ground capability paragraphs; a record whose only evidence
     is legalese should say so or set it aside.
@@ -16,6 +17,7 @@ probes:
   status: predicted
   added: 2026-08-26
   motivated_by: corpus survey — four sister legal entities share the site
+  target: records whose evidence names one of the four Anchor entities (e.g. copyright under Anchor Tool & Die Co.)
   expectation: 'Capabilities must not silently migrate between the four Anchor entities; where the evidence
     names a specific entity (copyright under Anchor Tool & Die Co.), the paragraph preserves it.
 

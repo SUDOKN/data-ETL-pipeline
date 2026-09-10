@@ -9,6 +9,11 @@ Three postures, kept strictly apart (README §method):
 - ENUMERATORS — string scans whose ONLY job is to nominate records for agent
   judgment. Regex over LLM prose has mismeasured in both directions (10x
   under, 69x over); an enumerator is never a verdict.
+
+Wire port 2026-09-05: evidence is ``snippets: [str]`` (no per-snippet
+location); the code-derived fold locations are a WATCH metric
+(``location_coverage``) and judge pointers; designation preservation is a
+proxy metric + enumerator (checks/designations.py).
 """
 
 from __future__ import annotations
@@ -17,7 +22,7 @@ import re
 import statistics
 from typing import Any, Optional
 
-from . import lints, loading, pull
+from . import designations, lints, loading, pull
 
 # Enumerator patterns: recall-biased on purpose; precision is the judge's job.
 _DOC_LISTING_RE = re.compile(
@@ -67,7 +72,9 @@ def run_invariants(
         results.append({"id": check_id, "status": status, "detail": detail})
 
     # INV-1: delivery — the stage has never once failed mechanically; keep the
-    # tripwire that would notice the first time.
+    # tripwire that would notice the first time. Retries are delivery, not
+    # failure (the under-answer re-ask is part of the stage), so they are
+    # reported in the detail and not counted against it.
     block_present = loading.has_synthesis_block(dump)
     if block_present:
         summaries = [
@@ -79,11 +86,12 @@ def run_invariants(
         unknown = [u for s in summaries for u in (s.get("unknown_answer_ids") or [])]
         sent = sum(s.get("records") or 0 for s in summaries)
         done = sum(s.get("synthesized") or 0 for s in summaries)
+        retried = sum(len(s.get("retried") or []) for s in summaries)
         add(
             "INV-1-delivery",
             done == sent and not not_synth and not unknown,
-            f"synthesized {done}/{sent}, not_synthesized={not_synth}, "
-            f"unknown_answer_ids={unknown}",
+            f"synthesized {done}/{sent}, retried={retried}, "
+            f"not_synthesized={not_synth}, unknown_answer_ids={unknown}",
         )
     else:
         undelivered = [
@@ -95,7 +103,8 @@ def run_invariants(
             f"(pre-fix dump, row statuses only) not_synthesized={undelivered}",
         )
 
-    # INV-2: the pv witness — every live request's pv= must match the header.
+    # INV-2: the pv witness — every live request's pv= (group AND retry
+    # requests) must match the header.
     header_pv = loading.synthesis_pv(dump)
     request_pvs = {
         loading.pv_of_custom_id(r.get("custom_id") or "")
@@ -162,20 +171,21 @@ def compute_metrics(
     records: list[loading.SynthRecord],
     evidence_index: Optional[dict[str, Any]],
     subject_name: Optional[str],
+    designation_report: Optional[dict[str, Any]] = None,
 ) -> dict[str, Any]:
     synthesized = [r for r in records if r.synthesis]
     chars = [len(r.synthesis or "") for r in synthesized]
 
-    def entries_of(r: loading.SynthRecord) -> Optional[int]:
-        if r.entries is not None:
-            return r.entries
+    def snippets_of(r: loading.SynthRecord) -> Optional[int]:
+        if r.snippets is not None:
+            return r.snippets
         if evidence_index is not None:
             ev = pull.evidence_for(evidence_index, r)
             if ev is not None:
-                return len(ev.get("entries") or [])
+                return len(ev.get("snippets") or [])
         return None
 
-    entry_counts = [e for e in (entries_of(r) for r in synthesized) if e is not None]
+    snippet_counts = [e for e in (snippets_of(r) for r in synthesized) if e is not None]
 
     # Lints, recomputed with the pinned current implementations.
     entity_shaped = [
@@ -208,6 +218,7 @@ def compute_metrics(
         own_name_rate = round(hits / len(synthesized), 4) if synthesized else None
 
     requests = _clean_requests(dump)
+    retry_requests = [r for r in requests if pull.retry_index(r.get("custom_id") or "")]
     latencies = sorted(
         r["client_latency_ms"] for r in requests if r.get("client_latency_ms")
     )
@@ -223,21 +234,28 @@ def compute_metrics(
         }
     )
 
+    if designation_report is None:
+        designation_report = designations.report(
+            synthesized, evidence_index, pull.evidence_for
+        )
+
     return {
         "records": len(records),
         "synthesized": len(synthesized),
+        "retried_records": sum(1 for r in synthesized if r.retried),
         "twin_groups": len(twins),
-        "entries_known_for": len(entry_counts),
-        "single_entry_share": (
-            round(sum(1 for e in entry_counts if e == 1) / len(entry_counts), 4)
-            if entry_counts
+        "snippets_known_for": len(snippet_counts),
+        "single_snippet_share": (
+            round(sum(1 for e in snippet_counts if e == 1) / len(snippet_counts), 4)
+            if snippet_counts
             else None
         ),
         "thin_le2_share": (
-            round(sum(1 for e in entry_counts if e <= 2) / len(entry_counts), 4)
-            if entry_counts
+            round(sum(1 for e in snippet_counts if e <= 2) / len(snippet_counts), 4)
+            if snippet_counts
             else None
         ),
+        "max_snippets_in_a_record": max(snippet_counts) if snippet_counts else None,
         "synthesis_chars": sum(chars),
         "chars_per_record_median": statistics.median(chars) if chars else None,
         "focal_form_absent": {
@@ -254,7 +272,12 @@ def compute_metrics(
             else None
         ),
         "own_name_record_rate": own_name_rate,  # identification counter, NOT a defect
+        # WATCH: code-located mentions on the fold; the model never sees them.
+        "location_coverage": loading.fold_location_summary(dump),
+        # WATCH (proxy): the statics' designation rule, token-level.
+        "designation_preservation": designation_report.get("summary"),
         "requests": len(requests),
+        "retry_requests": len(retry_requests),
         "input_tokens": sum(r.get("input_tokens") or 0 for r in requests),
         "output_tokens": sum(r.get("output_tokens") or 0 for r in requests),
         "client_latency_ms_p50": pct(latencies, 0.50),
@@ -266,10 +289,13 @@ def enumerate_candidates(
     records: list[loading.SynthRecord],
     evidence_index: Optional[dict[str, Any]],
     third_party_roster: list[str],
+    locations: Optional[dict[tuple[str, str], list[str]]] = None,
+    designation_report: Optional[dict[str, Any]] = None,
 ) -> dict[str, list[str]]:
     """Candidate group_ids (with chunk bounds, ``bounds:group``) per judgment
     family. Evidence-based families need the snapshot; without it only the
-    record-level families fill in."""
+    record-level families fill in. ``locations`` (code-derived, from the fold
+    block) join the roster/document scans as provenance text."""
     def tag(r: loading.SynthRecord) -> str:
         return f"{r.chunk_bounds}:{r.group_id}"
 
@@ -282,18 +308,24 @@ def enumerate_candidates(
     )
     out: dict[str, list[str]] = {
         "twins": [],
-        "thin_single_entry": [],
+        "retried": [],
+        "thin_single_snippet": [],
         "third_party_evidence": [],
         "document_listing": [],
         "negation": [],
         "polyseme": [],
+        "designation_dropped": [],
+        "collapse_phrase": [],
     }
+    per_record = (designation_report or {}).get("per_record") or {}
     seen_group_ids = [r.group_id for r in records]
     for r in records:
         if not r.synthesis:
             continue
         if seen_group_ids.count(r.group_id) > 1:
             out["twins"].append(tag(r))
+        if r.retried:
+            out["retried"].append(tag(r))
         if any(f.lower() in POLYSEME_FORMS for f in (r.forms or [r.focal_form or ""])):
             out["polyseme"].append(tag(r))
         negated = bool(r.synthesis and _NEGATION_RE.search(r.synthesis))
@@ -303,12 +335,11 @@ def enumerate_candidates(
             else None
         )
         if ev is not None:
-            entries = ev.get("entries") or []
-            evidence_text = " ".join(
-                f"{e.get('location', '')} {e.get('snippet', '')}" for e in entries
-            )
-            if len(entries) == 1:
-                out["thin_single_entry"].append(tag(r))
+            snippets = ev.get("snippets") or []
+            located = (locations or {}).get((r.chunk_bounds, r.group_id)) or []
+            evidence_text = " ".join([*located, *snippets])
+            if len(snippets) == 1:
+                out["thin_single_snippet"].append(tag(r))
             if roster_re and roster_re.search(evidence_text):
                 out["third_party_evidence"].append(tag(r))
             if _DOC_LISTING_RE.search(evidence_text):
@@ -316,4 +347,10 @@ def enumerate_candidates(
             negated = negated or bool(_NEGATION_RE.search(evidence_text))
         if negated:
             out["negation"].append(tag(r))
+        detail = per_record.get(r.pair_key)
+        if detail:
+            if detail.get("dropped"):
+                out["designation_dropped"].append(tag(r))
+            if detail.get("collapse_phrases"):
+                out["collapse_phrase"].append(tag(r))
     return out

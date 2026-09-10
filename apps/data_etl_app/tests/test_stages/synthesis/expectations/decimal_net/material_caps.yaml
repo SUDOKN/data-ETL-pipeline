@@ -1,0 +1,12 @@
+subject: decimal.net
+field: material_caps
+eval_set_version: 1
+probes:
+- id: DM-P4
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — plating-list metals as materials; substring-minted hazardous metal
+  target: records for Tin/Zinc/Silver under 'Plating Services:' (gd979y9n), 'Beryllium' minted from 'Beryllium
+    Copper' (gng2x9pc), 'Copper Etching' from a lost list boundary (gqgen5ry)
+  expectation: A plating finish is not a material the subject processes; a substring of an alloy name
+    is not a standalone metal; a fused list item is not a capability.

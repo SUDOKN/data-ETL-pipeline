@@ -10,12 +10,16 @@ Candidate classes not yet promoted into a dimension: CANDIDATE_DIMENSIONS.md.
 ---
 
 You are judging one synthesis **record**: a paragraph an LLM wrote about one
-extracted entity (the `focal_form`), using only the `evidence` entries
-(each a verbatim `snippet` from the manufacturer's website plus an optional
-`location` sentence describing where the snippet sits). The paragraph is the
-ONLY thing downstream stages see — they cannot see the site. Judge the
-paragraph against the evidence, never against your own world knowledge of the
-company.
+extracted entity (the `focal_form`), from the record's `evidence` — its
+snippets, verbatim passages from the manufacturer's website in which the
+entity is named. The model was also shown the whole chunk of site text the
+snippets came from (`chunk_texts` in the work order, one local file per
+chunk), under the instruction that the text PLACES the snippets — the heading
+over them, the table they are a row of, the list, the surrounding words — but
+never adds claims of its own. The paragraph is the ONLY thing downstream
+stages see — they cannot see the site. Judge the paragraph against the
+snippets, never against your own world knowledge of the company; open the
+chunk text to place a snippet, or to classify an unsupported claim (J1).
 
 ## Dimensions
 
@@ -33,6 +37,11 @@ to a delivered service, or hedges dropped from hedged evidence. The dealing
 rule permits "the manufacturer offers X" when the evidence is X on the
 subject's own product/service page — that is a supported reading, not a fail.
 A claim scoped weaker than the evidence is J2's business, not J1's.
+A claim the snippets do not support but the chunk text does is STILL a J1
+fail — the statics forbid it — and is the *containment* class: check the
+chunk text for the claim's key words before deciding, and mark such a fail
+`containment_breach: true` in the note so it stays countable apart from
+outright fabrication (which the chunk text does not support either).
 
 ### J2 — Under-claim (evidence left on the table)
 `fail` when the entries support a materially stronger TRUE statement whose
@@ -41,6 +50,17 @@ omission would cost a real tag downstream. The type case: evidence lists
 paragraph says only that the string "is listed", so grounding correctly
 declines a real certification. Ordinary conservative phrasing that still
 carries the fact is a `pass`.
+The **designation clause** (a rule of the statics themselves): when the
+snippets carry specific designations of the focal entity — model numbers,
+grades, series, standard codes — the paragraph must name every one. Collapsing
+them into the general term, naming fewer than the snippets carry, or
+substituting phrases like *among others*, *various models or grades*,
+*numerous codes* is a J2 `fail`; list the missing ones as
+`designations_dropped: [...]` in the note. The work order's
+`designations_dropped` field is a mechanical nomination (a token lookup): a
+designation inside a snippet the model rightly set aside as not about the
+focal entity, or one carried in a paraphrase, is NOT a drop — read before
+deciding.
 
 ### J3 — Entity identity
 The paragraph must be about the focal entity and distinguishable from its
@@ -73,8 +93,12 @@ capability.
 
 - Quote verbatim: every `fail` carries a short quote from the paragraph AND
   the entry that convicts or fails to support it.
-- Count the `location` text as evidence, not just the snippet (a heading like
-  "More from Allegion" is provenance).
+- The record's `locations` are code-derived pointers: the heading or table
+  header row each snippet sits under, computed after the fact. The model never
+  saw these lines as such — it saw the chunk text they come from — so use them
+  as the provenance the model could have read there (a heading like "More from
+  Allegion" places the snippet), and open the chunk text when the pointer
+  alone does not settle it.
 - Do not judge with regex or keyword matching; read the record. Enumerator
   hits handed to you are nominations, not verdicts.
 - Rule explanations elsewhere in the pipeline are post-hoc; nothing outside

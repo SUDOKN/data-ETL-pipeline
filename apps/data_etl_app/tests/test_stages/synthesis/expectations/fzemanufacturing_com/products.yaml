@@ -1,0 +1,26 @@
+subject: fzemanufacturing.com
+field: products
+eval_set_version: 1
+probes:
+- id: FZ-P1
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — served-industry pages titled by product category → 'manufactures
+    X' (11 J6 majors in one slice)
+  target: records from the '# Professional Hand Tools, Power Tools, Diagnostic Equipment' page and the
+    bare 'Firefighting and Safety equipment' label (groups g3b87ocm, gno8fkch, geyzl1kd, gfic0hx9, gwyaot24,
+    g31iw41g, gcu5l2dm)
+  expectation: '''Machining capabilities for producing professional hand tools'' and ''manufacturing FOR
+    hand tools'' describe component supply to a served industry; the paragraph must keep the FOR-relationship.
+    Verified defect: ''FZE Manufacturing Solutions manufactures power tools'' (gfic0hx9), ''manufactures
+    firefighting and safety equipment'' from a bare label (g31iw41g). A wrong own-product tag follows
+    — major.'
+- id: FZ-P2
+  status: active
+  added: '2026-09-06'
+  motivated_by: run 20260905T213127 — passive end-machine fact upgraded to an OEM claim
+  target: records whose evidence is '<end machine> contain(s) various CNC-machined parts' (groups g92s6ufl
+    'mowers', g1dx96r8 'Commercial mowers')
+  expectation: '''Commercial mowers contain various CNC-machined parts'' supports parts-for, never ''FZE
+    manufactures commercial mowers''. Verified defect on both records (major: a job shop tagged as a mower
+    OEM).'

@@ -18,13 +18,26 @@ limit, agents die mid-flight; that is safe — see §6.)
 
 - **Record**: one group (all spellings of one extracted phrase) as synthesis
   meets it — an opaque `record_id`, one **focal form** (its most frequent
-  member spelling), and its **entries**.
-- **Entry**: one distinct evidence passage — a verbatim `snippet` from the
-  site plus a `location` sentence saying where it sits. Entries are ALL the
-  model saw; it cannot see the site.
-- **Co-pack**: the records that rode in one request (≤50 entries, groups never
-  split). Identity swaps and evidence bleed happen inside a co-pack, so J3
-  needs this context.
+  member spelling), and its **snippets**.
+- **Snippet**: one distinct evidence passage, copied verbatim from the site,
+  in which the entity is named. Since the 2026-09-05 wire port there is no
+  per-snippet location on the wire: the snippets are the fenced evidence, and
+  the model reads them against the **chunk text** (below).
+- **Chunk text**: the whole chunk of scraped site text the record's snippets
+  came from (~20k tokens), placed at the top of the request. The statics say it
+  PLACES the snippets (heading, table, list, surrounding words) and never adds
+  claims; the snapshot stores each chunk once under `evidence_snapshots/<run>/
+  chunk_text/`, and every work order names the file per `chunk_bounds`.
+- **Location** (code): the heading or table header row each mention sits
+  under, computed by the fold after the fact (`fold.groups[].mentions[]
+  .location`). The model never sees it. The harness tracks the located share
+  as a WATCH number (never a gate) and hands each record's distinct locations
+  to the judge as pointers into the chunk text.
+- **Co-pack**: the records that rode in one request (≤50 snippets, groups
+  never split). Identity swaps and evidence bleed happen inside a co-pack, so
+  J3 needs this context. A record answered by the under-answer **retry** pass
+  (`retried: true`) has the retry request as its co-pack — the work order's
+  `request_custom_id` already points there.
 - **Twin**: one group synthesized separately in both chunks. Twins get
   independent paragraphs and may diverge — always key by chunk bounds.
 - **Replayed**: a request answered from Mongo's cache because its custom id
@@ -36,8 +49,8 @@ limit, agents die mid-flight; that is safe — see §6.)
 1. **Mechanical pass + evidence snapshot** (deterministic, ~a minute):
    `.venv/bin/python checks/run_eval.py --run <run_id> --pull`
    from this directory. `--pull` needs the repo `.env` Mongo URI and must be
-   done promptly — a scoped delete erases the wire evidence, and a full-run
-   dump does not carry entries. This writes
+   done promptly — a scoped delete erases the wire evidence, and no dump
+   carries the snippets or the chunk text. This writes
    `history/runs/<run_id>/<subject>__<field>.json` scorecards, appends
    `history/metrics_scoreboard.csv`, and emits **work orders** under
    `history/runs/<run_id>/pending/` holding only records the ledger has not
@@ -61,7 +74,10 @@ limit, agents die mid-flight; that is safe — see §6.)
    Each agent prompt must contain, in this order:
    1. `TAXONOMY.md`'s dimensions section (J1–J5) — paste or give the path.
    2. That field's `## <field>` extension section (J6).
-   3. Its slice of the work order (path + explicit index range).
+   3. Its slice of the work order (path + explicit index range), and the
+      work order's `chunk_texts` map — the agent opens a chunk file only to
+      place a snippet or to classify an unsupported claim (containment breach
+      vs fabrication); it never judges from the chunk text alone.
    4. The output contract: JSONL, one verdict object per record, schema in
       TAXONOMY.md §Output, written to
       `history/runs/<run_id>/verdicts/<subject>__<field>[__partN].jsonl`;
@@ -69,8 +85,10 @@ limit, agents die mid-flight; that is safe — see §6.)
       unchanged; every record in the slice gets a row — no sampling (a skipped
       record stays pending forever).
    5. The discipline reminders: judge by reading, quote what convicts,
-      locations count as evidence, `unclear` is honest, probes apply only to
-      records they name.
+      `locations` are code pointers (not something the model saw), the
+      `designations_dropped` list is a nomination for J2's designation clause
+      and must be verified against the snippets, `unclear` is honest, probes
+      apply only to records they name.
    Tell agents to build the file with **shell appends in batches** — if an
    agent dies mid-run its partial file is still valid JSONL.
 
@@ -106,5 +124,8 @@ limit, agents die mid-flight; that is safe — see §6.)
 Unchanged records replay byte-identically and hit the cache; a normal
 follow-up run re-judges only records whose synthesis, evidence, prompt version
 or taxonomy changed. If `pending` is unexpectedly large on a no-change run,
-suspect an upstream `ud=` drift (a mention/location prompt edit re-digests
-every synthesis request) before suspecting the cache.
+suspect an upstream `ud=` drift (a search prompt edit or a fold change
+re-digests every synthesis request) before suspecting the cache. A republish
+of the synthesis statics changes every `pv=` and therefore empties the cache
+for that run by design (2026-09-05 was such a run: 0 hits, 22,162 pending) —
+that is the window in which TAXONOMY.md can be edited at no extra cost.

@@ -13,6 +13,7 @@ import inspect
 from collections import defaultdict
 from typing import Any, Iterable, Optional
 
+from core.utils import designation_tokens as _dt
 from core.utils import focal_form_lint as _ffl
 from core.utils import subject_name_lint as _snl
 from core.utils.focal_form_lint import focal_form_absent, is_entity_shaped
@@ -36,6 +37,8 @@ def lint_versions() -> dict[str, str]:
     return {
         "focal_form_lint": _module_hash(_ffl),
         "subject_name_lint": _module_hash(_snl),
+        # The synthesis stage's own designation conservation check (2026-09-05).
+        "designation_tokens": _module_hash(_dt),
     }
 
 

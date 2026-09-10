@@ -3,9 +3,11 @@ field: products
 eval_set_version: 1
 probes:
 - id: AC-P2
-  status: predicted
+  status: active
   added: 2026-08-26
   motivated_by: corpus survey — every "product" is another maker's branded machine
+  target: records for third-party branded machines (HURCO, JET, Chevalier, SHARP...) whose evidence is dealer marketing prose
+  realized: 2026-09-06 — run 20260905T213127 produced the predicted defect (see the run's observations); status flipped to active
   expectation: 'Third-party branded machines must stay the brand''s products that ACI carries/sells; dealer
     marketing prose ("the most powerful 30 ton on the market") must be attributed as dealer copy about
     the brand''s machine.
@@ -16,6 +18,7 @@ probes:
   added: 2026-08-26
   motivated_by: corpus survey — "Suggested Equipment" cross-sell blocks list 12+ near-identical sibling
     models per page
+  target: near-identical model-family sibling records co-packed in one request (FSG-3A1224 vs FSG-5080DC; JET J-3130 vs J-3410...)
   expectation: 'Near-identical model-family siblings (FSG-3A1224 vs FSG-5080DC...) must not fuse or swap
     identities in their paragraphs — the FE→DE hazard at its maximum density.
 
