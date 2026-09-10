@@ -1,32 +1,35 @@
-You are given the name of a manufacturer, the text scraped from the manufacturer's website formatted to markdown and a list of records holding entries collected from text scraped from its website. The records are provided at the very bottom: first the record ids, fenced between <<<RECORD_IDS and RECORD_IDS>>>, then the records themselves, fenced between <<<RECORDS and RECORDS>>>.
+You are given text scraped from a manufacturer's website, the name of that manufacturer, and a list of records holding snippets collected from that text. The text holds the site's pages one after another, each page beginning with its address on a line of its own. The records are provided at the very bottom: first the record ids, fenced between <<<RECORD_IDS and RECORD_IDS>>>, then the records themselves, fenced between <<<RECORDS and RECORDS>>>.
 
 Each record is about a single entity and holds:
 - its record_id;
 - its focal_form — one name for that entity, as the site spells it, given as the reference form;
-- its snippets, each holding a passage copied verbatim from the site in which the entity is named
+- its snippets, each a passage copied verbatim from the text in which the entity is named.
+
+## The snippets are the evidence
+Every snippet occurs in the given text. The text is there so you can see where each snippet sits — the heading over it, the table it is a row of, the list it belongs to, the words around it. What you assert about the focal entity must come from the record's snippets; the text around them colors and places what the snippets say, it never adds claims of its own to the synthesis.
 
 ## Identifying the focal entity
 Every snippet names the entity somewhere in it. The site may write that name differently than the focal_form does — its capitalization, punctuation, or singular and plural may vary.
 
-Some entries may not bear on the focal entity: the same words used in an unrelated sense, or an entry that says nothing about it. Those are not evidence — leave them aside. Where you cannot tell, keep the entry.
+Some snippets may not bear on the focal entity: the same words used in an unrelated sense, or a snippet that says nothing about it. Those are not evidence — leave them aside. Where you cannot tell, keep the snippet.
 
 ## Task
-Work each record on its own and write one synthesis for it: a single, well-put-together statement that describes the focal entity using the record's entries as evidence — everything the entries show about it, in the entries' own attributions. Also make sure to take into account, where given, the location of these entries in the scraped text, woven in where they tell the reader something (a menu item, a heading, a case study, a customer's words). Outside quotations, refer to the entity by its focal_form, whatever form the entry used.
+Work each record on its own and write one synthesis for it: a single, well-put-together statement that describes the focal entity using the record's snippets as evidence — everything the snippets show about it, in the snippets' own attributions. Find each snippet in the text and let where it sits inform the synthesis, woven in where it tells the reader something (a menu item, a heading, a table of specifications, a case study, a customer's words). Outside quotations, refer to the entity by its focal_form, whatever form the snippet used.
 
-Leave nothing out that the entries show about the focal entity: every distinct thing said of it belongs in the synthesis. Where collected entries carry specific designations of a general entity, preserve each specific in the synthesized record; never collapse them into the general term. This holds at any count: when the entries carry many designations, the synthesis names every one of them, in full, as a list inside the synthesis — a synthesis that names fewer designations than the entries carry is wrong, and phrases like among others, various models or grades, or numerous codes are never a substitute for the designations themselves. Coverage of the entries is the goal, not length — nothing enters the synthesis that the entries do not show, and repeated entries are still covered once, as the reporting rules below say.
+Leave nothing out that the snippets show about the focal entity: every distinct thing said of it belongs in the synthesis. Where collected snippets carry specific designations of a general entity, preserve each specific in the synthesized record; never collapse them into the general term. This holds at any count: when the snippets carry many designations, the synthesis names every one of them, in full, as a list inside the synthesis — a synthesis that names fewer designations than the snippets carry is wrong, and phrases like among others, various models or grades, or numerous codes are never a substitute for the designations themselves. Coverage of the snippets is the goal, not length — nothing enters the synthesis that the snippets do not show, and repeated snippets are still covered once, as the reporting rules below say.
 
 ## What the manufacturer does with the entity
-Every synthesis must also settle, from the entries alone, what the manufacturer does with or in relation to the focal entity — the dealing, activity, or arrangement the entries put between them — and must say plainly whose dealing it is: the manufacturer's own, or a customer's, a supplier's, or another party's that the entries merely place near it. Where the entries show the manufacturer's own dealing, say what it is in the entries' own terms. Where they show only another party's, say so and name that party as the entries name it. Where the entries show no dealing at all — the entity is only named, listed, or mentioned in passing — say that plainly, and do not supply one. A document is not the thing it is about. Where an entry's only evidence is a title in a list of literature, downloads, brochures, data sheets, or similar resources, it shows the manufacturer offering a document and nothing further. Where the focal entity is that document, say so. Where the focal entity is something the title merely names, say the entries show no dealing with it beyond a document bearing its name. In neither case supply a dealing the entries do not show.
+Every synthesis must also settle, from the snippets alone, what the manufacturer does with or in relation to the focal entity — the dealing, activity, or arrangement the snippets put between them — and must say plainly whose dealing it is: the manufacturer's own, or a customer's, a supplier's, or another party's that the snippets merely place near it. Where the snippets show the manufacturer's own dealing, say what it is in the snippets' own terms. Where they show only another party's, say so and name that party as the snippets name it. Where the snippets show no dealing at all — the entity is only named, listed, or mentioned in passing — say that plainly, and do not supply one. A document is not the thing it is about. Where a snippet's only evidence is a title in a list of literature, downloads, brochures, data sheets, or similar resources, it shows the manufacturer offering a document and nothing further. Where the focal entity is that document, say so. Where the focal entity is something the title merely names, say the snippets show no dealing with it beyond a document bearing its name. In neither case supply a dealing the snippets do not show.
 
 ## The manufacturer's own name
-The manufacturer's name is given above the records. Use it to tell what belongs to the manufacturer and what does not. Where the focal entity is the manufacturer itself — or one of its brands, product lines, divisions, plants, or former names — say so plainly. Write names as the entries write them; you need not avoid the manufacturer's name.
+The manufacturer's name is given between the text and the records. Use it to tell what belongs to the manufacturer and what does not. Where the focal entity is the manufacturer itself — or one of its brands, product lines, divisions, plants, or former names — say so plainly. Write names as the snippets write them; you need not avoid the manufacturer's name.
 
 ## Rules on reporting
-Report what the entries say about the focal entity and add nothing of your own. Assert nothing the entries do not support, and attribute every statement to whoever the entries attribute it to: the site's own copy, a named or unnamed customer, a publication, another party. Where an entry places something outside the present — a completed project, a plan, a denial — carry that placement in the entry's own words. Where an entry — its snippet or its location — places the item with a party other than the manufacturer, such as a parent company, a publication, or a customer, name that party in your synthesis; do not drop it.
+Report what the snippets say about the focal entity and add nothing of your own. Assert nothing the snippets do not support, and attribute every statement to whoever the snippets attribute it to: the site's own copy, a named or unnamed customer, a publication, another party. Where a snippet places something outside the present — a completed project, a plan, a denial — carry that placement in the snippet's own words. Where a snippet, or the place the text puts it, places the item with a party other than the manufacturer, such as a parent company, a publication, or a customer, name that party in your synthesis; do not drop it.
 
-Where entries repeat the same thing — the same menu item on every page, the same boilerplate line — say it once and note that it recurs.
+Where snippets repeat the same thing — the same menu item on every page, the same boilerplate line — say it once and note that it recurs.
 
-Other companies' names are quoted as written and attributed as the entries attribute them.
+Other companies' names are quoted as written and attributed as the snippets attribute them.
 
 ## Output
 Return a JSON object with a single key "syntheses" whose value is an array with one object per given record — every given record_id exactly once, copied exactly as given, and no others — each holding the record_id and its synthesis.
@@ -34,7 +37,7 @@ Return a JSON object with a single key "syntheses" whose value is an array with 
 ```json
 {"syntheses": [
   {"record_id": "<a given record_id>",
-   "synthesis": "<what the entries say about the focal entity — everything they show of it, and what the manufacturer does with or in relation to it and whose dealing it is — in the entries' own attributions, with their locations where given>"},
+   "synthesis": "<what the snippets say about the focal entity — everything they show of it, and what the manufacturer does with or in relation to it and whose dealing it is — in the snippets' own attributions, placed by where the text puts them>"},
   {"record_id": "<another given record_id>",
    "synthesis": "<...>"}
 ]}
