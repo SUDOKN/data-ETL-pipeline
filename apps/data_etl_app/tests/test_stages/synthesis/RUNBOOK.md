@@ -99,11 +99,25 @@ limit, agents die mid-flight; that is safe — see §6.)
       probes apply only to records they name.
    Tell agents to build the file with **shell appends in batches** — if an
    agent dies mid-run its partial file is still valid JSONL.
+   Tooling (2026-09-11): `checks/judged_population.py --run <id> --baseline
+   <prev>` writes the judged subset work orders + `SLICES.json` (cluster
+   members + the baseline-retried singletons + a random singleton sample);
+   `checks/judge_jobs.py --run <id>` packs slices into ≤190-record jobs and
+   writes one instruction file per job under `pending/judged/jobs/` from the
+   run's `JUDGE_PROMPT.md`, so an agent prompt is just "read J<nn>.md and
+   follow it". Run ~15 agents concurrently, launch one per completion.
 
 5. **Verify before accepting** (non-negotiable): for every agent, re-read
    against the work order **every J3 fail, every `major` fail** (they are
    rare), 5 random passes, and any headline rate that looks surprising.
    Correct rows before ingestion; mark re-checked rows `"verified": true`.
+   Tooling (2026-09-11): `checks/verify_packets.py --run <id> [--calibration-file
+   <verdict file>]...` builds the packets (J3 fails, majors, 5 random passes per
+   file, plus every J2/J6 fail of any slice a judge flagged); Sonnet verifiers
+   write full replacement rows to `verify/corrections_<k>.jsonl`;
+   `checks/apply_corrections.py --run <id>` merges them and prints the
+   transitions. Then `checks/paired_readout.py --run <id> --baseline <prev>`
+   for the identical-evidence pairing.
    Two of the original census's own numbers were corrected exactly this way —
    the step is a measurement, not a formality.
 
