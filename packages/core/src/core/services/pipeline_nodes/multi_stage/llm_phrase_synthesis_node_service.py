@@ -40,13 +40,17 @@ UNDER-ANSWER POLICY (user decision 2026-08-22). Once a chunk's group requests
 are complete the node ASSESSES it: the record ids no answer synthesized are
 stored on the bundle (``llm_phrase_synthesis_retry_record_ids``; an empty list
 = assessed, none missing; None = not yet assessed) — plus the answered ids
-whose synthesis dropped designations (2026-09-02, under-enumeration) — and,
-when any exist, ONE
+whose synthesis dropped a designation the record OWNS (2026-09-02
+under-enumeration, scoped 2026-09-10 to the focal form's own and adjacent
+designations, cut at the chunk's sibling forms — ``sibling_forms_by_record``,
+``core.utils.designation_tokens``) — and, when any exist, ONE
 retry pass re-asks for exactly those records (packed the same way into
 ``llm_phrase_synthesis_retry_req_ids``, custom id ``…>chunk>{b}>retry>1>group>{j}>…``).
-The result reads group answers first, then the retry's; what is still missing
-after that is reported (``not_synthesized`` in the dump) — nothing is retried
-twice, and a missing record never becomes a crash.
+The result reads group answers first, then the retry's (a record both passes
+answered keeps whichever names more of its own designations, the first
+answer on ties); what is still missing after that is reported
+(``not_synthesized`` in the dump) — nothing is retried twice, and a missing
+record never becomes a crash.
 """
 
 from __future__ import annotations
@@ -56,7 +60,7 @@ import logging
 import traceback
 from dataclasses import dataclass, field, replace
 from datetime import datetime
-from typing import Optional
+from typing import Mapping, Optional, Sequence
 
 from llm_providers.db_models.gpt_batch_request import GPTBatchRequest
 from llm_providers.field_types import BatchRequestIDType
@@ -537,9 +541,10 @@ class ChunkAnswer:
 
     ``syntheses`` is the RESOLVED map (one answer per record). Where a record
     was re-asked for UNDER-ENUMERATION (2026-09-02: it had a first answer that
-    dropped designations), both answers exist for a while — the retry's is
-    kept in ``retry_syntheses`` and ``resolve_under_enumeration`` picks the
-    better of the two by designation coverage, retry winning ties."""
+    dropped designations it owns), both answers exist for a while — the
+    retry's is kept in ``retry_syntheses`` and ``resolve_under_enumeration``
+    picks the better of the two by designation coverage, the FIRST answer
+    keeping ties (2026-09-10, D2)."""
 
     sent_ids: list[str]
     syntheses: SynthesesByGroupId
@@ -622,7 +627,10 @@ async def get_chunk_syntheses(
     )
 
 
-# --- under-enumeration (2026-09-02, Phase B of the search-recall roadmap) --------------------
+# --- under-enumeration (2026-09-02, Phase B; scoped to OWN designations 2026-09-10) -----------
+
+
+SiblingFormsByRecord = Mapping[str, Sequence[str]]
 
 
 def _record_snippet_texts(record: SynthesisRecordInput) -> list[str]:
@@ -632,21 +640,44 @@ def _record_snippet_texts(record: SynthesisRecordInput) -> list[str]:
     return list(record.snippets)
 
 
+def sibling_forms_by_record(fold: FoldResult) -> dict[str, list[str]]:
+    """``{record_id: member forms of every OTHER synthesized record of the
+    chunk}`` — the sibling forms the designation trigger cuts its spans at
+    (D16: a designation past another record's form belongs to that record).
+    Synthesized = non-empty, non-collapsed, exactly the bundles
+    ``FoldResult.synthesis_records`` yields; same field by construction."""
+    live = [b for b in fold.bundles if not b.is_empty and not b.is_collapsed]
+    return {
+        bundle.group_id: [
+            form for other in live if other.group_id != bundle.group_id for form in other.forms
+        ]
+        for bundle in live
+    }
+
+
 def under_enumerated_record_ids(
-    records: list[SynthesisRecordInput], syntheses: SynthesesByGroupId
+    records: list[SynthesisRecordInput],
+    syntheses: SynthesesByGroupId,
+    *,
+    sibling_forms: SiblingFormsByRecord,
 ) -> list[str]:
-    """Records whose ANSWERED synthesis drops designation-shaped tokens their
-    snippets carry (the conservation check; see ``core.utils.designation_tokens``
-    for the tiers and why they are precision-first). Records with no answer are
-    the missing-answer path's business, not this one's. Order follows
-    *records* — bundle order, like every other id list here."""
+    """Records whose ANSWERED synthesis drops a designation the record OWNS —
+    one inside its focal form or written directly beside it in a snippet,
+    the spans cut at the chunk's sibling forms (the conservation check; see
+    ``core.utils.designation_tokens`` for the rule and its measurements).
+    Records with no answer are the missing-answer path's business, not this
+    one's. Order follows *records* — bundle order, like every other id list
+    here."""
     flagged: list[str] = []
     for record in records:
         record_answer = syntheses.get(record.record_id)
         if record_answer is None:
             continue
         missing = missing_designations(
-            _record_snippet_texts(record), record_answer.synthesis, focal_form=record.focal_form
+            _record_snippet_texts(record),
+            record_answer.synthesis,
+            focal_form=record.focal_form,
+            sibling_forms=sibling_forms.get(record.record_id, ()),
         )
         if missing:
             flagged.append(record.record_id)
@@ -654,13 +685,17 @@ def under_enumerated_record_ids(
 
 
 def resolve_under_enumeration(
-    answer: ChunkAnswer, records: list[SynthesisRecordInput]
+    answer: ChunkAnswer,
+    records: list[SynthesisRecordInput],
+    *,
+    sibling_forms: SiblingFormsByRecord,
 ) -> tuple[ChunkAnswer, dict[str, str]]:
     """One answer per record where both passes answered: keep whichever names
-    more of the record's designations, the retry winning ties (it ran under
-    the same prompt with a fresh sample — the measured recovery path). Returns
-    the resolved answer and ``{record_id: "first"|"retry"}`` provenance for
-    the records that were actually contested."""
+    more of the record's OWN designations; the FIRST answer keeps ties
+    (2026-09-10, D2 — the retried population measured 19.8% fail against
+    5.4%, so a retry that recovers nothing must not replace the first
+    answer). Returns the resolved answer and ``{record_id: "first"|"retry"}``
+    provenance for the records that were actually contested."""
     contested = [
         record
         for record in records
@@ -674,15 +709,16 @@ def resolve_under_enumeration(
     provenance: dict[str, str] = {}
     for record in contested:
         snippet_texts = _record_snippet_texts(record)
+        siblings = sibling_forms.get(record.record_id, ())
         first_answer = answer.syntheses[record.record_id]
         retry_answer = answer.retry_syntheses[record.record_id]
         first_present, _ = designation_coverage(
-            snippet_texts, first_answer.synthesis, focal_form=record.focal_form
+            snippet_texts, first_answer.synthesis, focal_form=record.focal_form, sibling_forms=siblings
         )
         retry_present, _ = designation_coverage(
-            snippet_texts, retry_answer.synthesis, focal_form=record.focal_form
+            snippet_texts, retry_answer.synthesis, focal_form=record.focal_form, sibling_forms=siblings
         )
-        if retry_present >= first_present:
+        if retry_present > first_present:
             resolved[record.record_id] = retry_answer
             provenance[record.record_id] = "retry"
         else:
@@ -770,7 +806,9 @@ async def get_chunk_synthesis_result(
             f"{sorted(set(record_ids) - set(answer.sent_ids))}); the text or mention state "
             f"changed under the stored request ids (re-defer)."
         )
-    answer, under_enumeration_resolved = resolve_under_enumeration(answer, records)
+    answer, under_enumeration_resolved = resolve_under_enumeration(
+        answer, records, sibling_forms=sibling_forms_by_record(fold)
+    )
     if under_enumeration_resolved:
         kept_retry = sum(1 for v in under_enumeration_resolved.values() if v == "retry")
         logger.info(

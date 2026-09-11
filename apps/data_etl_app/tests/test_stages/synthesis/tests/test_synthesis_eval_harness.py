@@ -213,20 +213,80 @@ def test_fold_locations_and_coverage_read_the_fold_block() -> None:
 
 def test_dropped_designations_use_cores_conservation_check() -> None:
     """The harness recomputes the pipeline's OWN designation check (core's
-    T1/T2 tiers, word-boundary, case-insensitive, elastic pair spacing)."""
-    snippets = ["Certified to ISO 9001:2015.", "Runs a Chevalier EM2040L and an FM-3VK."]
-    synthesis = "The shop is ISO  9001 certified and runs a Chevalier em2040l, among others."
-    detail = designations.dropped_designations(snippets, synthesis)
+    focal-form rule: the record's own designations, word-boundary,
+    case-insensitive, spacing-tolerant)."""
+    snippets = ["Chevalier EM2040L and FM-3VK mills.", "Chevalier EM2040L, the vertical mill."]
+    synthesis = "The shop runs a Chevalier em2040l, among others."
+    detail = designations.dropped_designations(snippets, synthesis, focal_form="Chevalier")
     assert "FM-3VK" in detail["dropped"]
     assert "EM2040L" not in detail["dropped"]
-    assert "ISO 9001" not in detail["dropped"]
     assert detail["collapse_phrases"] == ["among others"]
+    assert detail["own_tokens"] == [] and detail["own_dropped"] == []
+    # A sibling record owning FM-3VK takes it out of this record's demand.
+    scoped = designations.dropped_designations(
+        snippets, synthesis, focal_form="Chevalier", sibling_forms=["FM-3VK"]
+    )
+    assert scoped["dropped"] == []
+    # The focal form's own tokens are demanded even when the paragraph paraphrases.
+    own = designations.dropped_designations(
+        ["UNS N06625 bar stock"], "a nickel alloy bar", focal_form="UNS N06625"
+    )
+    assert own["own_tokens"] == ["UNS N06625"] and own["own_dropped"] == ["UNS N06625"]
     # No designations in the evidence: nothing to drop, no collapse nomination.
-    assert designations.dropped_designations(["plain prose"], "various models etc.") == {
+    assert designations.dropped_designations(
+        ["plain prose"], "various models etc.", focal_form="prose"
+    ) == {
         "tokens": [],
         "dropped": [],
+        "own_tokens": [],
+        "own_dropped": [],
         "collapse_phrases": [],
     }
+
+
+def test_fold_sibling_forms_read_only_synthesized_groups() -> None:
+    dump = {
+        "chunks": {
+            "0:100": {
+                "fold": {
+                    "groups": [
+                        {"group_id": "g1", "forms": ["Inconel"], "status": "ok"},
+                        {"group_id": "g2", "forms": ["Inconel 625", "inconel 625"], "status": "ok"},
+                        {"group_id": "g3", "forms": ["Nothing"], "status": "no_mentions"},
+                        {"group_id": "g4", "forms": ["Inconel and Monel"], "status": "collapsed"},
+                    ]
+                }
+            }
+        }
+    }
+    siblings = loading.fold_sibling_forms(dump)
+    assert siblings[("0:100", "g1")] == ["Inconel 625", "inconel 625"]
+    assert siblings[("0:100", "g2")] == ["Inconel"]
+    assert ("0:100", "g3") not in siblings and ("0:100", "g4") not in siblings
+
+
+def test_sibling_mention_watch_counts_non_nested_sibling_names_only() -> None:
+    group_forms = {
+        "0:100": {
+            "g1": ["Steel"],
+            "g2": ["Stainless Steel"],
+            "g3": ["Aluminum"],
+        }
+    }
+    records = [
+        # names a true sibling (Aluminum) -> counted
+        _record(group_id="g1", forms=["Steel"], focal_form="Steel",
+                synthesis="Steel and Aluminum are stocked."),
+        # names only a nested variant of its own name -> not counted
+        _record(group_id="g2", forms=["Stainless Steel"], focal_form="Stainless Steel",
+                synthesis="Stainless Steel is polished; steel sheet ships daily."),
+        # names nobody else
+        _record(group_id="g3", forms=["Aluminum"], focal_form="Aluminum",
+                synthesis="Aluminum is anodized."),
+    ]
+    watch = mechanical.sibling_mention_watch(records, group_forms)
+    assert (watch["records_checked"], watch["records_naming_a_sibling"]) == (3, 1)
+    assert watch["mean_chars_naming"] == len(records[0].synthesis or "")
 
 
 def test_designation_versions_are_stamped() -> None:
@@ -234,7 +294,9 @@ def test_designation_versions_are_stamped() -> None:
 
 
 def test_designation_report_and_enumerator_agree() -> None:
-    record = _record(group_id="g1", synthesis="The manufacturer offers the L100 model.")
+    record = _record(
+        group_id="g1", focal_form="Models", synthesis="The manufacturer offers the L100 model."
+    )
     index = {
         "s_com|products|0:100|g1": {
             "snippets": ["Models L100 and L200 are offered."],
@@ -244,9 +306,15 @@ def test_designation_report_and_enumerator_agree() -> None:
     report = designations.report([record], index, pull.evidence_for)
     assert report["summary"]["tokens"] == 2
     assert report["summary"]["tokens_preserved"] == 1
+    assert report["summary"]["records_with_own_drop"] == 0
     assert report["per_record"][record.pair_key]["dropped"] == ["L200"]
     out = mechanical.enumerate_candidates([record], index, [], designation_report=report)
     assert out["designation_dropped"] == ["0:100:g1"]
+    # With L200 owned by a sibling record, nothing is dropped.
+    scoped = designations.report(
+        [record], index, pull.evidence_for, {("0:100", "g1"): ["L200"]}
+    )
+    assert scoped["summary"]["tokens"] == 1 and scoped["summary"]["tokens_preserved"] == 1
 
 
 def test_append_verdicts_is_idempotent(tmp_path, monkeypatch) -> None:

@@ -66,6 +66,22 @@ class BaseLLMRecursiveExtractionNode(
     recording and so arms nothing. Two bounds stop a spin:
     ``RESPONSE_PARSE_ERROR_CAP`` on one request's parse failures, and
     ``MAX_UNPRODUCTIVE_PASSES`` on passes that shrink nothing.
+
+    EXIT RULE (2026-09-10). The loop ends only when a pass embedded no NEW
+    ids AND nothing is outstanding. Until then it ended as soon as nothing was
+    missing and nothing was unanswered — which is also the state of a branch
+    whose ids are ALREADY answered in Mongo: the contract-products branch
+    (its synthesis ids equal products', so every group answer is found on
+    the first pass), or any stage replayed after a scoped delete. Such a
+    branch never reached its later embed passes: the synthesis node's
+    assessment pass never ran, no retry ids were recorded, and the contract
+    copy read group answers only — the INV-3 divergence the synthesis eval
+    found (run 20260905T213127: tanfel products 28 retried / 6 retry
+    requests, contract 0 / 0; 510 diverging pairs run-wide). The embedded id
+    set is compared across passes, so a node that mints ids in stages keeps
+    getting called until it adds nothing; the cost is one extra Mongo lookup
+    per node per subject and no LLM call. Every recursive node's
+    ``embed_request_ids`` is re-entrant by design.
     """
 
     async def execute(
@@ -108,6 +124,10 @@ class BaseLLMRecursiveExtractionNode(
         # were discovered. Count passes that create nothing and shrink nothing.
         unproductive_passes = 0
         previously_incomplete: set[BatchRequestIDType] | None = None
+        # The ids embedded at the end of the previous pass (None before the
+        # first). A pass that grows this set has more work behind it — the
+        # exit rule in the class docstring (2026-09-10).
+        previously_embedded: set[BatchRequestIDType] | None = None
         # Kept so the give-up error can say WHY the requests stayed unanswered.
         # Without it a run killed by rate limiting reports only "made no
         # progress in 3 passes", and the 429 never reaches the error row.
@@ -200,6 +220,10 @@ class BaseLLMRecursiveExtractionNode(
                 subject_unique_id=deferred_subject.subject_unique_id,
                 chunked_request_map=chunked_request_map,
             )
+            embedded_new_ids = previously_embedded is None or not (
+                set(all_request_ids) <= previously_embedded
+            )
+            previously_embedded = set(all_request_ids)
             # The query rejects an empty id list rather than returning nothing.
             incomplete_requests = (
                 await find_incomplete_gpt_batch_requests_by_custom_ids(
@@ -222,7 +246,19 @@ class BaseLLMRecursiveExtractionNode(
                 )
 
             if not missing_req_ids and not incomplete_requests:
-                break
+                if not embedded_new_ids:
+                    break
+                # Everything embedded so far is answered, but this pass added
+                # ids, so the node may have a further pass behind it (the
+                # synthesis node's assessment + retry pass; see the class
+                # docstring). Nothing to dispatch: go straight to the next
+                # embed pass.
+                logger.info(
+                    f"[{subject.subject_unique_id}] {self.__class__.__name__} "
+                    f"('{self.field_type.name}') embedded new request ids that are all "
+                    f"answered already; running another embed pass."
+                )
+                continue
 
             incomplete_ids = set(incomplete_requests)
             if (

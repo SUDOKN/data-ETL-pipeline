@@ -16,15 +16,19 @@ recursive node so ``embed_request_ids`` runs until it adds nothing: pass 1
 stores the sent forms and embeds every chunk's group requests (the fold
 recomputed from the text + stored forms); once those are complete, pass 2
 ASSESSES each chunk — the record ids its answers left unsynthesized are
-stored, PLUS (2026-09-02, Phase B of the search-recall roadmap) the ids whose
-answer dropped designation-shaped tokens their snippets carry
-(``under_enumerated_record_ids`` — the conservation check behind the hardened
-preserve-specifics prompt sentence), and a chunk with any gets ONE retry
+stored, PLUS (2026-09-02, Phase B of the search-recall roadmap; scoped
+2026-09-10) the ids whose answer dropped a designation the record OWNS — one
+inside its focal form or written directly beside it, the spans cut at the
+chunk's sibling forms (``under_enumerated_record_ids`` over
+``sibling_forms_by_record(fold)`` — the conservation check behind the statics'
+focal-form designation paragraph), and a chunk with any gets ONE retry
 request set for just those records; a third
 entry finds nothing to add. For a record both passes answered the read path
-keeps whichever names more designations, the retry winning ties
-(``resolve_under_enumeration``). Eager runs loop in-process
-(``BaseLLMRecursiveExtractionNode.execute``); batch runs take one pass per
+keeps whichever names more of its own designations, the FIRST answer keeping
+ties (``resolve_under_enumeration``). Eager runs loop in-process
+(``BaseLLMRecursiveExtractionNode.execute`` — which, since 2026-09-10, keeps
+looping while a pass embeds NEW ids, so the assessment pass runs even when
+every group answer was already in Mongo); batch runs take one pass per
 invocation.
 """
 
@@ -85,6 +89,7 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service 
     pack_records,
     require_synthesis_metadata,
     retry_records_of_chunk,
+    sibling_forms_by_record,
     under_enumerated_record_ids,
 )
 from core.utils.request_custom_id_util import upstream_digest_segment
@@ -208,8 +213,8 @@ class LLMPhraseSynthesisNode(
                     subject_text, sub_bounds, subject_forms
                 )
 
-        def records_of(chunk_bounds: str, bundle: LLMPhraseExtractionRequestBundle):
-            fold = chunk_fold(
+        def fold_of(chunk_bounds: str, bundle: LLMPhraseExtractionRequestBundle):
+            return chunk_fold(
                 subject_unique_id,
                 self.field_type,
                 chunk_bounds,
@@ -219,7 +224,9 @@ class LLMPhraseSynthesisNode(
                 snippet_radius=snippet_radius,
                 collapse_compounds=collapse_compounds,
             )
-            return fold.synthesis_records()
+
+        def records_of(chunk_bounds: str, bundle: LLMPhraseExtractionRequestBundle):
+            return fold_of(chunk_bounds, bundle).synthesis_records()
 
         # PASS 1 — the group requests. The stored forms are final (pass 0), so
         # the chunk's fold is final and its records can be computed once,
@@ -276,17 +283,22 @@ class LLMPhraseSynthesisNode(
                 timestamp=timestamp,
                 include_retry=False,
             )
-            records = records_of(chunk_bounds, bundle)
+            fold = fold_of(chunk_bounds, bundle)
+            records = fold.synthesis_records()
             missing = answer.missing_ids
             # 2026-09-02 (Phase B): the retry also re-asks ANSWERED records
-            # whose synthesis dropped designation-shaped tokens their snippets
-            # carry — the under-enumeration conservation check. The read path
-            # keeps the better of the two answers per record
-            # (resolve_under_enumeration), so a worse retry can never regress
-            # a record. (2026-09-03 to 2026-09-05 this also re-asked records
-            # whose per-snippet context quotes miscounted; that emission is
-            # gone — location is the fold's, in code.)
-            under_enumerated = under_enumerated_record_ids(records, answer.syntheses)
+            # whose synthesis dropped a designation the record OWNS — inside
+            # its focal form or written directly beside it, the spans cut at
+            # the chunk's sibling forms (2026-09-10, D2/D16: the old
+            # any-token demand was 82.8% other records' tokens). The read
+            # path keeps the better of the two answers per record
+            # (resolve_under_enumeration, first answer on ties), so a worse
+            # retry can never regress a record. (2026-09-03 to 2026-09-05 this
+            # also re-asked records whose per-snippet context quotes
+            # miscounted; that emission is gone — location is the fold's.)
+            under_enumerated = under_enumerated_record_ids(
+                records, answer.syntheses, sibling_forms=sibling_forms_by_record(fold)
+            )
             retry_ids = missing + [rid for rid in under_enumerated if rid not in missing]
             retry_ids = list(dict.fromkeys(retry_ids))
             bundle.llm_phrase_synthesis_retry_record_ids = retry_ids

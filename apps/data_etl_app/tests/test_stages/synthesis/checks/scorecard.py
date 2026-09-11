@@ -47,9 +47,11 @@ def _flatten_metrics(card: dict[str, Any]) -> list[tuple[str, Any, Any]]:
         "max_snippets_in_a_record",
         "synthesis_chars",
         "chars_per_record_median",
+        "chars_per_record_mean",
         "own_name_record_rate",
         "requests",
         "retry_requests",
+        "first_pass_requests",
         "input_tokens",
         "output_tokens",
         "client_latency_ms_p50",
@@ -76,6 +78,27 @@ def _flatten_metrics(card: dict[str, Any]) -> list[tuple[str, Any, Any]]:
                 designation.get("records_with_designations"),
             )
         )
+    own_drops = metrics.get("own_designation_drops") or {}
+    if own_drops.get("records_with_own_tokens"):
+        rows.append(
+            (
+                "own_designation_dropped_records",
+                own_drops.get("records_dropping"),
+                own_drops.get("records_with_own_tokens"),
+            )
+        )
+    sibling = metrics.get("sibling_mention") or {}
+    if sibling.get("records_checked"):
+        rows.append(
+            (
+                "sibling_mention_records",
+                sibling.get("records_naming_a_sibling"),
+                sibling.get("records_checked"),
+            )
+        )
+        for name in ("mean_chars_naming", "mean_chars_not_naming", "mean_siblings_named"):
+            if sibling.get(name) is not None:
+                rows.append((f"sibling_mention_{name}", sibling.get(name), None))
     ffa = metrics.get("focal_form_absent") or {}
     if ffa:
         rows.append(
@@ -84,6 +107,7 @@ def _flatten_metrics(card: dict[str, Any]) -> list[tuple[str, Any, Any]]:
     ident = metrics.get("identical_synthesis") or {}
     if ident:
         rows.append(("identical_synthesis_clusters", ident.get("clusters"), None))
+        rows.append(("identical_synthesis_records", ident.get("records_in_clusters"), None))
     for dim, slot in (card.get("judged_rates") or {}).items():
         rows.append((f"judged_{dim}_fail", slot.get("fail"), slot.get("judged")))
     coverage = card.get("judgment_coverage") or {}

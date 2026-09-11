@@ -242,6 +242,39 @@ def fold_locations(dump: dict[str, Any]) -> dict[tuple[str, str], list[str]]:
     return out
 
 
+def fold_group_forms(dump: dict[str, Any]) -> dict[str, dict[str, list[str]]]:
+    """``{chunk_bounds: {group_id: member forms}}`` for every SYNTHESIZED
+    group of the fold block — the groups that became records (status
+    ``ok``: not empty, not collapsed), the same set ``FoldResult.
+    synthesis_records`` yields in core."""
+    out: dict[str, dict[str, list[str]]] = {}
+    for chunk_bounds, chunk in (dump.get("chunks") or {}).items():
+        groups = ((chunk.get("fold") or {}).get("groups")) or []
+        out[chunk_bounds] = {
+            g["group_id"]: [f for f in (g.get("forms") or []) if f and f.strip()]
+            for g in groups
+            if g.get("group_id") and g.get("status") not in ("no_mentions", "collapsed")
+        }
+    return out
+
+
+def fold_sibling_forms(dump: dict[str, Any]) -> dict[tuple[str, str], list[str]]:
+    """``(chunk_bounds, group_id) -> the member forms of every OTHER
+    synthesized group of that chunk`` — the sibling forms core's designation
+    trigger cuts its spans at (``sibling_forms_by_record`` in the synthesis
+    node service does the same over the live fold)."""
+    out: dict[tuple[str, str], list[str]] = {}
+    for chunk_bounds, groups in fold_group_forms(dump).items():
+        for group_id in groups:
+            out[(chunk_bounds, group_id)] = [
+                form
+                for other_id, forms in groups.items()
+                if other_id != group_id
+                for form in forms
+            ]
+    return out
+
+
 def synthesis_pv(dump: dict[str, Any]) -> Optional[str]:
     """The prompt version the header claims for the synthesis stage."""
     meta = ((dump.get("run") or {}).get("extraction_metadata") or {}).get(

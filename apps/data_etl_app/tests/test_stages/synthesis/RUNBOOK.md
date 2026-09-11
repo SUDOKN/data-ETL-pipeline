@@ -68,11 +68,17 @@ limit, agents die mid-flight; that is safe — see §6.)
    `checks/loading.py` (read it off the run's `business_desc` dump), and seed
    field probe files if absent.
 
-4. **Judge fan-out.** One general-purpose agent per work order; split above
-   ~250 records into slices of ~150–200, **never splitting a
+4. **Judge fan-out.** One general-purpose agent per work order (Sonnet by
+   the user's standing rule; the model name goes into every `judge` string);
+   split above ~250 records into slices of ~150–200, **never splitting a
    `request_custom_id` across agents** (co-packed context is what J3 needs).
-   Each agent prompt must contain, in this order:
-   1. `TAXONOMY.md`'s dimensions section (J1–J5) — paste or give the path.
+   The agent prompt is **`JUDGE_PROMPT_TEMPLATE.md`** (harness root, tracked)
+   with its `{...}` fields filled — copy the filled text to
+   `history/runs/<run_id>/JUDGE_PROMPT.md` first, so the run's judgment stays
+   reproducible, and add that run's calibration rulings to the template at
+   the end of the run (the template is the accumulated rulings). It contains,
+   in this order:
+   1. `TAXONOMY.md`'s dimensions section (J1–J5, J7) — paste or give the path.
    2. That field's `## <field>` extension section (J6).
    3. Its slice of the work order (path + explicit index range), and the
       work order's `chunk_texts` map — the agent opens a chunk file only to
@@ -87,8 +93,10 @@ limit, agents die mid-flight; that is safe — see §6.)
    5. The discipline reminders: judge by reading, quote what convicts,
       `locations` are code pointers (not something the model saw), the
       `designations_dropped` list is a nomination for J2's designation clause
-      and must be verified against the snippets, `unclear` is honest, probes
-      apply only to records they name.
+      (own designations only, since 2026-09-10) and must be verified against
+      the snippets, a page-supported claim about the focal entity is a
+      grounded import (J1 pass + note), not a breach, `unclear` is honest,
+      probes apply only to records they name.
    Tell agents to build the file with **shell appends in batches** — if an
    agent dies mid-run its partial file is still valid JSONL.
 

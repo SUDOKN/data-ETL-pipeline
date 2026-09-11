@@ -21,7 +21,8 @@ stages, not against the paragraph.
 | path | what | committed |
 |---|---|---|
 | `RUNBOOK.md` | the protocol the assistant follows on "run the synthesis eval" | yes |
-| `TAXONOMY.md` | J1–J6 dimensions + per-field extensions; its hash is `taxonomy_version` | yes |
+| `TAXONOMY.md` | J1–J7 dimensions + per-field extensions; its hash is `taxonomy_version` | yes |
+| `JUDGE_PROMPT_TEMPLATE.md` | the judge agent prompt with the accumulated calibration rulings; each run copies it filled to `history/runs/<run_id>/JUDGE_PROMPT.md` | yes |
 | `CANDIDATE_DIMENSIONS.md` | found-but-not-yet-promoted defect classes | yes |
 | `checks/` | `run_eval.py` CLI, loading, Mongo pull, lints, mechanical checks, ledger, scorecards | yes |
 | `config/common.yaml` | thresholds, prices, born-from baselines | yes |
@@ -65,9 +66,9 @@ real run's dumps).
   comparisons. `own_name_record_rate` is an identification counter (saturated
   at ~100%), **never** a defect count.
 - **Judged rates** (J1 faithfulness, J2 under-claim, J3 entity identity, J4
-  party attribution, J5 claim scoping, J6 field serviceability) come from the
-  ledger; the denominator is that run's judged coverage, printed beside every
-  rate.
+  party attribution, J5 claim scoping, J6 field serviceability, J7 agent
+  laundering — added 2026-09-10) come from the ledger; the denominator is
+  that run's judged coverage, printed beside every rate.
 - **Probes** are named regression tests over known cases; failures are
   reported by id.
 - **Watch numbers added 2026-09-05** (tracked, never gated): `location_coverage`
@@ -80,6 +81,22 @@ real run's dumps).
   the judged answer is J2's designation clause. Scoreboard rows before
   2026-09-05 carry `single_snippet_share` under its old name
   `single_entry_share` (same measure).
+- **Watch numbers added 2026-09-10** (the focal-form paragraph's focus
+  numbers, design doc D3/D16; tracked, never gated), with their values
+  recomputed on run 20260905T213127 by the current code so the next run reads
+  against the same method: `sibling_mention` = share of paragraphs naming a
+  sibling record's form that is not a nested variant of its own (72.9%;
+  16,154 of 22,162; 359.8 chars naming vs 232.8 not; one word-bounded
+  alternation regex per chunk — a nomination-grade count); `retried_records`
+  = trigger firings (1,593) and `retry_requests` (450) against
+  `first_pass_requests` (1,598); `own_designation_drops` = records whose
+  focal form's own tokens are missing from the paragraph (0 of 2,484);
+  `designation_preservation` now measures the record's OWN designations
+  (99.3% of 5,004 tokens; 21 records still dropping after the retry — the
+  old any-token demand read 61.7%); `identical_synthesis_records` (1,327 in
+  within-request clusters). The design doc's 71.1% / 1,665 / 1,722 for the
+  same quantities came from one-off scripts with slightly different
+  denominators; the harness numbers above are the baselines from now on.
 
 ## Measurement traps (each one bit a real analysis; do not relearn them)
 
@@ -121,6 +138,13 @@ real run's dumps).
    products record answered by a LATER retry shows as `not_synthesized` on
    the contract copy (run 20260905T213127: decimal ×3, tanfel ×1). INV-3
    reports it; it is a pipeline sequencing fact, not an eval artifact.
+   ROOT CAUSE FOUND AND FIXED 2026-09-10: the recursive base's eager loop
+   exited as soon as nothing was missing and nothing unanswered — the state
+   of a branch whose ids are already answered — so the contract node's
+   assessment pass never ran and no retry ids were recorded on its bundle.
+   The loop now keeps going while a pass embeds new ids
+   (`base_llm_recursive_extraction_node.py`); INV-3 is expected to pass on
+   the next run, and a failure there is a regression, not a known fact.
 
 ## The corpus
 
@@ -134,6 +158,28 @@ taylordunn's scrape is 97.5% cookie boilerplate — a deliberate degeneracy
 probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
+
+## STATE (2026-09-10 — Step 1 of the synthesis/grounding redesign BUILT, awaiting the focus run)
+
+Built 2026-09-10 per `docs_local/SYNTHESIS_GROUNDING_REDESIGN_2026-09-10.md`
+§7/§10, nothing run yet: the six synthesis statics carry the focal-form
+paragraph (unpublished until the user publishes; pins still 18a3fd59…); the
+under-enumeration trigger demands the record's OWN designations only, cut at
+the chunk's sibling forms, and the retry-vs-first comparator keeps the first
+answer on ties; the recursive base's eager loop keeps going while a pass
+embeds new ids (the INV-3 root cause); TAXONOMY.md gained J7 and the batch of
+edits listed in CANDIDATE_DIMENSIONS.md (so `taxonomy_version` changed —
+every cached verdict re-judges on the next run, which the pv change would
+have emptied anyway); `JUDGE_PROMPT_TEMPLATE.md` is now tracked; the new
+watches are in the scorecards. **Next:** the user publishes the six statics
+and launches the 18 census subjects from `mfg_extraction_test.ipynb`, stop
+after synthesis, full dump; then `checks/run_eval.py --run <id> --pull`;
+judge every record in an identical-evidence cluster plus a matched
+3,000-record singleton sample (Sonnet), paired against 20260905T213127
+(any-fail 6.4%, major 1.1%, retried 19.8% vs 5.4%, mixed clusters 46 of 138,
+twin flips 8.7%), with a two-subject same-pv A/A alongside; then the D10
+decision (fold clause-clip) on the sibling-mention share and paragraph
+length.
 
 ## STATE (2026-09-06, run `20260905T213127` — COMPLETE, 100% judged)
 

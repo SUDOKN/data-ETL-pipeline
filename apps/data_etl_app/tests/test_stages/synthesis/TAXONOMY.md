@@ -27,7 +27,11 @@ Score every record on each dimension below. Verdicts: `pass`, `fail`,
 `unclear` (use `unclear` when the evidence genuinely underdetermines the
 judgment — it is not a soft fail). Severity on fails: `minor` (blemish, tail
 could still act correctly) or `major` (a downstream stage acting faithfully
-on this paragraph would produce a wrong tag).
+on this paragraph would produce a wrong tag). **Severity is a property of the
+RECORD, not of a dimension**: one defect commonly trips two dimensions (a
+laundered claim fails J1 and J6 and J7 together), so give every dimension it
+trips the same severity, and read reports as "records with a major" — a
+scorecard says which count it means.
 
 ### J1 — Faithfulness (no overclaim)
 Every claim in the paragraph must be traceable to the entries. A `fail` is a
@@ -37,11 +41,21 @@ to a delivered service, or hedges dropped from hedged evidence. The dealing
 rule permits "the manufacturer offers X" when the evidence is X on the
 subject's own product/service page — that is a supported reading, not a fail.
 A claim scoped weaker than the evidence is J2's business, not J1's.
-A claim the snippets do not support but the chunk text does is STILL a J1
-fail — the statics forbid it — and is the *containment* class: check the
-chunk text for the claim's key words before deciding, and mark such a fail
-`containment_breach: true` in the note so it stays countable apart from
-outright fabrication (which the chunk text does not support either).
+A claim the snippets do not support is judged by what the chunk text says
+(the *containment* clause, split 2026-09-10 after run 20260905T213127 showed
+that page-derived imports flip verdicts between identical-evidence twins at
+8.7% and are true facts of the entity nearly every time):
+- **Grounded import** — the chunk text supports the claim, it is about the
+  focal entity, and it contradicts nothing in the record's snippets: a
+  `pass`, with `grounded_import: true` in the note. It is a WATCH count,
+  not a defect (the statics forbid it, but a faithful reader is not misled).
+- **Bleed** — the claim is about a sibling entity, contradicts the record's
+  snippets (1,000 lbs against the snippets' 200 lbs), or is not in the chunk
+  text at all: a `fail`, severity by consequence. Mark `containment_breach:
+  true` when the chunk text carries it (a neighbour's fact imported) and
+  nothing when nothing supports it (fabrication), so the two stay countable
+  apart.
+Check the chunk text for the claim's key words before deciding either way.
 
 ### J2 — Under-claim (evidence left on the table)
 `fail` when the entries support a materially stronger TRUE statement whose
@@ -50,17 +64,22 @@ omission would cost a real tag downstream. The type case: evidence lists
 paragraph says only that the string "is listed", so grounding correctly
 declines a real certification. Ordinary conservative phrasing that still
 carries the fact is a `pass`.
-The **designation clause** (a rule of the statics themselves): when the
-snippets carry specific designations of the focal entity — model numbers,
-grades, series, standard codes — the paragraph must name every one. Collapsing
-them into the general term, naming fewer than the snippets carry, or
-substituting phrases like *among others*, *various models or grades*,
-*numerous codes* is a J2 `fail`; list the missing ones as
-`designations_dropped: [...]` in the note. The work order's
-`designations_dropped` field is a mechanical nomination (a token lookup): a
-designation inside a snippet the model rightly set aside as not about the
-focal entity, or one carried in a paraphrase, is NOT a drop — read before
-deciding.
+The **designation clause** (a rule of the statics themselves, rewritten
+2026-09-10 with the focal-form rule): the paragraph must keep the focal
+entity's OWN designations verbatim — a grade, model code, or standard's
+number inside the focal form itself, or one a snippet writes directly with
+the focal entity as its own (`Aluminum castings in 319, 356, and A357
+alloys` → all three; `Tool Steels (H13, D2)` → both). Dropping one of those,
+or substituting phrases like *among others*, *various models or grades*,
+*numerous codes* for them, is a J2 `fail`; list the missing ones as
+`designations_dropped: [...]` in the note. A designation that belongs to
+ANOTHER entity — a neighbour in the same list, table cell, or sentence, a
+sibling record's grade, a standard that has its own record — is neither
+required nor a J2 issue when absent (naming it is J1/J3's business, not a
+merit here). The work order's `designations_dropped` field is a mechanical
+nomination already scoped to own designations (a token lookup cut at the
+chunk's sibling forms): one carried in a paraphrase or a spacing variant is
+NOT a drop — read before deciding.
 
 ### J3 — Entity identity
 The paragraph must be about the focal entity and distinguishable from its
@@ -80,6 +99,12 @@ subject), converts a client's requirement into the subject's certification,
 or presents a sister brand's product as the subject's own. Naming the
 manufacturer is CORRECT behavior (the own-name ban was retired 2026-08-24);
 never flag the name itself.
+The **parent-policy case** (settled on run 20260905T213127, taylordunn/Waev):
+a policy the PARENT issues for its brands' suppliers, hosted on the subject's
+site with the parent as the speaking voice, is J4 `minor` (and J6 `pass`) when
+the paragraph keeps the parent as the voice. It is distinct from a credential
+the parent HOLDS being credited to the subject (the Allegion class), which
+stays `major`.
 
 ### J5 — Claim scoping
 `fail` when a special evidence shape is mis-scoped: a document title claimed
@@ -88,6 +113,33 @@ requirement stated as the subject's practice; an explicit negation in the
 evidence ("we do NOT machine automobile parts") dropped or inverted; content
 from a job posting, legal page or news item stated as a shop-floor
 capability.
+
+### J7 — Agent laundering
+Promoted 2026-09-10 from candidates C4, C6, C11 and C12 (run 20260905T213127:
+nearly every `major` in the run had this shape, 249 of 22,157 records). `fail`
+when the paragraph states the manufacturer as the PARTY of a dealing — makes,
+manufactures, supplies, sells, offers, uses, operates, employs, performs,
+serves, holds — that the snippets attribute to:
+- **another party** whose name the snippets do not give as the agent of that
+  dealing (an anonymous example shop in a tips article, "they reduced
+  turnaround by 25%" resolved to the subject);
+- **nobody** — generic educational, advisory or definitional copy (a
+  listicle, a glossary, "why X matters", "common metal fabrication processes")
+  that names no party at all, read as the subject's own practice; or
+- **the manufacturer only as a use or application of something else** — an
+  application list ("our alloys are used in pumps, valves and crackers" is not
+  "makes pumps"), a membership clause ("we join 250 other companies who grow,
+  brew, build" is not "grows, brews, builds"), a served-industry page titled by
+  a product category.
+NOT laundering: the dealing rule still licenses "the manufacturer offers X"
+from a bare list item on the subject's own product or service page, and a
+paragraph that reports the third-party or generic register faithfully
+("a how-to article on the site describes X"; "the alloy is used in pumps")
+passes J7 whatever tag downstream mints from it. Relation to the others: J4 is
+credit given to the WRONG NAMED party; J7 is the subject installed as agent
+where the snippets give no such agent. Severity is by the wrong-tag test, and
+a J7 fail usually trips J1 or J6 as well — score every dimension it trips at
+the same severity (severity is per record).
 
 ## Discipline
 
@@ -121,7 +173,8 @@ capability.
    "J3": {"verdict": "pass", "severity": null, "note": "", "quote": ""},
    "J4": {"verdict": "pass", "severity": null, "note": "", "quote": ""},
    "J5": {"verdict": "pass", "severity": null, "note": "", "quote": ""},
-   "J6": {"verdict": "pass", "severity": null, "note": "", "quote": ""}
+   "J6": {"verdict": "pass", "severity": null, "note": "", "quote": ""},
+   "J7": {"verdict": "pass", "severity": null, "note": "", "quote": ""}
  },
  "verified": false}
 ```
@@ -140,16 +193,19 @@ The field asks: what does this company MAKE and SELL as its own?
 
 ### J6 — Field serviceability
 `fail` when a faithful downstream reader of this paragraph would tag as an
-own product something that is not one, or miss one that is:
+own product something that is not one, or miss one that is (the
+application-list and membership-clause shapes are J7's; when they mint a
+wrong product tag they fail here too, at the same severity):
 
 - A CLIENT's product (a contract-manufacturing case study describes the
   client's part) written as the subject's own product line.
 - A sister/parent brand's product on the subject's site (a Falcon SZ Series
   page on Steelcraft's site) written as the subject's own.
-- A document, brochure, or portfolio PDF written as a product (the document
-  rule asks for "offers a document titled X" — J5 covers the scoping; J6
-  fails when even correct scoping cannot save the record because the focal
-  entity is not a product at all).
+- A document, brochure, or portfolio PDF presented AS a product — a product
+  line, an offering, a thing made or sold. A correctly scoped "offers a
+  document titled X" is a J6 `pass` carrying `not_a_product: true` (settled
+  across ~470 rows of run 20260905T213127: faithfully transmitted noise
+  passes with a note); the scoping itself is J5's.
 - A process, material, spec, or facility written up as if it were a product.
 - Dealer/distributor stock (equipment carried for RESALE) written as the
   subject's manufactured product — decisive on dealer-shaped subjects.

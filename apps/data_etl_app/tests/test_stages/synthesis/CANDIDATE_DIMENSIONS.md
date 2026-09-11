@@ -9,6 +9,17 @@ every cached verdict for that field. Promote in a
 Each entry: the mechanism, the verified example, and which existing dimension
 currently absorbs it (so nothing is lost before promotion).
 
+**Promoted 2026-09-10 (the taxonomy batch bundled with the synthesis focus
+run, design doc `docs_local/SYNTHESIS_GROUNDING_REDESIGN_2026-09-10.md` D9,
+D17):** C4, C6, C11 and C12 became **J7 — Agent laundering** in TAXONOMY.md;
+the three pending edits at the foot were applied (products document-title
+bullet, J4 parent-policy note, severity per record), plus the J1
+grounded-import / bleed split and the J2 own-designations clause. Their
+entries below are kept as the case history. C10 (retry-path register drift)
+stays a candidate: the trigger-scope change of the same date is expected to
+take the retried population from 1,593 records to ≈30, and the class is
+re-measured on the next run before deciding whether it needs a name.
+
 ## C1 — Fragment completion
 **Mechanism:** when a snippet is a truncated, subject-less sentence fragment,
 the synthesizer invents a subject and asserts the completed sentence as fact.
@@ -184,7 +195,11 @@ into own NDT/Lean/QMS practice in 20+ records, plus an anonymous example shop's
 C4 was recorded as a single hedged instance; this run shows it asserting, in
 volume, on subjects whose sites carry a blog.
 
-## Pending TAXONOMY.md edits (batch these with the promotions above)
+## TAXONOMY.md edits — APPLIED 2026-09-10 (kept for the record)
+
+All three landed in the 2026-09-10 batch, together with the J1
+grounded-import / bleed split (retry memo, Discussion 2026-09-07 §1) and the
+J2 own-designations clause (design doc D17). Nothing below is pending.
 
 1. **The products addendum contradicts itself on document titles.** Its bullet
    says a document written as a product fails J6 "even when correct scoping

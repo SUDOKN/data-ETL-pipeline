@@ -408,3 +408,64 @@ async def test_a_dispatch_that_keeps_failing_is_bounded_and_names_its_cause(monk
     assert "429" in str(excinfo.value)
     assert isinstance(excinfo.value.__cause__, RuntimeError)
     assert node.dispatched.count("b") == MAX_UNPRODUCTIVE_PASSES + 1
+
+
+# --- the exit rule (2026-09-10): keep looping while a pass embeds NEW ids ------
+#
+# A branch whose ids are already answered in Mongo (contract products: its
+# synthesis ids equal products', so every group answer is found on the first
+# pass; any stage replayed after a scoped delete) used to leave the loop as
+# soon as nothing was missing and nothing was unanswered — before the node's
+# LATER embed passes ran. The synthesis node's assessment pass never recorded
+# retry ids on the contract bundle, and its read path diverged from products'
+# (INV-3, 510 pairs on run 20260905T213127).
+
+
+@pytest.mark.asyncio
+async def test_a_pass_that_embeds_new_already_answered_ids_gets_another_pass(monkeypatch):
+    """Pass 1 embeds group ids that are already answered; pass 2 embeds a retry
+    id that is already answered too; pass 3 embeds nothing new. Three embed
+    calls, the retry id in the final embedded set, nothing dispatched."""
+    store = _Store(prestored={"g1": True, "r1": True})
+    _install(monkeypatch, store)
+    node = _Node()
+    node.embedded_ids = set()
+    node.missing_on_first_pass = set()
+    node.embed_calls = 0  # type: ignore[attr-defined]
+
+    async def embed(*args, **kwargs) -> None:
+        node.embed_calls += 1  # type: ignore[attr-defined]
+        if node.embed_calls == 1:  # type: ignore[attr-defined]
+            node.embedded_ids = {"g1"}
+        elif node.embed_calls == 2:  # type: ignore[attr-defined]
+            node.embedded_ids = {"g1", "r1"}
+
+    node.embed_request_ids = embed  # type: ignore[assignment,method-assign]
+
+    await _run(node)
+
+    assert node.embed_calls == 3  # type: ignore[attr-defined]
+    assert node.embedded_ids == {"g1", "r1"}
+    assert node.dispatched == [] and store.upserted == [] and store.recorded == []
+
+
+@pytest.mark.asyncio
+async def test_a_pass_that_embeds_nothing_new_ends_the_loop(monkeypatch):
+    """The steady state costs exactly one extra embed pass (a Mongo lookup, no
+    LLM call): pass 1 sees the ids for the first time, pass 2 sees no growth."""
+    store = _Store(prestored={"g1": True})
+    _install(monkeypatch, store)
+    node = _Node()
+    node.embedded_ids = {"g1"}
+    node.missing_on_first_pass = set()
+    node.embed_calls = 0  # type: ignore[attr-defined]
+
+    async def embed(*args, **kwargs) -> None:
+        node.embed_calls += 1  # type: ignore[attr-defined]
+
+    node.embed_request_ids = embed  # type: ignore[assignment,method-assign]
+
+    await _run(node)
+
+    assert node.embed_calls == 2  # type: ignore[attr-defined]
+    assert node.dispatched == []

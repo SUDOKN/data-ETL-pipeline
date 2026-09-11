@@ -40,9 +40,11 @@ EVIDENCE_NOTE = (
     "traceable only to the chunk text is a containment breach (J1). "
     "locations = the code-derived heading / table header each snippet sits "
     "under (pointers into the chunk text; the model never saw these lines). "
-    "designations_dropped = designation-shaped tokens present in the snippets "
-    "but not found in the synthesis (a mechanical nomination for J2's "
-    "designation clause — verify by reading)."
+    "designations_dropped = designations the record OWNS (inside its focal form, "
+    "or written directly beside it in a snippet, cut at the chunk's sibling "
+    "forms) that are not found in the synthesis — a mechanical nomination for "
+    "J2's designation clause; verify by reading. A sibling entity's designation "
+    "is never listed here and is never a J2 drop."
 )
 
 
@@ -138,7 +140,7 @@ def prepare(run_id: str) -> dict[str, Any]:
         else:
             locations = loading.fold_locations(dump)
             designation_report = designations.report(
-                records, evidence_index, pull.evidence_for
+                records, evidence_index, pull.evidence_for, loading.fold_sibling_forms(dump)
             )
             card["invariants"] = mechanical.run_invariants(
                 subject, field_name, dump, records

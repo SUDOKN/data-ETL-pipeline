@@ -383,8 +383,48 @@ async def test_a_worse_retry_never_regresses_the_first_answer():
             "g1": SynthesisAnswer(synthesis="Aluminum in A357 alloy, among others.")
         },
     )
-    resolved, provenance = resolve_under_enumeration(answer, [record])
+    resolved, provenance = resolve_under_enumeration(answer, [record], sibling_forms={})
     assert resolved.syntheses["g1"].synthesis == "Aluminum in 319 and A357 alloys."
+    assert provenance == {"g1": "first"}
+
+
+def test_a_tie_keeps_the_first_answer_and_sibling_forms_scope_the_demand():
+    """2026-09-10 (D2/D16): the comparator counts only the record's OWN
+    designations, cut at the chunk's sibling forms, and a retry that names
+    exactly as many as the first answer does not replace it — the retried
+    population failed at 19.8% against 5.4%, so a tie is not a recovery."""
+    from core.models.extraction_schemas.synthesis import (
+        SynthesisAnswer,
+        SynthesisRecordInput,
+    )
+    from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
+        ChunkAnswer,
+        resolve_under_enumeration,
+        under_enumerated_record_ids,
+    )
+
+    record = SynthesisRecordInput(
+        record_id="g1",
+        focal_form="Inconel",
+        snippets=["We machine Inconel 625 and Inconel 718 daily."],
+    )
+    first = SynthesisAnswer(synthesis="The site says it machines Inconel daily.")
+    # With Inconel 625 / 718 as their own records, the bare 'Inconel' owns
+    # nothing but its name: the first answer is not under-enumerated ...
+    siblings = {"g1": ["Inconel 625", "Inconel 718"]}
+    assert under_enumerated_record_ids([record], {"g1": first}, sibling_forms=siblings) == []
+    # ... and would be, were those grades not sibling records.
+    assert under_enumerated_record_ids([record], {"g1": first}, sibling_forms={}) == ["g1"]
+
+    answer = ChunkAnswer(
+        sent_ids=["g1"],
+        syntheses={"g1": first},
+        unknown_answer_ids=[],
+        retried_record_ids=["g1"],
+        retry_syntheses={"g1": SynthesisAnswer(synthesis="Inconel is machined here, the site says.")},
+    )
+    resolved, provenance = resolve_under_enumeration(answer, [record], sibling_forms=siblings)
+    assert resolved.syntheses["g1"] is first
     assert provenance == {"g1": "first"}
 
 

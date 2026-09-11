@@ -236,13 +236,16 @@ def compute_metrics(
 
     if designation_report is None:
         designation_report = designations.report(
-            synthesized, evidence_index, pull.evidence_for
+            synthesized, evidence_index, pull.evidence_for, loading.fold_sibling_forms(dump)
         )
+    designation_summary = designation_report.get("summary") or {}
+
+    sibling_mention = sibling_mention_watch(synthesized, loading.fold_group_forms(dump))
 
     return {
         "records": len(records),
         "synthesized": len(synthesized),
-        "retried_records": sum(1 for r in synthesized if r.retried),
+        "retried_records": sum(1 for r in synthesized if r.retried),  # trigger firings
         "twin_groups": len(twins),
         "snippets_known_for": len(snippet_counts),
         "single_snippet_share": (
@@ -258,6 +261,12 @@ def compute_metrics(
         "max_snippets_in_a_record": max(snippet_counts) if snippet_counts else None,
         "synthesis_chars": sum(chars),
         "chars_per_record_median": statistics.median(chars) if chars else None,
+        # WATCH (2026-09-10, D3): paragraph length and the share of paragraphs
+        # naming another record's form — the focus numbers the focal-form
+        # paragraph is expected to move (baseline 325 mean; 71.1% naming a
+        # sibling, 363 vs 233 chars).
+        "chars_per_record_mean": round(statistics.fmean(chars), 1) if chars else None,
+        "sibling_mention": sibling_mention,
         "focal_form_absent": {
             "entity_shaped_records": len(entity_shaped),
             "flagged": len(absent),
@@ -274,14 +283,93 @@ def compute_metrics(
         "own_name_record_rate": own_name_rate,  # identification counter, NOT a defect
         # WATCH: code-located mentions on the fold; the model never sees them.
         "location_coverage": loading.fold_location_summary(dump),
-        # WATCH (proxy): the statics' designation rule, token-level.
+        # WATCH (proxy): the statics' designation rule, token-level, over the
+        # designations the record OWNS (2026-09-10).
         "designation_preservation": designation_report.get("summary"),
+        # WATCH: records whose focal form's own tokens are missing (baseline 0).
+        "own_designation_drops": (
+            {
+                "records_with_own_tokens": designation_summary.get("records_with_own_tokens"),
+                "records_dropping": designation_summary.get("records_with_own_drop"),
+                "tokens_dropped": designation_summary.get("own_tokens_dropped"),
+            }
+            if designation_summary
+            else None
+        ),
         "requests": len(requests),
         "retry_requests": len(retry_requests),
+        "first_pass_requests": len(requests) - len(retry_requests),
         "input_tokens": sum(r.get("input_tokens") or 0 for r in requests),
         "output_tokens": sum(r.get("output_tokens") or 0 for r in requests),
         "client_latency_ms_p50": pct(latencies, 0.50),
         "client_latency_ms_p90": pct(latencies, 0.90),
+    }
+
+
+def _nested(form: str, own_forms: list[str]) -> bool:
+    """A sibling form that contains one of the record's own forms, or is
+    contained in one, is a variant of the same name (``Steel`` under
+    ``Stainless Steel``), not another entity."""
+    f = form.lower()
+    return any(f in o or o in f for o in own_forms)
+
+
+def sibling_mention_watch(
+    records: list[loading.SynthRecord],
+    group_forms: dict[str, dict[str, list[str]]],
+) -> dict[str, Any]:
+    """WATCH (2026-09-10, D3): how many paragraphs name a sibling record's
+    focal form. Method: one alternation regex per chunk over every
+    synthesized group's forms (longest first, word-bounded); a paragraph
+    NAMES a sibling when a hit belongs to another group and is not a nested
+    variant of the record's own forms. A nomination-grade count — regex over
+    LLM prose is never a verdict — tracked against the 2026-09-05 baseline
+    (71.1% of paragraphs; 363 chars naming vs 233 not)."""
+    patterns: dict[str, tuple[re.Pattern[str], dict[str, set[str]]]] = {}
+    for chunk_bounds, groups in group_forms.items():
+        owners: dict[str, set[str]] = {}
+        for group_id, forms in groups.items():
+            for form in forms:
+                owners.setdefault(form.lower(), set()).add(group_id)
+        ordered = sorted(owners, key=len, reverse=True)
+        pattern = (
+            re.compile(
+                r"(?<![A-Za-z0-9])(?:" + "|".join(re.escape(f) for f in ordered) + r")(?![A-Za-z0-9])",
+                re.IGNORECASE,
+            )
+            if ordered
+            else re.compile(r"(?!x)x")
+        )
+        patterns[chunk_bounds] = (pattern, owners)
+    checked = 0
+    naming = 0
+    chars_naming: list[int] = []
+    chars_not: list[int] = []
+    sibling_counts: list[int] = []
+    for r in records:
+        if not r.synthesis or r.chunk_bounds not in patterns:
+            continue
+        pattern, owners = patterns[r.chunk_bounds]
+        own_forms = [f.lower() for f in (r.forms or []) if f] or [(r.focal_form or "").lower()]
+        named: set[str] = set()
+        for m in pattern.finditer(r.synthesis):
+            hit = m.group(0).lower()
+            if (owners.get(hit, set()) - {r.group_id}) and not _nested(hit, own_forms):
+                named.add(hit)
+        checked += 1
+        if named:
+            naming += 1
+            chars_naming.append(len(r.synthesis))
+            sibling_counts.append(len(named))
+        else:
+            chars_not.append(len(r.synthesis))
+    return {
+        "records_checked": checked,
+        "records_naming_a_sibling": naming,
+        "share": round(naming / checked, 4) if checked else None,
+        "mean_chars_naming": round(statistics.fmean(chars_naming), 1) if chars_naming else None,
+        "mean_chars_not_naming": round(statistics.fmean(chars_not), 1) if chars_not else None,
+        "mean_siblings_named": round(statistics.fmean(sibling_counts), 2) if sibling_counts else None,
     }
 
 

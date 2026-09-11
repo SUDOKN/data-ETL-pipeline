@@ -38,7 +38,18 @@ class ContractProductSynthesisNode(KeywordSynthesisNode):
     the pure-product branch the same way as :class:`ContractProductPhraseSearchNode`
     (custom_id computed as if field_type were ``KeywordTypeEnum.products``):
     the same search answers fold to the same records, so the LLM is asked once
-    and both branches read the one answer."""
+    and both branches read the one answer.
+
+    INV-3 (the synthesis eval's contract byte-copy invariant) failed on run
+    20260905T213127 — 510 (chunk, group) pairs where this branch's synthesis
+    differed from products'. The cause was not here: because every id this
+    node embeds is already answered (products asked first), the recursive
+    base's eager loop used to exit before this node's assessment pass, so no
+    retry ids were recorded on the contract bundle and the read path saw
+    group answers only, while products' read path resolved group vs retry.
+    Fixed 2026-09-10 in ``BaseLLMRecursiveExtractionNode.execute`` (the loop
+    keeps going while a pass embeds new ids); this node's code is unchanged
+    and stays a pure identity map onto products' requests."""
 
     def __init__(
         self,
