@@ -11,3 +11,11 @@ probes:
   expectation: A grade heading on the subject's own materials catalog is a conformity claim about stocked
     material, not an inert document title; the same designation must not be read oppositely across chunks.
     Both sampled majors were retried records — check the retried share.
+- id: HW-P5
+  status: active
+  added: '2026-09-11'
+  motivated_by: run 20260911T003500 — materials-catalog grade headings and accreditation badges read as documents (C13)
+  target: 'grade headings of the shape "## LOW ALLOY 4145: ASTM A29" (g3f931vc and siblings) and the LRQA accreditation badges naming certified sites (AS9100D, ISO 50001 — gt3wlksb and siblings)'
+  expectation: 'A "MATERIAL: STANDARD" heading on the subject''s own materials page is a supply-to-spec statement and an
+    accreditation badge naming the certified site is held-certification evidence; neither is "offering a document".
+    The same shape must be read the same way in every chunk (it was read both ways on 20260911T003500).'

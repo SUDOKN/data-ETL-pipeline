@@ -159,6 +159,101 @@ probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
 
+## STATE (2026-09-11, run `20260911T003500` — the focus run, judged on 10,467 records, paired against 20260905T213127)
+
+The first run on the focal-form statics (pv `TC4hc7…`, published 2026-09-11
+00:33), the own-scoped trigger, the first-answer tie and the eager-loop exit
+fix. Same 18 subjects, same 22,162 records (search replayed, the fold is
+unchanged), so every record pairs with its baseline twin on identical
+evidence. TAXONOMY.md changed between the runs (J7 added, J1 split, severity
+per record), so `taxonomy_version` differs and the whole population re-judged.
+
+**Mechanical (all 18 subjects):** delivery 22,162/22,162, every invariant
+passes — **INV-3 passes on all 18 contract cards** (17 of 18 failed before;
+the loop fix worked). Records re-asked by the trigger **82** (was 1,593),
+retry requests **42** (was 450), first-pass requests 1,598 (same);
+own-designation drops **0** of 2,484; scoped designation preservation 99.2%
+of tokens, 2,708 of 2,734 records fully; sibling-mention share **72.6%**
+(16,078 of 22,162; was 72.9%), mean chars naming vs not **350.3 vs 245.9**
+(was 359.8 vs 232.8), mean paragraph 321.7 chars (was 325); identical-
+synthesis records 899 in 405 within-request clusters (was 1,327); focal-form-
+absent 33; stage cost ≈$79 (32.4M input tokens; was ≈$96).
+
+**Judged population (design doc §7):** every record in an identical-snippet-
+set cluster (2,635 clusters, 7,467 records) + 3,000 singletons (all 1,050
+singletons the baseline run retried, plus 1,950 field-proportional at seed
+20260911) = 10,467 records, 70 Sonnet judge jobs from `JUDGE_PROMPT_TEMPLATE.md`
+(run copy in `history/runs/20260911T003500/JUDGE_PROMPT.md`), 128 verdict
+files, 0 malformed rows. Verification (`checks/verify_packets.py`,
+`checks/apply_corrections.py`): 831 rows re-read — both J3 fails, all 189
+majors, 623 random passes, and every J2/J6 fail of the five slices whose
+judges flagged the document rule — 23 rows changed (17 J2/J6 under-claims
+upgraded minor→major, 3 reseller "offers X" rows overturned to pass under the
+dealing rule, 3 passes turned to major fails). Ingested 10,467; 11,695
+records stay pending by design (`checks/paired_readout.py` for the pairing).
+
+**Paired result (10,463 pairs on identical evidence, baseline → this run):**
+
+| readout | baseline | this run |
+|---|---|---|
+| records with any fail | 6.7% (703) | **3.1% (326)** — 563 newly passing, 186 newly failing |
+| records with a major | 1.3% (141) | 2.0% (208) — see the rubric caveat |
+| the baseline-retried singletons (1,050), any fail | 26.5% | **5.9%** |
+| identical-evidence twins that flip pass/fail | 19 of 210 | **1 of 214** |
+| clusters with a failing member / mixed clusters | 136 / 45 | 93 / 30 |
+| J3 entity swaps | 0 | 2 |
+| J5 mis-scoping | 59 | 3 |
+| J1 fails / containment breaches / grounded-import notes | 497 / 323 / — | 187 / 27 / 210 |
+| J6 fails / J7 fails (new) / J2 fails | 162 / — / 97 | 234 / 128 / 107 |
+
+Per field this run: conformity 12.3% any-fail (51/416; 41 major),
+material_caps 3.8% (47/1,224), industries 3.7% (37/988), equipments 3.5%
+(24/684), products 2.9% (120/4,126), process_caps 1.6% (47/3,029).
+
+**Rubric caveat.** The like-for-like signals are any-fail, J3/J4/J5, twin
+flips and mixed clusters. The major count is NOT like-for-like: J7 did not
+exist (128 rows), the J1 split moved 210 page-imports from fail to
+pass-with-note, severity is now per record, and verification upgraded 17
+document-rule under-claims to major. Read "majors up" as "the rubric now
+names laundering and under-claim harder", not as a regression.
+
+**The retry axis is gone.** The population the old trigger re-asked failed at
+26.5% on the baseline and 5.9% here; only 82 records were re-asked this run.
+
+**Top defect classes this run (verified by reading):**
+1. *The document rule over-applied* — 65 verified J2+J6 under-claims where the
+   paragraph wrote "offers a document / no dealing beyond a title" for the
+   subject's OWN product-catalog bullets ("ready products you can purchase",
+   agstech), case-study titles that name the work ("Custom CNC Machining of
+   Aluminum Brackets", alecmfg), materials-catalog grade headings
+   (`## LOW ALLOY 4145: ASTM A29`, howcogroup) and certificate download links
+   (anchor, howcogroup). A one-paragraph statics issue; the conformity field's
+   12.3% is mostly this.
+2. *J7 agent laundering* — 128 rows: generic explainer/listicle copy and
+   application lists read as the subject's own dealing (fze, blackadvtech,
+   tanfel, lucasmilhaupt, howcogroup); the D11 laundering-rules run's target.
+3. *Parent voice dropped* — taylordunn's Waev supplier code and 3TG
+   statement voiced as Taylor-Dunn (24 J4 fails across four fields, 9 major
+   in conformity; new probe TD-P3); steelcraft's Allegion Declare labels (1).
+4. *Rep-agency principal default* — mathewsco products, 31 rows (MW-P1).
+5. *Upstream scrape fusion* — adjacent cells/bullets concatenated into fake
+   compound entities (decimal "Hard Coat Barrel Plating", "Cadmium Chromate";
+   pradeepmetals "PED 2014/68/EU,AD2000"), faithfully described by the model.
+
+**Probes:** 55 evaluated, 36 all-pass (incl. AC-P1/P2/P3 dealer stock, AG-P4
+reseller software, AL-P5 client gripper, BA-P1 listicle, FZ-P1/P2, TF-P4 the
+retry closer, SC-P4 KD frames), 19 with a fail (AB-P4/P5, AG-P6, AL-P3 7/50,
+AN-P3, BA-P2, DM-P2/P4, FZ-P3/P4/P5/P6/P8, HW-P2/P3, MW-P1 5/6, PM-P1, ST-P2,
+TD-P2 24/24 — the predicted cookie-policy/legal-vocabulary upstream leak, still
+reaching synthesis, not a synthesis defect).
+
+**D10 (fold clause-clip): the watch numbers did not move (72.6% vs 72.9%,
+350 vs 360 chars), so the design's condition is met literally — but the harm
+the watch proxied did not materialise: J3 2 of 10,467, twin flips 1 of 214,
+mixed clusters down a third. Recommendation to the user: do not build the
+clause-clip; spend the next run on the laundering rules (D11) and the
+document-rule wording. User decision pending.**
+
 ## STATE (2026-09-10 — Step 1 of the synthesis/grounding redesign BUILT, awaiting the focus run)
 
 Built 2026-09-10 per `docs_local/SYNTHESIS_GROUNDING_REDESIGN_2026-09-10.md`

@@ -11,7 +11,7 @@ grounded-import split, J2 own-designations clause, J4 parent-policy note,
 J7 agent laundering, products document-title bullet, severity per record).
 
 Fields: `{TAXONOMY}` path, `{FIELD}`, `{ORDER}` work-order path, `{START}`,
-`{END}`, `{N}`, `{RUN_ID}`, `{MODEL}` (Sonnet by the user's standing rule),
+`{END}`, `{N}`, `20260911T003500`, `{MODEL}` (Sonnet by the user's standing rule),
 `{SUBJECT}`, `{PART}`, `{OUT}` verdict file path.
 
 ---
@@ -54,7 +54,7 @@ your slice gets a row.
 TAXONOMY.md §Output. Echo `content_key`, `taxonomy_version`, `pv`,
 `evidence_sha256`, `subject`, `field`, `group_id`, `chunk_bounds`,
 `focal_form` unchanged from the work order. `first_judged_run` =
-`{RUN_ID}`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
+`20260911T003500`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
 you are running as is given below). `checks` carries J1–J7, each
 `{"verdict": "pass|fail|unclear", "severity": null|"minor"|"major", "note":
 "...", "quote": "..."}`; add a `"PROBE:<id>"` entry for every probe in the
@@ -114,23 +114,6 @@ not edit the work order, the taxonomy, or any other file in the repository.
   credited to the subject stays `major`.
 - A retried record (`retried: true`) is judged like any other; its co-pack
   is the retry request.
-- **The document rule (verified on run 20260911T003500).** "Offers a
-  document / no dealing beyond a title" is CORRECT for a bare list of
-  catalog, brochure or PDF titles with no framing. It is a J2+J6
-  under-claim (major when the tag is lost) when the record's snippets or the
-  chunk text frame the list as things the subject sells, supplies, makes or
-  holds: a product-catalog page that says "ready products ... which ones you
-  would like to purchase"; a case-study title whose own words name the
-  subject's work on the part ("Custom CNC Machining of Aluminum Brackets");
-  a materials-catalog grade heading (`## LOW ALLOY 4145: ASTM A29`) on the
-  subject's own materials page; and, in conformity_attestations, a
-  certificate title or download link (the field addendum says a certificate
-  title IS evidence). Write `document_rule: under-claim` or
-  `document_rule: applied` in the note so the class stays countable.
-- **Reseller and dealer stock.** "The manufacturer offers X" for a
-  third-party-branded item on the subject's own product page is licensed by
-  the dealing rule and is NOT a J4/J6 fail; it fails only when the paragraph
-  says the subject MAKES it, or drops a maker's name the snippet gives.
 
 **Discipline:** judge by reading, never by keyword; quote what convicts;
 `unclear` is honest when the evidence underdetermines it; probes apply only

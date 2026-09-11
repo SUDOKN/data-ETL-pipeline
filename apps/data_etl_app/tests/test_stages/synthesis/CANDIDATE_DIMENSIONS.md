@@ -195,6 +195,75 @@ into own NDT/Lean/QMS practice in 20+ records, plus an anonymous example shop's
 C4 was recorded as a single hedged instance; this run shows it asserting, in
 volume, on subjects whose sites carry a blog.
 
+---
+
+*The classes below came out of run `20260911T003500` (2026-09-11, the
+focal-form statics; 10,467 records judged, 831 verified). Each carries a
+regression probe in `expectations/<subject>/<field>.yaml` added 2026-09-11.*
+
+## C13 — Document rule over-applied to the subject's own catalog
+**Mechanism:** the statics' document rule ("a title in a list of literature,
+downloads, brochures ... shows the manufacturer offering a document and
+nothing further") is applied to evidence that is NOT a literature list: the
+subject's own product-catalog bullets on a page that says they are products
+for sale, case-study titles whose own words name the subject's work on the
+part, materials-catalog grade headings, and certificate download links. The
+paragraph concludes "no dealing beyond a document bearing its name" and a
+real tag is lost.
+**Verified examples:** agstech/products `gnl9lsyt` + 17 siblings ("ready
+products ... let us know which ones you would like to purchase" → "offers
+documentation for X"); alecmfg/products `gzkbdi1z`, `gn6we4ig`, `gsvxzo4k`,
+`gtvcp7f5` (case-study titles "Custom CNC Machining of Aluminum Mounting
+Brackets ..." → "no dealing beyond a document title"); howcogroup/
+conformity `g3f931vc` (`## LOW ALLOY 4145: ASTM A29` read as a document in
+one chunk and as supply-to-spec in another); anchor-mfg/conformity
+`gir8j6tq`, `gg5gsbjm`, `ggozr8r9` ("Click Here to View X Certificate" →
+"offers access to a downloadable document"). 65 rows stand after
+verification; 5 rows were the rule correctly applied.
+**Currently absorbed by:** J2 + J6, major when the tag is lost. **Why it
+deserves a name:** it is a one-paragraph statics issue (the rule needs "and
+the page frames the list as documents, not as things it sells or makes"),
+and it is the largest single source of majors in the conformity field.
+
+## C14 — Scrape fusion pseudo-entities (upstream)
+**Mechanism:** adjacent table cells or bullets concatenated without a
+separator by the Markdown extraction become one focal form, and the model
+faithfully describes a thing that does not exist.
+**Verified examples:** decimal/process_caps `g1iynzwu` "Hard Coat Barrel
+Plating", `gwt0xb1b` "Cadmium Chromate", `gldui96i` "Copper Etching" (the
+Metal Stamping page renders the same list as separate bullets);
+pradeepmetals/conformity `gjtut4id` "PED 2014/68/EU,AD2000-MERKBLATT W0"
+read as one certifying the other; decimal/industries `gxszk92j` "Defense
+Electronics" (two alphabetized cells).
+**Currently absorbed by:** J1 major (the model's paragraph is faithful, the
+entity is fake). **Why it deserves a name:** it is a scraper/fold defect the
+synthesis eval keeps paying for; the fix is in `html_to_markdown.py` /
+the fold's cell handling, not in a prompt.
+
+## C15 — Homonym bridging into a served sector
+**Mechanism:** an industries focal form that is also a word in the subject's
+own process or department name ("Energy" ← "Energy Beam Welding";
+"Laboratory" ← "Quality Laboratory"; "Packaging" ← the shipping service)
+gets its served-sector claim padded or invented from the subject's own
+activity.
+**Verified examples:** fzemanufacturing/industries `gbp366rp` (major, no
+checklist support for an energy sector at all), `gme3cycj`, `gqc7n8x2`,
+`ggasj17x` (minor, real tag padded); howcogroup/industries `gbp366rp`
+(ISO 50001 energy-management certification folded into the Energy sector).
+**Currently absorbed by:** J1/J6. **Why it deserves a name:** the sibling
+records that disambiguated transparently (`g8in1rji` "Department of Energy
+(DOE)") show the correct behaviour exists in the same run — a promptable
+contrast, and a mechanical nominator (focal form ⊂ an own process/department
+name) is cheap.
+
+## Watches confirmed on this run (not defects)
+- **Grounded import** (J1 pass + note): 210 of 10,467 judged records; flips
+  between identical-evidence twins fell from 19/210 to 1/214.
+- **Retry-path drift (C10):** the population the old trigger re-asked failed
+  at 26.5% on the baseline and 5.9% here; 82 records were re-asked this run
+  (was 1,593). C10 stays a candidate until a run with a non-trivial retry
+  population exists again.
+
 ## TAXONOMY.md edits — APPLIED 2026-09-10 (kept for the record)
 
 All three landed in the 2026-09-10 batch, together with the J1
