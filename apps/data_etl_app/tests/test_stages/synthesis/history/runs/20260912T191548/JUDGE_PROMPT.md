@@ -11,7 +11,7 @@ grounded-import split, J2 own-designations clause, J4 parent-policy note,
 J7 agent laundering, products document-title bullet, severity per record).
 
 Fields: `{TAXONOMY}` path, `{FIELD}`, `{ORDER}` work-order path, `{START}`,
-`{END}`, `{N}`, `{RUN_ID}`, `{MODEL}` (Sonnet by the user's standing rule),
+`{END}`, `{N}`, `20260912T191548`, `{MODEL}` (Sonnet by the user's standing rule),
 `{SUBJECT}`, `{PART}`, `{OUT}` verdict file path.
 
 ---
@@ -54,7 +54,7 @@ your slice gets a row.
 TAXONOMY.md §Output. Echo `content_key`, `taxonomy_version`, `pv`,
 `evidence_sha256`, `subject`, `field`, `group_id`, `chunk_bounds`,
 `focal_form` unchanged from the work order. `first_judged_run` =
-`{RUN_ID}`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
+`20260912T191548`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
 you are running as is given below). `checks` carries J1–J7, each
 `{"verdict": "pass|fail|unclear", "severity": null|"minor"|"major", "note":
 "...", "quote": "..."}`; add a `"PROBE:<id>"` entry for every probe in the
@@ -191,38 +191,6 @@ not edit the work order, the taxonomy, or any other file in the repository.
   "inspection template"): field-membership gate — J6 `pass` +
   `not_a_process: true`, never a J5/J6 fail for reading a delivered
   project's documentation as supplied.
-- **The field-membership gate is a SEVERITY rule everywhere (verified on run
-  20260912T191548, 7 packets — the judges' most-missed rule).** Before
-  writing `major`, ask whether the focal entity is a member of the field:
-  a case-study TITLE in products, the bare process "Welding" in products, a
-  T&C "raw material", a resale tax form in conformity_attestations, a
-  fragment like "institutions" in industries — no tag of the field can be
-  won or lost, so a refusal or a supplied dealing there is `minor` at most
-  (J6 `pass` + the `not_a_*` flag). The same entity judged in two fields
-  fails at most in the field it belongs to.
-- **A J2 `major` requires a matching J6 `fail`.** J6 `pass` means the tag
-  survived, so an under-claim or a dropped designation with J6 passing is
-  J2 `minor`.
-- **Read the whole sentence before the severity split.** "displays X as an
-  example of its metal stamping work, but the snippet does not specify any
-  further dealing" and "offers X … but the capacity is not specified" ASSERT
-  the dealing and hedge the mode: shape (b), `minor`. Only a paragraph that
-  refuses any dealing is shape (a).
-- **A generic process explainer does not assert.** "How does X work?" steps,
-  "Manufacturers use this process to…", a numbered how-to with no party: a
-  paragraph that declines the dealing there is correct even on the subject's
-  own site, unless the subject's own words on the same page claim the
-  process ("which we describe below" alone does not).
-- **Dealer/resale register.** On a dealer-shaped subject ("We sell several
-  types of industrial equipment from top brands"), "offers X" is licensed
-  by the reseller ruling; "offers X for sale, capacity unstated" is the
-  cleaner reading; neither is a `major` unless the paragraph writes owned
-  or operated machinery from resale stock.
-- **An internal record id in the prose** ("This snippet repeats the content
-  of record g…") is `wire_vocabulary: true`, not a J3 fail; there is no
-  "J3 minor".
-- **Do not copy a sibling's note onto a record you have not read**, and do
-  not score a record by its siblings' verdicts: open the chunk text.
 
 **Discipline:** judge by reading, never by keyword; quote what convicts;
 `unclear` is honest when the evidence underdetermines it; probes apply only

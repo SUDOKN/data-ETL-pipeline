@@ -321,6 +321,39 @@ statics republish (which empties the cache anyway), never mid-pass.
   kept mid-paragraph. Probe AG-P9. The tryout judge predicted it (JUDGE_RUN_A.md
   §7: the opener/closer template fires 39/39 on the weak model).
 
+- **C20 — Requirement rows read as delivered work, and the mirror.** A
+  case study's client-requirement / specification table row ("Weld map",
+  "WPS/PQR", "matte black anodized", "fully machined") is written as a
+  standing service the subject provides, or, in the mirror, a row the chunk
+  narrates as delivered is refused as "requirement only / capacity
+  unstated". alecmfg process_caps, run 20260911T223222 (J17/J18 + packet 09;
+  stage-2 `65feebc0…`, `ea18b271…`, `ce261d70…`). The two readings split
+  across sibling records of one subject. Ruling recorded in the template
+  (delivery narrated in the chunk → capability; otherwise a requirement).
+  Candidate for a probe on alecmfg process_caps.
+
+- **C21 — Sales-rep entries laundered under the list rule.** On a
+  manufacturers'-representative site, product-line entries whose own words
+  put the doing with an unnamed principal ("This American manufacturer…",
+  "They offer…", "Their equipment list includes…") are re-narrated as "the
+  subject offers X" once the list rule licenses the introducing frame:
+  mathewsco process_caps, run 20260912T191548, 17 J1+J6+J7 majors (run A: 5).
+  The doer clause held on the production-model tryout (39/39) but not on
+  this packing. Candidate fix: the judge's R2 of JUDGE_C16.md §7.6 (pin the
+  doer rule's precedence over the list rule) — needs a tryout on THESE
+  requests. Probe MW-P3.
+- **C22 — Bare-heading index and cross-link hedge (the C16 residue).** Items
+  under a bare-noun capabilities heading (`## Metal`, `## Additional
+  Capabilities`) or a "Related Products: X" cross-link on the subject's own
+  site are still hedged "capacity unstated" / "no dealing beyond the
+  listing" (tanfel process_caps 10, tanfel products 7, alecmfg material_caps
+  18 minor under a sentence that names the processes, not the materials).
+  Candidate fix: the judge's R1 (a carve-out that reads the entries and
+  names the bare-noun index). Probe TF-P7.
+- **C23 — Internal record id leaked into prose.** "This snippet repeats the
+  content of record gms7el81" (taylordunn process_caps g38bfn9n; agstech
+  process_caps gqic2e33): the wire-vocabulary ban does not cover ids. Watch.
+
 ## Watches confirmed on run 20260911T223222 (not defects)
 - Grounded import 269 of 10,055; twin flips 5/206 (was 1/206 — UP, the
   sibling inconsistency the stage-2 graders could not score); mixed clusters

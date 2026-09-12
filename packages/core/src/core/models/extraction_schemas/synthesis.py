@@ -188,9 +188,18 @@ def _salvage_truncated_syntheses(
 def parse_synthesis_response(gpt_response: Optional[str]) -> SynthesesByGroupId:
     """The wire's answered records as the group_id → answer map.
 
-    Raises ``ValueError`` on an empty response, a response the strict schema
+    Raises ``ValueError`` on an empty response or a response the strict schema
     would not have produced (unless it is a truncated one that salvages — see
-    ``_salvage_truncated_syntheses``), or an id answered twice.
+    ``_salvage_truncated_syntheses``).
+
+    An id answered more than once is DROPPED with every answer it got, logged,
+    and left for the node's retry pass (2026-09-12): a repeated id means the
+    model confused ids, so one of its paragraphs belongs to a sibling whose
+    own id went unanswered, and there is no telling which. Dropping both
+    makes the repeated id and the overwritten sibling ``missing`` together,
+    and the retry re-asks exactly those. Raising here instead re-asked the
+    whole request under the parse-error cap and, when the model repeated the
+    defect, cost a subject two fields (run 20260911T223222).
     """
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
@@ -211,15 +220,22 @@ def parse_synthesis_response(gpt_response: Optional[str]) -> SynthesesByGroupId:
         )
         answered_records = salvaged
 
-    by_id: SynthesesByGroupId = {}
+    answers_by_id: dict[str, list[str]] = {}
     for answered in answered_records:
-        if answered.record_id in by_id:
-            raise ValueError(
-                f"parse_synthesis_response: Duplicate record_id "
-                f"{answered.record_id!r} in synthesis response"
-            )
-        by_id[answered.record_id] = SynthesisAnswer(synthesis=answered.synthesis)
-    return by_id
+        answers_by_id.setdefault(answered.record_id, []).append(answered.synthesis)
+    repeated = [rid for rid, answers in answers_by_id.items() if len(answers) > 1]
+    if repeated:
+        logger.error(
+            f"parse_synthesis_response: {len(repeated)} record id(s) answered more than "
+            f"once — {repeated}; every answer for them is dropped and left for the "
+            f"retry pass (the response answered {len(answered_records)} records under "
+            f"{len(answers_by_id)} distinct ids)"
+        )
+    return {
+        rid: SynthesisAnswer(synthesis=answers[0])
+        for rid, answers in answers_by_id.items()
+        if len(answers) == 1
+    }
 
 
 # --- downstream (D16) -------------------------------------------------------

@@ -72,7 +72,7 @@ def test_schema_is_one_strict_mode_accepts():
     assert_strict_schema_supported(SYNTHESIS_RESPONSE_SCHEMA, where="phrase_synthesis")
 
 
-def test_parse_builds_the_map_and_rejects_duplicates_and_empties():
+def test_parse_builds_the_map_drops_repeated_ids_and_rejects_empties():
     good = {"syntheses": [
         {"record_id": "g4k9x2m",
          "synthesis": "[the manufacturer] machines the Paladin™ PW Series."},
@@ -87,12 +87,23 @@ def test_parse_builds_the_map_and_rejects_duplicates_and_empties():
     assert parse_synthesis_response(DUMMY_SYNTHESIS_RESPONSE_CONTENT) == {}
     with pytest.raises(ValueError, match="Empty or invalid"):
         parse_synthesis_response("")
+    # An id answered twice is dropped with BOTH its answers (2026-09-12): one
+    # of them belongs to a sibling whose id the model overwrote, and the retry
+    # pass re-asks the repeated id and the sibling together. Siblings answered
+    # once are held as usual.
     dup = {"syntheses": [
+        {"record_id": "g1", "synthesis": "a"},
+        {"record_id": "g2", "synthesis": "c"},
+        {"record_id": "g1", "synthesis": "b"},
+    ]}
+    assert {rid: a.synthesis for rid, a in parse_synthesis_response(json.dumps(dup)).items()} == {
+        "g2": "c"
+    }
+    only_dup = {"syntheses": [
         {"record_id": "g1", "synthesis": "a"},
         {"record_id": "g1", "synthesis": "b"},
     ]}
-    with pytest.raises(ValueError, match="Duplicate record_id 'g1'"):
-        parse_synthesis_response(json.dumps(dup))
+    assert parse_synthesis_response(json.dumps(only_dup)) == {}
     # The old shapes — object-keyed, dispositions, and the per-snippet context
     # quotes dropped 2026-09-05 — must not validate.
     with pytest.raises(ValueError, match="Invalid response"):

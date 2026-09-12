@@ -45,11 +45,18 @@ def build(
     per_packet: int,
     seed: int = 20260911,
     calibration_files: tuple[str, ...] = (),
+    only: tuple[str, ...] = (),
+    first_packet: int = 1,
 ) -> dict[str, Any]:
     """``calibration_files``: verdict-file basenames whose EVERY J2/J6 fail
     (not only the majors) joins the packets under the reason
     ``"calibration: document rule"`` — for slices a judge flagged as
-    turning on one calibration question."""
+    turning on one calibration question.
+
+    ``only``: verdict-file basename prefixes; when given, ONLY those files are
+    packeted and the existing packets are kept, numbered from
+    ``first_packet`` — for verdicts added to an already-verified run (2026-09-12:
+    a subject's two fields re-run and judged after the run's verification)."""
     run_dir = scorecard.history_dir(run_id)
     orders: dict[tuple[str, str], dict[str, dict[str, Any]]] = {}
     for path in (run_dir / "pending" / "judged").glob("*__*.json"):
@@ -61,6 +68,8 @@ def build(
     items: list[dict[str, Any]] = []
     summary: dict[str, Any] = {"files": 0, "rows": 0, "j3_fails": 0, "majors": 0, "passes_sampled": 0}
     for path in sorted((run_dir / "verdicts").glob("*.jsonl")):
+        if only and not path.name.startswith(only):
+            continue
         rows: list[dict[str, Any]] = []
         for line in path.read_text(encoding="utf-8").splitlines():
             try:
@@ -93,17 +102,21 @@ def build(
             items.append({"reason": reason, "verdict_file": str(path), "verdict": row, "record": record})
     out_dir = run_dir / "verify"
     out_dir.mkdir(exist_ok=True)
-    for old in out_dir.glob("packet_*.json"):
-        old.unlink()
+    if not only:
+        for old in out_dir.glob("packet_*.json"):
+            old.unlink()
     packets = []
     for k in range(0, len(items), per_packet):
-        packet_path = out_dir / f"packet_{k // per_packet + 1:02d}.json"
+        number = first_packet + k // per_packet
+        packet_path = out_dir / f"packet_{number:02d}.json"
         packet_path.write_text(json.dumps(items[k:k + per_packet], indent=1, ensure_ascii=False, default=str), encoding="utf-8")
         packets.append({"path": str(packet_path), "items": len(items[k:k + per_packet]),
-                        "corrections": str(out_dir / f"corrections_{k // per_packet + 1:02d}.jsonl")})
+                        "corrections": str(out_dir / f"corrections_{number:02d}.jsonl")})
     summary["items"] = len(items)
     summary["packets"] = packets
-    (out_dir / "VERIFY_INDEX.json").write_text(json.dumps(summary, indent=1), encoding="utf-8")
+    summary["only"] = list(only)
+    index_name = "VERIFY_INDEX.json" if not only else f"VERIFY_INDEX_{first_packet:02d}.json"
+    (out_dir / index_name).write_text(json.dumps(summary, indent=1), encoding="utf-8")
     return summary
 
 
@@ -118,9 +131,23 @@ def main() -> None:
         default=[],
         help="verdict file basename whose every J2/J6 fail is verified (repeatable)",
     )
+    parser.add_argument(
+        "--only",
+        action="append",
+        default=[],
+        help="verdict-file basename prefix to packet (repeatable); keeps existing packets",
+    )
+    parser.add_argument(
+        "--first-packet", type=int, default=1, help="number of the first packet written"
+    )
     args = parser.parse_args()
     summary = build(
-        args.run, args.passes, args.per_packet, calibration_files=tuple(args.calibration_file)
+        args.run,
+        args.passes,
+        args.per_packet,
+        calibration_files=tuple(args.calibration_file),
+        only=tuple(args.only),
+        first_packet=args.first_packet,
     )
     print(json.dumps({k: v for k, v in summary.items() if k != "packets"} | {"packets": len(summary["packets"])}, indent=1))
 

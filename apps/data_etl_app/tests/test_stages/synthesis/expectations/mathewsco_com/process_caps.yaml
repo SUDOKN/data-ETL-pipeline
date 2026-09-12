@@ -1,4 +1,19 @@
 subject: mathewsco.com
 field: process_caps
 eval_set_version: 1
-probes: []
+probes:
+- id: MW-P3
+  status: active
+  added: '2026-09-12'
+  motivated_by: 'C21 (run 20260912T191548): on the Kansas Product Line page, entries whose own words say
+    ''This American manufacturer…'', ''They offer…'', ''Their equipment list…'' belong to an unnamed principal;
+    under the C16 list rule the paragraphs re-narrated them as ''Mathews & Company offers X'' — 17 J1+J6+J7
+    majors (run A: 5). The doer clause held on the 2026-09-09 packing of this site (0/39) but not on the
+    production packing.'
+  target: Kansas Product Line entries whose own words put the doing with an unnamed principal ('This American
+    manufacturer', 'They offer', 'Their equipment list'), groups gwnanq35, grrakqm9, gl1imbur,
+    gnwwkljf, gcwci3hl, gdt982tg, gpoeco15, gjpkpgsp, gvoll26g, gkxhdeph, ghhnmcs9, g63nk11h, gbyy3ii7,
+    gb7lm6fw, gcsfu74l
+  expectation: The principal keeps the doing; Mathews & Company's dealing is listing or representing it,
+    capacity unstated where the entry does not say who makes it. 'Mathews & Company offers X' there is
+    a J7+J4+J6 major.

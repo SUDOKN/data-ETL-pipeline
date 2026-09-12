@@ -159,18 +159,86 @@ probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
 
-## STATE (2026-09-12, run `20260911T223222` — run A, the shared-block statics, judged on 10,055 records, paired against 20260911T003500)
+## STATE (2026-09-12, run `20260912T191548` — the C16 pass: run A + four validated edits, judged on 10,551 records, paired against run A 20260911T223222)
+
+The pass validated on the production model in `docs_local/field_requirements_survey_20260911/tryout/pass2/JUDGE_C16.md`
+(design doc §19.7): run A's static + the wire-vocabulary ban (incl. "snippet", "the manufacturer"), the doer
+clause, the list rule ("an item in a list takes the dealing its introducing sentence gives it … never the
+doer"), and the first-person rule. Six statics byte-identical (md5 `18d3e093…`), published 2026-09-12 by the
+user, 18 subjects, stop-after-synthesis, 126/126 dumps, 22,162 records, 0 invariant failures; the
+duplicate-id parser tolerance did not need to fire. Mechanical vs run A: mean paragraph 439 → 417 chars,
+output tokens −4.5%, retried records 155 → 211, identical-synthesis records 315 → 425, focal-form-absent 0 → 2.
+
+**Judged population:** `judged_population.py --run 20260912T191548 --baseline 20260911T223222
+--singletons-from-baseline --singletons 4000` = 7,467 cluster + 117 baseline-retried + 2,967 singletons =
+10,551; `judge_jobs.py` → 70 Sonnet jobs (`verdict_coverage.py`: 10,551/10,551, 0 malformed, 0 duplicates);
+verification 7 Opus packets, 822 items (6 J3, 170 majors, 24 calibration J2/J6 from the 14 slices whose
+judges flagged the list rule, 622 passes), **77 rows changed** (J6 major→pass 40, J6 major→minor 22, J2
+major→minor 22, J2 major→pass 9, J1 major→minor/pass 15, J3 major→pass 3, J7 major→pass 5, …). Ingested 10,551.
+
+**Paired result (10,503 pairs on identical evidence, run A → this run):**
+
+| readout | run A | this run |
+|---|---|---|
+| records with any fail | 3.4% (356) | **2.8% (293)** — 229 newly passing, 166 newly failing |
+| records with a major | 1.4% (152) | **1.0% (106)** |
+| J2 under-claim / J6 serviceability | 186 / 230 | **114 / 152** |
+| J7 agent laundering / J4 party / J1 faithfulness | 56 / 46 / 133 | 51 / 43 / 121 |
+| J3 entity swaps | 0 | 2 (alecmfg products: a paragraph about a sibling entity) |
+| identical-evidence twins that flip | 5 of 214 | 5 of 214 |
+| mixed clusters / containment breaches | 34 / 24 | 34 / **3** |
+
+Per field (any-fail / major): conformity 26/417 = 6.2% / 11; equipments 28/687 = 4.1% / 3; industries 27/988
+= 2.7% / 5; material_caps 41/1,241 = 3.3% / 2; process_caps 91/3,033 = 3.0% / 44; products 83/4,185 = 2.0% / 41.
+
+**Stage 2 (answerability, 900 paired, six Opus graders;
+`docs_local/field_requirements_survey_20260911/READOUT_PAIRED_20260912T191548.md`):** vs the 003500 baseline,
+D capacity 28.1% → 8.8%, G frame 29.2% → 2.2%, C party 13.0% → 2.4%, H 7.7% → 1.4%; vs run A (same 900):
+C 6.3% → 2.4%, G 6.4% → 2.2%, D 10.0% → 8.8% (61 fixed / 50 broken), field item 12.8% → 8.6%; fully clean
+per field run A → this run: conformity 130 → 134, equipments 114 → 119, industries 121 → 128, material_caps
+127 → 124, process_caps 120 → 128, products 103 → 122.
+
+**Reading.** The list rule did what the production-model tryout predicted: the own-listing under-claim class
+fell (J2 186 → 114, J6 230 → 152; tanfel process_caps 17 majors → 10 on that chunk, agstech's private-label
+catalog 18/18 correct), majors fell to 1.0%, and the frame is now carried on 98% of stage-2 records. The
+cost is exactly the class the pass was designed to avoid, on one subject: **the sales representative
+(mathewsco process_caps) carries 17 J1+J6+J7 majors** on "Kansas Product Line" entries whose own words say
+"This American manufacturer…", "They offer…", "Their equipment list…" — re-narrated as "Mathews & Company
+offers X" (run A: 5 fails on that class; the tryout request, a different packing of the same site, showed 0
+under this static). Net J7 56 → 51 because other sites improved. Residue classes: bare-noun capability
+indexes and "Related Products" cross-links still hedged (tanfel 10 records; alecmfg material_caps 18 minors
+under "materials available for the manufacturing processes we offer"); case-study titles read both ways
+inside one subject (alecmfg, AL-P8); parent voice untouched (taylordunn TD-P3 9 fails); wire vocabulary
+persists on 21 rows incl. two internal record-id leaks ("This snippet repeats the content of record …");
+two J3 content swaps. Probes: MW-P1 9/9 pass (its named groups), FZ-P1/P2/P3 pass, AG-P7 20/20 pass (the
+document rule on the private-label catalog is fixed), AG-P6 5 fail (disjunction collapsed to one standard),
+TD-P3 9 fail / 3 pass, PM-P3 3 fail / 7 pass, TF-P6 1 fail / 3 pass.
+
+## STATE (2026-09-12, run `20260911T223222` — run A, the shared-block statics, judged on 10,503 records, paired against 20260911T003500; COMPLETED with alecmfg's two re-run fields the same day)
 
 The first run on the field-specific redesign's SHARED BLOCK (design doc §17;
 requirements doc `docs_local/SYNTHESIS_FIELD_REQUIREMENTS_2026-09-11.md`): the
 six statics byte-identical, pins `63ed7e98…`, published 2026-09-11 22:30Z.
 Same 18 subjects; search replayed so every record pairs on identical evidence.
-**alecmfg process_caps and material_caps are MISSING** (a synthesis response
-answered one record id twice with two paragraphs; the parser raises on a
-duplicate id; three re-asks repeated it; the orchestrator dropped the subject
-at process_caps and material_caps never ran) — 21,315 records, 124 of 126
-dumps. Two INV-1 flags (blackadvtech, pradeepmetals process_caps) are
-`unknown_answer_ids` only: a mangled id echo, recovered by the retry pass.
+**alecmfg process_caps and material_caps were missing on the first pass** (a
+synthesis response answered one record id twice with two paragraphs; the
+parser raised on a duplicate id; three re-asks repeated it; the orchestrator
+dropped the subject at process_caps and material_caps never ran — 124 of 126
+dumps). **Fixed and completed 2026-09-12:** `parse_synthesis_response` now
+DROPS a repeated id with both its answers and the ordinary under-answer retry
+re-asks it with the sibling it overwrote (`packages/core/.../synthesis.py`;
+tests in `test_synthesis_wire.py` and `test_synthesis_node_passes.py`); the
+user re-ran alecmfg alone into run A's folder on run A's pins (the four
+finished fields replayed byte-identically; process_caps re-asked exactly
+`gdaltkrb` + `gdohgsgl` in one retry request) — 126 of 126 dumps, 22,162
+records. The two fields were then pulled, added to the population
+(`judged_population.py … --singletons 4000` so the old population stays a
+strict subset: +448, −0), judged (J16–J19, Sonnet), verified (packet 09, Opus,
+62 items, 9 rows changed; `verify_packets.py --only … --first-packet 9`),
+ingested, and paired; the stage-2 sample gained its 35 missing rows (two Opus
+graders) — 900 of 900 paired. Two INV-1 flags (blackadvtech, pradeepmetals
+process_caps) are `unknown_answer_ids` only: a mangled id echo, recovered by
+the retry pass.
 
 **Mechanical (contract excluded):** retried records 152 (was 82), retry
 requests 46 (42), first-pass 1,550; focal-form-absent **0** (was 33);
@@ -181,8 +249,9 @@ cost ≈$85 (was ≈$79); own-designation drops 0.
 **Judged population:** `checks/judged_population.py --singletons-from-baseline`
 (new flag: stratum B drawn from the baseline's JUDGED singletons so every
 singleton pairs) = 7,133 cluster + 71 baseline-retried + 2,850 singletons =
-10,054 (+1 orphan); `checks/judge_jobs.py` → 66 Sonnet jobs;
-`checks/verdict_coverage.py` (new) → 10,055/10,055 rows, 0 malformed, 0
+10,054 (+1 orphan) on the first pass, 10,502 (+1) once alecmfg's two fields
+were added; `checks/judge_jobs.py` → 66 Sonnet jobs, then 4 more (J16–J19);
+`checks/verdict_coverage.py` (new) → 10,503/10,503 rows, 0 malformed, 0
 duplicates. Two jobs died on the 64k output-token cap (agents narrating
 records into their replies) and were relaunched with a terse-output
 instruction. Verification: 8 Opus packets, 824 items (3 J3, 199 majors, 604
@@ -191,28 +260,34 @@ J6 major→minor 26, J1 major→pass 19, J6 major→pass 13, J3 major→pass 3, 
 pass→fail minor for the Waev parent voice in process_caps); the rulings that
 emerged are in `JUDGE_PROMPT_TEMPLATE.md`. Ingested 10,055.
 
-**Paired result (10,019 pairs, baseline → this run):**
+**Paired result (10,467 pairs — the FULL population, alecmfg included; baseline → this run):**
 
 | readout | baseline | this run |
 |---|---|---|
-| records with any fail | 3.2% (316) | 3.4% (341) — 232 newly passing, 257 newly failing |
-| records with a major | 2.0% (199) | **1.5% (147)** |
-| J7 agent laundering / J4 party / J1 faithfulness | 120 / 64 / 180 | **51 / 41 / 126** |
-| J2 under-claim / J6 serviceability | 107 / 226 | **178** / 218 |
-| J3 entity swaps | 1 | **0** |
-| identical-evidence twins that flip | 1 of 206 | 5 of 206 |
-| mixed clusters | 27 | 32 |
+| records with any fail | 3.1% (326) | 3.4% (355) — 236 newly passing, 265 newly failing |
+| records with a major | 2.0% (208) | **1.5% (152)** |
+| J7 agent laundering / J4 party / J1 faithfulness | 128 / 70 / 187 | **56 / 46 / 132** |
+| J2 under-claim / J6 serviceability | 107 / 234 | **186** / 230 |
+| J3 entity swaps | 2 | **0** |
+| identical-evidence twins that flip | 1 of 214 | 5 of 214 |
+| mixed clusters | 30 | 34 |
 
-Per field (any-fail / major): conformity 43/417 = 10.3% / 26; equipments
-18/686 = 2.6% / 9; industries 23/988 = 2.3% / 12; material_caps 47/1,139 =
-4.1% / 14; process_caps 94/2,668 = 3.5% / 34; products 117/4,157 = 2.8% / 52.
+(The 10,019-pair readout before alecmfg's two fields: any-fail 3.2% → 3.4%,
+majors 2.0% → 1.5%, J7 120 → 51, J2 107 → 178 — same reading.) alecmfg's
+two fields themselves: material_caps 87 rows, 2 fails; process_caps 361 rows,
+25 fails after verification — the same shapes as the rest of the run (own
+listings hedged, case-study titles read both ways, client-requirement table
+rows read as delivered). Per field before alecmfg (any-fail / major):
+conformity 43/417 = 10.3% / 26; equipments 18/686 = 2.6% / 9; industries
+23/988 = 2.3% / 12; material_caps 47/1,139 = 4.1% / 14; process_caps 94/2,668
+= 3.5% / 34; products 117/4,157 = 2.8% / 52.
 
 **Stage 2 (answerability, the eval's field-specific second stage —
 `docs_local/field_requirements_survey_20260911/READOUT_PAIRED_20260911T223222.md`,
-865 paired records, Opus):** capacity absent/contradicted 28.6% → 9.4%, frame
-28.2% → 6.4%, party 12.8% → 6.5%; fully clean per field conformity 94→130,
-equipments 110→114, industries 97→121, material_caps 62→123, process_caps
-73→103, products 28→103.
+900 paired records, Opus; 865 on the first pass):** capacity absent/contradicted
+28.1% → 10.0%, frame 29.2% → 6.4%, party 13.0% → 6.3%; fully clean per field
+conformity 94→130, equipments 110→114, industries 97→121, material_caps
+68→127, process_caps 77→120, products 28→103.
 
 **Reading.** The shared block removed laundering (J7 −58%, J4 −36%, majors
 2.0% → 1.5%, J3 → 0) and made paragraphs carry the frame and the capacity;

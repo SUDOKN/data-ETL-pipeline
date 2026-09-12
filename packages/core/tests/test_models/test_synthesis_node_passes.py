@@ -278,6 +278,86 @@ async def test_pass_two_assesses_once_retries_only_the_missing_and_the_result_re
 
 
 @pytest.mark.asyncio
+async def test_a_record_answered_twice_is_re_asked_together_with_the_sibling_it_overwrote():
+    """2026-09-12: one production response answered a record id twice with two
+    different paragraphs and left a sibling unanswered (the sibling's id was
+    overwritten). The parser used to raise, the parse-error retry re-asked the
+    whole request three times, the model repeated the defect, and the subject
+    lost two fields. Now the repeated id is dropped with both its answers and
+    the ordinary under-answer retry re-asks it together with the sibling —
+    through the real assess path, not a stub."""
+    metadata = _metadata(max_entries=50)
+    bundle, ctx = _bundle(), _ctx()
+    node = _SynthesisNode({"s0": _search(["Aluminum", "Brass", "Lead"])})
+    await node.embed_request_ids(SUBJECT, ctx, metadata, {CHUNK: bundle}, T0)
+    (group_req_id,) = bundle.llm_phrase_synthesis_req_ids
+    (req,) = await node.create_batch_requests(
+        subject_unique_id=SUBJECT,
+        scraped_text_file=cast(Any, SimpleNamespace(text=TEXT)),
+        missing_request_ids={group_req_id},
+        metadata=metadata,
+        chunked_request_map={CHUNK: bundle},
+        pipeline_context=ctx,
+        timestamp=T0,
+        eager=True,
+    )
+    user_message = req.request.body.user_message()
+    from core.services.phrase_blocks_contract import sent_record_ids_from_user_message
+
+    sent = sent_record_ids_from_user_message(user_message) or []
+    assert len(sent) == 3
+    # aluminum answered twice (the second paragraph is really brass's), brass
+    # never answered, lead answered once
+    twice = json.dumps({"syntheses": [
+        {"record_id": sent[0], "synthesis": "aluminum text"},
+        {"record_id": sent[0], "synthesis": "brass text under aluminum's id"},
+        {"record_id": sent[2], "synthesis": "lead text"},
+    ]})
+    node.complete = True
+    node.completed = {group_req_id: _request(twice, user_message)}
+    await node.embed_request_ids(SUBJECT, ctx, metadata, {CHUNK: bundle}, T0)
+    # no parse error was recorded (that path touches Mongo and would have
+    # raised here); the retry names the repeated id AND the overwritten sibling
+    assert bundle.llm_phrase_synthesis_retry_record_ids == [sent[0], sent[1]]
+    (retry_id,) = bundle.llm_phrase_synthesis_retry_req_ids
+    (retry_req,) = await node.create_batch_requests(
+        subject_unique_id=SUBJECT,
+        scraped_text_file=cast(Any, SimpleNamespace(text=TEXT)),
+        missing_request_ids={retry_id},
+        metadata=metadata,
+        chunked_request_map={CHUNK: bundle},
+        pipeline_context=ctx,
+        timestamp=T0,
+        eager=True,
+    )
+    retry_message = retry_req.request.body.user_message()
+    assert sent_record_ids_from_user_message(retry_message) == [sent[0], sent[1]]
+    node.completed[retry_id] = _request(
+        _syntheses({sent[0]: "aluminum text (retry)", sent[1]: "brass text (retry)"}),
+        retry_message,
+    )
+    result = await node.get_result(
+        subject_unique_id=SUBJECT,
+        field_type=cast(Any, _Field()),
+        chunk_bounds=CHUNK,
+        extraction_bundle=bundle,
+        completed_request_map=node.completed,
+        timestamp=T0,
+        subject_text=TEXT,
+        verb_fold=False,
+        snippet_radius=0,
+    )
+    assert {gid: a.synthesis for gid, a in result.syntheses.items()} == {
+        sent[0]: "aluminum text (retry)",
+        sent[1]: "brass text (retry)",
+        sent[2]: "lead text",
+    }
+    assert result.not_synthesized == [] and result.answer.unknown_answer_ids == []
+    dump = build_synthesis_dump(result, subject_name="Acme Example")
+    assert dump["summary"]["synthesized"] == 3 and dump["summary"]["retried"] == [sent[0], sent[1]]
+
+
+@pytest.mark.asyncio
 async def test_an_answered_record_that_drops_designations_is_retried_and_the_better_answer_wins():
     """2026-09-02 (Phase B): the under-enumeration conservation check. The
     first answer names the focal form but drops the designations its snippets
