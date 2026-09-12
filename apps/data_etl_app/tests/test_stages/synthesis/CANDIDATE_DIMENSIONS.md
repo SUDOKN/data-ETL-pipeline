@@ -292,3 +292,36 @@ J2 own-designations clause (design doc D17). Nothing below is pending.
 Editing TAXONOMY.md changes `taxonomy_version` and empties the verdict cache
 for every field, so make these edits in the window right after a synthesis
 statics republish (which empties the cache anyway), never mid-pass.
+
+## Candidates from run 20260911T223222 (run A, the shared block) — added 2026-09-12
+
+- **C16 — Own-listing hedge (the "capacity unstated" over-fire).** The statics'
+  new sentence ("where the snippets show a dealing but leave its capacity open
+  … say the capacity is unstated") fires on bare items under the subject's OWN
+  introducing sentence or page frame ("Our Capabilities:", "we provide the
+  following services:", "Our inventory … includes:", a grade heading on the
+  own materials page, an own badge): 160 records (84 major), the whole of the
+  J2 rise (107 → 178). Two shapes: REFUSES any dealing (major) vs ASSERTS the
+  dealing and hedges the in-house/partner or make/source MODE (minor). Judged
+  under J2+J6 with `frame_rule: violated`; probes TF-P6, SC-P9. Promotable as a
+  J2 clause ("a list item takes its introducing sentence's dealing") rather
+  than a new dimension.
+- **C17 — Frame named, wrong page.** Requiring the paragraph to name the frame
+  created a minor class: gallery hub named for its sub-gallery (agstech ×17),
+  Facilities pages placed under "OUR PRODUCTS" from a flat nav string
+  (pradeepmetals ×22), a bio under "### clientele" named as "Our Team"
+  (blackadvtech). ≈62 J1 minor; attribution intact. Probe PM-P3. Mechanical
+  nominator possible: paragraph names a heading absent from the record's
+  `locations`.
+- **C18 — Wire vocabulary in the paragraph.** "The focal_form …" / "The focal
+  entity …" openers (67 rows noted; 4 in conformity, 2 in taylordunn
+  process_caps). Not a fail; a watch on the statics' vocabulary. Probe TD-P4.
+- **C19 — Closer restates a hedge as unconditional.** The formulaic closing
+  sentence ("This shows … holds AS9100") collapses a disjunction or quantifier
+  kept mid-paragraph. Probe AG-P9. The tryout judge predicted it (JUDGE_RUN_A.md
+  §7: the opener/closer template fires 39/39 on the weak model).
+
+## Watches confirmed on run 20260911T223222 (not defects)
+- Grounded import 269 of 10,055; twin flips 5/206 (was 1/206 — UP, the
+  sibling inconsistency the stage-2 graders could not score); mixed clusters
+  27 → 32; J3 0.

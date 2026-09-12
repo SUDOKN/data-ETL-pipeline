@@ -34,9 +34,9 @@ from typing import Any
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from checks import loading, pull, scorecard, slices  # type: ignore[no-redef]
+    from checks import loading, paired_readout, pull, scorecard, slices  # type: ignore[no-redef]
 else:
-    from . import loading, pull, scorecard, slices
+    from . import loading, paired_readout, pull, scorecard, slices
 
 Key = tuple[str, str, str, str]
 
@@ -69,7 +69,15 @@ def baseline_retried(baseline_run: str) -> set[Key]:
     return out
 
 
-def build(run_id: str, baseline_run: str, singletons: int, seed: int, target: int, max_records: int) -> dict[str, Any]:
+def build(
+    run_id: str,
+    baseline_run: str,
+    singletons: int,
+    seed: int,
+    target: int,
+    max_records: int,
+    from_baseline_judged: bool = False,
+) -> dict[str, Any]:
     index = pull.load_evidence_index(run_id)
     if index is None:
         raise SystemExit(f"run {run_id}: no evidence snapshot — run run_eval.py --pull first")
@@ -83,6 +91,13 @@ def build(run_id: str, baseline_run: str, singletons: int, seed: int, target: in
     singles = [k for k in all_keys if k not in clusters]
     stratum_a = [k for k in singles if k in retried]
     rest = [k for k in singles if k not in retried]
+    if from_baseline_judged:
+        # Stratum B = the singletons the BASELINE run judged (its ledger rows), so
+        # every singleton pairs on identical evidence. Needed once the baseline is
+        # itself a judged SUBSET (2026-09-11: run 20260911T003500 judged 10,467 of
+        # 22,162); a fresh random draw would pair almost nothing outside clusters.
+        judged = paired_readout.load_baseline(baseline_run)
+        rest = [k for k in rest if k in judged]
     need = max(0, singletons - len(stratum_a))
     by_field: dict[str, list[Key]] = defaultdict(list)
     for k in rest:
@@ -159,8 +174,26 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=20260911)
     parser.add_argument("--target", type=int, default=175)
     parser.add_argument("--max", dest="max_records", type=int, default=250)
+    parser.add_argument(
+        "--singletons-from-baseline",
+        action="store_true",
+        help="draw the random singleton stratum only from singletons the baseline run judged, so every singleton pairs",
+    )
     args = parser.parse_args()
-    print(json.dumps(build(args.run, args.baseline, args.singletons, args.seed, args.target, args.max_records), indent=1))
+    print(
+        json.dumps(
+            build(
+                args.run,
+                args.baseline,
+                args.singletons,
+                args.seed,
+                args.target,
+                args.max_records,
+                from_baseline_judged=args.singletons_from_baseline,
+            ),
+            indent=1,
+        )
+    )
 
 
 if __name__ == "__main__":

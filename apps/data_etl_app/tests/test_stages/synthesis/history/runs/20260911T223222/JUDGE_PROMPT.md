@@ -11,7 +11,7 @@ grounded-import split, J2 own-designations clause, J4 parent-policy note,
 J7 agent laundering, products document-title bullet, severity per record).
 
 Fields: `{TAXONOMY}` path, `{FIELD}`, `{ORDER}` work-order path, `{START}`,
-`{END}`, `{N}`, `{RUN_ID}`, `{MODEL}` (Sonnet by the user's standing rule),
+`{END}`, `{N}`, `20260911T223222`, `{MODEL}` (Sonnet by the user's standing rule),
 `{SUBJECT}`, `{PART}`, `{OUT}` verdict file path.
 
 ---
@@ -54,7 +54,7 @@ your slice gets a row.
 TAXONOMY.md §Output. Echo `content_key`, `taxonomy_version`, `pv`,
 `evidence_sha256`, `subject`, `field`, `group_id`, `chunk_bounds`,
 `focal_form` unchanged from the work order. `first_judged_run` =
-`{RUN_ID}`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
+`20260911T223222`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
 you are running as is given below). `checks` carries J1–J7, each
 `{"verdict": "pass|fail|unclear", "severity": null|"minor"|"major", "note":
 "...", "quote": "..."}`; add a `"PROBE:<id>"` entry for every probe in the
@@ -143,38 +143,6 @@ not edit the work order, the taxonomy, or any other file in the repository.
   and "makes X" is J4+J6 major. A paragraph that says "capacity unstated" or
   "offers or represents" on such a page is a pass, not an under-claim.
   Write `frame_rule: applied` / `frame_rule: violated` in the note.
-- **Severity inside the frame/document rule (verified on run 20260911T223222,
-  8 packets).** Two sub-shapes: (a) the paragraph REFUSES any dealing on the
-  subject's own listing ("lists X … but does not specify the capacity", "no
-  dealing beyond a document", "presents a document about") — the tag is at
-  risk: `major`; (b) the paragraph ASSERTS the dealing ("offers X as part of
-  its product line", "works with X") and hedges only the make-vs-source or
-  in-house-vs-partner MODE — the tag survives and the partner-plant ruling
-  says the synthesis need not settle that mode: `minor`. An under-claim is
-  J2 (+J6 when the tag is lost), never J1: a claim scoped weaker than the
-  evidence is not a fabrication. Field membership gates severity: declining
-  a dealing on a focal entity that is not a member of the field costs no
-  tag (J6 `pass` + the `not_a_*` flag, J2 `minor` if the under-claim is
-  real).
-- **First-person copy is never the frame-rule shape.** "our capabilities",
-  "our experts", "we offer/provide/carry" assert the offering wherever they
-  sit, including on a blog or explainer page; the frame rule governs items
-  LISTED where the page asserts no capacity. A bare bullet under the
-  subject's own introducing sentence ("Our Capabilities:", "we provide the
-  following services:", "Our inventory … includes:") takes that sentence's
-  dealing even when the record's own snippet omits the sentence.
-- **A patent on the subject's own patents page** (number, grant date) is the
-  process_caps analogue of a certificate title: "no dealing beyond a
-  document" there is a J2+J6 under-claim.
-- **Parent policy voiced as the subject** (the Waev/Taylor-Dunn shape):
-  `major` in a field whose tag IS the named standard or credential
-  (conformity_attestations); `minor` where nothing is minted (a supplier
-  requirement in process_caps whose suppliers stay the acting party).
-- **Frame NAMED but the wrong page** (a gallery hub for its sub-gallery; a
-  facilities section placed under "OUR PRODUCTS" because the site's nav
-  string is flat): J1 `minor` when the attribution itself stays correct.
-- **Wire vocabulary in the paragraph** ("The focal_form …", "The focal
-  entity …"): note it (`wire_vocabulary: true`); not a fail on its own.
 
 **Discipline:** judge by reading, never by keyword; quote what convicts;
 `unclear` is honest when the evidence underdetermines it; probes apply only

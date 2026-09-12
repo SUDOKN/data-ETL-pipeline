@@ -159,6 +159,74 @@ probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
 
+## STATE (2026-09-12, run `20260911T223222` — run A, the shared-block statics, judged on 10,055 records, paired against 20260911T003500)
+
+The first run on the field-specific redesign's SHARED BLOCK (design doc §17;
+requirements doc `docs_local/SYNTHESIS_FIELD_REQUIREMENTS_2026-09-11.md`): the
+six statics byte-identical, pins `63ed7e98…`, published 2026-09-11 22:30Z.
+Same 18 subjects; search replayed so every record pairs on identical evidence.
+**alecmfg process_caps and material_caps are MISSING** (a synthesis response
+answered one record id twice with two paragraphs; the parser raises on a
+duplicate id; three re-asks repeated it; the orchestrator dropped the subject
+at process_caps and material_caps never ran) — 21,315 records, 124 of 126
+dumps. Two INV-1 flags (blackadvtech, pradeepmetals process_caps) are
+`unknown_answer_ids` only: a mangled id echo, recovered by the retry pass.
+
+**Mechanical (contract excluded):** retried records 152 (was 82), retry
+requests 46 (42), first-pass 1,550; focal-form-absent **0** (was 33);
+identical-synthesis records **297** (was 899); sibling-mention share **80.9%**
+(was 72.6%, UP); output tokens +32%, mean paragraph ≈459 chars (was 322);
+cost ≈$85 (was ≈$79); own-designation drops 0.
+
+**Judged population:** `checks/judged_population.py --singletons-from-baseline`
+(new flag: stratum B drawn from the baseline's JUDGED singletons so every
+singleton pairs) = 7,133 cluster + 71 baseline-retried + 2,850 singletons =
+10,054 (+1 orphan); `checks/judge_jobs.py` → 66 Sonnet jobs;
+`checks/verdict_coverage.py` (new) → 10,055/10,055 rows, 0 malformed, 0
+duplicates. Two jobs died on the 64k output-token cap (agents narrating
+records into their replies) and were relaunched with a terse-output
+instruction. Verification: 8 Opus packets, 824 items (3 J3, 199 majors, 604
+random passes, 18 calibration rows), **77 rows changed** (J2 major→minor 42,
+J6 major→minor 26, J1 major→pass 19, J6 major→pass 13, J3 major→pass 3, 15
+pass→fail minor for the Waev parent voice in process_caps); the rulings that
+emerged are in `JUDGE_PROMPT_TEMPLATE.md`. Ingested 10,055.
+
+**Paired result (10,019 pairs, baseline → this run):**
+
+| readout | baseline | this run |
+|---|---|---|
+| records with any fail | 3.2% (316) | 3.4% (341) — 232 newly passing, 257 newly failing |
+| records with a major | 2.0% (199) | **1.5% (147)** |
+| J7 agent laundering / J4 party / J1 faithfulness | 120 / 64 / 180 | **51 / 41 / 126** |
+| J2 under-claim / J6 serviceability | 107 / 226 | **178** / 218 |
+| J3 entity swaps | 1 | **0** |
+| identical-evidence twins that flip | 1 of 206 | 5 of 206 |
+| mixed clusters | 27 | 32 |
+
+Per field (any-fail / major): conformity 43/417 = 10.3% / 26; equipments
+18/686 = 2.6% / 9; industries 23/988 = 2.3% / 12; material_caps 47/1,139 =
+4.1% / 14; process_caps 94/2,668 = 3.5% / 34; products 117/4,157 = 2.8% / 52.
+
+**Stage 2 (answerability, the eval's field-specific second stage —
+`docs_local/field_requirements_survey_20260911/READOUT_PAIRED_20260911T223222.md`,
+865 paired records, Opus):** capacity absent/contradicted 28.6% → 9.4%, frame
+28.2% → 6.4%, party 12.8% → 6.5%; fully clean per field conformity 94→130,
+equipments 110→114, industries 97→121, material_caps 62→123, process_caps
+73→103, products 28→103.
+
+**Reading.** The shared block removed laundering (J7 −58%, J4 −36%, majors
+2.0% → 1.5%, J3 → 0) and made paragraphs carry the frame and the capacity;
+it added one under-claim class: the "capacity unstated" sentence fires on
+the subject's OWN listings (bare bullets under "Our Capabilities:", "we
+provide the following services:", grade headings on own materials pages, own
+badges) — 160 records (84 major), the whole of the J2 rise. Secondary:
+frame named but the WRONG page (≈62 minor J1; flat nav strings, gallery hubs);
+the closer restating a hedge as unconditional; paragraphs opening with wire
+vocabulary ("The focal_form …", 67 rows noted); sibling inconsistency up
+(twin flips 5/206). Probes: FZ-P3 and FZ-P1 fixed; MW-P1 5 fail / 37 pass
+(was a 31-record class); AG-P8 document reduction gone; AL-P8 5/22 and HW-P5
+10/29 chunk- or request-dependent; TD-P3 (Waev) untouched.
+
 ## STATE (2026-09-11, run `20260911T003500` — the focus run, judged on 10,467 records, paired against 20260905T213127)
 
 The first run on the focal-form statics (pv `TC4hc7…`, published 2026-09-11

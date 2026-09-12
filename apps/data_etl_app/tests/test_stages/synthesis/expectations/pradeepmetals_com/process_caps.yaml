@@ -1,4 +1,15 @@
 subject: pradeepmetals.com
 field: process_caps
 eval_set_version: 1
-probes: []
+probes:
+- id: PM-P3
+  status: active
+  added: '2026-09-12'
+  motivated_by: 'run 20260911T223222 — the frame NAMED but the wrong page (16 J1 minor): Facilities-section
+    capability pages placed under ''OUR PRODUCTS'' because the site''s nav string is flat'
+  target: records whose focal form is a Facilities page name (Design & Engineering gcf81wh6, Machining
+    ga39any9, Tool & Die Development, Testing & Validation, the forging-noun family gb7nejzs/gt33sgs1/gwhl9ols)
+  expectation: The paragraph may name the page it reads the snippet under only where the chunk text supports
+    the placement; 'listed under OUR PRODUCTS' from a flat nav string alone is a J1 minor (the footer
+    sitemap's separate products/facilities widgets settle it). The attribution itself (own capability)
+    must stay intact.
