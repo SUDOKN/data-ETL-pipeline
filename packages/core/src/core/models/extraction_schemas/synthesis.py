@@ -45,10 +45,23 @@ Request: the chunk text, then the two-block pattern — ``<<<RECORD_IDS`` as a
 bare array, then ``<<<RECORDS`` as an ARRAY of ``{record_id, focal_form,
 snippets}`` (array, not map, by user decision; rendered by
 ``render_synthesis_record_blocks``). Response: an array mirroring the request,
-``{"syntheses": [{record_id, synthesis}]}`` — arrays because the response
-format is OpenAI strict mode, which cannot express an object keyed by ids, and
-because an array lets the hold COUNT exactly-once where an object would
-collapse a duplicate key silently. A response the completion cap cut off is
+``{"syntheses": [{record_id, doer, doer_name, capacity, dealing_words,
+synthesis}]}`` — arrays because the response format is OpenAI strict mode,
+which cannot express an object keyed by ids, and because an array lets the
+hold COUNT exactly-once where an object would collapse a duplicate key
+silently. The four LABELS (2026-09-13, the variance experiment — synthesis
+design doc §31.3/§33) are decided BEFORE the paragraph: strict mode emits keys
+in schema order, so the model commits to who the snippets give the doing to
+(``doer``, four values) and to the manufacturer's own dealing in the capacity
+the snippets fix (``capacity``, ten values), names the other party as the text
+names it (``doer_name``) and copies the snippets' own words for the dealing
+(``dealing_words``), and only then writes the synthesis. Measured motive:
+gpt-4.1 at temperature 0 resolves exactly these two near-ties inside prose,
+and lands a whole request in one reading or the other (three cap-50 draws of
+the same subjects disagreed on 9.6% of records, only 8 of 1,449 failing in
+every draw). The labels ride on the stored ``SynthesisAnswer`` and the dump;
+the downstream ``GroupRecord`` does NOT carry them (grounding and screening
+``model_dump()`` it into their requests — one change per run). A response the completion cap cut off is
 SALVAGED down to its complete records (``_salvage_truncated_syntheses``, the
 search stage's discipline): the record the cut fell in is simply missing, and
 the node's retry pass re-asks it; a response that closed its JSON and still
@@ -68,7 +81,7 @@ from __future__ import annotations
 import json
 import logging
 import re
-from typing import Optional
+from typing import Literal, Optional, get_args
 
 from pydantic import BaseModel, ConfigDict, ValidationError
 
@@ -101,14 +114,43 @@ class SynthesisRecordInput(BaseModel):
 # --- response wire ----------------------------------------------------------
 
 
+# The label vocabularies (2026-09-13). Generic on purpose — no field words —
+# and spelled exactly as the statics' Output section lists them; the strict
+# schema turns each Literal into an enum, so a value outside the list is a
+# schema failure, never a stored answer.
+Doer = Literal["the manufacturer", "another party", "nobody", "not shown"]
+Capacity = Literal[
+    "makes, performs, or provides it as its own",
+    "works on it to another party's order or specification",
+    "lists, carries, represents, resells, or distributes what another party makes or does",
+    "services, tests, inspects, or installs it",
+    "uses it as an input, tool, material, or machine",
+    "supplies into or serves it",
+    "holds, is certified to, or claims to meet it",
+    "arranges for another party to perform it",
+    "unstated",
+    "none",
+]
+DOER_VALUES: tuple[str, ...] = get_args(Doer)
+CAPACITY_VALUES: tuple[str, ...] = get_args(Capacity)
+
+
 class SynthesisRecordResponse(BaseModel):
-    """Wire shape of one record's answer: the id echoed exactly as given and
-    its synthesis. Nothing else — see the module docstring for the per-snippet
-    context quotes this carried until 2026-09-05."""
+    """Wire shape of one record's answer, in the order the model writes it:
+    the id echoed exactly as given, the four labels decided first (``doer``,
+    ``doer_name``, ``capacity``, ``dealing_words`` — 2026-09-13), then the
+    synthesis. Field order IS the schema's property order, which strict mode
+    makes the generation order: keep the labels above ``synthesis``. See the
+    module docstring for the per-snippet context quotes this carried until
+    2026-09-05."""
 
     model_config = ConfigDict(extra="forbid")
 
     record_id: str
+    doer: Doer
+    doer_name: str
+    capacity: Capacity
+    dealing_words: str
     synthesis: str
 
 
@@ -130,9 +172,29 @@ DUMMY_SYNTHESIS_RESPONSE_CONTENT = '{"syntheses": []}'
 
 
 class SynthesisAnswer(BaseModel):
-    """One record's parsed answer: the synthesis text."""
+    """One record's parsed answer: the synthesis text and, since 2026-09-13,
+    the four labels the model decided before writing it. The labels are
+    Optional here (not on the wire) so answers parsed from older responses and
+    the harness's own fixtures still load; ``labels`` is None for those."""
 
     synthesis: str
+    doer: Optional[str] = None
+    doer_name: Optional[str] = None
+    capacity: Optional[str] = None
+    dealing_words: Optional[str] = None
+
+    @property
+    def labels(self) -> Optional[dict[str, str]]:
+        """The four labels as one dict (the dump's ``labels`` row field), or
+        None when the answer carries none."""
+        if self.doer is None or self.capacity is None:
+            return None
+        return {
+            "doer": self.doer,
+            "doer_name": self.doer_name or "",
+            "capacity": self.capacity,
+            "dealing_words": self.dealing_words or "",
+        }
 
 
 # group_id → the record's answer: the stage's parse-time result, keyed by the
@@ -220,9 +282,9 @@ def parse_synthesis_response(gpt_response: Optional[str]) -> SynthesesByGroupId:
         )
         answered_records = salvaged
 
-    answers_by_id: dict[str, list[str]] = {}
+    answers_by_id: dict[str, list[SynthesisRecordResponse]] = {}
     for answered in answered_records:
-        answers_by_id.setdefault(answered.record_id, []).append(answered.synthesis)
+        answers_by_id.setdefault(answered.record_id, []).append(answered)
     repeated = [rid for rid, answers in answers_by_id.items() if len(answers) > 1]
     if repeated:
         logger.error(
@@ -232,7 +294,13 @@ def parse_synthesis_response(gpt_response: Optional[str]) -> SynthesesByGroupId:
             f"{len(answers_by_id)} distinct ids)"
         )
     return {
-        rid: SynthesisAnswer(synthesis=answers[0])
+        rid: SynthesisAnswer(
+            synthesis=answers[0].synthesis,
+            doer=answers[0].doer,
+            doer_name=answers[0].doer_name,
+            capacity=answers[0].capacity,
+            dealing_words=answers[0].dealing_words,
+        )
         for rid, answers in answers_by_id.items()
         if len(answers) == 1
     }

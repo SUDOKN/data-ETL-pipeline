@@ -13,6 +13,7 @@ and the ids a retry re-asked for.
 
 from __future__ import annotations
 
+from collections import Counter
 from typing import Any, Optional
 
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
@@ -83,6 +84,12 @@ def build_synthesis_dump(
             "retried": record.record_id in result.answer.retried_record_ids,
             "synthesis": synthesis,
         }
+        # The four labels the model decided before the paragraph (2026-09-13);
+        # absent on answers that carry none (older runs, fixtures).
+        record_answer = result.answer.syntheses.get(record.record_id)
+        labels = record_answer.labels if record_answer is not None else None
+        if labels is not None:
+            row["labels"] = labels
         if subject_name and synthesis:
             hits = count_own_name_hits(synthesis, subject_name)
             if hits:
@@ -98,6 +105,7 @@ def build_synthesis_dump(
             ]
         rows.append(row)
     syntheses = [r["synthesis"] for r in rows if r["synthesis"]]
+    labelled = [r["labels"] for r in rows if "labels" in r]
     return {
         "summary": {
             "records": len(result.records),
@@ -126,6 +134,17 @@ def build_synthesis_dump(
                     )
                 }
                 if max_entries_per_request is not None
+                else {}
+            ),
+            # Label distributions (2026-09-13); present only when the answers
+            # carry labels.
+            **(
+                {
+                    "labelled_records": len(labelled),
+                    "doer_counts": dict(Counter(l["doer"] for l in labelled)),
+                    "capacity_counts": dict(Counter(l["capacity"] for l in labelled)),
+                }
+                if labelled
                 else {}
             ),
         },

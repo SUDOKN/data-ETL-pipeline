@@ -57,7 +57,10 @@ limit, agents die mid-flight; that is safe — see §6.)
    `history/metrics_scoreboard.csv`, and emits **work orders** under
    `history/runs/<run_id>/pending/` holding only records the ledger has not
    judged. Any invariant FAIL is a pipeline or instrument break — investigate
-   before judging anything.
+   before judging anything. **Pull BEFORE any stored-request delete**: a
+   second draw of the same subjects (the notebook's delete block live) erases
+   the previous run's wire evidence from Mongo; run 20260913T170246 was
+   pulled first for exactly that reason.
 
 2. **Sanity-read the mechanical output** before judging: verify one flagged
    record per field (a focal-form-absent flag, an identical-synthesis cluster)
@@ -107,7 +110,15 @@ limit, agents die mid-flight; that is safe — see §6.)
    `checks/judge_jobs.py --run <id>` packs slices into ≤190-record jobs and
    writes one instruction file per job under `pending/judged/jobs/` from the
    run's `JUDGE_PROMPT.md`, so an agent prompt is just "read J<nn>.md and
-   follow it". Run ~15 agents concurrently, launch one per completion.
+   follow it". Run ~15 agents concurrently, launch one per completion (the
+   harness caps concurrent subagents at 20; Sonnet rate limits — server-side
+   429s and the account's session limit — cut agents off mid-slice).
+   **Resume mode (2026-09-13):** relaunch a cut-off job with the instruction
+   to read the `out` file's existing content keys and APPEND only the
+   missing records, never truncating; the append-only discipline makes this
+   safe — `checks/verdict_coverage.py --run <id> --jobs` shows 0 duplicates
+   and names the jobs still pending. Normalise a resumed agent's judge string
+   if it dropped the `agent:` prefix (coverage reports it as `bad_schema`).
 
 5. **Verify before accepting** (non-negotiable): for every agent, re-read
    against the work order **every J3 fail, every `major` fail** (they are
@@ -118,7 +129,13 @@ limit, agents die mid-flight; that is safe — see §6.)
    file, plus every J2/J6 fail of any slice a judge flagged); Sonnet verifiers
    write full replacement rows to `verify/corrections_<k>.jsonl`;
    `checks/apply_corrections.py --run <id>` merges them and prints the
-   transitions. Then `checks/paired_readout.py --run <id> --baseline <prev>`
+   transitions. A judge that flags its OWN already-written rows as wrong
+   (it may not rewrite an appended file) names their content keys in its
+   reply: put them in an extra packet with
+   `checks/extra_packet.py <run> <packet number> <verdict file> <keys…>`
+   (numbered after the built packets; `verify_packets.py` without `--only`
+   deletes existing packets, so build the main packets first) and hand it
+   to a verifier like any other. Then `checks/paired_readout.py --run <id> --baseline <prev>`
    for the identical-evidence pairing; add `--by-subject` for the per-subject
    and per-field FLIP counts (records whose verdict differs between the two
    sides) — the number the A/A floor is quoted in (2026-09-12: mathewsco
@@ -126,7 +143,17 @@ limit, agents die mid-flight; that is safe — see §6.)
    variance lever is read against; `checks/request_mode_readout.py --run <id>`
    shows whether the fails cluster by request (the per-request mode: 22% /
    51% / 81% of failing records in majority-failing requests on the cap-50
-   draws and the cap-10 run of 2026-09-12/13).
+   draws and the cap-10 run of 2026-09-12/13); with two or more judged draws
+   of the same subjects on the same pins, `checks/medoid_readout.py --runs
+   <a> <b> <c>` prints the three-way floor (pairwise disagreement), the split
+   and unanimous-fail counts, and what an N-sample text medoid would have
+   scored (2026-09-13: 6.4% pairwise floor, 8 of 1,449 records fail in every
+   draw, the text medoid no better than a single draw).
+   Since 2026-09-13 every answer carries four LABELS (`doer`, `doer_name`,
+   `capacity`, `dealing_words`; work orders show them to the judge):
+   `checks/label_readout.py --run <id> [--baseline <second draw>]` prints
+   their distributions and, between two draws on identical evidence, the
+   per-record label flips — the mechanical counterpart of the verdict flip.
    Two of the original census's own numbers were corrected exactly this way —
    the step is a measurement, not a formality.
 

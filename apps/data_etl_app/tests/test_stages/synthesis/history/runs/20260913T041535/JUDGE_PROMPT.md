@@ -11,7 +11,7 @@ grounded-import split, J2 own-designations clause, J4 parent-policy note,
 J7 agent laundering, products document-title bullet, severity per record).
 
 Fields: `{TAXONOMY}` path, `{FIELD}`, `{ORDER}` work-order path, `{START}`,
-`{END}`, `{N}`, `{RUN_ID}`, `{MODEL}` (Sonnet by the user's standing rule),
+`{END}`, `{N}`, `20260913T041535`, `{MODEL}` (Sonnet by the user's standing rule),
 `{SUBJECT}`, `{PART}`, `{OUT}` verdict file path.
 
 ---
@@ -36,12 +36,7 @@ your slice gets a row.
    lines), `designations_dropped` (a mechanical nomination for J2, already
    scoped to the record's own designations — verify by reading),
    `request_custom_id` (records sharing it were co-packed in one request —
-   J3's context), `evidence_sha256`, `labels` (when present, since
-   2026-09-13: the model's OWN answers, decided before it wrote the
-   paragraph — `doer`, `doer_name`, `capacity`, `dealing_words`; judge the
-   PARAGRAPH exactly as before, and add `label_contradicts_paragraph: true`
-   to the note where a label and the paragraph disagree and `label_wrong:
-   true` where a label contradicts the snippets), and the order-level `pv`,
+   J3's context), `evidence_sha256`, and the order-level `pv`,
    `taxonomy_version`, `subject_name`, `probes`, `chunk_texts`.
 3. `chunk_texts[<chunk_bounds>]` is a local Markdown file holding the whole
    chunk of site text the model ALSO read. Open it only (a) to place a snippet
@@ -59,7 +54,7 @@ your slice gets a row.
 TAXONOMY.md §Output. Echo `content_key`, `taxonomy_version`, `pv`,
 `evidence_sha256`, `subject`, `field`, `group_id`, `chunk_bounds`,
 `focal_form` unchanged from the work order. `first_judged_run` =
-`{RUN_ID}`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
+`20260913T041535`. `judge` = `agent:{MODEL} {FIELD} {SUBJECT} part{PART}` (the model
 you are running as is given below). `checks` carries J1–J7, each
 `{"verdict": "pass|fail|unclear", "severity": null|"minor"|"major", "note":
 "...", "quote": "..."}`; add a `"PROBE:<id>"` entry for every probe in the
@@ -226,42 +221,6 @@ not edit the work order, the taxonomy, or any other file in the repository.
 - **An internal record id in the prose** ("This snippet repeats the content
   of record g…") is `wire_vocabulary: true`, not a J3 fail; there is no
   "J3 minor".
-- **Field-membership gate, three more shapes (verified on run
-  20260913T170246, 11 packets).** A standard or specification judged in
-  products (ASTM A182, BS EN 10088) mints no product tag; a fragment split
-  from a compound phrase ("carbon" from "carbon & stainless steels",
-  "institutions", "Ceiling height") mints nothing; a process judged in
-  products (MJF, FFF) fails at most in process_caps. Each is J6 `pass` +
-  the `not_a_*` flag and J2 `minor` at most — never `major` by inheritance
-  from a real-entity sibling in the same co-pack.
-- **Line-card listing is the licensed dealing on a representative site.**
-  "Mathews & Company lists X as part of its Kansas product line" / "lists
-  or represents X, capacity unstated" is a PASS (it is exactly what probe
-  MW-P3 expects); the possessive variant — "as part of ITS secondary
-  operations / ITS precision machining capabilities" — is the laundering,
-  J1+J4+J6+J7 `major`. "Mathews represents Hudson and its products for the
-  X sector" keeps the principal as maker: pass.
-- **"For" is not "by".** A case-study title "Custom Machining for Oil & Gas
-  Client" credited to the client in the paragraph is a REFUSAL of the
-  subject's own work — J2 (+J6 where a tag of the field is lost), never
-  J1/J4 laundering; the head noun decides the field tag (part-headed forms
-  keep `major`, service- or title-headed forms drop to `minor`).
-- **The introducing line may sit in the chunk, not the snippet.** A bare
-  sub-bullet or adjacent sentence under a first-person parent line the
-  record's own snippet omits ("Steelcraft offers … tested with…";
-  "Approved Door series: H / HE / TH … Tests include:") takes that line's
-  dealing; a refusal there is J2+J6 `major` (verified packet 11). Open the
-  chunk text for every refusal on the subject's own page.
-- **A buyer's-guide materials table is an explainer frame.** "### Materials:
-  Commonly Used Alloys for Casting" under a party-less intro ("Different
-  metal casting processes allow designers to choose…") does not assert the
-  subject's offering; "capacity unstated" there is a pass, and the page's
-  first-person claims (the casting SERVICES) are the only own dealing.
-- **Job-posting duties stay internal.** A custodian's or operator's duty
-  bullet ("mow lawns", "load and unload parts") that the paragraph names
-  as a posting and keeps as facility upkeep or a role's tasks is a pass;
-  it becomes a J5/J6 fail only when written as a service the subject
-  offers to customers.
 - **Do not copy a sibling's note onto a record you have not read**, and do
   not score a record by its siblings' verdicts: open the chunk text.
 

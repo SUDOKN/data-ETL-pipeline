@@ -21,3 +21,14 @@ probes:
     gqic2e33)
   expectation: Paragraphs must never mention record ids or other wire tokens; the model apparently sees
     co-packed identifiers. Count occurrences run-wide.
+- id: AG-P10
+  status: active
+  added: '2026-09-14'
+  motivated_by: 'C26 (run 20260913T170246): the "automation types we can incorporate into your custom made equipment"
+    list — features of equipment AGS-TECH builds for customers — written as AGS-TECH''s own shop process ("AGS-TECH
+    Inc. itself provides Oiling / Surface Finishing / Painting / Coating"); verified J1+J4+J6+J7 by packet 02.'
+  target: records whose evidence is the customer-equipment automation-feature list (Oiling, Surface Finishing,
+    Painting, Coating, and siblings) — groups gt8h1ms7, gxlo64tk, glnxw175, gv71ltyl
+  expectation: The feature belongs to equipment AGS-TECH supplies; the faithful paragraph says AGS-TECH builds
+    equipment that incorporates X, performed at the customer''s plant. "AGS-TECH provides X" as its own process is a
+    J1+J4+J6+J7 major.

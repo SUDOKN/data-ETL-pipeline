@@ -239,7 +239,7 @@ def _evidence_fields(
     evidence_index: Optional[dict[str, Any]], record: loading.SynthRecord
 ) -> dict[str, Any]:
     if evidence_index is None:
-        return {"evidence": None, "evidence_sha256": None, "request_custom_id": None}
+        return {"evidence": None, "evidence_sha256": None, "request_custom_id": None, "labels": None}
     found = pull.evidence_for(evidence_index, record) or {}
     return {
         "evidence": found.get("snippets"),
@@ -247,6 +247,10 @@ def _evidence_fields(
         # Which wire request carried it — the judge's co-packed context for J3
         # (the retry request when the record was retried).
         "request_custom_id": found.get("request_custom_id"),
+        # The four labels the model decided before the paragraph (2026-09-13;
+        # None on runs before the label wire) — the judge sees them, judges
+        # the paragraph as before, and flags a contradiction in the note.
+        "labels": found.get("labels"),
     }
 
 

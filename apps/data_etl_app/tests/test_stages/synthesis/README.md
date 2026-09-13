@@ -159,6 +159,122 @@ probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
 
+## STATE (2026-09-13, run `20260913T170246` — RUN X1, the LABEL WIRE (party/capacity fields decided before the paragraph), all 18 subjects, judged on 10,469 records, verified, paired against 191548 = A REGRESSION ON EVERY AXIS; the labels are NOT adopted)
+
+The synthesis answer carried four labels before the paragraph (`doer`, `doer_name`, `capacity`, `dealing_words`;
+design doc §33) on the C16 statics + a label paragraph + a new Output section (md5 `5f7ba520…`), published and
+launched by the user on all 18 subjects. Mechanical: 1,598 first-pass requests, 35.4M input + 2.98M output tokens
+≈ $95 (191548: ≈ $86), mean paragraph 366 chars (417), labels on all 21,951 answered records; **211 records
+unsynthesized** (INV-1 on six subject-fields): 27 requests (1.7%; 191548: 5) answered ONE record and closed the
+array, and each chunk's single retry hit the same mode — format-induced, per request (replay probe: label static
+4/5 full + 1/5 one-record; C16 static 5/5 full). Labels run-wide: doer manufacturer 78% / nobody 13% / not shown
+6% / another party 4%; capacity "makes…as its own" 59%, none 21%, lists/represents 9%, **unstated 29 records**.
+
+**Judged:** population 10,614 keys (191548's + 63; 10,469 to judge), 70 Sonnet jobs run through two rate-limit
+outages (cut-off jobs relaunched in RESUME mode: append only the missing content keys; 0 duplicates, 0 malformed),
+11 Opus packets (1,162 items: 431 majors, 3 J3, 105 calibration, 619 passes, 4 judge-self-flagged passes) —
+≈ 220 rows changed: J6 major→pass 100, J2 major→minor 46, J1 major→pass 34, J4 pass→major 33 (laundering bundle
+completed), J7 major→minor 30, J5 minor→pass 24 (a custodian job-posting cluster). The judges' most-missed rules
+again: the field-membership gate, the refuse-vs-hedge severity split, laundering scored on J6+J7 only.
+
+**Paired against 191548 (10,423 pairs on identical evidence, verified):**
+
+| readout | 191548 (C16) | X1 (C16 + labels) |
+|---|---|---|
+| records with any fail | 2.8% (295) | **6.7% (696)** — 552 newly failing, 151 newly passing |
+| records with a major | 1.0% (105) | **3.0% (308)** — 264 newly failing, 61 newly passing |
+| twins that flip / mixed clusters / containment breaches | 5 of 214 / 34 / 3 | 8 of 214 / 65 / 16 |
+| howcogroup (644): any-fail / major | 15 / 8 | 100 / 68 |
+| tanfel (1,101) | 25 / 12 | 128 / 52 |
+| fzemanufacturing (1,111) | 23 / 10 | 84 / 45 |
+| steelcraft (774) | 12 / 3 | 37 / 30 |
+| mathewsco (353) | 22 / 20 | 50 / 23 (flips 9.6% any-fail, floor 8.2%) |
+| taylordunn (151) | 35 / 8 | 25 / 1 (the one subject that improved) |
+
+Against the third cap-50 draw (041535), mathewsco flips 20.7% any-fail — inside the three-way floor's spread
+(8.2–21.5%), so the representative site's number is the coin again; every other subject's move is far outside
+the 6.4% pairwise floor and one-directional (+552 / −151).
+
+**Stage 2 (893 rows, six Opus graders, `label_truth_readout.py`, `readout_paired.py`):** the labels themselves
+are contradicted by the snippets on 14.3% (party) and 28.0% (capacity) of records against the paragraph's 3.5% /
+8.5%; "makes…as its own" wrong 32% of its uses, "none" 37%, doer "not shown" 52%; and the PARAGRAPH regressed on
+the same 893 rows vs 191548: party 2.4% → 6.5%, capacity 8.8% → 15.8%, frame 2.2% → 7.4%, field item 8.6% →
+16.8%.
+
+**Reading.** (1) The label wire is a regression on every axis: paragraph fails 2.4×, majors 3×, stage-2 party/
+capacity/frame worse, the labels wrong on a quarter of records, 1% of records undelivered, +10% cost. (2) The
+mechanism, named by the verifiers: the label's default flows straight into the prose — `doer: nobody` /
+`capacity: none` on the subject's own capability, materials, approvals and gallery pages becomes a shape-(a)
+refusal ("does not attribute the making, use, or supply to any party"), the C22 residue turned into the run's
+dominant class (howcogroup 68 majors, steelcraft 30, tanfel 52, fzemanufacturing 45); the labels did not remove
+the near-tie, they made the model commit to a default and write the prose to match. (3) The classes the C16 pass
+had fixed reopened (own-listing under-claims on grade tables and standards bullets), while the rep-site
+laundering coin stayed where it was. (4) Adopting the labels fails all three conditions of the experiment's
+decision rule (design doc §33). **NOT ADOPTED: republish the C16 statics (`18d3e093…`) and take the four fields
+off the wire.** Recorded: design doc §35–§37; the lessons for any future "decide first" field are in §36.
+
+## STATE (2026-09-13, run `20260913T041535` — the THIRD cap-50 draw of mathewsco.com + tanfel.com on the same pins (stored synthesis requests deleted first), judged on 1,466 records + 28 cached, paired against BOTH earlier draws = THE FLOOR MEASURED THREE WAYS, plus the offline N=3 medoid readout)
+
+Mechanical: 180 first-pass requests, 3.95M input + 283k output tokens ≈ $10, latency p50 9.0 s / p90 15.9 s /
+max 21 s, mean paragraph 411 chars, 2,761/2,761 synthesized, 0 invariant failures; byte-identical to draw 1
+(191548) 1.1%, to draw 2 (225723) 1.0%. Judged: 10 Sonnet jobs (1,466/1,466, 0 malformed; the 28 paragraphs
+byte-identical to an earlier draw carried cached verdicts), 2 Opus packets (145 items, 14 rows changed — J1
+pass→major 6 and J4 pass→major 3 completing the laundering bundle on rep-site records, J6 major→pass 4, J7
+major→pass 2, …). Tools: `checks/paired_readout.py --by-subject`, `checks/request_mode_readout.py`,
+`checks/medoid_readout.py` (new: the offline N-sample medoid over judged draws).
+
+**Paired (draw 3 against each earlier draw of the SAME prompt on the SAME evidence):**
+
+| readout | vs draw 1 (1,464 pairs) | vs draw 2 (1,451 pairs) |
+|---|---|---|
+| records with any fail | 3.2% → 5.3% (47 → 77) | 5.8% → 5.3% (84 → 77) |
+| records with a major | 2.2% → 2.9% (32 → 43) | 3.9% → 2.9% (57 → 43) |
+| mathewsco (353): any-fail / major flips | **16.1% / 15.0%** | **21.5% / 19.0%** |
+| tanfel: any-fail / major flips | 3.9% / 0.7% | 3.7% / 1.7% |
+| ALL: any-fail / major flips | 6.8% / 4.2% | 8.1% / 5.9% |
+
+Per field, the modes moved as blocks again: mathewsco/process_caps 18 → 0 and 30 → 0 (the whole request landed
+in the hedging reading); mathewsco/products 0 and 10 → 16 (15 majors: a flat "not a dealing of Mathews" denial
+on one principal's page, plus application-list laundering); mathewsco/material_caps 0 and 2 → 11 (the headless
+kpl05 fragment, MW-P4 fires); mathewsco/equipments 0 → 6 ("Their equipment list" laundered); tanfel/material_caps
+0 and 6 → 0 (the cap-10 run's 53 hedges absent again at cap 50); tanfel/process_caps 13 and 19 → 23. Request
+clustering: 35% of failing records in majority-failing requests, 3 whole-request fails (draw 1: 22% / 0; draw 2:
+51% / 1; cap-10 run: 81% / 18).
+
+**The offline N=3 medoid readout (`medoid_readout.py --runs 191548 225723 041535`; 1,449 records judged in all
+three draws):**
+
+| | single draws (1 / 2 / 3) | text medoid | verdict-majority oracle | SPLIT (draws disagree) | unanimous fail | single-vs-single floor | medoid-vs-single |
+|---|---|---|---|---|---|---|---|
+| ALL any-fail | 3.2% / 5.8% / 5.3% | 5.5% | 3.6% | 139 = 9.6% | 8 | 6.4% | 4.2% |
+| ALL major | 2.2% / 3.9% / 3.0% | 3.8% | 2.0% | 93 = 6.4% | 5 | 4.3% | 2.9% |
+| mathewsco any-fail | 6.2% / 12.2% / 9.9% | 12.2% | 5.4% | 81 = 22.9% | 0 | 15.3% | 10.1% |
+| mathewsco major | 5.7% / 9.6% / 9.3% | 10.5% | 4.5% | 71 = 20.1% | 0 | 13.4% | 8.9% |
+| tanfel any-fail | 2.2% / 3.7% / 3.8% | 3.4% | 3.0% | 58 = 5.3% | 8 | 3.5% | 2.3% |
+| tanfel major | 1.1% / 2.1% / 0.9% | 1.6% | 1.2% | 22 = 2.0% | 5 | 1.3% | 1.0% |
+
+Text: 40% of records have some pair of draws below 0.5 token-Jaccard (56% on the rep site); the medoid is drawn
+from the three draws about evenly (501 / 525 / 423).
+
+**Reading.** (1) **The floor, three ways:** mean pairwise any-fail disagreement 6.4% overall (majors 4.3%),
+15.3% / 13.4% on the representative, 3.5% / 1.3% on the maker — the first A/A's 8.2% on mathewsco was the LOW
+pair of the three (8.2%, 16.1%, 21.5%). (2) **Persistent defects are nearly absent on these subjects:** 8
+records fail in all three draws (5 on majors), all tanfel process_caps; 139 records (9.6%) split. Roughly nine
+tenths of what a single run counts as a fail here is a draw, not a behaviour. (3) **N=3 with a text medoid does
+not pay:** any-fail 5.5% against single draws averaging 4.8%, majors 3.8% against 3.0%; on the representative the
+medoid is WORSE than the mean single draw (12.2% vs 9.4%). The verdict-deciding difference between draws is one
+clause (whose doing it is, what capacity) while the rest of the paragraph varies far more, so text similarity
+does not find the majority reading. Flips drop by a third (medoid-vs-single 4.2% vs the 6.4% floor) at 3× the
+synthesis cost and no quality gain; even the verdict-majority oracle only reaches the best single draw (3.6% /
+2.0%). (4) **Consequence for every prompt A/B read so far:** a whole-population net must be read against a
+request-correlated ~6% pairwise flip; the C16 pass's −46 majors on 10,503 pairs (0.44% of records) is inside what
+a handful of block flips produce and is not proven beyond the floor. Tryouts keep the ≥5-repeat rule; production
+A/Bs need ≥2 draws per arm, or a variance fix at the source. **N=3 as designed (text medoid) is NOT
+recommended.** Open levers (user's choice, design doc §31.5): force the party/capacity decision as a field of
+the answer before the paragraph; snippet radius 1 (context in the record; needs a pair-by-key readout);
+a verdict-aware chooser (a referee call — a new stage with its own variance); the smaller-model floor
+(gpt-4.1-mini, two draws, ≈$2 synthesis) as the cheapest next measurement under the cost goal.
+
 ## STATE (2026-09-13, run `20260913T023316` — the PACKING run: cap 50 → 10, same pins as 191548, mathewsco.com + tanfel.com regenerated, judged on 1,494 records, paired against BOTH gs=50 draws)
 
 The synthesis packing cap (`max_entries_per_request`, custom-id segment `|gs=`) went 50 → 10 as a diagnostic
@@ -239,7 +355,7 @@ is the verifier's normalisation (the first draw's judges scored the same shape a
 
 ## STATE (2026-09-12, run `20260912T191548` — the C16 pass: run A + four validated edits, judged on 10,551 records, paired against run A 20260911T223222)
 
-The pass validated on the production model in `docs_local/field_requirements_survey_20260911/tryout/pass2/JUDGE_C16.md`
+The pass validated on the production model in `answerability/tryout/pass2/JUDGE_C16.md`
 (design doc §19.7): run A's static + the wire-vocabulary ban (incl. "snippet", "the manufacturer"), the doer
 clause, the list rule ("an item in a list takes the dealing its introducing sentence gives it … never the
 doer"), and the first-person rule. Six statics byte-identical (md5 `18d3e093…`), published 2026-09-12 by the
@@ -270,7 +386,7 @@ Per field (any-fail / major): conformity 26/417 = 6.2% / 11; equipments 28/687 =
 = 2.7% / 5; material_caps 41/1,241 = 3.3% / 2; process_caps 91/3,033 = 3.0% / 44; products 83/4,185 = 2.0% / 41.
 
 **Stage 2 (answerability, 900 paired, six Opus graders;
-`docs_local/field_requirements_survey_20260911/READOUT_PAIRED_20260912T191548.md`):** vs the 003500 baseline,
+`answerability/READOUT_PAIRED_20260912T191548.md`):** vs the 003500 baseline,
 D capacity 28.1% → 8.8%, G frame 29.2% → 2.2%, C party 13.0% → 2.4%, H 7.7% → 1.4%; vs run A (same 900):
 C 6.3% → 2.4%, G 6.4% → 2.2%, D 10.0% → 8.8% (61 fixed / 50 broken), field item 12.8% → 8.6%; fully clean
 per field run A → this run: conformity 130 → 134, equipments 114 → 119, industries 121 → 128, material_caps
@@ -361,7 +477,7 @@ conformity 43/417 = 10.3% / 26; equipments 18/686 = 2.6% / 9; industries
 = 3.5% / 34; products 117/4,157 = 2.8% / 52.
 
 **Stage 2 (answerability, the eval's field-specific second stage —
-`docs_local/field_requirements_survey_20260911/READOUT_PAIRED_20260911T223222.md`,
+`answerability/READOUT_PAIRED_20260911T223222.md`,
 900 paired records, Opus; 865 on the first pass):** capacity absent/contradicted
 28.1% → 10.0%, frame 29.2% → 6.4%, party 13.0% → 6.3%; fully clean per field
 conformity 94→130, equipments 110→114, industries 97→121, material_caps

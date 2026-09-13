@@ -245,6 +245,7 @@ def build_snapshot(run_id: str) -> dict[str, Any]:
     # and the record is flagged ``answer_mismatch``.
     paragraphs = _dump_paragraphs(files)
     answers = {custom_id: _answer_texts(doc) for custom_id, doc in ((d["custom_id"], d) for d in docs)}
+    labels = {custom_id: _answer_labels(doc) for custom_id, doc in ((d["custom_id"], d) for d in docs)}
     candidates: dict[str, list[tuple[dict[str, Any], dict[str, Any]]]] = {}
     for doc in sorted(docs, key=lambda d: (d["retry_index"], d["custom_id"])):
         subject, field_name, chunk_bounds = _address_of(doc["custom_id"])
@@ -284,6 +285,8 @@ def build_snapshot(run_id: str) -> dict[str, Any]:
             "evidence_sha256": evidence_digest(snippets),
             "chunk_text": doc["chunk_text"],
             "chunk_text_sha256": doc["chunk_text_sha256"],
+            # The labels the accepted answer carries (2026-09-13); None before.
+            "labels": labels[doc["custom_id"]].get(record_id),
         }
 
     (out_dir / "synthesis_requests.json").write_text(
@@ -332,17 +335,35 @@ def _dump_paragraphs(files: dict[tuple[str, str], Path]) -> dict[str, str]:
     return out
 
 
-def _answer_texts(doc: dict[str, Any]) -> dict[str, str]:
-    """record_id -> synthesis text in one request's answer ({} when the
-    answer is missing or unparseable; a duplicated id keeps its last text)."""
+def _answer_rows(doc: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """record_id -> the answer row in one request's answer ({} when the
+    answer is missing or unparseable; a duplicated id keeps its last row)."""
     try:
         payload = json.loads(doc.get("content") or "")
     except (TypeError, ValueError):
         return {}
-    out: dict[str, str] = {}
+    out: dict[str, dict[str, Any]] = {}
     for row in payload.get("syntheses") or []:
         if isinstance(row, dict) and isinstance(row.get("synthesis"), str):
-            out[str(row.get("record_id"))] = row["synthesis"]
+            out[str(row.get("record_id"))] = row
+    return out
+
+
+def _answer_texts(doc: dict[str, Any]) -> dict[str, str]:
+    """record_id -> synthesis text in one request's answer."""
+    return {rid: row["synthesis"] for rid, row in _answer_rows(doc).items()}
+
+
+LABEL_KEYS = ("doer", "doer_name", "capacity", "dealing_words")
+
+
+def _answer_labels(doc: dict[str, Any]) -> dict[str, dict[str, str]]:
+    """record_id -> the four labels the model decided before the paragraph
+    (2026-09-13); a record answered without them (older runs) is absent."""
+    out: dict[str, dict[str, str]] = {}
+    for rid, row in _answer_rows(doc).items():
+        if all(isinstance(row.get(k), str) for k in LABEL_KEYS):
+            out[rid] = {k: row[k] for k in LABEL_KEYS}
     return out
 
 

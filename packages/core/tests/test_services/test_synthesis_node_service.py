@@ -70,9 +70,18 @@ def _request(result_json: str, user_message: str) -> Any:
     )
 
 
+# The four labels every wire record carries since 2026-09-13 (see synthesis.py).
+_LABELS = {
+    "doer": "the manufacturer",
+    "doer_name": "",
+    "capacity": "makes, performs, or provides it as its own",
+    "dealing_words": "works with",
+}
+
+
 def _answer(by_id: dict[str, str]) -> str:
     return json.dumps(
-        {"syntheses": [{"record_id": i, "synthesis": s} for i, s in by_id.items()]}
+        {"syntheses": [{"record_id": i, **_LABELS, "synthesis": s} for i, s in by_id.items()]}
     )
 
 

@@ -379,6 +379,52 @@ statics republish (which empties the cache anyway), never mid-pass.
   The fix belongs upstream (snippet radius / search), and the judge must not
   fail the paragraph for it. Probe TF-P8.
 
+## Candidates from run 20260913T170246 (run X1, the label wire; all 18 subjects) — added 2026-09-14
+
+- **C26 — Customer-equipment feature list laundered as the subject's own
+  process.** A bullet list of automation features the subject can build INTO
+  equipment it makes for customers ("automation types we can incorporate
+  into YOUR custom made equipment: Oiling, Surface Finishing, Painting,
+  Coating") is written as "the subject provides X" — a shop process the
+  customer's plant performs with purchased equipment: agstech process_caps
+  gt8h1ms7, gxlo64tk, glnxw175, gv71ltyl (verified J1+J4+J6+J7). The
+  machine-builder variant of the use/application laundering shape. Probe
+  AG-P10.
+- **C27 — Nested-list attribution blindness (a C25 sub-shape).** A
+  compliance or capability claim that is a sub-bullet or adjacent sentence
+  under an explicit first-person parent line ("Steelcraft offers a wide
+  variety of hurricane certified doors and frames … tested with…"; "Approved
+  Door series: H / HE / TH … Tests include the following protocols") is
+  refused when the parent line is not in the record's own snippet, although
+  the chunk text the model also read settles it: steelcraft conformity
+  gprjb7bo, gwfr852u, gm763gfz, g1eet2qw (four judge-self-flagged passes,
+  all verified J2+J6 major); the same shape on 11 of 12 siblings of the SDI
+  Membership cluster, and in industries (gotfeskc, gwlu4iz5). Fix belongs
+  upstream (snippet radius) or in the frame paragraph; probe SC-P10.
+- **Not a class, recorded for the revert:** the decide-first default flowing
+  into the prose (`doer: nobody` / `capacity: none` → a shape-(a) refusal on
+  the subject's own capability, materials, approvals and gallery pages) is
+  the LABEL wire's own defect (design doc §37) and disappears with the
+  revert; it is why C22 became the run's dominant class.
+
+## Watches confirmed on run 20260913T170246 (not defects)
+- The rep-site laundering coin unchanged (mathewsco process_caps 25 this
+  draw vs 18 / 30 / 0 on the three cap-50 draws); twins 8/214 flip; mixed
+  clusters 34 → 65 — the request-level mode, now with the labels riding it.
+- Judges' most-missed rules, again: the field-membership gate (a standard
+  or spec judged in products; a fragment split from a compound; a process
+  judged in products), the refuse-vs-hedge severity split, laundering
+  scored on J6+J7 only (J1+J4 added by the verifiers on 33 rows).
+- Custodian job-posting duty bullets (blackadvtech products, 24 rows) are
+  NOT products defects: the paragraph names the posting and keeps the
+  dealing internal; verified pass.
+- Upstream notes from the judges: `group_id` is not unique across a
+  subject's two chunks (the same hash names unrelated groups — probes must
+  target by content, not id); evidence snippets stop one sentence short of
+  the attributing line (C25) far more often than the taxonomy anticipated;
+  process_caps and material_caps carry 15–25% non-member focal forms
+  (machines, consumables, spec rows) that the paragraphs handle faithfully.
+
 ## Watches confirmed on run 20260913T023316 (not defects)
 - The per-request mode at 4 records per request: 81% of failing records sit
   in majority-failing requests (`checks/request_mode_readout.py`), 18
