@@ -72,18 +72,10 @@ def _search(phrases: list[str]) -> Any:
     return _request(json.dumps({"phrases": phrases}), "")
 
 
-# The four labels every wire record carries since 2026-09-13 (see synthesis.py).
-_LABELS = {
-    "doer": "the manufacturer",
-    "doer_name": "",
-    "capacity": "makes, performs, or provides it as its own",
-    "dealing_words": "works with",
-}
-
 def _syntheses(by_id: dict[str, str]) -> str:
     """Answers as the wire writes them: {record_id: synthesis}."""
     return json.dumps(
-        {"syntheses": [{"record_id": i, **_LABELS, "synthesis": s} for i, s in by_id.items()]}
+        {"syntheses": [{"record_id": i, "synthesis": s} for i, s in by_id.items()]}
     )
 
 
@@ -317,9 +309,9 @@ async def test_a_record_answered_twice_is_re_asked_together_with_the_sibling_it_
     # aluminum answered twice (the second paragraph is really brass's), brass
     # never answered, lead answered once
     twice = json.dumps({"syntheses": [
-        {"record_id": sent[0], **_LABELS, "synthesis": "aluminum text"},
-        {"record_id": sent[0], **_LABELS, "synthesis": "brass text under aluminum's id"},
-        {"record_id": sent[2], **_LABELS, "synthesis": "lead text"},
+        {"record_id": sent[0], "synthesis": "aluminum text"},
+        {"record_id": sent[0], "synthesis": "brass text under aluminum's id"},
+        {"record_id": sent[2], "synthesis": "lead text"},
     ]})
     node.complete = True
     node.completed = {group_req_id: _request(twice, user_message)}

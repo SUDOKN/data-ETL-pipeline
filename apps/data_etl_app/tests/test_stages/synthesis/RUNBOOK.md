@@ -149,8 +149,9 @@ limit, agents die mid-flight; that is safe — see §6.)
    and unanimous-fail counts, and what an N-sample text medoid would have
    scored (2026-09-13: 6.4% pairwise floor, 8 of 1,449 records fail in every
    draw, the text medoid no better than a single draw).
-   Since 2026-09-13 every answer carries four LABELS (`doer`, `doer_name`,
-   `capacity`, `dealing_words`; work orders show them to the judge):
+   On runs of the LABEL wire (only run 20260913T170246; reverted 2026-09-14)
+   every answer carried four LABELS (`doer`, `doer_name`, `capacity`,
+   `dealing_words`; work orders show them to the judge when present):
    `checks/label_readout.py --run <id> [--baseline <second draw>]` prints
    their distributions and, between two draws on identical evidence, the
    per-record label flips — the mechanical counterpart of the verdict flip.

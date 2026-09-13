@@ -36,8 +36,8 @@ your slice gets a row.
    lines), `designations_dropped` (a mechanical nomination for J2, already
    scoped to the record's own designations — verify by reading),
    `request_custom_id` (records sharing it were co-packed in one request —
-   J3's context), `evidence_sha256`, `labels` (when present, since
-   2026-09-13: the model's OWN answers, decided before it wrote the
+   J3's context), `evidence_sha256`, `labels` (only on runs of the
+   label wire — run 20260913T170246; reverted 2026-09-14: the model's OWN answers, decided before it wrote the
    paragraph — `doer`, `doer_name`, `capacity`, `dealing_words`; judge the
    PARAGRAPH exactly as before, and add `label_contradicts_paragraph: true`
    to the note where a label and the paragraph disagree and `label_wrong:
