@@ -161,11 +161,11 @@ subjects a run contains.
 
 ## STATE (2026-09-13, run `20260913T170246` — RUN X1, the LABEL WIRE (party/capacity fields decided before the paragraph), all 18 subjects, judged on 10,469 records, verified, paired against 191548 = A REGRESSION ON EVERY AXIS; the labels are NOT adopted)
 
-**REVERTED 2026-09-14 (verdict below):** the six C16 statics restored from commit a1dd6ad (md5 `18d3e093…`, byte-identical ×6)
+**REVERTED 2026-09-14 (verdict below):** the six C16 statics restored from commit 7b9fea0 (md5 `18d3e093…`, byte-identical ×6)
 and republished by the user (pins `21ebe5ad…`, uploaded 2026-09-13T22:45Z); the four fields are off the wire and the dump
-(`synthesis.py`, `synthesis_dump_util.py` and the three core tests restored to a1dd6ad); the harness readers keep tolerating
+(`synthesis.py`, `synthesis_dump_util.py` and the three core tests restored to 7b9fea0); the harness readers keep tolerating
 `labels` so this run's stored evidence stays readable; the label static is kept at `answerability/tryout/pass2/label_system.txt`
-and the experiment's code in commit 01f1f63.
+and the experiment's code in commit 319ef6a.
 
 The synthesis answer carried four labels before the paragraph (`doer`, `doer_name`, `capacity`, `dealing_words`;
 design doc §33) on the C16 statics + a label paragraph + a new Output section (md5 `5f7ba520…`), published and

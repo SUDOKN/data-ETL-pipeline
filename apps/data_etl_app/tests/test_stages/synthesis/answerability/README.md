@@ -35,9 +35,10 @@ docs_local tree is local-only since then); the design record is
 
 ## Data policy
 
-`*.jsonl`, `*.json` and `*.txt` here are ignored by the repo's global rules
-(they carry site text); the scripts, briefs, readouts and judge notes are
-tracked. The tryout inputs the scripts name under
+`*.jsonl`, `*.json` and `*.txt` here are ignored by explicit rules in the repo
+`.gitignore` (they carry site text; the harness tree un-ignores data by
+default); the scripts, briefs, readouts, judge notes and the prompt arms
+(`*_system.txt`) are tracked. The tryout inputs the scripts name under
 `docs_local/synthesis_shape_tryout_20260909/` are local-only.
 
 ## Running
