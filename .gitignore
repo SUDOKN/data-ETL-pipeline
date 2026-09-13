@@ -135,6 +135,20 @@ pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/*
 !pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/*.py
 !pipeline_v3_evidence/2026-08-28_scraper_output_format_sample/README.md
 
-# docs_local tryouts: the *_user.txt files are whole synthesis requests and
-# carry a chunk of verbatim scraped site text — same rule as evidence_snapshots.
-docs_local/synthesis_shape_tryout_*/*/*_user.txt
+# docs_local/: the whole working-notes tree (design docs, surveys, readouts,
+# tryout inputs, the publication track) stays on this machine by user decision
+# (2026-09-14) — working strategy and analysis, never code or instrument. The
+# one instrument that lived there (the stage-2 answerability survey) moved to
+# apps/data_etl_app/tests/test_stages/synthesis/answerability/ the same day.
+# History before this rule was rewritten so the folder never reaches a remote.
+docs_local/
+
+# The stage-2 answerability instrument (synthesis eval): its samples, grader
+# results, tryout outputs and pulled production requests carry site text and
+# stay local; the scripts, briefs, readouts, judge notes and the prompt arms
+# (*_system.txt — prompt text only, incl. label_system.txt = the run X1 static)
+# are tracked.
+apps/data_etl_app/tests/test_stages/synthesis/answerability/**/*.jsonl
+apps/data_etl_app/tests/test_stages/synthesis/answerability/**/*.json
+apps/data_etl_app/tests/test_stages/synthesis/answerability/**/*.txt
+!apps/data_etl_app/tests/test_stages/synthesis/answerability/**/*_system.txt
