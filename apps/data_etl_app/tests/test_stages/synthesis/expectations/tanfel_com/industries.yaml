@@ -1,4 +1,15 @@
 subject: tanfel.com
 field: industries
 eval_set_version: 1
-probes: []
+probes:
+- id: TF-P8
+  status: active
+  added: '2026-09-13'
+  motivated_by: 'C25 (run 20260913T023316): the record''s snippet is a testimonial''s first sentence (''our …
+    sporting goods product sold out faster than planned'') while the attribution and thank-you that name Tanfel
+    as the supplier sit two lines later in the chunk; the paragraphs declined any Tanfel dealing and the served
+    sector was lost. An evidence-stage class: the paragraph is faithful to a snippet that stops short.'
+  target: records whose evidence is the ROJO Sport testimonial sentence — groups g58vzo7i, gx5j2vzn (both chunks)
+  expectation: Judge the paragraph against its snippets, never against the chunk text alone; a paragraph that
+    declines the dealing because the snippet carries no supplier is a J1/J6 PASS with a note (C25), not a fail.
+    The count of such records is the watch that motivates a snippet-radius change upstream.

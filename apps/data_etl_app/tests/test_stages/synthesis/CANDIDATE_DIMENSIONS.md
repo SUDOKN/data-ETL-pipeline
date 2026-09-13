@@ -354,6 +354,41 @@ statics republish (which empties the cache anyway), never mid-pass.
   content of record gms7el81" (taylordunn process_caps g38bfn9n; agstech
   process_caps gqic2e33): the wire-vocabulary ban does not cover ids. Watch.
 
+## Candidates from run 20260913T023316 (the packing run, cap 10, mathewsco + tanfel) — added 2026-09-13
+
+- **C24 — Subject-elided product-line fragment laundered (a C21 sub-shape).**
+  A line-card entry whose sentence has no subject at all ("With manufacturing
+  and being a distributor of elastomeric rubber, silicone materials, FDA
+  approved Buna, Cellular foam material", mathewsco Kansas Product Line
+  kpl05) gets the subject written in as the manufacturer/distributor:
+  material_caps g1qicz86, g4ee3bu2, gh0myffg, gjw3b955, gvlgc4m0, g06pxo08
+  (6 J1+J4+J6+J7 majors), while conformity_attestations gcjldsq7/geqo5h8i
+  read the same sentence correctly as a third party's. Pronoun-bearing
+  entries on the same page ("They offer…") were attributed correctly in the
+  same run. Probe MW-P4. Same fix family as C21 (the doer rule), and the same
+  per-request coin: the six sit in one 8-record request.
+- **C25 — The snippets stop short of the sentence that carries the dealing
+  (evidence stage, not synthesis).** A testimonial's first sentence is the
+  record's snippet while its attribution and thank-you ("- John Marcin,
+  President, ROJO Sport, Inc. … Thank you for delivering quality products
+  ahead of schedule!") sit two lines later in the chunk: the paragraph
+  faithfully declines any Tanfel dealing and a well-evidenced served sector
+  is lost (tanfel industries g58vzo7i, gx5j2vzn and their chunk-2 twins).
+  Same shape on heading-only occurrences whose page states "Tanfel Metrology
+  offers … selling directly to our customers" (products gylk3k14, gzco65b9).
+  The fix belongs upstream (snippet radius / search), and the judge must not
+  fail the paragraph for it. Probe TF-P8.
+
+## Watches confirmed on run 20260913T023316 (not defects)
+- The per-request mode at 4 records per request: 81% of failing records sit
+  in majority-failing requests (`checks/request_mode_readout.py`), 18
+  whole-request fails; mixed identical-evidence clusters 2 → 17. Tooling
+  notes from the judges: the code-derived `locations` pointer names a pipe
+  table's first row for its later rows (tanfel process_caps gq7jqu1f + 5);
+  a compound phrase's substring nominated as its own record ("Metal
+  Fabrication" from "Sheet Metal Fabrication", gyzids48); one group id
+  nominated in two fields (gljaee1t in equipments and industries).
+
 ## Watches confirmed on run 20260911T223222 (not defects)
 - Grounded import 269 of 10,055; twin flips 5/206 (was 1/206 — UP, the
   sibling inconsistency the stage-2 graders could not score); mixed clusters

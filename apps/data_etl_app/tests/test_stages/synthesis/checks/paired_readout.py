@@ -15,6 +15,14 @@ both sides with the McNemar-style discordant counts, per-dimension fail
 counts, and the cluster readouts (mixed-verdict clusters, identical-evidence
 twin flips) when cluster ids are present. Written 2026-09-11 for the
 synthesis focus run (design doc D3/D10).
+
+``--by-subject`` (2026-09-12, design doc §24) adds the per-subject and
+per-(subject, field) FLIP readout: of the pairs judged on identical evidence,
+how many records changed their any-fail verdict and how many their major
+verdict between the two sides. This is the number the A/A floor is quoted
+in (run 20260912T225723 against 191548: mathewsco 29/353 = 8.2%, tanfel
+34/1,118 = 3.0%), and the number every variance lever (packing, N-sample
+choice) is read against.
 """
 
 from __future__ import annotations
@@ -153,11 +161,57 @@ def readout(
         print(f"== identical-evidence twins judged on both sides: new {flips_new}/{len(pairs)} flip; baseline {flips_base}/{len(bp)}")
 
 
+def flip_readout(
+    new: dict[Key, dict[str, Any]],
+    base: dict[Key, dict[str, Any]],
+) -> None:
+    """Per subject, then per (subject, field): pairs on identical evidence,
+    any-fail and major counts on both sides, and the FLIPS — records whose
+    verdict differs between the sides (newly failing + newly passing). A
+    flip rate is only readable against a floor measured the same way."""
+    paired = [
+        k for k in new
+        if k in base and base[k].get("evidence_sha256") == new[k].get("evidence_sha256")
+    ]
+    if not paired:
+        print("\n== per subject: nothing paired on identical evidence")
+        return
+
+    def line(label: str, keys: list[Key]) -> None:
+        n = len(keys)
+        b_f = sum(any_fail(base[k]) for k in keys)
+        n_f = sum(any_fail(new[k]) for k in keys)
+        worse_f = sum(1 for k in keys if any_fail(new[k]) and not any_fail(base[k]))
+        better_f = sum(1 for k in keys if any_fail(base[k]) and not any_fail(new[k]))
+        b_m = sum(any_major(base[k]) for k in keys)
+        n_m = sum(any_major(new[k]) for k in keys)
+        flips_m = sum(1 for k in keys if any_major(new[k]) != any_major(base[k]))
+        flips_f = worse_f + better_f
+        print(
+            f"  {label:42s} pairs {n:5d} | any-fail {b_f:4d} -> {n_f:4d}, "
+            f"flips {flips_f:4d} = {100 * flips_f / n:4.1f}% (+{worse_f} -{better_f}) | "
+            f"major {b_m:4d} -> {n_m:4d}, flips {flips_m:4d} = {100 * flips_m / n:4.1f}%"
+        )
+
+    print("\n== per subject / field, pairs on identical evidence (baseline -> new; flips = records whose verdict differs)")
+    for subject in sorted({k[0] for k in paired}):
+        keys = [k for k in paired if k[0] == subject]
+        line(subject, keys)
+        for field_name in sorted({k[1] for k in keys}):
+            line(f"    {subject}/{field_name}", [k for k in keys if k[1] == field_name])
+    line("ALL", paired)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", required=True)
     parser.add_argument("--baseline", required=True)
     parser.add_argument("--population", default=None)
+    parser.add_argument(
+        "--by-subject",
+        action="store_true",
+        help="also print the per-subject and per-field flip readout (the A/A floor's number)",
+    )
     args = parser.parse_args()
     new = load_run_verdicts(args.run)
     base = load_baseline(args.baseline)
@@ -171,6 +225,8 @@ def main() -> None:
             population[(parts[0], parts[1], parts[2], parts[3])] = v
     print(f"run {args.run}: {len(new)} verdict rows; baseline {args.baseline}: {len(base)} ledger rows; population labels {len(population)}")
     readout(new, base, population)
+    if args.by_subject:
+        flip_readout(new, base)
     counts = Counter((population.get(k) or {}).get("population") or "all" for k in population)
     print(f"\npopulation planned: {dict(counts)}; judged so far: {len(new)}")
 

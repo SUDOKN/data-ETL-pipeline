@@ -1,4 +1,18 @@
 subject: mathewsco.com
 field: material_caps
 eval_set_version: 1
-probes: []
+probes:
+- id: MW-P4
+  status: active
+  added: '2026-09-13'
+  motivated_by: 'C24 (run 20260913T023316, the packing run): the Kansas Product Line kpl05 entry has no subject
+    at all (''With manufacturing and being a distributor of elastomeric rubber, silicone materials, FDA approved
+    Buna, Cellular foam material''); six material_caps paragraphs wrote Mathews & Company in as the
+    manufacturer/distributor (6 J1+J4+J6+J7 majors) while conformity_attestations read the same sentence as a
+    third party''s. All six sat in one 8-record request (the per-request mode).'
+  target: records whose evidence is the subject-less kpl05 line-card fragment naming elastomeric rubber,
+    silicone, FDA approved Buna or cellular foam — groups g1qicz86, g4ee3bu2, gh0myffg, gjw3b955, gvlgc4m0,
+    g06pxo08
+  expectation: The fragment names no party; the faithful paragraph says the material is listed on a product-line
+    page the subject carries and that who manufactures or distributes it is unstated. Writing Mathews & Company
+    as the manufacturer or distributor of the material is a J1+J4+J6+J7 major.

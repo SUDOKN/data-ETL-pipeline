@@ -70,7 +70,10 @@ def test_synthesis_prompts_are_registered_exist_on_disk_and_are_byte_identical()
     # The per-snippet context task was dropped 2026-09-05 (location is derived
     # in code by the fold); the statics must not ask for it any more.
     assert "snippet_contexts" not in static and "(no introducing line)" not in static
-    assert "let where it sits inform the synthesis" in static  # position still informs the text
+    # Position still informs the text; the shared-block statics (run A, 2026-09-11)
+    # say "Find each snippet in the text and say where it sits" — the earlier
+    # "let where it sits inform the synthesis" sentence is gone.
+    assert "say where it sits" in static
 
 
 def _concept_pipeline(**overrides):

@@ -159,6 +159,84 @@ probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
 
+## STATE (2026-09-13, run `20260913T023316` — the PACKING run: cap 50 → 10, same pins as 191548, mathewsco.com + tanfel.com regenerated, judged on 1,494 records, paired against BOTH gs=50 draws)
+
+The synthesis packing cap (`max_entries_per_request`, custom-id segment `|gs=`) went 50 → 10 as a diagnostic
+(design doc §25/§27): every synthesis custom id changed, so the run regenerated synthesis by itself while search
+replayed — no stored-request deletion. Mechanical: 712 first-pass requests (94 + 618; 180 at gs=50), 14.76M input +
+329k output tokens ≈ $32 (≈ $10 at gs=50), request latency p50 9.0 s / p90 14.1 s / max 41 s (10.5 / 19.3 / 91 at
+gs=50 — the wave tail halved), mean paragraph 489 chars (≈417: +17%), 2,761/2,761 synthesized, 2 retried, 0
+invariant failures. Judged population = the A/A's 1,494 keys exactly (10 Sonnet jobs, 1,494/1,494, 0 malformed);
+2 Opus packets, 179 items, 50 rows changed — the judges' dominant error was scoring the shape-(b) hedge ("available
+at Tanfel … whether it manufactures or sources it is not specified") as J2 major + J6 fail: J2 major→minor 25, J6
+major→pass 28, J6 minor→pass 14.
+
+**Paired against 191548 (1,492 pairs, first gs=50 draw → the gs=10 draw):**
+
+| readout | gs=50 draw 1 | gs=10 |
+|---|---|---|
+| records with any fail | 3.2% (47) | 7.8% (116) — 93 newly failing, 24 newly passing |
+| records with a major | 2.1% (32) | 1.9% (29) — 19 newly failing, 22 newly passing |
+| mathewsco (353): any-fail / major | 22 / 20 | 24 / 16 — flips **28 = 7.9%** any-fail (floor 8.2%), **22 = 6.2%** major (floor 6.2%) |
+| tanfel (1,139): any-fail / major | 25 / 12 | 92 / 13 — flips **89 = 7.8%** any-fail (floor 3.0%), 19 = 1.7% major (floor 1.6%) |
+| mathewsco/process_caps (85): any-fail / major | 18 / 17 | 10 / 8 |
+| tanfel/material_caps (226): any-fail / major | 0 / 0 | 53 / 1 (52 J2 minors: the make-vs-source hedge on grade-table cells) |
+| tanfel/conformity (20): any-fail / major | 1 / 0 | 5 / 5 (under-claims on the standards bullet) |
+| clusters with a failing member / mixed | 11 / 2 | 37 / 17 |
+
+Against 225723 (1,473 pairs, second gs=50 draw): any-fail 5.8% → 7.8%, majors 3.9% → 1.9%; flips mathewsco 12.2% /
+9.6%, tanfel 8.1% / 2.1%, ALL 9.1% / 3.9%.
+
+**Per-request clustering of verified fails** (`checks/request_mode_readout.py`; judged records grouped by
+`request_custom_id`, requests with ≥ 2 judged records): failing records that sit in a request where the majority
+fails — 22% on 191548, 51% on 225723, **81% on the gs=10 run**; whole-request fails 0 / 1 / 18. Whole 8- and
+10-record tanfel material_caps requests came back hedged as a block and one whole 8-record mathewsco process_caps
+request laundered as a block, while their neighbours from the same tables and lists passed.
+
+**Reading.** (1) Smaller requests did NOT lower the per-record flip rate: on the representative site the gs=10
+draw flips 7.9% any-fail / 6.2% major against the first gs=50 draw, the floor is 8.2% / 6.2%. (2) The mechanism
+is unchanged: gpt-4.1 still lands a whole request in one reading, at 4 records per request as at 15 — the coin
+is per request whatever its size. (3) Decorrelation works as predicted (design doc §27.4): subject totals stop
+swinging as a block — majors 29 against 32 and 58 on the two gs=50 draws, mathewsco/process_caps 8 against 17
+and 26. (4) A systematic cost appeared: with few co-packed siblings the model hedges the subject's OWN listings
+more — 52 J2 minors on tanfel's grade tables (0 and 6 on the gs=50 draws) and 5 majors on its standards bullet;
+the list rule has less list to read in a 4-record request. (5) 3.2× the synthesis tokens, +17% paragraph length.
+**Recommendation: revert the cap to 50 — DONE 2026-09-13 on the user's word.** A second gs=10 draw (the gs=10-vs-gs=10 floor) would only confirm the
+per-record number and does not change the decision; the per-record lever is the N=3 majority, at the 50 cap.
+
+## STATE (2026-09-12, run `20260912T225723` — the TWO-SUBJECT A/A: same pins as 20260912T191548, mathewsco.com + tanfel.com re-generated, judged on 1,473 records, paired against 191548 on identical evidence = THE VERDICT-LEVEL NOISE FLOOR)
+
+The stored synthesis requests of the two subjects were deleted first (a re-run on unchanged pins otherwise
+REPLAYS stored responses — run 20260912T224107 was such a replay, 3,817/3,817 paragraphs identical, and was
+discarded). Same evidence, same static (`18d3e093…`), same call shape: **74 of 3,817 paragraphs (1.9%) came back
+byte-identical; mean text similarity of the rest 0.45.** Judged by 10 Sonnet jobs, verified by 2 Opus packets
+(172 items, 71 rows changed — 37 of them normalising the laundering shape to J1+J4+J6+J7, which is why the
+per-DIMENSION counts below are not comparable across runs; the per-RECORD any-fail and major counts are).
+
+**Paired against run 191548 (1,471 pairs on identical evidence, first draw → second draw of the SAME prompt):**
+
+| readout | first draw | second draw |
+|---|---|---|
+| records with any fail | 3.1% (46) | 5.8% (85) — 51 newly failing, 12 newly passing |
+| records with a major | 2.2% (32) | 3.9% (58) |
+| mathewsco (353 pairs): any-fail / major | 22 / 20 | 43 / 34 — **29 records (8.2%) flipped their any-fail verdict**, 22 flipped major |
+| tanfel (1,118 pairs): any-fail / major | 24 / 12 | 42 / 24 — **34 records (3.0%) flipped**, 18 flipped major |
+| clusters with a failing member / mixed | 11 / 2 | 22 / 5 |
+
+**Reading — the floor.** On identical inputs the per-record verdict flips 3% (a maker) to 8% (a
+representative), and the NET can swing by two points of majors on a subset dominated by one bimodal
+site. Mechanism (design doc §23, `tryout/repeat_mw2.py`): gpt-4.1 at temperature 0 with a fixed seed is
+bimodal PER REQUEST on the rep-site class — the same 39-record Mathews request comes back either all
+laundered ("the dealing shown is that Mathews & Company offers X") or all hedged ("…; the capacity is
+unstated"); five repeats of the published static drew the laundering mode once and a partial once. So:
+(1) the C21 "regression" of run 191548 (17 majors) was a draw, not a prompt effect; (2) the C16 pass's
+net −46 majors on 10,503 pairs is above this floor in size but its per-subject reading is not — no
+per-subject class under ~30 records is readable from one run; (3) every prompt tryout arm is now read as
+a MODE FRACTION over ≥5 repeats with the production call shape; (4) any A/B smaller than the flip mass
+(~3–8% of records) needs either more repeats or a variance fix at the source (smaller request packing so
+a mode flip touches fewer records; or N-sample majority per request). Per-dimension counts: J4 0 → 44
+is the verifier's normalisation (the first draw's judges scored the same shape as J1/J7 only).
+
 ## STATE (2026-09-12, run `20260912T191548` — the C16 pass: run A + four validated edits, judged on 10,551 records, paired against run A 20260911T223222)
 
 The pass validated on the production model in `docs_local/field_requirements_survey_20260911/tryout/pass2/JUDGE_C16.md`

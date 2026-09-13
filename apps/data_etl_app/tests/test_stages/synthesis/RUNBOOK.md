@@ -33,9 +33,11 @@ limit, agents die mid-flight; that is safe — see §6.)
   .location`). The model never sees it. The harness tracks the located share
   as a WATCH number (never a gate) and hands each record's distinct locations
   to the judge as pointers into the chunk text.
-- **Co-pack**: the records that rode in one request (≤50 snippets, groups
-  never split). Identity swaps and evidence bleed happen inside a co-pack, so
-  J3 needs this context. A record answered by the under-answer **retry** pass
+- **Co-pack**: the records that rode in one request (at most the packing cap
+  of snippets, groups never split — 50 through run 20260912T225723, 10 from
+  the 2026-09-12 packing change on; the custom id's `|gs=` says which).
+  Identity swaps and evidence bleed happen inside a co-pack, so J3 needs
+  this context. A record answered by the under-answer **retry** pass
   (`retried: true`) has the retry request as its co-pack — the work order's
   `request_custom_id` already points there.
 - **Twin**: one group synthesized separately in both chunks. Twins get
@@ -117,7 +119,14 @@ limit, agents die mid-flight; that is safe — see §6.)
    write full replacement rows to `verify/corrections_<k>.jsonl`;
    `checks/apply_corrections.py --run <id>` merges them and prints the
    transitions. Then `checks/paired_readout.py --run <id> --baseline <prev>`
-   for the identical-evidence pairing.
+   for the identical-evidence pairing; add `--by-subject` for the per-subject
+   and per-field FLIP counts (records whose verdict differs between the two
+   sides) — the number the A/A floor is quoted in (2026-09-12: mathewsco
+   8.2%, tanfel 3.0% any-fail flips on identical inputs) and the number every
+   variance lever is read against; `checks/request_mode_readout.py --run <id>`
+   shows whether the fails cluster by request (the per-request mode: 22% /
+   51% / 81% of failing records in majority-failing requests on the cap-50
+   draws and the cap-10 run of 2026-09-12/13).
    Two of the original census's own numbers were corrected exactly this way —
    the step is a measurement, not a formality.
 

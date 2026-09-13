@@ -132,7 +132,17 @@ class ExtractionPipelineFactory:
     DEFAULT_SNIPPET_RADIUS = 0
     # v3 synthesis (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2; the location-stage
     # merge 2026-09-03): the soft entry cap per request — records packed in
-    # bundle order, never split. Request identity.
+    # bundle order, never split. Request identity (`|gs=`): changing it re-mints
+    # every synthesis custom id, so a re-run regenerates instead of replaying.
+    # 50, tried at 10 on 2026-09-13 (run 20260913T023316, two subjects, synthesis
+    # design doc §29) and put back: gpt-4.1 at temperature 0 lands a whole
+    # request in one reading (a 39-record request comes back all laundered or
+    # all hedged), and a 4-record request flips exactly the same way — the
+    # per-record verdict flip stayed at the floor (7.9% / 6.2% against 8.2% /
+    # 6.2%), only the block got smaller — while the model hedged the subject's
+    # own listings more with fewer co-packed siblings (52 under-claims on grade
+    # tables that 50 packs cleanly) at 3.2x the synthesis tokens. The
+    # per-record lever is a majority over repeated generations, not packing.
     DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST = 50
     # AGGREGATION FOLD (v3 D10): the L2 verb/participle fold is a per-field
     # dial — on for the two fields whose phrases are process-flavoured
