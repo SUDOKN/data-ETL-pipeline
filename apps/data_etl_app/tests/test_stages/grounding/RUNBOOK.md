@@ -49,7 +49,7 @@ uniform):
 > hop in `lvl_by_lvl_itps` — one JSONL line each, exactly the TAXONOMY.md record
 > format, into `history/runs/⟨run_id⟩/judgments/⟨subject⟩__⟨field⟩.jsonl`. Judge by
 > reading the record (focal form, forms, synthesis); open the scraped source text
-> `apps/data_etl_app/src/data_etl_app/knowledge/sample_scraped_texts/⟨subject_domain⟩.txt`
+> `apps/data_etl_app/tests/test_stages/sample_scraped_texts/⟨subject_domain⟩.txt` (moved from `knowledge/` on 2026-08-28; the markdown-format scrapes sit beside it under `sample_scraped_markdowns/`)
 > whenever existence or attribution is in doubt. Never let a rule explanation decide
 > a code. Tag every item that bears on a watch item with that item's id.
 >

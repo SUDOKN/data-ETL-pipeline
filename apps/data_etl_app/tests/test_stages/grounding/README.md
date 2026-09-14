@@ -35,7 +35,9 @@ runnable by anyone:
 | `checks/run_eval.py` | the code half: deterministic checks, judgment merge, tiers, ledger |
 | `history/runs/<run_id>/` | per-run: `metrics.json`, `DETERMINISTIC.md`, `judgments/*.jsonl`, `verification_log.md`, `REPORT.md` |
 | `history/ledger.json` / `history/LEDGER.md` | the longitudinal table, one row per (run, subject, field) |
-| `tests/test_grounding_eval_harness.py` | pytest coverage of the instrument's own code against a fixture dump |
+| `checks/recoverability.py` | the recoverability readout (2026-09-14): every tag, decline and descent hop with the record and its MECHANICAL screening outcome; judge packets; the omission sample; the merge that crosses judged codes with "which screening rule could have caught it" — the code half of the grounding-gap survey (`docs_local/grounding_gap_survey_2026-09-14/`) |
+| `tryout/` | the grounding-shape tryout (2026-09-14): real grounding requests rebuilt from a finished synthesis run's dumps, today's two-call shape against the drafted three-list shape, N repeats in the production call shape, plus its mechanical check |
+| `tests/test_grounding_eval_harness.py`, `tests/test_recoverability.py` | pytest coverage of the instrument's own code against a fixture dump |
 
 The layout matches the sibling stage instruments (`../search/`, …) — same
 `RUNBOOK.md` / `config/` / `expectations/` / `checks/` / `history/` / `tests/`
