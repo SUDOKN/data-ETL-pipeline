@@ -137,8 +137,13 @@ class ExtractionPipelineFactory:
     # signature, a nested list's parent line — C25/C27). Offline sizing on the
     # two floor subjects (`tests/test_stages/synthesis/checks/radius_sizing.py`
     # on run 20260912T191548): 99.6% of records change evidence, snippet
-    # chars per record 229 → 663 (2.9×), distinct snippets +20%.
-    DEFAULT_SNIPPET_RADIUS = 1
+    # chars per record 229 → 663 (2.9×), distinct snippets +20%. Measured on
+    # two draws (runs 20260914T004150 / 20260914T161313, design doc §44/§46):
+    # the radius-1 floor equals the radius-0 floor (6.5% vs 6.4% any-fail
+    # pairwise), the two-draw mean sits inside it, the deterministic gains
+    # (an attribution one line away) are matched by neighbour-capture costs
+    # (C28), +30% input — REVERTED to 0 on the user's word, 2026-09-14.
+    DEFAULT_SNIPPET_RADIUS = 0
     # v3 synthesis (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2; the location-stage
     # merge 2026-09-03): the soft entry cap per request — records packed in
     # bundle order, never split. Request identity (`|gs=`): changing it re-mints
