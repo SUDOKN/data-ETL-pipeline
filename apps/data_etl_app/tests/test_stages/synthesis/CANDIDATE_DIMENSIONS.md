@@ -407,6 +407,56 @@ statics republish (which empties the cache anyway), never mid-pass.
   the LABEL wire's own defect (design doc §37) and disappears with the
   revert; it is why C22 became the run's dominant class.
 
+## Candidates from run 20260914T004150 (snippet radius 1, draw 1; mathewsco + tanfel) — added 2026-09-14
+
+- **C28 — Radius-1 neighbour capture (evidence stage).** With the fold's
+  snippet clip at radius 1 a record's snippet carries one sentence unit each
+  side, and where the neighbouring unit belongs to the PREVIOUS item it enters
+  as if it were this record's: (a) the previous line-card entry's trailing
+  "ISO 9001" opens the next entry's snippet ("ISO 9001\n\nkpl05 Rubber
+  Fabrication & Gaskets…", mathewsco products gogrnrlc and every kplNN
+  record) — the mechanical `designations_dropped` nominator fires on it
+  (verified false positives; the model never credited it, so no J2); (b) on
+  a testimonials page whose "- Name, Title" citation FOLLOWS its quote, the
+  wider snippet pulls the previous quote's citation in as if it introduced
+  this one, and the paragraph credits the wrong customer (tanfel industries
+  gk7hao9w, "energy efficient dog doors" attributed to the sporting-goods
+  customer) — a J1 PASS on the paragraph (faithful to its evidence) and an
+  upstream error. Probe TF-P9. The mirror of C25: radius 1 fixes the
+  one-line-away attribution (TF-P8 0/4) and creates the one-line-too-far
+  one.
+- **Not new, re-measured:** C22 (bare-noun capabilities index) halves — of
+  the 8 records failing in every radius-0 draw, 4 pass at radius 1
+  (Membrane Switch, both Fused Filament Fabrication, the gauge cross-link)
+  and the three `Metal: <process>` lines + the metrology heading still fail
+  (TF-P7 4/12); the tanfel nickel-alloy refusals (4 majors) are an
+  introducing sentence SEVEN bullets above the record — out of radius 1's
+  reach, the distance is the lever. C24 / MW-P4 (subject-elided kpl05
+  fragment): 6/6 unchanged, and the SAME sentence reads as a third party's in
+  conformity_attestations while products and material_caps install Mathews
+  as the manufacturer — it tracks the request (verifier: gnwwkljf clean vs
+  g4ee3bu2 major on byte-identical evidence in two requests), not the
+  sentence.
+
+## Watches confirmed on run 20260914T004150 (not defects)
+- Fails did NOT cluster by request this draw: 0% of majors in
+  majority-failing requests, 0 whole-request fails (radius-0 draws: 22% /
+  51% / 35%); one draw — draw 2 decides whether wider evidence thins the
+  per-request mode.
+- One-and-done delivery on the PLAIN wire: 1 of 180 first-pass requests (a
+  42-record mathewsco products request answered one record, 137 output
+  tokens); the retry pass recovered all 41 (191548: 5 of 1,598; label wire:
+  27 of 1,598). Keep `tryout/repeat_oneanddone.py` as the probe.
+- The judges' most-missed rules again: the field-membership gate (a
+  represented principal's trade name judged as a served sector, g4avd6w6;
+  a search fragment "die forging" of "open-die forging"), the laundering
+  bundle (J1 added by the verifier on 8 line-card rows), and PROBE rows not
+  written for a probe that names the record (MW-P1 on gs65and1 — three rows
+  added by the verifier).
+- Tooling: the code-derived `location` pointer is computed off the snippet
+  span, so radius 1 lowers `mentions_located` by 1–8% per field (tanfel
+  process_caps 3,690 → 3,609) — a pointer effect, not a synthesis one.
+
 ## Watches confirmed on run 20260913T170246 (not defects)
 - The rep-site laundering coin unchanged (mathewsco process_caps 25 this
   draw vs 18 / 30 / 0 on the three cap-50 draws); twins 8/214 flip; mixed

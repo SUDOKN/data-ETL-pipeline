@@ -13,3 +13,19 @@ probes:
   expectation: Judge the paragraph against its snippets, never against the chunk text alone; a paragraph that
     declines the dealing because the snippet carries no supplier is a J1/J6 PASS with a note (C25), not a fail.
     The count of such records is the watch that motivates a snippet-radius change upstream.
+    OUTCOME 2026-09-14 (run 20260914T004150, snippet radius 1) — 0 fail of 4 judged; the attribution line now
+    sits inside the snippet and the served sector is carried; the probe stays active as the regression watch
+    should the radius go back to 0.
+- id: TF-P9
+  status: active
+  added: '2026-09-14'
+  motivated_by: 'C28 (run 20260914T004150, snippet radius 1): on the testimonials page the "- Name, Title" citation
+    FOLLOWS its quote, so a radius-1 snippet opens with the PREVIOUS quote''s citation as if it introduced this one;
+    the paragraph for "energy efficient dog doors" (group gk7hao9w) credits the sporting-goods customer (ROJO Sport)
+    instead of the pet-door company. The paragraph is faithful to its evidence; the error is upstream (the clip
+    took a unit that belongs to the previous item).'
+  target: records whose evidence opens with a testimonial citation line — group gk7hao9w and any sibling quote on
+    the same testimonials page (the ROJO Sport / Endura Flap pair)
+  expectation: Judge the paragraph against its snippets — crediting the customer the snippet names is a J1 PASS
+    with a note (C28), never a fail; record the count as the watch on radius-1 neighbour capture. A paragraph
+    that names a customer the snippet does NOT carry is a J1 fail as usual.
