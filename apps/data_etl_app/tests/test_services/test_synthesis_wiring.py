@@ -123,7 +123,9 @@ def test_concept_chain_runs_synthesis_after_recursive_search_with_the_knobs_as_i
         ExtractionPipelineFactory.DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST
     )
     assert prefill.aggregation_fold_metadata is not None
-    assert prefill.aggregation_fold_metadata.snippet_radius == 0
+    assert prefill.aggregation_fold_metadata.snippet_radius == (
+        ExtractionPipelineFactory.DEFAULT_SNIPPET_RADIUS
+    )
     # the knobs reach the metadata (= request identity)
     tuned = _concept_pipeline(
         snippet_radius=2,
