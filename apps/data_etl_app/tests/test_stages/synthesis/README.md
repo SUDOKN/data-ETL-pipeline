@@ -159,6 +159,63 @@ probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
 
+## STATE (2026-09-14, run `20260914T161313` — SNIPPET RADIUS 1, draw 2: the same two subjects, same pins, stored synthesis requests deleted first; judged on 1,477 records (+17 cached), verified, paired against draw 1 on IDENTICAL evidence = THE RADIUS-1 FLOOR, and by key against the radius-0 draws)
+
+Mechanical: a fresh draw (1.1% of paragraphs byte-identical to draw 1 — the same rate the radius-0 draws show
+between themselves), 215 first-pass requests, 5.22M input + 318k output tokens, 468 chars per paragraph (471),
+0 invariant failures, no one-and-done request this time (retried 25). Same 1,494 keys; 10 Sonnet jobs
+(1,477/1,477, 0 malformed, 0 duplicates), the radius-aware JUDGE_PROMPT, 2 Opus packets (129 items: 54 majors,
+75 passes; 8 records changed — J6/J1/J7 major→pass on the three carbide-compound records and one sibling, J2
+major→minor on two capability-shaped forms judged in products by the field-membership gate, one gallery pass
+→ J2 minor), `apply_corrections`, `finalize`.
+
+**The radius-1 floor (draw 2 vs draw 1, 1,477 pairs on identical evidence, verified):**
+
+| readout | draw 1 (004150) | draw 2 (161313) | flips |
+|---|---|---|---|
+| records with any fail | 2.0% (30) | **5.8% (86)** | 96 = **6.5%** (+76 −20) |
+| records with a major | 1.4% (21) | **3.2% (47)** | 56 = **3.8%** (+41 −15) |
+| mathewsco (353): any-fail / major | 18 / 14 | 30 / 20 | **10.2% / 6.2%** |
+| tanfel (1,124): any-fail / major | 12 / 7 | 56 / 27 | **5.3% / 3.0%** |
+| unanimous fails (both draws) / split | | | 10 (6 MW-P4 + 4 tanfel process_caps index) / 96 |
+
+Against the radius-0 three-way floor (6.4% / 4.3% overall; 15.3% / 13.4% on the representative; 3.5% / 1.3%
+on the maker): overall the same; the representative's pair is narrower (one pair, inside the 8.2–21.5% range
+of the three radius-0 pairs); **the maker's pair is wider** (5.3% / 3.0% against 3.5–3.9% / 0.7–1.7%) — two
+request-level swings carry it: tanfel material_caps 13 majors (a buyer's-guide alloy list read as "Tanfel
+offers casting services using X"; the radius-1 clip kept "Some of the most commonly used metal alloys
+include:" and dropped the first half of the same line, "Different metal casting processes allow designers
+to choose…", so the party-less framing never reached the model — all-pass in draw 1) and tanfel products 8
+J2+J6 majors (the Metal FFF "Ideal applications" list refused while the identical FDM list below it read as
+offered). Per-request clustering: majors 0% in majority-failing requests (draw 1 also 0%), any-fail 21%.
+
+**Draw 2 by key against the radius-0 draws:** any-fail 5.8% vs 3.2 / 5.8 / 5.3%, majors 3.2% vs 2.2 / 4.0 /
+3.0% — the high end of the radius-0 range. Mean of the two radius-1 draws 3.9% / 2.3% against the three
+radius-0 draws' 4.8% / 3.0%: inside the floor.
+
+**What held across both radius-1 draws (the deterministic part):** TF-P8 0/4 in both (the testimonial's
+attribution now inside the snippet), TF-P3's containment class dissolved in both (12 spring records), TF-P9
+reproduced identically in both (the previous quote's citation captured — the paragraph faithful, the customer
+wrong), the MW-P4 six unchanged in both (radius 1 added the previous entry's "ISO 9001", not the missing
+agent). **What did not hold:** draw 1's "4 of the 8 always-failing records pass" — in draw 2 seven of the eight
+fail again (three as majors): the bare capabilities index is the coin, not a radius effect. New radius-1
+shapes in draw 2 (C28 addendum): a neighbouring bullet's use-clause absorbed into the focal material (three
+Polypropylene twins quoting TPU's "gaskets, grips…", J1 minor); the half-line clip above; and on short product
+pages the asserting line still sits two to four units below the snippet (carbide "Tanfel offers completed
+custom parts as well as standard Rods, Bars and Strips") — the model read it from the chunk as a grounded
+import where the judge had scored laundering.
+
+**Reading.** (1) Radius 1 does not move the floor: 6.5% against 6.4% overall, and the maker's variance got
+wider, not narrower — the per-request coin flips the same way on wider evidence. (2) The mean fail rate
+improves by about a point (3.9% vs 4.8%), inside what two draws can show. (3) The deterministic gain is real
+but small — about seven records of 1,494 (TF-P8 ×4, TF-P3 ×3) plus the attribution shapes the judges saw
+carried correctly — and comes with deterministic costs of the same size (C28 ×4: the wrong customer, the
+neighbour's attribute, the half-line clip that hides a disclaimer) and +30% synthesis input, +27% requests.
+(4) The decision rule of design doc §44 fails on both conditions (the floor is not narrower on the maker;
+draw 2 is not under the radius-0 draws). **Recommendation: revert to radius 0** (one line), keep
+`radius_sizing.py` and `--by-key`, and record that the evidence-side lever, like the prompt-side ones, does
+not reach the coin — the persistent core is 8–10 records, everything else is the draw. Design doc §46.
+
 ## STATE (2026-09-14, run `20260914T004150` — SNIPPET RADIUS 1, draw 1: mathewsco.com + tanfel.com on the C16 statics, the fold's snippet clip widened to one sentence unit each side; judged on 1,494 records, verified, paired BY KEY against the three radius-0 draws)
 
 The only change is `DEFAULT_SNIPPET_RADIUS` 0 → 1 (`extraction_pipeline_factory.py`; the snippets are hashed

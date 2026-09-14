@@ -438,6 +438,46 @@ statics republish (which empties the cache anyway), never mid-pass.
   g4ee3bu2 major on byte-identical evidence in two requests), not the
   sentence.
 
+## Candidates from run 20260914T161313 (snippet radius 1, draw 2) — added 2026-09-14
+
+- **C28 addendum (radius-1 neighbour capture, two more shapes).** (c) A
+  neighbouring bullet's attribute absorbed into the focal entity: three
+  Polypropylene twins quote the preceding TPU bullet's use-clause ("gaskets,
+  grips, and parts that need to absorb energy") as Polypropylene's while its
+  own ("fluid handling parts") never appears (tanfel material_caps gfmgbsf2,
+  g4isy6is, gnf4dsum; J1 minor). (d) The sentence-unit clip keeps the HALF of
+  a line that follows a full stop and drops the half that framed it: "Some
+  of the most commonly used metal alloys include:" reaches the model without
+  "Different metal casting processes allow designers to choose from a wide
+  range of metals and alloys." — the buyer's-guide framing is gone and ten
+  alloy records read "Tanfel offers casting services using X" (tanfel
+  material_caps glfl7ucn + 9; all-pass in draw 1, so per request too). Both
+  are the evidence stage's, not the paragraph's.
+- **Not new, re-measured:** the bare capabilities index (C22 / TF-P7) is
+  the coin — of the 8 records failing in every radius-0 draw, 7 fail again
+  in radius-1 draw 2 after 4 had passed in draw 1. The subject-elided
+  fragment (C24 / MW-P4) 6/6 in both radius-1 draws; radius 1 added the
+  previous entry's "ISO 9001" to its snippet but no agent. The representative
+  site's three readings (launder / hedge / deny) all appeared across the two
+  radius-1 draws (products: the cold-heading entries laundered in draw 1, the
+  Ellwood principal page refused ×13 in draw 2).
+
+## Watches confirmed on run 20260914T161313 (not defects)
+- The radius-1 floor from one pair: 6.5% any-fail / 3.8% major overall,
+  10.2% / 6.2% representative, 5.3% / 3.0% maker — overall equal to the
+  radius-0 three-way floor, narrower on the representative, wider on the
+  maker (two request-level swings on tanfel material_caps and products).
+- Majors did not cluster by request in either radius-1 draw (0% in
+  majority-failing requests); any-fail clustered 21% in draw 2 (draw 1 0%).
+- One laundered sentence copied across five siblings in one request
+  (carbide "is often used for … drill bits" → "Tanfel offers carbide
+  products for use as drill bits" ×5) — major counts on application-list
+  pages are cluster-inflated; the verifier named "Tanfel states that …" as
+  the hinge that makes the leap look licensed.
+- Field-membership gate, most-missed again, now on refusals: a capability
+  judged in products refused is J2 minor + J6 pass, the same refusal in
+  process_caps is major (gev03mpn, gxs2ny57).
+
 ## Watches confirmed on run 20260914T004150 (not defects)
 - Fails did NOT cluster by request this draw: 0% of majors in
   majority-failing requests, 0 whole-request fails (radius-0 draws: 22% /
