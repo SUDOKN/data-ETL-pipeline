@@ -159,6 +159,30 @@ probe, and a re-scrape would serve OEM coverage better). Runs are launched by
 the user from `mfg_extraction_test.ipynb`; the eval evaluates whatever
 subjects a run contains.
 
+## STATE (2026-09-14, no run — the RUN-B TRYOUT: six field-specific prompt sections tried on production requests and NOT PUBLISHED)
+
+The requirements doc's field sections ("## What to settle about the dealing", one per static; text of
+record `answerability/tryout/field_sections.py`) were tried before any publish: 14 production requests of
+run 191548 rebuilt from this harness's evidence snapshot (`answerability/tryout/run_tryout_b.py`; the
+rebuild is byte-identical to a Mongo-pulled request), two arms (C16 vs C16 + the field's section) × 5
+repeats in the production call shape, 140 outputs all clean (`tryout_b_check.py`), six Opus judges
+(`answerability/tryout/pass2/JUDGE_RUN_B_<field>.md`) reading modes over the repeats. Records whose mode
+is right, c16 → b: products 43 → 42 of 76, equipments 51 → 51 of 55, **industries 55 → 35 of 59** (20
+flips against b, all on the sales representative: an option list that offers only manufacturer-side
+answers makes the model hand the rep its principals' markets), conformity 35 → 37 of 71 (+5 parent
+voice kept, −4 Howco grade-page specification refused, and a focal-entity collapse: 3 of 5 b repeats
+write one byte-identical paragraph for all 11 records of a standards cluster), material_caps 61 → 61 of
+65, process_caps 84 → 84 of 104 (rep-site laundering 0 of 39 in both arms this draw; the 20 wrong
+records are tanfel's own capabilities index hedged as merely listed in BOTH arms — the class behind the
+8 records that fail in every draw of §041535). Five DO NOT SHIP, one SHIP WITH EDIT at zero mode
+flips. **Not published; statics and pins unchanged.** Lessons: with the C16 shared block in place a
+field section moves no mode; an enumerated option list in a prompt makes the model pick an option
+(the label experiment's lesson, now in prose); every added "snippets" in the prompt raises the
+wire-word leak; the classes left standing are evidence-side (the answer one line beyond the snippet:
+material_caps, industries, conformity C27) → snippet radius 1, whose readout (`paired_readout.py
+--by-key`) is built; and one shared-sentence candidate for the own-capabilities index (process_caps
+report §5.1, 20 records of evidence). Design doc §41.
+
 ## STATE (2026-09-13, run `20260913T170246` — RUN X1, the LABEL WIRE (party/capacity fields decided before the paragraph), all 18 subjects, judged on 10,469 records, verified, paired against 191548 = A REGRESSION ON EVERY AXIS; the labels are NOT adopted)
 
 **REVERTED 2026-09-14 (verdict below):** the six C16 statics restored from commit 7b9fea0 (md5 `18d3e093…`, byte-identical ×6)

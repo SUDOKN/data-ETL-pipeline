@@ -23,6 +23,14 @@ verdict between the two sides. This is the number the A/A floor is quoted
 in (run 20260912T225723 against 191548: mathewsco 29/353 = 8.2%, tanfel
 34/1,118 = 3.0%), and the number every variance lever (packing, N-sample
 choice) is read against.
+
+``--by-key`` (2026-09-14, for the snippet-radius experiment) pairs on the
+key ALONE and keeps pairs whose evidence CHANGED between the runs — a fold
+change (radius 0 → 1) re-digests every record's snippets, so the
+identical-evidence rule would pair nothing. Each stratum then also prints how
+many of its pairs carry identical vs changed evidence, and the flip readout
+is split the same way: flips on identical evidence read against the floor as
+before; flips on changed evidence carry the lever AND the floor together.
 """
 
 from __future__ import annotations
@@ -32,7 +40,7 @@ import json
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Iterable, Optional
 
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -55,6 +63,24 @@ def _fails(row: dict[str, Any]) -> dict[str, tuple[str, Optional[str]]]:
         for d in DIMS
         if d in checks
     }
+
+
+def paired_keys(
+    new: dict[Key, dict[str, Any]],
+    base: dict[Key, dict[str, Any]],
+    keys: Iterable[Key],
+    by_key: bool,
+) -> list[Key]:
+    """The keys judged on both sides; with ``by_key`` False only where the two
+    sides judged the SAME evidence (``evidence_sha256`` equal)."""
+    return [
+        k for k in keys
+        if k in base and (by_key or base[k].get("evidence_sha256") == new[k].get("evidence_sha256"))
+    ]
+
+
+def same_evidence(new: dict[Key, dict[str, Any]], base: dict[Key, dict[str, Any]], k: Key) -> bool:
+    return base[k].get("evidence_sha256") == new[k].get("evidence_sha256")
 
 
 def any_fail(row: dict[str, Any]) -> bool:
@@ -108,14 +134,20 @@ def readout(
     new: dict[Key, dict[str, Any]],
     base: dict[Key, dict[str, Any]],
     population: dict[Key, dict[str, Any]],
+    by_key: bool = False,
 ) -> None:
     strata: dict[str, list[Key]] = defaultdict(list)
     for key in new:
         strata[(population.get(key) or {}).get("population") or "all"].append(key)
     strata["ALL"] = list(new)
     for name, keys in strata.items():
-        paired = [k for k in keys if k in base and base[k].get("evidence_sha256") == new[k].get("evidence_sha256")]
-        print(f"\n== {name}: judged {len(keys)}, paired on identical evidence {len(paired)}")
+        paired = paired_keys(new, base, keys, by_key)
+        if by_key:
+            same = sum(1 for k in paired if same_evidence(new, base, k))
+            print(f"\n== {name}: judged {len(keys)}, paired BY KEY {len(paired)} "
+                  f"(identical evidence {same}, changed evidence {len(paired) - same})")
+        else:
+            print(f"\n== {name}: judged {len(keys)}, paired on identical evidence {len(paired)}")
         if not paired:
             continue
         for label, fn in (("any fail", any_fail), ("any major", any_major)):
@@ -164,17 +196,15 @@ def readout(
 def flip_readout(
     new: dict[Key, dict[str, Any]],
     base: dict[Key, dict[str, Any]],
+    by_key: bool = False,
 ) -> None:
     """Per subject, then per (subject, field): pairs on identical evidence,
     any-fail and major counts on both sides, and the FLIPS — records whose
     verdict differs between the sides (newly failing + newly passing). A
     flip rate is only readable against a floor measured the same way."""
-    paired = [
-        k for k in new
-        if k in base and base[k].get("evidence_sha256") == new[k].get("evidence_sha256")
-    ]
+    paired = paired_keys(new, base, list(new), by_key)
     if not paired:
-        print("\n== per subject: nothing paired on identical evidence")
+        print("\n== per subject: nothing paired" + ("" if by_key else " on identical evidence"))
         return
 
     def line(label: str, keys: list[Key]) -> None:
@@ -193,13 +223,24 @@ def flip_readout(
             f"major {b_m:4d} -> {n_m:4d}, flips {flips_m:4d} = {100 * flips_m / n:4.1f}%"
         )
 
-    print("\n== per subject / field, pairs on identical evidence (baseline -> new; flips = records whose verdict differs)")
-    for subject in sorted({k[0] for k in paired}):
-        keys = [k for k in paired if k[0] == subject]
-        line(subject, keys)
-        for field_name in sorted({k[1] for k in keys}):
-            line(f"    {subject}/{field_name}", [k for k in keys if k[1] == field_name])
-    line("ALL", paired)
+    def block(title: str, pool: list[Key]) -> None:
+        print(f"\n== {title} (baseline -> new; flips = records whose verdict differs)")
+        for subject in sorted({k[0] for k in pool}):
+            keys = [k for k in pool if k[0] == subject]
+            line(subject, keys)
+            for field_name in sorted({k[1] for k in keys}):
+                line(f"    {subject}/{field_name}", [k for k in keys if k[1] == field_name])
+        line("ALL", pool)
+
+    if not by_key:
+        block("per subject / field, pairs on identical evidence", paired)
+        return
+    same = [k for k in paired if same_evidence(new, base, k)]
+    changed = [k for k in paired if not same_evidence(new, base, k)]
+    if same:
+        block("per subject / field, pairs on IDENTICAL evidence (read against the floor)", same)
+    if changed:
+        block("per subject / field, pairs on CHANGED evidence (the lever plus the floor)", changed)
 
 
 def main() -> None:
@@ -211,6 +252,11 @@ def main() -> None:
         "--by-subject",
         action="store_true",
         help="also print the per-subject and per-field flip readout (the A/A floor's number)",
+    )
+    parser.add_argument(
+        "--by-key",
+        action="store_true",
+        help="pair on the key alone and keep evidence-changed pairs (fold/radius experiments)",
     )
     args = parser.parse_args()
     new = load_run_verdicts(args.run)
@@ -224,9 +270,9 @@ def main() -> None:
             parts = k.split("|")
             population[(parts[0], parts[1], parts[2], parts[3])] = v
     print(f"run {args.run}: {len(new)} verdict rows; baseline {args.baseline}: {len(base)} ledger rows; population labels {len(population)}")
-    readout(new, base, population)
+    readout(new, base, population, by_key=args.by_key)
     if args.by_subject:
-        flip_readout(new, base)
+        flip_readout(new, base, by_key=args.by_key)
     counts = Counter((population.get(k) or {}).get("population") or "all" for k in population)
     print(f"\npopulation planned: {dict(counts)}; judged so far: {len(new)}")
 

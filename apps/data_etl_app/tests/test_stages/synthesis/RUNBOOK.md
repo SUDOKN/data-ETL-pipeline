@@ -148,7 +148,13 @@ limit, agents die mid-flight; that is safe — see §6.)
    <a> <b> <c>` prints the three-way floor (pairwise disagreement), the split
    and unanimous-fail counts, and what an N-sample text medoid would have
    scored (2026-09-13: 6.4% pairwise floor, 8 of 1,449 records fail in every
-   draw, the text medoid no better than a single draw).
+   draw, the text medoid no better than a single draw). `paired_readout.py
+   --by-key` (2026-09-14) pairs on the key alone and keeps pairs whose
+   EVIDENCE changed between the runs — for a fold change (snippet radius
+   0 → 1) that re-digests every record; it splits the flip readout into
+   identical-evidence pairs (read against the floor) and changed-evidence
+   pairs (the lever plus the floor). On identical-evidence runs it prints the
+   same numbers as the default pairing (checked on 041535 vs 191548).
    On runs of the LABEL wire (only run 20260913T170246; reverted 2026-09-14)
    every answer carried four LABELS (`doer`, `doer_name`, `capacity`,
    `dealing_words`; work orders show them to the judge when present):

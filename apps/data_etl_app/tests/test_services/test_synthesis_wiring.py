@@ -56,16 +56,32 @@ def _prompt(name: str) -> Prompt:
     return Prompt(s3_version_id="v1", name=name, text=f"{name} text", num_tokens=3)
 
 
-def test_synthesis_prompts_are_registered_exist_on_disk_and_are_byte_identical():
-    texts = set()
+def _shared_block(text: str) -> tuple[str, str]:
+    """The text outside the one field-specific section (run B, 2026-09-14):
+    everything before "## What to settle about the dealing" and everything
+    from the next "## " heading on. A static without the section is all
+    shared. Mirrors test_synthesis_statics_shared_block.split_shared."""
+    heading = "## What to settle about the dealing"
+    start = text.find(heading)
+    if start < 0:
+        return text, ""
+    nxt = text.find("\n## ", start + len(heading))
+    return text[:start], ("" if nxt < 0 else text[nxt + 1 :])
+
+
+def test_synthesis_prompts_are_registered_exist_on_disk_and_share_one_block():
+    shared = set()
+    static = ""
     for field in FIELDS:
         key = f"{field}_phrase_synthesis"
         assert key in STAGED_PROMPT_FILE_PATHS
         path = _PROMPTS_DIR / STAGED_PROMPT_FILE_PATHS[key]
         assert path.is_file()
-        texts.add(path.read_text())
-    assert len(texts) == 1  # field-agnostic: one static, six pins
-    static = texts.pop()
+        static = path.read_text()
+        shared.add(_shared_block(static))
+    # Six pins, one shared block: the statics differ only inside their field
+    # section (byte-identical in full until run B's field sections, 2026-09-14).
+    assert len(shared) == 1
     assert "focal_form" in static and "describes the focal entity" in static
     # The per-snippet context task was dropped 2026-09-05 (location is derived
     # in code by the fold); the statics must not ask for it any more.

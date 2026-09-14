@@ -28,7 +28,13 @@ docs_local tree is local-only since then); the design record is
 - `tryout/` — the prompt tryout tooling: `run_tryout.py`, `run_tryout_pass2.py`,
   `run_tryout_c16.py`, `run_tryout_p3.py` (the production call shape: gpt-4.1,
   strict schema, seed; arms ≥5 repeats, read as a mode fraction) and the repeat
-  probes `repeat_mw2.py`, `repeat_oneanddone.py`; judge notes `JUDGE_*.md`;
+  probes `repeat_mw2.py`, `repeat_oneanddone.py`; `run_tryout_b.py` (2026-09-14:
+  production requests REBUILT from the evidence snapshot, no Mongo — `--check`
+  proves the rebuild against a pulled request; N repeats per arm, production
+  call shape), `field_sections.py` (the run-B field sections of record: `arms`
+  writes the per-field system texts, `statics` would apply them — never run),
+  `tryout_b_check.py` (parse/coverage/length of the outputs); judge notes `JUDGE_*.md`
+  (`pass2/JUDGE_RUN_B_BRIEF.md` + six `JUDGE_RUN_B_<field>.md` = the run-B tryout);
   `pass2/` holds the arms' system texts (`*_system.txt`), the pulled production
   requests (`req_*_user.txt`) and the outputs. `pass2/label_system.txt` is the
   run X1 static (md5 `5f7ba520…`), tracked so the experiment stays reproducible.
