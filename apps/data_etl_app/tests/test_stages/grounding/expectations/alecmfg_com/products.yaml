@@ -3,12 +3,14 @@ field: products
 expected: []
 traps:
 - name: High-Precision Stainless Steel Valve Body
-  kind: wrong_axis
-  note: a one-off part built to a semiconductor client's spec; belongs under contract_products, not a
-    catalog product
+  kind: client_work
+  note: a one-off part built to a semiconductor client's spec; a real product category (freehand
+    grounding is right to name it), but the pure-product screening must reject it as a client's
+    order — ruling 2026-09-14: the products/contract split is screening's, not grounding's
 - name: Precision 5-Axis CNC Copper Heat Sink
-  kind: wrong_axis
-  note: custom part built to a UK client's spec; belongs under contract_products
+  kind: client_work
+  note: custom part built to a UK client's spec; same ruling — the tag is clean, the acceptance is
+    screening's error
 - name: CNC Machining / 3D Printing / Injection Molding (service names)
   kind: wrong_axis
   note: these are the services/process_caps offered, not catalog products Alec sells

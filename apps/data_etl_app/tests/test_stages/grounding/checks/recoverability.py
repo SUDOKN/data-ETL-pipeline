@@ -29,6 +29,10 @@ Usage (from the instrument directory):
     .venv/bin/python checks/recoverability.py --run <run_id> --out <dir>
         [--packet-size 170] [--omission-per-dump 43] [--seed 20260914]
     .venv/bin/python checks/recoverability.py --run <run_id> --out <dir> --merge
+
+``--merge`` overlays ``verify/corrections_*.jsonl`` on the census verdicts and
+``omission_verify/corrections_*.jsonl`` on the oracle verdicts (full replacement
+rows written by the Opus verifiers) before joining.
 """
 
 from __future__ import annotations
@@ -754,16 +758,18 @@ def recoverability_matrix(
 
 
 def omission_matrix(
-    omission_dir: Path, verdicts_dir: Path
+    omission_dir: Path, verdicts_dir: Path, corrections_dir: Optional[Path] = None
 ) -> dict[str, Any]:
     """Phase 3: per field, the oracle labels by status (emitted, generalized,
     declined, dropped, missed). A judge's verdict row carries
-    `oracle_labels: [{label, status, in_vocabulary, note}]` for one record."""
+    `oracle_labels: [{label, status, in_vocabulary, party, note}]` for one
+    record; an Opus verifier's full replacement rows under ``corrections_dir``
+    (``corrections_*.jsonl``) overlay the oracle's, as in Phase 2."""
     units = {}
     for path in omission_dir.glob("*.jsonl"):
         for unit in _read_jsonl(path):
             units[unit["item_id"]] = unit
-    verdicts = load_verdicts(verdicts_dir)
+    verdicts = load_verdicts(verdicts_dir, corrections_dir)
     cells: Counter[tuple[str, str]] = Counter()
     by_party: Counter[tuple[str, str, str]] = Counter()
     by_vocab: Counter[tuple[str, str, str]] = Counter()
@@ -930,7 +936,7 @@ def main(argv: Optional[list[str]] = None) -> None:
         omission_dir = out_dir / "omission"
         omission_verdicts = out_dir / "omission_verdicts"
         omission = (
-            omission_matrix(omission_dir, omission_verdicts)
+            omission_matrix(omission_dir, omission_verdicts, out_dir / "omission_verify")
             if omission_dir.exists() and omission_verdicts.exists()
             else None
         )

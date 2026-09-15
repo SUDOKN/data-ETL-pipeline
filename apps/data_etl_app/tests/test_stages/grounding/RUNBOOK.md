@@ -161,7 +161,12 @@ whose `subject.yaml` is marked `placeholder: true`:
 > traps:
 >   - name: "Lead"
 >     kind: homonym             # homonym | third_party | client_work | marketing_idiom
->                               # | doc_title | wrong_axis | wrong_actor | negated
+>                               # | doc_title | wrong_axis | wrong_actor | negated | catalog_item
+>                               # client_work / catalog_item (ruling 2026-09-14): the products and
+>                               # contract_products fields share one freehand call, so a client's
+>                               # commissioned part in `products` or a catalog series in
+>                               # `contract_products` is a CLEAN grounding tag whose acceptance is
+>                               # screening's error — never wrong_axis (that is for cross-kind errors)
 >     note: "appears only inside 'lead time'"
 > ```
 >

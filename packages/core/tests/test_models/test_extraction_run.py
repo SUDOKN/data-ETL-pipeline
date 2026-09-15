@@ -306,3 +306,93 @@ def test_provenance_round_trips_through_json():
     )
     reloaded = RunProvenance.model_validate_json(provenance.model_dump_json())
     assert reloaded == provenance
+
+
+# --- the document the writer sends to Mongo (2026-09-14) ---------------------
+#
+# Found on the first full-tail run after the writer landed: ``model_dump`` is
+# not a BSON encoder. It keeps ``set[str]`` as sets (BSON refuses them, so every
+# keyword field's history failed the write) and it cannot dump the descent
+# result at all (a set of models becomes a set of dicts — unhashable), which
+# sank every concept field's run. These pin the encoder the writer uses now.
+
+
+def _concept_results_with_a_descent_node() -> ConceptExtractionResults:
+    from core.models.extraction_schemas.iterative_tagging import (
+        IterativelyTaggedPhraseGroup,
+    )
+
+    results = _concept_results()
+    results.chunked_extraction_stats["0:1000"].llm_phrase_recursive_grounding = {
+        4: {
+            IterativelyTaggedPhraseGroup(
+                parent_group_id="Painting",
+                group_id="Wet Painting",
+                direct_phrases_to_og_tag_w_rules={},
+                iterative_phrases_to_og_tag_w_rules={},
+            )
+        }
+    }
+    return results
+
+
+def test_a_concept_run_with_a_descent_node_encodes_for_bson():
+    import bson
+
+    from core.services.extraction_run_service import encode_extraction_run
+
+    run = _run("concept", _concept_results_with_a_descent_node())
+    # The shape that sank run 20260915T020646: pydantic cannot dump a set of
+    # models in python mode.
+    with pytest.raises(TypeError):
+        run.model_dump(mode="python", exclude={"id", "revision_id"})
+
+    document = encode_extraction_run(run)
+    bson.BSON.encode(document)  # what update_one needs; raises on a set
+    assert "_id" not in document and "id" not in document and "revision_id" not in document
+    assert document["run_timestamp"] == _WHEN  # the upsert key stays a datetime
+    assert document["results"]["results"]["in_vocab"] == ["Metal"]
+    descent = document["results"]["chunked_extraction_stats"]["0:1000"]["llm_phrase_recursive_grounding"]
+    assert descent == {
+        "4": [
+            {
+                "parent_group_id": "Painting",
+                "group_id": "Wet Painting",
+                "stop_reason": None,
+                "declined_records": {},
+                "direct_phrases_to_og_tag_w_rules": {},
+                "iterative_phrases_to_og_tag_w_rules": {},
+            }
+        ]
+    }
+
+
+def test_a_keyword_run_encodes_its_empty_sets_for_bson():
+    import bson
+
+    from core.services.extraction_run_service import encode_extraction_run
+
+    document = encode_extraction_run(_run("keyword", _keyword_results()))
+    bson.BSON.encode(document)
+    assert document["results"]["results"]["in_vocab"] == []
+    assert document["results"]["results"]["out_of_vocab"] == ["cnc machining centers"]
+    assert document["field_family"] == "keyword"
+
+
+def test_the_encoded_document_reads_back_as_the_same_run():
+    """Not just writable: what Mongo would hand back validates to the run that
+    was written — int keys stringified by BSON come back as ints, lists come
+    back as sets, the descent node keeps its identity."""
+    from core.services.extraction_run_service import encode_extraction_run
+
+    for family, results in (
+        ("concept", _concept_results_with_a_descent_node()),
+        ("keyword", _keyword_results()),
+    ):
+        run = _run(family, results)
+        reloaded = ExtractionRun.model_validate(encode_extraction_run(run))
+        assert reloaded.results == run.results
+        assert reloaded.run_provenance == run.run_provenance
+        assert (reloaded.subject_unique_id, reloaded.field_name, reloaded.run_timestamp) == (
+            run.subject_unique_id, run.field_name, run.run_timestamp
+        )

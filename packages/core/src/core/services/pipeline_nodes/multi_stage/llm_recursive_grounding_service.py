@@ -829,9 +829,20 @@ async def create_missing_phrase_recursive_grounding_requests(
                 pending_tagging_req.descend_req_id
                 not in missing_phrase_recursive_grounding_req_ids
             ):
-                raise ValueError(
-                    f"descend_req_id:{pending_tagging_req.descend_req_id} from last level was not passed as missing"
+                # Not missing means a stored request exists for it already:
+                # answered, or answered-then-cleared by a parse failure and
+                # about to be re-dispatched by the base node's incomplete-set
+                # pass. Either way there is nothing to create. This used to
+                # raise, which fired whenever one chunk's walk stalled at a
+                # level whose siblings were all answered (alecmfg.com
+                # process_caps, run 20260915T024255: one level-1 answer failed
+                # to parse, the chunk registered no level 2, and the first
+                # answered level-1 sibling tripped the check).
+                logger.info(
+                    f"Skipping pending_tagging_req {pending_tagging_req.name} in chunk "
+                    f"{chunk_bounds}: its request already exists (not passed as missing)"
                 )
+                continue
             elif not concept_obj:
                 logger.info(
                     f"Skipping pending_tagging_req {pending_tagging_req.name} as concept_obj is None"

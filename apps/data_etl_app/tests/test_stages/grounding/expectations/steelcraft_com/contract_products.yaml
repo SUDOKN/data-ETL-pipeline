@@ -25,9 +25,11 @@ expected:
   strength: weak
 traps:
 - name: Standard catalog door series (e.g., L Series)
-  kind: wrong_axis
+  kind: catalog_item
   note: L Series and similar named series are off-the-shelf catalog products; offering some custom options
-    does not make the base series a contract/to-spec product
+    does not make the base series a contract/to-spec product — ruling 2026-09-14: the freehand tag is
+    clean (one call serves both product fields); the contract screening must reject it, and a pass is
+    screening's error
 - name: Express/stock programs (2-Day/3-Day/5-Day)
   kind: wrong_axis
   note: '''48-hour shipping on kwik-pak doors and frames and stock package small parts'' -- fast-ship

@@ -27,6 +27,8 @@ import logging
 from datetime import datetime
 from typing import Union
 
+from beanie.odm.utils.encoder import Encoder
+
 from core.db_models.extraction_run import ExtractionRun, FieldFamily
 from core.models.extraction_results.llm_phrase_extraction_results import (
     ConceptExtractionResults,
@@ -60,8 +62,8 @@ async def save_extraction_run(
         run_provenance=run_provenance,
         results=results,
     )
-    document = run.model_dump(mode="python", exclude={"id", "revision_id"})
     try:
+        document = encode_extraction_run(run)
         await ExtractionRun.get_pymongo_collection().update_one(
             {
                 "subject_unique_id": subject_unique_id,
@@ -78,3 +80,26 @@ async def save_extraction_run(
             f"reach the subject, but this run leaves no history: {write_error}",
             exc_info=True,
         )
+
+
+def encode_extraction_run(run: ExtractionRun) -> dict:
+    """The run as a BSON-ready document, encoded the way Beanie encodes a
+    ``save()`` — NOT ``model_dump(mode="python")``.
+
+    Found on the first full-tail run after this service landed (2026-09-14, run
+    20260915T020646): ``model_dump`` keeps ``set[str]`` fields as Python sets,
+    which BSON refuses ("cannot encode object: set()") — every keyword field's
+    history silently failed the write — and it cannot serialize the descent
+    result at all (``dict[int, set[IterativelyTaggedPhraseGroup]]``: a set of
+    models dumps to a set of dicts, ``TypeError: unhashable type: 'dict'``),
+    which sank every concept field's run because the dump sat outside the
+    guard. Beanie's encoder turns sets into lists and models into dicts, keeps
+    datetimes as datetimes (the upsert key must match the stored value), and
+    is what the subject document's own ``save()`` goes through (``to_db=True``,
+    as ``Document.save`` calls it), so the record and the cache carry the same
+    shape and read back as the same model — pinned by the round-trip test.
+    """
+    # Beanie's encoder keys by database alias, so the document id is ``_id``
+    # here, not ``id`` — excluding only ``id`` left ``_id: null`` in the $set,
+    # which the collection's schema refuses (run 20260915T023502).
+    return Encoder(exclude={"_id", "id", "revision_id"}, to_db=True).encode(run)

@@ -294,19 +294,34 @@ def test_an_explanation_volunteered_beside_units_is_dropped_not_fatal():
     assert parsed["raaaaaa1"].explanation is None
 
 
-def test_duplicate_records_and_duplicate_labels_raise():
-    entry = {
+def test_a_repeated_record_id_is_dropped_for_the_retry_and_its_siblings_kept():
+    """2026-09-14 (run 20260915T024255): the model repeats a record id when it
+    confuses ids, so every answer under it is dropped and the under-answer
+    retry re-asks it — the synthesis parser's rule. Raising instead re-asked
+    the whole group under the parse-error cap and sank a subject."""
+    repeated = {
         "record_id": "raaaaaa1",
         "options": [_option("Machining")],
         "explanation": None,
     }
-    with pytest.raises(ValueError, match="Duplicate record id"):
-        parse_record_grounding_result(
-            json.dumps({"groundings": [entry, entry]}),
-            catalog=IN_VOCAB,
-            allowed_labels=VOCAB_LABELS,
-        )
+    sibling = {
+        "record_id": "raaaaaa2",
+        "options": [_option("Aerospace Industry")],
+        "explanation": None,
+    }
+    parsed = parse_record_grounding_result(
+        json.dumps({"groundings": [repeated, sibling, repeated]}),
+        catalog=IN_VOCAB,
+        allowed_labels=VOCAB_LABELS,
+    )
+    assert "raaaaaa1" not in parsed  # left for the retry pass
+    assert set(parsed["raaaaaa2"].tags) == {"Aerospace Industry"}
 
+
+def test_a_label_listed_twice_for_one_record_names_one_tag():
+    """One descent answer listing 'Coating' twice on a record was a parse
+    failure that sank alecmfg.com's process_caps (run 20260915T024255); the
+    first unit's rule report stands."""
     doubled_label = json.dumps(
         {
             "groundings": [
@@ -318,10 +333,11 @@ def test_duplicate_records_and_duplicate_labels_raise():
             ]
         }
     )
-    with pytest.raises(ValueError, match="twice"):
-        parse_record_grounding_result(
-            doubled_label, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
-        )
+    parsed = parse_record_grounding_result(
+        doubled_label, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
+    )
+    assert list(parsed["raaaaaa1"].tags) == ["Machining"]
+    assert len(parsed["raaaaaa1"].tags["Machining"]) == 2  # E1 + the chosen branch, once
 
 
 def test_the_dummy_content_parses_to_an_empty_map():

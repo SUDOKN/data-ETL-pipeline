@@ -23,6 +23,7 @@ from dataclasses import dataclass, field as dataclass_field
 
 import asyncio
 import logging
+from collections import Counter
 import traceback
 from datetime import datetime
 from typing import Any, Iterable, Optional
@@ -120,14 +121,30 @@ def parse_record_grounding_result(
         else None
     )
 
+    # An id answered more than once is DROPPED with every answer it got, logged,
+    # and left for the node's under-answer retry (2026-09-14, the synthesis
+    # parser's rule since 2026-09-12): a repeated id means the model confused
+    # ids, so one of its answers belongs to a sibling whose own id went
+    # unanswered, and there is no telling which. The hold thins on the missing
+    # ids and the retry re-asks exactly those. Raising here instead re-asked
+    # the whole group under the parse-error cap and, when the model repeated
+    # the confusion on three dispatches, cost fzemanufacturing.com its whole
+    # run (run 20260915T024255: three different ids repeated, one per attempt).
+    answers_per_id = Counter(entry.record_id for entry in parsed.groundings)
+    repeated = sorted(rid for rid, n in answers_per_id.items() if n > 1)
+    if repeated:
+        logger.error(
+            f"parse_record_grounding_result: {len(repeated)} record id(s) answered "
+            f"more than once — {repeated}; every answer for them is dropped and "
+            f"left for the retry pass (the response answered "
+            f"{len(parsed.groundings)} records under {len(answers_per_id)} distinct ids)"
+        )
+
     staged: dict[str, tuple[TagToAppliedRulesMap, Optional[str], list[str]]] = {}
     violations: list[str] = []
     for entry in parsed.groundings:
-        if entry.record_id in staged:
-            raise ValueError(
-                f"parse_record_grounding_result: Duplicate record id "
-                f"{entry.record_id!r} in groundings response"
-            )
+        if answers_per_id[entry.record_id] > 1:
+            continue
 
         units = getattr(entry, "options", None)
         if units is None:
@@ -164,10 +181,17 @@ def parse_record_grounding_result(
                     )
                 label = canonical
             if label in tags:
-                raise ValueError(
-                    f"parse_record_grounding_result: record {entry.record_id!r} "
-                    f"carries {label!r} twice"
+                # The same label listed twice for one record names one tag;
+                # the first unit's rule report stands. Raising made this a
+                # parse failure, and on the descent stage — whose parse
+                # errors are never re-dispatched by the base node's held-error
+                # path — one such answer ('Coating' twice on one record) sank
+                # alecmfg.com's whole process_caps run (20260915T024255).
+                logger.warning(
+                    f"record {entry.record_id}: {label!r} listed twice; keeping the "
+                    f"first unit's rule report"
                 )
+                continue
             applied = flatten_rule_slots(catalog, unit)
             report = check_applied_rules(
                 catalog=catalog,
