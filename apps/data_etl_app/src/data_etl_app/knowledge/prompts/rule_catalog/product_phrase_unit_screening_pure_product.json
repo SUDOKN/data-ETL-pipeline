@@ -1,0 +1,103 @@
+{
+  "catalog_version": "product_phrase_unit_screening_pure_product.2026.09.5",
+  "prompt_name": "product_phrase_unit_screening_pure_product",
+  "stage": "phrase_unit_screening",
+  "field_types": [
+    "products"
+  ],
+  "entity_noun": "product category",
+  "entity_relationships": {
+    "base": "manufacture and sell as its own",
+    "third_person": "manufactures and sells as its own",
+    "gerund": "manufacturing and selling as its own"
+  },
+  "evidence_source": "the record's focal form and synthesis",
+  "reporting": "structural",
+  "outcome_vocab": {},
+  "sections": [
+    {
+      "section_id": "conditions",
+      "heading": "Conditions — a record proves the candidate only when ALL of these hold on it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "SCR-0",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "What the record evidences is itself one {{entity_noun}}, judged against what the candidate means; a thing the record names as something else is that thing, not one.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-0a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A product category is a kind of tangible good the record names as a product; a thing the record names as something else — a market, a credential, a machine, a material, a process — is that thing, not a product."
+            }
+          ]
+        },
+        {
+          "id": "SCR-3",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The item is the manufacturer's own make and sale: it makes the item and sells it as its own. An item ordered by a named other party, or made by another party and only listed, offered, or passed on by the manufacturer, is that party's, and the record does not prove this candidate."
+        },
+        {
+          "id": "SCR-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The record names the candidate — or something the candidate is a broader kind of — in its own words or one plain step from them. A candidate the record does not name is not proven, however likely it is: naming a thing does not name what made it, what it is made with, or what it is made of."
+        },
+        {
+          "id": "SCR-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The manufacturer is the party whose business the dealing is — under whatever name it trades or is organized, at whatever site, under whatever arrangement it controls or directs. A party that does the same thing as its own business is not the manufacturer, however it relates to it. Read the dealing from the manufacturer's side: the manufacturer's name in the sentence does not settle it, and a dealing the record states from another party's side is that party's unless the record makes it the manufacturer's.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The manufacturer is named at the top of the request; a record may refer to it by that name, as the manufacturer, or by a name it trades under."
+            },
+            {
+              "id": "SCR-2c",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The dealing must be the one named above — {{entity_relationships.gerund}} the candidate. A different dealing with the same thing, such as selling what another party makes or using what another party sells, is not it, whoever the manufacturer is."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "Guards — any one of these rules the record out:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "SCR-G1",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The involvement is not current and actual."
+        },
+        {
+          "id": "SCR-G2",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The candidate names no particular member of the kind — a term that fixes nothing — so no record proves it."
+        }
+      ]
+    }
+  ],
+  "published": {}
+}

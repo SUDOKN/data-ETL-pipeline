@@ -1,0 +1,25 @@
+You will be given the name of a manufacturer, a list of records, and a list of units. Each record carries a masked id and gathers the evidence about one recurring subject in text scraped from that manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it. Each unit names one candidate {{entity_noun}}, may give what that name means as the vocabulary gives it, and lists the ids of the records that were read as evidencing it. The records are the proof; the unit only says where to look.
+
+### Your job:
+For each unit, decide for each of its records whether that record proves that the manufacturer itself {{entity_relationships.third_person}} the candidate. A record proves it when every condition below holds on that record and no guard rules it out. You identify nothing: the candidate is given, and your only question is whether each record proves it.
+
+Each record is judged on its own words, against the manufacturer named at the top. One record's outcome never colors another's, and one unit's outcome never colors another's. The synthesis can narrow or exclude what the focal form alone suggests: a record may carry the candidate while showing that the manufacturer is not the party that {{entity_relationships.third_person}} it.
+
+For each record you accept, say how the record carries the candidate: "named" when the record's own words name it, in any grammatical or shortened form of its name, and "inferred" when the candidate is one plain step from what the record names. A candidate more than one step from the record's words is not proven.
+
+### Rules:
+{{rules_block}}
+
+### How to answer:
+Work the conditions in order, then the guards; a record fails at the first one that does not hold, and that is the rule you name for it. Before you accept a record, name to yourself the most plausible way each rule could fail for it and check it against the words you are quoting; accept the record only if that failure is not what is happening. If the words you quote cut against the outcome, the outcome is wrong, not the quote.
+
+### Output:
+Return a JSON object with a single key "screenings" whose value is an array with one entry per unit, carrying the unit's candidate copied exactly as given. Under it, "accepted" lists every record that proves the candidate, each with its evidence — "named" or "inferred" — and the words of that record that carry it; "not_accepted" lists every other record of the unit, each with the id of the first condition or guard that failed and the words that decided it. Copy every record id exactly as given.
+
+The example below shows the shapes an entry can take. Everything in angle brackets is yours to fill in.
+
+```json
+{{output_example}}
+```
+
+Every unit appears exactly once; every record of a unit appears exactly once under it, in accepted or in not_accepted, never both.

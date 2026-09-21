@@ -51,7 +51,18 @@ SKELETON_BY_STAGE = {
     "phrase_recursive_grounding": "recursive_grounding.skeleton.txt",
     "phrase_freehand_grounding": "freehand_grounding.skeleton.txt",
     "binary_classification": "binary_classification.skeleton.txt",
+    # Step 2 (2026-09-21): the structural families. Their skeletons carry no
+    # {{report_block}} — there are no rule slots to report — and state the
+    # output contract themselves.
+    "phrase_grounding": "grounding.skeleton.txt",
+    "phrase_unit_screening": "unit_screening.skeleton.txt",
+    "phrase_descent": "descent.skeleton.txt",
 }
+
+# The stages whose descent tokens ({{parent_entity}} / {{types_of_parent_entity}})
+# are substituted per request by the recursive-grounding service and must
+# therefore survive rendering.
+_DESCENT_STAGES = frozenset({"phrase_recursive_grounding", "phrase_descent"})
 
 # The S3 key prefix a prompt is published under. Derived from the stage rather
 # than read out of PromptService.STAGED_PROMPT_FILE_PATHS, because that map also
@@ -69,6 +80,9 @@ STAGE_DIR_BY_STAGE = {
     "phrase_oov_grounding": "multi_stage/5_oov_grounding",
     "phrase_recursive_grounding": "multi_stage/6_recursive_grounding",
     "binary_classification": "single_stage",
+    "phrase_grounding": "multi_stage/5_grounding",
+    "phrase_unit_screening": "multi_stage/4_phrase_unit_screening",
+    "phrase_descent": "multi_stage/6_descent",
 }
 
 # Rendered prompts are written HERE. `final_texts/` is build output and is
@@ -861,6 +875,147 @@ def _freehand_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
     )
 
 
+# --- Step 2 structural examples (2026-09-21) ---------------------------------
+#
+# No rule slots. What the example shows is the three lists (or the units) and
+# the per-record objects; what it fixes is only the vocabularies the catalog
+# fixes — the matching branches a ``chosen`` may name (left open as
+# alternatives) and the rules a ``failed_rule`` may name (likewise). Nothing
+# here names a real label, sector, process, material or machine.
+
+
+def _record_quote(record_slot: str, quote_slot: str) -> dict[str, Any]:
+    return {"record_id": record_slot, "quote": quote_slot}
+
+
+def _matching_branch_placeholder(catalog: RuleCatalog) -> str:
+    from core.models.extraction_schemas.catalog_wire_schema import matching_branch_ids
+
+    branches = matching_branch_ids(catalog)
+    if len(branches) == 1:
+        return branches[0]
+    return f"<whichever of {', '.join(branches)} applied>"
+
+
+def _three_list_example(
+    catalog: RuleCatalog,
+    *,
+    option_slot: str,
+    second_record_slot: str,
+    proposal_slot: str,
+    proposal_why: str,
+    unmatched_record_slot: str,
+    unmatched_why: str,
+) -> dict[str, Any]:
+    return {
+        "matched": [
+            {
+                "option": option_slot,
+                "records": [
+                    _record_quote(
+                        "<a record id copied exactly as given>",
+                        "<the words of this record that evidence the option>",
+                    ),
+                    _record_quote(
+                        second_record_slot,
+                        "<the words of that record that evidence it>",
+                    ),
+                ],
+                "chosen": {
+                    "rule_id": _matching_branch_placeholder(catalog),
+                    "explanation": "<why this is the branch that applied>",
+                },
+            }
+        ],
+        "proposed": [
+            {
+                "label": proposal_slot,
+                "records": [
+                    _record_quote(
+                        "<a record id copied exactly as given>",
+                        "<the words of this record that evidence it>",
+                    )
+                ],
+                "explanation": proposal_why,
+            }
+        ],
+        "unmatched": [
+            {"record_id": unmatched_record_slot, "explanation": unmatched_why}
+        ],
+    }
+
+
+def _grounding_example(catalog: RuleCatalog) -> dict[str, Any]:
+    return _three_list_example(
+        catalog,
+        option_slot="<an option, copied from its own line in the outline>",
+        second_record_slot="<another record's id, one that evidences the same option>",
+        proposal_slot="<a plain, generic name for a {{entity_noun}} no option names or generalizes>",
+        proposal_why="<why it is a {{entity_noun}}, and why no option names or generalizes it>",
+        unmatched_record_slot="<a record id copied exactly as given, one whose focal form is no {{entity_noun}}>",
+        unmatched_why="<why the record yields nothing>",
+    )
+
+
+def _descent_example(catalog: RuleCatalog) -> dict[str, Any]:
+    return _three_list_example(
+        catalog,
+        option_slot="<a narrower kind, copied from its own line in the list>",
+        second_record_slot="<another record's id, one that supplies the same narrowing feature>",
+        proposal_slot="<a plain name for a narrower kind of {{parent_entity}} the record names and no listed kind covers>",
+        proposal_why="<why the record names it, and why no listed kind names or generalizes it>",
+        unmatched_record_slot="<a record id copied exactly as given, one that fixes nothing narrower>",
+        unmatched_why="<why the record's words fix nothing narrower than {{parent_entity}}>",
+    )
+
+
+def _unit_screening_example(catalog: RuleCatalog) -> dict[str, Any]:
+    from core.models.extraction_schemas.catalog_wire_schema import (
+        EVIDENCE_DISTANCE_INFERRED,
+        EVIDENCE_DISTANCE_NAMED,
+        failable_rule_ids,
+    )
+
+    failed_slot = f"<the first of {', '.join(failable_rule_ids(catalog))} that failed>"
+    return {
+        "screenings": [
+            {
+                "option": "<a unit's candidate, copied exactly as given>",
+                "accepted": [
+                    {
+                        "record_id": "<an id of this unit's records>",
+                        "evidence": EVIDENCE_DISTANCE_NAMED,
+                        "quote": "<the words of this record that name the candidate>",
+                    },
+                    {
+                        "record_id": "<another id of this unit's records>",
+                        "evidence": EVIDENCE_DISTANCE_INFERRED,
+                        "quote": "<the words of that record the candidate is one plain step from>",
+                    },
+                ],
+                "not_accepted": [
+                    {
+                        "record_id": "<a third id of this unit's records>",
+                        "failed_rule": failed_slot,
+                        "quote": "<the words that decided it>",
+                    }
+                ],
+            },
+            {
+                "option": "<another unit's candidate, copied exactly as given>",
+                "accepted": [],
+                "not_accepted": [
+                    {
+                        "record_id": "<the id of that unit's only record>",
+                        "failed_rule": failed_slot,
+                        "quote": "<the words that decided it>",
+                    }
+                ],
+            },
+        ]
+    }
+
+
 EXAMPLE_BUILDER_BY_STAGE = {
     "phrase_relationship_screening": _screening_example_v2,
     "phrase_initial_grounding": _option_grounding_example_v2,
@@ -868,6 +1023,9 @@ EXAMPLE_BUILDER_BY_STAGE = {
     "phrase_recursive_grounding": _recursive_grounding_example_v2,
     "phrase_freehand_grounding": _freehand_grounding_example_v2,
     "binary_classification": _binary_classification_example,
+    "phrase_grounding": _grounding_example,
+    "phrase_unit_screening": _unit_screening_example,
+    "phrase_descent": _descent_example,
 }
 
 
@@ -890,6 +1048,13 @@ def _prints_on_one_line(node: Any) -> bool:
         return True  # a fired guard or chosen branch: two short fields
     if len(node) == 2 and "outcome" in node and "explanation" in node:
         return True  # an always-reported rule's slot, under its id
+    if "record_id" in node and all(isinstance(v, str) for v in node.values()):
+        # A structural per-record object ({record_id, quote}, {record_id,
+        # evidence, quote}, {record_id, failed_rule, quote}, {record_id,
+        # explanation}): a few short strings, and there are many per response.
+        # A record-keyed ENTRY of the older stages carries a list and stays
+        # pretty-printed.
+        return True
     return False
 
 
@@ -936,7 +1101,13 @@ def render_prompt(catalog: RuleCatalog, skeleton_text: Optional[str] = None) -> 
     )
 
     text = skeleton.replace(_RULES_BLOCK, _render_rules_block(catalog))
-    text = text.replace(_REPORT_BLOCK, _render_report_block(catalog))
+    if _REPORT_BLOCK in text:
+        if catalog.reporting == "structural":
+            raise PromptAssemblyError(
+                f"{catalog.prompt_name}: reporting is structural, so its skeleton "
+                f"cannot carry {_REPORT_BLOCK} — there are no rule slots to report"
+            )
+        text = text.replace(_REPORT_BLOCK, _render_report_block(catalog))
     # Before the entity pass: the example's own slots are written with
     # {{entity_noun}} and resolve in it.
     text = text.replace(_OUTPUT_EXAMPLE, _render_output_example(catalog))
@@ -953,7 +1124,7 @@ def _assert_fully_resolved(text: str, catalog: RuleCatalog) -> None:
     import re
 
     allowed: set[str] = set()
-    if catalog.stage == "phrase_recursive_grounding" and catalog.field_types:
+    if catalog.stage in _DESCENT_STAGES and catalog.field_types:
         try:
             parent, children = ConceptTypeEnum(
                 catalog.field_types[0]

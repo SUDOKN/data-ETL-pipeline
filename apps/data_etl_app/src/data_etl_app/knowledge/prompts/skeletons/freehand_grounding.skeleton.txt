@@ -3,7 +3,7 @@ You will be given a list of records, each carrying a masked id. Each record gath
 You will assess each record independently.
 
 ### Your job:
-From each record's focal form and synthesis, identify every distinct {{entity_noun}} the record evidences, and name it yourself. What you return is always the category, never a specific make, model, or individual item.
+Each record is about its focal form. From the focal form, as its synthesis describes it, identify every distinct {{entity_noun}} the focal form is or names — and nothing the synthesis mentions only beside it, which belongs to other records — and name it yourself. What you return is always the category, never a specific make, model, or individual item.
 
 Identification is your whole job here; relationships are not. Whether it is the manufacturer itself or some other party that {{entity_relationships.third_person}} an identified {{entity_noun}} plays no part. Do not withhold a candidate because that relationship looks doubtful, and do not record one on the strength of that relationship alone.
 

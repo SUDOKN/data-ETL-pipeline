@@ -1,5 +1,5 @@
 {
-  "catalog_version": "equipment_phrase_freehand_grounding.2026.08.9",
+  "catalog_version": "equipment_phrase_freehand_grounding.2026.09.2",
   "prompt_name": "equipment_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -30,7 +30,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
+          "text": "The record names the machine, or its category, in its own words about its focal form — one plain step at most from what it says. Naming a thing does not name what made it or what it is made with: what the record names as a product, a part, a material, a process, a service, or a trade is that thing, not a machine, and a name for the work with a word for machines attached to it names no machine. A candidate the record does not name is not evidenced. Quote the words that name it.",
           "combinator": "note",
           "children": [
             {
@@ -38,7 +38,14 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded."
+              "text": "The record's words include the heading the site files the subject under, and a name in any grammatical form, abbreviation, or recognisable variant is the name."
+            },
+            {
+              "id": "FGR-E1b",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by another party's dealings is still identified and recorded."
             }
           ]
         }
@@ -54,55 +61,14 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It names a production machine: a device, tool, or system that acts on the work itself, used directly to process, shape, assemble, or convert raw materials into finished goods for commercial use. Equipment that keeps the operation running without acting on the work — powering or conditioning the plant, moving or storing what it makes, or serving the business rather than the making — does not qualify, however necessary it is.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "FGR-Q1a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Equipment that only measures, inspects, or tests does not act on the work either. It establishes what the work already is and leaves it as it was, and does not qualify on the same ground."
-            },
-            {
-              "id": "FGR-Q1b",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Tooling is not a machine. What is mounted in, held by, or driven by a machine — what it cuts, forms, or positions the work with — performs no operation of its own; the machine driving it is what qualifies."
-            }
-          ]
+          "text": "It names a production machine: a device, tool, or system that acts on the work itself. Equipment that keeps the operation running without acting on the work does not qualify, however necessary it is; equipment that only establishes what the work already is does not act on it; and what a machine holds, drives, or cuts with is tooling, not a machine."
         },
         {
           "id": "FGR-Q2",
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is a determinate category: neither an individual unit — one specimen, identified as itself rather than as a kind — nor a term so general it fixes nothing. A record naming a specific unit is reported as the category that unit belongs to.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "FGR-Q2a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "A record that identifies one particular specimen — by its maker, its designation, or any other mark that singles that one out from others like it — names a unit rather than a category. Report the kind that specimen belongs to, and carry none of what singled it out into the category name."
-            },
-            {
-              "id": "FGR-Q2b",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Qualifying a term that fixes nothing does not make it determinate. A term that names no operation performed on the work names no kind of machine, and a modifier saying how good it is, how new it is, how much of it there is, or that it is on site leaves it naming no kind still. Such a term is never a category you return."
-            },
-            {
-              "id": "FGR-Q2c",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "A trade, a service, or a line of business is not a machine. Where a record names what the manufacturer does, or what it sells itself as, a category follows only if the record names the machines it does that work with. A name for the work with a word for machines attached to it is not a category the words support."
-            }
-          ]
+          "text": "It is a determinate category: not one specimen, however marked, and not a term that fixes no kind. A maker's name, a model designation, or any other mark that singles one specimen out names a unit, not a kind: report the kind the record names that specimen as, with nothing that singled it out carried into the name; where the record names no kind for it, there is no category to report. A modifier that names neither an operation nor a configuration adds no kind."
         },
         {
           "id": "FGR-Q3",
@@ -116,24 +82,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "It is named at the depth the record fixes, and at no other depth. Naming descends in steps: first the operation the machine performs on the work, then the configuration that tells machines performing that same operation apart — how they are oriented, driven, controlled, or arranged. Take every step the words supply, and stop at the first step they do not. It fails when the name carries a step the words never supplied, and it fails just as much when the words supplied a step the name left off.",
-          "combinator": "note",
-          "children": [
-            {
-              "id": "FGR-Q4a",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "Where the record names both a kind and a narrower kind within it, the narrower one is the category. The broader name is already implied by it, so returning that as well adds nothing."
-            },
-            {
-              "id": "FGR-Q4b",
-              "kind": "note",
-              "reportable": false,
-              "report_when": "never",
-              "text": "A step the words do not supply is never taken, however likely it is that a manufacturer like this one would have it. Typicality is not evidence: name the machine with the control, precision, automation, or capacity the words state, and with none they do not."
-            }
-          ]
+          "text": "It is named at the depth the record fixes: the category the record names, with every configuration word the record supplies and none it does not. Where the record names both a kind and a narrower kind within it, the narrower one is the category. Typicality is not evidence: a step the words do not supply is never taken, however likely it is that a manufacturer like this one would have it."
         }
       ]
     }

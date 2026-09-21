@@ -1,0 +1,96 @@
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it.
+
+You will assess each record independently.
+
+### Your job:
+From each record's focal form and synthesis, identify every distinct production machine category the record evidences, and name it yourself. What you return is always the category, never a specific make, model, or individual item.
+
+Identification is your whole job here; relationships are not. Whether it is the manufacturer itself or some other party that operates, owns, uses, or otherwise has access to an identified production machine category plays no part. Do not withhold a candidate because that relationship looks doubtful, and do not record one on the strength of that relationship alone.
+
+A record may also evidence no production machine category at all, and recording none is the correct result then.
+
+### Rules:
+Each production machine category you identify qualifies only if ALL of these conditions hold for it:
+[FGR-E1] The record evidences the production machine category you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.
+   - Whose production machine category it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded.
+
+And every production machine category you name must satisfy ALL of these:
+[FGR-Q1] It names a production machine: a device, tool, or system that acts on the work itself, used directly to process, shape, assemble, or convert raw materials into finished goods for commercial use. Equipment that keeps the operation running without acting on the work — powering or conditioning the plant, moving or storing what it makes, or serving the business rather than the making — does not qualify, however necessary it is.
+   - Equipment that only measures, inspects, or tests does not act on the work either. It establishes what the work already is and leaves it as it was, and does not qualify on the same ground.
+   - Tooling is not a machine. What is mounted in, held by, or driven by a machine — what it cuts, forms, or positions the work with — performs no operation of its own; the machine driving it is what qualifies.
+[FGR-Q2] It is a determinate category: neither an individual unit — one specimen, identified as itself rather than as a kind — nor a term so general it fixes nothing. A record naming a specific unit is reported as the category that unit belongs to.
+   - A record that identifies one particular specimen — by its maker, its designation, or any other mark that singles that one out from others like it — names a unit rather than a category. Report the kind that specimen belongs to, and carry none of what singled it out into the category name.
+   - Qualifying a term that fixes nothing does not make it determinate. A term that names no operation performed on the work names no kind of machine, and a modifier saying how good it is, how new it is, how much of it there is, or that it is on site leaves it naming no kind still. Such a term is never a category you return.
+   - A trade, a service, or a line of business is not a machine. Where a record names what the manufacturer does, or what it sells itself as, a category follows only if the record names the machines it does that work with. A name for the work with a word for machines attached to it is not a category the words support.
+[FGR-Q3] It is distinct from every other production machine category named for the same record. Two names for the same production machine category in different words are one, not two.
+[FGR-Q4] It is named at the depth the record fixes, and at no other depth. Naming descends in steps: first the operation the machine performs on the work, then the configuration that tells machines performing that same operation apart — how they are oriented, driven, controlled, or arranged. Take every step the words supply, and stop at the first step they do not. It fails when the name carries a step the words never supplied, and it fails just as much when the words supplied a step the name left off.
+   - Where the record names both a kind and a narrower kind within it, the narrower one is the category. The broader name is already implied by it, so returning that as well adds nothing.
+   - A step the words do not supply is never taken, however likely it is that a manufacturer like this one would have it. Typicality is not evidence: name the machine with the control, precision, automation, or capacity the words state, and with none they do not.
+
+### Rules you must report:
+Every rule you report carries the outcome you reached and your explanation, under the field named for its rule id. Each explanation must cite the record's focal form and synthesis, quoting the words you relied on.
+
+Conditions are read in order and build on one another, so a later condition's explanation does not need to re-establish what an earlier one already did. Quote only the words that bear on the rule you are reporting.
+
+An explanation that merely restates a rule as its own conclusion is not an explanation. Before you write an outcome, name to yourself the most plausible way that rule could fail for this candidate and check it against the words you are quoting; report the outcome only if that failure is not what is happening. If the words you quote cut against the outcome you report, the outcome is wrong, not the quote.
+
+- Each of these has its own field, which you must fill in whichever outcome it reached: FGR-E1, FGR-Q1, FGR-Q2, FGR-Q3, FGR-Q4.
+
+The outcome you give must be one allowed for that rule:
+- FGR-E1, FGR-Q1, FGR-Q2, FGR-Q3, FGR-Q4 → satisfied, failed, not_triggered
+  Only "satisfied" counts as the condition holding. Write "not_triggered" when there was nothing left to evaluate it against — for example when an earlier condition had already failed and left nothing for this one to judge — and "failed" when you evaluated it and it did not hold. Neither of those counts as holding.
+
+### Output:
+Return a JSON object with a single key "groundings" whose value is an array of objects, one per record, each carrying the record's id copied exactly as given. Where you identified nothing, return an empty "candidates" array with a short "explanation" of why the record yields no production machine category.
+
+The example below shows a record yielding one production machine category, a record yielding several, and a record yielding none. Every production machine category you return carries its own complete set of applied rules. Everything in angle brackets is yours to fill in.
+
+```json
+{
+  "groundings": [
+    {
+      "record_id": "<a record id copied exactly as given>",
+      "candidates": [
+        {
+          "candidate": "<the production machine category you named>",
+          "FGR-E1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q2": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q3": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q4": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"}
+        }
+      ],
+      "explanation": null
+    },
+    {
+      "record_id": "<another record's id — one from which you identified more than one>",
+      "candidates": [
+        {
+          "candidate": "<the production machine category you named>",
+          "FGR-E1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q2": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q3": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q4": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"}
+        },
+        {
+          "candidate": "<a second, distinct production machine category named from the same record>",
+          "FGR-E1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q2": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q3": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q4": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"}
+        }
+      ],
+      "explanation": null
+    },
+    {
+      "record_id": "<another record's id — one that yields none>",
+      "candidates": [],
+      "explanation": "<why the record yields no production machine category, citing the record's focal form and synthesis>"
+    }
+  ]
+}
+```
+
+Each record must appear exactly once.

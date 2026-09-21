@@ -164,8 +164,27 @@ def tree_list_to_flat(tree_knowns: list[ConceptNode]) -> set[Concept]:
     return set(flat_knowns)
 
 
-def render_concept_outline(concepts: Iterable[Concept], indent: str = "  ") -> str:
+# The marker a definition line begins with in the dash-line outline. The
+# prompt's own sentence names it ("a line beginning with '—' belongs to the
+# option directly above it"), so the two must agree.
+DASH_LINE_MARKER = "— "
+
+
+def render_concept_outline(
+    concepts: Iterable[Concept], indent: str = "  ", *, with_definitions: bool = False
+) -> str:
     """The option list as an indented outline, one line per concept.
+
+    ``with_definitions`` (Step 2, user decision 2026-09-19, V2 + the dash-line
+    shape): the label line carries the label and nothing else, and directly
+    beneath it, at the same indentation, one line beginning with "— " carries
+    the other names as ``also known as: …`` (full stop) and then the definition
+    in full. Indentation carries the hierarchy and nothing else, so "copy the
+    option name from its own line" and the parser's exact match agree by
+    construction — the alias-suffix defect (A4, 170 lost labels in run
+    20260915T024255) cannot arise. A label with neither other names nor a
+    definition gets no dash line. Without the flag the outline renders exactly
+    as before: aliases inline as "(also: …)", no definitions.
 
     Replaces a flat list of every matchLabel. That list had no structure at all, so
     nothing told the model which sense of a label was meant; the obvious repair —
@@ -208,9 +227,20 @@ def render_concept_outline(concepts: Iterable[Concept], indent: str = "  ") -> s
 
     def _line(concept: Concept, depth: int) -> str:
         text = f"{indent * depth}{concept.name}"
-        if concept.altLabels:
+        if concept.altLabels and not with_definitions:
             text += f" (also: {', '.join(sorted(concept.altLabels))})"
         return text
+
+    def _dash_line(concept: Concept, depth: int) -> Optional[str]:
+        parts: list[str] = []
+        if concept.altLabels:
+            parts.append(f"also known as: {', '.join(sorted(concept.altLabels))}.")
+        definition = (concept.definition or "").strip()
+        if definition:
+            parts.append(definition)
+        if not parts:
+            return None
+        return f"{indent * depth}{DASH_LINE_MARKER}{' '.join(parts)}"
 
     lines: list[str] = []
     seen: set[str] = set()
@@ -220,6 +250,10 @@ def render_concept_outline(concepts: Iterable[Concept], indent: str = "  ") -> s
             return
         seen.add(concept.name)
         lines.append(_line(concept, depth))
+        if with_definitions:
+            dash = _dash_line(concept, depth)
+            if dash is not None:
+                lines.append(dash)
         for child in sorted(children.get(concept.name, []), key=lambda c: c.name):
             _walk(child, depth + 1)
 

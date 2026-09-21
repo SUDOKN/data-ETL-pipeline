@@ -482,3 +482,40 @@ static pins deleted. find_business_desc + extract_any_address remain static (no 
 5. Equipment & product (keyword/freehand grounding) NOT yet catalogued — separate pattern.
 6. Prompt .txt files currently REVERTED by user to the earlier hand-written applied_rules version;
    they must be regenerated FROM catalogs by the assembler (don't hand-edit).
+
+## STEP 2 OF THE GROUNDING REDESIGN — STRUCTURAL CATALOGS (2026-09-21)
+
+Three new families live BESIDE the ones they will replace (new stage ids, new S3 folders), so the
+published prompts keep rendering and stay the tryout's control arm until the build cuts over:
+- `phrase_grounding` (`*_phrase_grounding.json`, skeleton `grounding.skeleton.txt`, folder
+  `multi_stage/5_grounding`): ONE call replaces initial + OOV grounding. Response = three lists,
+  option-major: `matched[{option, records[{record_id, quote}], chosen{rule_id, explanation}}]`,
+  `proposed[{label, records, explanation}]`, `unmatched[{record_id, explanation}]`.
+- `phrase_unit_screening` (`*_phrase_unit_screening*.json`, skeleton `unit_screening.skeleton.txt`,
+  folder `multi_stage/4_phrase_unit_screening`): units (one label + the record ids grounding matched
+  on), records rendered once; per unit `accepted[{record_id, evidence: named|inferred, quote}]` and
+  `not_accepted[{record_id, failed_rule, quote}]`.
+- `phrase_descent` (`*_phrase_descent.json`, skeleton `descent.skeleton.txt`, folder
+  `multi_stage/6_descent`): the per-level narrowing in the same three-list shape; the leaf step
+  (design draft §6.5) is the same prompt with an EMPTY narrower-kinds list, which the skeleton
+  states explicitly.
+
+`reporting: "structural"` (RuleCatalog header): these catalogs report NO rule slots. A rule is held
+by where an entry lands and what it quotes — the evidence rule by the per-record quote (the parser
+drops a record whose quote is empty or absent from the record), the kind rule by membership and
+the screening kind test, the matching ladder by `chosen` (preference rules only) or by landing in
+`proposed` (the new `proposal` kind), a screening rule by being named in `failed_rule`. Such a
+catalog declares no `outcome_vocab` (nothing on the wire could carry one), its skeleton carries no
+`{{report_block}}`, and `catalog_wire_schema` builds its schema from the two id vocabularies the
+catalog fixes (matching branches; conditions ∪ guards). Per-rule catalogs are unchanged.
+
+Guard ids are the SAME phenomenon under the same id across all seven unit-screening catalogs:
+SCR-G1 currency, SCR-G2 genericity (a term that fixes nothing), SCR-G3 the field's own guard
+(products: another party's item; contract: not another party's order; equipments: sold rather than
+had or used) — present on three fields only. Kind sentences (the audit's general sentences, one per
+field) are notes under GR-K1 / SCR-0. No prompt in these families names a domain instance.
+
+Freehand (`*_phrase_freehand_grounding.json`) was reworded in place with the same rule ids (same
+schema): V5 in FGR-E1 ("naming a thing does not name what made it"), FGR-Q4 starts from the
+category the record names, the case lists collapsed into their general sentences, the skeleton's
+job paragraph scoped to the focal form. The published pins are kept until the user publishes.

@@ -1,0 +1,103 @@
+{
+  "catalog_version": "equipment_phrase_unit_screening.2026.09.3",
+  "prompt_name": "equipment_phrase_unit_screening",
+  "stage": "phrase_unit_screening",
+  "field_types": [
+    "equipments"
+  ],
+  "entity_noun": "production machine category",
+  "entity_relationships": {
+    "base": "have or use",
+    "third_person": "has or uses",
+    "gerund": "having or using"
+  },
+  "evidence_source": "the record's focal form and synthesis",
+  "reporting": "structural",
+  "outcome_vocab": {},
+  "sections": [
+    {
+      "section_id": "conditions",
+      "heading": "Conditions — a record proves the candidate only when ALL of these hold on it:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "SCR-0",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "What the record evidences is itself one {{entity_noun}}, judged against what the candidate means; a thing the record names as something else is that thing, not one.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-0a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A production machine is a device, tool, or system that acts on the work itself. Equipment that keeps the operation running without acting on the work does not qualify, however necessary it is; equipment that only establishes what the work already is does not act on it; and what a machine holds, drives, or cuts with is tooling, not a machine."
+            }
+          ]
+        },
+        {
+          "id": "SCR-1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The record names the candidate — or something the candidate is a broader kind of — in its own words or one plain step from them. A candidate the record does not name is not proven, however likely it is: naming a thing does not name what made it, what it is made with, or what it is made of."
+        },
+        {
+          "id": "SCR-2",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "The manufacturer is the party whose business the dealing is — under whatever name it trades or is organized, at whatever site, under whatever arrangement it controls or directs. A party that does the same thing as its own business is not the manufacturer, however it relates to it. Read the dealing from the manufacturer's side: the manufacturer's name in the sentence does not settle it, and a dealing the record states from another party's side is that party's unless the record makes it the manufacturer's.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "SCR-2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The manufacturer is named at the top of the request; a record may refer to it by that name, as the manufacturer, or by a name it trades under."
+            },
+            {
+              "id": "SCR-2c",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "The dealing must be the one named above — {{entity_relationships.gerund}} the candidate. A different dealing with the same thing, such as selling what another party makes or using what another party sells, is not it, whoever the manufacturer is."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "guards",
+      "heading": "Guards — any one of these rules the record out:",
+      "combinator": "any",
+      "rules": [
+        {
+          "id": "SCR-G1",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The involvement is not current and actual."
+        },
+        {
+          "id": "SCR-G2",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The candidate names no particular member of the kind — a term that fixes nothing — so no record proves it."
+        },
+        {
+          "id": "SCR-G3",
+          "kind": "guard",
+          "reportable": true,
+          "report_when": "on_violation",
+          "text": "The machine is something the manufacturer sells rather than something it has or uses."
+        }
+      ]
+    }
+  ],
+  "published": {}
+}

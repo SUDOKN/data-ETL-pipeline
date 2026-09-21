@@ -40,6 +40,14 @@ from data_etl_app.services.prompt_assembly_service import (
 
 CATALOGS = load_all_catalogs()
 
+# The two reporting regimes (rule_catalog.RuleCatalog.reporting). PER_RULE
+# catalogs report every rule as a slot on the wire and are what the slot-shaped
+# assertions below are about; STRUCTURAL catalogs (Step 2: grounding, unit
+# screening, descent) carry no rule slots — a rule is held by where an entry
+# lands and what it quotes — and have their own assertions at the end.
+PER_RULE = {name: c for name, c in CATALOGS.items() if c.reporting == "per_rule"}
+STRUCTURAL = {name: c for name, c in CATALOGS.items() if c.reporting == "structural"}
+
 # "<whichever of A, B applied>" / "<... you found violated>" — a slot the model
 # fills, in a rule id or an outcome.
 _ALTERNATIVES = re.compile(r"^<whichever of (.+?)(?: applied| you found violated)>$")
@@ -231,7 +239,7 @@ def test_catalog_renders_without_unresolved_placeholders(prompt_name):
     sorted(
         name
         for name, catalog in CATALOGS.items()
-        if catalog.stage == "phrase_recursive_grounding"
+        if catalog.stage in ("phrase_recursive_grounding", "phrase_descent")
     ),
 )
 def test_recursive_grounding_keeps_the_tokens_the_service_substitutes(prompt_name):
@@ -318,7 +326,7 @@ def test_the_example_serialiser_matches_json_dumps_where_it_inlines_nothing():
     assert _dumps_example(nothing_inlined) == json.dumps(nothing_inlined, indent=2)
 
 
-@pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
+@pytest.mark.parametrize("prompt_name", sorted(PER_RULE))
 def test_the_example_inlines_rule_objects_and_empty_entries(prompt_name):
     """The model copies the example's formatting, so these one-liners are what keep
     rule objects and rejected phrases off six lines each in every completion.
@@ -338,7 +346,7 @@ def test_the_example_inlines_rule_objects_and_empty_entries(prompt_name):
     assert inlined, "no rule objects to check"
 
 
-@pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
+@pytest.mark.parametrize("prompt_name", sorted(PER_RULE))
 def test_output_example_would_survive_parse_time_validation(prompt_name):
     """The example is the shape the model copies, so anything it shows that the
     parser would reject costs a whole group request. Running it through the real
@@ -357,7 +365,7 @@ def test_output_example_would_survive_parse_time_validation(prompt_name):
         )
 
 
-@pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
+@pytest.mark.parametrize("prompt_name", sorted(PER_RULE))
 def test_every_example_rule_asks_for_a_real_explanation(prompt_name):
     """The explanation is the whole of the justification since evidence was dropped
     (2026-08-11), and the example is what the model copies. A slot that does not ask
@@ -406,7 +414,7 @@ def test_output_example_leaves_the_matching_ladder_open(prompt_name):
         assert not named, f"example names ladder branches {named}"
 
 
-@pytest.mark.parametrize("prompt_name", sorted(CATALOGS))
+@pytest.mark.parametrize("prompt_name", sorted(PER_RULE))
 def test_output_example_reports_every_always_reported_rule(prompt_name):
     """The single anonymous rule object the example used to show read as 'report one
     rule', which fails validation for every catalog here."""
@@ -515,3 +523,142 @@ def test_rule_kind_fixes_its_reporting_policy():
                 "published": {},
             }
         )
+
+
+# --- Step 2 structural catalogs (grounding, unit screening, descent) ---------
+
+
+def test_the_structural_families_are_all_present():
+    """Sanity for the parametrizations below: four grounding, seven unit
+    screening, four descent."""
+    by_stage: dict[str, int] = {}
+    for catalog in STRUCTURAL.values():
+        by_stage[catalog.stage] = by_stage.get(catalog.stage, 0) + 1
+    assert by_stage == {
+        "phrase_grounding": 4,
+        "phrase_unit_screening": 7,
+        "phrase_descent": 4,
+    }
+
+
+@pytest.mark.parametrize("prompt_name", sorted(STRUCTURAL))
+def test_structural_catalogs_report_nothing_per_rule(prompt_name):
+    """No outcome vocabulary (nothing on the wire could carry one) and no
+    report block in the rendered text: the skeleton states the output
+    contract itself."""
+    catalog = STRUCTURAL[prompt_name]
+    assert catalog.outcome_vocab == {}
+    text = render_prompt(catalog)
+    assert "Rules you must report" not in text
+    assert '"outcome":' not in text
+
+
+@pytest.mark.parametrize("prompt_name", sorted(STRUCTURAL))
+def test_structural_rule_ids_are_rendered_and_notes_are_not(prompt_name):
+    catalog = STRUCTURAL[prompt_name]
+    text = render_prompt(catalog)
+    for rule in catalog.walk_rules():
+        if rule.reportable:
+            assert f"[{rule.id}]" in text, f"{rule.id} missing from rendered prompt"
+        else:
+            assert f"[{rule.id}]" not in text, f"note {rule.id} rendered with an id"
+            resolved = _resolve_runtime_tokens(
+                _resolve_entity_placeholders(rule.text, catalog), catalog
+            )
+            assert resolved in text, f"note {rule.id} text missing entirely"
+
+
+@pytest.mark.parametrize("prompt_name", sorted(STRUCTURAL))
+def test_structural_example_prints_each_record_object_on_one_line(prompt_name):
+    """The per-record objects ({record_id, quote} and their screening twins) are
+    the bulk of every completion, and the model copies the example's
+    formatting; one line each is what keeps them off four lines each."""
+    example = render_prompt(STRUCTURAL[prompt_name]).split("```json")[1].split("```")[0]
+    counted = 0
+    for line in example.splitlines():
+        stripped = line.strip()
+        if '"record_id":' in stripped:
+            assert stripped.endswith(("},", "}")), (
+                f"record object was split across lines: {stripped[:60]}..."
+            )
+            counted += 1
+    assert counted >= 3, "example shows too few record objects"
+
+
+@pytest.mark.parametrize(
+    "prompt_name",
+    sorted(n for n, c in STRUCTURAL.items() if c.stage in ("phrase_grounding", "phrase_descent")),
+)
+def test_three_list_example_leaves_the_ladder_open_and_never_names_the_proposal_by_id(
+    prompt_name,
+):
+    """``chosen`` may name only a matching branch; the proposal branch is
+    reported by the ``proposed`` list, never by id, so the example must not
+    teach the model to write it into ``chosen``."""
+    catalog = STRUCTURAL[prompt_name]
+    example = render_prompt(catalog).split("```json")[1].split("```")[0]
+    branches = [r.id for r in catalog.walk_rules() if r.kind == "preference"]
+    proposals = [r.id for r in catalog.walk_rules() if r.kind == "proposal"]
+    assert len(branches) == 2 and len(proposals) == 1
+    assert f"<whichever of {', '.join(branches)} applied>" in example
+    for rule_id in proposals:
+        assert f'"{rule_id}"' not in example
+        assert rule_id not in example.split('"chosen"')[1].split("}")[0]
+    for key in ('"matched"', '"proposed"', '"unmatched"'):
+        assert key in example
+
+
+@pytest.mark.parametrize(
+    "prompt_name",
+    sorted(n for n, c in STRUCTURAL.items() if c.stage == "phrase_unit_screening"),
+)
+def test_unit_screening_example_shows_both_evidence_distances_and_every_failable_rule(
+    prompt_name,
+):
+    from core.models.extraction_schemas.catalog_wire_schema import (
+        EVIDENCE_DISTANCES,
+        failable_rule_ids,
+    )
+
+    catalog = STRUCTURAL[prompt_name]
+    example = _rendered_example(catalog)["screenings"]
+    assert len(example) == 2
+    evidences = [r["evidence"] for r in example[0]["accepted"]]
+    assert sorted(evidences) == sorted(EVIDENCE_DISTANCES)
+    failed_slot = example[0]["not_accepted"][0]["failed_rule"]
+    assert failed_slot == f"<the first of {', '.join(failable_rule_ids(catalog))} that failed>"
+    # Every condition and guard is nameable, in document order, and the
+    # phenomena shared by all seven fields carry the same id everywhere.
+    ids = failable_rule_ids(catalog)
+    assert ids[0] == "SCR-0" and {"SCR-1", "SCR-2", "SCR-G1", "SCR-G2"} <= set(ids)
+    assert example[1]["accepted"] == []
+
+
+def test_a_structural_skeleton_cannot_carry_a_report_block():
+    catalog = STRUCTURAL["industry_phrase_grounding"]
+    with pytest.raises(PromptAssemblyError, match="structural"):
+        render_prompt(catalog, skeleton_text="{{rules_block}}\n{{report_block}}\n{{output_example}}")
+
+
+def test_a_structural_catalog_declares_no_outcome_vocab():
+    raw = STRUCTURAL["industry_phrase_grounding"].model_dump(mode="json")
+    raw["outcome_vocab"] = {"condition": ["satisfied"]}
+    with pytest.raises(ValueError, match="structural"):
+        RuleCatalog.model_validate(raw)
+
+
+def test_the_proposal_kind_needs_a_structural_catalog():
+    raw = STRUCTURAL["industry_phrase_grounding"].model_copy(deep=True).model_dump(mode="json")
+    raw["reporting"] = "per_rule"
+    raw["outcome_vocab"] = {"condition": ["satisfied", "failed", "not_triggered"], "preference": ["chosen"], "proposal": ["chosen"]}
+    with pytest.raises(ValueError, match="proposal"):
+        RuleCatalog.model_validate(raw)
+
+
+def test_a_per_rule_stage_refuses_a_structural_catalog_and_vice_versa():
+    """The wire builder is chosen by stage; the catalog's flag must agree."""
+    mismatched = STRUCTURAL["industry_phrase_grounding"].model_copy(deep=True)
+    mismatched.stage = "phrase_initial_grounding"
+    mismatched.catalog_version = "industry_phrase_grounding.test"
+    with pytest.raises(ValueError, match="reporting"):
+        response_format_for(mismatched)

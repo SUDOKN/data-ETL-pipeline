@@ -1,0 +1,90 @@
+{
+  "catalog_version": "material_cap_phrase_grounding.2026.09.3",
+  "prompt_name": "material_cap_phrase_grounding",
+  "stage": "phrase_grounding",
+  "field_types": [
+    "material_caps"
+  ],
+  "entity_noun": "material",
+  "entity_relationships": {
+    "base": "process",
+    "third_person": "processes",
+    "gerund": "processing"
+  },
+  "evidence_source": "the record's focal form and synthesis",
+  "option_evidence": "its own line and the line beneath it",
+  "reporting": "structural",
+  "outcome_vocab": {},
+  "sections": [
+    {
+      "section_id": "evidence",
+      "heading": "For every record you list under an option or a proposal, both of these must hold:",
+      "combinator": "all",
+      "rules": [
+        {
+          "id": "GR-E1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "A record is listed under an option or a proposal only when that record's focal form, as its synthesis describes it, is or names the {{entity_noun}} — one plain step at most from the record's words; not by a resemblance between words, not from something the synthesis mentions only beside the focal form, and not assembled from what another record says. For every record you list, quote from that record the words that evidence it. A record you cannot quote is not listed."
+        },
+        {
+          "id": "GR-K1",
+          "kind": "condition",
+          "reportable": true,
+          "report_when": "always",
+          "text": "What you identify is of the kind {{entity_noun}} names, judged against what that kind means. A thing the record names as something else is that thing, not one of this kind, however clearly the record evidences it.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "GR-K1a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "A material is what the parts are made of; a substance the shop deposits onto, reacts onto, or consumes against the work is not a material of the parts unless the vocabulary's own meaning of that material includes that use."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": "matching",
+      "heading": "Match each {{entity_noun}} you identified by the first of these rules that applies, in order:",
+      "combinator": "ordered",
+      "rules": [
+        {
+          "id": "GR-M1",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "An option is an exact match when what it means — {{option_evidence}} — is the {{entity_noun}} you identified. Compare meanings, never names: an option whose name resembles what you identified is not chosen when what it means does not cover it."
+        },
+        {
+          "id": "GR-M2",
+          "kind": "preference",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When no option is an exact match, an option is a generalizing match when what it means includes the {{entity_noun}} you identified and the outline holds nothing narrower that the record supports. A broader option is the answer only when the record supports nothing narrower.",
+          "combinator": "note",
+          "children": [
+            {
+              "id": "GR-M2a",
+              "kind": "note",
+              "reportable": false,
+              "report_when": "never",
+              "text": "Match each record at the narrowest option its own words support; an option with lines beneath it takes a record only when that record supports none of them. Every option may be chosen, including one with lines indented beneath it."
+            }
+          ]
+        },
+        {
+          "id": "GR-P1",
+          "kind": "proposal",
+          "reportable": true,
+          "report_when": "when_chosen",
+          "text": "When no option exactly matches what you identified, propose it under a plain, generic name — the name the outline would carry if it held it — with the same evidence per record. A proposal stands beside a generalizing match, never instead of it: where an option generalizes what you identified, list the record under that option as well. One proposal names one {{entity_noun}}, as each line of the outline names one; several distinct things are several proposals, and a name that lists or joins several is not a name. A proposal that restates an option under other words is that option, and is matched instead."
+        }
+      ]
+    }
+  ],
+  "published": {}
+}

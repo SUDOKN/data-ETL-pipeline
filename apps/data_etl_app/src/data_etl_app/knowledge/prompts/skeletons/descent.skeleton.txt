@@ -1,0 +1,32 @@
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it. Each of these records has already been established to evidence {{parent_entity}} as one {{entity_noun}}.
+
+You will also be given the narrower kinds of {{parent_entity}} the vocabulary holds, written as an outline. Each line that does not begin with "—" names one narrower kind and is an option you may choose; a line beginning with "—" belongs to the option directly above it, gives the other names it goes by and what it means, and is never an option itself. Name an option by the words of its own line only. The list may be empty: then the vocabulary holds nothing narrower than {{parent_entity}}, and a record's answer is a proposal its own words support, or nothing narrower.
+
+You will assess each record independently, and you will answer for all of them in one structure.
+
+### Your job:
+Each record is about its focal form. Decide, from the focal form as its synthesis describes it, whether the record fixes a narrower kind of {{parent_entity}}. Match each narrower kind you find to an option; where no option names it, propose it under a plain name of your own, beside the option that generalizes it if one does; where the record's words fix nothing narrower, say so, and {{parent_entity}} stands.
+
+Identification is your whole job here; relationships are not. Whose dealing it is plays no part. What you owe each narrower kind is the record's own words: general evidence of {{parent_entity}} proves no narrower kind of it.
+
+### Rules:
+{{rules_block}}
+
+Narrower kinds of {{parent_entity}} to choose from:
+{{types_of_parent_entity}}
+
+### How to answer:
+Answer option by option, not record by record. Under each option you choose, list every record that fixes it, and for each such record quote from that record the words that supply the narrowing feature. A proposal is answered the same way, under the name you give it. A record that fixes nothing narrower is listed once as unmatched, with the reason.
+
+Before you list a record under an option, name to yourself the most plausible way the evidence rule could fail for that record — that the feature telling this kind from its siblings is one the record never mentions — and check it against the words you are quoting; list the record only if that failure is not what is happening. A record you cannot quote is not listed.
+
+### Output:
+Return a JSON object with three keys. "matched" holds one entry per option you chose, each carrying the option's name copied from its own line, the records that fix it with their quotes, and the matching rule you applied. "proposed" holds one entry per narrower kind you proposed, with its records and quotes and why no option covers it. "unmatched" holds one entry per record that fixes nothing narrower than {{parent_entity}}. Copy every record id exactly as given.
+
+The example below shows the shape of each list. Everything in angle brackets is yours to fill in.
+
+```json
+{{output_example}}
+```
+
+Every record you were given appears exactly once as an unmatched entry or at least once in a records list — never both, never neither. An option appears at most once in "matched", and a record that fixes it is listed under it once.

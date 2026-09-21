@@ -1,5 +1,5 @@
 {
-  "catalog_version": "product_phrase_freehand_grounding.2026.09.2",
+  "catalog_version": "product_phrase_freehand_grounding.2026.08.3",
   "prompt_name": "product_phrase_freehand_grounding",
   "stage": "phrase_freehand_grounding",
   "field_types": [
@@ -31,7 +31,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "The record names the {{entity_noun}} in its own words about its focal form — stated, not inferred. A named process or capability with no stated output identifies no {{entity_noun}}. Quote the words that name it.",
+          "text": "The record evidences the {{entity_noun}} you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.",
           "combinator": "note",
           "children": [
             {
@@ -39,14 +39,14 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by another party's dealings is still identified and recorded."
+              "text": "Whose {{entity_noun}} it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded."
             },
             {
               "id": "FGR-E1b",
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A thing the record names as something else — a market, a credential, a machine, a material, a process — is that thing, not a {{entity_noun}}."
+              "text": "The {{entity_noun}} must be stated, not inferred: it may not be derived from industry context, markets served, certifications, standards, equipment, facilities, materials, or process names. A named process or capability with no stated output identifies no {{entity_noun}}."
             }
           ]
         }
@@ -70,7 +70,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A record that identifies one particular item — by a model designation, a catalogue reference, or any other mark that singles that one out — names an item rather than a category. Report the kind the record names that item as, and carry none of what singled it out into the category name; where the record names no kind for it, there is no category to report."
+              "text": "A record that identifies one particular item — by its maker, its designation, its catalogue reference, or any other mark that singles that one out from others like it — names an item rather than a category. Report the kind that item belongs to, and carry none of what singled it out into the category name."
             },
             {
               "id": "FGR-Q1b",

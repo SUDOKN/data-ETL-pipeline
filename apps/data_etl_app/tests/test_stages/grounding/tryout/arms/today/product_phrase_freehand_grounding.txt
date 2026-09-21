@@ -1,0 +1,84 @@
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it.
+
+You will assess each record independently.
+
+### Your job:
+From each record's focal form and synthesis, identify every distinct product category the record evidences, and name it yourself. What you return is always the category, never a specific make, model, or individual item.
+
+Identification is your whole job here; relationships are not. Whether it is the manufacturer itself or some other party that makes or works on an identified product category plays no part. Do not withhold a candidate because that relationship looks doubtful, and do not record one on the strength of that relationship alone.
+
+A record may also evidence no product category at all, and recording none is the correct result then.
+
+### Rules:
+Each product category you identify qualifies only if ALL of these conditions hold for it:
+[FGR-E1] The record evidences the product category you identified — it is named, described, or clearly implied by the record's focal form and synthesis, not merely suggested by a resemblance between words.
+   - Whose product category it is has no bearing here. A candidate evidenced by a customer's, supplier's, or any other third party's dealings is still identified and recorded.
+   - The product category must be stated, not inferred: it may not be derived from industry context, markets served, certifications, standards, equipment, facilities, materials, or process names. A named process or capability with no stated output identifies no product category.
+
+And every product category you name must satisfy ALL of these:
+[FGR-Q1] It is a determinate category: neither an individual item — one specimen, identified as itself rather than as a kind — nor a term so general it fixes nothing. A record naming a specific item is reported as the category that item belongs to.
+   - A record that identifies one particular item — by its maker, its designation, its catalogue reference, or any other mark that singles that one out from others like it — names an item rather than a category. Report the kind that item belongs to, and carry none of what singled it out into the category name.
+   - Where a record names something the manufacturer's output goes into, is fitted to, or serves, the category is that output itself, never the larger thing it becomes part of.
+[FGR-Q2] It is distinct from every other product category named for the same record. Two names for the same product category in different words are one, not two.
+
+### Rules you must report:
+Every rule you report carries the outcome you reached and your explanation, under the field named for its rule id. Each explanation must cite the record's focal form and synthesis, quoting the words you relied on.
+
+Conditions are read in order and build on one another, so a later condition's explanation does not need to re-establish what an earlier one already did. Quote only the words that bear on the rule you are reporting.
+
+An explanation that merely restates a rule as its own conclusion is not an explanation. Before you write an outcome, name to yourself the most plausible way that rule could fail for this candidate and check it against the words you are quoting; report the outcome only if that failure is not what is happening. If the words you quote cut against the outcome you report, the outcome is wrong, not the quote.
+
+- Each of these has its own field, which you must fill in whichever outcome it reached: FGR-E1, FGR-Q1, FGR-Q2.
+
+The outcome you give must be one allowed for that rule:
+- FGR-E1, FGR-Q1, FGR-Q2 → satisfied, failed, not_triggered
+  Only "satisfied" counts as the condition holding. Write "not_triggered" when there was nothing left to evaluate it against — for example when an earlier condition had already failed and left nothing for this one to judge — and "failed" when you evaluated it and it did not hold. Neither of those counts as holding.
+
+### Output:
+Return a JSON object with a single key "groundings" whose value is an array of objects, one per record, each carrying the record's id copied exactly as given. Where you identified nothing, return an empty "candidates" array with a short "explanation" of why the record yields no product category.
+
+The example below shows a record yielding one product category, a record yielding several, and a record yielding none. Every product category you return carries its own complete set of applied rules. Everything in angle brackets is yours to fill in.
+
+```json
+{
+  "groundings": [
+    {
+      "record_id": "<a record id copied exactly as given>",
+      "candidates": [
+        {
+          "candidate": "<the product category you named>",
+          "FGR-E1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q2": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"}
+        }
+      ],
+      "explanation": null
+    },
+    {
+      "record_id": "<another record's id — one from which you identified more than one>",
+      "candidates": [
+        {
+          "candidate": "<the product category you named>",
+          "FGR-E1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q2": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"}
+        },
+        {
+          "candidate": "<a second, distinct product category named from the same record>",
+          "FGR-E1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q1": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"},
+          "FGR-Q2": {"outcome": "satisfied", "explanation": "<why this held, citing the record's focal form and synthesis>"}
+        }
+      ],
+      "explanation": null
+    },
+    {
+      "record_id": "<another record's id — one that yields none>",
+      "candidates": [],
+      "explanation": "<why the record yields no product category, citing the record's focal form and synthesis>"
+    }
+  ]
+}
+```
+
+Each record must appear exactly once.

@@ -53,11 +53,14 @@ from core.models.extraction_schemas.response_format_util import (
 from core.models.rule_catalog import (
     ONLY_REACHABLE_OUTCOME_BY_REPORT_WHEN,
     STAGE_BINARY_CLASSIFICATION,
+    STAGE_DESCENT,
     STAGE_FREEHAND_GROUNDING,
+    STAGE_GROUNDING,
     STAGE_INITIAL_GROUNDING,
     STAGE_OOV_GROUNDING,
     STAGE_RECURSIVE_GROUNDING,
     STAGE_RELATIONSHIP_SCREENING,
+    STAGE_UNIT_SCREENING,
     RuleCatalog,
 )
 
@@ -84,8 +87,28 @@ RESERVED_WIRE_FIELD_NAMES = frozenset(
         "record_id",
         "candidate",
         "candidates",
+        # Step 2 (structural) wire names.
+        "matched",
+        "proposed",
+        "unmatched",
+        "records",
+        "quote",
+        "label",
+        "accepted",
+        "not_accepted",
+        "evidence",
+        "failed_rule",
     }
 )
+
+# The evidence-distance label a unit-screening unit attaches to each accepted
+# record (design draft §5.2, user decision 2026-09-20): "named" when the
+# record's own words name the candidate, "inferred" when the candidate is one
+# plain step from what the record names. Metadata, never a gate, until the
+# census has calibrated it against the judges.
+EVIDENCE_DISTANCE_NAMED = "named"
+EVIDENCE_DISTANCE_INFERRED = "inferred"
+EVIDENCE_DISTANCES = (EVIDENCE_DISTANCE_NAMED, EVIDENCE_DISTANCE_INFERRED)
 
 # The slot that holds the branch a matching ladder took, and the one that holds
 # whichever guards fired. Named here because the parser, the schema builder and
@@ -124,6 +147,54 @@ class GroundingWireResponse(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     groundings: list[Any]
+
+
+class ThreeListGroundingWireResponse(BaseModel):
+    """Step 2 grounding and descent: option-major, three lists, evidence per
+    record. Every sent record appears in at least one ``records`` list or in
+    ``unmatched``; the parser holds coverage, membership and the quotes."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    matched: list[Any]
+    proposed: list[Any]
+    unmatched: list[Any]
+
+
+class UnitScreeningWireResponse(BaseModel):
+    """Step 2 screening: one entry per unit (a candidate label with the records
+    read as evidencing it), each record accepted with its evidence distance or
+    not accepted with the first rule that failed it."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    screenings: list[Any]
+
+
+class RecordQuote(BaseModel):
+    """One record listed under an option or a proposal, with the words of that
+    record that evidence it. The quote IS the evidence test (V1, round 2): the
+    parser drops a record whose quote is empty or not found in the record."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    record_id: str
+    quote: str
+
+
+class ProposedEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    label: str
+    records: list[RecordQuote]
+    explanation: str
+
+
+class UnmatchedEntry(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    record_id: str
+    explanation: str
 
 
 class BinaryWireReport(WireEntry):
@@ -349,7 +420,15 @@ _RESPONSE_MODEL_BUILDER_BY_STAGE = {
     STAGE_OOV_GROUNDING: lambda catalog: _build_candidate_grounding_v2(catalog),
     STAGE_FREEHAND_GROUNDING: lambda catalog: _build_candidate_grounding_v2(catalog),
     STAGE_BINARY_CLASSIFICATION: build_binary_classification_response_model,
+    # Step 2: the structural families.
+    STAGE_GROUNDING: lambda catalog: build_three_list_grounding_response_model(catalog),
+    STAGE_DESCENT: lambda catalog: build_three_list_grounding_response_model(catalog),
+    STAGE_UNIT_SCREENING: lambda catalog: build_unit_screening_response_model(catalog),
 }
+
+# The stages whose catalogs must declare ``reporting: structural`` — their wire
+# carries no rule slots — against the ones that must not.
+STRUCTURAL_STAGES = frozenset({STAGE_GROUNDING, STAGE_DESCENT, STAGE_UNIT_SCREENING})
 
 # Keyed by catalog identity, not by stage: rule ids and outcome vocabularies differ
 # per catalog, and two freehand catalogs already differ in whether they declare a
@@ -372,6 +451,13 @@ def response_model_for(catalog: RuleCatalog) -> type[BaseModel]:
         raise ValueError(
             f"{catalog.prompt_name}: stage {catalog.stage!r} has no wire schema "
             f"builder. Known stages: {sorted(_RESPONSE_MODEL_BUILDER_BY_STAGE)}"
+        )
+
+    expected = "structural" if catalog.stage in STRUCTURAL_STAGES else "per_rule"
+    if catalog.reporting != expected:
+        raise ValueError(
+            f"{catalog.prompt_name}: stage {catalog.stage!r} reports {expected}, "
+            f"but the catalog declares reporting={catalog.reporting!r}"
         )
 
     model = builder(catalog)
@@ -406,6 +492,18 @@ def binary_classification_response_model(
     catalog: RuleCatalog,
 ) -> type[BinaryWireReport]:
     return cast(type[BinaryWireReport], response_model_for(catalog))
+
+
+def three_list_grounding_response_model(
+    catalog: RuleCatalog,
+) -> type[ThreeListGroundingWireResponse]:
+    return cast(type[ThreeListGroundingWireResponse], response_model_for(catalog))
+
+
+def unit_screening_response_model(
+    catalog: RuleCatalog,
+) -> type[UnitScreeningWireResponse]:
+    return cast(type[UnitScreeningWireResponse], response_model_for(catalog))
 
 
 # ---------------------------------------------------------------------------
@@ -488,4 +586,105 @@ def _build_option_grounding_v2(catalog: RuleCatalog) -> type[GroundingWireRespon
 def _build_candidate_grounding_v2(catalog: RuleCatalog) -> type[GroundingWireResponse]:
     return build_record_grounding_response_model(
         catalog, unit_key="candidate", units_key="candidates"
+    )
+
+
+# ---------------------------------------------------------------------------
+# Structural response models (Step 2 of the grounding redesign, 2026-09-21)
+# ---------------------------------------------------------------------------
+#
+# No rule slots. A rule is held by where an entry lands and what it quotes:
+# ``matched`` entries name a vocabulary option (membership) and list records
+# with the words that evidence it (the evidence rule); ``proposed`` entries are
+# the ladder's escape hatch by construction (the ``proposal`` kind); a unit's
+# ``not_accepted`` record names the first condition or guard that failed it.
+# What the schema fixes per catalog is only the two id vocabularies: the
+# matching branches a ``chosen`` may name, and the rules a ``failed_rule`` may.
+
+
+def matching_branch_ids(catalog: RuleCatalog) -> list[str]:
+    """The ladder branches a matched entry may report as ``chosen``: every
+    ``preference`` rule. The ``proposal`` kind is excluded on purpose — it is
+    reported by the ``proposed`` list, never by id."""
+    return [rule.id for rule in catalog.walk_rules() if rule.kind == "preference"]
+
+
+def failable_rule_ids(catalog: RuleCatalog) -> list[str]:
+    """The rules a not-accepted record may name: every condition and guard, in
+    document order — which is also the order the prompt asks them to be tried."""
+    return [
+        rule.id for rule in catalog.walk_rules() if rule.kind in ("condition", "guard")
+    ]
+
+
+def build_three_list_grounding_response_model(
+    catalog: RuleCatalog,
+) -> type[ThreeListGroundingWireResponse]:
+    """Grounding and descent: ``matched[{option, records[{record_id, quote}],
+    chosen{rule_id, explanation}}]``, ``proposed[{label, records, explanation}]``,
+    ``unmatched[{record_id, explanation}]``. Object depth root → entry → record
+    stays well inside strict mode's limit."""
+    prefix = _model_prefix(catalog)
+    branches = matching_branch_ids(catalog)
+    if not branches:
+        raise ValueError(
+            f"{catalog.prompt_name}: a three-list catalog needs at least one "
+            f"preference rule for matched entries to report as chosen"
+        )
+    chosen = _fired_report_model(
+        catalog, name=f"{prefix}ChosenBranch", rule_ids=branches
+    )
+    matched = create_model(
+        f"{prefix}MatchedEntry",
+        __config__=ConfigDict(extra="forbid"),
+        option=(str, ...),
+        records=(list[RecordQuote], ...),
+        chosen=(chosen, ...),
+    )
+    return create_model(
+        f"{prefix}Response",
+        __base__=ThreeListGroundingWireResponse,
+        matched=(list[matched], ...),  # type: ignore[valid-type]
+        proposed=(list[ProposedEntry], ...),
+        unmatched=(list[UnmatchedEntry], ...),
+    )
+
+
+def build_unit_screening_response_model(
+    catalog: RuleCatalog,
+) -> type[UnitScreeningWireResponse]:
+    """Unit-major screening: ``screenings[{option, accepted[{record_id,
+    evidence, quote}], not_accepted[{record_id, failed_rule, quote}]}]``."""
+    prefix = _model_prefix(catalog)
+    failable = failable_rule_ids(catalog)
+    if not failable:
+        raise ValueError(
+            f"{catalog.prompt_name}: a unit-screening catalog needs at least one "
+            f"condition or guard for a not-accepted record to name"
+        )
+    accepted = create_model(
+        f"{prefix}AcceptedRecord",
+        __config__=ConfigDict(extra="forbid"),
+        record_id=(str, ...),
+        evidence=(Literal[EVIDENCE_DISTANCES], ...),  # type: ignore[valid-type]
+        quote=(str, ...),
+    )
+    not_accepted = create_model(
+        f"{prefix}NotAcceptedRecord",
+        __config__=ConfigDict(extra="forbid"),
+        record_id=(str, ...),
+        failed_rule=(Literal[tuple(failable)], ...),  # type: ignore[valid-type]
+        quote=(str, ...),
+    )
+    unit = create_model(
+        f"{prefix}Unit",
+        __config__=ConfigDict(extra="forbid"),
+        option=(str, ...),
+        accepted=(list[accepted], ...),  # type: ignore[valid-type]
+        not_accepted=(list[not_accepted], ...),  # type: ignore[valid-type]
+    )
+    return create_model(
+        f"{prefix}Response",
+        __base__=UnitScreeningWireResponse,
+        screenings=(list[unit], ...),  # type: ignore[valid-type]
     )

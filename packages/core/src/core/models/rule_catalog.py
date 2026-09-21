@@ -16,6 +16,19 @@ STAGE_FREEHAND_GROUNDING = "phrase_freehand_grounding"
 # identifies what the vocabulary misses. Concept fields only — keywords have no
 # vocabulary, so their single grounding pass is freehand.
 STAGE_OOV_GROUNDING = "phrase_oov_grounding"
+# Step 2 of the grounding redesign (2026-09-21, design draft
+# STEP2_DESIGN_DRAFT_2026-09-20 §3/§5/§6): three families whose rules are held
+# by the response's STRUCTURE rather than reported per rule (``reporting ==
+# "structural"`` below). ``phrase_grounding`` is the one call that replaces
+# initial + OOV grounding (three lists: matched / proposed / unmatched, with a
+# quote per record); ``phrase_unit_screening`` judges units (one label with the
+# records read as evidencing it) and answers accepted / not_accepted per record;
+# ``phrase_descent`` is the per-level narrowing in the same three-list shape.
+# New ids beside the old ones, so today's families keep rendering and stay the
+# tryout's control arm until the build cuts over.
+STAGE_GROUNDING = "phrase_grounding"
+STAGE_UNIT_SCREENING = "phrase_unit_screening"
+STAGE_DESCENT = "phrase_descent"
 # Whole-text yes/no questions (is_manufacturer etc.). Structurally these are
 # screening applied to the site instead of to a phrase — one candidate entity
 # judged through a chained conjunction — so they share the screening kinds
@@ -27,7 +40,9 @@ STAGE_BINARY_CLASSIFICATION = "binary_classification"
 # A rule's kind fixes both whether it is reported and when. Keeping the mapping
 # here rather than in each catalog file means a catalog cannot declare a rule that
 # the parser would then refuse to accept.
-RuleKind = Literal["condition", "guard", "preference", "quality", "format", "note"]
+RuleKind = Literal[
+    "condition", "guard", "preference", "proposal", "quality", "format", "note"
+]
 ReportWhen = Literal["always", "on_violation", "when_chosen", "never"]
 Combinator = Literal["all", "any", "ordered", "note"]
 
@@ -37,6 +52,11 @@ REPORT_WHEN_BY_KIND: dict[str, ReportWhen] = {
     "format": "always",
     "guard": "on_violation",
     "preference": "when_chosen",
+    # The escape hatch of a matching ladder (GR-P1, RGR-P1): "no option
+    # matches or generalizes, so propose a name". Structurally a ladder branch,
+    # hence when_chosen; on the three-list wire the branch is reported by the
+    # list an entry lands in (``proposed``), never by a rule id.
+    "proposal": "when_chosen",
     "note": "never",
 }
 
@@ -163,6 +183,19 @@ class RuleCatalog(BaseModel):
     # needs when its payload gains definitions.
     option_evidence: str = "what the option names"
 
+    # How a response reports the rules. ``per_rule``: every reportable rule is
+    # a slot on the wire (``{outcome, explanation}`` under its id; ``chosen``;
+    # ``guards``) and ``outcome_vocab`` is what those slots may carry.
+    # ``structural`` (Step 2, 2026-09-21): the response carries no rule slots
+    # at all — a rule is held by WHERE an entry lands and by WHAT it quotes
+    # (a record listed under an option must quote that record; an option must
+    # be a vocabulary label; a proposal is the ladder's last branch by being in
+    # ``proposed``; a screening unit's record is accepted or names the first
+    # rule that failed it). Such a catalog declares NO ``outcome_vocab``: an
+    # outcome the wire never carries must not be written into the file for a
+    # reader to believe. The wire builders assert the flag matches the stage.
+    reporting: Literal["per_rule", "structural"] = "per_rule"
+
     @model_validator(mode="after")
     def check_ids_and_vocab(self) -> "RuleCatalog":
         seen: set[str] = set()
@@ -174,6 +207,20 @@ class RuleCatalog(BaseModel):
             kinds.add(rule.kind)
 
         reportable_kinds = kinds - {NOTE_KIND}
+        if self.reporting == "structural":
+            if self.outcome_vocab:
+                raise ValueError(
+                    f"{self.prompt_name}: reporting is structural, so no rule is "
+                    f"reported with an outcome; outcome_vocab must be empty, got "
+                    f"{sorted(self.outcome_vocab)}"
+                )
+            return self
+        if "proposal" in reportable_kinds:
+            raise ValueError(
+                f"{self.prompt_name}: the 'proposal' kind is reported by the list "
+                f"an entry lands in, which only a structural catalog has; "
+                f"per_rule catalogs propose through a preference rule"
+            )
         missing = reportable_kinds - set(self.outcome_vocab)
         if missing:
             raise ValueError(

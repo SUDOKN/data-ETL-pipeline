@@ -36,3 +36,60 @@ def test_build_concept_tree_allows_imported_root_without_definition():
 
     flattened_concepts = tree_list_to_flat(tree["children"])
     assert {concept.name for concept in flattened_concepts} == {"Aerospace"}
+
+
+def _concept(name, level, ancestors=(), alt=(), definition="", children=()):
+    from core.models.skos_concept import Concept
+
+    return Concept(
+        name=name,
+        uri=f"urn:{name}",
+        level=level,
+        altLabels=list(alt),
+        children=list(children),
+        ancestors=list(ancestors),
+        definition=definition,
+    )
+
+
+def _small_vocabulary():
+    return {
+        _concept("Coating", 1, alt=(), definition="Covering a substrate with a layer.", children=("Painting",)),
+        _concept("Painting", 2, ancestors=("Coating",), alt=("Paint Application",), definition="Applying paint to a surface.", children=("Wet Painting",)),
+        _concept("Wet Painting", 3, ancestors=("Coating", "Painting"), definition="Liquid paint applied and cured."),
+        _concept("Blank", 1, definition=""),
+    }
+
+
+def test_the_plain_outline_is_unchanged_by_the_dash_line_option():
+    """Default rendering: aliases inline as "(also: …)", no definitions — the
+    shape every published grounding prompt describes."""
+    from core.utils.rdf_to_graph_util import render_concept_outline
+
+    assert render_concept_outline(_small_vocabulary()).splitlines() == [
+        "Blank",
+        "Coating",
+        "  Painting (also: Paint Application)",
+        "    Wet Painting",
+    ]
+
+
+def test_the_dash_line_outline_keeps_the_label_line_bare():
+    """Step 2 (V2, user decision 2026-09-19): the label line carries the label
+    and nothing else; the line beneath it, at the same indentation, begins with
+    the dash marker and carries the other names then the full definition; a
+    concept with neither gets no dash line."""
+    from core.utils.rdf_to_graph_util import DASH_LINE_MARKER, render_concept_outline
+
+    lines = render_concept_outline(_small_vocabulary(), with_definitions=True).splitlines()
+    assert lines == [
+        "Blank",
+        "Coating",
+        f"{DASH_LINE_MARKER}Covering a substrate with a layer.",
+        "  Painting",
+        f"  {DASH_LINE_MARKER}also known as: Paint Application. Applying paint to a surface.",
+        "    Wet Painting",
+        f"    {DASH_LINE_MARKER}Liquid paint applied and cured.",
+    ]
+    label_lines = [l for l in lines if not l.lstrip().startswith(DASH_LINE_MARKER)]
+    assert all("(" not in l for l in label_lines)

@@ -93,10 +93,13 @@ def _filled_example(catalog: RuleCatalog) -> dict:
     return filled
 
 
-def test_all_twentyone_phrase_catalogs_are_deployed():
+def test_all_thirtysix_phrase_catalogs_are_deployed():
     """Sanity for the parametrization below: a catalog failing to load would
-    otherwise silently shrink the coverage of every test in this file."""
-    assert len(V2_CATALOGS) == 21
+    otherwise silently shrink the coverage of every test in this file. 21
+    record-keyed catalogs plus the 15 structural ones of Step 2 (2026-09-21:
+    four grounding, seven unit screening, four descent), which live beside the
+    families they replace until the build cuts over."""
+    assert len(V2_CATALOGS) == 36
 
 
 @pytest.mark.parametrize("prompt_name", sorted(V2_CATALOGS))
