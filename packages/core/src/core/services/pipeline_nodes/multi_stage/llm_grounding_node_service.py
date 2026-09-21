@@ -23,6 +23,7 @@ from dataclasses import dataclass, field as dataclass_field
 
 import asyncio
 import logging
+import re
 from collections import Counter
 import traceback
 from datetime import datetime
@@ -85,6 +86,16 @@ def _unit_label(unit: BaseModel) -> str:
         if label is not None:
             return label
     raise ValueError(f"grounding unit carries neither 'option' nor 'candidate': {unit!r}")
+
+
+_TRAILING_PARENTHETICAL = re.compile(r"\s*\([^()]*\)\s*$")
+
+
+def _strip_trailing_parenthetical(label: str) -> str:
+    """``"Turning (also: Lathe Work)"`` → ``"Turning"``: the outline's alias
+    suffix, echoed by the model, is not part of the name. Only a trailing
+    parenthetical is removed, once; a label with none is returned unchanged."""
+    return _TRAILING_PARENTHETICAL.sub("", label, count=1).rstrip()
 
 
 def parse_record_grounding_result(
@@ -156,6 +167,25 @@ def parse_record_grounding_result(
             label = _unit_label(unit)
             if canonical_by_folded is not None:
                 canonical = canonical_by_folded.get(label.casefold())
+                if canonical is None:
+                    # An answer that echoes the outline line with its alias
+                    # suffix — "Turning (also: Lathe Work)" — names the label
+                    # before the parenthesis. The prompt says "name the option
+                    # by its own words alone" and also "copy each chosen option
+                    # name verbatim from the outline", and the model followed
+                    # the second: 256 such echoes in run 20260915T024255, 170
+                    # of them judged lost labels (grounding-gap baseline, A4).
+                    # No vocabulary label carries a parenthesis (checked on
+                    # all four outlines), so a trailing parenthetical is never
+                    # part of a name. User decision 2026-09-20.
+                    stripped = _strip_trailing_parenthetical(label)
+                    if stripped != label:
+                        canonical = canonical_by_folded.get(stripped.casefold())
+                        if canonical is not None:
+                            logger.warning(
+                                f"repaired alias-suffixed option {label!r} -> "
+                                f"{canonical!r} for record {entry.record_id}"
+                            )
                 if canonical is None:
                     # The in-vocab contract: vocabulary or nothing. Anything
                     # else is a drifted or invented label — the exact string

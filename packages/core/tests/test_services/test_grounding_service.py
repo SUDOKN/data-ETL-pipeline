@@ -143,6 +143,60 @@ def test_case_drift_is_repaired_to_the_vocabulary_spelling():
     assert list(parsed["raaaaaa1"].tags) == ["Aerospace Industry"]
 
 
+def test_an_option_echoing_the_outlines_alias_suffix_is_repaired_to_the_label():
+    """The outline renders aliases as a trailing "(also: …)" on the label's
+    line, and the model sometimes copies the whole line. The grounding-gap
+    baseline (run 20260915T024255) counted 256 such echoes thrown away as
+    non-vocabulary answers, 170 of them judged lost labels. The suffix is not
+    part of the name: strip it, then match — casing drift repaired as well.
+    User decision 2026-09-20."""
+    response = json.dumps(
+        {
+            "groundings": [
+                {
+                    "record_id": "raaaaaa1",
+                    "options": [_option("Aerospace Industry (also: Aviation Industry)")],
+                    "explanation": None,
+                },
+                {
+                    "record_id": "raaaaaa2",
+                    "options": [_option("aerospace industry (also: Aviation)")],
+                    "explanation": None,
+                },
+            ]
+        }
+    )
+    parsed = parse_record_grounding_result(
+        response, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
+    )
+    assert list(parsed["raaaaaa1"].tags) == ["Aerospace Industry"]
+    assert parsed["raaaaaa1"].dropped_options == []
+    assert list(parsed["raaaaaa2"].tags) == ["Aerospace Industry"]
+
+
+def test_a_parenthetical_that_hides_no_label_is_still_dropped_as_written():
+    """The strip is a repair, not an escape hatch: when the words before the
+    parenthesis are not a label either, the answer is dropped exactly as the
+    model wrote it, so ``dropped_options`` keeps the evidence."""
+    response = json.dumps(
+        {
+            "groundings": [
+                {
+                    "record_id": "raaaaaa1",
+                    "options": [_option("Aerospace & Defence Sector (also: Defence)")],
+                    "explanation": None,
+                }
+            ]
+        }
+    )
+    parsed = parse_record_grounding_result(
+        response, catalog=IN_VOCAB, allowed_labels=VOCAB_LABELS
+    )
+    entry = parsed["raaaaaa1"]
+    assert entry.tags == {}
+    assert entry.dropped_options == ["Aerospace & Defence Sector (also: Defence)"]
+
+
 def test_a_non_vocabulary_option_is_dropped_not_raised():
     """Fork F4 still holds — vocabulary-or-nothing, and a drifted or invented
     label is never a discovered out-of-vocab tag. What changed 2026-08-25 is
