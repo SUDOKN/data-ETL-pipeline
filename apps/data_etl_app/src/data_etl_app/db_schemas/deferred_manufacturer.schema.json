@@ -2698,6 +2698,15 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_unit_screening_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
+                  }
+                },
                 "llm_phrase_relationship_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -4163,6 +4172,15 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_unit_screening_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
+                  }
+                },
                 "llm_phrase_relationship_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -5626,6 +5644,15 @@
                   "bsonType": "array",
                   "items": {
                     "bsonType": "string"
+                  }
+                },
+                "llm_phrase_unit_screening_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
                   }
                 },
                 "llm_phrase_relationship_req_ids": {
@@ -7979,6 +8006,15 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_unit_screening_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
+                  }
+                },
                 "llm_phrase_relationship_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -8115,6 +8151,78 @@
                       }
                     },
                     "uniqueItems": true
+                  }
+                },
+                "llm_phrase_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_descent_reqs": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "object",
+                      "required": [
+                        "parent",
+                        "wave",
+                        "leaf",
+                        "req_id"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "parent": {
+                          "bsonType": "string"
+                        },
+                        "wave": {
+                          "bsonType": "int"
+                        },
+                        "leaf": {
+                          "bsonType": "bool"
+                        },
+                        "req_id": {
+                          "bsonType": "string"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -10420,6 +10528,15 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_unit_screening_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
+                  }
+                },
                 "llm_phrase_relationship_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -10556,6 +10673,78 @@
                       }
                     },
                     "uniqueItems": true
+                  }
+                },
+                "llm_phrase_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_descent_reqs": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "object",
+                      "required": [
+                        "parent",
+                        "wave",
+                        "leaf",
+                        "req_id"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "parent": {
+                          "bsonType": "string"
+                        },
+                        "wave": {
+                          "bsonType": "int"
+                        },
+                        "leaf": {
+                          "bsonType": "bool"
+                        },
+                        "req_id": {
+                          "bsonType": "string"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -12861,6 +13050,15 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_unit_screening_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
+                  }
+                },
                 "llm_phrase_relationship_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -12997,6 +13195,78 @@
                       }
                     },
                     "uniqueItems": true
+                  }
+                },
+                "llm_phrase_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_descent_reqs": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "object",
+                      "required": [
+                        "parent",
+                        "wave",
+                        "leaf",
+                        "req_id"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "parent": {
+                          "bsonType": "string"
+                        },
+                        "wave": {
+                          "bsonType": "int"
+                        },
+                        "leaf": {
+                          "bsonType": "bool"
+                        },
+                        "req_id": {
+                          "bsonType": "string"
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -15302,6 +15572,15 @@
                     "bsonType": "string"
                   }
                 },
+                "llm_phrase_unit_screening_req_ids": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "string"
+                    }
+                  }
+                },
                 "llm_phrase_relationship_req_ids": {
                   "bsonType": "array",
                   "items": {
@@ -15438,6 +15717,78 @@
                       }
                     },
                     "uniqueItems": true
+                  }
+                },
+                "llm_phrase_grounding_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_grounding_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_record_ids": {
+                  "bsonType": [
+                    "array",
+                    "null"
+                  ],
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_proposal_retry_req_ids": {
+                  "bsonType": "array",
+                  "items": {
+                    "bsonType": "string"
+                  }
+                },
+                "llm_phrase_descent_reqs": {
+                  "bsonType": "object",
+                  "additionalProperties": {
+                    "bsonType": "array",
+                    "items": {
+                      "bsonType": "object",
+                      "required": [
+                        "parent",
+                        "wave",
+                        "leaf",
+                        "req_id"
+                      ],
+                      "additionalProperties": false,
+                      "properties": {
+                        "parent": {
+                          "bsonType": "string"
+                        },
+                        "wave": {
+                          "bsonType": "int"
+                        },
+                        "leaf": {
+                          "bsonType": "bool"
+                        },
+                        "req_id": {
+                          "bsonType": "string"
+                        }
+                      }
+                    }
                   }
                 }
               }

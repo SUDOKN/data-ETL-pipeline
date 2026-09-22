@@ -51,6 +51,7 @@ from core.services.phrase_blocks_contract import sent_record_ids_from_user_messa
 from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     sent_units_from_user_message,
 )
+from core.services.pipeline_nodes.multi_stage.llm_descent_node_service import accepted_proposals, shipped_labels_by_record
 from core.services.pipeline_nodes.multi_stage.stage_derivations import deepest_accepted_labels
 from core.services.rule_catalog_registry import set_rule_catalog_lookup
 
@@ -317,6 +318,9 @@ async def test_the_walkthrough_wave_by_wave():
     assert deepest_accepted_labels(accepted, node.ancestors_of) == {
         "gaaaaaa1": ["CNC Machining"], "gaaaaaa2": ["CNC Machining"], "gaaaaaa5": ["Mechanical Joining"], "gaaaaaa7": ["Coating"],
     }
+    # the reconcile step's reader gives the same answer over the stored trail (6b)
+    assert shipped_labels_by_record(node.vocab, trail) == deepest_accepted_labels(accepted, node.ancestors_of)
+    assert accepted_proposals(trail) == {"Ceramic Coating", "Cerakote Coating"}
 
 
 @pytest.mark.asyncio

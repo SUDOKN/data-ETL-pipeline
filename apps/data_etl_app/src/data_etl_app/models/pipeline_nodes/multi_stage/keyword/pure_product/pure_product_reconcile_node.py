@@ -43,11 +43,11 @@ class PureProductReconcileNode(KeywordReconcileNode):
         return pipeline_context[PureProductSynthesisNode]
 
     def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_relationship_screening_node import (
-            PureProductRelationshipScreeningNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.pure_product.pure_product_unit_screening_node import (
+            PureProductUnitScreeningNode,
         )
 
-        return pipeline_context[PureProductRelationshipScreeningNode]
+        return pipeline_context[PureProductUnitScreeningNode]
 
     def get_upstream_freehand_grounding_map(
         self, pipeline_context: PipelineContext

@@ -22,10 +22,16 @@ from llm_providers.models.llm_model import GPT_4o_mini
 from llm_providers.models.open_ai.gpt_model_params import GPTModelParams
 
 from data_etl_app.models.pipeline_nodes import (
+    ContractProductReconcileNode,
+    ContractProductUnitScreeningNode,
+    EquipmentReconcileNode,
+    EquipmentUnitScreeningNode,
     PureProductFreehandGroundingNode,
     PureProductReconcileNode,
     PureProductUnitScreeningNode,
 )
+from data_etl_app.models.types_and_enums import KeywordTypeEnum
+from core.models.pipeline_nodes.base.base_node import PipelineContext
 from data_etl_app.models.types_and_enums import ConceptTypeEnum
 from data_etl_app.services.extraction_pipeline_factory import ExtractionPipelineFactory
 from data_etl_app.services.prompt_assembly_service import load_all_catalogs, prompt_s3_key
@@ -99,3 +105,16 @@ def test_every_step2_catalog_is_registered_under_its_published_key():
     for name, catalog in step2.items():
         assert STAGED_PROMPT_FILE_PATHS[name] == prompt_s3_key(catalog), name
         assert isinstance(getattr(PromptService, f"{name}_prompt"), property), name
+
+
+def test_keyword_reconcile_reads_the_unit_screening_map():
+    """6b: the three app reconcile nodes read unit screening's completed
+    requests, not the retired relationship screening's."""
+    for reconcile, screening, field in (
+        (PureProductReconcileNode, PureProductUnitScreeningNode, KeywordTypeEnum.products),
+        (ContractProductReconcileNode, ContractProductUnitScreeningNode, KeywordTypeEnum.contract_products),
+        (EquipmentReconcileNode, EquipmentUnitScreeningNode, KeywordTypeEnum.equipments),
+    ):
+        ctx = PipelineContext(subject_name="Acme")
+        ctx[screening] = {"req-1": cast(Any, object())}
+        assert set(reconcile(field_type=field).get_upstream_screening_map(ctx)) == {"req-1"}

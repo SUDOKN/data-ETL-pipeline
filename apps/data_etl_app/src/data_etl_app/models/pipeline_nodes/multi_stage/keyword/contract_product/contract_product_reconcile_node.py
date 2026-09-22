@@ -45,11 +45,11 @@ class ContractProductReconcileNode(KeywordReconcileNode):
         return pipeline_context[ContractProductSynthesisNode]
 
     def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_screening_node import (
-            ContractProductRelationshipScreeningNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_unit_screening_node import (
+            ContractProductUnitScreeningNode,
         )
 
-        return pipeline_context[ContractProductRelationshipScreeningNode]
+        return pipeline_context[ContractProductUnitScreeningNode]
 
     def get_upstream_freehand_grounding_map(
         self, pipeline_context: PipelineContext

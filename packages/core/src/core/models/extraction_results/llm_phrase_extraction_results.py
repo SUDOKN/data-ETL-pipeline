@@ -131,7 +131,9 @@ class LLMPhraseExtractionStats(BaseModel):
     # results written before the re-key.
     llm_phrase_synthesis: dict[int, GroupRecords] = Field(default_factory=dict)
     # round → {record_id: {candidate: verdict}} — every candidate judged.
-    llm_phrase_screening: dict[int, RecordScreeningResults]
+    # RETIRED by Step 2 (2026-09-22): unit screening replaces it; defaulted so
+    # results stored by earlier runs load and Step 2 runs leave it empty.
+    llm_phrase_screening: dict[int, RecordScreeningResults] = Field(default_factory=dict)
     # Step 2 unit screening (design draft §5, 2026-09-21): the same per-record,
     # per-candidate verdicts, now carrying the evidence distance, the failed
     # rule and the quote (``CandidateScreeningVerdict``). For concept fields
@@ -149,8 +151,11 @@ class ConceptExtractionStats(LLMPhraseExtractionStats):
     # (post-recursive); out_of_vocab = OOV candidates that passed screening.
     results: ConceptsFound
     brute_search: set[str]  # regex search survivors
-    llm_phrase_initial_grounding: InitialGroundingStats
-    llm_phrase_recursive_grounding: IterativeGroundingResult
+    # RETIRED by Step 2 (2026-09-22): the one call (``llm_phrase_grounding``)
+    # and the wave descent (``llm_phrase_descent_trail``) replace these two;
+    # defaulted so results stored by earlier runs load.
+    llm_phrase_initial_grounding: Optional[InitialGroundingStats] = None
+    llm_phrase_recursive_grounding: IterativeGroundingResult = Field(default_factory=dict)
     # --- Step 2 (2026-09-21), additive beside the blocks above until the
     # cutover retires them; every field defaulted so stored results load. ---
     # The ONE grounding call (design draft §3): ``in_vocab`` = the vocabulary

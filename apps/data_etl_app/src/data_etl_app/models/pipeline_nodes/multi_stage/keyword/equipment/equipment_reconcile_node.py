@@ -43,11 +43,11 @@ class EquipmentReconcileNode(KeywordReconcileNode):
         return pipeline_context[EquipmentSynthesisNode]
 
     def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
-        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_relationship_screening_node import (
-            EquipmentRelationshipScreeningNode,
+        from data_etl_app.models.pipeline_nodes.multi_stage.keyword.equipment.equipment_unit_screening_node import (
+            EquipmentUnitScreeningNode,
         )
 
-        return pipeline_context[EquipmentRelationshipScreeningNode]
+        return pipeline_context[EquipmentUnitScreeningNode]
 
     def get_upstream_freehand_grounding_map(
         self, pipeline_context: PipelineContext

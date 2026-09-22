@@ -44,9 +44,8 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service 
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     get_record_grounding_result,
 )
-from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
-    get_record_screening_result,
-    screening_catalog_for,
+from core.models.pipeline_nodes.multi_stage.base.llm_phrase_unit_screening_node import (
+    LLMPhraseUnitScreeningNode,
 )
 from core.services.pipeline_nodes.multi_stage.stage_derivations import (
     candidates_that_passed,
@@ -99,6 +98,8 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
         )
 
     def get_upstream_screening_map(self, pipeline_context: PipelineContext) -> dict:
+        """The unit-screening node's completed requests (Step 2 cutover
+        2026-09-22; the relationship-screening stage is retired)."""
         raise NotImplementedError(
             f"{self.__class__.__name__} must implement get_upstream_screening_map"
         )
@@ -144,14 +145,13 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
         completed_freehand_grounding_requests = (
             self.get_upstream_freehand_grounding_map(pipeline_context)
         )
-        completed_relationship_screening_requests = self.get_upstream_screening_map(
+        completed_unit_screening_requests = self.get_upstream_screening_map(
             pipeline_context
         )
 
         freehand_catalog = get_rule_catalog(
             STAGE_FREEHAND_GROUNDING, self.field_type.name
         )
-        screening_catalog = screening_catalog_for(self.field_type.name)
 
         all_keywords: set[str] = set()
         chunk_stats: KeywordExtractionStatsMap = {}
@@ -206,14 +206,14 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 timestamp=timestamp,
             )
 
-            screening_flat = await get_record_screening_result(
+            # Step 2 unit screening (one wave over the minted candidates,
+            # aliases folded at the units): record → candidate → verdict.
+            screening_flat = await LLMPhraseUnitScreeningNode.get_result(
                 subject_unique_id=deferred_subject.subject_unique_id,
-                field_name=self.field_type.name,
+                field_type=self.field_type,
                 chunk_bounds=chunk_bounds,
-                catalog=screening_catalog,
-                group_req_ids=bundle.llm_phrase_relationship_screening_req_ids,
-                retry_req_ids=bundle.llm_phrase_relationship_screening_retry_req_ids,
-                completed_request_map=completed_relationship_screening_requests,
+                extraction_bundle=bundle,
+                completed_request_map=completed_unit_screening_requests,
                 timestamp=timestamp,
             )
 
@@ -291,7 +291,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 llm_phrase_synthesis=partition_records_by_search_round(
                     group_records, focal_by_group, llm_search_results
                 ),
-                llm_phrase_screening=partition_records_by_search_round(
+                llm_phrase_unit_screening=partition_records_by_search_round(
                     screening_flat, focal_by_group, llm_search_results
                 ),
                 llm_phrase_freehand_grounding=partition_records_by_search_round(
@@ -320,7 +320,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                 **completed_recursive_search_requests,
                 **completed_synthesis_requests,
                 **completed_freehand_grounding_requests,
-                **completed_relationship_screening_requests,
+                **completed_unit_screening_requests,
             },
             run_provenance=build_run_provenance(
                 metadata=extraction_requests.metadata,
@@ -366,7 +366,7 @@ class KeywordReconcileNode(ReconcileNode[ExtractionFieldType]):
                     *completed_recursive_search_requests.keys(),
                     *completed_synthesis_requests.keys(),
                     *completed_freehand_grounding_requests.keys(),
-                    *completed_relationship_screening_requests.keys(),
+                    *completed_unit_screening_requests.keys(),
                 ]
             ),
         )

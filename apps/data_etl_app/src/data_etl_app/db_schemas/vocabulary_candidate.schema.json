@@ -56,6 +56,24 @@
           }
         }
       },
+      "sources": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "accepted": {
+        "bsonType": [
+          "bool",
+          "null"
+        ]
+      },
+      "failed_rule": {
+        "bsonType": [
+          "string",
+          "null"
+        ]
+      },
       "created_at": {
         "bsonType": "date"
       }

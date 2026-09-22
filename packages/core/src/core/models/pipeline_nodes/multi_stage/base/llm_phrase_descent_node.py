@@ -59,11 +59,8 @@ from core.models.extraction_schemas.descent import (
     PROPOSAL_WAVE,
     DescentRequest,
     DescentTrail,
-    WaveTrail,
 )
 from core.models.extraction_schemas.grounding import RecordGroundingResults
-from core.models.extraction_schemas.screening import RecordScreeningResults
-from core.models.extraction_schemas.synthesis import GroupRecords
 from core.models.field_types import ConceptFieldType, ExtractionFieldType
 from core.models.pipeline_nodes.base.base_llm_extraction_node import (
     BaseLLMExtractionNode,
@@ -89,27 +86,27 @@ from core.models.pipeline_nodes.multi_stage.base.llm_phrase_unit_screening_node 
 from core.models.skos_concept import Concept
 from core.services.pipeline_nodes.multi_stage.llm_descent_node_service import (
     DESCENT_LABEL,
-    DescentAnswer,
+    ChunkInputs,
+    Vocabulary,
+    accepted_by_label,
+    chunk_inputs_from,
     create_deferred_descent_gpt_request,
     descent_request_payload,
-    parse_descent_request,
+    failed_by_record,
+    reached_and_answers_from,
+    read_descent_trail,
+    wave_payloads,
 )
 from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service import (
     get_chunk_group_records,
 )
 from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
     UnitRequestPayload,
-    build_unit_request_payload,
     create_missing_unit_screening_requests,
     get_unit_screening_result,
     unit_screening_catalog_for,
 )
-from core.services.pipeline_nodes.multi_stage.stage_derivations import (
-    pack_units,
-    units_for_screening,
-    wave_group,
-)
-from core.utils.rdf_to_graph_util import get_match_label_to_concept_map
+from core.services.pipeline_nodes.multi_stage.stage_derivations import wave_group
 from core.utils.request_custom_id_util import upstream_digest_segment
 
 logger = logging.getLogger(__name__)
@@ -129,21 +126,8 @@ def screening_metadata_of(metadata: ConceptExtractionMetadata) -> BatchedScreeni
     return metadata.llm_phrase_unit_screening
 
 
-class _ChunkInputs:
-    """What one chunk's waves are computed from: its group records, the
-    direct vocabulary matches by depth (label → records), and the proposals
-    with their sources."""
-
-    def __init__(self) -> None:
-        self.group_records: GroupRecords = {}
-        self.direct_by_depth: dict[int, dict[str, set[str]]] = {}
-        self.proposals: dict[str, set[str]] = {}
-        self.proposal_sources: dict[str, set[str]] = {}
-
-    def add_proposal(self, label: str, record_id: str, source: str) -> None:
-        key = next((k for k in self.proposals if k.casefold() == label.casefold()), label)
-        self.proposals.setdefault(key, set()).add(record_id)
-        self.proposal_sources.setdefault(key, set()).add(source)
+# The service's ``ChunkInputs`` under the name the walkthrough test imports.
+_ChunkInputs = ChunkInputs
 
 
 class LLMPhraseDescentNode(
@@ -163,19 +147,24 @@ class LLMPhraseDescentNode(
         self.descent_prompt = phrase_descent_prompt
         self.screening_prompt = phrase_unit_screening_prompt
         self.known_concepts = known_concepts
-        self.match_label_to_concept_map = get_match_label_to_concept_map(known_concepts)
-        self.concept_by_name: dict[str, Concept] = {c.name: c for c in known_concepts}
-        self.children_of: dict[str, list[Concept]] = {}
-        for c in known_concepts:
-            if c.ancestors:
-                self.children_of.setdefault(c.ancestors[-1], []).append(c)
-        for kids in self.children_of.values():
-            kids.sort(key=lambda c: c.name)
-        self.max_depth = max((c.level for c in known_concepts), default=1)
-        # casefolded name or other name → vocabulary name
-        self.vocabulary_names: dict[str, str] = {
-            label.casefold(): c.name for c in known_concepts for label in [c.name, *c.altLabels]
-        }
+        self.vocab = Vocabulary(known_concepts)
+
+    # The vocabulary view, exposed under the names the walk and its test use.
+    @property
+    def children_of(self) -> dict[str, list[Concept]]:
+        return self.vocab.children_of
+
+    @property
+    def concept_by_name(self) -> dict[str, Concept]:
+        return self.vocab.concept_by_name
+
+    @property
+    def vocabulary_names(self) -> dict[str, str]:
+        return self.vocab.vocabulary_names
+
+    @property
+    def max_depth(self) -> int:
+        return self.vocab.max_depth
 
     # --- what the subclasses supply -----------------------------------------
 
@@ -191,18 +180,16 @@ class LLMPhraseDescentNode(
     # --- vocabulary helpers --------------------------------------------------
 
     def fold(self, label: str) -> str:
-        return self.vocabulary_names.get(label.casefold(), label)
+        return self.vocab.fold(label)
 
     def ancestors_of(self, label: str) -> list[str]:
-        c = self.concept_by_name.get(label)
-        return list(c.ancestors) if c else []
+        return self.vocab.ancestors_of(label)
 
     def meaning_of(self, label: str) -> Optional[str]:
-        c = self.concept_by_name.get(label)
-        return (c.definition or None) if c else None
+        return self.vocab.meaning_of(label)
 
     def allowed_labels(self) -> list[str]:
-        return list(self.match_label_to_concept_map.keys())
+        return self.vocab.allowed_labels()
 
     # --- the chunk's inputs ---------------------------------------------------
 
@@ -215,9 +202,8 @@ class LLMPhraseDescentNode(
         subject_text: str,
         metadata: ConceptExtractionMetadata,
         timestamp: datetime,
-    ) -> _ChunkInputs:
-        inputs = _ChunkInputs()
-        inputs.group_records = await get_chunk_group_records(
+    ) -> ChunkInputs:
+        group_records = await get_chunk_group_records(
             subject_unique_id, self.field_type, chunk_bounds, bundle, timestamp,
             synthesis_completed_request_map=self.get_upstream_synthesis_map(pipeline_context),
             subject_text=subject_text, metadata=metadata,
@@ -235,16 +221,7 @@ class LLMPhraseDescentNode(
                 extraction_bundle=bundle, completed_request_map=self.get_upstream_proposal_map(pipeline_context),
                 timestamp=timestamp, allowed_labels=self.allowed_labels(),
             )))
-        for source, results in sources:
-            for rid, entry in results.items():
-                for label in entry.tags:
-                    name = self.vocabulary_names.get(label.casefold())
-                    if name is None:
-                        inputs.add_proposal(label, rid, source)
-                    else:
-                        depth = self.concept_by_name[name].level
-                        inputs.direct_by_depth.setdefault(depth, {}).setdefault(name, set()).add(rid)
-        return inputs
+        return chunk_inputs_from(self.vocab, group_records, sources)
 
     # --- ids -------------------------------------------------------------------
 
@@ -276,7 +253,7 @@ class LLMPhraseDescentNode(
             group_index=group_index, metadata=metadata, group_payload=payload, wave=wave,
         )
 
-    # --- per-wave derivations (identical at embed and create time) --------------
+    # --- per-wave derivations (identical at embed, create and result time) ----
 
     async def _reached_and_proposals_from(
         self,
@@ -284,41 +261,17 @@ class LLMPhraseDescentNode(
         reqs: list[DescentRequest],
         completed: dict[BatchRequestIDType, GPTBatchRequest],
         timestamp: datetime,
-    ) -> tuple[dict[str, set[str]], dict[str, DescentAnswer]]:
-        """Parse a wave's descent answers: (child → records reached, parent → answer)."""
-        reached: dict[str, set[str]] = {}
-        answers: dict[str, DescentAnswer] = {}
-        for r in reqs:
-            answer = await parse_descent_request(
-                subject_unique_id=subject_unique_id, field_name=self.field_type.name, req_id=r.req_id,
-                completed_request_map=completed, children=([] if r.leaf else self.children_of.get(r.parent, [])),
-                vocabulary_names=self.vocabulary_names, timestamp=timestamp,
-            )
-            answers[r.parent] = answer
-            for child, by_record in answer.reached.items():
-                reached.setdefault(child, set()).update(by_record)
-        return reached, answers
+    ):
+        return await reached_and_answers_from(
+            vocab=self.vocab, subject_unique_id=subject_unique_id, field_name=self.field_type.name,
+            reqs=reqs, completed=completed, timestamp=timestamp,
+        )
 
-    @staticmethod
-    def _failed_by_record(verdicts: RecordScreeningResults, into: dict[str, set[str]]) -> None:
-        for rid, by_candidate in verdicts.items():
-            for label, verdict in by_candidate.items():
-                if not verdict.passed:
-                    into.setdefault(rid, set()).add(label)
+    _failed_by_record = staticmethod(failed_by_record)
+    _accepted_by_label = staticmethod(accepted_by_label)
 
-    @staticmethod
-    def _accepted_by_label(verdicts: RecordScreeningResults) -> dict[str, list[str]]:
-        out: dict[str, set[str]] = {}
-        for rid, by_candidate in verdicts.items():
-            for label, verdict in by_candidate.items():
-                if verdict.passed:
-                    out.setdefault(label, set()).add(rid)
-        return {label: sorted(ids) for label, ids in out.items()}
-
-    def _wave_payloads(self, inputs: _ChunkInputs, units: dict[str, list[str]], cap: int) -> list[UnitRequestPayload]:
-        if not units:
-            return []
-        return [build_unit_request_payload(inputs.group_records, group, meaning_of=self.meaning_of) for group in pack_units(units, cap)]
+    def _wave_payloads(self, inputs: ChunkInputs, units: dict[str, list[str]], cap: int) -> list[UnitRequestPayload]:
+        return wave_payloads(self.vocab, inputs, units, cap)
 
     # --- the walk ----------------------------------------------------------------
 
@@ -361,8 +314,7 @@ class LLMPhraseDescentNode(
         descents = bundle.llm_phrase_descent_reqs
         for wave in range(1, self.max_depth + 1):
             if wave not in screens:
-                direct = {label: sorted(ids) for label, ids in inputs.direct_by_depth.get(wave, {}).items()}
-                units, _removed = wave_group(direct, {k: sorted(v) for k, v in reached.items()}, failed, self.ancestors_of)
+                units, _removed = wave_group(inputs.direct_at(wave), {k: sorted(v) for k, v in reached.items()}, failed, self.ancestors_of)
                 payloads = self._wave_payloads(inputs, units, cap)
                 screens[wave] = [self._screening_id(subject_unique_id, chunk_bounds, wave, g, metadata, p) for g, p in enumerate(payloads)]
                 if screens[wave]:
@@ -399,7 +351,7 @@ class LLMPhraseDescentNode(
                         inputs.add_proposal(label, rid, f"{'leaf' if not self.children_of.get(parent) else 'descent'}:{parent}")
         # every depth wave is done: the proposal wave, once
         if PROPOSAL_WAVE not in screens:
-            units = {label: sorted(ids) for label, ids in sorted(inputs.proposals.items(), key=lambda kv: kv[0].casefold())}
+            units = inputs.proposal_units()
             payloads = self._wave_payloads(inputs, units, cap)
             screens[PROPOSAL_WAVE] = [self._screening_id(subject_unique_id, chunk_bounds, PROPOSAL_WAVE, g, metadata, p) for g, p in enumerate(payloads)]
 
@@ -449,8 +401,7 @@ class LLMPhraseDescentNode(
             for wave in range(1, self.max_depth + 1):
                 if wave not in screens:
                     break
-                direct = {label: sorted(ids) for label, ids in inputs.direct_by_depth.get(wave, {}).items()}
-                units, _ = wave_group(direct, {k: sorted(v) for k, v in reached.items()}, failed, self.ancestors_of)
+                units, _ = wave_group(inputs.direct_at(wave), {k: sorted(v) for k, v in reached.items()}, failed, self.ancestors_of)
                 payloads = self._wave_payloads(inputs, units, cap)
                 self._check_count(screens[wave], payloads, f"wave {wave} screens", chunk_bounds, subject_unique_id)
                 screen_payloads.update(zip(screens[wave], payloads))
@@ -484,7 +435,7 @@ class LLMPhraseDescentNode(
                         for rid in by_record:
                             inputs.add_proposal(label, rid, f"{'leaf' if not self.children_of.get(parent) else 'descent'}:{parent}")
             if PROPOSAL_WAVE in screens and set(screens[PROPOSAL_WAVE]) & missing_request_ids:
-                units = {label: sorted(ids) for label, ids in sorted(inputs.proposals.items(), key=lambda kv: kv[0].casefold())}
+                units = inputs.proposal_units()
                 payloads = self._wave_payloads(inputs, units, cap)
                 self._check_count(screens[PROPOSAL_WAVE], payloads, "the proposal wave", chunk_bounds, subject_unique_id)
                 screen_payloads.update(zip(screens[PROPOSAL_WAVE], payloads))
@@ -521,53 +472,14 @@ class LLMPhraseDescentNode(
         subject_text: str,
         metadata: ConceptExtractionMetadata,
     ) -> DescentTrail:
-        """The chunk's whole descent trail, re-read from the completed answers."""
+        """The chunk's whole descent trail, re-read from the completed answers
+        (``read_descent_trail``: the reconcile step reads the same function)."""
         inputs = await self._chunk_inputs(subject_unique_id, chunk_bounds, extraction_bundle, pipeline_context, subject_text, metadata, timestamp)
-        trail = DescentTrail(max_depth=self.max_depth)
-        failed: dict[str, set[str]] = {}
-        reached: dict[str, set[str]] = {}
-        screens, descents = extraction_bundle.llm_phrase_unit_screening_req_ids, extraction_bundle.llm_phrase_descent_reqs
-        for wave in range(1, self.max_depth + 1):
-            if wave not in screens:
-                break
-            direct = {label: sorted(ids) for label, ids in inputs.direct_by_depth.get(wave, {}).items()}
-            units, removed = wave_group(direct, {k: sorted(v) for k, v in reached.items()}, failed, self.ancestors_of)
-            wt = WaveTrail(units=units, removed_under_failed_ancestor=removed)
-            trail.waves[wave] = wt
-            if screens[wave]:
-                wt.screening = await get_unit_screening_result(
-                    subject_unique_id=subject_unique_id, field_name=field_type.name,
-                    catalog=unit_screening_catalog_for(field_type.name), req_ids=screens[wave],
-                    completed_request_map=completed_request_map, timestamp=timestamp,
-                )
-            self._failed_by_record(wt.screening, failed)
-            if wave not in descents:
-                break
-            reached, answers = await self._reached_and_proposals_from(subject_unique_id, descents[wave], completed_request_map, timestamp)
-            for r in descents[wave]:
-                answer = answers[r.parent]
-                per_record: RecordGroundingResults = {}
-                for child, by_record in answer.reached.items():
-                    for rid, entry in by_record.items():
-                        per_record.setdefault(rid, entry).tags.update(entry.tags)
-                for label, by_record in answer.proposals.items():
-                    for rid, entry in by_record.items():
-                        per_record.setdefault(rid, entry).tags.update(entry.tags)
-                        inputs.add_proposal(label, rid, f"{'leaf' if r.leaf else 'descent'}:{r.parent}")
-                for rid, reason in answer.declined.items():
-                    per_record.setdefault(rid, RecordGroundingEntryDeclined(reason))
-                (wt.leaf if r.leaf else wt.descent)[r.parent] = per_record
-                if answer.false_children:
-                    wt.false_children[r.parent] = {rid: sorted(v) for rid, v in answer.false_children.items()}
-        trail.proposal_units = {label: sorted(ids) for label, ids in sorted(inputs.proposals.items(), key=lambda kv: kv[0].casefold())}
-        trail.proposal_sources = {label: sorted(s) for label, s in inputs.proposal_sources.items()}
-        if screens.get(PROPOSAL_WAVE):
-            trail.proposal_screening = await get_unit_screening_result(
-                subject_unique_id=subject_unique_id, field_name=field_type.name,
-                catalog=unit_screening_catalog_for(field_type.name), req_ids=screens[PROPOSAL_WAVE],
-                completed_request_map=completed_request_map, timestamp=timestamp,
-            )
-        return trail
+        return await read_descent_trail(
+            vocab=self.vocab, subject_unique_id=subject_unique_id, field_name=field_type.name, inputs=inputs,
+            screens=extraction_bundle.llm_phrase_unit_screening_req_ids, descents=extraction_bundle.llm_phrase_descent_reqs,
+            completed=completed_request_map, timestamp=timestamp,
+        )
 
     async def validate_own_responses(
         self,
@@ -587,8 +499,3 @@ class LLMPhraseDescentNode(
         model = descent_metadata_of(metadata).llm_model if is_descent else screening_metadata_of(metadata).llm_model
         return await dispatch_gpt_batch_request(gpt_batch_request=gpt_batch_request, gpt_model=model)
 
-
-def RecordGroundingEntryDeclined(reason: str):
-    from core.models.extraction_schemas.grounding import RecordGroundingEntry
-
-    return RecordGroundingEntry(tags={}, explanation=reason or "the subject fixes nothing narrower")
