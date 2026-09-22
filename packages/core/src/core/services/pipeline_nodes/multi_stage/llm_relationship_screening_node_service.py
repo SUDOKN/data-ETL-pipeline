@@ -22,10 +22,11 @@ from dataclasses import dataclass, field as dataclass_field
 import asyncio
 import json
 import logging
+import re
 import traceback
 from collections import Counter
 from datetime import datetime
-from typing import Any, Mapping, Optional, Sequence
+from typing import Any, Callable, Mapping, Optional, Sequence
 
 from pydantic import ValidationError
 
@@ -41,7 +42,7 @@ from core.models.extraction_schemas.screening import (
     CandidateScreeningVerdict,
     RecordScreeningResults,
 )
-from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING, RuleCatalog
+from core.models.rule_catalog import STAGE_RELATIONSHIP_SCREENING, STAGE_UNIT_SCREENING, RuleCatalog
 from core.services.applied_rule_validation import (
     check_applied_rules,
     passed_implied_by,
@@ -56,6 +57,7 @@ from core.services.phrase_blocks_contract import (
 )
 from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import (
     grouped_record_payloads,
+    subject_keyed_payloads,
 )
 from core.services.rule_catalog_registry import get_rule_catalog
 from llm_providers.db_models.gpt_batch_request import GPTBatchRequest
@@ -666,3 +668,246 @@ def create_dummy_completed_record_screening_batch_request(
         ),
     )
     return base
+
+
+# --- Step 2 unit screening (2026-09-21): the request / parse layer ------------
+#
+# One request = the manufacturer line, the records ONCE (subject-keyed), then a
+# UNITS block: one candidate label per unit, its meaning when the vocabulary
+# gives one, and the ids of the records grounding matched on. Requests are
+# packed per chunk and per WAVE by ``stage_derivations.pack_units`` (≤ the
+# record cap, sub-units of one label never sharing a request); a keyword field
+# has one wave, a concept field one per vocabulary depth (the descent loop).
+# No under-answer retry: the parser holds each response to the request's own
+# units and records exactly (V7), and a breach goes to the parse-error
+# re-dispatch under its cap.
+
+UNIT_SCREENING_LABEL = "unit screening"
+MANUFACTURER_LINE = "the name of the manufacturer in question: "
+DUMMY_UNIT_SCREENINGS_RESPONSE_CONTENT = '{"screenings": []}'
+_UNITS_RE = re.compile(re.escape(UNITS_OPEN) + r"\n(.*?)\n" + re.escape(UNITS_CLOSE), re.S)
+
+# One request's payload — what the ``|ud=`` digest is over and what the
+# request renders: the records it carries (subject-keyed) and its units.
+UnitRequestPayload = dict[str, Any]
+
+
+def unit_screening_catalog_for(field_name: str) -> RuleCatalog:
+    return get_rule_catalog(STAGE_UNIT_SCREENING, field_name)
+
+
+def build_unit_request_payload(
+    group_records: GroupRecords,
+    units: Sequence[tuple[str, Sequence[str]]],
+    *,
+    meaning_of: Callable[[str], Optional[str]],
+) -> UnitRequestPayload:
+    """``{"records": {id: {subject, synthesis}}, "units": [{option, meaning?,
+    records}]}`` for one packed request group. The records are the union of
+    the units' ids, each rendered once; a unit's ``meaning`` is the
+    vocabulary's definition when ``meaning_of`` gives one (a proposal has
+    none and carries no key). An id no group record carries is a pipeline
+    bug: the units were built from those records."""
+    record_ids: set[str] = set()
+    rendered_units: list[dict[str, Any]] = []
+    for option, ids in units:
+        ids = sorted(ids)
+        unit: dict[str, Any] = {"option": option}
+        meaning = meaning_of(option)
+        if meaning:
+            unit["meaning"] = meaning
+        unit["records"] = ids
+        rendered_units.append(unit)
+        record_ids.update(ids)
+    unknown = sorted(rid for rid in record_ids if rid not in group_records)
+    if unknown:
+        raise ValueError(f"build_unit_request_payload: unit record id(s) {unknown} are not among the chunk's records")
+    records = subject_keyed_payloads({rid: group_records[rid].model_dump() for rid in sorted(record_ids)})
+    return {"records": records, "units": rendered_units}
+
+
+def render_unit_screening_context(subject_name: str, payload: UnitRequestPayload) -> str:
+    return (
+        f"{MANUFACTURER_LINE}{subject_name}\n\n"
+        f"{render_record_blocks(payload['records'])}\n\n"
+        f"{render_units_block(payload['units'])}"
+    )
+
+
+def sent_units_from_user_message(user_message: str) -> Optional[list[dict[str, Any]]]:
+    """The UNITS block a request carried, read back — what the parser holds
+    the response to."""
+    m = _UNITS_RE.search(user_message)
+    return None if m is None else json.loads(m.group(1))
+
+
+def create_deferred_unit_screening_gpt_request(
+    *,
+    deferred_at: datetime,
+    subject_unique_id: str,
+    request_id: str,
+    prompt: Prompt,
+    catalog: RuleCatalog,
+    subject_name: str,
+    payload: UnitRequestPayload,
+    gpt_model: LLM_Model,
+    eager: bool,
+    model_params: GPTModelParams,
+) -> GPTBatchRequest:
+    return create_base_gpt_batch_request(
+        deferred_at=deferred_at,
+        subject_unique_id=subject_unique_id,
+        custom_id=request_id,
+        context=render_unit_screening_context(subject_name, payload),
+        prompt_text=prompt.text,
+        gpt_model=gpt_model,
+        model_params=model_params.with_response_format(response_format_for(catalog)),
+        batch_id="Eager" if eager else None,
+    )
+
+
+def create_dummy_completed_unit_screening_batch_request(
+    *,
+    deferred_at: datetime,
+    subject_unique_id: str,
+    request_id: BatchRequestIDType,
+    model_params: GPTModelParams,
+    eager: bool,
+) -> GPTBatchRequest:
+    note = "No unit screening needed - no unit to judge in this wave."
+    base = create_base_gpt_batch_request(
+        deferred_at=deferred_at,
+        subject_unique_id=subject_unique_id,
+        custom_id=request_id,
+        context=f"{note}\n{render_record_blocks({})}\n\n{render_units_block([])}",
+        prompt_text=note,
+        gpt_model=NO_MODEL,
+        model_params=model_params,
+        batch_id="Eager" if eager else "dummy_unit_screening_batch_id",
+    )
+    base.response = get_dummy_gpt_batch_response(
+        deferred_at=deferred_at,
+        request_custom_id=request_id,
+        dummy_chat_completion_id="dummy_completion_id",
+        chat_completion_choice_message=ChatCompletionChoiceMessage(
+            role="assistant", content=DUMMY_UNIT_SCREENINGS_RESPONSE_CONTENT
+        ),
+    )
+    return base
+
+
+async def create_missing_unit_screening_requests(
+    *,
+    subject_unique_id: str,
+    field_name: str,
+    payloads_by_req_id: Mapping[BatchRequestIDType, UnitRequestPayload],
+    missing_req_ids: set[BatchRequestIDType],
+    prompt: Prompt,
+    catalog: RuleCatalog,
+    subject_name: str,
+    deferred_at: datetime,
+    llm_model: LLM_Model,
+    model_params: GPTModelParams,
+    eager: bool,
+) -> list[GPTBatchRequest]:
+    """The unit-screening create loop: the caller derives each request's
+    payload (the same packing the id-embedding side used, so the ids and
+    the payloads always describe the same groups) and this creates the
+    missing ones; an empty payload (the zero-units wave of a chunk) gets the
+    pre-answered dummy."""
+    batch_requests: list[GPTBatchRequest] = []
+    for req_id in sorted(missing_req_ids):
+        payload = payloads_by_req_id.get(req_id)
+        if payload is None:
+            raise ValueError(
+                f"{UNIT_SCREENING_LABEL}: no payload for missing request id {req_id} "
+                f"in {subject_unique_id}:{field_name}; the embedded ids and the derived "
+                f"payloads disagree (re-defer)"
+            )
+        if not payload["units"]:
+            batch_requests.append(
+                create_dummy_completed_unit_screening_batch_request(
+                    deferred_at=deferred_at, subject_unique_id=subject_unique_id,
+                    request_id=req_id, model_params=model_params, eager=eager,
+                )
+            )
+            continue
+        batch_requests.append(
+            create_deferred_unit_screening_gpt_request(
+                deferred_at=deferred_at, subject_unique_id=subject_unique_id, request_id=req_id,
+                prompt=prompt, catalog=catalog, subject_name=subject_name, payload=payload,
+                gpt_model=llm_model, eager=eager, model_params=model_params,
+            )
+        )
+        await asyncio.sleep(0)
+    return batch_requests
+
+
+async def parse_unit_screening_group_result(
+    *,
+    subject_unique_id: str,
+    field_name: str,
+    catalog: RuleCatalog,
+    req_id: BatchRequestIDType,
+    completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    timestamp: datetime,
+) -> RecordScreeningResults:
+    """Parse one unit-screening request, held to the units and records it
+    carried (read back off its own user message)."""
+    req_obj = completed_request_map.get(req_id)
+    if not req_obj:
+        raise ValueError(f"{UNIT_SCREENING_LABEL}: Missing GPTBatchRequest for request ID {req_id} in {subject_unique_id}:{field_name}")
+    elif not req_obj.response:
+        raise ValueError(f"{UNIT_SCREENING_LABEL}: GPTBatchRequest for request ID {req_id} has no response_blob in {subject_unique_id}:{field_name}")
+    try:
+        user_message = req_obj.request.body.user_message()
+        sent_units = sent_units_from_user_message(user_message)
+        if sent_units is None:
+            raise ValueError(f"{UNIT_SCREENING_LABEL}: request {req_id} carries no UNITS block")
+        units = {u["option"]: list(u["records"]) for u in sent_units}
+        if not units:
+            return {}
+        sent = sent_records_from_user_message(user_message)
+        return parse_unit_screening_result(
+            req_obj.response.result,
+            catalog=catalog,
+            units=units,
+            sent_records=sent if isinstance(sent, dict) else None,
+        )
+    except Exception as e:
+        await record_response_parse_error_capped(
+            gpt_batch_request=req_obj, error_message=str(e), timestamp=timestamp, traceback_str=traceback.format_exc(),
+        )
+        logger.error(f"{UNIT_SCREENING_LABEL}: Error parsing results for subject {subject_unique_id} from GPT response: {e}")
+        raise
+
+
+async def get_unit_screening_result(
+    *,
+    subject_unique_id: str,
+    field_name: str,
+    catalog: RuleCatalog,
+    req_ids: Sequence[BatchRequestIDType],
+    completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
+    timestamp: datetime,
+) -> RecordScreeningResults:
+    """One wave's verdicts, merged across its requests: record → candidate →
+    verdict. Sub-units of one label sit in different requests over disjoint
+    records, so their verdicts union per record; the same (record, candidate)
+    answered twice is a pipeline bug and raises."""
+    merged: RecordScreeningResults = {}
+    for req_id in req_ids:
+        held = await parse_unit_screening_group_result(
+            subject_unique_id=subject_unique_id, field_name=field_name, catalog=catalog,
+            req_id=req_id, completed_request_map=completed_request_map, timestamp=timestamp,
+        )
+        for rid, verdicts in held.items():
+            slot = merged.setdefault(rid, {})
+            for candidate, verdict in verdicts.items():
+                if candidate in slot:
+                    raise ValueError(
+                        f"{UNIT_SCREENING_LABEL}: record {rid!r} judged twice for {candidate!r} "
+                        f"in {subject_unique_id}:{field_name}"
+                    )
+                slot[candidate] = verdict
+    return merged

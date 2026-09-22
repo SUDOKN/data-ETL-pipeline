@@ -13,7 +13,7 @@ derivations for the name to distinguish it from.
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Callable, Mapping, Optional, Sequence
 
 from core.models.deferred_extraction.deferred_concept_extraction import (
     TaggingResult,
@@ -106,22 +106,78 @@ def candidates_that_passed(
     return survivors
 
 
-def units_for_screening(*results: RecordGroundingResults) -> dict[str, list[str]]:
+def units_for_screening(
+    *results: RecordGroundingResults,
+    fold: Optional[Callable[[str], str]] = None,
+) -> dict[str, list[str]]:
     """Step 2 (user decision 2026-09-21): grounding answers record by record,
     and the records tagged to the same label are regrouped HERE into one
     screening unit — ``label -> sorted record ids`` over every map given
     (vocabulary matches and proposals alike). Labels are casefold-deduped,
     the first spelling seen kept, so a proposal minted under two casings on
-    two records is one unit. Records that yielded nothing are absent."""
+    two records is one unit. Records that yielded nothing are absent.
+
+    ``fold`` (ruling 25, 2026-09-21) maps a label to the name it is a unit
+    under before grouping — the concept fields pass the vocabulary's
+    alias-to-name map, so a record tagged under an other name ("Assembly")
+    and one tagged under the name ("Joining") make ONE unit, never the
+    "alias twins" the census counted; a label the fold does not know (a
+    proposal) is returned as given."""
     by_label: dict[str, set[str]] = {}
     spelling: dict[str, str] = {}
     for result_map in results:
         for record_id, entry in result_map.items():
             for label in entry.tags:
-                folded = label.casefold()
-                spelling.setdefault(folded, label)
+                name = fold(label) if fold is not None else label
+                folded = name.casefold()
+                spelling.setdefault(folded, name)
                 by_label.setdefault(folded, set()).add(record_id)
     return {
         spelling[folded]: sorted(record_ids)
         for folded, record_ids in sorted(by_label.items(), key=lambda kv: spelling[kv[0]].casefold())
     }
+
+
+UnitGroup = list[tuple[str, list[str]]]
+
+
+def pack_units(units: Mapping[str, Sequence[str]], max_records: int) -> list[UnitGroup]:
+    """Split one wave's units into request groups, each holding at most
+    ``max_records`` DISTINCT records (D8: the cap is records, because the
+    records are what the request renders and the model reads).
+
+    Deterministic: units in label order, packed first-fit into the open
+    group; a unit whose records exceed the cap is cut into SUB-UNITS of at
+    most the cap (same label, disjoint records), and two sub-units of one
+    label never share a request — the parser holds each request to its own
+    units by label, and the wave's verdicts union per record afterwards.
+    An empty unit map is one empty group (the zero-units chunk sends its
+    single pre-answered dummy, as the record stages do)."""
+    if max_records < 1:
+        raise ValueError("pack_units: max_records must be >= 1")
+    pieces: list[tuple[str, list[str]]] = []
+    for label in sorted(units, key=lambda s: s.casefold()):
+        ids = sorted(set(units[label]))
+        if not ids:
+            continue
+        for i in range(0, len(ids), max_records):
+            pieces.append((label, ids[i : i + max_records]))
+    groups: list[UnitGroup] = []
+    group_records: list[set[str]] = []
+    group_labels: list[set[str]] = []
+    for label, ids in pieces:
+        placed = False
+        for g, (records, labels) in enumerate(zip(group_records, group_labels)):
+            if label in labels:
+                continue  # a sub-unit of this label is already here
+            if len(records | set(ids)) <= max_records:
+                groups[g].append((label, ids))
+                records.update(ids)
+                labels.add(label)
+                placed = True
+                break
+        if not placed:
+            groups.append([(label, ids)])
+            group_records.append(set(ids))
+            group_labels.append({label})
+    return groups or [[]]

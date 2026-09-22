@@ -76,6 +76,15 @@ class LLMPhraseExtractionRequestBundle(BaseModel):
     # that is reported, never retried twice.
     llm_phrase_synthesis_retry_record_ids: Optional[list[str]] = None
     llm_phrase_synthesis_retry_req_ids: list[BatchRequestIDType] = Field(default_factory=list)
+    # Step 2 unit screening (2026-09-21): wave → the wave's request ids. A
+    # keyword field has one wave (its freehand candidates); a concept field
+    # has one per vocabulary depth, issued by the descent loop (design draft
+    # §6.3). No under-answer retry: the parser holds each response to the
+    # request's own units and records exactly, and a breach goes to the
+    # parse-error re-dispatch. Defaulted so every stored bundle loads.
+    llm_phrase_unit_screening_req_ids: dict[int, list[BatchRequestIDType]] = Field(
+        default_factory=dict
+    )
     # v2 relationship (out of every chain since v3 3.1; retired at 3.3).
     # Ordered list of relationship groups (group 1 == index 0). Each group covers
     # at most `max_phrases_per_request` of the chunk's candidate phrases; every
