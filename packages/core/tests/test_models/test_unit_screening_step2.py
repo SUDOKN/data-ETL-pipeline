@@ -251,3 +251,27 @@ async def test_a_small_cap_packs_the_wave_into_several_requests():
     await node.embed_request_ids(SUBJECT, ctx, _metadata(cap=1), {CHUNK: bundle}, T0)
     ids = bundle.llm_phrase_unit_screening_req_ids[1]
     assert len(ids) == 3 and all(">wave>1>group>" in i for i in ids)
+
+
+def test_a_paraphrased_quote_keeps_the_verdict_and_is_marked_unverified():
+    """2026-09-22, the first Step 2 run: gpt-4.1 restated the record instead
+    of quoting it on 2 of 14 requests, and the strict hold stopped both
+    subjects. The quote is evidence for the census, not a gate: a paraphrase
+    keeps the acceptance with ``quote_verified=False``; an acceptance with no
+    quote is kept unverified; the unit and record holds stay exact."""
+    from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
+        parse_unit_screening_result,
+    )
+
+    catalog = _catalog()
+    units = {"Joining": ["gaaaaaa1", "gaaaaaa2"]}
+    sent = {
+        "gaaaaaa1": {"subject": "assembly", "synthesis": "performs final assembly of housings"},
+        "gaaaaaa2": {"subject": "welding", "synthesis": "welds frames in-house"},
+    }
+    response = _answer(_unit("Joining", accepted=[("gaaaaaa1", "named", "The company performs the final assembly step."), ("gaaaaaa2", "inferred", "")]))
+    result = parse_unit_screening_result(response, catalog=catalog, units=units, sent_records=sent)
+    assert result["gaaaaaa1"]["Joining"].passed is True and result["gaaaaaa1"]["Joining"].quote_verified is False
+    assert result["gaaaaaa2"]["Joining"].passed is True and result["gaaaaaa2"]["Joining"].quote_verified is None
+    verbatim = _answer(_unit("Joining", accepted=[("gaaaaaa1", "named", "performs final assembly"), ("gaaaaaa2", "named", "welds frames")]))
+    assert parse_unit_screening_result(verbatim, catalog=catalog, units=units, sent_records=sent)["gaaaaaa1"]["Joining"].quote_verified is True

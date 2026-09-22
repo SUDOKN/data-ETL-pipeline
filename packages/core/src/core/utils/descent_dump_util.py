@@ -57,6 +57,8 @@ def _verdict_dump(verdict: CandidateScreeningVerdict) -> dict[str, Any]:
         dump["failed_rule"] = verdict.failed_rule
     if verdict.quote:
         dump["quote"] = verdict.quote
+    if verdict.quote_verified is False:
+        dump["quote_verified"] = False
     return dump
 
 

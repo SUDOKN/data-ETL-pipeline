@@ -107,12 +107,17 @@ def parse_unit_screening_result(
 
     Holds (V7, design draft §5.2): every sent unit answered exactly once and
     no unit invented; per unit ``accepted`` ∪ ``not_accepted`` is exactly the
-    unit's records, none in both; every accepted record's quote is found in
-    its record. Any breach fails the response (the node's parse-error path
-    re-dispatches under its cap) — the candidate axis is exact, as today's.
-    ``passed`` is set from the list a record landed in; the evidence distance
-    and the failed rule ride on the verdict as metadata; ``applied_rules``
-    carries the failed rule for a rejection and is empty for an acceptance.
+    unit's records, none in both. Any breach of THOSE fails the response (the
+    node's parse-error path re-dispatches under its cap) — the candidate axis
+    is exact, as today's. An accepted record's quote is checked against its
+    record but never fails the response (2026-09-22, the first Step 2 run
+    stopped both subjects on paraphrased quotes): a quote not found verbatim
+    keeps the verdict with ``quote_verified=False``, the rule grounding
+    already applies to its own quotes; an acceptance with no quote at all is
+    kept and logged. ``passed`` is set from the list a record landed in; the
+    evidence distance and the failed rule ride on the verdict as metadata;
+    ``applied_rules`` carries the failed rule for a rejection and is empty
+    for an acceptance.
     """
     if not gpt_response:
         logger.error(f"Invalid gpt_response:{gpt_response}")
@@ -143,19 +148,21 @@ def parse_unit_screening_result(
                 f"unit {option!r}: answered records {sorted(answered)} are not the sent "
                 f"records {sorted(sent_ids)}"
             )
-        for r in unit.accepted:
-            record = sent_records.get(r.record_id) if sent_records is not None else None
-            if record is not None:
-                phrase = record.get("subject", record.get("focal_form", "")) or ""
-                if not quote_found_in_text(r.quote, str(phrase), str(record.get("synthesis", "") or "")):
-                    problems.append(f"unit {option!r}: record {r.record_id} accepted on a quote not in the record: {r.quote!r}")
-            elif not r.quote.strip():
-                problems.append(f"unit {option!r}: record {r.record_id} accepted with no quote")
         if problems:
             continue
         for r in unit.accepted:
+            verified: Optional[bool] = None
+            if not r.quote.strip():
+                logger.warning(f"unit screening: unit {option!r}: record {r.record_id} accepted with no quote; kept, unverified")
+            else:
+                record = sent_records.get(r.record_id) if sent_records is not None else None
+                if record is not None:
+                    phrase = record.get("subject", record.get("focal_form", "")) or ""
+                    verified = quote_found_in_text(r.quote, str(phrase), str(record.get("synthesis", "") or ""))
+                    if not verified:
+                        logger.info(f"unit screening: unit {option!r}: record {r.record_id} accepted on a quote not found verbatim in the record; kept, marked unverified")
             results.setdefault(r.record_id, {})[option] = CandidateScreeningVerdict(
-                passed=True, applied_rules=[], evidence=r.evidence, quote=r.quote
+                passed=True, applied_rules=[], evidence=r.evidence, quote=r.quote, quote_verified=verified
             )
         for r in unit.not_accepted:
             results.setdefault(r.record_id, {})[option] = CandidateScreeningVerdict(

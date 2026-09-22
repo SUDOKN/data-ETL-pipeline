@@ -29,6 +29,13 @@ class CandidateScreeningVerdict(BaseModel):
     evidence: Optional[Literal["named", "inferred"]] = None
     failed_rule: Optional[str] = None
     quote: Optional[str] = None
+    # Whether an accepted record's quote was found verbatim in the record
+    # (2026-09-22, first Step 2 run): the model paraphrases the record about
+    # as often as it quotes it, so a non-verbatim quote keeps the verdict and
+    # is marked False here — the same rule grounding applies (``unverified``)
+    # — instead of failing the whole request. None = not checked (a rejection,
+    # or an acceptance offered with no quote at all).
+    quote_verified: Optional[bool] = None
 
 
 # record_id -> {candidate -> verdict}: one judgment per supplied candidate.
