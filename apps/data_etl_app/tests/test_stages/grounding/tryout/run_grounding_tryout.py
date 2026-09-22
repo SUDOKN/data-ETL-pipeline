@@ -21,8 +21,12 @@ Arms (``--arms``):
     a    today's two grounding calls (initial, then out-of-vocabulary chained on
          its answer), concept fields; published prompts + their catalog schemas.
     b    Step 2's one grounding call: the ``phrase_grounding`` catalog rendered
-         under ``final_texts/assembled/``, the dash-line outline, the three-list
-         schema generated from the catalog.
+         under ``final_texts/assembled/``, the dash-line outline, the record-major
+         schema generated from the catalog (user decision 2026-09-21; the
+         option-major shape of rounds 1–3 is in ``out/round*/``).
+    p    Step 2's proposal-only pass (``phrase_proposal``): the records arm b's
+         MODE left with no label, read again with the outline. Needs arm b's
+         outputs, so run it in a second invocation after ``--arms b``.
     fa   today's freehand grounding (equipments, products, contract_products):
          the published text snapshotted under ``arms/today/`` with its catalog.
     fb   Step 2's reworded freehand catalog (same rule ids, same schema).
@@ -99,7 +103,9 @@ FIELD_ONTOLOGY = {
     "conformity_attestations": "certificates.json",
 }
 
-GROUNDING_ARMS = ("a", "b", "fa", "fb")
+GROUNDING_ARMS = ("a", "b", "fa", "fb", "p")
+# The arms that see the Step 2 record key ("subject"); today's arms see "focal_form".
+SUBJECT_KEY_ARMS = frozenset({"b", "fb", "p", "sb"})
 SCREENING_ARMS = ("sa", "sb")
 
 
@@ -126,7 +132,7 @@ def concept_by_label(field: str) -> dict[str, Any]:
 def options_section(field: str, *, arm: str, oov: bool = False) -> str:
     from core.utils.rdf_to_graph_util import render_concept_outline  # noqa: E402
 
-    if arm == "b":
+    if arm in ("b", "p"):
         return (
             "the vocabulary to match against:\n"
             f"{render_concept_outline(load_concepts(field), with_definitions=True)}"
@@ -163,6 +169,18 @@ def request_groups(run: str, subject: str, field: str, chunk: str) -> list[dict[
     return grouped_record_payloads(chunk_records(run, subject, field, chunk), MAX_RECORDS_PER_REQUEST)
 
 
+def wire_payloads(payloads: dict[str, dict[str, Any]], arm: str) -> dict[str, dict[str, Any]]:
+    """The record block as the arm's prompt names its fields: the Step 2 prompts
+    say "subject" (user decision 2026-09-21), today's say "focal_form"."""
+    if arm not in SUBJECT_KEY_ARMS:
+        return payloads
+    out: dict[str, dict[str, Any]] = {}
+    for rid, payload in payloads.items():
+        renamed = {("subject" if k == "focal_form" else k): v for k, v in payload.items()}
+        out[rid] = renamed
+    return out
+
+
 def render_context(
     payloads: dict[str, dict[str, Any]],
     field: str,
@@ -173,8 +191,8 @@ def render_context(
 ) -> str:
     from core.services.phrase_blocks_contract import render_record_blocks  # noqa: E402
 
-    body = render_record_blocks(payloads)
-    if field in CONCEPT_FIELDS and arm in ("a", "b"):
+    body = render_record_blocks(wire_payloads(payloads, arm))
+    if field in CONCEPT_FIELDS and arm in ("a", "b", "p"):
         body = f"{body}\n\n{options_section(field, arm=arm, oov=oov)}"
     return f"{NONCE_LABEL}{nonce or uuid.uuid4().hex}\n\n{body}"
 
@@ -260,6 +278,7 @@ def arm_system_and_schema(arm: str, field: str) -> tuple[str, dict, Any]:
         STAGE_GROUNDING,
         STAGE_INITIAL_GROUNDING,
         STAGE_OOV_GROUNDING,
+        STAGE_PROPOSAL,
         STAGE_RELATIONSHIP_SCREENING,
         STAGE_UNIT_SCREENING,
         RuleCatalog,
@@ -271,6 +290,8 @@ def arm_system_and_schema(arm: str, field: str) -> tuple[str, dict, Any]:
         cat = _catalog(STAGE_OOV_GROUNDING, field)
     elif arm == "b":
         cat = _catalog(STAGE_GROUNDING, field)
+    elif arm == "p":
+        cat = _catalog(STAGE_PROPOSAL, field)
     elif arm == "fb":
         cat = _catalog(STAGE_FREEHAND_GROUNDING, field)
     elif arm == "fa":
@@ -338,19 +359,18 @@ def labels_per_record_a(iv_text: str, oov_text: str, labels: dict[str, Any]) -> 
 
 
 def labels_per_record_b(text: str, labels: dict[str, Any]) -> dict[str, set[str]]:
+    """Record-major: each entry's options (canonical after the parenthetical
+    strip; a non-label is a reroute to a proposal under V3) and proposals."""
     per_record: dict[str, set[str]] = defaultdict(set)
-    doc = json.loads(text)
-    for entry in doc.get("matched") or []:
-        canon = _canonical(entry["option"], labels)
-        label = canon or entry["option"]  # a non-label in matched is rerouted to a proposal (V3)
-        for rec in entry.get("records") or []:
-            per_record[rec["record_id"]].add(label)
-    for entry in doc.get("proposed") or []:
-        canon = _canonical(entry["label"], labels)
-        for rec in entry.get("records") or []:
-            per_record[rec["record_id"]].add(canon or entry["label"])
-    for entry in doc.get("unmatched") or []:
-        per_record.setdefault(entry["record_id"], set())
+    for entry in json.loads(text).get("groundings") or []:
+        rid = entry["record_id"]
+        per_record.setdefault(rid, set())
+        for o in entry.get("options") or []:
+            canon = _canonical(o["option"], labels)
+            per_record[rid].add(canon or o["option"])
+        for pr in entry.get("proposals") or []:
+            canon = _canonical(pr["label"], labels)
+            per_record[rid].add(canon or pr["label"])
     return per_record
 
 
@@ -459,7 +479,7 @@ def render_screening_context(
         return head + render_record_blocks(build_screening_payloads(records, candidates))
     if arm == "sb":
         cited = {rid: payloads[rid] for rid in sorted(candidates)}
-        return head + render_record_blocks(cited) + "\n\n" + render_units_block(build_units(t, candidates))
+        return head + render_record_blocks(wire_payloads(cited, "sb")) + "\n\n" + render_units_block(build_units(t, candidates))
     raise SystemExit(f"unknown screening arm {arm!r}")
 
 
@@ -551,6 +571,17 @@ async def run(run_id: str, targets: list[Target], arms: list[str], n: int, concu
                 return
             system, schema, _ = arm_system_and_schema(arm, t.field)
             await call(d / f"{arm}_{k}.json", render_context(payloads, t.field, arm=arm), system, schema)
+        elif arm == "p":
+            if not t.concept:
+                return
+            labelled = mode_candidates(t, "b")
+            unlabelled = {rid: payloads[rid] for rid in sorted(payloads) if rid not in labelled}
+            (d / "unlabelled_from_b.json").write_text(json.dumps(sorted(unlabelled)))
+            if not unlabelled:
+                print(f"{t.tag}: every record has a majority label in arm b; nothing for the proposal pass", file=sys.stderr)
+                return
+            system, schema, _ = arm_system_and_schema("p", t.field)
+            await call(d / f"p_{k}.json", render_context(unlabelled, t.field, arm="p"), system, schema)
         elif arm in SCREENING_ARMS:
             source = screen_from or ("b" if t.concept else "fb")
             candidates = mode_candidates(t, source)

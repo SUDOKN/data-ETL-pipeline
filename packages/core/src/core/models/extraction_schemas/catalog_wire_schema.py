@@ -58,6 +58,7 @@ from core.models.rule_catalog import (
     STAGE_GROUNDING,
     STAGE_INITIAL_GROUNDING,
     STAGE_OOV_GROUNDING,
+    STAGE_PROPOSAL,
     STAGE_RECURSIVE_GROUNDING,
     STAGE_RELATIONSHIP_SCREENING,
     STAGE_UNIT_SCREENING,
@@ -98,6 +99,9 @@ RESERVED_WIRE_FIELD_NAMES = frozenset(
         "not_accepted",
         "evidence",
         "failed_rule",
+        "match",
+        "proposals",
+        "subject",
     }
 )
 
@@ -149,16 +153,17 @@ class GroundingWireResponse(BaseModel):
     groundings: list[Any]
 
 
-class ThreeListGroundingWireResponse(BaseModel):
-    """Step 2 grounding and descent: option-major, three lists, evidence per
-    record. Every sent record appears in at least one ``records`` list or in
-    ``unmatched``; the parser holds coverage, membership and the quotes."""
+class RecordGroundingStructuralWireResponse(BaseModel):
+    """Step 2 grounding, descent and the proposal pass (user decision 2026-09-21:
+    record-major, never option-major): one entry per record carrying the option
+    or options its subject matches, each with the quote and the matching rule,
+    any proposal, and a required-nullable declination explanation that is
+    non-null exactly when both lists are empty. Units for screening and descent
+    are grouped from these entries in code."""
 
     model_config = ConfigDict(extra="forbid")
 
-    matched: list[Any]
-    proposed: list[Any]
-    unmatched: list[Any]
+    groundings: list[Any]
 
 
 class UnitScreeningWireResponse(BaseModel):
@@ -171,29 +176,14 @@ class UnitScreeningWireResponse(BaseModel):
     screenings: list[Any]
 
 
-class RecordQuote(BaseModel):
-    """One record listed under an option or a proposal, with the words of that
-    record that evidence it. The quote IS the evidence test (V1, round 2): the
-    parser drops a record whose quote is empty or not found in the record."""
+class ProposalEntry(BaseModel):
+    """A name the model gives a thing the vocabulary lacks, with the words of
+    the record that evidence it and why no option covers it."""
 
-    model_config = ConfigDict(extra="forbid")
-
-    record_id: str
-    quote: str
-
-
-class ProposedEntry(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     label: str
-    records: list[RecordQuote]
-    explanation: str
-
-
-class UnmatchedEntry(BaseModel):
-    model_config = ConfigDict(extra="forbid")
-
-    record_id: str
+    quote: str
     explanation: str
 
 
@@ -421,14 +411,17 @@ _RESPONSE_MODEL_BUILDER_BY_STAGE = {
     STAGE_FREEHAND_GROUNDING: lambda catalog: _build_candidate_grounding_v2(catalog),
     STAGE_BINARY_CLASSIFICATION: build_binary_classification_response_model,
     # Step 2: the structural families.
-    STAGE_GROUNDING: lambda catalog: build_three_list_grounding_response_model(catalog),
-    STAGE_DESCENT: lambda catalog: build_three_list_grounding_response_model(catalog),
+    STAGE_GROUNDING: lambda catalog: build_record_grounding_structural_response_model(catalog),
+    STAGE_DESCENT: lambda catalog: build_record_grounding_structural_response_model(catalog),
+    STAGE_PROPOSAL: lambda catalog: build_record_grounding_structural_response_model(catalog),
     STAGE_UNIT_SCREENING: lambda catalog: build_unit_screening_response_model(catalog),
 }
 
 # The stages whose catalogs must declare ``reporting: structural`` — their wire
 # carries no rule slots — against the ones that must not.
-STRUCTURAL_STAGES = frozenset({STAGE_GROUNDING, STAGE_DESCENT, STAGE_UNIT_SCREENING})
+STRUCTURAL_STAGES = frozenset(
+    {STAGE_GROUNDING, STAGE_DESCENT, STAGE_PROPOSAL, STAGE_UNIT_SCREENING}
+)
 
 # Keyed by catalog identity, not by stage: rule ids and outcome vocabularies differ
 # per catalog, and two freehand catalogs already differ in whether they declare a
@@ -494,10 +487,10 @@ def binary_classification_response_model(
     return cast(type[BinaryWireReport], response_model_for(catalog))
 
 
-def three_list_grounding_response_model(
+def record_grounding_structural_response_model(
     catalog: RuleCatalog,
-) -> type[ThreeListGroundingWireResponse]:
-    return cast(type[ThreeListGroundingWireResponse], response_model_for(catalog))
+) -> type[RecordGroundingStructuralWireResponse]:
+    return cast(type[RecordGroundingStructuralWireResponse], response_model_for(catalog))
 
 
 def unit_screening_response_model(
@@ -593,19 +586,19 @@ def _build_candidate_grounding_v2(catalog: RuleCatalog) -> type[GroundingWireRes
 # Structural response models (Step 2 of the grounding redesign, 2026-09-21)
 # ---------------------------------------------------------------------------
 #
-# No rule slots. A rule is held by where an entry lands and what it quotes:
-# ``matched`` entries name a vocabulary option (membership) and list records
-# with the words that evidence it (the evidence rule); ``proposed`` entries are
-# the ladder's escape hatch by construction (the ``proposal`` kind); a unit's
-# ``not_accepted`` record names the first condition or guard that failed it.
-# What the schema fixes per catalog is only the two id vocabularies: the
-# matching branches a ``chosen`` may name, and the rules a ``failed_rule`` may.
+# No rule slots. A rule is held by where an entry lands and what it quotes: an
+# option under a record must be a vocabulary label (membership) and carry the
+# words of that record that evidence it (the evidence rule); a proposal is the
+# ladder's escape hatch by being in ``proposals`` (the ``proposal`` kind); a
+# unit's ``not_accepted`` record names the first condition or guard that failed
+# it. What the schema fixes per catalog is only the two id vocabularies: the
+# matching branches a ``match`` may name, and the rules a ``failed_rule`` may.
 
 
 def matching_branch_ids(catalog: RuleCatalog) -> list[str]:
-    """The ladder branches a matched entry may report as ``chosen``: every
+    """The ladder branches an option may report as its ``match``: every
     ``preference`` rule. The ``proposal`` kind is excluded on purpose — it is
-    reported by the ``proposed`` list, never by id."""
+    reported by the ``proposals`` list, never by id."""
     return [rule.id for rule in catalog.walk_rules() if rule.kind == "preference"]
 
 
@@ -617,36 +610,40 @@ def failable_rule_ids(catalog: RuleCatalog) -> list[str]:
     ]
 
 
-def build_three_list_grounding_response_model(
+def build_record_grounding_structural_response_model(
     catalog: RuleCatalog,
-) -> type[ThreeListGroundingWireResponse]:
-    """Grounding and descent: ``matched[{option, records[{record_id, quote}],
-    chosen{rule_id, explanation}}]``, ``proposed[{label, records, explanation}]``,
-    ``unmatched[{record_id, explanation}]``. Object depth root → entry → record
-    stays well inside strict mode's limit."""
+) -> type[RecordGroundingStructuralWireResponse]:
+    """Grounding, descent and the proposal pass: ``groundings[{record_id,
+    options[{option, quote, match}], proposals[{label, quote, explanation}],
+    explanation}]``. ``explanation`` is required-nullable and meaningful exactly
+    when both lists are empty (the structural declination, as in the v2 wire);
+    strict mode cannot express that correlation, so the parser holds it."""
     prefix = _model_prefix(catalog)
     branches = matching_branch_ids(catalog)
     if not branches:
         raise ValueError(
-            f"{catalog.prompt_name}: a three-list catalog needs at least one "
-            f"preference rule for matched entries to report as chosen"
+            f"{catalog.prompt_name}: a record-major grounding catalog needs at least "
+            f"one preference rule for an option to report as its match"
         )
-    chosen = _fired_report_model(
-        catalog, name=f"{prefix}ChosenBranch", rule_ids=branches
-    )
-    matched = create_model(
-        f"{prefix}MatchedEntry",
+    option = create_model(
+        f"{prefix}OptionEntry",
         __config__=ConfigDict(extra="forbid"),
         option=(str, ...),
-        records=(list[RecordQuote], ...),
-        chosen=(chosen, ...),
+        quote=(str, ...),
+        match=(Literal[tuple(branches)], ...),  # type: ignore[valid-type]
+    )
+    entry = create_model(
+        f"{prefix}RecordEntry",
+        __base__=WireEntry,
+        record_id=(str, ...),
+        options=(list[option], ...),  # type: ignore[valid-type]
+        proposals=(list[ProposalEntry], ...),
+        explanation=(Optional[str], ...),
     )
     return create_model(
         f"{prefix}Response",
-        __base__=ThreeListGroundingWireResponse,
-        matched=(list[matched], ...),  # type: ignore[valid-type]
-        proposed=(list[ProposedEntry], ...),
-        unmatched=(list[UnmatchedEntry], ...),
+        __base__=RecordGroundingStructuralWireResponse,
+        groundings=(list[entry], ...),  # type: ignore[valid-type]
     )
 
 

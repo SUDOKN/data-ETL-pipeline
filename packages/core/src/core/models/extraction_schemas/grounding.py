@@ -85,6 +85,10 @@ class RecordGroundingEntry(BaseModel):
     # Non-null exactly when ``tags`` is empty: why the record yields nothing.
     explanation: Optional[str] = None
     dropped_options: list[str] = Field(default_factory=list)
+    # Step 2 (2026-09-21): labels the structural parser dropped because the
+    # quote that was to evidence them is empty or is not in the record — the
+    # V1 evidence test, kept as a trail so the drop is never silent.
+    dropped_quotes: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")
     def check_declination_correlation(self) -> "RecordGroundingEntry":

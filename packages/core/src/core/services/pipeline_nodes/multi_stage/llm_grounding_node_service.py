@@ -27,15 +27,19 @@ import re
 from collections import Counter
 import traceback
 from datetime import datetime
-from typing import Any, Iterable, Optional
+from typing import Any, Iterable, Mapping, Optional
 
 from pydantic import BaseModel, ValidationError
 
 from core.models.extraction_schemas.catalog_wire_schema import (
     flatten_rule_slots,
     grounding_response_model,
+    matching_branch_ids,
+    record_grounding_structural_response_model,
     response_format_for,
 )
+from core.models.extraction_schemas.applied_rule import AppliedRule
+from core.utils.quote_check import quote_found_in_text
 from core.models.extraction_schemas.grounding import (
     RecordGroundingEntry,
     RecordGroundingResults,
@@ -280,6 +284,239 @@ def parse_record_grounding_result(
         )
         for record_id, (tags, explanation, dropped) in staged.items()
     }
+
+
+# --- Step 2: the record-major structural wire (2026-09-21) -------------------
+
+
+@dataclass(frozen=True)
+class StructuralGroundingRules:
+    """The rule ids a structural grounding catalog fixes, read once: the
+    evidence condition the quote is stored under, the proposal branch, and
+    the matching branches an option may name."""
+
+    evidence: str
+    proposal: str
+    branches: tuple[str, ...]
+
+
+def structural_grounding_rules(catalog: RuleCatalog) -> StructuralGroundingRules:
+    conditions = [rule.id for rule in catalog.walk_rules() if rule.kind == "condition"]
+    proposals = [rule.id for rule in catalog.walk_rules() if rule.kind == "proposal"]
+    if not conditions or len(proposals) != 1:
+        raise ValueError(
+            f"{catalog.prompt_name}: a structural grounding catalog needs a "
+            f"condition to store the quote under and exactly one proposal rule; "
+            f"got conditions {conditions}, proposals {proposals}"
+        )
+    return StructuralGroundingRules(
+        evidence=conditions[0],
+        proposal=proposals[0],
+        branches=tuple(matching_branch_ids(catalog)),
+    )
+
+
+# The record block's keys as the Step 2 prompts name them: the record's phrase
+# is its "subject" (user decision 2026-09-21); storage keeps ``focal_form``.
+SUBJECT_KEY = "subject"
+FOCAL_FORM_KEY = "focal_form"
+
+
+def subject_keyed_payloads(payloads: Mapping[str, Mapping[str, Any]]) -> dict[str, dict[str, Any]]:
+    """The payload map with ``focal_form`` rendered as ``subject`` — what a
+    Step 2 grounding, proposal, descent or unit-screening request renders."""
+    return {
+        record_id: {(SUBJECT_KEY if key == FOCAL_FORM_KEY else key): value for key, value in payload.items()}
+        for record_id, payload in payloads.items()
+    }
+
+
+def _record_texts(record: Mapping[str, Any]) -> tuple[str, str]:
+    """(phrase, synthesis) of a sent record under either key spelling."""
+    phrase = record.get(SUBJECT_KEY, record.get(FOCAL_FORM_KEY, "")) or ""
+    return str(phrase), str(record.get("synthesis", "") or "")
+
+
+def parse_record_grounding_structural_result(
+    gpt_response: Optional[str],
+    *,
+    catalog: RuleCatalog,
+    allowed_labels: Iterable[str],
+    sent_records: Optional[Mapping[str, Mapping[str, Any]]],
+) -> RecordGroundingResults:
+    """One response of the Step 2 record-major wire as the stored per-record
+    map, vocabulary matches and proposals together (split them with
+    ``split_vocabulary_and_proposals``).
+
+    What is held before anything is stored (design draft §3.2, amended
+    2026-09-21):
+
+    - MEMBERSHIP: an option is a vocabulary label after the trailing
+      parenthetical strip and casing repair; one that is not is REROUTED to a
+      proposal under the model's own words (V3) and recorded on
+      ``dropped_options`` as the trail; a proposal that IS a label is folded
+      into the vocabulary under the canonical spelling.
+    - EVIDENCE: every option and proposal carries a quote found in the record
+      (``quote_found_in_text`` over the subject and the synthesis); one that
+      does not is dropped and recorded on ``dropped_quotes``.
+    - ONE TAG PER LABEL: a label listed twice for one record keeps the first.
+    - DECLINATION: a record with no options and no proposals is stored with
+      its explanation; a record that emitted units but lost them all to the
+      holds above, or an empty record with no reason, is LEFT OUT so the
+      node's under-answer retry re-asks it (coverage).
+    - A record id answered more than once is dropped with every answer (the
+      2026-09-14 rule; the retry re-asks it).
+
+    Stored applied rules: an option carries the evidence rule (outcome
+    ``satisfied``, explanation = the quote) and its matching branch (outcome
+    ``chosen``, no prose — the user dropped the per-match explanation); a
+    proposal carries the evidence rule and the proposal rule (outcome
+    ``chosen``, explanation = why no option covers it).
+    """
+    if not gpt_response:
+        logger.error(f"Invalid gpt_response:{gpt_response}")
+        raise ValueError(
+            "parse_record_grounding_structural_result: Empty or invalid response from GPT"
+        )
+    try:
+        parsed = record_grounding_structural_response_model(catalog).model_validate_json(
+            gpt_response
+        )
+    except ValidationError as e:
+        raise ValueError(
+            f"parse_record_grounding_structural_result: Invalid response from GPT:{gpt_response}"
+        ) from e
+
+    rules = structural_grounding_rules(catalog)
+    canonical_by_folded = {label.casefold(): label for label in allowed_labels}
+
+    def canonical_of(name: str) -> Optional[str]:
+        found = canonical_by_folded.get(name.strip().casefold())
+        if found is None:
+            stripped = _strip_trailing_parenthetical(name)
+            if stripped != name:
+                found = canonical_by_folded.get(stripped.strip().casefold())
+        return found
+
+    answers_per_id = Counter(entry.record_id for entry in parsed.groundings)
+    repeated = sorted(rid for rid, n in answers_per_id.items() if n > 1)
+    if repeated:
+        logger.error(
+            f"parse_record_grounding_structural_result: {len(repeated)} record id(s) "
+            f"answered more than once — {repeated}; every answer for them is dropped "
+            f"and left for the retry pass"
+        )
+
+    results: RecordGroundingResults = {}
+    for entry in parsed.groundings:
+        rid = entry.record_id
+        if answers_per_id[rid] > 1:
+            continue
+        record = sent_records.get(rid) if sent_records is not None else None
+        texts = _record_texts(record) if record is not None else None
+
+        def quote_ok(quote: str) -> bool:
+            if texts is None:
+                return bool(quote.strip())  # nothing to check against: presence only
+            return quote_found_in_text(quote, *texts)
+
+        tags: TagToAppliedRulesMap = {}
+        dropped_options: list[str] = []
+        dropped_quotes: list[str] = []
+        emitted = 0
+
+        for unit in entry.options:
+            emitted += 1
+            label = canonical_of(unit.option)
+            if not quote_ok(unit.quote):
+                dropped_quotes.append(unit.option)
+                continue
+            evidence = AppliedRule(rule_id=rules.evidence, outcome="satisfied", explanation=unit.quote)
+            if label is None:
+                # V3: not a vocabulary label → a proposal under the model's
+                # own words, and the reroute is the trail.
+                dropped_options.append(unit.option)
+                label = unit.option.strip()
+                branch = AppliedRule(
+                    rule_id=rules.proposal,
+                    outcome="chosen",
+                    explanation="rerouted: the option is not in the vocabulary",
+                )
+                logger.warning(f"record {rid}: option {unit.option!r} is not a label; rerouted to a proposal")
+            else:
+                if label != unit.option:
+                    logger.warning(f"repaired option {unit.option!r} -> {label!r} for record {rid}")
+                branch = AppliedRule(rule_id=unit.match, outcome="chosen", explanation="")
+            if label in tags:
+                logger.warning(f"record {rid}: {label!r} listed twice; keeping the first")
+                continue
+            tags[label] = [evidence, branch]
+
+        for proposal in entry.proposals:
+            emitted += 1
+            if not quote_ok(proposal.quote):
+                dropped_quotes.append(proposal.label)
+                continue
+            label = canonical_of(proposal.label)
+            if label is not None:
+                logger.warning(f"record {rid}: proposal {proposal.label!r} is the label {label!r}; folded in")
+            else:
+                label = proposal.label.strip()
+            if label in tags:
+                logger.warning(f"record {rid}: {label!r} listed twice; keeping the first")
+                continue
+            tags[label] = [
+                AppliedRule(rule_id=rules.evidence, outcome="satisfied", explanation=proposal.quote),
+                AppliedRule(rule_id=rules.proposal, outcome="chosen", explanation=proposal.explanation),
+            ]
+
+        explanation = entry.explanation
+        if tags:
+            if explanation is not None:
+                logger.warning(f"record {rid}: dropping explanation volunteered beside {len(tags)} tag(s)")
+            explanation = None
+        elif emitted:
+            # Every unit was lost to a hold: the record did not answer "nothing",
+            # it answered badly. Left out so the retry re-asks it.
+            logger.warning(
+                f"record {rid}: every unit dropped (quotes {dropped_quotes}, options "
+                f"{dropped_options}); left unanswered for the retry"
+            )
+            continue
+        elif not (explanation and explanation.strip()):
+            logger.warning(f"record {rid}: yielded nothing and gave no reason; left unanswered for the retry")
+            continue
+
+        if dropped_quotes:
+            logger.warning(f"record {rid}: dropped {len(dropped_quotes)} unit(s) whose quote is not in the record: {_quoted(dropped_quotes)}")
+        results[rid] = RecordGroundingEntry(
+            tags=tags,
+            explanation=explanation,
+            dropped_options=dropped_options,
+            dropped_quotes=dropped_quotes,
+        )
+    return results
+
+
+def split_vocabulary_and_proposals(
+    results: RecordGroundingResults, allowed_labels: Iterable[str]
+) -> tuple[RecordGroundingResults, RecordGroundingResults]:
+    """The merged per-record map as (vocabulary matches, proposals) — the two
+    buckets today's initial and out-of-vocabulary stages stored separately.
+    A record appears on a side only when it holds a tag of that kind, so a
+    declination stays with the merged map; consumers treat absence as
+    nothing, as ``candidates_for_screening`` does."""
+    labels = {label.casefold() for label in allowed_labels}
+    in_vocab: RecordGroundingResults = {}
+    proposals: RecordGroundingResults = {}
+    for rid, entry in results.items():
+        vocab_tags = {tag: rules for tag, rules in entry.tags.items() if tag.casefold() in labels}
+        minted_tags = {tag: rules for tag, rules in entry.tags.items() if tag.casefold() not in labels}
+        if vocab_tags:
+            in_vocab[rid] = RecordGroundingEntry(tags=vocab_tags, dropped_options=list(entry.dropped_options), dropped_quotes=list(entry.dropped_quotes))
+        if minted_tags:
+            proposals[rid] = RecordGroundingEntry(tags=minted_tags)
+    return in_vocab, proposals
 
 
 async def parse_record_grounding_group_result(

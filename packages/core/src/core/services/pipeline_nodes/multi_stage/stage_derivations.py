@@ -104,3 +104,24 @@ def candidates_that_passed(
         surviving = passed.get(record_id, set())
         survivors.update(tag for tag in entry.tags if tag in surviving)
     return survivors
+
+
+def units_for_screening(*results: RecordGroundingResults) -> dict[str, list[str]]:
+    """Step 2 (user decision 2026-09-21): grounding answers record by record,
+    and the records tagged to the same label are regrouped HERE into one
+    screening unit — ``label -> sorted record ids`` over every map given
+    (vocabulary matches and proposals alike). Labels are casefold-deduped,
+    the first spelling seen kept, so a proposal minted under two casings on
+    two records is one unit. Records that yielded nothing are absent."""
+    by_label: dict[str, set[str]] = {}
+    spelling: dict[str, str] = {}
+    for result_map in results:
+        for record_id, entry in result_map.items():
+            for label in entry.tags:
+                folded = label.casefold()
+                spelling.setdefault(folded, label)
+                by_label.setdefault(folded, set()).add(record_id)
+    return {
+        spelling[folded]: sorted(record_ids)
+        for folded, record_ids in sorted(by_label.items(), key=lambda kv: spelling[kv[0]].casefold())
+    }

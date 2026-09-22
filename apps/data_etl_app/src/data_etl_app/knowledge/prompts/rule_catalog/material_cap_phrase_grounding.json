@@ -1,5 +1,5 @@
 {
-  "catalog_version": "material_cap_phrase_grounding.2026.09.3",
+  "catalog_version": "material_cap_phrase_grounding.2026.09.5",
   "prompt_name": "material_cap_phrase_grounding",
   "stage": "phrase_grounding",
   "field_types": [
@@ -11,14 +11,14 @@
     "third_person": "processes",
     "gerund": "processing"
   },
-  "evidence_source": "the record's focal form and synthesis",
+  "evidence_source": "the record's subject and synthesis",
   "option_evidence": "its own line and the line beneath it",
   "reporting": "structural",
   "outcome_vocab": {},
   "sections": [
     {
       "section_id": "evidence",
-      "heading": "For every record you list under an option or a proposal, both of these must hold:",
+      "heading": "For every option or proposal you list under a record, both of these must hold:",
       "combinator": "all",
       "rules": [
         {
@@ -26,7 +26,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "A record is listed under an option or a proposal only when that record's focal form, as its synthesis describes it, is or names the {{entity_noun}} — one plain step at most from the record's words; not by a resemblance between words, not from something the synthesis mentions only beside the focal form, and not assembled from what another record says. For every record you list, quote from that record the words that evidence it. A record you cannot quote is not listed."
+          "text": "A record is listed under an option or a proposal only when that record's subject, as its synthesis describes it, is or names the {{entity_noun}} — one plain step at most from the record's words; not by a resemblance between words, not from something the synthesis mentions only beside the subject, and not assembled from what another record says. For every record you list, quote from that record the words that evidence it. A record you cannot quote is not listed."
         },
         {
           "id": "GR-K1",
@@ -64,7 +64,7 @@
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option is an exact match, an option is a generalizing match when what it means includes the {{entity_noun}} you identified and the outline holds nothing narrower that the record supports. A broader option is the answer only when the record supports nothing narrower.",
+          "text": "When no option is an exact match, an option is a generalizing match when what it means includes the {{entity_noun}} you identified and the outline holds nothing narrower that the record supports. A broader option is the answer only when the record supports nothing narrower. A generalizing match never stands alone: the thing it generalizes is proposed beside it under its own name, so that nothing the vocabulary lacks is lost inside a broader option.",
           "combinator": "note",
           "children": [
             {
@@ -72,7 +72,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "Match each record at the narrowest option its own words support; an option with lines beneath it takes a record only when that record supports none of them. Every option may be chosen, including one with lines indented beneath it."
+              "text": "Match the subject at the narrowest option its words support; an option with lines beneath it is chosen only when the subject supports none of them. Every option may be chosen, including one with lines indented beneath it."
             }
           ]
         },
@@ -81,7 +81,7 @@
           "kind": "proposal",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches what you identified, propose it under a plain, generic name — the name the outline would carry if it held it — with the same evidence per record. A proposal stands beside a generalizing match, never instead of it: where an option generalizes what you identified, list the record under that option as well. One proposal names one {{entity_noun}}, as each line of the outline names one; several distinct things are several proposals, and a name that lists or joins several is not a name. A proposal that restates an option under other words is that option, and is matched instead."
+          "text": "When no option exactly matches what you identified — whether or not one generalizes it — propose it under a plain, generic name: the name the outline would carry for it, as short as the outline's own entries of its kind, naming the thing itself and not the relationship to it or the fact of conformance to it. One proposal names one {{entity_noun}}, as each line of the outline names one; several distinct things are several proposals, and a name that lists or joins several is not a name. A proposal that restates an option under other words is that option, and is matched instead."
         }
       ]
     }

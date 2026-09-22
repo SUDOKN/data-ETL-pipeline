@@ -1,11 +1,11 @@
-You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it.
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "subject" — the words the site itself uses for the thing the record is about — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it.
 
 You will also be given the vocabulary to match against, written as an indented outline. Each line that does not begin with "—" names one {{entity_noun}}; a line indented under another names a narrower kind of the one above it, and every such line is an option you may choose, whether or not lines are indented beneath it. A line beginning with "—" belongs to the option directly above it: it gives the other names that option goes by and what it means, and is never an option itself. Name an option by the words of its own line only, without its indentation and without the lines above or beneath it.
 
-You will assess each record independently, and you will answer for all of them in one structure.
+You will assess each record independently.
 
 ### Your job:
-Each record is about its focal form. From the focal form, as its synthesis describes it, identify the {{entity_noun}} the focal form is or names — every distinct one the focal form itself carries, and nothing the synthesis mentions only beside it, which belongs to other records. Match each one to an option; where no option names it, propose it under a name of your own, beside the option that generalizes it if one does; where the focal form is no {{entity_noun}} at all, say so.
+Each record is about its subject, and your first duty to every record is the subject's own match. Identify the {{entity_noun}} the subject itself is or names — every distinct one the subject's own words carry, which is usually one and more only when the subject joins several — and match each to the most specific option the synthesis supports for it. That match is never withheld, and never replaced by a match for something the synthesis mentions only beside the subject: such a thing belongs to its own record. Where no option names what the subject is, propose it under a name of your own — beside the option that generalizes it, when one does; where the subject is no {{entity_noun}} at all, say so.
 
 Identification is your whole job here; relationships are not. Whose dealing it is plays no part in identifying what the record evidences: do not withhold a candidate because the manufacturer's part in it looks doubtful, and do not record one on the strength of that part alone.
 
@@ -13,17 +13,17 @@ Identification is your whole job here; relationships are not. Whose dealing it i
 {{rules_block}}
 
 ### How to answer:
-Answer option by option, not record by record. Under each option you choose, list every record that evidences it, and for each such record quote from that record the words that evidence it. A proposal is answered the same way, under the name you give it. A record whose focal form is no {{entity_noun}} is listed once as unmatched, with the reason.
+Answer record by record. Under each record, list the option its subject matches — or the options, when the subject names several distinct things — each with the words of that record that evidence it and the matching rule you applied; a proposal is listed the same way, under the name you give it. A record whose subject is no {{entity_noun}} lists nothing, with the reason.
 
-Before you list a record under an option, name to yourself the most plausible way the evidence rule could fail for that record and check it against the words you are quoting; list the record only if that failure is not what is happening. If the words you quote cut against the option, the option is wrong, not the quote. A record you cannot quote is not listed.
+Before you list an option, name to yourself the most plausible way the evidence rule could fail for it and check it against the words you are quoting; list it only if that failure is not what is happening. If the words you quote cut against the option, the option is wrong, not the quote. An option you cannot quote is not listed.
 
 ### Output:
-Return a JSON object with three keys. "matched" holds one entry per option you chose, each carrying the option's name copied from its own line in the outline, the records that evidence it with their quotes, and the matching rule you applied. "proposed" holds one entry per name you proposed, with its records and quotes and why no option covers it. "unmatched" holds one entry per record whose focal form is no {{entity_noun}}. Copy every record id exactly as given.
+Return a JSON object with a single key "groundings" whose value is an array of objects, one per record, each carrying the record's id copied exactly as given. "options" holds the option or options the subject matches, each with its name copied from its own line in the outline, the quote, and the id of the matching rule you applied; "proposals" holds any name you proposed, with its quote and why no option covers it; "explanation" is null unless both lists are empty, and then says why the subject yields nothing.
 
-The example below shows the shape of each list. Everything in angle brackets is yours to fill in.
+The example below shows a record whose subject matches one option, one whose subject names two distinct things, one whose subject the vocabulary lacks, and one whose subject is no {{entity_noun}}. Everything in angle brackets is yours to fill in.
 
 ```json
 {{output_example}}
 ```
 
-Every record you were given appears exactly once as an unmatched entry or at least once in a records list — never both, never neither. An option appears at most once in "matched", and a record that evidences it is listed under it once.
+Each record must appear exactly once.

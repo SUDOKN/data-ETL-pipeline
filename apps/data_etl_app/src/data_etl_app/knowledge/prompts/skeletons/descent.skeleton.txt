@@ -1,13 +1,13 @@
-You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it. Each of these records has already been established to evidence {{parent_entity}} as one {{entity_noun}}.
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "subject" — the words the site itself uses for the thing the record is about — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it. Each of these records has already been established to evidence {{parent_entity}} as one {{entity_noun}}.
 
-You will also be given the narrower kinds of {{parent_entity}} the vocabulary holds, written as an outline. Each line that does not begin with "—" names one narrower kind and is an option you may choose; a line beginning with "—" belongs to the option directly above it, gives the other names it goes by and what it means, and is never an option itself. Name an option by the words of its own line only. The list may be empty: then the vocabulary holds nothing narrower than {{parent_entity}}, and a record's answer is a proposal its own words support, or nothing narrower.
+You will also be given the narrower kinds of {{parent_entity}} the vocabulary holds, written as an outline. Each line that does not begin with "—" names one narrower kind and is an option you may choose; a line beginning with "—" belongs to the option directly above it, gives the other names it goes by and what it means, and is never an option itself. Name an option by the words of its own line only. The list may be empty: then the vocabulary holds nothing narrower than {{parent_entity}}, and a record's answer is a proposal its subject's own words support, or nothing narrower.
 
-You will assess each record independently, and you will answer for all of them in one structure.
+You will assess each record independently.
 
 ### Your job:
-Each record is about its focal form. Decide, from the focal form as its synthesis describes it, whether the record fixes a narrower kind of {{parent_entity}}. Match each narrower kind you find to an option; where no option names it, propose it under a plain name of your own, beside the option that generalizes it if one does; where the record's words fix nothing narrower, say so, and {{parent_entity}} stands.
+Each record is about its subject. Decide, from the subject as its synthesis describes it, whether the subject fixes a narrower kind of {{parent_entity}}, and match it to the most specific option its words support. A narrower kind the synthesis mentions only beside the subject belongs to its own record and is never this record's answer in place of what the subject itself fixes. Where no option names the narrower kind, propose it under a plain name of your own — beside the option that generalizes it, when one does; where the subject's words fix nothing narrower, say so, and {{parent_entity}} stands.
 
-Identification is your whole job here; relationships are not. Whose dealing it is plays no part. What you owe each narrower kind is the record's own words: general evidence of {{parent_entity}} proves no narrower kind of it.
+Identification is your whole job here; relationships are not. Whose dealing it is plays no part. What you owe each narrower kind is the subject's own words: general evidence of {{parent_entity}} proves no narrower kind of it.
 
 ### Rules:
 {{rules_block}}
@@ -16,17 +16,17 @@ Narrower kinds of {{parent_entity}} to choose from:
 {{types_of_parent_entity}}
 
 ### How to answer:
-Answer option by option, not record by record. Under each option you choose, list every record that fixes it, and for each such record quote from that record the words that supply the narrowing feature. A proposal is answered the same way, under the name you give it. A record that fixes nothing narrower is listed once as unmatched, with the reason.
+Answer record by record. Under each record, list the narrower kind its subject fixes — or the kinds, when the subject fixes several distinct ones — each with the words of that record that supply the narrowing feature and the matching rule you applied; a proposal is listed the same way, under the name you give it. A record whose subject fixes nothing narrower lists nothing, with the reason.
 
-Before you list a record under an option, name to yourself the most plausible way the evidence rule could fail for that record — that the feature telling this kind from its siblings is one the record never mentions — and check it against the words you are quoting; list the record only if that failure is not what is happening. A record you cannot quote is not listed.
+Before you list a kind, name to yourself the most plausible way the evidence rule could fail — that the feature telling this kind from its siblings is one the record never mentions — and check it against the words you are quoting; list it only if that failure is not what is happening. A kind you cannot quote is not listed.
 
 ### Output:
-Return a JSON object with three keys. "matched" holds one entry per option you chose, each carrying the option's name copied from its own line, the records that fix it with their quotes, and the matching rule you applied. "proposed" holds one entry per narrower kind you proposed, with its records and quotes and why no option covers it. "unmatched" holds one entry per record that fixes nothing narrower than {{parent_entity}}. Copy every record id exactly as given.
+Return a JSON object with a single key "groundings" whose value is an array of objects, one per record, each carrying the record's id copied exactly as given. "options" holds the narrower kind or kinds the subject fixes, each with its name copied from its own line, the quote, and the id of the matching rule you applied; "proposals" holds any narrower kind you proposed, with its quote and why no listed kind covers it; "explanation" is null unless both lists are empty, and then says why the subject fixes nothing narrower than {{parent_entity}}.
 
-The example below shows the shape of each list. Everything in angle brackets is yours to fill in.
+The example below shows a record whose subject fixes one narrower kind, one whose subject fixes two, one whose subject fixes a kind the list lacks, and one whose subject fixes nothing narrower. Everything in angle brackets is yours to fill in.
 
 ```json
 {{output_example}}
 ```
 
-Every record you were given appears exactly once as an unmatched entry or at least once in a records list — never both, never neither. An option appears at most once in "matched", and a record that fixes it is listed under it once.
+Each record must appear exactly once.

@@ -519,3 +519,24 @@ Freehand (`*_phrase_freehand_grounding.json`) was reworded in place with the sam
 schema): V5 in FGR-E1 ("naming a thing does not name what made it"), FGR-Q4 starts from the
 category the record names, the case lists collapsed into their general sentences, the skeleton's
 job paragraph scoped to the focal form. The published pins are kept until the user publishes.
+
+### Amendment 2026-09-21 (after the tryout): record-major, "subject", the proposal pass
+
+The three-list (option-major) wire described above was tried and dropped on the user's decision: the
+model's own grouping of records under an option cost stability (0.61 vs 0.68 mean Jaccard across
+three wordings) and lost a label the subject spelled out on 7 of 39 such records; grouping records
+into screening units is code's job. `phrase_grounding`, `phrase_descent` and the new `phrase_proposal`
+answer RECORD BY RECORD: `groundings[{record_id, options[{option, quote, match}], proposals[{label,
+quote, explanation}], explanation}]` — `match` is a matching-branch id (`matching_branch_ids`), the
+per-match explanation prose is gone (quote + branch only; a proposal and an empty record keep one
+explanation), `explanation` is required-nullable and non-null exactly when both lists are empty.
+`phrase_proposal` = the grounding catalog's rules under `proposal.skeleton.txt`: a second reading of
+the records the grounding call left with no label (match after all, propose what the vocabulary lacks,
+or confirm the subject is none) — fork two narrowed, since descent's RGR-P1 and the leaf step already
+give every accepted label a proposal chance. Prompt vocabulary: the record's phrase is its **"subject"**
+(the JSON key the request renders is `subject` for these families; code, dumps and the harness keep
+`focal_form` internally); the job paragraph states the PRECEDENCE rule — the subject's own match is
+never withheld or replaced by a match for something the synthesis mentions beside it; such labels are
+tolerated noise, counted in the census as their own column. The conformity kind sentence (grounding
+GR-K1a, screening SCR-0a) says a declared conformance to a named standard is an attestation with or
+without a certificate, because the vocabulary's own definitions still all say "certificate".

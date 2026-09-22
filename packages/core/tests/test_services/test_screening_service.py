@@ -284,3 +284,89 @@ def test_candidates_that_passed_needs_one_qualifying_record():
     assert passed_candidates_by_record(screening) == {
         "rbbbbbb2": {"Space Tourism"}
     }
+
+
+# --- Step 2: unit-major structural screening (2026-09-21) --------------------
+
+from core.models.rule_catalog import STAGE_UNIT_SCREENING  # noqa: E402
+from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (  # noqa: E402
+    parse_unit_screening_result,
+    render_units_block,
+)
+
+
+def _unit_catalog() -> RuleCatalog:
+    def rule(rid, kind, text):
+        return {"id": rid, "kind": kind, "reportable": True, "report_when": {"condition": "always", "guard": "on_violation"}[kind], "text": text}
+
+    return RuleCatalog.model_validate(
+        {
+            "catalog_version": "test_unit_screening.1",
+            "prompt_name": "test_unit_screening",
+            "stage": STAGE_UNIT_SCREENING,
+            "field_types": ["industries"],
+            "entity_noun": "industry",
+            "entity_relationships": {"base": "serve", "third_person": "serves", "gerund": "serving"},
+            "reporting": "structural",
+            "outcome_vocab": {},
+            "sections": [
+                {"section_id": "conditions", "heading": "All must hold:", "combinator": "all",
+                 "rules": [rule("SCR-0", "condition", "Kind."), rule("SCR-1", "condition", "Named."), rule("SCR-2", "condition", "The manufacturer's.")]},
+                {"section_id": "guards", "heading": "Any rules out:", "combinator": "any", "rules": [rule("SCR-G1", "guard", "Not current.")]},
+            ],
+            "published": {},
+        }
+    )
+
+
+UNIT_CATALOG = _unit_catalog()
+UNIT_RECORDS = {
+    "r1": {"subject": "aerospace", "synthesis": "Acme serves the aerospace market with machined parts."},
+    "r2": {"subject": "cars", "synthesis": "A customer of Acme makes cars."},
+}
+UNITS = {"Aerospace Industry": ["r1"], "Automotive": ["r1", "r2"]}
+
+
+def _screen_unit(option, accepted=(), not_accepted=()):
+    return {
+        "option": option,
+        "accepted": [{"record_id": r, "evidence": e, "quote": q} for r, e, q in accepted],
+        "not_accepted": [{"record_id": r, "failed_rule": f, "quote": q} for r, f, q in not_accepted],
+    }
+
+
+def _parse_units(*units):
+    return parse_unit_screening_result(json.dumps({"screenings": list(units)}), catalog=UNIT_CATALOG, units=UNITS, sent_records=UNIT_RECORDS)
+
+
+def test_unit_screening_stores_passed_with_evidence_and_failed_with_the_rule_and_quote():
+    results = _parse_units(
+        _screen_unit("Aerospace Industry", accepted=[("r1", "named", "serves the aerospace market")]),
+        _screen_unit("Automotive", accepted=[("r1", "inferred", "machined parts")], not_accepted=[("r2", "SCR-2", "A customer of Acme makes cars")]),
+    )
+    assert results["r1"]["Aerospace Industry"].passed and results["r1"]["Aerospace Industry"].evidence == "named"
+    assert results["r1"]["Aerospace Industry"].applied_rules == []
+    v = results["r2"]["Automotive"]
+    assert not v.passed and v.failed_rule == "SCR-2" and v.quote == "A customer of Acme makes cars"
+    assert [(r.rule_id, r.outcome) for r in v.applied_rules] == [("SCR-2", "failed")]
+
+
+@pytest.mark.parametrize(
+    "units, message",
+    [
+        ([_screen_unit("Aerospace Industry", accepted=[("r1", "named", "serves the aerospace market")])], "never answered"),
+        ([_screen_unit("Aerospace Industry", accepted=[("r1", "named", "serves the aerospace")]), _screen_unit("Automotive", accepted=[("r1", "named", "machined")]), _screen_unit("Steel", accepted=[])], "never sent"),
+        ([_screen_unit("Aerospace Industry", accepted=[("r1", "named", "serves the aerospace")]), _screen_unit("Automotive", accepted=[("r1", "named", "machined")], not_accepted=[("r1", "SCR-1", "x")])], "both accepted and not"),
+        ([_screen_unit("Aerospace Industry", accepted=[("r1", "named", "serves the aerospace")]), _screen_unit("Automotive", not_accepted=[("r2", "SCR-2", "cars")])], "not the sent records"),
+        ([_screen_unit("Aerospace Industry", accepted=[("r1", "named", "serves the lunar market")]), _screen_unit("Automotive", not_accepted=[("r1", "SCR-0", "a"), ("r2", "SCR-2", "b")])], "not in the record"),
+    ],
+)
+def test_unit_screening_holds_fail_the_response(units, message):
+    with pytest.raises(ValueError, match=message):
+        _parse_units(*units)
+
+
+def test_units_block_round_trips_through_json():
+    block = render_units_block([{"option": "Automotive", "meaning": "cars", "records": ["r1", "r2"]}])
+    body = block.split("<<<UNITS\n", 1)[1].rsplit("\nUNITS>>>", 1)[0]
+    assert json.loads(body) == [{"option": "Automotive", "meaning": "cars", "records": ["r1", "r2"]}]

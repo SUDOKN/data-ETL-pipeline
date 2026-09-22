@@ -57,6 +57,7 @@ SKELETON_BY_STAGE = {
     "phrase_grounding": "grounding.skeleton.txt",
     "phrase_unit_screening": "unit_screening.skeleton.txt",
     "phrase_descent": "descent.skeleton.txt",
+    "phrase_proposal": "proposal.skeleton.txt",
 }
 
 # The stages whose descent tokens ({{parent_entity}} / {{types_of_parent_entity}})
@@ -83,6 +84,7 @@ STAGE_DIR_BY_STAGE = {
     "phrase_grounding": "multi_stage/5_grounding",
     "phrase_unit_screening": "multi_stage/4_phrase_unit_screening",
     "phrase_descent": "multi_stage/6_descent",
+    "phrase_proposal": "multi_stage/5_proposal",
 }
 
 # Rendered prompts are written HERE. `final_texts/` is build output and is
@@ -884,10 +886,6 @@ def _freehand_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
 # here names a real label, sector, process, material or machine.
 
 
-def _record_quote(record_slot: str, quote_slot: str) -> dict[str, Any]:
-    return {"record_id": record_slot, "quote": quote_slot}
-
-
 def _matching_branch_placeholder(catalog: RuleCatalog) -> str:
     from core.models.extraction_schemas.catalog_wire_schema import matching_branch_ids
 
@@ -897,75 +895,91 @@ def _matching_branch_placeholder(catalog: RuleCatalog) -> str:
     return f"<whichever of {', '.join(branches)} applied>"
 
 
-def _three_list_example(
+def _record_grounding_structural_example(
     catalog: RuleCatalog,
     *,
     option_slot: str,
-    second_record_slot: str,
+    second_option_slot: str,
     proposal_slot: str,
     proposal_why: str,
-    unmatched_record_slot: str,
-    unmatched_why: str,
+    none_record_slot: str,
+    none_why: str,
 ) -> dict[str, Any]:
+    """Record-major (user decision 2026-09-21): one entry per record. Four
+    scenarios — a subject matching one option, one naming two distinct things,
+    one the vocabulary lacks (a proposal), one that is no member of the field
+    (empty lists, the explanation). ``explanation`` is shown as null on the
+    populated entries because the wire declares it required-nullable."""
+    match = _matching_branch_placeholder(catalog)
+
+    def option(slot: str) -> dict[str, Any]:
+        return {"option": slot, "quote": "<the words of this record that evidence it>", "match": match}
+
     return {
-        "matched": [
+        "groundings": [
             {
-                "option": option_slot,
-                "records": [
-                    _record_quote(
-                        "<a record id copied exactly as given>",
-                        "<the words of this record that evidence the option>",
-                    ),
-                    _record_quote(
-                        second_record_slot,
-                        "<the words of that record that evidence it>",
-                    ),
-                ],
-                "chosen": {
-                    "rule_id": _matching_branch_placeholder(catalog),
-                    "explanation": "<why this is the branch that applied>",
-                },
-            }
-        ],
-        "proposed": [
+                "record_id": "<a record id copied exactly as given>",
+                "options": [option(option_slot)],
+                "proposals": [],
+                "explanation": None,
+            },
             {
-                "label": proposal_slot,
-                "records": [
-                    _record_quote(
-                        "<a record id copied exactly as given>",
-                        "<the words of this record that evidence it>",
-                    )
+                "record_id": "<another record's id — one whose subject names two distinct things>",
+                "options": [option(option_slot), option(second_option_slot)],
+                "proposals": [],
+                "explanation": None,
+            },
+            {
+                "record_id": "<another record's id — one whose subject no option names or generalizes>",
+                "options": [],
+                "proposals": [
+                    {"label": proposal_slot, "quote": "<the words of this record that evidence it>", "explanation": proposal_why}
                 ],
-                "explanation": proposal_why,
-            }
-        ],
-        "unmatched": [
-            {"record_id": unmatched_record_slot, "explanation": unmatched_why}
-        ],
+                "explanation": None,
+            },
+            {
+                "record_id": none_record_slot,
+                "options": [],
+                "proposals": [],
+                "explanation": none_why,
+            },
+        ]
     }
 
 
 def _grounding_example(catalog: RuleCatalog) -> dict[str, Any]:
-    return _three_list_example(
+    return _record_grounding_structural_example(
         catalog,
         option_slot="<an option, copied from its own line in the outline>",
-        second_record_slot="<another record's id, one that evidences the same option>",
+        second_option_slot="<a second option, copied likewise, for the other thing the subject names>",
         proposal_slot="<a plain, generic name for a {{entity_noun}} no option names or generalizes>",
         proposal_why="<why it is a {{entity_noun}}, and why no option names or generalizes it>",
-        unmatched_record_slot="<a record id copied exactly as given, one whose focal form is no {{entity_noun}}>",
-        unmatched_why="<why the record yields nothing>",
+        none_record_slot="<another record's id — one whose subject is no {{entity_noun}}>",
+        none_why="<why the subject yields nothing>",
     )
 
 
 def _descent_example(catalog: RuleCatalog) -> dict[str, Any]:
-    return _three_list_example(
+    return _record_grounding_structural_example(
         catalog,
         option_slot="<a narrower kind, copied from its own line in the list>",
-        second_record_slot="<another record's id, one that supplies the same narrowing feature>",
-        proposal_slot="<a plain name for a narrower kind of {{parent_entity}} the record names and no listed kind covers>",
-        proposal_why="<why the record names it, and why no listed kind names or generalizes it>",
-        unmatched_record_slot="<a record id copied exactly as given, one that fixes nothing narrower>",
-        unmatched_why="<why the record's words fix nothing narrower than {{parent_entity}}>",
+        second_option_slot="<a second narrower kind, copied likewise, that the subject also fixes>",
+        proposal_slot="<a plain name for a narrower kind of {{parent_entity}} the subject fixes and no listed kind covers>",
+        proposal_why="<why the subject fixes it, and why no listed kind names or generalizes it>",
+        none_record_slot="<another record's id — one whose subject fixes nothing narrower>",
+        none_why="<why the subject's words fix nothing narrower than {{parent_entity}}>",
+    )
+
+
+def _proposal_example(catalog: RuleCatalog) -> dict[str, Any]:
+    return _record_grounding_structural_example(
+        catalog,
+        option_slot="<an option, copied from its own line in the outline, that the subject does match on this reading>",
+        second_option_slot="<a second option, copied likewise, for the other thing the subject names>",
+        proposal_slot="<a plain, generic name for a {{entity_noun}} the vocabulary lacks>",
+        proposal_why="<why it is a {{entity_noun}}, and why no option names or generalizes it>",
+        none_record_slot="<another record's id — one whose subject is no {{entity_noun}}>",
+        none_why="<why the subject yields nothing>",
     )
 
 
@@ -1026,6 +1040,7 @@ EXAMPLE_BUILDER_BY_STAGE = {
     "phrase_grounding": _grounding_example,
     "phrase_unit_screening": _unit_screening_example,
     "phrase_descent": _descent_example,
+    "phrase_proposal": _proposal_example,
 }
 
 
@@ -1048,12 +1063,11 @@ def _prints_on_one_line(node: Any) -> bool:
         return True  # a fired guard or chosen branch: two short fields
     if len(node) == 2 and "outcome" in node and "explanation" in node:
         return True  # an always-reported rule's slot, under its id
-    if "record_id" in node and all(isinstance(v, str) for v in node.values()):
-        # A structural per-record object ({record_id, quote}, {record_id,
-        # evidence, quote}, {record_id, failed_rule, quote}, {record_id,
-        # explanation}): a few short strings, and there are many per response.
-        # A record-keyed ENTRY of the older stages carries a list and stays
-        # pretty-printed.
+    if "quote" in node and all(isinstance(v, str) for v in node.values()):
+        # A structural leaf object ({option, quote, match}, {label, quote,
+        # explanation}, {record_id, evidence, quote}, {record_id, failed_rule,
+        # quote}): a few short strings, and there are many per response. A
+        # record entry carries lists and stays pretty-printed.
         return True
     return False
 

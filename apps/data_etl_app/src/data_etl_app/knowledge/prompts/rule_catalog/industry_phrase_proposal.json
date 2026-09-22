@@ -1,15 +1,15 @@
 {
-  "catalog_version": "process_cap_phrase_grounding.2026.09.5",
-  "prompt_name": "process_cap_phrase_grounding",
-  "stage": "phrase_grounding",
+  "catalog_version": "industry_phrase_proposal.2026.09.2",
+  "prompt_name": "industry_phrase_proposal",
+  "stage": "phrase_proposal",
   "field_types": [
-    "process_caps"
+    "industries"
   ],
-  "entity_noun": "manufacturing process",
+  "entity_noun": "industry, market, or sector",
   "entity_relationships": {
-    "base": "perform, offer, or specialize in",
-    "third_person": "performs, offers, or specializes in",
-    "gerund": "performing, offering, or specializing in"
+    "base": "serve, supply, or operate in",
+    "third_person": "serves, supplies, or operates in",
+    "gerund": "serving, supplying, or operating in"
   },
   "evidence_source": "the record's subject and synthesis",
   "option_evidence": "its own line and the line beneath it",
@@ -41,7 +41,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A manufacturing process is an operation performed on the work; inspecting, testing, or measuring the work is an operation performed on it. What a company does with other parties or says about itself is not done to the work."
+              "text": "A company places itself in a market by saying whom it serves, by naming a product by who uses it, by the heading it puts over a list, and by what it publishes about itself for that market's buyers, when the step from the publication to the market is one a reader of the trade takes without more; naming only what it makes or does places it nowhere."
             }
           ]
         }

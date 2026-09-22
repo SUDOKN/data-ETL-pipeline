@@ -538,6 +538,7 @@ def test_the_structural_families_are_all_present():
         "phrase_grounding": 4,
         "phrase_unit_screening": 7,
         "phrase_descent": 4,
+        "phrase_proposal": 4,
     }
 
 
@@ -577,25 +578,27 @@ def test_structural_example_prints_each_record_object_on_one_line(prompt_name):
     counted = 0
     for line in example.splitlines():
         stripped = line.strip()
-        if '"record_id":' in stripped:
+        if '"quote":' in stripped:
             assert stripped.endswith(("},", "}")), (
-                f"record object was split across lines: {stripped[:60]}..."
+                f"leaf object was split across lines: {stripped[:60]}..."
             )
             counted += 1
-    assert counted >= 3, "example shows too few record objects"
+    assert counted >= 3, "example shows too few quoted leaf objects"
 
 
 @pytest.mark.parametrize(
     "prompt_name",
-    sorted(n for n, c in STRUCTURAL.items() if c.stage in ("phrase_grounding", "phrase_descent")),
+    sorted(n for n, c in STRUCTURAL.items() if c.stage in ("phrase_grounding", "phrase_descent", "phrase_proposal")),
 )
-def test_three_list_example_leaves_the_ladder_open_and_never_names_the_proposal_by_id(
+def test_record_major_example_leaves_the_ladder_open_and_never_names_the_proposal_by_id(
     prompt_name,
 ):
-    """``chosen`` may name only a matching branch; the proposal branch is
-    reported by the ``proposed`` list, never by id, so the example must not
-    teach the model to write it into ``chosen``."""
+    """Record-major (2026-09-21): one entry per record; ``match`` may name only a
+    matching branch, left open as alternatives; the proposal branch is reported
+    by the ``proposals`` list, never by id, so the example must not teach the
+    model to write it into ``match``."""
     catalog = STRUCTURAL[prompt_name]
+    rendered = _rendered_example(catalog)
     example = render_prompt(catalog).split("```json")[1].split("```")[0]
     branches = [r.id for r in catalog.walk_rules() if r.kind == "preference"]
     proposals = [r.id for r in catalog.walk_rules() if r.kind == "proposal"]
@@ -603,9 +606,11 @@ def test_three_list_example_leaves_the_ladder_open_and_never_names_the_proposal_
     assert f"<whichever of {', '.join(branches)} applied>" in example
     for rule_id in proposals:
         assert f'"{rule_id}"' not in example
-        assert rule_id not in example.split('"chosen"')[1].split("}")[0]
-    for key in ('"matched"', '"proposed"', '"unmatched"'):
-        assert key in example
+    entries = rendered["groundings"]
+    assert len(entries) == 4
+    assert [len(e["options"]) for e in entries] == [1, 2, 0, 0]
+    assert [len(e["proposals"]) for e in entries] == [0, 0, 1, 0]
+    assert [e["explanation"] is None for e in entries] == [True, True, True, False]
 
 
 @pytest.mark.parametrize(

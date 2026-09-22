@@ -1,15 +1,15 @@
 {
-  "catalog_version": "process_cap_phrase_grounding.2026.09.5",
-  "prompt_name": "process_cap_phrase_grounding",
-  "stage": "phrase_grounding",
+  "catalog_version": "material_cap_phrase_proposal.2026.09.2",
+  "prompt_name": "material_cap_phrase_proposal",
+  "stage": "phrase_proposal",
   "field_types": [
-    "process_caps"
+    "material_caps"
   ],
-  "entity_noun": "manufacturing process",
+  "entity_noun": "material",
   "entity_relationships": {
-    "base": "perform, offer, or specialize in",
-    "third_person": "performs, offers, or specializes in",
-    "gerund": "performing, offering, or specializing in"
+    "base": "process",
+    "third_person": "processes",
+    "gerund": "processing"
   },
   "evidence_source": "the record's subject and synthesis",
   "option_evidence": "its own line and the line beneath it",
@@ -41,7 +41,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A manufacturing process is an operation performed on the work; inspecting, testing, or measuring the work is an operation performed on it. What a company does with other parties or says about itself is not done to the work."
+              "text": "A material is what the parts are made of; a substance the shop deposits onto, reacts onto, or consumes against the work is not a material of the parts unless the vocabulary's own meaning of that material includes that use."
             }
           ]
         }

@@ -1,9 +1,9 @@
-You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "focal_form" — the wording the site itself uses for that subject — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it.
+You will be given a list of records, each carrying a masked id. Each record gathers the evidence about one recurring subject in text scraped from a manufacturer's website: a "subject" — the words the site itself uses for the thing the record is about — and a "synthesis" of what the text says about it and what the manufacturer does with or in relation to it.
 
 You will assess each record independently.
 
 ### Your job:
-Each record is about its focal form. From the focal form, as its synthesis describes it, identify every distinct {{entity_noun}} the focal form is or names — and nothing the synthesis mentions only beside it, which belongs to other records — and name it yourself. What you return is always the category, never a specific make, model, or individual item.
+Each record is about its subject, and your first duty to every record is the subject's own category. From the subject, as its synthesis describes it, identify every distinct {{entity_noun}} the subject itself is or names, and name it yourself. That category is never withheld, and never replaced by one for something the synthesis mentions only beside the subject: such a thing belongs to its own record. What you return is always the category, never a specific make, model, or individual item.
 
 Identification is your whole job here; relationships are not. Whether it is the manufacturer itself or some other party that {{entity_relationships.third_person}} an identified {{entity_noun}} plays no part. Do not withhold a candidate because that relationship looks doubtful, and do not record one on the strength of that relationship alone.
 

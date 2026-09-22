@@ -29,6 +29,11 @@ STAGE_OOV_GROUNDING = "phrase_oov_grounding"
 STAGE_GROUNDING = "phrase_grounding"
 STAGE_UNIT_SCREENING = "phrase_unit_screening"
 STAGE_DESCENT = "phrase_descent"
+# The proposal-only pass (user decision 2026-09-21, fork two narrowed): a second
+# reading of the records the grounding call matched to nothing — match after
+# all, propose what the vocabulary lacks, or confirm the subject is none. Same
+# record-major wire and rule ids as phrase_grounding; its own skeleton.
+STAGE_PROPOSAL = "phrase_proposal"
 # Whole-text yes/no questions (is_manufacturer etc.). Structurally these are
 # screening applied to the site instead of to a phrase — one candidate entity
 # judged through a chained conjunction — so they share the screening kinds

@@ -112,75 +112,126 @@ def parse_arm_a(iv_text: str, oov_text: str, labels: dict[str, Any]) -> dict[str
 
 
 def parse_arm_b(text: str, sent: list[str], records: dict[str, dict[str, Any]], labels: dict[str, Any]) -> dict[str, Any]:
+    """Record-major (2026-09-21): one entry per record with options, proposals
+    and a declination explanation. Coverage = every sent id answered once."""
     doc = json.loads(text)
+    entries = doc.get("groundings") or []
     per_record: dict[str, set[str]] = {rid: set() for rid in sent}
-    unknown: set[str] = set()
-    supported: set[str] = set()
+    answered = Counter(e["record_id"] for e in entries)
+    unknown = sorted(rid for rid in answered if rid not in per_record)
+    duplicates = sorted(rid for rid, n in answered.items() if n > 1)
+    missing = [rid for rid in sent if rid not in answered]
     unmatched: set[str] = set()
     reroutes: list[str] = []
     folds: list[str] = []
     proposals: list[str] = []
+    dup_labels: list[str] = []
     quotes_total = quotes_empty = quotes_found = 0
-    options_seen: Counter[str] = Counter()
-    multi = 0
+    option_entries = multi = no_reason = 0
     chosen: Counter[str] = Counter()
 
-    def take(rid: str, label: str, quote: str) -> None:
+    def take_quote(rid: str, quote: str) -> None:
         nonlocal quotes_total, quotes_empty, quotes_found
-        if rid not in per_record:
-            unknown.add(rid)
-            return
-        supported.add(rid)
         quotes_total += 1
         if not quote.strip():
             quotes_empty += 1
         elif quote_found(quote, records[rid]):
             quotes_found += 1
-        per_record[rid].add(label)
 
-    for entry in doc.get("matched") or []:
-        canon = _canonical(entry["option"], labels)
-        options_seen[(canon or entry["option"]).casefold()] += 1
-        if canon is None:
-            reroutes.append(entry["option"])
-        chosen[(entry.get("chosen") or {}).get("rule_id", "?")] += 1
-        recs = entry.get("records") or []
-        if len(recs) >= 2:
-            multi += 1
-        for rec in recs:
-            take(rec["record_id"], canon or f"OOV:{entry['option']}", rec.get("quote", ""))
-    for entry in doc.get("proposed") or []:
-        canon = _canonical(entry["label"], labels)
-        if canon:
-            folds.append(entry["label"])
-        else:
-            proposals.append(entry["label"])
-        for rec in entry.get("records") or []:
-            take(rec["record_id"], canon or f"OOV:{entry['label']}", rec.get("quote", ""))
-    for entry in doc.get("unmatched") or []:
+    for entry in entries:
         rid = entry["record_id"]
         if rid not in per_record:
-            unknown.add(rid)
             continue
-        unmatched.add(rid)
-    covered = supported | unmatched
+        opts = entry.get("options") or []
+        props = entry.get("proposals") or []
+        if not opts and not props:
+            unmatched.add(rid)
+            if not (entry.get("explanation") or "").strip():
+                no_reason += 1
+        seen: set[str] = set()
+        for o in opts:
+            option_entries += 1
+            canon = _canonical(o["option"], labels)
+            label = canon or f"OOV:{o['option']}"
+            if canon is None:
+                reroutes.append(o["option"])
+            if label in seen:
+                dup_labels.append(label)
+            seen.add(label)
+            chosen[o.get("match", "?")] += 1
+            take_quote(rid, o.get("quote", ""))
+            per_record[rid].add(label)
+        if len(seen) >= 2:
+            multi += 1
+        for pr in props:
+            canon = _canonical(pr["label"], labels)
+            if canon:
+                folds.append(pr["label"])
+            else:
+                proposals.append(pr["label"])
+            take_quote(rid, pr.get("quote", ""))
+            per_record[rid].add(canon or f"OOV:{pr['label']}")
     return {
         "per_record": {k: sorted(v) for k, v in per_record.items()},
         "proposals": sorted(set(proposals)),
         "folds": sorted(set(folds)),
         "reroutes": reroutes,
-        "coverage": {
-            "missing": [rid for rid in sent if rid not in covered],
-            "unknown": sorted(unknown),
-            "contradictions": sorted(supported & unmatched),
-        },
-        "duplicate_options": sorted(k for k, n in options_seen.items() if n > 1),
+        "coverage": {"missing": missing, "unknown": unknown, "contradictions": duplicates},
+        "duplicate_options": dup_labels,
         "quotes": {"total": quotes_total, "empty": quotes_empty, "found": quotes_found},
-        "matched_entries": len(doc.get("matched") or []),
+        "matched_entries": option_entries,
         "multi_record_entries": multi,
         "unmatched_entries": len(unmatched),
+        "empty_without_reason": no_reason,
         "chosen": dict(chosen),
     }
+
+
+def subject_label_check(runs: list[dict[str, Any]], sent: list[str], records: dict[str, dict[str, Any]], labels: dict[str, Any]) -> dict[str, Any]:
+    """The gate the user cares about most (2026-09-21): a record whose subject
+    IS a vocabulary label (name or other name, case-folded) must carry that
+    label in every repeat. Counts and the misses."""
+    out: Counter[str] = Counter()
+    misses: list[dict[str, Any]] = []
+    for rid in sent:
+        concept = labels.get(_norm(records[rid]["focal_form"]))
+        if concept is None:
+            continue
+        out["records"] += 1
+        hits = sum(1 for r in runs if concept.name in set(r["per_record"].get(rid, [])))
+        if hits == len(runs):
+            out["in_all_repeats"] += 1
+        elif hits == 0:
+            out["in_none"] += 1
+        else:
+            out["in_some"] += 1
+        if hits < len(runs):
+            misses.append({"subject": records[rid]["focal_form"], "label": concept.name, "per_repeat": [sorted(r["per_record"].get(rid, [])) for r in runs]})
+    return {**dict(out), "misses": misses}
+
+
+def secondary_label_count(mode: dict[str, list[str]], records: dict[str, dict[str, Any]], labels: dict[str, Any]) -> dict[str, int]:
+    """Mode labels whose words are not in the subject but are elsewhere in the
+    synthesis — the tolerated-noise count (a proxy: a one-step reading like a
+    grade → its material also lands here)."""
+    names_of: dict[str, set[str]] = defaultdict(set)
+    for surface, concept in labels.items():
+        names_of[concept.name].add(surface)
+    out: Counter[str] = Counter()
+    for rid, ls in mode.items():
+        ffn, synn = _norm(records[rid]["focal_form"]), _norm(records[rid]["synthesis"])
+        focal = secondary = 0
+        for label in ls:
+            surfaces = {_norm(label[4:])} if label.startswith("OOV:") else {_norm(x) for x in names_of.get(label, {label})}
+            if any(x in ffn or ffn in x for x in surfaces):
+                focal += 1
+            elif any(x in synn for x in surfaces):
+                secondary += 1
+        out["labels_from_the_subject"] += focal
+        out["labels_only_from_elsewhere_in_the_synthesis"] += secondary
+        if secondary and not focal:
+            out["records_with_only_such_labels"] += 1
+    return dict(out)
 
 
 def parse_freehand(text: str, sent: list[str], records: dict[str, dict[str, Any]]) -> dict[str, Any]:
@@ -271,15 +322,30 @@ def _pairs(per_record: dict[str, list[str]]) -> set[tuple[str, str]]:
     return {(rid, label) for rid, labels in per_record.items() for label in labels}
 
 
-def stability(runs: list[dict[str, Any]], sent: list[str]) -> dict[str, Any]:
-    if len(runs) < 2:
-        return {"pairs": 0}
+def _mean_jaccard(runs: list[dict[str, Any]], pairs_of) -> float:
     jaccards: list[float] = []
     for a, b in itertools.combinations(runs, 2):
-        pa, pb = _pairs(a["per_record"]), _pairs(b["per_record"])
+        pa, pb = pairs_of(a), pairs_of(b)
         jaccards.append(len(pa & pb) / len(pa | pb) if (pa | pb) else 1.0)
+    return round(sum(jaccards) / len(jaccards), 3)
+
+
+def stability(runs: list[dict[str, Any]], sent: list[str]) -> dict[str, Any]:
+    """Mean pairwise Jaccard over (record, label) pairs across repeats — all
+    labels; vocabulary labels only (a proposal's spelling is code's job to
+    fold, so it is kept apart); and proposal PRESENCE per record (does the
+    record get a proposal, whatever its spelling)."""
+    if len(runs) < 2:
+        return {"pairs": 0}
     identical = sum(1 for rid in sent if len({tuple(r["per_record"].get(rid, [])) for r in runs}) == 1)
-    return {"pairs": len(jaccards), "mean_jaccard": round(sum(jaccards) / len(jaccards), 3), "records_identical_in_every_repeat": identical, "records": len(sent)}
+    return {
+        "pairs": len(runs) * (len(runs) - 1) // 2,
+        "mean_jaccard": _mean_jaccard(runs, lambda r: _pairs(r["per_record"])),
+        "mean_jaccard_vocab_only": _mean_jaccard(runs, lambda r: {(rid, l) for rid, ls in r["per_record"].items() for l in ls if not l.startswith("OOV:")}),
+        "proposal_presence_jaccard": _mean_jaccard(runs, lambda r: {rid for rid, ls in r["per_record"].items() if any(l.startswith("OOV:") for l in ls)}),
+        "records_identical_in_every_repeat": identical,
+        "records": len(sent),
+    }
 
 
 def mode_labels(runs: list[dict[str, Any]]) -> dict[str, list[str]]:
@@ -381,6 +447,10 @@ def check_target(tag: str) -> dict[str, Any]:
             "stability": stability(runs["a"], sent),
             "usage": usage(d, "a_"),
         }
+    for arm in ("a", "b"):
+        if runs[arm]:
+            report.setdefault("subject_labels", {})[arm] = subject_label_check(runs[arm], sent, records, labels)
+            report.setdefault("secondary_labels", {})[arm] = secondary_label_count(mode_labels(runs[arm]), records, labels)
     if runs["b"]:
         cov = [r["coverage"] for r in runs["b"]]
         q_total = sum(r["quotes"]["total"] for r in runs["b"])
@@ -390,9 +460,10 @@ def check_target(tag: str) -> dict[str, Any]:
             "repeats": len(runs["b"]),
             "parse_failures": failures["b"],
             "labels_per_repeat": [sum(len(v) for v in r["per_record"].values()) for r in runs["b"]],
-            "matched_entries_per_repeat": [r["matched_entries"] for r in runs["b"]],
-            "multi_record_entries_per_repeat": [r["multi_record_entries"] for r in runs["b"]],
+            "option_entries_per_repeat": [r["matched_entries"] for r in runs["b"]],
+            "multi_label_records_per_repeat": [r["multi_record_entries"] for r in runs["b"]],
             "unmatched_per_repeat": [r["unmatched_entries"] for r in runs["b"]],
+            "empty_without_reason_total": sum(r["empty_without_reason"] for r in runs["b"]),
             "proposals_per_repeat": [len(r["proposals"]) for r in runs["b"]],
             "folds_per_repeat": [len(r["folds"]) for r in runs["b"]],
             "reroutes_per_repeat": [len(r["reroutes"]) for r in runs["b"]],
@@ -408,6 +479,31 @@ def check_target(tag: str) -> dict[str, Any]:
             "stability": stability(runs["b"], sent),
             "usage": usage(d, "b_"),
         }
+    unl_file = d / "unlabelled_from_b.json"
+    if concept and unl_file.exists():
+        unl = json.loads(unl_file.read_text())
+        runs_p: list[dict[str, Any]] = []
+        for k, p in enumerate(_series(d, "p_{k}.json")):
+            try:
+                runs_p.append(parse_arm_b(p.read_text(), unl, records, labels))
+            except Exception as exc:
+                failures["p"] += 1
+                print(f"{tag} p#{k}: parse failure {exc}", file=sys.stderr)
+        if runs_p:
+            q_total = sum(r["quotes"]["total"] for r in runs_p); q_found = sum(r["quotes"]["found"] for r in runs_p)
+            report["arms"]["p"] = {
+                "repeats": len(runs_p),
+                "parse_failures": failures["p"],
+                "unlabelled_records_sent": len(unl),
+                "matched_after_all_per_repeat": [r["matched_entries"] for r in runs_p],
+                "proposals_per_repeat": [len(r["proposals"]) for r in runs_p],
+                "folds_per_repeat": [len(r["folds"]) for r in runs_p],
+                "still_nothing_per_repeat": [r["unmatched_entries"] for r in runs_p],
+                "coverage_missing_total": sum(len(r["coverage"]["missing"]) for r in runs_p),
+                "quotes": {"total": q_total, "found": q_found},
+                "stability": stability(runs_p, unl),
+                "usage": usage(d, "p_"),
+            }
     for arm in ("fa", "fb"):
         if runs[arm]:
             total = sum(r["candidates"] for r in runs[arm])
@@ -504,6 +600,10 @@ def _md(reports: list[dict[str, Any]]) -> str:
             for k in ("prompt_tokens", "completion_tokens", "calls"):
                 tot[arm][k] += a["usage"][k]
             tot[arm]["usd"] += a["usage"]["usd"]
+        for key in ("subject_labels", "secondary_labels"):
+            if key in r:
+                for arm, v in r[key].items():
+                    lines.append(f"- {key} {arm}: {json.dumps({k: x for k, x in v.items() if k != 'misses'})}")
         if "mode_overlap" in r:
             mo = r["mode_overlap"]
             lines.append(f"- mode overlap {mo['arms']}: both {mo['both']}, {mo['arms'][0]}-only {len(mo['first_only'])}, {mo['arms'][1]}-only {len(mo['second_only'])}")

@@ -1,15 +1,15 @@
 {
-  "catalog_version": "process_cap_phrase_grounding.2026.09.5",
-  "prompt_name": "process_cap_phrase_grounding",
-  "stage": "phrase_grounding",
+  "catalog_version": "conformity_attestation_phrase_proposal.2026.09.2",
+  "prompt_name": "conformity_attestation_phrase_proposal",
+  "stage": "phrase_proposal",
   "field_types": [
-    "process_caps"
+    "conformity_attestations"
   ],
-  "entity_noun": "manufacturing process",
+  "entity_noun": "certification, accreditation, registration, standard, or compliance",
   "entity_relationships": {
-    "base": "perform, offer, or specialize in",
-    "third_person": "performs, offers, or specializes in",
-    "gerund": "performing, offering, or specializing in"
+    "base": "hold or conform to",
+    "third_person": "holds or conforms to",
+    "gerund": "holding or conforming to"
   },
   "evidence_source": "the record's subject and synthesis",
   "option_evidence": "its own line and the line beneath it",
@@ -41,7 +41,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "A manufacturing process is an operation performed on the work; inspecting, testing, or measuring the work is an operation performed on it. What a company does with other parties or says about itself is not done to the work."
+              "text": "An attestation is identifiable by its own name, number, or issuing body; a claim of conformance or quality that names no such thing identifies none, and a named standard the record does not name is never substituted. A named standard, code, or regulation the manufacturer declares its product or organization conforms to is an attestation whether or not a certificate is mentioned; a certificate is one form of attestation, not the only one."
             }
           ]
         }

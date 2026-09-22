@@ -20,10 +20,12 @@ from __future__ import annotations
 from dataclasses import dataclass, field as dataclass_field
 
 import asyncio
+import json
 import logging
 import traceback
+from collections import Counter
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, Mapping, Optional, Sequence
 
 from pydantic import ValidationError
 
@@ -31,7 +33,10 @@ from core.models.extraction_schemas.catalog_wire_schema import (
     flatten_rule_slots,
     response_format_for,
     screening_response_model,
+    unit_screening_response_model,
 )
+from core.models.extraction_schemas.applied_rule import AppliedRule
+from core.utils.quote_check import quote_found_in_text
 from core.models.extraction_schemas.screening import (
     CandidateScreeningVerdict,
     RecordScreeningResults,
@@ -137,6 +142,99 @@ def parse_record_screening_result(
         results[entry.record_id] = verdicts
 
     raise_for_violations(violations)
+    return results
+
+
+# --- Step 2: unit-major structural screening (2026-09-21) --------------------
+
+UNITS_OPEN = "<<<UNITS"
+UNITS_CLOSE = "UNITS>>>"
+
+
+def render_units_block(units: Sequence[Mapping[str, Any]]) -> str:
+    """The UNITS block of a unit-screening request: one JSON object per line
+    (``option``, optional ``meaning``, ``records``) inside fences, so the
+    parser can read back exactly what was asked."""
+    lines = ",\n".join(json.dumps(dict(unit), ensure_ascii=False) for unit in units)
+    return f"{UNITS_OPEN}\n[\n{lines}\n]\n{UNITS_CLOSE}"
+
+
+def parse_unit_screening_result(
+    gpt_response: Optional[str],
+    *,
+    catalog: RuleCatalog,
+    units: Mapping[str, Sequence[str]],
+    sent_records: Optional[Mapping[str, Mapping[str, Any]]],
+) -> RecordScreeningResults:
+    """One unit-major response as the stored record → candidate → verdict map.
+
+    Holds (V7, design draft §5.2): every sent unit answered exactly once and
+    no unit invented; per unit ``accepted`` ∪ ``not_accepted`` is exactly the
+    unit's records, none in both; every accepted record's quote is found in
+    its record. Any breach fails the response (the node's parse-error path
+    re-dispatches under its cap) — the candidate axis is exact, as today's.
+    ``passed`` is set from the list a record landed in; the evidence distance
+    and the failed rule ride on the verdict as metadata; ``applied_rules``
+    carries the failed rule for a rejection and is empty for an acceptance.
+    """
+    if not gpt_response:
+        logger.error(f"Invalid gpt_response:{gpt_response}")
+        raise ValueError("parse_unit_screening_result: Empty or invalid response from GPT")
+    try:
+        parsed = unit_screening_response_model(catalog).model_validate_json(gpt_response)
+    except ValidationError as e:
+        raise ValueError(f"parse_unit_screening_result: Invalid response from GPT:{gpt_response}") from e
+
+    expected = {option.casefold(): (option, set(ids)) for option, ids in units.items()}
+    seen: Counter[str] = Counter()
+    problems: list[str] = []
+    results: RecordScreeningResults = {}
+    for unit in parsed.screenings:
+        key = unit.option.strip().casefold()
+        seen[key] += 1
+        if key not in expected:
+            problems.append(f"unit never sent: {unit.option!r}")
+            continue
+        option, sent_ids = expected[key]
+        accepted = {r.record_id for r in unit.accepted}
+        rejected = {r.record_id for r in unit.not_accepted}
+        if accepted & rejected:
+            problems.append(f"unit {option!r}: records both accepted and not accepted: {sorted(accepted & rejected)}")
+        answered = accepted | rejected
+        if answered != sent_ids:
+            problems.append(
+                f"unit {option!r}: answered records {sorted(answered)} are not the sent "
+                f"records {sorted(sent_ids)}"
+            )
+        for r in unit.accepted:
+            record = sent_records.get(r.record_id) if sent_records is not None else None
+            if record is not None:
+                phrase = record.get("subject", record.get("focal_form", "")) or ""
+                if not quote_found_in_text(r.quote, str(phrase), str(record.get("synthesis", "") or "")):
+                    problems.append(f"unit {option!r}: record {r.record_id} accepted on a quote not in the record: {r.quote!r}")
+            elif not r.quote.strip():
+                problems.append(f"unit {option!r}: record {r.record_id} accepted with no quote")
+        if problems:
+            continue
+        for r in unit.accepted:
+            results.setdefault(r.record_id, {})[option] = CandidateScreeningVerdict(
+                passed=True, applied_rules=[], evidence=r.evidence, quote=r.quote
+            )
+        for r in unit.not_accepted:
+            results.setdefault(r.record_id, {})[option] = CandidateScreeningVerdict(
+                passed=False,
+                applied_rules=[AppliedRule(rule_id=r.failed_rule, outcome="failed", explanation=r.quote)],
+                failed_rule=r.failed_rule,
+                quote=r.quote,
+            )
+    for key, n in seen.items():
+        if n > 1:
+            problems.append(f"unit {expected[key][0] if key in expected else key!r} answered {n} times")
+    for key, (option, _) in expected.items():
+        if seen[key] == 0:
+            problems.append(f"unit {option!r} never answered")
+    if problems:
+        raise ValueError("parse_unit_screening_result: " + "; ".join(problems))
     return results
 
 

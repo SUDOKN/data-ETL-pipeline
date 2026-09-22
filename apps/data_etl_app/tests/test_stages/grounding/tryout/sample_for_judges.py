@@ -63,17 +63,14 @@ def _quotes_b(d: pathlib.Path, labels: dict[str, Any]) -> dict[tuple[str, str], 
 
     quotes: dict[tuple[str, str], list[str]] = defaultdict(list)
     for p in _series(d, "b_{k}.json"):
-        doc = json.loads(p.read_text())
-        for entry in doc.get("matched") or []:
-            canon = _canonical(entry["option"], labels)
-            label = canon or f"OOV:{entry['option']}"
-            for rec in entry.get("records") or []:
-                quotes[(rec["record_id"], label)].append(rec.get("quote", ""))
-        for entry in doc.get("proposed") or []:
-            canon = _canonical(entry["label"], labels)
-            label = canon or f"OOV:{entry['label']}"
-            for rec in entry.get("records") or []:
-                quotes[(rec["record_id"], label)].append(rec.get("quote", ""))
+        for entry in json.loads(p.read_text()).get("groundings") or []:
+            rid = entry["record_id"]
+            for o in entry.get("options") or []:
+                canon = _canonical(o["option"], labels)
+                quotes[(rid, canon or f"OOV:{o['option']}")].append(o.get("quote", ""))
+            for pr in entry.get("proposals") or []:
+                canon = _canonical(pr["label"], labels)
+                quotes[(rid, canon or f"OOV:{pr['label']}")].append(pr.get("quote", ""))
     return quotes
 
 

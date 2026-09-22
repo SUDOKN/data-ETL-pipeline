@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Literal, Optional
+
 from pydantic import BaseModel
 
 from core.models.extraction_schemas.applied_rule import AppliedRule
@@ -17,6 +19,16 @@ from core.models.extraction_schemas.applied_rule import AppliedRule
 class CandidateScreeningVerdict(BaseModel):
     passed: bool
     applied_rules: list[AppliedRule]
+    # Step 2 unit screening (2026-09-21): per accepted record the evidence
+    # distance the model reported — "named" when the record's own words name
+    # the candidate, "inferred" when it is one plain step from them — kept as
+    # METADATA until the census has calibrated it against the judges (never a
+    # gate); per not-accepted record the first condition or guard that failed;
+    # and the words of the record that decided it either way. Defaulted so
+    # verdicts stored before the fields existed load unchanged.
+    evidence: Optional[Literal["named", "inferred"]] = None
+    failed_rule: Optional[str] = None
+    quote: Optional[str] = None
 
 
 # record_id -> {candidate -> verdict}: one judgment per supplied candidate.

@@ -1,5 +1,5 @@
 {
-  "catalog_version": "material_cap_phrase_descent.2026.09.2",
+  "catalog_version": "material_cap_phrase_descent.2026.09.4",
   "prompt_name": "material_cap_phrase_descent",
   "stage": "phrase_descent",
   "field_types": [
@@ -11,14 +11,14 @@
     "third_person": "processes",
     "gerund": "processing"
   },
-  "evidence_source": "the record's focal form and synthesis",
+  "evidence_source": "the record's subject and synthesis",
   "option_evidence": "its own line and the line beneath it",
   "reporting": "structural",
   "outcome_vocab": {},
   "sections": [
     {
       "section_id": "evidence",
-      "heading": "For every record you list under a narrower kind, this must hold:",
+      "heading": "For every narrower kind you list under a record, this must hold:",
       "combinator": "all",
       "rules": [
         {
@@ -26,7 +26,7 @@
           "kind": "condition",
           "reportable": true,
           "report_when": "always",
-          "text": "A record is listed under a narrower kind only when the record's own words, about its focal form, supply the feature that tells that kind from its siblings; quote that feature. Where the kinds differ only in a property the record never mentions, the record names none of them, and {{parent_entity}} is the answer."
+          "text": "A record is listed under a narrower kind only when the record's own words, about its subject, supply the feature that tells that kind from its siblings; quote that feature. Where the kinds differ only in a property the record never mentions, the record names none of them, and {{parent_entity}} is the answer."
         }
       ]
     },
@@ -47,14 +47,14 @@
           "kind": "preference",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option is an exact match, an option is a generalizing match when what it means includes the narrower kind you identified while remaining narrower than {{parent_entity}}, and the list holds nothing narrower that the record supports."
+          "text": "When no option is an exact match, an option is a generalizing match when what it means includes the narrower kind you identified while remaining narrower than {{parent_entity}}, and the list holds nothing narrower that the record supports. A generalizing match never stands alone: the narrower kind it generalizes is proposed beside it under its own name."
         },
         {
           "id": "RGR-P1",
           "kind": "proposal",
           "reportable": true,
           "report_when": "when_chosen",
-          "text": "When no option exactly matches the narrower kind you identified, propose it under a plain, generic name, a sibling of the options listed, with the same evidence per record. A proposal stands beside a generalizing match, never instead of it: where an option generalizes the narrower kind, list the record under that option as well. A proposal that restates an option under other words is that option, and is matched instead."
+          "text": "When no option exactly matches the narrower kind you identified — whether or not one generalizes it — propose it under a plain, generic name, a sibling of the options listed: the name the list would carry for it, as short as the list's own entries, naming the kind itself and not the relationship to it. One proposal names one kind; a name that lists or joins several is not a name. A proposal that restates an option under other words is that option, and is matched instead."
         }
       ]
     }
