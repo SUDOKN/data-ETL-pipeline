@@ -55,6 +55,7 @@ from core.services.phrase_blocks_contract import (
     hold_response_to_sent_record_ids,
     render_record_blocks,
     sent_record_ids_from_user_message,
+    sent_records_from_user_message,
 )
 from llm_providers.db_models.gpt_batch_request import GPTBatchRequest
 from llm_providers.field_types import BatchRequestIDType
@@ -321,6 +322,13 @@ def structural_grounding_rules(catalog: RuleCatalog) -> StructuralGroundingRules
 SUBJECT_KEY = "subject"
 FOCAL_FORM_KEY = "focal_form"
 
+# The heading over the outline in a Step 2 grounding request. The outline sits
+# at the END OF THE SYSTEM TEXT (the outline tryout, 2026-09-21: above the
+# nonce and the records, so the provider's prefix cache serves it, and the
+# model reads it before the records — the position that won on stability and
+# on the judged sample), never in the user context.
+VOCABULARY_HEADING = "the vocabulary to match against:"
+
 
 def subject_keyed_payloads(payloads: Mapping[str, Mapping[str, Any]]) -> dict[str, dict[str, Any]]:
     """The payload map with ``focal_form`` rendered as ``subject`` — what a
@@ -341,7 +349,7 @@ def parse_record_grounding_structural_result(
     gpt_response: Optional[str],
     *,
     catalog: RuleCatalog,
-    allowed_labels: Iterable[str],
+    allowed_labels: Optional[Iterable[str]],
     sent_records: Optional[Mapping[str, Mapping[str, Any]]],
 ) -> RecordGroundingResults:
     """One response of the Step 2 record-major wire as the stored per-record
@@ -356,9 +364,14 @@ def parse_record_grounding_structural_result(
       proposal under the model's own words (V3) and recorded on
       ``dropped_options`` as the trail; a proposal that IS a label is folded
       into the vocabulary under the canonical spelling.
-    - EVIDENCE: every option and proposal carries a quote found in the record
-      (``quote_found_in_text`` over the subject and the synthesis); one that
-      does not is dropped and recorded on ``dropped_quotes``.
+    - EVIDENCE: every option and proposal carries a quote; one with NO quote
+      is dropped and recorded on ``dropped_quotes``. A quote the record does
+      not contain verbatim (``quote_found_in_text`` over the subject and the
+      synthesis) KEEPS its option — the model's copy can differ by a spelling
+      or a word (user decision 2026-09-21) — and marks the evidence rule
+      ``unverified`` instead of ``satisfied``, so the census can measure what
+      such quotes sit on and screening, which re-reads the record, stays the
+      guard. Nothing is gated on the mark.
     - ONE TAG PER LABEL: a label listed twice for one record keeps the first.
     - DECLINATION: a record with no options and no proposals is stored with
       its explanation; a record that emitted units but lost them all to the
@@ -388,9 +401,16 @@ def parse_record_grounding_structural_result(
         ) from e
 
     rules = structural_grounding_rules(catalog)
-    canonical_by_folded = {label.casefold(): label for label in allowed_labels}
+    # ``allowed_labels`` None = no vocabulary in hand (a generic reader such as
+    # the partial dump): every option is kept under its own words and nothing
+    # is rerouted or folded — the same posture the per-rule parser takes.
+    canonical_by_folded = (
+        None if allowed_labels is None else {label.casefold(): label for label in allowed_labels}
+    )
 
     def canonical_of(name: str) -> Optional[str]:
+        if canonical_by_folded is None:
+            return name.strip()
         found = canonical_by_folded.get(name.strip().casefold())
         if found is None:
             stripped = _strip_trailing_parenthetical(name)
@@ -415,10 +435,14 @@ def parse_record_grounding_structural_result(
         record = sent_records.get(rid) if sent_records is not None else None
         texts = _record_texts(record) if record is not None else None
 
-        def quote_ok(quote: str) -> bool:
+        def evidence_outcome(quote: str) -> Optional[str]:
+            """``satisfied`` when the quote is in the record, ``unverified``
+            when it is not (kept), None for an empty quote (dropped)."""
+            if not quote.strip():
+                return None
             if texts is None:
-                return bool(quote.strip())  # nothing to check against: presence only
-            return quote_found_in_text(quote, *texts)
+                return "satisfied"  # nothing to check against: presence only
+            return "satisfied" if quote_found_in_text(quote, *texts) else "unverified"
 
         tags: TagToAppliedRulesMap = {}
         dropped_options: list[str] = []
@@ -428,10 +452,13 @@ def parse_record_grounding_structural_result(
         for unit in entry.options:
             emitted += 1
             label = canonical_of(unit.option)
-            if not quote_ok(unit.quote):
+            outcome = evidence_outcome(unit.quote)
+            if outcome is None:
                 dropped_quotes.append(unit.option)
                 continue
-            evidence = AppliedRule(rule_id=rules.evidence, outcome="satisfied", explanation=unit.quote)
+            if outcome == "unverified":
+                logger.info(f"record {rid}: quote for {unit.option!r} not found verbatim in the record; kept, marked unverified")
+            evidence = AppliedRule(rule_id=rules.evidence, outcome=outcome, explanation=unit.quote)
             if label is None:
                 # V3: not a vocabulary label → a proposal under the model's
                 # own words, and the reroute is the trail.
@@ -454,9 +481,12 @@ def parse_record_grounding_structural_result(
 
         for proposal in entry.proposals:
             emitted += 1
-            if not quote_ok(proposal.quote):
+            outcome = evidence_outcome(proposal.quote)
+            if outcome is None:
                 dropped_quotes.append(proposal.label)
                 continue
+            if outcome == "unverified":
+                logger.info(f"record {rid}: quote for proposal {proposal.label!r} not found verbatim in the record; kept, marked unverified")
             label = canonical_of(proposal.label)
             if label is not None:
                 logger.warning(f"record {rid}: proposal {proposal.label!r} is the label {label!r}; folded in")
@@ -466,7 +496,7 @@ def parse_record_grounding_structural_result(
                 logger.warning(f"record {rid}: {label!r} listed twice; keeping the first")
                 continue
             tags[label] = [
-                AppliedRule(rule_id=rules.evidence, outcome="satisfied", explanation=proposal.quote),
+                AppliedRule(rule_id=rules.evidence, outcome=outcome, explanation=proposal.quote),
                 AppliedRule(rule_id=rules.proposal, outcome="chosen", explanation=proposal.explanation),
             ]
 
@@ -488,7 +518,7 @@ def parse_record_grounding_structural_result(
             continue
 
         if dropped_quotes:
-            logger.warning(f"record {rid}: dropped {len(dropped_quotes)} unit(s) whose quote is not in the record: {_quoted(dropped_quotes)}")
+            logger.warning(f"record {rid}: dropped {len(dropped_quotes)} unit(s) offered with no quote: {_quoted(dropped_quotes)}")
         results[rid] = RecordGroundingEntry(
             tags=tags,
             explanation=explanation,
@@ -529,9 +559,14 @@ async def parse_record_grounding_group_result(
     completed_request_map: dict[BatchRequestIDType, GPTBatchRequest],
     timestamp: datetime,
     allowed_labels: Optional[Iterable[str]] = None,
+    structural: bool = False,
 ) -> tuple[list[str], RecordGroundingResults]:
     """Parse one grounding group request and hold it to its sent record ids,
     as ``(sent record ids, held results)``.
+
+    ``structural`` (Step 2, 2026-09-21) parses the record-major structural
+    wire instead of the per-rule one; the records the request sent are read
+    back off its user message for the parser's quote check.
 
     The hold THINS on missing ids (3.3, the under-answer decision — user,
     2026-08-24): a response that validly answers a fraction of its records no
@@ -552,11 +587,20 @@ async def parse_record_grounding_group_result(
 
     try:
         user_message = req_obj.request.body.user_message()
-        parsed = parse_record_grounding_result(
-            req_obj.response.result,
-            catalog=catalog,
-            allowed_labels=allowed_labels,
-        )
+        if structural:
+            sent = sent_records_from_user_message(user_message)
+            parsed = parse_record_grounding_structural_result(
+                req_obj.response.result,
+                catalog=catalog,
+                allowed_labels=allowed_labels,
+                sent_records=sent if isinstance(sent, dict) else None,
+            )
+        else:
+            parsed = parse_record_grounding_result(
+                req_obj.response.result,
+                catalog=catalog,
+                allowed_labels=allowed_labels,
+            )
         held = hold_response_to_sent_record_ids(
             user_message=user_message,
             response_by_record_id=parsed,
@@ -607,6 +651,7 @@ async def get_chunk_record_grounding_answer(
     allowed_labels: Optional[Iterable[str]] = None,
     retry_req_ids: Optional[list[BatchRequestIDType]] = None,
     retried_record_ids: Optional[list[str]] = None,
+    structural: bool = False,
 ) -> ChunkGroundingAnswer:
     """Merge grounding entries across every request embedded for the chunk —
     the group requests, then the retry's (pass ``retry_req_ids=None`` or empty
@@ -632,6 +677,7 @@ async def get_chunk_record_grounding_answer(
             completed_request_map=completed_request_map,
             timestamp=timestamp,
             allowed_labels=allowed_labels,
+            structural=structural,
         )
         for rid in req_sent_ids:
             # A retry re-sends first-pass ids; sent_ids stays the union.
@@ -664,6 +710,7 @@ async def get_record_grounding_result(
     timestamp: datetime,
     allowed_labels: Optional[Iterable[str]] = None,
     retry_req_ids: Optional[list[BatchRequestIDType]] = None,
+    structural: bool = False,
 ) -> RecordGroundingResults:
     """The chunk's stored grounding map: groups, then the retry. A record
     still unanswered after the retry is WARNED about and absent — downstream
@@ -681,6 +728,7 @@ async def get_record_grounding_result(
         timestamp=timestamp,
         allowed_labels=allowed_labels,
         retry_req_ids=retry_req_ids,
+        structural=structural,
     )
     if answer.missing_ids:
         logger.warning(
@@ -781,20 +829,28 @@ def create_deferred_record_grounding_gpt_request(
     gpt_model: LLM_Model,
     eager: bool,
     model_params: GPTModelParams,
+    options_in_system: bool = False,
 ) -> GPTBatchRequest:
     """One grounding group request. ``options_section`` is the pre-rendered
     outline block (heading included), or None for the freehand stage, which is
-    sent no options at all."""
+    sent no options at all. ``options_in_system`` (Step 2, 2026-09-21) appends
+    the outline to the SYSTEM text instead of the user context: the request
+    then reads instructions, vocabulary, nonce, records — the static part
+    first, so the provider's prefix cache serves it."""
     context = render_record_blocks(record_payloads)
+    prompt_text = prompt.text
     if options_section is not None:
-        context = f"{context}\n\n{options_section}"
+        if options_in_system:
+            prompt_text = f"{prompt_text}\n\n{options_section}"
+        else:
+            context = f"{context}\n\n{options_section}"
 
     return create_base_gpt_batch_request(
         deferred_at=deferred_at,
         subject_unique_id=subject_unique_id,
         custom_id=request_id,
         context=context,
-        prompt_text=prompt.text,
+        prompt_text=prompt_text,
         gpt_model=gpt_model,
         model_params=model_params.with_response_format(response_format_for(catalog)),
         batch_id="Eager" if eager else None,
@@ -821,6 +877,7 @@ async def create_missing_record_grounding_requests(
     eager: bool,
     dummy_note: str,
     BATCH_SIZE: int = 100,
+    options_in_system: bool = False,
 ) -> list[GPTBatchRequest]:
     """The shared create loop for the record-grounding stages (in-vocab, OOV,
     freehand). ``chunk_payload_maps`` holds each chunk's FULL id → payload map
@@ -906,6 +963,7 @@ async def create_missing_record_grounding_requests(
                             gpt_model=llm_model,
                             eager=eager,
                             model_params=model_params,
+                            options_in_system=options_in_system,
                         )
                     )
 
@@ -952,6 +1010,7 @@ async def create_missing_record_grounding_requests(
                         gpt_model=llm_model,
                         eager=eager,
                         model_params=model_params,
+                        options_in_system=options_in_system,
                     )
                 )
 

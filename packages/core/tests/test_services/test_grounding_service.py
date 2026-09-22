@@ -535,14 +535,23 @@ def test_structural_membership_reroutes_a_non_label_option_and_folds_a_label_sha
     assert set(in_vocab) == {"raaaaaa2"} and set(proposals) == {"raaaaaa1"}
 
 
-def test_structural_quote_not_in_the_record_drops_the_unit_and_an_emptied_record_is_left_for_the_retry():
+def test_structural_quote_not_in_the_record_keeps_the_unit_marked_unverified_and_an_empty_quote_drops_it():
+    """User decision 2026-09-21: a quote the record does not contain verbatim
+    keeps its option (the model's copy may differ by a spelling) with the
+    evidence rule marked ``unverified``; only a unit offered with NO quote is
+    dropped, and a record that offered nothing but empty quotes is left for
+    the retry."""
     parsed = _parse(
         _entry("raaaaaa1", options=[("Aerospace Industry", "serves the aerospace market", "GR-M1"), ("Automotive", "lists aerospace among the industries", "GR-M2")]),
         _entry("raaaaaa2", options=[("Automotive", "", "GR-M1")]),
+        _entry("raaaaaa3", proposals=[("Welding Services", "Welding is a capabilty", "no option")]),  # a misspelt copy
     )
-    assert list(parsed["raaaaaa1"].tags) == ["Automotive"]
-    assert parsed["raaaaaa1"].dropped_quotes == ["Aerospace Industry"]
-    assert "raaaaaa2" not in parsed  # every unit lost its quote: unanswered, not declined
+    e1 = parsed["raaaaaa1"]
+    assert list(e1.tags) == ["Aerospace Industry", "Automotive"] and e1.dropped_quotes == []
+    assert [r.outcome for r in e1.tags["Aerospace Industry"]] == ["unverified", "chosen"]
+    assert [r.outcome for r in e1.tags["Automotive"]] == ["satisfied", "chosen"]
+    assert "raaaaaa2" not in parsed  # every unit offered no quote: unanswered, not declined
+    assert [r.outcome for r in parsed["raaaaaa3"].tags["Welding Services"]] == ["unverified", "chosen"]
 
 
 def test_structural_quote_matching_tolerates_case_whitespace_and_an_ellipsis():

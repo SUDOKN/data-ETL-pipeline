@@ -3,11 +3,14 @@
 The Step 2 grounding and screening wires (2026-09-21) carry, per option or
 per accepted record, the words of the record that evidence it. The quote IS
 the evidence test (V1 as simplified in round 2): a record listed with no
-quote, or with a quote the record does not contain, is not listed. This is
-the one check the parser makes on it — presence, after the normalisations a
-model's copy can legitimately differ by (whitespace, case, curly quotes), and
-with an ellipsis allowed to skip words between two verbatim parts. Nothing
-here judges whether the quoted words evidence the label; that is the census's.
+quote is not listed. A quote the record does not contain is NOT a drop
+(user decision 2026-09-21: a model's copy can differ by a spelling or a
+word beyond the normalisations below) — the grounding parser keeps the label
+and marks its evidence rule ``unverified``, a trail the census reads. This is
+the one check made on a quote — presence, after the normalisations a model's
+copy can legitimately differ by (whitespace, case, curly quotes), and with an
+ellipsis allowed to skip words between two verbatim parts. Nothing here
+judges whether the quoted words evidence the label; that is the census's.
 """
 
 from __future__ import annotations

@@ -85,9 +85,12 @@ class RecordGroundingEntry(BaseModel):
     # Non-null exactly when ``tags`` is empty: why the record yields nothing.
     explanation: Optional[str] = None
     dropped_options: list[str] = Field(default_factory=list)
-    # Step 2 (2026-09-21): labels the structural parser dropped because the
-    # quote that was to evidence them is empty or is not in the record — the
-    # V1 evidence test, kept as a trail so the drop is never silent.
+    # Step 2 (2026-09-21): labels the structural parser dropped because they
+    # were offered with NO quote at all — the V1 evidence test, kept as a
+    # trail so the drop is never silent. A quote the record does not contain
+    # verbatim does not drop its label (user decision 2026-09-21: a model's
+    # copy can differ by a spelling): the label is kept and its evidence rule
+    # carries the outcome ``unverified`` instead of ``satisfied``.
     dropped_quotes: list[str] = Field(default_factory=list)
 
     @model_validator(mode="after")

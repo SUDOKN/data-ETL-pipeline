@@ -67,6 +67,16 @@ class PipelineStage(StrEnum):
     freehand_grounding = "freehand_grounding"
     screening = "screening"
     iterative_grounding = "iterative_grounding"
+    # Step 2 of the grounding redesign (2026-09-21), built BESIDE the four
+    # stages they replace until the cutover: ONE grounding call (initial + OOV
+    # merged, D5), the proposal pass for records left with no label (a run
+    # flag), unit screening (one label + the records grounding matched on),
+    # and descent in depth waves with the leaf step. Same tiers as the stages
+    # they replace, so ``stop_after`` and request-id scoping read them alike.
+    grounding = "grounding"
+    proposal = "proposal"
+    unit_screening = "unit_screening"
+    descent = "descent"
     single_stage_extraction = "single_stage_extraction"
     reconcile = "reconcile"
 
@@ -90,6 +100,10 @@ _STAGE_RANK: dict[PipelineStage, int] = {
     PipelineStage.oov_grounding: 7,
     PipelineStage.screening: 8,
     PipelineStage.iterative_grounding: 9,
+    PipelineStage.grounding: 6,
+    PipelineStage.proposal: 7,
+    PipelineStage.unit_screening: 8,
+    PipelineStage.descent: 9,
     PipelineStage.reconcile: 10,
 }
 
@@ -110,6 +124,10 @@ STAGE_REQUEST_ID_TOKEN: dict[PipelineStage, str] = {
     PipelineStage.oov_grounding: "llm_phrase_oov_grounding",
     PipelineStage.freehand_grounding: "llm_phrase_freehand_grounding",
     PipelineStage.iterative_grounding: "llm_phrase_recursive_grounding",
+    PipelineStage.grounding: "llm_phrase_grounding",
+    PipelineStage.proposal: "llm_phrase_proposal",
+    PipelineStage.unit_screening: "llm_phrase_unit_screening",
+    PipelineStage.descent: "llm_phrase_descent",
 }
 
 
