@@ -27,6 +27,12 @@ Arms (``--arms``):
     p    Step 2's proposal-only pass (``phrase_proposal``): the records arm b's
          MODE left with no label, read again with the outline. Needs arm b's
          outputs, so run it in a second invocation after ``--arms b``.
+    b-<variant>  (``--outline dash today defs2 layered sandwich``, user decision
+         2026-09-21): arm b's prompt in the CACHEABLE layout — the vocabulary
+         moves into the system message, the nonce and the records follow — with
+         the vocabulary in one of five shapes (``outline_variants.py``). One call
+         per (field, variant) is sent first and alone to warm the prefix cache;
+         every ``.usage.json`` records the provider's ``cached_tokens``.
     fa   today's freehand grounding (equipments, products, contract_products):
          the published text snapshotted under ``arms/today/`` with its catalog.
     fb   Step 2's reworded freehand catalog (same rule ids, same schema).
@@ -107,6 +113,27 @@ GROUNDING_ARMS = ("a", "b", "fa", "fb", "p")
 # The arms that see the Step 2 record key ("subject"); today's arms see "focal_form".
 SUBJECT_KEY_ARMS = frozenset({"b", "fb", "p", "sb"})
 SCREENING_ARMS = ("sa", "sb")
+
+sys.path.insert(0, str(HERE))
+from outline_variants import (  # noqa: E402
+    OUTLINES,
+    SANDWICH_TAIL,
+    VOCAB_HEADING,
+    render_outline,
+    system_text,
+)
+
+# The outline arms (``--outline``): ``b-<variant>`` = the round-5 grounding
+# prompt in the CACHEABLE layout — system message = instructions + the
+# vocabulary in that variant's shape; user message = nonce, then the records
+# (then the sandwich tail for that variant). Files ``b-<variant>_<k>.json``.
+OUTLINE_ARM_PREFIX = "b-"
+
+
+def outline_variant_of(arm: str) -> Optional[str]:
+    if arm.startswith(OUTLINE_ARM_PREFIX) and arm[len(OUTLINE_ARM_PREFIX):] in OUTLINES:
+        return arm[len(OUTLINE_ARM_PREFIX):]
+    return None
 
 
 # --- records and vocabulary ---------------------------------------------------
@@ -194,6 +221,17 @@ def render_context(
     body = render_record_blocks(wire_payloads(payloads, arm))
     if field in CONCEPT_FIELDS and arm in ("a", "b", "p"):
         body = f"{body}\n\n{options_section(field, arm=arm, oov=oov)}"
+    return f"{NONCE_LABEL}{nonce or uuid.uuid4().hex}\n\n{body}"
+
+
+def render_outline_context(payloads: dict[str, dict[str, Any]], variant: str, *, nonce: Optional[str] = None) -> str:
+    """The user message of an outline arm: nonce, records, and for ``sandwich``
+    the repeated sentences — the vocabulary is in the system message."""
+    from core.services.phrase_blocks_contract import render_record_blocks  # noqa: E402
+
+    body = render_record_blocks(wire_payloads(payloads, "b"))
+    if variant == "sandwich":
+        body = f"{body}\n\n{SANDWICH_TAIL}"
     return f"{NONCE_LABEL}{nonce or uuid.uuid4().hex}\n\n{body}"
 
 
@@ -305,6 +343,18 @@ def arm_system_and_schema(arm: str, field: str) -> tuple[str, dict, Any]:
     else:
         raise SystemExit(f"unknown arm {arm!r}")
     return _assembled_text(cat), _schema(cat), cat
+
+
+def outline_arm_system_and_schema(variant: str, field: str) -> tuple[str, dict, Any]:
+    """(system prompt, response_format, catalog) for ``b-<variant>``: the
+    round-5 grounding text with the shape's substitutions, then the vocabulary
+    rendered in that shape — all of it static per (field, variant)."""
+    from core.models.rule_catalog import STAGE_GROUNDING  # noqa: E402
+
+    cat = _catalog(STAGE_GROUNDING, field)
+    text = system_text(_assembled_text(cat), variant, cat.entity_noun)
+    outline = render_outline(load_concepts(field), variant)
+    return f"{text}\n\n{VOCAB_HEADING}\n{outline}", _schema(cat), cat
 
 
 def oov_payloads(payloads: dict[str, dict[str, Any]], iv_answer_text: str, field: str) -> dict[str, dict[str, Any]]:
@@ -486,7 +536,7 @@ def render_screening_context(
 # --- run ----------------------------------------------------------------------
 
 
-def write_requests(run: str, targets: list[Target], screen_from: Optional[str]) -> None:
+def write_requests(run: str, targets: list[Target], screen_from: Optional[str], outlines: list[str]) -> None:
     for t in targets:
         d = OUT / t.tag
         d.mkdir(parents=True, exist_ok=True)
@@ -496,6 +546,13 @@ def write_requests(run: str, targets: list[Target], screen_from: Optional[str]) 
             (d / f"request_{arm}_user.txt").write_text(
                 render_context(payloads, t.field, arm=arm, nonce="0" * 32), encoding="utf-8"
             )
+        if t.concept:
+            for variant in outlines:
+                system, _, _ = outline_arm_system_and_schema(variant, t.field)
+                (d / f"request_{OUTLINE_ARM_PREFIX}{variant}_system.txt").write_text(system, encoding="utf-8")
+                (d / f"request_{OUTLINE_ARM_PREFIX}{variant}_user.txt").write_text(
+                    render_outline_context(payloads, variant, nonce="0" * 32), encoding="utf-8"
+                )
         (d / "request_meta.json").write_text(
             json.dumps(
                 {"run": run, "subject": t.subject, "field": t.field, "chunk": t.chunk, "group_index": t.group_index, "record_ids": sorted(payloads)},
@@ -535,18 +592,24 @@ async def run(run_id: str, targets: list[Target], arms: list[str], n: int, concu
             seconds = time.monotonic() - started
         text = response.choices[0].message.content or ""
         usage = getattr(response, "usage", None)
+        # The provider's prefix-cache hit count (usage.prompt_tokens_details.
+        # cached_tokens): the outline arms exist partly to see this become
+        # non-zero once the vocabulary sits above the nonce.
+        details = getattr(usage, "prompt_tokens_details", None)
+        cached = getattr(details, "cached_tokens", None)
         out.write_text(text, encoding="utf-8")
         out.with_suffix(".usage.json").write_text(
             json.dumps(
                 {
                     "prompt_tokens": getattr(usage, "prompt_tokens", None),
+                    "cached_tokens": cached,
                     "completion_tokens": getattr(usage, "completion_tokens", None),
                     "seconds": round(seconds, 1),
                     "finish_reason": response.choices[0].finish_reason,
                 }
             )
         )
-        print(f"{out.parent.name} {out.stem}: {len(text):,} B in {seconds:.0f}s", file=sys.stderr)
+        print(f"{out.parent.name} {out.stem}: {len(text):,} B in {seconds:.0f}s (cached {cached})", file=sys.stderr)
 
     async def one(t: Target, arm: str, k: int) -> None:
         d = OUT / t.tag
@@ -566,6 +629,12 @@ async def run(run_id: str, targets: list[Target], arms: list[str], n: int, concu
                 return
             system, schema, _ = arm_system_and_schema("b", t.field)
             await call(d / f"b_{k}.json", render_context(payloads, t.field, arm="b"), system, schema)
+        elif outline_variant_of(arm):
+            if not t.concept:
+                return
+            variant = outline_variant_of(arm) or ""
+            system, schema, _ = outline_arm_system_and_schema(variant, t.field)
+            await call(d / f"{arm}_{k}.json", render_outline_context(payloads, variant), system, schema)
         elif arm in ("fa", "fb"):
             if t.concept:
                 return
@@ -594,7 +663,21 @@ async def run(run_id: str, targets: list[Target], arms: list[str], n: int, concu
         else:
             raise SystemExit(f"unknown arm {arm!r}")
 
-    await asyncio.gather(*[one(t, a, k) for t in targets for a in arms for k in range(n)])
+    # Outline arms: one call per (field, arm) goes first and alone, so the
+    # provider writes the prefix cache before the rest of that group is sent;
+    # concurrent first calls would all miss.
+    jobs = [(t, a, k) for t in targets for a in arms for k in range(n)]
+    warm: dict[tuple[str, str], tuple[Target, str, int]] = {}
+    rest: list[tuple[Target, str, int]] = []
+    for job in jobs:
+        t, a, _k = job
+        if outline_variant_of(a) and t.concept and (t.field, a) not in warm:
+            warm[(t.field, a)] = job
+        else:
+            rest.append(job)
+    if warm:
+        await asyncio.gather(*[one(t, a, k) for t, a, k in warm.values()])
+    await asyncio.gather(*[one(t, a, k) for t, a, k in rest])
 
 
 def main() -> None:
@@ -605,6 +688,13 @@ def main() -> None:
     ap.add_argument("--targets", nargs="*", default=[])
     ap.add_argument("--arms", nargs="+", default=["a", "b", "fa", "fb"])
     ap.add_argument("--screen-from", default=None, help="grounding arm whose MODE candidates the screening arms judge (default b / fb)")
+    ap.add_argument(
+        "--outline",
+        nargs="*",
+        choices=OUTLINES,
+        default=[],
+        help="run arm b as the outline arms b-<variant> in the cacheable layout (system = instructions + vocabulary; user = nonce + records)",
+    )
     ap.add_argument("--n", type=int, default=5)
     ap.add_argument("--concurrency", type=int, default=6)
     args = ap.parse_args()
@@ -614,11 +704,16 @@ def main() -> None:
     targets = [Target(s) for s in args.targets]
     if not targets:
         raise SystemExit("no targets; use --list to see chunks and --targets subject:field:start:end:group_index ...")
+    arms = list(args.arms)
+    if args.outline:
+        if "b" not in arms:
+            raise SystemExit("--outline expands arm b; add b to --arms")
+        arms = [a for a in arms if a != "b"] + [f"{OUTLINE_ARM_PREFIX}{v}" for v in args.outline]
     if args.write:
         _catalog_registry()
-        write_requests(args.run, targets, args.screen_from)
+        write_requests(args.run, targets, args.screen_from, args.outline)
         return
-    asyncio.run(run(args.run, targets, args.arms, args.n, args.concurrency, args.screen_from))
+    asyncio.run(run(args.run, targets, arms, args.n, args.concurrency, args.screen_from))
 
 
 if __name__ == "__main__":

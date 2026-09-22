@@ -1,5 +1,5 @@
 {
-  "catalog_version": "conformity_attestation_phrase_proposal.2026.09.2",
+  "catalog_version": "conformity_attestation_phrase_proposal.2026.09.3",
   "prompt_name": "conformity_attestation_phrase_proposal",
   "stage": "phrase_proposal",
   "field_types": [
@@ -41,7 +41,7 @@
               "kind": "note",
               "reportable": false,
               "report_when": "never",
-              "text": "An attestation is identifiable by its own name, number, or issuing body; a claim of conformance or quality that names no such thing identifies none, and a named standard the record does not name is never substituted. A named standard, code, or regulation the manufacturer declares its product or organization conforms to is an attestation whether or not a certificate is mentioned; a certificate is one form of attestation, not the only one."
+              "text": "An attestation is identifiable by its own name, number, or issuing body; a claim of conformance or quality that names no such thing identifies none, and a named standard the record does not name is never substituted. A named standard, code, or regulation the manufacturer declares its product or organization conforms to is an attestation whether or not a certificate is mentioned; a certificate is one form of attestation, not the only one. A standard the record names without asserting a status the manufacturer or its product holds against it is not a declared conformance, whatever else the record says about that standard."
             }
           ]
         }

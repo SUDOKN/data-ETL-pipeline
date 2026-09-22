@@ -30,6 +30,7 @@ import argparse
 import json
 import pathlib
 import random
+import re
 import sys
 from collections import defaultdict
 from typing import Any
@@ -57,12 +58,13 @@ from run_grounding_tryout import (  # noqa: E402
 )
 
 
-def _quotes_b(d: pathlib.Path, labels: dict[str, Any]) -> dict[tuple[str, str], list[str]]:
-    """(record, label) -> the quotes arm b gave across repeats."""
+def _quotes_b(d: pathlib.Path, labels: dict[str, Any], arm: str = "b") -> dict[tuple[str, str], list[str]]:
+    """(record, label) -> the quotes a record-major arm (b, or an outline arm
+    b-<variant>) gave across repeats."""
     from check_tryout import _canonical  # noqa: E402
 
     quotes: dict[tuple[str, str], list[str]] = defaultdict(list)
-    for p in _series(d, "b_{k}.json"):
+    for p in _series(d, arm + "_{k}.json"):
         for entry in json.loads(p.read_text()).get("groundings") or []:
             rid = entry["record_id"]
             for o in entry.get("options") or []:
@@ -156,6 +158,73 @@ def rows_for_target(tag: str, rng: random.Random) -> list[dict[str, Any]]:
     return rows
 
 
+def outline_rows(tag: str) -> list[dict[str, Any]]:
+    """The OUTLINE tryout's judge rows (2026-09-21): one row per (record, label)
+    pair that is in SOME but not ALL of the six modes — round 5's arm b (the
+    outline below the records) and the five outline arms in the cacheable
+    layout — with the list of arms that carry it. A pair every arm agrees on is
+    not judged (it does not separate the arms); the readout counts it as shared.
+    The label's rightness does not depend on the arm, so each disputed pair is
+    coded once."""
+    from check_tryout import OUTLINE_ARMS  # noqa: E402
+
+    d = OUT / tag
+    meta = json.loads((d / "request_meta.json").read_text())
+    field, sent = meta["field"], meta["record_ids"]
+    if field not in CONCEPT_FIELDS:
+        return []
+    records = request_groups(meta["run"], meta["subject"], field, meta["chunk"])[meta["group_index"]]
+    labels = concept_by_label(field)
+    modes: dict[str, set[tuple[str, str]]] = {}
+    quotes: dict[str, dict[tuple[str, str], list[str]]] = {}
+    for arm in ("b", *OUTLINE_ARMS):
+        runs = [parse_arm_b(p.read_text(), sent, records, labels) for p in _series(d, arm + "_{k}.json")]
+        if not runs:
+            continue
+        modes[arm] = {(r, l) for r, ls in mode_labels(runs).items() for l in ls}
+        quotes[arm] = _quotes_b(d, labels, arm)
+    if len(modes) < 2:
+        return []
+    # Proposals are folded per record by a spelling-blind key (case, punctuation
+    # and a trailing conformance / certificate / standard word ignored) — the
+    # reconciler's fold, audit F2.3 — so one thing proposed under four
+    # spellings is one row carrying every arm and every spelling; the judge
+    # codes the thing, not the spelling.
+    def key(label: str) -> str:
+        if not label.startswith("OOV:"):
+            return label
+        s = re.sub(r"[^a-z0-9]+", " ", label[4:].casefold()).strip()
+        for _ in range(3):
+            s = re.sub(r"\s*\b(compliance|conformance|certificate|certification|certified|standard|standards|guidelines|guideline)\b\s*$", "", s).strip()
+        return "OOV:" + s
+
+    folded: dict[tuple[str, str], dict[str, Any]] = {}
+    for arm, pairs in modes.items():
+        for rid, label in pairs:
+            k = (rid, key(label))
+            entry = folded.setdefault(k, {"arms": set(), "spellings": defaultdict(set)})
+            entry["arms"].add(arm)
+            entry["spellings"][label].add(arm)
+    rows: list[dict[str, Any]] = []
+    for (rid, k), entry in sorted(folded.items()):
+        if len(entry["arms"]) == len(modes):
+            continue  # every arm carries it: shared, not judged
+        carrying = [arm for arm in modes if arm in entry["arms"]]
+        spellings = sorted(entry["spellings"], key=lambda s: (-len(entry["spellings"][s]), s))
+        label = spellings[0]
+        q = next((quotes[a].get((rid, s), []) for s in spellings for a in carrying if quotes[a].get((rid, s))), [])
+        rows.append(
+            {
+                "tag": tag, "subject": meta["subject"], "field": field, "kind": "outline",
+                "arms": carrying, "arms_total": len(modes), "label": label, "proposal": label.startswith("OOV:"),
+                "spellings": {s: sorted(a) for s, a in entry["spellings"].items()} if len(spellings) > 1 else None,
+                "record_id": rid, "focal_form": records[rid]["focal_form"], "synthesis": records[rid]["synthesis"],
+                "quotes": q[:3],
+            }
+        )
+    return rows
+
+
 def relationship_rows(tag: str) -> list[dict[str, Any]]:
     """EVERY screened (record, label) pair of a products / contract_products
     target, for the relationship-field judge packet (JUDGE_BRIEF_RELATIONSHIP.md):
@@ -189,7 +258,24 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=7)
     ap.add_argument("--targets", nargs="*", default=[])
     ap.add_argument("--relationship", action="store_true", help="draw every screened pair of the products / contract_products targets into out/judge_rel/")
+    ap.add_argument("--outline", action="store_true", help="draw every (record, label) pair the six outline-tryout modes dispute into out/judge_outline/")
     args = ap.parse_args()
+    if args.outline:
+        rows = []
+        tags = args.targets or sorted(p.name for p in OUT.iterdir() if p.is_dir() and (p / "request_meta.json").exists())
+        for tag in tags:
+            rows.extend(outline_rows(tag))
+        ol = OUT / "judge_outline"
+        ol.mkdir(parents=True, exist_ok=True)
+        random.Random(args.seed).shuffle(rows)
+        for i, r in enumerate(rows):
+            r["item_id"] = f"o_{i:04d}"
+        for k in range(0, len(rows), args.packet):
+            (ol / f"packet_{k // args.packet}.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows[k : k + args.packet]))
+        (ol / "sample.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+        n_prop = sum(1 for r in rows if r["proposal"])
+        print(f"{len(rows)} disputed pairs ({n_prop} proposals) under {ol}, packets of {args.packet}")
+        return
     if args.relationship:
         rows: list[dict[str, Any]] = []
         for p in sorted(OUT.iterdir()):

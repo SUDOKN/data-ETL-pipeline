@@ -18,6 +18,20 @@ the harness; the Step 2 catalogs are its first real arms).
   published version); `sa`/`sb` today's screening vs the Step 2 unit screening
   (`phrase_unit_screening` catalogs), BOTH on the same mode candidates of a grounding arm
   (`--screen-from`, default `b` / `fb`), so the screening comparison isolates the prompt.
+- `outline_variants.py` + `--outline dash today defs2 layered sandwich` on the runner (the OUTLINE
+  tryout, 2026-09-21, after `docs_local/grounding_gap_survey_2026-09-14/VOCABULARY_FORMAT_ASSESSMENT_2026-09-21.md`):
+  arm `b`'s round-5 prompt in the CACHEABLE layout — the vocabulary moves into the system message
+  (instructions, then the outline), the user message is the nonce and the records — with the
+  vocabulary in one of five shapes: `dash` (round 5's, the reference in the new position), `today`
+  (production's, no definitions), `defs2` (definitions on depth 1–2 only), `layered` (flat lists under
+  depth headings + "prefer the deeper option"), `sandwich` (dash + the three decisive sentences repeated
+  after the records). Files `out/<tag>/b-<variant>_<k>.json`; every `.usage.json` carries the provider's
+  `cached_tokens`; one call per (field, variant) is sent first and alone to warm the cache. Each shape's
+  prompt substitutions (the outline paragraph, the option-meaning phrase, the layered GR-M2a note) are
+  recorded in `outline_variants.py` and applied by string replacement — no catalog is written.
+  `check_tryout.py` reads each outline arm like arm b, adds a `depth` readout (choices by depth,
+  non-leaf choices, presence vs parent-child vs cross-branch flips) and each arm's mode against
+  round 5's arm b (`mode_vs_round5_b`, the judge sample); `usage` prices cached tokens at the cached rate.
 - `subject_names.json` — the 18 subjects' display names, read once from the baseline's stored
   screening requests (the dumps do not carry them); the screening request's first line.
 - `check_tryout.py` — the mechanical readout (`out/CHECK.md|json`): parse success, coverage,

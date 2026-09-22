@@ -52,13 +52,19 @@ OUT = HERE / "out"
 sys.path.insert(0, str(HERE))
 from run_grounding_tryout import (  # noqa: E402
     CONCEPT_FIELDS,
+    OUTLINE_ARM_PREFIX,
     chunk_records,
     concept_by_label,
     request_groups,
 )
+from outline_variants import OUTLINES  # noqa: E402
 
 PRICE_PER_M_INPUT = 2.0  # gpt-4.1 list, USD
+PRICE_PER_M_CACHED_INPUT = 0.5  # the provider's cached-input rate (a quarter of list)
 PRICE_PER_M_OUTPUT = 8.0
+
+# The outline arms of the 2026-09-21 outline tryout, read like arm b.
+OUTLINE_ARMS = tuple(f"{OUTLINE_ARM_PREFIX}{v}" for v in OUTLINES)
 
 _WS = re.compile(r"\s+")
 _ELLIPSIS = re.compile(r"\s*(?:\.\.\.|…)\s*")
@@ -370,21 +376,72 @@ def verdict_stability(runs: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def usage(d: pathlib.Path, prefix: str) -> dict[str, Any]:
-    prompt = completion = calls = 0
+    """Token totals and the price. ``cached_tokens`` (the provider's prefix-cache
+    hits, recorded by the runner since the outline tryout) are priced at the
+    cached rate; older usage files carry none and price at list."""
+    prompt = cached = completion = calls = 0
     seconds = 0.0
     for p in d.glob(f"{prefix}*.usage.json"):
         u = json.loads(p.read_text())
         prompt += u.get("prompt_tokens") or 0
+        cached += u.get("cached_tokens") or 0
         completion += u.get("completion_tokens") or 0
         seconds += u.get("seconds") or 0
         calls += 1
+    usd = (prompt - cached) / 1e6 * PRICE_PER_M_INPUT + cached / 1e6 * PRICE_PER_M_CACHED_INPUT + completion / 1e6 * PRICE_PER_M_OUTPUT
     return {
         "calls": calls,
         "prompt_tokens": prompt,
+        "cached_tokens": cached,
+        "cached_share": round(cached / prompt, 3) if prompt else None,
         "completion_tokens": completion,
-        "usd": round(prompt / 1e6 * PRICE_PER_M_INPUT + completion / 1e6 * PRICE_PER_M_OUTPUT, 3),
+        "usd": round(usd, 3),
         "mean_seconds": round(seconds / calls, 1) if calls else None,
     }
+
+
+def depth_profile(runs: list[dict[str, Any]], sent: list[str], labels: dict[str, Any]) -> dict[str, Any]:
+    """Where in the tree the chosen vocabulary labels sit, and what kind of
+    flip the repeats show (outline tryout, 2026-09-21):
+
+    - ``chosen_by_depth``: vocabulary labels chosen over all repeats, by the
+      label's depth (1 = a root);
+    - ``nonleaf_chosen``: choices of a label that has children;
+    - flips between pairs of repeats on one record, classified: ``presence``
+      (one repeat has a label the other lacks, nothing else differs),
+      ``same_branch_depth`` (the repeats chose an ancestor and a descendant —
+      the parent-vs-child coin), ``different_branch`` (labels from different
+      branches).
+    """
+    by_name: dict[str, Any] = {}
+    for concept in labels.values():
+        by_name[concept.name] = concept
+    parents = {c.ancestors[-1] for c in by_name.values() if c.ancestors}
+    out: Counter[str] = Counter()
+    by_depth: Counter[str] = Counter()
+    for r in runs:
+        for ls in r["per_record"].values():
+            for label in ls:
+                c = by_name.get(label)
+                if c is None:
+                    continue
+                by_depth[f"depth{len(c.ancestors) + 1}"] += 1
+                out["vocab_choices"] += 1
+                if c.name in parents:
+                    out["nonleaf_chosen"] += 1
+    flips: Counter[str] = Counter()
+    for rid in sent:
+        sets = [frozenset(l for l in r["per_record"].get(rid, []) if l in by_name) for r in runs]
+        for a, b in itertools.combinations(sets, 2):
+            if a == b:
+                continue
+            only_a, only_b = a - b, b - a
+            kind = "presence"
+            if only_a and only_b:
+                same = any(x in by_name[y].ancestors or y in by_name[x].ancestors for x in only_a for y in only_b)
+                kind = "same_branch_depth" if same else "different_branch"
+            flips[kind] += 1
+    return {"chosen_by_depth": dict(sorted(by_depth.items())), **dict(out), "flip_pairs": dict(flips)}
 
 
 # --- per target ---------------------------------------------------------------------
@@ -422,12 +479,13 @@ def check_target(tag: str) -> dict[str, Any]:
             except Exception as exc:
                 failures["a"] += 1
                 print(f"{tag} a#{k}: parse failure {exc}", file=sys.stderr)
-        for k, p in enumerate(_series(d, "b_{k}.json")):
-            try:
-                runs["b"].append(parse_arm_b(p.read_text(), sent, records, labels))
-            except Exception as exc:
-                failures["b"] += 1
-                print(f"{tag} b#{k}: parse failure {exc}", file=sys.stderr)
+        for arm in ("b", *OUTLINE_ARMS):
+            for k, p in enumerate(_series(d, arm + "_{k}.json")):
+                try:
+                    runs[arm].append(parse_arm_b(p.read_text(), sent, records, labels))
+                except Exception as exc:
+                    failures[arm] += 1
+                    print(f"{tag} {arm}#{k}: parse failure {exc}", file=sys.stderr)
     else:
         for arm in ("fa", "fb"):
             for k, p in enumerate(_series(d, arm + "_{k}.json")):
@@ -447,38 +505,55 @@ def check_target(tag: str) -> dict[str, Any]:
             "stability": stability(runs["a"], sent),
             "usage": usage(d, "a_"),
         }
-    for arm in ("a", "b"):
+    for arm in ("a", "b", *OUTLINE_ARMS):
         if runs[arm]:
             report.setdefault("subject_labels", {})[arm] = subject_label_check(runs[arm], sent, records, labels)
             report.setdefault("secondary_labels", {})[arm] = secondary_label_count(mode_labels(runs[arm]), records, labels)
-    if runs["b"]:
-        cov = [r["coverage"] for r in runs["b"]]
-        q_total = sum(r["quotes"]["total"] for r in runs["b"])
-        q_found = sum(r["quotes"]["found"] for r in runs["b"])
-        q_empty = sum(r["quotes"]["empty"] for r in runs["b"])
-        report["arms"]["b"] = {
-            "repeats": len(runs["b"]),
-            "parse_failures": failures["b"],
-            "labels_per_repeat": [sum(len(v) for v in r["per_record"].values()) for r in runs["b"]],
-            "option_entries_per_repeat": [r["matched_entries"] for r in runs["b"]],
-            "multi_label_records_per_repeat": [r["multi_record_entries"] for r in runs["b"]],
-            "unmatched_per_repeat": [r["unmatched_entries"] for r in runs["b"]],
-            "empty_without_reason_total": sum(r["empty_without_reason"] for r in runs["b"]),
-            "proposals_per_repeat": [len(r["proposals"]) for r in runs["b"]],
-            "folds_per_repeat": [len(r["folds"]) for r in runs["b"]],
-            "reroutes_per_repeat": [len(r["reroutes"]) for r in runs["b"]],
+            if concept:
+                report.setdefault("depth", {})[arm] = depth_profile(runs[arm], sent, labels)
+    for arm in ("b", *OUTLINE_ARMS):
+        if not runs[arm]:
+            continue
+        rs = runs[arm]
+        cov = [r["coverage"] for r in rs]
+        q_total = sum(r["quotes"]["total"] for r in rs)
+        q_found = sum(r["quotes"]["found"] for r in rs)
+        q_empty = sum(r["quotes"]["empty"] for r in rs)
+        report["arms"][arm] = {
+            "repeats": len(rs),
+            "parse_failures": failures[arm],
+            "labels_per_repeat": [sum(len(v) for v in r["per_record"].values()) for r in rs],
+            "option_entries_per_repeat": [r["matched_entries"] for r in rs],
+            "multi_label_records_per_repeat": [r["multi_record_entries"] for r in rs],
+            "unmatched_per_repeat": [r["unmatched_entries"] for r in rs],
+            "empty_without_reason_total": sum(r["empty_without_reason"] for r in rs),
+            "proposals_per_repeat": [len(r["proposals"]) for r in rs],
+            "folds_per_repeat": [len(r["folds"]) for r in rs],
+            "reroutes_per_repeat": [len(r["reroutes"]) for r in rs],
             "coverage_violations": {
                 "repeats_with_missing": sum(1 for c in cov if c["missing"]),
                 "missing_ids_total": sum(len(c["missing"]) for c in cov),
                 "unknown_ids_total": sum(len(c["unknown"]) for c in cov),
                 "contradictions_total": sum(len(c["contradictions"]) for c in cov),
             },
-            "duplicate_option_entries": sum(len(r["duplicate_options"]) for r in runs["b"]),
+            "duplicate_option_entries": sum(len(r["duplicate_options"]) for r in rs),
             "quotes": {"total": q_total, "found": q_found, "empty": q_empty, "found_share": round(q_found / q_total, 3) if q_total else None},
-            "chosen": dict(sum((Counter(r["chosen"]) for r in runs["b"]), Counter())),
-            "stability": stability(runs["b"], sent),
-            "usage": usage(d, "b_"),
+            "chosen": dict(sum((Counter(r["chosen"]) for r in rs), Counter())),
+            "stability": stability(rs, sent),
+            "usage": usage(d, arm + "_"),
         }
+    # Each outline arm's mode against round 5's arm b (the same prompt, the
+    # outline below the records): the pairs that differ are the judge sample.
+    if runs["b"]:
+        mb = _pairs(mode_labels(runs["b"]))
+        for arm in OUTLINE_ARMS:
+            if runs[arm]:
+                po = _pairs(mode_labels(runs[arm]))
+                report.setdefault("mode_vs_round5_b", {})[arm] = {
+                    "both": len(mb & po),
+                    "round5_only": sorted(f"{r}:{l}" for r, l in mb - po),
+                    f"{arm}_only": sorted(f"{r}:{l}" for r, l in po - mb),
+                }
     unl_file = d / "unlabelled_from_b.json"
     if concept and unl_file.exists():
         unl = json.loads(unl_file.read_text())
@@ -600,10 +675,13 @@ def _md(reports: list[dict[str, Any]]) -> str:
             for k in ("prompt_tokens", "completion_tokens", "calls"):
                 tot[arm][k] += a["usage"][k]
             tot[arm]["usd"] += a["usage"]["usd"]
-        for key in ("subject_labels", "secondary_labels"):
+        for key in ("subject_labels", "secondary_labels", "depth"):
             if key in r:
                 for arm, v in r[key].items():
                     lines.append(f"- {key} {arm}: {json.dumps({k: x for k, x in v.items() if k != 'misses'})}")
+        if "mode_vs_round5_b" in r:
+            for arm, mo in r["mode_vs_round5_b"].items():
+                lines.append(f"- mode vs round-5 b, {arm}: both {mo['both']}, round5-only {len(mo['round5_only'])}, {arm}-only {len(mo[f'{arm}_only'])}")
         if "mode_overlap" in r:
             mo = r["mode_overlap"]
             lines.append(f"- mode overlap {mo['arms']}: both {mo['both']}, {mo['arms'][0]}-only {len(mo['first_only'])}, {mo['arms'][1]}-only {len(mo['second_only'])}")

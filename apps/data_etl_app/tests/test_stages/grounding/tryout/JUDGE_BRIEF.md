@@ -26,6 +26,24 @@ proposal (a name outside the vocabulary). Code the label for THIS record:
 - For a `b` row, also say whether the quote(s) in `quotes_b` are found in the record and evidence
   the label: `quote_ok: yes | no | partial`.
 
+**`kind: outline`** (the outline tryout, 2026-09-21; concept fields). Six arms answered the same
+records with the same instructions and differed only in how the vocabulary was pasted and where it
+sat; `arms` lists the arms whose majority answer carries this label for this record, out of
+`arms_total`. Which arms carry it plays NO part in the code: code the label for THIS record exactly
+as for `kind: grounding` (D / N / X with `sub_kind` for industries / V / B / P / F; the focal-form
+scope of 23d), and add `quote_ok: yes | no | partial` for the `quotes` shown (found in the record,
+and evidencing the label). A label beginning `OOV:` is a proposal; two proposals that differ only
+in spelling are two rows — code each on its own words.
+
+Rulings 24–29 of the addendum (2026-09-21) bind every later packet: a record that uses one of a label's OTHER
+NAMES in the outline names that label exactly (D/N, never B) — read the field's outline with its other names
+before coding; a grounding row is coded on identification alone (whether the record names the thing and it is
+of the field's kind), and the synthesis's own "no dealing shown" is screening's question, never a reason for B,
+P or F; a vocabulary parent chosen for a specifically named member is N, not V; for a process label compare the
+operation the label means with the operation the words name (same D/N, narrower B, different X, absent F); an
+industries label names a group of organizations — a product-shaped label of a real placement is N; a standard
+named without a status asserted against it is X in conformity.
+
 **`kind: freehand`** (equipments, products, contract_products). `fa` = today's freehand prompt
 only, `fb` = the reworded prompt only, `fafb` = both. Same codes; for equipments apply ruling 23
 and 23a–c exactly: the record's words (including a heading the site files the subject under, and a
@@ -50,6 +68,7 @@ One JSON object per line into `out/judge/verdicts/<packet name>.jsonl`, appended
 
 ```json
 {"item_id": "j_0001", "kind": "grounding", "code": "X", "sub_kind": "X-own", "quote_ok": "yes", "note": "'offers CNC machining' names what it does, places it in no market", "judge": "sonnet:<agent name>"}
+{"item_id": "o_0007", "kind": "outline", "code": "N", "quote_ok": "yes", "note": "'<decisive words>' — the record supports a narrower option than this", "judge": "sonnet:<agent name>"}
 {"item_id": "j_0002", "kind": "freehand", "code": "F", "note": "'forging' is a process; no machine named", "judge": "sonnet:<agent name>"}
 {"item_id": "j_0003", "kind": "screening", "truth": "reject", "distance": null, "reason_ok": "yes", "note": "'applied by a finishing partner' — the partner's business", "judge": "sonnet:<agent name>"}
 ```
