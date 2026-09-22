@@ -448,8 +448,17 @@ def split_grounding_results(vocab: Vocabulary, results: RecordGroundingResults) 
     for rid, entry in results.items():
         vocab_tags = {label: rules for label, rules in entry.tags.items() if vocab.name_of(label) is not None}
         proposal_tags = {label: rules for label, rules in entry.tags.items() if vocab.name_of(label) is None}
+        if vocab_tags:
+            explanation = None
+        elif proposal_tags:
+            # The call matched no vocabulary label but proposed: the in-vocab
+            # side records that as its reason (a stored entry with no tags
+            # must say why — run 20260922T212455 stopped here without it).
+            explanation = f"no vocabulary label matched; proposed {', '.join(sorted(proposal_tags))}"
+        else:
+            explanation = entry.explanation
         in_vocab[rid] = RecordGroundingEntry(
-            tags=vocab_tags, explanation=entry.explanation if not vocab_tags and not proposal_tags else None,
+            tags=vocab_tags, explanation=explanation,
             dropped_options=list(entry.dropped_options), dropped_quotes=list(entry.dropped_quotes),
         )
         if proposal_tags:

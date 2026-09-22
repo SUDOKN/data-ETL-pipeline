@@ -144,6 +144,12 @@ def test_split_grounding_results_keeps_the_declination_and_the_dropped_lists(voc
     }
     in_vocab, proposals = split_grounding_results(vocab, results)
     assert set(in_vocab["r2"].tags) == {"Assembly"} and in_vocab["r2"].dropped_options == ["Cerakote Coating"]
+    # a record the call only PROPOSED for has no vocabulary tag and must say so
+    # (run 20260922T212455 stopped in reconcile on this entry having no reason)
+    only_proposed = {"r9": RecordGroundingEntry(tags={"Cerakote Coating": _rules("cerakote")})}
+    in_vocab9, proposals9 = split_grounding_results(vocab, only_proposed)
+    assert in_vocab9["r9"].tags == {} and "proposed Cerakote Coating" in (in_vocab9["r9"].explanation or "")
+    assert set(proposals9["r9"].tags) == {"Cerakote Coating"}
     assert in_vocab["r3"].explanation == "names nothing the vocabulary holds"
     assert set(proposals) == {"r2"} and set(proposals["r2"].tags) == {"Cerakote Coating"}
 
