@@ -139,3 +139,17 @@ class BatchedScreeningNodeMetadata(ExtractionNodeMetadata):
 
     def to_custom_id_segment(self) -> str:
         return f"{super().to_custom_id_segment()}|gs={self.max_pairs_per_request}"
+
+
+class DescentNodeMetadata(ExtractionNodeMetadata):
+    # Step 2 (design draft §6.3/§6.5, user decisions 2026-09-20/21): descent
+    # runs in DEPTH WAVES — one batched screening round per vocabulary depth
+    # per chunk, then the descent requests from the accepted labels — and an
+    # accepted label with no children gets one LEAF STEP: a proposal-only
+    # request whose proposals are kept aside as vocabulary candidates, never
+    # screened, shipped or descended from. ``leaf_step`` is that run flag,
+    # recorded here so a run names whether its leaf requests existed; it is
+    # not part of any other request's identity (a leaf request has its own
+    # id), so it stays out of the custom-id segment and is drift-checked with
+    # the rest of the metadata by the prefill staleness rule.
+    leaf_step: bool = True

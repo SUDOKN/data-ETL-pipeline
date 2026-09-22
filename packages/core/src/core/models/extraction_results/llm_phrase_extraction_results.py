@@ -44,6 +44,7 @@ from core.models.extraction_results.extraction_node_metadata import (
     BatchedSynthesisNodeMetadata,
     BatchedRelationshipNodeMetadata,
     BatchedScreeningNodeMetadata,
+    DescentNodeMetadata,
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
 )
@@ -130,6 +131,16 @@ class LLMPhraseExtractionStats(BaseModel):
     llm_phrase_synthesis: dict[int, GroupRecords] = Field(default_factory=dict)
     # round → {record_id: {candidate: verdict}} — every candidate judged.
     llm_phrase_screening: dict[int, RecordScreeningResults]
+    # Step 2 unit screening (design draft §5, 2026-09-21): the same per-record,
+    # per-candidate verdicts, now carrying the evidence distance, the failed
+    # rule and the quote (``CandidateScreeningVerdict``). For concept fields
+    # this is the pre-descent wave (the labels grounding matched directly);
+    # descent's per-wave verdicts live in ``llm_phrase_descent_screening``.
+    # Defaulted so results stored before the stage existed load unchanged;
+    # ``llm_phrase_screening`` stays required until the cutover retires it.
+    llm_phrase_unit_screening: dict[int, RecordScreeningResults] = Field(
+        default_factory=dict
+    )
 
 
 class ConceptExtractionStats(LLMPhraseExtractionStats):
@@ -139,6 +150,31 @@ class ConceptExtractionStats(LLMPhraseExtractionStats):
     brute_search: set[str]  # regex search survivors
     llm_phrase_initial_grounding: InitialGroundingStats
     llm_phrase_recursive_grounding: IterativeGroundingResult
+    # --- Step 2 (2026-09-21), additive beside the blocks above until the
+    # cutover retires them; every field defaulted so stored results load. ---
+    # The ONE grounding call (design draft §3): ``in_vocab`` = the vocabulary
+    # labels it matched per record, each tag carrying the record's quote as its
+    # evidence rule; ``out_of_vocab`` = the proposals — from the same call, and
+    # from the proposal pass when it ran. The two-bucket type is reused because
+    # the buckets mean the same thing; only the number of requests changed.
+    llm_phrase_grounding: Optional[InitialGroundingStats] = None
+    # The proposal pass's own trail (run flag; §54.2): the records the grounding
+    # call left with no label, read again — matched after all, proposed, or
+    # confirmed as nothing — so the census can tell which call produced what.
+    llm_phrase_proposal: dict[int, RecordGroundingResults] = Field(
+        default_factory=dict
+    )
+    # Descent in depth waves (§6.3): depth → the screening verdicts of that
+    # wave's group (descent-reached pairs ∪ direct matches at that depth); the
+    # groups themselves stay in ``llm_phrase_recursive_grounding``'s type.
+    llm_phrase_descent_screening: dict[int, RecordScreeningResults] = Field(
+        default_factory=dict
+    )
+    # The leaf step (§6.5): accepted leaf label → per-record proposals kept
+    # aside (the dump's copy of what ``VocabularyCandidate`` stores).
+    llm_phrase_leaf_step: dict[str, RecordGroundingResults] = Field(
+        default_factory=dict
+    )
 
 
 class KeywordExtractionStats(LLMPhraseExtractionStats):
@@ -160,6 +196,12 @@ class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
     # carry None and no node reads it.
     llm_phrase_relationship: Optional[BatchedRelationshipNodeMetadata] = None
     llm_phrase_relationship_screening: BatchedScreeningNodeMetadata
+    # Step 2 unit screening (2026-09-21): units of one label and the records
+    # grounding matched on, ≤ ``max_pairs_per_request`` DISTINCT records per
+    # request (D8). Optional beside the stage it replaces until the cutover;
+    # the factory sets it for a Step 2 run and the prefill staleness check
+    # turns None-vs-set into the standard re-defer.
+    llm_phrase_unit_screening: Optional[BatchedScreeningNodeMetadata] = None
     # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the aggregation fold's identity
     # (which since 2026-09-03 also carries the snippet-radius clip dial — the
     # mention-collection LLM stage and its metadata were retired when the
@@ -181,6 +223,17 @@ class ConceptExtractionMetadata(LLMPhraseExtractionMetadata):
     # both load.
     llm_phrase_oov_grounding: Optional[BatchedInitialGroundingNodeMetadata] = None
     llm_phrase_recursive_grounding: ExtractionNodeMetadata
+    # --- Step 2 (2026-09-21), additive until the cutover retires the three
+    # above. Same Optional-for-loading, set-by-the-factory contract. ---
+    # The one grounding call (initial + OOV merged, D5): the group cap decides
+    # which records share a request, as before.
+    llm_phrase_grounding: Optional[BatchedInitialGroundingNodeMetadata] = None
+    # The proposal pass for records the call left with no label; None = the
+    # pass is OFF for this run (the run flag, the same convention as
+    # ``llm_phrase_oov_grounding``).
+    llm_phrase_proposal: Optional[BatchedInitialGroundingNodeMetadata] = None
+    # Descent in depth waves, with the leaf-step flag.
+    llm_phrase_descent: Optional[DescentNodeMetadata] = None
 
 
 class KeywordExtractionMetadata(LLMPhraseExtractionMetadata):

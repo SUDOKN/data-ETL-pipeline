@@ -1,0 +1,64 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": [
+      "subject_unique_id",
+      "field_name",
+      "run_timestamp",
+      "ontology_version_id",
+      "parent_label",
+      "label",
+      "created_at"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "subject_unique_id": {
+        "bsonType": "string"
+      },
+      "field_name": {
+        "bsonType": "string"
+      },
+      "run_timestamp": {
+        "bsonType": "date"
+      },
+      "ontology_version_id": {
+        "bsonType": "string"
+      },
+      "parent_label": {
+        "bsonType": "string"
+      },
+      "label": {
+        "bsonType": "string"
+      },
+      "records": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "object",
+          "required": [
+            "record_id",
+            "focal_form",
+            "quote"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "record_id": {
+              "bsonType": "string"
+            },
+            "focal_form": {
+              "bsonType": "string"
+            },
+            "quote": {
+              "bsonType": "string"
+            }
+          }
+        }
+      },
+      "created_at": {
+        "bsonType": "date"
+      }
+    }
+  }
+}
