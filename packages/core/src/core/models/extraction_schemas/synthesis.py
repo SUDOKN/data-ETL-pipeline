@@ -41,9 +41,8 @@ the same way every time.
 
 REQUEST AND RESPONSE SHAPES
 ---------------------------
-Request: the chunk text, then the two-block pattern — ``<<<RECORD_IDS`` as a
-bare array, then ``<<<RECORDS`` as an ARRAY of ``{record_id, focal_form,
-snippets}`` (array, not map, by user decision; rendered by
+Request: the chunk text, then ``<<<RECORDS`` as an ARRAY of ``{record_id, focal_form,
+snippets}`` (the bare id list that once preceded it was dropped 2026-09-22) (array, not map, by user decision; rendered by
 ``render_synthesis_record_blocks``). Response: an array mirroring the request,
 ``{"syntheses": [{record_id, synthesis}]}`` — arrays because the response
 format is OpenAI strict mode, which cannot express an object keyed by ids, and

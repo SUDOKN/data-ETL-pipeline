@@ -162,12 +162,12 @@ def test_every_proposal_becomes_a_candidate_with_its_verdict_sources_and_quotes(
     grounding_proposals = {"r7": RecordGroundingEntry(tags={"Cerakote Coating": _rules("Cerakote finishes")})}
     candidates = {c.label: c for c in vocabulary_candidates_from(
         trail=_trail(), group_records=records, grounding_proposals=[grounding_proposals],
-        subject_unique_id="acme", field_name="process_caps", run_timestamp=T0, ontology_version_id="ont-1", created_at=T0,
+        subject_unique_id="acme", field_name="process_caps", chunk_bounds="0:400", run_timestamp=T0, ontology_version_id="ont-1", created_at=T0,
     )}
     assert set(candidates) == {"Ceramic Coating", "Cerakote Coating", "Fastened Assembly"}
     ceramic = candidates["Ceramic Coating"]
     assert (ceramic.parent_label, ceramic.sources, ceramic.accepted, ceramic.failed_rule) == ("Coating", ["descent:Coating"], True, None)
-    assert [(e.record_id, e.focal_form, e.quote) for e in ceramic.records] == [("r7", "Cerakote", "Cerakote ceramic")]
+    assert [(e.chunk_bounds, e.record_id, e.focal_form, e.quote) for e in ceramic.records] == [("0:400", "r7", "Cerakote", "Cerakote ceramic")]
     cerakote = candidates["Cerakote Coating"]
     assert (cerakote.parent_label, cerakote.accepted, cerakote.failed_rule) == ("", False, "SCR-1")
     assert cerakote.records[0].quote == "Cerakote finishes"
@@ -180,7 +180,7 @@ def test_a_candidate_encodes_for_bson_without_an_id():
     record = GroupRecord(focal_form="assembly", synthesis="s")
     [candidate] = vocabulary_candidates_from(
         trail=_trail(), group_records={"r5": record}, grounding_proposals=[],
-        subject_unique_id="acme", field_name="process_caps", run_timestamp=T0, ontology_version_id="ont-1", created_at=T0,
+        subject_unique_id="acme", field_name="process_caps", chunk_bounds="0:400", run_timestamp=T0, ontology_version_id="ont-1", created_at=T0,
     )[2:]
     document = encode_vocabulary_candidate(candidate)
     assert "_id" not in document and "id" not in document

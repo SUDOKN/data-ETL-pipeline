@@ -41,9 +41,9 @@ def _message(records: list[dict]) -> str:
     )
 
 
-def test_both_blocks_render_ids_first_from_one_list():
+def test_the_records_array_alone_names_the_sent_ids_in_order():
     rendered = render_synthesis_record_blocks(NASTY_DICTS)
-    assert rendered.index("<<<RECORD_IDS") < rendered.index("<<<RECORDS\n")
+    assert "RECORD_IDS" not in rendered and rendered.count("<<<RECORDS\n") == 1
     assert sent_record_ids_from_user_message(rendered) == ["g4k9x2m", "g0aaaaa"]
 
 
@@ -180,18 +180,6 @@ def test_record_id_hold_over_array_payload_raises_on_unknown_and_honours_policy(
         where="t", on_missing="drop",
     )
     assert thinned == {"g4k9x2m": "x"}
-
-
-def test_hold_detects_a_drifted_array_request():
-    """The two blocks are rendered from one list; a request whose ids block and
-    records array disagree was not built by the renderer."""
-    ids_block = "<<<RECORD_IDS\n[\"g1\", \"g2\"]\nRECORD_IDS>>>"
-    records_block = '<<<RECORDS\n[{"record_id":"g1","entries":[]}]\nRECORDS>>>'
-    with pytest.raises(ValueError, match="disagree"):
-        hold_response_to_sent_record_ids(
-            user_message=f"{ids_block}\n\n{records_block}",
-            response_by_record_id={"g1": "x"}, where="t", on_missing="drop",
-        )
 
 
 def test_snippets_are_bare_strings_on_the_wire():

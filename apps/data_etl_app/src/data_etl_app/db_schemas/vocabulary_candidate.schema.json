@@ -38,12 +38,16 @@
         "items": {
           "bsonType": "object",
           "required": [
+            "chunk_bounds",
             "record_id",
             "focal_form",
             "quote"
           ],
           "additionalProperties": false,
           "properties": {
+            "chunk_bounds": {
+              "bsonType": "string"
+            },
             "record_id": {
               "bsonType": "string"
             },

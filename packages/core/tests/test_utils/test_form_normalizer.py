@@ -16,12 +16,8 @@ from hypothesis import strategies as st
 
 from core.utils import form_normalizer
 from core.utils.form_normalizer import (
-    GroupIdCollisionError,
     NORMALIZER_VERSION,
     NormalizerEnvironmentError,
-    assign_group_ids,
-    group_id_for_form,
-    group_id_for_key,
     is_code_token,
     l0_tokens,
     normalize,
@@ -342,36 +338,6 @@ def test_all_lowercase_and_all_uppercase_spellings_share_a_key(form):
     """Casing is only a signal for camel-cased and capitalized-OOV tokens; a
     plain lowercase form and its shouted twin must land in one key."""
     assert normalize(form) == normalize(form.upper())
-
-
-# ---------------------------------------------------------------------------
-# group_id
-# ---------------------------------------------------------------------------
-
-_GID = re.compile(r"^g[0-9a-z]{7}$")
-
-
-def test_group_id_shape_determinism_and_derivation():
-    gid = group_id_for_key("fire rated")
-    assert _GID.match(gid)
-    assert gid == group_id_for_key("fire rated") == group_id_for_form("Fire-Rated")
-    assert group_id_for_key("fire rated") != group_id_for_key("fire rating")
-
-
-def test_group_ids_are_not_record_ids():
-    from core.utils.record_id_util import record_id_for_phrase
-    # Same hash space, different prefix — the two keys can never be confused
-    # even when a form is already normalized.
-    assert group_id_for_key("aluminum")[0] == "g"
-    assert record_id_for_phrase("aluminum")[0] == "r"
-
-
-def test_assign_group_ids_orders_dedupes_and_detects_collisions(monkeypatch):
-    ids = assign_group_ids(["b", "a", "b"])
-    assert list(ids) == ["b", "a"]
-    monkeypatch.setattr(form_normalizer, "group_id_for_key", lambda key: "g0000000")
-    with pytest.raises(GroupIdCollisionError):
-        assign_group_ids(["x", "y"])
 
 
 # ---------------------------------------------------------------------------

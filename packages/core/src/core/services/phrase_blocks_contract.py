@@ -43,7 +43,7 @@ hold. ``SENT_PHRASES`` was precise about the invariant enforced below and meant
 nothing to the model reading it; internal precision lives in the Python names
 here instead, where "sent" is exact and never reaches the wire.
 
-Dummy requests carry both blocks, empty. An absent block is therefore always a
+Dummy requests carry the records block, empty. An absent block is therefore always a
 malformed request rather than a request that asked nothing -- until 2026-08-12
 dummies omitted the phrases block, so ``sent_phrases_from_user_message`` returned
 None for them and validation was skipped rather than passing trivially.
@@ -364,28 +364,18 @@ def hold_response_to_sent_phrases(
 # are exactly the ones json.dumps wrote, and none of them can begin with a
 # fence token.
 
-RECORD_IDS_OPEN = "<<<RECORD_IDS"
-RECORD_IDS_CLOSE = "RECORD_IDS>>>"
 RECORDS_OPEN = "<<<RECORDS"
 RECORDS_CLOSE = "RECORDS>>>"
 
-_RECORD_IDS_RE = re.compile(
-    rf"^[ \t]*{re.escape(RECORD_IDS_OPEN)}\n(\[[^\n]*\])\n[ \t]*{re.escape(RECORD_IDS_CLOSE)}$",
-    re.MULTILINE,
-)
-# Lazy across lines: the payload spans one line per top-level record. `<<<RECORDS`
-# is not a prefix of `<<<RECORD_IDS` (nor the reverse: the 10th character differs,
-# `_` vs newline), so neither reader can take the other's fence.
+# Lazy across lines: the payload spans one line per top-level record. The
+# separate id-list block that once preceded this one was dropped on
+# 2026-09-22 (user experiment): with records named by position in words,
+# the records block alone names what was asked, and the readers below take
+# the sent ids from its keys (or its entries' ``record_id``).
 _RECORDS_RE = re.compile(
     rf"^[ \t]*{re.escape(RECORDS_OPEN)}\n(.*?)\n[ \t]*{re.escape(RECORDS_CLOSE)}$",
     re.MULTILINE | re.DOTALL,
 )
-
-
-def render_record_ids_block(record_ids: Iterable[str]) -> str:
-    """The block naming which records the model is being asked about."""
-    payload = json.dumps(list(record_ids), ensure_ascii=False)
-    return f"{RECORD_IDS_OPEN}\n{payload}\n{RECORD_IDS_CLOSE}"
 
 
 def render_records_block(records: dict) -> str:
@@ -400,8 +390,8 @@ def render_records_block(records: dict) -> str:
 
 
 def render_record_blocks(records: dict) -> str:
-    """Both blocks, ids first, from the one map they both describe."""
-    return f"{render_record_ids_block(records)}\n\n{render_records_block(records)}"
+    """The records block — the one block a record-keyed request carries."""
+    return render_records_block(records)
 
 
 def _one_fenced_payload(
@@ -419,9 +409,14 @@ def _one_fenced_payload(
 
 
 def sent_record_ids_from_user_message(user_message: str) -> Optional[list[str]]:
-    """The record ids this request asked about, or None when it carried no block."""
-    payload = _one_fenced_payload(_RECORD_IDS_RE, user_message, "record-ids")
-    return None if payload is None else json.loads(payload)
+    """The record ids this request asked about, in the order the records block
+    lists them, or None when it carried no block."""
+    sent = sent_records_from_user_message(user_message)
+    if sent is None:
+        return None
+    if isinstance(sent, dict):
+        return list(sent)
+    return [entry["record_id"] for entry in sent]
 
 
 def sent_records_from_user_message(user_message: str) -> Optional[dict | list]:
@@ -463,8 +458,7 @@ def hold_response_to_sent_record_ids(
     of ``on_missing`` — for phrases an extra key is echo drift and gets dropped,
     but an id nobody sent is a fabricated answer and dropping it would hide the
     fabrication. Missing ids raise or thin per the caller's policy, mirroring
-    the phrase hold. Also raises when the request's own two blocks disagree,
-    which means the request was not built by ``render_record_blocks``.
+    the phrase hold.
     """
     sent_ids = sent_record_ids_from_user_message(user_message)
     if sent_ids is None:
@@ -475,19 +469,11 @@ def hold_response_to_sent_record_ids(
         # stage with nothing in the log to show for it. This line firing means
         # the contract is broken, not the response (added 2026-08-27).
         logger.warning(
-            f"{where}: request carries no sent-record-ids block; the record hold is "
+            f"{where}: request carries no records block; the record hold is "
             f"SKIPPED and {len(response_by_record_id)} response id(s) pass through "
             f"unvalidated"
         )
         return response_by_record_id
-
-    sent_records = sent_records_from_user_message(user_message)
-    if sent_records is not None and _record_ids_of(sent_records) != set(sent_ids):
-        raise ValueError(
-            f"{where}: the request's record-ids block and records block disagree "
-            f"({sorted(set(sent_ids) ^ _record_ids_of(sent_records))}); requests are built "
-            f"from one map, so this request is malformed"
-        )
 
     unknown = [rid for rid in response_by_record_id if rid not in set(sent_ids)]
     if unknown:
@@ -536,15 +522,15 @@ def render_records_array_block(records: list[dict]) -> str:
 
 
 def render_synthesis_record_blocks(records: list[dict]) -> str:
-    """Both synthesis blocks, ids first, from the one list they both describe.
+    """The synthesis records block (the id list that once preceded it was
+    dropped 2026-09-22; the array's ``record_id`` entries name what was asked).
 
     ``records`` is a list of ``{"record_id": ..., "snippets": [...]}`` dicts (the
-    ``model_dump()`` of ``SynthesisRecordInput``); the ids block is derived from
-    the same list so the two blocks cannot drift. Raises on a duplicate id —
+    ``model_dump()`` of ``SynthesisRecordInput``). Raises on a duplicate id —
     two records under one id would fuse at the hold.
     """
     ids = [record["record_id"] for record in records]
     if len(set(ids)) != len(ids):
         dupes = sorted({rid for rid in ids if ids.count(rid) > 1})
         raise ValueError(f"duplicate record_id(s) in synthesis request: {dupes}")
-    return f"{render_record_ids_block(ids)}\n\n{render_records_array_block(records)}"
+    return render_records_array_block(records)

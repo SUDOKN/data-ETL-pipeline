@@ -27,7 +27,7 @@ from core.utils.aggregation_fold import (
     fold_window,
 )
 from core.utils.floor_scan import EXCLUDED_PAGE_MARKER, floor_scan, omit_excluded_pages
-from core.utils.form_normalizer import NORMALIZER_VERSION, group_id_for_key, normalize
+from core.utils.form_normalizer import NORMALIZER_VERSION, normalize
 from core.utils.record_id_util import (
     MENTION_ID_PREFIX,
     MentionIdCollisionError,
@@ -148,7 +148,11 @@ def test_golden_bundles_keys_forms_and_order():
     ]
     by_key = {b.key: b for b in result.bundles}
     assert by_key["aluminum"].forms == ("Aluminum", "aluminum")
-    assert by_key["aluminum"].group_id == group_id_for_key("aluminum")
+    # group ids are the bundles' positions in words (2026-09-22), empties last
+    assert [b.group_id for b in result.bundles] == [
+        "record-one", "record-two", "record-three", "record-four", "record-five", "record-six",
+    ]
+    assert by_key["aluminum"].group_id == "record-one" and by_key["die casting"].group_id == "record-six"
     # `lead time` is no longer swallowed — it holds the mention nested in
     # "Sample Lead Time" (D8 reversed); only a form occurring NOWHERE is empty.
     assert by_key["lead time"].status == BUNDLE_STATUS_OK
@@ -180,7 +184,7 @@ def test_golden_synthesis_snippets_are_distinct_and_skip_empty_bundles():
     records = result.synthesis_records()
     assert [r.record_id for r in records] == [b.group_id for b in result.bundles if not b.is_empty]
     rendered = render_synthesis_record_blocks([r.model_dump() for r in records])
-    assert "<<<RECORD_IDS" in rendered and INTRO in rendered and "die casting" not in rendered
+    assert "<<<RECORDS" in rendered and "RECORD_IDS" not in rendered and INTRO in rendered and "die casting" not in rendered
 
 
 def test_synthesis_snippets_dedupe_repeated_lines_across_windows():

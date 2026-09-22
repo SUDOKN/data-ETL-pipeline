@@ -254,7 +254,7 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
             candidates.extend(vocabulary_candidates_from(
                 trail=trail, group_records=group_records,
                 grounding_proposals=[grounding_proposals, pass_proposals],
-                subject_unique_id=subject.subject_unique_id, field_name=self.field_type.name,
+                subject_unique_id=subject.subject_unique_id, field_name=self.field_type.name, chunk_bounds=chunk_bounds,
                 run_timestamp=timestamp, ontology_version_id=metadata.ontology_version_id, created_at=timestamp,
             ))
 

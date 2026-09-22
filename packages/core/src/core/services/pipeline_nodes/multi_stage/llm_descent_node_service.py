@@ -536,6 +536,7 @@ def vocabulary_candidates_from(
     grounding_proposals: Sequence[RecordGroundingResults],
     subject_unique_id: str,
     field_name: str,
+    chunk_bounds: str,
     run_timestamp: datetime,
     ontology_version_id: str,
     created_at: datetime,
@@ -557,7 +558,7 @@ def vocabulary_candidates_from(
             subject_unique_id=subject_unique_id, field_name=field_name, run_timestamp=run_timestamp,
             ontology_version_id=ontology_version_id, parent_label=parents[0] if parents else "", label=label,
             records=[
-                CandidateEvidence(record_id=rid, focal_form=group_records[rid].focal_form if rid in group_records else "", quote=quotes.get(label, {}).get(rid, ""))
+                CandidateEvidence(chunk_bounds=chunk_bounds, record_id=rid, focal_form=group_records[rid].focal_form if rid in group_records else "", quote=quotes.get(label, {}).get(rid, ""))
                 for rid in record_ids
             ],
             sources=list(sources), accepted=accepted, failed_rule=failed_rule, created_at=created_at,

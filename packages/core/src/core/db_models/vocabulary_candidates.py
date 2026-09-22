@@ -26,6 +26,9 @@ from pydantic import BaseModel, Field
 
 
 class CandidateEvidence(BaseModel):
+    # Records are named by position within their chunk (2026-09-22), so the
+    # chunk is part of the record's identity here.
+    chunk_bounds: str
     record_id: str
     # The record's subject as the site names it, and the words of that record
     # the model quoted for the proposal — the same evidence test grounding

@@ -61,7 +61,6 @@ regrouping silently.
 
 from __future__ import annotations
 
-import hashlib
 import re
 import unicodedata
 from typing import Iterable
@@ -207,53 +206,6 @@ def normalize(form: str, *, verb_fold: bool = False) -> str:
     return " ".join(_normalize_token(token, verb_fold=verb_fold) for token in l0_tokens(form))
 
 
-# --- the id -------------------------------------------------------------------
-
-GROUP_ID_PREFIX = "g"
-GROUP_ID_BODY_LENGTH = 7
-_BASE36 = "0123456789abcdefghijklmnopqrstuvwxyz"
-_ID_SPACE = 36**GROUP_ID_BODY_LENGTH
-
-
-def group_id_for_key(normalized_key: str) -> str:
-    """``g`` + 7 base36 characters of the key's sha256 — the downstream wire
-    key for everything after aggregation (D11). Same construction and
-    rationale as ``record_id_util.record_id_for_phrase``: content-derived, so
-    stable across chunks and runs; random-looking, so a mangled id matches
-    nothing rather than a neighbour."""
-    digest = hashlib.sha256(normalized_key.encode("utf-8")).digest()
-    n = int.from_bytes(digest, "big") % _ID_SPACE
-    chars = []
-    for _ in range(GROUP_ID_BODY_LENGTH):
-        n, rem = divmod(n, 36)
-        chars.append(_BASE36[rem])
-    return GROUP_ID_PREFIX + "".join(reversed(chars))
-
-
-def group_id_for_form(form: str, *, verb_fold: bool = False) -> str:
-    return group_id_for_key(normalize(form, verb_fold=verb_fold))
-
-
-class GroupIdCollisionError(ValueError):
-    """Two distinct keys hashed to one group id — deterministic, so raise
-    ``GROUP_ID_BODY_LENGTH`` rather than retry."""
-
-
-def assign_group_ids(normalized_keys: Iterable[str]) -> dict[str, str]:
-    """``key -> group_id`` over *normalized_keys*, insertion-ordered, raising on
-    a collision between two distinct keys."""
-    ids: dict[str, str] = {}
-    key_by_id: dict[str, str] = {}
-    for key in normalized_keys:
-        if key in ids:
-            continue
-        gid = group_id_for_key(key)
-        clashing = key_by_id.get(gid)
-        if clashing is not None and clashing != key:
-            raise GroupIdCollisionError(
-                f"group id {gid!r} is shared by two distinct keys: {clashing!r} and "
-                f"{key!r}; raise GROUP_ID_BODY_LENGTH."
-            )
-        ids[key] = gid
-        key_by_id[gid] = key
-    return ids
+# The group id — once ``g`` + 7 base36 characters of the key's sha256 (D11) —
+# is minted by the fold since 2026-09-22 as the bundle's position in the
+# chunk, in words (``core.utils.record_names``); nothing here mints ids.

@@ -96,22 +96,6 @@ def render_units_block(units: Sequence[Mapping[str, Any]]) -> str:
     return f"{UNITS_OPEN}\n[\n{lines}\n]\n{UNITS_CLOSE}"
 
 
-def _one_edit_apart(a: str, b: str) -> bool:
-    """One character inserted, deleted or substituted — the slips a model
-    makes copying an 8-character id."""
-    if a == b:
-        return False
-    if len(a) == len(b):
-        return sum(x != y for x, y in zip(a, b)) == 1
-    if abs(len(a) - len(b)) != 1:
-        return False
-    longer, shorter = (a, b) if len(a) > len(b) else (b, a)
-    for i in range(len(longer)):
-        if longer[:i] + longer[i + 1:] == shorter:
-            return True
-    return False
-
-
 def parse_unit_screening_result(
     gpt_response: Optional[str],
     *,
@@ -129,9 +113,9 @@ def parse_unit_screening_result(
 
     - a unit never sent is ignored; a unit answered twice keeps its first
       answer; both logged;
-    - an answered id that is not one of the unit's records is REPAIRED to the
-      one sent record it differs from by a single character when that record
-      is otherwise unanswered, else dropped — logged either way;
+    - an answer under a name that is not one of the unit's records is
+      dropped and logged (names are positions in words, 2026-09-22, so a slip
+      is a different word and nothing can be repaired);
     - a record in both lists reads as not accepted (the guard side wins);
     - a sent record left unanswered gets NO verdict — it reads as "screening
       dropped" downstream and never ships — logged; there is no under-answer
@@ -167,20 +151,14 @@ def parse_unit_screening_result(
             continue
         seen.add(key)
         option, sent_ids = expected[key]
-        # the record axis: repair a one-character slip, drop anything else
-        answered_ids = [r.record_id for r in unit.accepted] + [r.record_id for r in unit.not_accepted]
-        repaired: dict[str, str] = {}
-        for rid in answered_ids:
-            if rid in sent_ids or rid in repaired:
-                continue
-            candidates = [s for s in sent_ids if s not in answered_ids and _one_edit_apart(rid, s)]
-            if len(candidates) == 1:
-                repaired[rid] = candidates[0]
-                logger.warning(f"unit screening: unit {option!r}: record id {rid!r} repaired to {candidates[0]!r} (one character off)")
-            else:
-                logger.warning(f"unit screening: unit {option!r}: record id {rid!r} is not one of the unit's records; that answer is dropped")
+        # the record axis: an answer under a name that is not one of the
+        # unit's records is dropped (records are named by position in words,
+        # 2026-09-22, so a slip is a whole different word — nothing to repair)
+        for rid in {r.record_id for r in unit.accepted} | {r.record_id for r in unit.not_accepted}:
+            if rid not in sent_ids:
+                logger.warning(f"unit screening: unit {option!r}: record {rid!r} is not one of the unit's records; that answer is dropped")
         def resolve(rid: str) -> Optional[str]:
-            return rid if rid in sent_ids else repaired.get(rid)
+            return rid if rid in sent_ids else None
         rejected_ids = {resolve(r.record_id) for r in unit.not_accepted} - {None}
         for r in unit.accepted:
             rid = resolve(r.record_id)

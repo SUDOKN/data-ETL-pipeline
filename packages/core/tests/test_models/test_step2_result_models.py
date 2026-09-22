@@ -127,7 +127,7 @@ def test_vocabulary_candidate_is_a_registered_document() -> None:
         ontology_version_id="ov1",
         parent_label="CNC Machining",
         label="5-axis CNC Machining",
-        records=[CandidateEvidence(record_id="r1", focal_form="5-axis machining", quote="5-axis machining of housings")],
+        records=[CandidateEvidence(chunk_bounds="0:400", record_id="r1", focal_form="5-axis machining", quote="5-axis machining of housings")],
         created_at=datetime(2026, 9, 21, tzinfo=timezone.utc),
     )
     assert doc.records[0].quote.startswith("5-axis")

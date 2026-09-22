@@ -137,7 +137,8 @@ from core.utils.floor_scan import (
     is_page_barrier_line,
     page_at,
 )
-from core.utils.form_normalizer import NORMALIZER_VERSION, assign_group_ids, normalize
+from core.utils.form_normalizer import NORMALIZER_VERSION, normalize
+from core.utils.record_names import record_name
 from core.utils.record_id_util import (
     MentionIdCollisionError,
     mention_id_for_snippet,
@@ -846,8 +847,12 @@ def fold_document(
     per-window fact; so is *collapse_compounds*, which decides which groups
     reach synthesis at all.
 
-    Raises ``GroupIdCollisionError`` (from ``assign_group_ids``) should two
-    distinct keys ever hash to one id.
+    Group ids are RECORD NAMES (2026-09-22, user decision): the bundle's
+    1-based position in the chunk, in words (``record-one`` …), assigned
+    after the final ordering below — filled bundles in first-mention order,
+    then the empty ones by key — so the same text under the same fold rules
+    always yields the same names, and a request carrying records fifty-one
+    to seventy-five names them exactly so.
     """
     folds = [
         fold_window(w, window_index=i, snippet_radius=snippet_radius)
@@ -859,7 +864,8 @@ def fold_document(
         for form in list(fold.collection.sent_forms) + fold.collection.collected_forms:
             if form not in key_of:
                 key_of[form] = normalize(form, verb_fold=verb_fold)
-    group_ids = assign_group_ids(key_of.values())
+    # a provisional id per key (the key itself) until the final order is known
+    group_ids = {key: key for key in key_of.values()}
 
     forms_by_key: dict[str, set[str]] = defaultdict(set)
     for form, key in key_of.items():
@@ -895,8 +901,18 @@ def fold_document(
         key=lambda b: (b.mentions[0].window_index, b.mentions[0].start, b.mentions[0].end, b.key),
     )
     empty = sorted((b for b in bundles if b.is_empty), key=lambda b: b.key)
+    ordered = filled + empty
+    name_of = {b.group_id: record_name(i) for i, b in enumerate(ordered, start=1)}
+    named = [
+        replace(
+            b,
+            group_id=name_of[b.group_id],
+            collapsed_into=tuple(name_of[g] for g in b.collapsed_into),
+        )
+        for b in ordered
+    ]
     return FoldResult(
-        bundles=filled + empty,
+        bundles=named,
         windows=folds,
         verb_fold=verb_fold,
         snippet_radius=snippet_radius,

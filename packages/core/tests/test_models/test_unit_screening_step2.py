@@ -278,13 +278,12 @@ def test_a_paraphrased_quote_keeps_the_verdict_and_is_marked_unverified():
     assert parse_unit_screening_result(verbatim, catalog=catalog, units=units, sent_records=sent)["gaaaaaa1"]["Joining"].quote_verified is True
 
 
-def test_record_axis_slips_are_repaired_or_dropped_never_fatal():
-    """2026-09-22, the second Step 2 run: a one-character slip in a record id
-    (``g5877cn2c`` for ``g587cn2c``) failed a whole request and killed the
-    subject. A slip is repaired when exactly one unanswered sent record is
-    one edit away; an id that matches nothing is dropped; a sent record left
-    unanswered gets no verdict; a record in both lists reads as not accepted;
-    a unit never sent is ignored — all logged, none fatal."""
+def test_record_axis_slips_are_dropped_never_fatal():
+    """2026-09-22, the second Step 2 run: a slip in a record id failed a whole
+    request and killed the subject. An id that matches no sent record is
+    dropped; a sent record left unanswered gets no verdict; a record in both
+    lists reads as not accepted; a unit never sent is ignored — all logged,
+    none fatal."""
     from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
         parse_unit_screening_result,
     )
@@ -298,7 +297,7 @@ def test_record_axis_slips_are_repaired_or_dropped_never_fatal():
         _unit("Never Sent", accepted=[("gaaaaaa1", "named", "x")]),
     )
     result = parse_unit_screening_result(response, catalog=catalog, units=units, sent_records=sent)
-    assert result["gaaaaaa1"]["Joining"].passed is True  # repaired from the extra-character id
+    assert "gaaaaaa1" not in result  # the slipped name matches no sent record: dropped, no verdict
     assert result["gaaaaaa3"]["Joining"].passed is False  # in both lists: not accepted
     assert "gaaaaaa2" not in result  # unanswered: no verdict
     assert "gaaaaaa4" not in result and "zzzzzzzz" not in result and not any("Never Sent" in v for v in result.values())
