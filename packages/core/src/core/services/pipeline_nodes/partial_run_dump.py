@@ -65,7 +65,17 @@ _GROUNDING_STAGE_ROW_KEYS = {
     PipelineStage.initial_grounding: "in_vocab_grounding",
     PipelineStage.oov_grounding: "oov_grounding",
     PipelineStage.freehand_grounding: "freehand_grounding",
+    # Step 2 (2026-09-22): the one grounding call and the proposal pass. The
+    # descent stage is the new "everything but reconcile" exception: its trail
+    # needs the vocabulary in hand (node instance, not class), so a run
+    # stopped after it reports the stage in the header without row detail.
+    PipelineStage.grounding: "grounding",
+    PipelineStage.proposal: "proposal_pass",
 }
+# Either screening flavour dumps under the one ``screening`` row key: the
+# retired per-record stage, or Step 2's unit screening (the keyword fields'
+# one wave; the concept fields' waves are issued under the descent node).
+_SCREENING_STAGES = (PipelineStage.screening, PipelineStage.unit_screening)
 
 
 class _HasChunkedRequestMap(Protocol):
@@ -198,8 +208,9 @@ async def write_partial_run_dump(
                 )
 
             screening_flat: Optional[RecordScreeningResults] = None
-            if PipelineStage.screening in completed_by_stage:
-                node_class, request_map = completed_by_stage[PipelineStage.screening]
+            screening_stage = next((s for s in _SCREENING_STAGES if s in completed_by_stage), None)
+            if screening_stage is not None:
+                node_class, request_map = completed_by_stage[screening_stage]
                 screening_flat = await node_class.get_result(
                     subject_unique_id=subject_unique_id,
                     field_type=field_type,

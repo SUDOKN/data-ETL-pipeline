@@ -760,6 +760,11 @@ _MENTION_COLLECTION_FIELD = "llm_phrase_mention_req_ids"
 # v3: per sub-window -> that sub-window's mention-location RETRY requests (the
 # under-answer pass; absent when no window needed one)
 _MENTION_RETRY_FIELD = "llm_phrase_mention_retry_req_ids"
+# Step 2 (2026-09-22): wave → that wave's unit-screening requests (key 0 =
+# the proposal wave), and wave → the descent requests issued after it (each
+# naming its parent and whether it is the leaf step).
+_UNIT_SCREENING_FIELD = "llm_phrase_unit_screening_req_ids"
+_DESCENT_REQS_FIELD = "llm_phrase_descent_reqs"
 # The single-stage bundle's one request field. It predates the ``_req_id``
 # naming convention the suffix sweep below reads, and renaming it would break
 # loading every persisted deferred document, so it is special-cased instead.
@@ -938,6 +943,28 @@ def build_chunk_requests(
                     ]
                     for sub_bounds, round_req_ids in sorted(recursive_rounds.items())
                 }
+            continue
+        if field_name == _UNIT_SCREENING_FIELD:
+            by_wave = getattr(bundle, field_name, None)
+            if by_wave and any(by_wave.values()):
+                requests["llm_phrase_unit_screening"] = {
+                    wave: [_request_entry(request_id, completed_requests) for request_id in wave_ids]
+                    for wave, wave_ids in sorted(by_wave.items())
+                    if wave_ids
+                }
+            continue
+        if field_name == _DESCENT_REQS_FIELD:
+            by_wave = getattr(bundle, field_name, None)
+            if by_wave and any(by_wave.values()):
+                descents: dict[int, list[dict[str, object]]] = {}
+                for wave, reqs in sorted(by_wave.items()):
+                    for req in reqs:
+                        entry = _request_entry(req.req_id, completed_requests)
+                        entry["parent"] = req.parent
+                        entry["leaf_step"] = bool(req.leaf)
+                        descents.setdefault(wave, []).append(entry)
+                if descents:
+                    requests["llm_phrase_descent"] = descents
             continue
         if field_name == _SINGLE_STAGE_REQUEST_FIELD:
             request_id = getattr(bundle, field_name, None)

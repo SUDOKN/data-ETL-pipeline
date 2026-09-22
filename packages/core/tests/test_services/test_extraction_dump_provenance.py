@@ -19,6 +19,9 @@ from enum import Enum
 from core.models.deferred_extraction.deferred_concept_extraction import (
     IterativeTaggingRequest,
 )
+from typing import Any, cast
+
+from core.models.extraction_schemas.descent import DescentRequest
 from core.utils.extraction_dump_util import (
     build_chunk_requests,
     build_run_provenance,
@@ -165,6 +168,19 @@ class _ConceptBundle:
                 level=2,
             )
         },
+    }
+
+
+class _Step2Bundle:
+    """Step 2 (2026-09-22): wave-keyed unit-screening ids (0 = the proposal
+    wave) and wave-keyed descent requests naming their parent."""
+
+    llm_phrase_search_req_ids = ["req>search>chunk>0-100"]
+    llm_phrase_grounding_req_ids = ["req>ig>0"]
+    llm_phrase_unit_screening_req_ids = {1: ["req>rel>0"], 2: [], 0: ["req>rel>1"]}
+    llm_phrase_descent_reqs = {
+        1: [DescentRequest(parent="Machining", wave=1, leaf=False, req_id="req>descend>l[1]>Machining")],
+        2: [DescentRequest(parent="Milling", wave=2, leaf=True, req_id="req>descend>l[2]>Milling")],
     }
 
 
@@ -697,3 +713,18 @@ def test_finish_reason_reaches_every_stage_entry_that_has_one():
     requests = build_chunk_requests(_ConceptBundle(), completed)
 
     assert requests["llm_phrase_initial_grounding"][0]["finish_reason"] == "length"
+
+
+def test_step2_wave_requests_are_reported_by_wave_with_their_parents():
+    requests = build_chunk_requests(_Step2Bundle(), _COMPLETED)
+
+    # wave → entries; an empty wave is left out, the proposal wave is key 0
+    screens = cast(dict[int, list[dict[str, Any]]], requests["llm_phrase_unit_screening"])
+    assert {wave: _ids(entries) for wave, entries in screens.items()} == {0: ["req>rel>1"], 1: ["req>rel>0"]}
+    descents = cast(dict[int, list[dict[str, Any]]], requests["llm_phrase_descent"])
+    assert [(e["parent"], e["leaf_step"]) for e in descents[1]] == [("Machining", False)]
+    assert [(e["parent"], e["leaf_step"]) for e in descents[2]] == [("Milling", True)]
+    assert descents[2][0]["input_tokens"] == 480
+    assert _ids(cast(list, requests["llm_phrase_grounding"])) == ["req>ig>0"]
+    # the wave-keyed dicts never fall through to the flat-list sweep
+    assert "llm_phrase_unit_screening_req_ids" not in requests and "llm_phrase_descent" in requests

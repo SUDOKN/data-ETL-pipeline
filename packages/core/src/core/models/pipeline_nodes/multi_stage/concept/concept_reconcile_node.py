@@ -78,7 +78,6 @@ from core.services.pipeline_nodes.multi_stage.llm_descent_node_service import (
     accepted_proposals,
     chunk_inputs_from,
     leaf_step_view,
-    merged_screening,
     read_descent_trail,
     shipped_labels_by_record,
     split_grounding_results,
@@ -93,8 +92,11 @@ from core.services.pipeline_nodes.multi_stage.llm_phrase_synthesis_node_service 
     synthesis_max_entries_of,
 )
 from core.services.vocabulary_candidate_service import save_vocabulary_candidates
+from core.utils.descent_dump_util import (
+    build_descent_trail_dump,
+    build_step2_concept_group_rows,
+)
 from core.utils.extraction_dump_util import (
-    build_concept_group_rows,
     build_run_provenance,
     write_extraction_dump,
 )
@@ -291,26 +293,22 @@ class ConceptReconcileNode(ReconcileNode[ConceptFieldType]):
                 text_version_id=scraped_text_file.s3_version_id,
             )
 
-            # The rows: the grounding call's matches, the proposals (the call's
-            # and the pass's), and every verdict of every wave on the record.
-            # The trail is dumped whole beside them, level by level (6c renders
-            # it into the rows).
+            # The rows (per record: the call's matches, the proposal pass, the
+            # proposals, the descent LEVEL BY LEVEL, the proposal wave, what
+            # shipped) and the chunk's trail per wave — both rendered from the
+            # stored trail and the decision above (user requirement 1).
             chunked_dump_contents[chunk_bounds] = {
-                "rows": build_concept_group_rows(
+                "rows": build_step2_concept_group_rows(
                     synthesis_result=synthesis_result,
-                    in_vocab_flat=grounding_in_vocab,
-                    oov_flat=proposals_before_descent,
-                    screening_flat=merged_screening(trail),
-                    phrase_trails=[],
+                    grounding_flat=grounding_in_vocab,
+                    proposals_flat=proposals_before_descent,
+                    proposal_pass_flat=proposal_flat if proposal_pass_ran else None,
+                    trail=trail,
+                    shipped_by_record=shipped_by_record,
                     search_rounds=llm_search_results,
-                    match_label_to_concept_map=self.match_label_to_concept_map,
                     subject_name=pipeline_context.subject_name,
                 ),
-                "descent_trail": trail.model_dump(mode="json"),
-                "shipped": {
-                    "in_vocab_by_record": shipped_by_record,
-                    "out_of_vocab": sorted(out_of_vocab_labels),
-                },
+                "descent_trail": build_descent_trail_dump(trail, shipped_by_record, sorted(out_of_vocab_labels)),
                 "fold": fold_dump,
                 "synthesis": synthesis_dump,
             }
