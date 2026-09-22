@@ -1856,7 +1856,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
             "additionalProperties": false,
@@ -2427,7 +2426,10 @@
                 }
               },
               "llm_phrase_relationship_screening": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -3796,7 +3798,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
             "additionalProperties": false,
@@ -4367,7 +4368,10 @@
                 }
               },
               "llm_phrase_relationship_screening": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -5736,7 +5740,6 @@
               "ontology_version_id",
               "llm_phrase_search",
               "llm_phrase_recursive_search",
-              "llm_phrase_relationship_screening",
               "llm_phrase_freehand_grounding"
             ],
             "additionalProperties": false,
@@ -6307,7 +6310,10 @@
                 }
               },
               "llm_phrase_relationship_screening": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -7675,10 +7681,7 @@
               "chunk_strat",
               "ontology_version_id",
               "llm_phrase_search",
-              "llm_phrase_recursive_search",
-              "llm_phrase_relationship_screening",
-              "llm_phrase_initial_grounding",
-              "llm_phrase_recursive_grounding"
+              "llm_phrase_recursive_search"
             ],
             "additionalProperties": false,
             "properties": {
@@ -8248,7 +8251,10 @@
                 }
               },
               "llm_phrase_relationship_screening": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -8804,7 +8810,10 @@
                 }
               },
               "llm_phrase_initial_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -9157,7 +9166,10 @@
                 }
               },
               "llm_phrase_recursive_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -11316,10 +11328,7 @@
               "chunk_strat",
               "ontology_version_id",
               "llm_phrase_search",
-              "llm_phrase_recursive_search",
-              "llm_phrase_relationship_screening",
-              "llm_phrase_initial_grounding",
-              "llm_phrase_recursive_grounding"
+              "llm_phrase_recursive_search"
             ],
             "additionalProperties": false,
             "properties": {
@@ -11889,7 +11898,10 @@
                 }
               },
               "llm_phrase_relationship_screening": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -12445,7 +12457,10 @@
                 }
               },
               "llm_phrase_initial_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -12798,7 +12813,10 @@
                 }
               },
               "llm_phrase_recursive_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -14957,10 +14975,7 @@
               "chunk_strat",
               "ontology_version_id",
               "llm_phrase_search",
-              "llm_phrase_recursive_search",
-              "llm_phrase_relationship_screening",
-              "llm_phrase_initial_grounding",
-              "llm_phrase_recursive_grounding"
+              "llm_phrase_recursive_search"
             ],
             "additionalProperties": false,
             "properties": {
@@ -15530,7 +15545,10 @@
                 }
               },
               "llm_phrase_relationship_screening": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -16086,7 +16104,10 @@
                 }
               },
               "llm_phrase_initial_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -16439,7 +16460,10 @@
                 }
               },
               "llm_phrase_recursive_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -18598,10 +18622,7 @@
               "chunk_strat",
               "ontology_version_id",
               "llm_phrase_search",
-              "llm_phrase_recursive_search",
-              "llm_phrase_relationship_screening",
-              "llm_phrase_initial_grounding",
-              "llm_phrase_recursive_grounding"
+              "llm_phrase_recursive_search"
             ],
             "additionalProperties": false,
             "properties": {
@@ -19171,7 +19192,10 @@
                 }
               },
               "llm_phrase_relationship_screening": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -19727,7 +19751,10 @@
                 }
               },
               "llm_phrase_initial_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",
@@ -20080,7 +20107,10 @@
                 }
               },
               "llm_phrase_recursive_grounding": {
-                "bsonType": "object",
+                "bsonType": [
+                  "object",
+                  "null"
+                ],
                 "required": [
                   "llm_model",
                   "model_params",

@@ -41,21 +41,18 @@ from data_etl_app.models.pipeline_nodes import (
     ContractProductPhraseSearchNode,
     ContractProductRecursiveSearchNode,
     ContractProductSynthesisNode,
-    ContractProductRelationshipScreeningNode,
     ContractProductFreehandGroundingNode,
     ContractProductUnitScreeningNode,
     ContractProductReconcileNode,
     PureProductPhraseSearchNode,
     PureProductRecursiveSearchNode,
     PureProductSynthesisNode,
-    PureProductRelationshipScreeningNode,
     PureProductFreehandGroundingNode,
     PureProductUnitScreeningNode,
     PureProductReconcileNode,
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
     EquipmentSynthesisNode,
-    EquipmentRelationshipScreeningNode,
     EquipmentFreehandGroundingNode,
     EquipmentUnitScreeningNode,
     EquipmentReconcileNode,
@@ -66,10 +63,6 @@ from core.models.pipeline_nodes import (
     BinaryClassificationPrefillNode,
     BinaryReconcileNode,
     ConceptSynthesisNode,
-    ConceptRelationshipScreeningNode,
-    ConceptInitialGroundingNode,
-    ConceptOovGroundingNode,
-    ConceptIterativeGroundingNode,
     ConceptGroundingNode,
     ConceptProposalNode,
     ConceptDescentNode,
@@ -181,8 +174,6 @@ class ExtractionPipelineFactory:
     DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST = 25
 
     # GROUNDING (v2: the unit is RECORDS per request)
-    DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
-    DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
     DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
     # Step 2 (2026-09-22). The one grounding call and the proposal pass pack
     # RECORDS per request like the passes they replace; unit screening packs
@@ -379,15 +370,11 @@ class ExtractionPipelineFactory:
         ontology: Ontology,
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
-        phrase_relationship_screening_prompt: Prompt,
-        phrase_initial_grounding_prompt: Prompt,
-        phrase_recursive_grounding_prompt: Prompt,
         known_concepts: set[Concept],
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
-        # Step 2 (2026-09-22): the four families the chain below runs. The
-        # old four above stay as metadata until the cutover's last commit.
+        # Step 2 (2026-09-22): the four families the chain below runs.
         phrase_grounding_prompt: Prompt,
         phrase_proposal_prompt: Prompt,
         phrase_unit_screening_prompt: Prompt,
@@ -397,18 +384,12 @@ class ExtractionPipelineFactory:
         max_grounding_records_per_request: int = DEFAULT_GROUNDING_MAX_RECORDS_PER_REQUEST,
         max_proposal_records_per_request: int = DEFAULT_PROPOSAL_MAX_RECORDS_PER_REQUEST,
         max_unit_screening_records_per_request: int = DEFAULT_UNIT_SCREENING_MAX_RECORDS_PER_REQUEST,
-        # None = the OOV discovery pass is off for this run (run config carried
-        # as metadata identity, fork F6).
-        phrase_oov_grounding_prompt: Optional[Prompt] = None,
         # v3 3.2: Optional only so older construction sites still compile; the
         # chain below always needs it (create_pipelines passes it).
         phrase_synthesis_prompt: Optional[Prompt] = None,
         max_recursive_search_rounds: int = DEFAULT_RECURSIVE_SEARCH_MAX_ROUNDS,
         snippet_radius: int = DEFAULT_SNIPPET_RADIUS,
         max_synthesis_entries_per_request: int = DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST,
-        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
-        max_initial_grounding_pairs_per_request: int = DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST,
-        max_oov_grounding_pairs_per_request: int = DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST,
         search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> ConceptExtractionPrefillNode:
         synthesis_prompt = ExtractionPipelineFactory._require_synthesis_prompt(
@@ -428,37 +409,6 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_recursive_search_rounds,
             ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
-                phrase_relationship_screening_prompt,
-                llm_model,
-                model_params,
-                created_at,
-                max_screening_pairs_per_request,
-            ),
-            llm_phrase_initial_grounding_metadata=ExtractionPipelineFactory._batched_initial_grounding_metadata(
-                phrase_initial_grounding_prompt,
-                llm_model,
-                model_params,
-                created_at,
-                max_initial_grounding_pairs_per_request,
-            ),
-            llm_phrase_oov_grounding_metadata=(
-                ExtractionPipelineFactory._batched_initial_grounding_metadata(
-                    phrase_oov_grounding_prompt,
-                    llm_model,
-                    model_params,
-                    created_at,
-                    max_oov_grounding_pairs_per_request,
-                )
-                if phrase_oov_grounding_prompt is not None
-                else None
-            ),
-            llm_phrase_recursive_grounding_metadata=ExtractionPipelineFactory._metadata(
-                phrase_recursive_grounding_prompt, llm_model, model_params, created_at
-            ),
-            # v2 chain: grounding ENUMERATES first (in-vocab, then the optional
-            # OOV discovery pass), consolidated screening vets every candidate,
-            # and recursive descent deepens the survivors.
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
                 concept_type, snippet_radius
             ),
@@ -551,7 +501,6 @@ class ExtractionPipelineFactory:
         ontology_version_id: str,
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
-        phrase_relationship_screening_prompt: Prompt,
         phrase_freehand_grounding_prompt: Prompt,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
@@ -565,7 +514,6 @@ class ExtractionPipelineFactory:
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         snippet_radius: int = DEFAULT_SNIPPET_RADIUS,
         max_synthesis_entries_per_request: int = DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST,
-        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
         search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> KeywordExtractionPrefillNode:
@@ -592,13 +540,6 @@ class ExtractionPipelineFactory:
                 model_params,
                 created_at,
                 max_recursive_search_rounds,
-            ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
-                phrase_relationship_screening_prompt,
-                llm_model,
-                model_params,
-                created_at,
-                max_screening_pairs_per_request,
             ),
             llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._batched_freehand_grounding_metadata(
                 phrase_freehand_grounding_prompt,
@@ -661,7 +602,6 @@ class ExtractionPipelineFactory:
         ontology_version_id: str,
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
-        phrase_relationship_screening_prompt: Prompt,
         phrase_freehand_grounding_prompt: Prompt,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
@@ -675,7 +615,6 @@ class ExtractionPipelineFactory:
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         snippet_radius: int = DEFAULT_SNIPPET_RADIUS,
         max_synthesis_entries_per_request: int = DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST,
-        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
         search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> KeywordExtractionPrefillNode:
@@ -699,13 +638,6 @@ class ExtractionPipelineFactory:
                 model_params,
                 created_at,
                 max_recursive_search_rounds,
-            ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
-                phrase_relationship_screening_prompt,
-                llm_model,
-                model_params,
-                created_at,
-                max_screening_pairs_per_request,
             ),
             llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._batched_freehand_grounding_metadata(
                 phrase_freehand_grounding_prompt,
@@ -855,7 +787,6 @@ class ExtractionPipelineFactory:
         ontology_version_id: str,
         search_prompt: Prompt,
         recursive_search_prompt: Prompt,
-        phrase_relationship_screening_prompt: Prompt,
         phrase_freehand_grounding_prompt: Prompt,
         llm_model: LLM_Model,
         model_params: GPTModelParams,
@@ -869,7 +800,6 @@ class ExtractionPipelineFactory:
         max_recursive_search_rounds: int = DEFAULT_KEYWORD_RECURSIVE_SEARCH_MAX_ROUNDS,
         snippet_radius: int = DEFAULT_SNIPPET_RADIUS,
         max_synthesis_entries_per_request: int = DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST,
-        max_screening_pairs_per_request: int = DEFAULT_SCREENING_MAX_PAIRS_PER_REQUEST,
         max_freehand_grounding_pairs_per_request: int = DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST,
         search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
     ) -> KeywordExtractionPrefillNode:
@@ -888,13 +818,6 @@ class ExtractionPipelineFactory:
                 model_params,
                 created_at,
                 max_recursive_search_rounds,
-            ),
-            llm_phrase_relationship_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
-                phrase_relationship_screening_prompt,
-                llm_model,
-                model_params,
-                created_at,
-                max_screening_pairs_per_request,
             ),
             llm_phrase_freehand_grounding_metadata=ExtractionPipelineFactory._batched_freehand_grounding_metadata(
                 phrase_freehand_grounding_prompt,
@@ -961,7 +884,6 @@ class ExtractionPipelineFactory:
         chunk_strategy_overrides: (
             dict[ExtractionFieldType, ChunkingStrategy] | None
         ) = None,
-        oov_grounding_enabled: bool = True,
         snippet_radius: int = DEFAULT_SNIPPET_RADIUS,
         max_synthesis_entries_per_request: int = DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST,
         search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
@@ -977,10 +899,6 @@ class ExtractionPipelineFactory:
         strategy per field — an experimentation knob (chunk size / search_divisor
         sweeps from the notebook) that leaves the defaults in source untouched.
         Fields not in the mapping keep their defaults.
-
-        ``oov_grounding_enabled`` is the OOV discovery pass's RUN CONFIG (fork
-        F6): off means the concept metadata carries no oov node — a distinct
-        run identity — and the pass embeds zero requests. Never a StageToggle.
 
         v3 knobs (user decisions 2026-08-22; location A/B retired with the
         location-stage merge 2026-09-03), all run identity, all applied to
@@ -1035,7 +953,6 @@ class ExtractionPipelineFactory:
                 phrase_synthesis_prompt=prompt_service.product_phrase_synthesis_prompt,
                 snippet_radius=snippet_radius,
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
-                phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_pure_product_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
                 phrase_unit_screening_prompt=prompt_service.product_phrase_unit_screening_pure_product_prompt,
                 ontology_version_id=ontology.s3_version_id,
@@ -1054,7 +971,6 @@ class ExtractionPipelineFactory:
                 phrase_synthesis_prompt=prompt_service.product_phrase_synthesis_prompt,
                 snippet_radius=snippet_radius,
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
-                phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_contract_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
                 phrase_unit_screening_prompt=prompt_service.product_phrase_unit_screening_contract_prompt,
                 llm_model=llm_model,
@@ -1072,7 +988,6 @@ class ExtractionPipelineFactory:
                 phrase_synthesis_prompt=prompt_service.equipment_phrase_synthesis_prompt,
                 snippet_radius=snippet_radius,
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
-                phrase_relationship_screening_prompt=prompt_service.equipment_phrase_relationship_screening_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.equipment_phrase_freehand_grounding_prompt,
                 phrase_unit_screening_prompt=prompt_service.equipment_phrase_unit_screening_prompt,
                 llm_model=llm_model,
@@ -1093,14 +1008,6 @@ class ExtractionPipelineFactory:
                 phrase_synthesis_prompt=prompt_service.conformity_attestation_phrase_synthesis_prompt,
                 snippet_radius=snippet_radius,
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
-                phrase_relationship_screening_prompt=prompt_service.conformity_attestation_phrase_relationship_screening_prompt,
-                phrase_initial_grounding_prompt=prompt_service.conformity_attestation_phrase_initial_grounding_prompt,
-                phrase_oov_grounding_prompt=(
-                    prompt_service.conformity_attestation_phrase_oov_grounding_prompt
-                    if oov_grounding_enabled
-                    else None
-                ),
-                phrase_recursive_grounding_prompt=prompt_service.conformity_attestation_phrase_recursive_grounding_prompt,
                 phrase_grounding_prompt=prompt_service.conformity_attestation_phrase_grounding_prompt,
                 phrase_proposal_prompt=prompt_service.conformity_attestation_phrase_proposal_prompt,
                 phrase_unit_screening_prompt=prompt_service.conformity_attestation_phrase_unit_screening_prompt,
@@ -1126,14 +1033,6 @@ class ExtractionPipelineFactory:
                 phrase_synthesis_prompt=prompt_service.industry_phrase_synthesis_prompt,
                 snippet_radius=snippet_radius,
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
-                phrase_relationship_screening_prompt=prompt_service.industry_phrase_relationship_screening_prompt,
-                phrase_initial_grounding_prompt=prompt_service.industry_phrase_initial_grounding_prompt,
-                phrase_oov_grounding_prompt=(
-                    prompt_service.industry_phrase_oov_grounding_prompt
-                    if oov_grounding_enabled
-                    else None
-                ),
-                phrase_recursive_grounding_prompt=prompt_service.industry_phrase_recursive_grounding_prompt,
                 phrase_grounding_prompt=prompt_service.industry_phrase_grounding_prompt,
                 phrase_proposal_prompt=prompt_service.industry_phrase_proposal_prompt,
                 phrase_unit_screening_prompt=prompt_service.industry_phrase_unit_screening_prompt,
@@ -1157,14 +1056,6 @@ class ExtractionPipelineFactory:
                 phrase_synthesis_prompt=prompt_service.process_cap_phrase_synthesis_prompt,
                 snippet_radius=snippet_radius,
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
-                phrase_relationship_screening_prompt=prompt_service.process_cap_phrase_relationship_screening_prompt,
-                phrase_initial_grounding_prompt=prompt_service.process_cap_phrase_initial_grounding_prompt,
-                phrase_oov_grounding_prompt=(
-                    prompt_service.process_cap_phrase_oov_grounding_prompt
-                    if oov_grounding_enabled
-                    else None
-                ),
-                phrase_recursive_grounding_prompt=prompt_service.process_cap_phrase_recursive_grounding_prompt,
                 phrase_grounding_prompt=prompt_service.process_cap_phrase_grounding_prompt,
                 phrase_proposal_prompt=prompt_service.process_cap_phrase_proposal_prompt,
                 phrase_unit_screening_prompt=prompt_service.process_cap_phrase_unit_screening_prompt,
@@ -1188,14 +1079,6 @@ class ExtractionPipelineFactory:
                 phrase_synthesis_prompt=prompt_service.material_cap_phrase_synthesis_prompt,
                 snippet_radius=snippet_radius,
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
-                phrase_relationship_screening_prompt=prompt_service.material_cap_phrase_relationship_screening_prompt,
-                phrase_initial_grounding_prompt=prompt_service.material_cap_phrase_initial_grounding_prompt,
-                phrase_oov_grounding_prompt=(
-                    prompt_service.material_cap_phrase_oov_grounding_prompt
-                    if oov_grounding_enabled
-                    else None
-                ),
-                phrase_recursive_grounding_prompt=prompt_service.material_cap_phrase_recursive_grounding_prompt,
                 phrase_grounding_prompt=prompt_service.material_cap_phrase_grounding_prompt,
                 phrase_proposal_prompt=prompt_service.material_cap_phrase_proposal_prompt,
                 phrase_unit_screening_prompt=prompt_service.material_cap_phrase_unit_screening_prompt,

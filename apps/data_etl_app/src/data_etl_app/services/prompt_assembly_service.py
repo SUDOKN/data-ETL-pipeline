@@ -8,7 +8,7 @@ what preserves ``Prompt.s3_version_id`` as real provenance.
 Placeholders resolve in two waves. ``{{entity_noun}}`` and
 ``{{entity_relationships.*}}`` come from the catalog header and are resolved HERE.
 ``{{parent_entity}}`` / ``{{types_of_parent_entity}}`` are rewritten here into the
-concept-specific tokens that ``llm_recursive_grounding_service`` substitutes per
+concept-specific tokens that the descent service substitutes per
 recursion level, and must survive rendering unresolved.
 
 ``{{output_example}}`` is BUILT here rather than written into the skeletons. It
@@ -45,10 +45,6 @@ CATALOG_DIR = _PROMPTS_DIR / "rule_catalog"
 SKELETON_DIR = _PROMPTS_DIR / "skeletons"
 
 SKELETON_BY_STAGE = {
-    "phrase_relationship_screening": "screening.skeleton.txt",
-    "phrase_initial_grounding": "initial_grounding.skeleton.txt",
-    "phrase_oov_grounding": "oov_grounding.skeleton.txt",
-    "phrase_recursive_grounding": "recursive_grounding.skeleton.txt",
     "phrase_freehand_grounding": "freehand_grounding.skeleton.txt",
     "binary_classification": "binary_classification.skeleton.txt",
     # Step 2 (2026-09-21): the structural families. Their skeletons carry no
@@ -61,9 +57,9 @@ SKELETON_BY_STAGE = {
 }
 
 # The stages whose descent tokens ({{parent_entity}} / {{types_of_parent_entity}})
-# are substituted per request by the recursive-grounding service and must
-# therefore survive rendering.
-_DESCENT_STAGES = frozenset({"phrase_recursive_grounding", "phrase_descent"})
+# are substituted per request by the descent service and must therefore
+# survive rendering.
+_DESCENT_STAGES = frozenset({"phrase_descent"})
 
 # The S3 key prefix a prompt is published under. Derived from the stage rather
 # than read out of PromptService.STAGED_PROMPT_FILE_PATHS, because that map also
@@ -75,11 +71,7 @@ _DESCENT_STAGES = frozenset({"phrase_recursive_grounding", "phrase_descent"})
 # because binary classification publishes under `single_stage/` — the keys its
 # hand-written predecessors always occupied.
 STAGE_DIR_BY_STAGE = {
-    "phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening",
     "phrase_freehand_grounding": "multi_stage/5_freehand_grounding",
-    "phrase_initial_grounding": "multi_stage/5_initial_grounding",
-    "phrase_oov_grounding": "multi_stage/5_oov_grounding",
-    "phrase_recursive_grounding": "multi_stage/6_recursive_grounding",
     "binary_classification": "single_stage",
     "phrase_grounding": "multi_stage/5_grounding",
     "phrase_unit_screening": "multi_stage/4_phrase_unit_screening",
@@ -218,7 +210,7 @@ def assembled_prompt_path(catalog: RuleCatalog) -> Path:
     """Where the rendered prompt is written locally, mirroring the S3 layout."""
     return ASSEMBLED_PROMPTS_DIR / prompt_s3_key(catalog)
 
-# Written by llm_recursive_grounding_service at request-build time, so they must
+# Written by the descent service at request-build time, so they must
 # still be present in the rendered .txt.
 PARENT_ENTITY_TOKEN = "{{parent_entity}}"
 TYPES_OF_PARENT_ENTITY_TOKEN = "{{types_of_parent_entity}}"
@@ -748,51 +740,6 @@ def _binary_classification_example(catalog: RuleCatalog) -> dict[str, Any]:
 # would teach a shape the decoder cannot emit.
 
 
-def _screening_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
-    """One entry per record, one judged unit per supplied candidate. Scenarios:
-    qualified / a two-candidate record where one failed / ruled out by a guard —
-    the same shapes as v1 minus the no-candidate branch, which has no v2
-    counterpart (a record with no candidates is never sent)."""
-
-    def candidate(label: str, *, mode: str, guard: Optional[str] = None) -> dict[str, Any]:
-        return {
-            "candidate": label,
-            **_example_rule_slots(catalog, mode=mode, guard=guard),
-        }
-
-    entries: list[dict[str, Any]] = [
-        {
-            "record_id": "<a record id copied exactly as given>",
-            "candidates": [candidate("<the candidate that qualified>", mode=_HELD)],
-        },
-        {
-            "record_id": "<another record's id>",
-            "candidates": [
-                candidate("<a candidate that qualified>", mode=_HELD),
-                candidate(
-                    "<a second candidate of the same record, which did not qualify>",
-                    mode=_DID_NOT_HOLD,
-                ),
-            ],
-        },
-    ]
-    guard = _guard_placeholder(catalog)
-    if guard is not None:
-        entries.append(
-            {
-                "record_id": "<another record's id>",
-                "candidates": [
-                    candidate(
-                        "<a candidate every condition held for, but which a guard ruled out>",
-                        mode=_HELD,
-                        guard=guard,
-                    )
-                ],
-            }
-        )
-    return {"screenings": entries}
-
-
 def _record_grounding_example_v2(
     catalog: RuleCatalog,
     *,
@@ -831,39 +778,6 @@ def _record_grounding_example_v2(
             },
         ]
     }
-
-
-def _option_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
-    return _record_grounding_example_v2(
-        catalog,
-        units_key="options",
-        unit_key="option",
-        first_label="<an option, copied verbatim from the outline>",
-        second_label="<a second option for the same record, copied verbatim likewise>",
-        none_why=f"<why the record yields no candidate, citing {catalog.evidence_source}>",
-    )
-
-
-def _recursive_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
-    return _record_grounding_example_v2(
-        catalog,
-        units_key="options",
-        unit_key="option",
-        first_label='<an option, copied verbatim from its "name" field, or a sibling type you proposed>',
-        second_label="<a second option for the same record, copied verbatim likewise>",
-        none_why="<why nothing more specific than {{parent_entity}} could be identified>",
-    )
-
-
-def _oov_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
-    return _record_grounding_example_v2(
-        catalog,
-        units_key="candidates",
-        unit_key="candidate",
-        first_label="<the {{entity_noun}} you named, which the options do not cover>",
-        second_label="<a second, distinct {{entity_noun}} named from the same record>",
-        none_why=f"<why nothing remains for the record, citing {catalog.evidence_source}>",
-    )
 
 
 def _freehand_grounding_example_v2(catalog: RuleCatalog) -> dict[str, Any]:
@@ -1031,10 +945,6 @@ def _unit_screening_example(catalog: RuleCatalog) -> dict[str, Any]:
 
 
 EXAMPLE_BUILDER_BY_STAGE = {
-    "phrase_relationship_screening": _screening_example_v2,
-    "phrase_initial_grounding": _option_grounding_example_v2,
-    "phrase_oov_grounding": _oov_grounding_example_v2,
-    "phrase_recursive_grounding": _recursive_grounding_example_v2,
     "phrase_freehand_grounding": _freehand_grounding_example_v2,
     "binary_classification": _binary_classification_example,
     "phrase_grounding": _grounding_example,

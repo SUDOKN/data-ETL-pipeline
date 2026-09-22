@@ -9,10 +9,7 @@ from core.models.pipeline_nodes.multi_stage.base.llm_phrase_freehand_grounding_n
 from core.models.field_types import ExtractionFieldType
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screening_node import (
-        KeywordRelationshipScreeningNode,
-    )
-    from core.models.pipeline_nodes.multi_stage.keyword.keyword_unit_screening_node import (
+        from core.models.pipeline_nodes.multi_stage.keyword.keyword_unit_screening_node import (
         KeywordUnitScreeningNode,
     )
 
@@ -32,7 +29,7 @@ class KeywordFreehandGroundingNode(LLMPhraseFreehandGroundingNode[ExtractionFiel
     def __init__(
         self,
         field_type: ExtractionFieldType,
-        next_node: KeywordUnitScreeningNode | KeywordRelationshipScreeningNode,  # Step 2: unit screening; the old node until the cutover's last commit
+        next_node: KeywordUnitScreeningNode,
         phrase_freehand_grounding_prompt: Prompt,
     ):
         super().__init__(

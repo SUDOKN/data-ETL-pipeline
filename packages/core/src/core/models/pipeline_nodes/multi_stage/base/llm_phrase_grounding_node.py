@@ -2,8 +2,8 @@
 pass and the out-of-vocabulary pass (design draft §3, D5; record-major wire by
 user decision 2026-09-21).
 
-What differs from ``LLMPhraseInitialGroundingNode``, which it will replace at
-the cutover and is otherwise modelled on:
+What differs from the retired ``LLMPhraseInitialGroundingNode`` (cutover
+2026-09-22), which it replaced and was otherwise modelled on:
 
 - the ``phrase_grounding`` catalog (structural reporting): every option a
   record matches carries the record's own quote and its matching branch,

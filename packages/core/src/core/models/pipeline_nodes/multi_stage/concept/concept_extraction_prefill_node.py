@@ -76,11 +76,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         ontology: Ontology,
         llm_phrase_search_metadata: ExtractionNodeMetadata,
         llm_phrase_recursive_search_metadata: RecursiveSearchNodeMetadata,
-        llm_phrase_relationship_screening_metadata: BatchedScreeningNodeMetadata,
-        llm_phrase_initial_grounding_metadata: BatchedInitialGroundingNodeMetadata,
-        llm_phrase_recursive_grounding_metadata: ExtractionNodeMetadata,
-        # None = the OOV discovery pass is off for this run (run config carried
-        # as metadata identity, never a StageToggle).
         # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the aggregation fold's identity
         # (which since the 2026-09-03 location-stage merge also carries the
         # snippet-radius clip dial). Optional only so older construction
@@ -91,15 +86,13 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             BatchedRelationshipNodeMetadata
         ] = None,
         aggregation_fold_metadata: Optional[AggregationFoldMetadata] = None,
-        llm_phrase_oov_grounding_metadata: Optional[
-            BatchedInitialGroundingNodeMetadata
-        ] = None,
         # v3 (Phase 3.2): the synthesis stage's identity, same contract.
         llm_phrase_synthesis_metadata: Optional[BatchedSynthesisNodeMetadata] = None,
         # Step 2 (2026-09-22): the one grounding call, the proposal pass (None =
         # off for this run), unit screening (the descent's wave screens) and
         # descent (with the leaf-step flag). Optional only so older
-        # construction sites compile; the factory passes all four.
+        # construction sites compile; the factory passes all four. The four
+        # families they replaced were retired at the cutover.
         llm_phrase_grounding_metadata: Optional[BatchedInitialGroundingNodeMetadata] = None,
         llm_phrase_proposal_metadata: Optional[BatchedInitialGroundingNodeMetadata] = None,
         llm_phrase_unit_screening_metadata: Optional[BatchedScreeningNodeMetadata] = None,
@@ -118,18 +111,8 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         self.llm_phrase_search_metadata = llm_phrase_search_metadata
         self.llm_phrase_recursive_search_metadata = llm_phrase_recursive_search_metadata
         self.llm_phrase_relationship_metadata = llm_phrase_relationship_metadata
-        self.llm_phrase_relationship_screening_metadata = (
-            llm_phrase_relationship_screening_metadata
-        )
-        self.llm_phrase_initial_grounding_metadata = (
-            llm_phrase_initial_grounding_metadata
-        )
-        self.llm_phrase_oov_grounding_metadata = llm_phrase_oov_grounding_metadata
         self.aggregation_fold_metadata = aggregation_fold_metadata
         self.llm_phrase_synthesis_metadata = llm_phrase_synthesis_metadata
-        self.llm_phrase_recursive_grounding_metadata = (
-            llm_phrase_recursive_grounding_metadata
-        )
 
     async def execute(
         self,
@@ -158,10 +141,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_search=self.llm_phrase_search_metadata,
             llm_phrase_recursive_search=self.llm_phrase_recursive_search_metadata,
             llm_phrase_relationship=self.llm_phrase_relationship_metadata,
-            llm_phrase_relationship_screening=self.llm_phrase_relationship_screening_metadata,
-            llm_phrase_initial_grounding=self.llm_phrase_initial_grounding_metadata,
-            llm_phrase_oov_grounding=self.llm_phrase_oov_grounding_metadata,
-            llm_phrase_recursive_grounding=self.llm_phrase_recursive_grounding_metadata,
             aggregation_fold=self.aggregation_fold_metadata,
             llm_phrase_synthesis=self.llm_phrase_synthesis_metadata,
             llm_phrase_grounding=self.llm_phrase_grounding_metadata,
@@ -206,10 +185,6 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
                     llm_phrase_search_req_ids=[],
                     llm_phrase_recursive_search_req_ids={},
                     llm_phrase_relationship_req_ids=[],
-                    llm_phrase_relationship_screening_req_ids=[],
-                    llm_phrase_initial_grounding_req_ids=[],
-                    llm_phrase_oov_grounding_req_ids=[],
-                    llm_phrase_recursive_tagging_reqs=None,
                 )
 
             deferred_concept_extraction = DeferredConceptExtractionRequests(

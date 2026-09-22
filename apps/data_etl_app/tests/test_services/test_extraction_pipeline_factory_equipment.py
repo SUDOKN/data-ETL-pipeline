@@ -39,9 +39,6 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
         search_prompt=_make_prompt("equipment_phrase_search"),
         recursive_search_prompt=_make_prompt("equipment_phrase_recursive_search"),
         phrase_synthesis_prompt=_make_prompt("equipment_phrase_synthesis"),
-        phrase_relationship_screening_prompt=_make_prompt(
-            "equipment_phrase_relationship_screening"
-        ),
         phrase_freehand_grounding_prompt=_make_prompt(
             "equipment_phrase_freehand_grounding"
         ),

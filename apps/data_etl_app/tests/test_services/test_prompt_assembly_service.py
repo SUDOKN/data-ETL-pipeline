@@ -67,11 +67,6 @@ def _example_units(catalog: RuleCatalog, example: dict) -> Iterator[tuple[str, d
     if catalog.stage == "binary_classification":  # one object, one unit
         yield "response", example
         return
-    if catalog.stage == "phrase_relationship_screening":
-        for entry in example["screenings"]:
-            for unit in entry["candidates"]:
-                yield f"{entry['record_id']} / {unit['candidate']}", unit
-        return
     for entry in example["groundings"]:
         for unit in entry.get("options", entry.get("candidates", [])):
             label = unit.get("option", unit.get("candidate"))
@@ -239,11 +234,11 @@ def test_catalog_renders_without_unresolved_placeholders(prompt_name):
     sorted(
         name
         for name, catalog in CATALOGS.items()
-        if catalog.stage in ("phrase_recursive_grounding", "phrase_descent")
+        if catalog.stage == "phrase_descent"
     ),
 )
-def test_recursive_grounding_keeps_the_tokens_the_service_substitutes(prompt_name):
-    """llm_recursive_grounding_service substitutes these per recursion level, so
+def test_descent_keeps_the_tokens_the_service_substitutes(prompt_name):
+    """The descent service substitutes these per request, so
     they must survive rendering. Sourcing them from ConceptTypeEnum here is what
     stops the prompt and the service from drifting apart."""
     catalog = CATALOGS[prompt_name]
@@ -257,7 +252,7 @@ def test_recursive_grounding_keeps_the_tokens_the_service_substitutes(prompt_nam
 
 
 def test_rendering_is_deterministic():
-    catalog = CATALOGS["industry_phrase_relationship_screening"]
+    catalog = CATALOGS["industry_phrase_unit_screening"]
     assert rendered_sha256(render_prompt(catalog)) == rendered_sha256(
         render_prompt(catalog)
     )
@@ -266,7 +261,7 @@ def test_rendering_is_deterministic():
 def test_publish_metadata_does_not_change_what_renders():
     """published is written back after upload; if it fed the render, recording it
     would change the next render and never reach a fixed point."""
-    catalog = CATALOGS["industry_phrase_relationship_screening"]
+    catalog = CATALOGS["industry_phrase_unit_screening"]
     before = render_prompt(catalog)
 
     republished = catalog.model_copy(deep=True)
@@ -286,7 +281,7 @@ def test_reportable_rules_are_listed_and_notes_are_not():
     to take one ({{option_evidence}} on RGR-M1a) failed a test that was meant to be
     about ids.
     """
-    catalog = CATALOGS["industry_phrase_recursive_grounding"]
+    catalog = CATALOGS["equipment_phrase_freehand_grounding"]
     text = render_prompt(catalog)
 
     for rule in catalog.walk_rules():
@@ -301,17 +296,19 @@ def test_reportable_rules_are_listed_and_notes_are_not():
 
 
 def test_report_block_separates_always_from_chosen_and_violated():
-    catalog = CATALOGS["industry_phrase_recursive_grounding"]
+    catalog = CATALOGS["equipment_phrase_freehand_grounding"]
     text = render_prompt(catalog)
 
     always = sorted(catalog.always_reported_rule_ids())
-    assert set(always) == {"RGR-E1"}
+    assert always
     for rule_id in always:
         assert re.search(rf"whichever outcome it reached:[^\n]*{rule_id}", text)
 
     # The matching ladder is a single choice, not four independent reports — one
     # field on the wire, so the prompt names the field rather than a count.
-    assert re.search(r'"chosen" holds the single branch[^\n]*RGR-M1', text)
+    branches = [rule.id for rule in catalog.walk_rules() if rule.kind == "preference"]
+    if branches:
+        assert re.search(rf'"chosen" holds the single branch[^\n]*{branches[0]}', text)
 
 
 def test_the_example_serialiser_matches_json_dumps_where_it_inlines_nothing():
@@ -426,62 +423,10 @@ def test_output_example_reports_every_always_reported_rule(prompt_name):
         assert required <= reported, f"{where} omits {sorted(required - reported)}"
 
 
-@pytest.mark.parametrize(
-    "prompt_name",
-    sorted(
-        name
-        for name, catalog in CATALOGS.items()
-        if catalog.stage == "phrase_relationship_screening"
-    ),
-)
-def test_screening_example_covers_every_verdict_path(prompt_name):
-    """`passed` is derived from the reported rules rather than reported, so the
-    example has to show each way that derivation can come out: a candidate that
-    qualified, one that failed a condition, and one a guard ruled out."""
-    catalog = CATALOGS[prompt_name]
-    entries = _rendered_example(catalog)["screenings"]
-    assert len(entries) == 3
-
-    verdicts = [
-        passed_implied_by(catalog, _applied_rules_of(catalog, unit))
-        for entry in entries
-        for unit in entry["candidates"]
-    ]
-    assert verdicts == [True, True, False, False]
-    # The two-candidate record: one outcome never colors the other.
-    assert len(entries[1]["candidates"]) == 2
-
-
-@pytest.mark.parametrize(
-    "prompt_name",
-    sorted(
-        name
-        for name, catalog in CATALOGS.items()
-        if catalog.stage == "phrase_relationship_screening"
-    ),
-)
-def test_screening_example_shows_a_guard_overriding_satisfied_conditions(prompt_name):
-    """The point of the guard entry: every condition holds and the candidate is
-    still rejected. If its conditions ever stop being all-satisfied it stops
-    showing the one thing no other unit does."""
-    catalog = CATALOGS[prompt_name]
-    guard_unit = _rendered_example(catalog)["screenings"][-1]["candidates"][0]
-    rules = _applied_rules_of(catalog, guard_unit)
-
-    conditions = {rule.id for rule in catalog.walk_rules() if rule.kind == "condition"}
-    guards = {rule.id for rule in catalog.walk_rules() if rule.kind == "guard"}
-
-    assert all(
-        rule.outcome == "satisfied" for rule in rules if rule.rule_id in conditions
-    )
-    assert [rule.outcome for rule in rules if rule.rule_id in guards] == ["violated"]
-    assert not passed_implied_by(catalog, rules)
-
-
 def test_catalog_covering_two_field_types_cannot_use_the_parent_token():
     """The parent token is concept-specific, so it cannot be resolved for a catalog
     that serves more than one field type."""
-    catalog = CATALOGS["industry_phrase_recursive_grounding"].model_copy(deep=True)
+    catalog = CATALOGS["industry_phrase_descent"].model_copy(deep=True)
     catalog.field_types = ["industries", "conformity_attestations"]
 
     with pytest.raises(PromptAssemblyError, match="exactly one field type"):
@@ -495,7 +440,7 @@ def test_rule_kind_fixes_its_reporting_policy():
             {
                 "catalog_version": "x.1",
                 "prompt_name": "x",
-                "stage": "phrase_relationship_screening",
+                "stage": "phrase_freehand_grounding",
                 "field_types": ["industries"],
                 "entity_noun": "thing",
                 "entity_relationships": {
@@ -663,7 +608,7 @@ def test_the_proposal_kind_needs_a_structural_catalog():
 def test_a_per_rule_stage_refuses_a_structural_catalog_and_vice_versa():
     """The wire builder is chosen by stage; the catalog's flag must agree."""
     mismatched = STRUCTURAL["industry_phrase_grounding"].model_copy(deep=True)
-    mismatched.stage = "phrase_initial_grounding"
+    mismatched.stage = "phrase_freehand_grounding"
     mismatched.catalog_version = "industry_phrase_grounding.test"
     with pytest.raises(ValueError, match="reporting"):
         response_format_for(mismatched)

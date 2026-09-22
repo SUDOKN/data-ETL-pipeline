@@ -169,10 +169,16 @@ def test_the_tripwire_actually_inspects_something():
     vacuous pass over an empty list."""
     builders = _custom_id_builders()
 
-    # mention_collection keeps its token (stored pre-merge ids stay scopable)
-    # but its node — and so its builder — was deleted with the location-stage
-    # merge (2026-09-03).
-    retired_without_a_node = {PipelineStage.mention_collection}
+    # Tokens outlive nodes so stored ids stay scopable: mention_collection's
+    # node went with the location-stage merge (2026-09-03), and the four
+    # families Step 2 replaced went at the cutover (2026-09-22).
+    retired_without_a_node = {
+        PipelineStage.mention_collection,
+        PipelineStage.initial_grounding,
+        PipelineStage.oov_grounding,
+        PipelineStage.screening,
+        PipelineStage.iterative_grounding,
+    }
     assert len(builders) == len(STAGE_REQUEST_ID_TOKEN) - len(retired_without_a_node)
 
 

@@ -56,11 +56,7 @@ from core.models.rule_catalog import (
     STAGE_DESCENT,
     STAGE_FREEHAND_GROUNDING,
     STAGE_GROUNDING,
-    STAGE_INITIAL_GROUNDING,
-    STAGE_OOV_GROUNDING,
     STAGE_PROPOSAL,
-    STAGE_RECURSIVE_GROUNDING,
-    STAGE_RELATIONSHIP_SCREENING,
     STAGE_UNIT_SCREENING,
     RuleCatalog,
 )
@@ -402,12 +398,6 @@ def build_binary_classification_response_model(
 # The record-keyed (v2) builders below serve every phrase stage; binary
 # classification keeps its whole-text report shape.
 _RESPONSE_MODEL_BUILDER_BY_STAGE = {
-    STAGE_RELATIONSHIP_SCREENING: lambda catalog: build_screening_response_model_v2(
-        catalog
-    ),
-    STAGE_INITIAL_GROUNDING: lambda catalog: _build_option_grounding_v2(catalog),
-    STAGE_RECURSIVE_GROUNDING: lambda catalog: _build_option_grounding_v2(catalog),
-    STAGE_OOV_GROUNDING: lambda catalog: _build_candidate_grounding_v2(catalog),
     STAGE_FREEHAND_GROUNDING: lambda catalog: _build_candidate_grounding_v2(catalog),
     STAGE_BINARY_CLASSIFICATION: build_binary_classification_response_model,
     # Step 2: the structural families.
@@ -510,35 +500,6 @@ def unit_screening_response_model(
 # no_candidate branch and ``identified_entity`` have no counterpart.
 
 
-def build_screening_response_model_v2(
-    catalog: RuleCatalog,
-) -> type[ScreeningWireResponse]:
-    """v2 screening: one entry per record, one judged unit per supplied candidate.
-
-    No union: a record with no candidates is never sent, and every sent
-    candidate is judged — the hold enforces both axes at parse time, since
-    strict mode cannot pin a response to the request's own record and candidate
-    sets.
-    """
-    prefix = _model_prefix(catalog)
-    candidate = build_entry_model(
-        catalog,
-        name=f"{prefix}JudgedCandidate",
-        own_fields={"candidate": (str, ...)},
-    )
-    entry = create_model(
-        f"{prefix}RecordEntry",
-        __base__=WireEntry,
-        record_id=(str, ...),
-        candidates=(list[candidate], ...),  # type: ignore[valid-type]
-    )
-    return create_model(
-        f"{prefix}Response",
-        __base__=ScreeningWireResponse,
-        screenings=(list[entry], ...),  # type: ignore[valid-type]
-    )
-
-
 def build_record_grounding_response_model(
     catalog: RuleCatalog, *, unit_key: str, units_key: str
 ) -> type[GroundingWireResponse]:
@@ -567,12 +528,6 @@ def build_record_grounding_response_model(
         f"{prefix}Response",
         __base__=GroundingWireResponse,
         groundings=(list[entry], ...),  # type: ignore[valid-type]
-    )
-
-
-def _build_option_grounding_v2(catalog: RuleCatalog) -> type[GroundingWireResponse]:
-    return build_record_grounding_response_model(
-        catalog, unit_key="option", units_key="options"
     )
 
 

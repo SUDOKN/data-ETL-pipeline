@@ -20,8 +20,8 @@ from core.models.pipeline_nodes.multi_stage.base.llm_phrase_relationship_node im
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
-        ConceptInitialGroundingNode,
+    from core.models.pipeline_nodes.multi_stage.concept.concept_grounding_node import (
+        ConceptGroundingNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -38,7 +38,7 @@ class ConceptRelationshipNode(LLMPhraseRelationshipNode[ConceptFieldType]):
         self,
         concept_type: ConceptFieldType,
         phrase_relationship_prompt: Prompt,
-        next_node: ConceptInitialGroundingNode,
+        next_node: ConceptGroundingNode,
     ):
         super().__init__(
             field_type=concept_type,

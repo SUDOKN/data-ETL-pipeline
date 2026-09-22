@@ -206,7 +206,10 @@ class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
     # Optional so every stored pre-3.3 run identity still loads; new runs
     # carry None and no node reads it.
     llm_phrase_relationship: Optional[BatchedRelationshipNodeMetadata] = None
-    llm_phrase_relationship_screening: BatchedScreeningNodeMetadata
+    # Per-record relationship screening — RETIRED at the Step 2 cutover
+    # (2026-09-22); unit screening (below) replaces it. Optional so every
+    # stored run identity still loads; new runs carry None.
+    llm_phrase_relationship_screening: Optional[BatchedScreeningNodeMetadata] = None
     # Step 2 unit screening (2026-09-21): units of one label and the records
     # grounding matched on, ≤ ``max_pairs_per_request`` DISTINCT records per
     # request (D8). Optional beside the stage it replaces until the cutover;
@@ -226,16 +229,13 @@ class LLMPhraseExtractionMetadata(BaseExtractionMetadata):
 
 
 class ConceptExtractionMetadata(LLMPhraseExtractionMetadata):
-    # In-vocab pass. Reuses the batched grounding node shape: the group cap
-    # decides which records share a request, exactly as before.
-    llm_phrase_initial_grounding: BatchedInitialGroundingNodeMetadata
-    # None = the OOV discovery pass is off for this run. Optional HERE is what
-    # makes a run without it a distinct run identity while old and new metadata
-    # both load.
+    # Initial grounding, OOV grounding and recursive grounding — RETIRED at
+    # the Step 2 cutover (2026-09-22). Optional so every stored run identity
+    # still loads; new runs carry None.
+    llm_phrase_initial_grounding: Optional[BatchedInitialGroundingNodeMetadata] = None
     llm_phrase_oov_grounding: Optional[BatchedInitialGroundingNodeMetadata] = None
-    llm_phrase_recursive_grounding: ExtractionNodeMetadata
-    # --- Step 2 (2026-09-21), additive until the cutover retires the three
-    # above. Same Optional-for-loading, set-by-the-factory contract. ---
+    llm_phrase_recursive_grounding: Optional[ExtractionNodeMetadata] = None
+    # --- Step 2 (2026-09-21). Optional-for-loading, set-by-the-factory. ---
     # The one grounding call (initial + OOV merged, D5): the group cap decides
     # which records share a request, as before.
     llm_phrase_grounding: Optional[BatchedInitialGroundingNodeMetadata] = None

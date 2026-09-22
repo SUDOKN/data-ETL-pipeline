@@ -7,25 +7,20 @@ from pydantic import BaseModel, ConfigDict, model_validator
 
 
 # Pipeline stages that report applied rules. A catalog's ``stage`` is one of
-# these, and ``(stage, field_type)`` identifies exactly one prompt.
-STAGE_RELATIONSHIP_SCREENING = "phrase_relationship_screening"
-STAGE_INITIAL_GROUNDING = "phrase_initial_grounding"
-STAGE_RECURSIVE_GROUNDING = "phrase_recursive_grounding"
+# these, and ``(stage, field_type)`` identifies exactly one prompt. The keyword
+# fields' one grounding pass is freehand (they have no vocabulary).
 STAGE_FREEHAND_GROUNDING = "phrase_freehand_grounding"
-# Pipeline v2's out-of-vocabulary discovery pass: after in-vocab grounding, it
-# identifies what the vocabulary misses. Concept fields only — keywords have no
-# vocabulary, so their single grounding pass is freehand.
-STAGE_OOV_GROUNDING = "phrase_oov_grounding"
 # Step 2 of the grounding redesign (2026-09-21, design draft
-# STEP2_DESIGN_DRAFT_2026-09-20 §3/§5/§6): three families whose rules are held
-# by the response's STRUCTURE rather than reported per rule (``reporting ==
-# "structural"`` below). ``phrase_grounding`` is the one call that replaces
-# initial + OOV grounding (three lists: matched / proposed / unmatched, with a
-# quote per record); ``phrase_unit_screening`` judges units (one label with the
-# records read as evidencing it) and answers accepted / not_accepted per record;
-# ``phrase_descent`` is the per-level narrowing in the same three-list shape.
-# New ids beside the old ones, so today's families keep rendering and stay the
-# tryout's control arm until the build cuts over.
+# STEP2_DESIGN_DRAFT_2026-09-20 §3/§5/§6): the families whose rules are held by
+# the response's STRUCTURE rather than reported per rule (``reporting ==
+# "structural"`` below). ``phrase_grounding`` is the one call (matched /
+# proposed / unmatched per record, with a quote); ``phrase_unit_screening``
+# judges units (one label with the records read as evidencing it) and answers
+# accepted / not_accepted per record; ``phrase_descent`` is the per-level
+# narrowing in the same record-major shape. The four families they replaced
+# (initial + OOV grounding, relationship screening, recursive grounding) were
+# retired at the cutover (2026-09-22); their request-id tokens stay in
+# ``PipelineStage`` so stored ids remain scopable.
 STAGE_GROUNDING = "phrase_grounding"
 STAGE_UNIT_SCREENING = "phrase_unit_screening"
 STAGE_DESCENT = "phrase_descent"

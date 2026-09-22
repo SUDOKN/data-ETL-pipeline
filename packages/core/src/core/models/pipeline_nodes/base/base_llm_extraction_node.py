@@ -308,7 +308,7 @@ class BaseLLMExtractionNode(BaseNode[LLMExtractedFieldTypeVar, ResultT]):
 
         Opt-in rather than a default that calls ``get_result``, because that is
         only safe where ``get_result`` is a pure parse over the map it is handed.
-        ``LLMPhraseIterativeGroundingNode`` takes two request maps and a concept
+        the retired ``LLMPhraseIterativeGroundingNode`` took two request maps and a concept
         map, so it cannot be called from here at all, and the recursive-search
         nodes fold convergence work into theirs. A node opts in when parsing it
         twice is free, which it is wherever the work is JSON over a response that

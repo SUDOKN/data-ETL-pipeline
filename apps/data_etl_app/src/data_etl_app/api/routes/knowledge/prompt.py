@@ -120,36 +120,6 @@ async def get_product_phrase_search_prompt(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get(
-    "/prompts/product_phrase_screening_pure_product", response_class=JSONResponse
-)
-async def get_product_phrase_screening_pure_product_prompt(
-    model_name: str = Query(description="LLM model name used for token counting"),
-):
-    """Get the pure-product phrase relationship screening prompt."""
-    try:
-        llm_model = _resolve_llm_model(model_name)
-        prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.product_phrase_screening_pure_product_prompt
-        return prompt.model_dump()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/prompts/product_phrase_screening_contract", response_class=JSONResponse)
-async def get_product_phrase_screening_contract_prompt(
-    model_name: str = Query(description="LLM model name used for token counting"),
-):
-    """Get the contract-manufacturing phrase relationship screening prompt."""
-    try:
-        llm_model = _resolve_llm_model(model_name)
-        prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.product_phrase_screening_contract_prompt
-        return prompt.model_dump()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
 @router.get("/prompts/conformity_attestation_phrase_search", response_class=JSONResponse)
 async def get_conformity_attestation_phrase_search_prompt(
     model_name: str = Query(description="LLM model name used for token counting"),
@@ -206,68 +176,6 @@ async def get_process_cap_phrase_search_prompt(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@router.get(
-    "/prompts/conformity_attestation_phrase_initial_grounding", response_class=JSONResponse
-)
-async def get_conformity_attestation_phrase_initial_grounding_prompt(
-    model_name: str = Query(description="LLM model name used for token counting"),
-):
-    """Get the conformity attestation phrase initial grounding prompt."""
-    try:
-        llm_model = _resolve_llm_model(model_name)
-        prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.conformity_attestation_phrase_initial_grounding_prompt
-        return prompt.model_dump()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get("/prompts/industry_phrase_initial_grounding", response_class=JSONResponse)
-async def get_industry_phrase_initial_grounding_prompt(
-    model_name: str = Query(description="LLM model name used for token counting"),
-):
-    """Get the industry phrase initial grounding prompt."""
-    try:
-        llm_model = _resolve_llm_model(model_name)
-        prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.industry_phrase_initial_grounding_prompt
-        return prompt.model_dump()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get(
-    "/prompts/material_cap_phrase_initial_grounding", response_class=JSONResponse
-)
-async def get_material_cap_phrase_initial_grounding_prompt(
-    model_name: str = Query(description="LLM model name used for token counting"),
-):
-    """Get the material capability phrase initial grounding prompt."""
-    try:
-        llm_model = _resolve_llm_model(model_name)
-        prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.material_cap_phrase_initial_grounding_prompt
-        return prompt.model_dump()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@router.get(
-    "/prompts/process_cap_phrase_initial_grounding", response_class=JSONResponse
-)
-async def get_process_cap_phrase_initial_grounding_prompt(
-    model_name: str = Query(description="LLM model name used for token counting"),
-):
-    """Get the process capability phrase initial grounding prompt."""
-    try:
-        llm_model = _resolve_llm_model(model_name)
-        prompt_service = await get_prompt_service(llm_model)
-        prompt = prompt_service.process_cap_phrase_initial_grounding_prompt
-        return prompt.model_dump()
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
 @router.get("/prompts/all", response_class=JSONResponse)
 async def get_all_prompts(
     model_name: str = Query(description="LLM model name used for token counting"),
@@ -286,10 +194,6 @@ async def get_all_prompts(
             "industry_phrase_search",
             "material_cap_phrase_search",
             "process_cap_phrase_search",
-            "conformity_attestation_phrase_initial_grounding",
-            "industry_phrase_initial_grounding",
-            "material_cap_phrase_initial_grounding",
-            "process_cap_phrase_initial_grounding",
         ]:
             prompt = getattr(prompt_service, f"{prompt_name}_prompt")
             prompts[prompt_name] = prompt.model_dump()

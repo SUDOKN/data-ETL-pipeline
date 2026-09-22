@@ -64,7 +64,6 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         ontology_version_id: str,
         llm_phrase_search_metadata: ExtractionNodeMetadata,
         llm_phrase_recursive_search_metadata: RecursiveSearchNodeMetadata,
-        llm_phrase_relationship_screening_metadata: BatchedScreeningNodeMetadata,
         llm_phrase_freehand_grounding_metadata: BatchedFreehandGroundingNodeMetadata,
         # v3 (PIPELINE_V3_PLAN.md Phase 3.1): the aggregation fold's identity
         # (which since the 2026-09-03 location-stage merge also carries the
@@ -93,9 +92,6 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         self.llm_phrase_search_metadata = llm_phrase_search_metadata
         self.llm_phrase_recursive_search_metadata = llm_phrase_recursive_search_metadata
         self.llm_phrase_relationship_metadata = llm_phrase_relationship_metadata
-        self.llm_phrase_relationship_screening_metadata = (
-            llm_phrase_relationship_screening_metadata
-        )
         self.llm_phrase_freehand_grounding_metadata = (
             llm_phrase_freehand_grounding_metadata
         )
@@ -119,7 +115,6 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
             llm_phrase_search=self.llm_phrase_search_metadata,
             llm_phrase_recursive_search=self.llm_phrase_recursive_search_metadata,
             llm_phrase_relationship=self.llm_phrase_relationship_metadata,
-            llm_phrase_relationship_screening=self.llm_phrase_relationship_screening_metadata,
             llm_phrase_freehand_grounding=self.llm_phrase_freehand_grounding_metadata,
             aggregation_fold=self.aggregation_fold_metadata,
             llm_phrase_synthesis=self.llm_phrase_synthesis_metadata,
@@ -149,7 +144,6 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
                         llm_phrase_search_req_ids=[],
                         llm_phrase_recursive_search_req_ids={},
                         llm_phrase_relationship_req_ids=[],
-                        llm_phrase_relationship_screening_req_ids=[],
                         llm_phrase_freehand_grounding_req_ids=[],
                     )
                     for chunk_bounds, chunk_text in chunk_map.items()

@@ -146,7 +146,7 @@ class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     llm_phrase_oov_grounding_retry_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
     )
-    llm_phrase_recursive_tagging_reqs: Optional[dict[int, set[IterativeTaggingRequest]]]
+    llm_phrase_recursive_tagging_reqs: Optional[dict[int, set[IterativeTaggingRequest]]] = None
     # Step 2 (2026-09-21): the ONE grounding call (initial + OOV merged), with
     # the same under-answer retry contract as the two it replaces. Defaulted so
     # every stored bundle loads; the stage runs beside today's until the

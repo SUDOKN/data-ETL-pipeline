@@ -9,11 +9,11 @@ test_v2_wire_schema (the deployed catalogs).
 import pytest
 
 from core.models.rule_catalog import (
+    STAGE_DESCENT,
     STAGE_FREEHAND_GROUNDING,
-    STAGE_INITIAL_GROUNDING,
-    STAGE_OOV_GROUNDING,
-    STAGE_RECURSIVE_GROUNDING,
-    STAGE_RELATIONSHIP_SCREENING,
+    STAGE_GROUNDING,
+    STAGE_PROPOSAL,
+    STAGE_UNIT_SCREENING,
 )
 from core.services.rule_catalog_registry import (
     get_rule_catalog,
@@ -36,19 +36,14 @@ def _registry():
 
 
 def test_every_stage_and_field_type_resolves_to_a_catalog():
-    """Every (stage, field) pair a v2 pipeline can ask for has exactly one
+    """Every (stage, field) pair a Step 2 pipeline can ask for has exactly one
     deployed catalog: concepts run four catalog stages, keywords two."""
     for concept_type in ConceptTypeEnum:
-        for stage in (
-            STAGE_RELATIONSHIP_SCREENING,
-            STAGE_INITIAL_GROUNDING,
-            STAGE_OOV_GROUNDING,
-            STAGE_RECURSIVE_GROUNDING,
-        ):
+        for stage in (STAGE_GROUNDING, STAGE_PROPOSAL, STAGE_UNIT_SCREENING, STAGE_DESCENT):
             assert get_rule_catalog(stage, concept_type.value)
 
     for keyword_type in KeywordTypeEnum:
-        assert get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, keyword_type.value)
+        assert get_rule_catalog(STAGE_UNIT_SCREENING, keyword_type.value)
         assert get_rule_catalog(STAGE_FREEHAND_GROUNDING, keyword_type.value)
 
     for binary_type in BinaryClassificationTypeEnum:
@@ -64,11 +59,11 @@ def test_the_merged_product_grounding_catalog_serves_both_product_fields():
     contract = get_rule_catalog(STAGE_FREEHAND_GROUNDING, "contract_products")
     assert products is contract
     assert get_rule_catalog(
-        STAGE_RELATIONSHIP_SCREENING, "products"
-    ) is not get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, "contract_products")
+        STAGE_UNIT_SCREENING, "products"
+    ) is not get_rule_catalog(STAGE_UNIT_SCREENING, "contract_products")
 
 
 def test_unregistered_catalog_fails_loudly_rather_than_skipping_validation():
     set_rule_catalog_lookup(None)
     with pytest.raises(RuntimeError, match="rule catalog lookup"):
-        get_rule_catalog(STAGE_RELATIONSHIP_SCREENING, "industries")
+        get_rule_catalog(STAGE_UNIT_SCREENING, "industries")

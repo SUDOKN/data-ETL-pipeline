@@ -97,9 +97,6 @@ def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetad
         search_prompt=_make_prompt("equipment_phrase_search"),
         recursive_search_prompt=_make_prompt("equipment_phrase_recursive_search"),
         phrase_synthesis_prompt=_make_prompt("equipment_phrase_synthesis"),
-        phrase_relationship_screening_prompt=_make_prompt(
-            "equipment_phrase_relationship_screening"
-        ),
         phrase_freehand_grounding_prompt=_make_prompt(
             "equipment_phrase_freehand_grounding"
         ),
@@ -116,7 +113,7 @@ def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetad
         llm_phrase_search=prefill.llm_phrase_search_metadata,
         llm_phrase_recursive_search=prefill.llm_phrase_recursive_search_metadata,
         llm_phrase_relationship=prefill.llm_phrase_relationship_metadata,
-        llm_phrase_relationship_screening=prefill.llm_phrase_relationship_screening_metadata,
+        llm_phrase_unit_screening=prefill.llm_phrase_unit_screening_metadata,
         llm_phrase_freehand_grounding=prefill.llm_phrase_freehand_grounding_metadata,
     )
 
@@ -132,7 +129,6 @@ def _bundle(
         llm_phrase_search_pass2_req_ids=pass2_req_ids or [],
         llm_phrase_recursive_search_req_ids={},
         llm_phrase_relationship_req_ids=[],
-        llm_phrase_relationship_screening_req_ids=[],
         llm_phrase_freehand_grounding_req_ids=[],
     )
 

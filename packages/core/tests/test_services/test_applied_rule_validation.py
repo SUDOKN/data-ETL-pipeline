@@ -17,7 +17,7 @@ CATALOG = RuleCatalog.model_validate(
     {
         "catalog_version": "test.1",
         "prompt_name": "test_catalog",
-        "stage": "phrase_recursive_grounding",
+        "stage": "phrase_freehand_grounding",
         "field_types": ["industries"],
         "entity_noun": "industry",
         "entity_relationships": {
@@ -199,24 +199,27 @@ def _wire_model():
 
 
 def _judged(**overrides):
-    """A conforming grounding option in the new wire shape."""
-    option = {
-        "option": "Shipbuilding",
+    """A conforming grounding unit in the per-rule wire shape (the freehand
+    candidate wire since the Step 2 cutover retired the option wire; the
+    slots — always-reported conditions, one chosen ladder branch, guards —
+    are the same)."""
+    unit = {
+        "candidate": "Shipbuilding",
         "Q1": {"outcome": "satisfied", "explanation": "because"},
         "chosen": {"rule_id": "M1", "explanation": "because"},
         "guards": [],
     }
-    option.update(overrides)
+    unit.update(overrides)
     return {
         "groundings": [
-            {"record_id": "raaaaaa1", "options": [option], "explanation": None}
+            {"record_id": "raaaaaa1", "candidates": [unit], "explanation": None}
         ]
     }
 
 
 def test_the_new_wire_shape_round_trips_to_the_stored_one():
     parsed = _wire_model().model_validate(_judged())
-    option = parsed.groundings[0].options[0]
+    option = parsed.groundings[0].candidates[0]
     assert [(r.rule_id, r.outcome) for r in flatten_rule_slots(CATALOG, option)] == [
         ("Q1", "satisfied"),
         ("M1", "chosen"),
@@ -227,7 +230,7 @@ def test_an_always_reported_rule_cannot_be_omitted():
     """The 2026-08-11 failure, in its general form: a report that stops early.
     `Q1` is a required property, so there is no such document to decode."""
     payload = _judged()
-    del payload["groundings"][0]["options"][0]["Q1"]
+    del payload["groundings"][0]["candidates"][0]["Q1"]
     with pytest.raises(ValidationError, match="Q1"):
         _wire_model().model_validate(payload)
 
@@ -236,7 +239,7 @@ def test_exactly_one_branch_of_the_ladder_is_chosen():
     """`chosen` is a single required field, so neither none nor several is a
     document that exists — the count check it replaced had to run after the fact."""
     payload = _judged()
-    del payload["groundings"][0]["options"][0]["chosen"]
+    del payload["groundings"][0]["candidates"][0]["chosen"]
     with pytest.raises(ValidationError, match="chosen"):
         _wire_model().model_validate(payload)
 
@@ -277,7 +280,7 @@ def test_a_guard_carries_no_outcome_on_the_wire():
     parsed = _wire_model().model_validate(
         _judged(guards=[{"rule_id": "G1", "explanation": "because"}])
     )
-    option = parsed.groundings[0].options[0]
+    option = parsed.groundings[0].candidates[0]
     assert ("G1", "violated") in [
         (r.rule_id, r.outcome) for r in flatten_rule_slots(CATALOG, option)
     ]

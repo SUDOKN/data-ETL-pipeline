@@ -42,13 +42,6 @@ STAGED_PROMPT_FILE_PATHS = {
     "product_phrase_relationship": "multi_stage/3_phrase_relationship/product_phrase_relationship.txt",
     "equipment_phrase_relationship": "multi_stage/3_phrase_relationship/equipment_phrase_relationship.txt",
     # relationship screening
-    "conformity_attestation_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/conformity_attestation_phrase_relationship_screening.txt",
-    "industry_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/industry_phrase_relationship_screening.txt",
-    "material_cap_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/material_cap_phrase_relationship_screening.txt",
-    "process_cap_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/process_cap_phrase_relationship_screening.txt",
-    "product_phrase_screening_pure_product": "multi_stage/4_phrase_relationship_screening/product_phrase_screening_pure_product.txt",
-    "product_phrase_screening_contract": "multi_stage/4_phrase_relationship_screening/product_phrase_screening_contract.txt",
-    "equipment_phrase_relationship_screening": "multi_stage/4_phrase_relationship_screening/equipment_phrase_relationship_screening.txt",
     # v3 synthesis (PIPELINE_V3_PLAN.md D15/D16, Phase 3.2) — one description
     # per group from the fold's entries. Six byte-identical, field-agnostic
     # statics; one per field for the same per-field pin bookkeeping.
@@ -65,20 +58,8 @@ STAGED_PROMPT_FILE_PATHS = {
     "product_phrase_freehand_grounding": "multi_stage/5_freehand_grounding/product_phrase_freehand_grounding.txt",
     "equipment_phrase_freehand_grounding": "multi_stage/5_freehand_grounding/equipment_phrase_freehand_grounding.txt",
     # initial grounding
-    "conformity_attestation_phrase_initial_grounding": "multi_stage/5_initial_grounding/conformity_attestation_phrase_initial_grounding.txt",
-    "industry_phrase_initial_grounding": "multi_stage/5_initial_grounding/industry_phrase_initial_grounding.txt",
-    "material_cap_phrase_initial_grounding": "multi_stage/5_initial_grounding/material_cap_phrase_initial_grounding.txt",
-    "process_cap_phrase_initial_grounding": "multi_stage/5_initial_grounding/process_cap_phrase_initial_grounding.txt",
     # oov grounding (v2's discovery pass, serial after in-vocab grounding)
-    "conformity_attestation_phrase_oov_grounding": "multi_stage/5_oov_grounding/conformity_attestation_phrase_oov_grounding.txt",
-    "industry_phrase_oov_grounding": "multi_stage/5_oov_grounding/industry_phrase_oov_grounding.txt",
-    "material_cap_phrase_oov_grounding": "multi_stage/5_oov_grounding/material_cap_phrase_oov_grounding.txt",
-    "process_cap_phrase_oov_grounding": "multi_stage/5_oov_grounding/process_cap_phrase_oov_grounding.txt",
     # recursive grounding
-    "conformity_attestation_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/conformity_attestation_phrase_recursive_grounding.txt",
-    "industry_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/industry_phrase_recursive_grounding.txt",
-    "material_cap_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/material_cap_phrase_recursive_grounding.txt",
-    "process_cap_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/process_cap_phrase_recursive_grounding.txt",
     # --- Step 2 of the grounding redesign (2026-09-22): the four new families.
     # Every name listed here is loaded from S3 at bot start, so these must be
     # PUBLISHED and pinned before the first run on this code.
@@ -485,14 +466,6 @@ class PromptService:
         return self._get_prompt("equipment_phrase_synthesis")
 
     @property
-    def product_phrase_screening_pure_product_prompt(self) -> Prompt:
-        return self._get_prompt("product_phrase_screening_pure_product")
-
-    @property
-    def product_phrase_screening_contract_prompt(self) -> Prompt:
-        return self._get_prompt("product_phrase_screening_contract")
-
-    @property
     def product_phrase_freehand_grounding_prompt(self) -> Prompt:
         return self._get_prompt("product_phrase_freehand_grounding")
 
@@ -507,10 +480,6 @@ class PromptService:
     @property
     def equipment_phrase_relationship_prompt(self) -> Prompt:
         return self._get_prompt("equipment_phrase_relationship")
-
-    @property
-    def equipment_phrase_relationship_screening_prompt(self) -> Prompt:
-        return self._get_prompt("equipment_phrase_relationship_screening")
 
     @property
     def equipment_phrase_freehand_grounding_prompt(self) -> Prompt:
@@ -563,70 +532,6 @@ class PromptService:
     @property
     def process_cap_phrase_recursive_search_prompt(self) -> Prompt:
         return self._get_prompt("process_cap_phrase_recursive_search")
-
-    @property
-    def conformity_attestation_phrase_relationship_screening_prompt(self) -> Prompt:
-        return self._get_prompt("conformity_attestation_phrase_relationship_screening")
-
-    @property
-    def industry_phrase_relationship_screening_prompt(self) -> Prompt:
-        return self._get_prompt("industry_phrase_relationship_screening")
-
-    @property
-    def material_cap_phrase_relationship_screening_prompt(self) -> Prompt:
-        return self._get_prompt("material_cap_phrase_relationship_screening")
-
-    @property
-    def process_cap_phrase_relationship_screening_prompt(self) -> Prompt:
-        return self._get_prompt("process_cap_phrase_relationship_screening")
-
-    @property
-    def conformity_attestation_phrase_initial_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("conformity_attestation_phrase_initial_grounding")
-
-    @property
-    def industry_phrase_initial_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("industry_phrase_initial_grounding")
-
-    @property
-    def material_cap_phrase_initial_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("material_cap_phrase_initial_grounding")
-
-    @property
-    def process_cap_phrase_initial_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("process_cap_phrase_initial_grounding")
-
-    @property
-    def conformity_attestation_phrase_oov_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("conformity_attestation_phrase_oov_grounding")
-
-    @property
-    def industry_phrase_oov_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("industry_phrase_oov_grounding")
-
-    @property
-    def material_cap_phrase_oov_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("material_cap_phrase_oov_grounding")
-
-    @property
-    def process_cap_phrase_oov_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("process_cap_phrase_oov_grounding")
-
-    @property
-    def conformity_attestation_phrase_recursive_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("conformity_attestation_phrase_recursive_grounding")
-
-    @property
-    def industry_phrase_recursive_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("industry_phrase_recursive_grounding")
-
-    @property
-    def material_cap_phrase_recursive_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("material_cap_phrase_recursive_grounding")
-
-    @property
-    def process_cap_phrase_recursive_grounding_prompt(self) -> Prompt:
-        return self._get_prompt("process_cap_phrase_recursive_grounding")
 
 
 # Factory function for getting the service instance

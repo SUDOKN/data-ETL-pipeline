@@ -225,7 +225,7 @@ def test_pins_merge_both_records_into_one_map(tmp_path):
     assert (static.s3_version_id, static.rendered_sha256) == ("v42", DIGEST)
     assert static.catalog_version is None
 
-    catalog = pins["equipment_phrase_relationship_screening"]
+    catalog = pins["equipment_phrase_unit_screening"]
     assert catalog.catalog_version is not None
 
 
@@ -242,8 +242,8 @@ def test_a_name_pinned_as_both_kinds_is_refused(tmp_path):
         json.dumps(
             {
                 "prompts": {
-                    "equipment_phrase_relationship_screening": {
-                        "s3_key": "multi_stage/4_phrase_relationship_screening/equipment_phrase_relationship_screening.txt",
+                    "equipment_phrase_unit_screening": {
+                        "s3_key": "multi_stage/4_phrase_unit_screening/equipment_phrase_unit_screening.txt",
                         "s3_version_id": "v42",
                         "rendered_sha256": DIGEST,
                         "uploaded_at": "2026-08-11T00:00:00+00:00",

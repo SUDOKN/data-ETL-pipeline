@@ -56,8 +56,6 @@ def _concept(**overrides: Any):
         chunk_strategy=MATERIAL_CAP_CHUNKING_STRAT,
         ontology=cast(Any, type("O", (), {"s3_version_id": "ont-1"})()),
         search_prompt=_prompt("s"), recursive_search_prompt=_prompt("r"), phrase_synthesis_prompt=_prompt("syn"),
-        phrase_relationship_screening_prompt=_prompt("scr"), phrase_initial_grounding_prompt=_prompt("g"),
-        phrase_recursive_grounding_prompt=_prompt("rg"),
         phrase_grounding_prompt=_prompt("g2"), phrase_proposal_prompt=_prompt("pp"),
         phrase_unit_screening_prompt=_prompt("us"), phrase_descent_prompt=_prompt("de"),
         known_concepts=set(), llm_model=GPT_4o_mini, model_params=GPTModelParams.with_defaults(),
@@ -89,7 +87,7 @@ def test_keyword_chain_runs_freehand_unit_screening_then_reconcile():
     prefill = ExtractionPipelineFactory.create_pure_product_extraction_pipeline(
         chunk_strategy=PRODUCT_CHUNKING_STRAT, ontology_version_id="ont-1",
         search_prompt=_prompt("s"), recursive_search_prompt=_prompt("r"), phrase_synthesis_prompt=_prompt("syn"),
-        phrase_relationship_screening_prompt=_prompt("scr"), phrase_freehand_grounding_prompt=_prompt("fg"),
+        phrase_freehand_grounding_prompt=_prompt("fg"),
         phrase_unit_screening_prompt=_prompt("us"),
         llm_model=GPT_4o_mini, model_params=GPTModelParams.with_defaults(), created_at=datetime(2026, 9, 22),
     )

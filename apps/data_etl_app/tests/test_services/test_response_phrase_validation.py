@@ -35,11 +35,6 @@ from core.services.pipeline_nodes.multi_stage.llm_grounding_node_service import 
     parse_record_grounding_group_result,
     retry_record_payloads,
 )
-from core.services.pipeline_nodes.multi_stage.llm_relationship_screening_node_service import (
-    build_screening_payloads,
-    create_deferred_record_screening_gpt_request,
-    parse_record_screening_group_result,
-)
 from llm_providers.models.file_objects.prompt import Prompt
 from llm_providers.db_models.gpt_batch_request import GPTBatchRequest
 from llm_providers.models.llm_model import NO_MODEL
@@ -70,7 +65,6 @@ def _required_catalog(stage: str, field: str):
 
 
 FREEHAND_CATALOG = _required_catalog("phrase_freehand_grounding", "equipments")
-SCREENING_CATALOG = _required_catalog("phrase_relationship_screening", "equipments")
 
 _PARAMS = GPTModelParams(
     max_completion_tokens=1000,
@@ -324,123 +318,13 @@ async def test_a_record_answered_in_two_requests_raises():
         )
 
 
-# --- screening: both axes held through the real group parse ------------------
-
-CANDIDATES = {rid: ["Welding Machine"] for rid in RECORD_IDS}
-
-
-def _screening_unit(candidate: str) -> dict:
-    report = {"outcome": "satisfied", "explanation": "the record shows it"}
-    slots: dict = {"candidate": candidate}
-    for rule in SCREENING_CATALOG.walk_rules():
-        if rule.report_when == "always":
-            slots[rule.id] = dict(report)
-    slots["guards"] = []
-    return slots
-
-
-def _screening_entry(record_id: str, candidates: list[str]) -> dict:
-    return {
-        "record_id": record_id,
-        "candidates": [_screening_unit(c) for c in candidates],
-    }
-
-
-def _screening_request(entries: list[dict]) -> GPTBatchRequest:
-    req = create_deferred_record_screening_gpt_request(
-        deferred_at=TIMESTAMP,
-        subject_unique_id="anchor-mfg.com",
-        request_id=REQ_ID,
-        prompt=_PROMPT,
-        catalog=SCREENING_CATALOG,
-        subject_name="Anchor Manufacturing",
-        screening_payloads=build_screening_payloads(GROUPS, CANDIDATES),
-        gpt_model=NO_MODEL,
-        eager=True,
-        model_params=_PARAMS,
-    )
-    return _answered(req, {"screenings": entries})
-
-
-async def _parse_screening(req: GPTBatchRequest):
-    return await parse_record_screening_group_result(
-        subject_unique_id="anchor-mfg.com",
-        field_name="equipments",
-        catalog=SCREENING_CATALOG,
-        group_req_id=REQ_ID,
-        completed_request_map={REQ_ID: req},
-        timestamp=TIMESTAMP,
-    )
-
-
-def test_the_screening_context_reads_its_own_record_ids_back():
-    req = _screening_request([])
-    assert (
-        sent_record_ids_from_user_message(req.request.body.user_message())
-        == RECORD_IDS
-    )
-
-
-@pytest.mark.asyncio
-async def test_a_screening_response_covering_both_axes_passes():
-    req = _screening_request(
-        [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
-    )
-
-    sent_ids, held = await _parse_screening(req)
-
-    assert sent_ids == RECORD_IDS
-    assert list(held) == RECORD_IDS
-    assert req.response_parse_errors == []
-
-
-@pytest.mark.asyncio
-async def test_an_under_answering_screening_response_thins_for_the_retry():
-    """Since 3.3 (the under-answer decision) an id-axis under-answer is not a
-    failed response: the hold thins and the node's retry pass re-asks."""
-    req = _screening_request([_screening_entry(RECORD_IDS[0], CANDIDATES[RECORD_IDS[0]])])
-
-    sent_ids, held = await _parse_screening(req)
-
-    assert sent_ids == RECORD_IDS
-    assert list(held) == [RECORD_IDS[0]]
-    assert req.response_parse_errors == []
-    assert req.response is not None
-
-
-@pytest.mark.asyncio
-async def test_an_unjudged_candidate_is_a_recorded_parse_error():
-    """The candidate axis stays EXACT over the records that did answer: every
-    answered record's verdicts must cover exactly what its request listed,
-    read off the request document itself."""
-    entries = [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
-    entries[1]["candidates"] = []
-    req = _screening_request(entries)
-
-    with pytest.raises(ValueError, match="no verdict came back"):
-        await _parse_screening(req)
-
-    assert len(req.response_parse_errors) == 1
-
-
-@pytest.mark.asyncio
-async def test_screening_stops_re_dispatching_at_the_cap():
-    entries = [_screening_entry(rid, CANDIDATES[rid]) for rid in RECORD_IDS]
-    entries[1]["candidates"] = []  # the candidate-axis failure
-    req = _screening_request(entries)
-    req.response_parse_errors = [{"prior": "failure"}] * RESPONSE_PARSE_ERROR_CAP
-
-    with pytest.raises(RepeatedParseFailure):
-        await _parse_screening(req)
-
-
 # --- every production context reads its own blocks back ----------------------
 
 
 def test_every_production_context_that_renders_blocks_can_read_them_back():
     """Pin the anchor against the REAL context builders, not restated f-strings.
 
-    Screening once shipped its phrase block one space off column 0, the reader
+    The retired screening stage once shipped its phrase block one space off column 0, the reader
     returned None, and the stage read as "asked nothing" rather than
     "misrendered" — the hold would have been a silent no-op. The v2 record
     creators carry the same obligation on the record fences, and relationship —
@@ -462,7 +346,6 @@ def test_every_production_context_that_renders_blocks_can_read_them_back():
         eager=True,
         model_params=_PARAMS,
     )
-    screening_req = _screening_request([])
     relationship_req = create_deferred_phrase_relationship_gpt_request(
         deferred_at=TIMESTAMP,
         subject_unique_id="test.com",
@@ -476,7 +359,7 @@ def test_every_production_context_that_renders_blocks_can_read_them_back():
         model_params=_PARAMS,
     )
 
-    for name, req in [("grounding", grounding_req), ("screening", screening_req)]:
+    for name, req in [("grounding", grounding_req)]:
         read_back = sent_record_ids_from_user_message(req.request.body.user_message())
         assert read_back == RECORD_IDS, f"{name} context did not read back"
 

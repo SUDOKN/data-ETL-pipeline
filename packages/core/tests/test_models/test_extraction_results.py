@@ -140,16 +140,18 @@ def test_keyword_stats_take_the_uniform_shape_with_empty_in_vocab():
     assert reloaded.results.out_of_vocab == {"CNC machining centers"}
 
 
-def test_oov_grounding_node_is_optional_in_concept_metadata():
-    """None = the OOV pass is off for the run — run config as metadata identity
-    (fork F6), never a StageToggle."""
+def test_retired_and_run_flag_stages_are_optional_in_concept_metadata():
+    """The four families retired at the Step 2 cutover (2026-09-22) stay as
+    optional identities so stored runs load; the proposal pass is a run flag
+    (None = off), run config as metadata identity, never a StageToggle."""
     from core.models.extraction_results.llm_phrase_extraction_results import (
         ConceptExtractionMetadata,
     )
 
     fields = ConceptExtractionMetadata.model_fields
-    assert fields["llm_phrase_oov_grounding"].is_required() is False
-    assert fields["llm_phrase_initial_grounding"].is_required() is True
+    for retired in ("llm_phrase_relationship_screening", "llm_phrase_initial_grounding", "llm_phrase_oov_grounding", "llm_phrase_recursive_grounding"):
+        assert fields[retired].is_required() is False, retired
+    assert fields["llm_phrase_proposal"].is_required() is False
 
 
 def test_search_round_values_accept_the_v1_search_results_shape():

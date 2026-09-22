@@ -62,8 +62,6 @@ logger = logging.getLogger(__name__)
 # grounding passes and the keyword one can precede a stop point, and more than
 # one can have run — each present stage gets its own key on the row.
 _GROUNDING_STAGE_ROW_KEYS = {
-    PipelineStage.initial_grounding: "in_vocab_grounding",
-    PipelineStage.oov_grounding: "oov_grounding",
     PipelineStage.freehand_grounding: "freehand_grounding",
     # Step 2 (2026-09-22): the one grounding call and the proposal pass. The
     # descent stage is the new "everything but reconcile" exception: its trail
@@ -72,10 +70,9 @@ _GROUNDING_STAGE_ROW_KEYS = {
     PipelineStage.grounding: "grounding",
     PipelineStage.proposal: "proposal_pass",
 }
-# Either screening flavour dumps under the one ``screening`` row key: the
-# retired per-record stage, or Step 2's unit screening (the keyword fields'
+# Unit screening dumps under the ``screening`` row key (the keyword fields'
 # one wave; the concept fields' waves are issued under the descent node).
-_SCREENING_STAGES = (PipelineStage.screening, PipelineStage.unit_screening)
+_SCREENING_STAGES = (PipelineStage.unit_screening,)
 
 
 class _HasChunkedRequestMap(Protocol):
