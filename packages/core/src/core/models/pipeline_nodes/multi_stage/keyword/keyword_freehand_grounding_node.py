@@ -12,6 +12,9 @@ if TYPE_CHECKING:
     from core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screening_node import (
         KeywordRelationshipScreeningNode,
     )
+    from core.models.pipeline_nodes.multi_stage.keyword.keyword_unit_screening_node import (
+        KeywordUnitScreeningNode,
+    )
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +32,7 @@ class KeywordFreehandGroundingNode(LLMPhraseFreehandGroundingNode[ExtractionFiel
     def __init__(
         self,
         field_type: ExtractionFieldType,
-        next_node: KeywordRelationshipScreeningNode,
+        next_node: KeywordUnitScreeningNode | KeywordRelationshipScreeningNode,  # Step 2: unit screening; the old node until the cutover's last commit
         phrase_freehand_grounding_prompt: Prompt,
     ):
         super().__init__(

@@ -20,8 +20,8 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_recursive_search_nod
 )
 
 if TYPE_CHECKING:
-    from core.models.pipeline_nodes.multi_stage.concept.concept_initial_grounding_node import (
-        ConceptInitialGroundingNode,
+    from core.models.pipeline_nodes.multi_stage.concept.concept_grounding_node import (
+        ConceptGroundingNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -36,7 +36,7 @@ class ConceptSynthesisNode(LLMPhraseSynthesisNode[ConceptFieldType]):
         self,
         concept_type: ConceptFieldType,
         phrase_synthesis_prompt: Prompt,
-        next_node: ConceptInitialGroundingNode,
+        next_node: ConceptGroundingNode,  # Step 2 (2026-09-22): the one grounding call
     ):
         super().__init__(
             field_type=concept_type,

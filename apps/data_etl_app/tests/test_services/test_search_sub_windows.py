@@ -103,6 +103,7 @@ def _equipment_metadata(max_recursive_rounds: int = 1) -> KeywordExtractionMetad
         phrase_freehand_grounding_prompt=_make_prompt(
             "equipment_phrase_freehand_grounding"
         ),
+        phrase_unit_screening_prompt=_make_prompt("equipment_phrase_unit_screening"),
         llm_model=GPT_4o_mini,
         model_params=GPTModelParams.with_defaults(),
         created_at=TIMESTAMP,

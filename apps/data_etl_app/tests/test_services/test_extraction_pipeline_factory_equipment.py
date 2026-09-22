@@ -11,7 +11,7 @@ from data_etl_app.models.pipeline_nodes import (
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
     EquipmentSynthesisNode,
-    EquipmentRelationshipScreeningNode,
+    EquipmentUnitScreeningNode,
     EquipmentFreehandGroundingNode,
     EquipmentReconcileNode,
 )
@@ -45,6 +45,7 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
         phrase_freehand_grounding_prompt=_make_prompt(
             "equipment_phrase_freehand_grounding"
         ),
+        phrase_unit_screening_prompt=_make_prompt("equipment_phrase_unit_screening"),
         llm_model=GPT_4o_mini,
         model_params=GPTModelParams.with_defaults(),
         created_at=datetime.now(),
@@ -80,7 +81,7 @@ def test_create_equipment_extraction_pipeline_builds_expected_node_chain():
     assert isinstance(freehand_grounding_node, EquipmentFreehandGroundingNode)
 
     screening_node = freehand_grounding_node.next_node
-    assert isinstance(screening_node, EquipmentRelationshipScreeningNode)
+    assert isinstance(screening_node, EquipmentUnitScreeningNode)  # Step 2: unit screening in the chain
 
     reconcile_node = screening_node.next_node
     assert isinstance(reconcile_node, EquipmentReconcileNode)

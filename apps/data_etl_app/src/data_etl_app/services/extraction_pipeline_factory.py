@@ -5,6 +5,7 @@ from llm_providers.models.llm_model import LLM_Model
 from core.models.extraction_results.extraction_node_metadata import (
     AggregationFoldMetadata,
     BatchedSynthesisNodeMetadata,
+    DescentNodeMetadata,
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedScreeningNodeMetadata,
@@ -42,18 +43,21 @@ from data_etl_app.models.pipeline_nodes import (
     ContractProductSynthesisNode,
     ContractProductRelationshipScreeningNode,
     ContractProductFreehandGroundingNode,
+    ContractProductUnitScreeningNode,
     ContractProductReconcileNode,
     PureProductPhraseSearchNode,
     PureProductRecursiveSearchNode,
     PureProductSynthesisNode,
     PureProductRelationshipScreeningNode,
     PureProductFreehandGroundingNode,
+    PureProductUnitScreeningNode,
     PureProductReconcileNode,
     EquipmentPhraseSearchNode,
     EquipmentRecursiveSearchNode,
     EquipmentSynthesisNode,
     EquipmentRelationshipScreeningNode,
     EquipmentFreehandGroundingNode,
+    EquipmentUnitScreeningNode,
     EquipmentReconcileNode,
 )
 from core.models.pipeline_nodes import (
@@ -66,6 +70,9 @@ from core.models.pipeline_nodes import (
     ConceptInitialGroundingNode,
     ConceptOovGroundingNode,
     ConceptIterativeGroundingNode,
+    ConceptGroundingNode,
+    ConceptProposalNode,
+    ConceptDescentNode,
     ConceptExtractionPrefillNode,
     ConceptReconcileNode,
     ConceptPhraseSearchNode,
@@ -177,6 +184,16 @@ class ExtractionPipelineFactory:
     DEFAULT_INITIAL_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
     DEFAULT_OOV_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
     DEFAULT_FREEHAND_GROUNDING_MAX_PAIRS_PER_REQUEST = 25
+    # Step 2 (2026-09-22). The one grounding call and the proposal pass pack
+    # RECORDS per request like the passes they replace; unit screening packs
+    # at most 50 DISTINCT records per request (D8: the records are what the
+    # model reads). The proposal pass and the leaf step are run flags, both
+    # ON for the Step 2 census run (user decisions 2026-09-21/22).
+    DEFAULT_GROUNDING_MAX_RECORDS_PER_REQUEST = 25
+    DEFAULT_PROPOSAL_MAX_RECORDS_PER_REQUEST = 25
+    DEFAULT_UNIT_SCREENING_MAX_RECORDS_PER_REQUEST = 50
+    DEFAULT_PROPOSAL_PASS_ENABLED = True
+    DEFAULT_LEAF_STEP = True
 
     @staticmethod
     def _metadata(
@@ -302,6 +319,24 @@ class ExtractionPipelineFactory:
         )
 
     @staticmethod
+    def _descent_metadata(
+        prompt: Prompt,
+        llm_model: LLM_Model,
+        model_params: GPTModelParams,
+        created_at: datetime,
+        leaf_step: bool,
+    ) -> DescentNodeMetadata:
+        return DescentNodeMetadata(
+            llm_model=llm_model,
+            model_params=model_params,
+            prompt_name=prompt.name,
+            prompt_version_id=prompt.s3_version_id,
+            catalog_version=prompt.catalog_version,
+            created_at=created_at,
+            leaf_step=leaf_step,
+        )
+
+    @staticmethod
     def _batched_freehand_grounding_metadata(
         prompt: Prompt,
         llm_model: LLM_Model,
@@ -351,6 +386,17 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
+        # Step 2 (2026-09-22): the four families the chain below runs. The
+        # old four above stay as metadata until the cutover's last commit.
+        phrase_grounding_prompt: Prompt,
+        phrase_proposal_prompt: Prompt,
+        phrase_unit_screening_prompt: Prompt,
+        phrase_descent_prompt: Prompt,
+        proposal_pass_enabled: bool = DEFAULT_PROPOSAL_PASS_ENABLED,
+        leaf_step: bool = DEFAULT_LEAF_STEP,
+        max_grounding_records_per_request: int = DEFAULT_GROUNDING_MAX_RECORDS_PER_REQUEST,
+        max_proposal_records_per_request: int = DEFAULT_PROPOSAL_MAX_RECORDS_PER_REQUEST,
+        max_unit_screening_records_per_request: int = DEFAULT_UNIT_SCREENING_MAX_RECORDS_PER_REQUEST,
         # None = the OOV discovery pass is off for this run (run config carried
         # as metadata identity, fork F6).
         phrase_oov_grounding_prompt: Optional[Prompt] = None,
@@ -423,6 +469,22 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_synthesis_entries_per_request,
             ),
+            llm_phrase_grounding_metadata=ExtractionPipelineFactory._batched_initial_grounding_metadata(
+                phrase_grounding_prompt, llm_model, model_params, created_at, max_grounding_records_per_request
+            ),
+            llm_phrase_proposal_metadata=(
+                ExtractionPipelineFactory._batched_initial_grounding_metadata(
+                    phrase_proposal_prompt, llm_model, model_params, created_at, max_proposal_records_per_request
+                )
+                if proposal_pass_enabled
+                else None
+            ),
+            llm_phrase_unit_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
+                phrase_unit_screening_prompt, llm_model, model_params, created_at, max_unit_screening_records_per_request
+            ),
+            llm_phrase_descent_metadata=ExtractionPipelineFactory._descent_metadata(
+                phrase_descent_prompt, llm_model, model_params, created_at, leaf_step
+            ),
             next_node=ConceptPhraseSearchNode(
                 concept_type=concept_type,
                 search_prompt=search_prompt,
@@ -436,29 +498,31 @@ class ExtractionPipelineFactory:
                     # description per group plus per-entry context quotes.
                     # v3 (3.3, D16): the grounding → screening → descent tail
                     # below consumes its per-group records keyed group_id.
+                    # Step 2 (2026-09-22): ONE grounding call, the proposal
+                    # pass (a run flag), then descent in depth waves with the
+                    # wave screens and the proposal wave inside it, then
+                    # reconcile. The initial / OOV / screening / iterative
+                    # nodes are out of the chain; their metadata stays until
+                    # the cutover's last commit.
                     next_node=ConceptSynthesisNode(
                         concept_type=concept_type,
                         phrase_synthesis_prompt=synthesis_prompt,
-                        next_node=ConceptInitialGroundingNode(
+                        next_node=ConceptGroundingNode(
                             concept_type=concept_type,
-                            phrase_initial_grounding_prompt=phrase_initial_grounding_prompt,
+                            phrase_grounding_prompt=phrase_grounding_prompt,
                             known_concepts=known_concepts,
-                            next_node=ConceptOovGroundingNode(
+                            next_node=ConceptProposalNode(
                                 concept_type=concept_type,
-                                phrase_oov_grounding_prompt=phrase_oov_grounding_prompt,
+                                phrase_proposal_prompt=phrase_proposal_prompt,
                                 known_concepts=known_concepts,
-                                next_node=ConceptRelationshipScreeningNode(
+                                next_node=ConceptDescentNode(
                                     concept_type=concept_type,
-                                    phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
+                                    phrase_descent_prompt=phrase_descent_prompt,
+                                    phrase_unit_screening_prompt=phrase_unit_screening_prompt,
                                     known_concepts=known_concepts,
-                                    next_node=ConceptIterativeGroundingNode(
+                                    next_node=ConceptReconcileNode(
                                         concept_type=concept_type,
-                                        phrase_recursive_grounding_prompt=phrase_recursive_grounding_prompt,
                                         known_concepts=known_concepts,
-                                        next_node=ConceptReconcileNode(
-                                            concept_type=concept_type,
-                                            known_concepts=known_concepts,
-                                        ),
                                     ),
                                 ),
                             ),
@@ -492,6 +556,9 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
+        # Step 2 (2026-09-22): unit screening over the freehand candidates.
+        phrase_unit_screening_prompt: Prompt,
+        max_unit_screening_records_per_request: int = DEFAULT_UNIT_SCREENING_MAX_RECORDS_PER_REQUEST,
         # v3 3.2: Optional only so older construction sites still compile; the
         # chain always needs it (create_pipelines passes it).
         phrase_synthesis_prompt: Optional[Prompt] = None,
@@ -540,6 +607,9 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_freehand_grounding_pairs_per_request,
             ),
+            llm_phrase_unit_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
+                phrase_unit_screening_prompt, llm_model, model_params, created_at, max_unit_screening_records_per_request
+            ),
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
                 keyword_type, snippet_radius
             ),
@@ -572,9 +642,9 @@ class ExtractionPipelineFactory:
                         next_node=ContractProductFreehandGroundingNode(
                             field_type=keyword_type,
                             phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
-                            next_node=ContractProductRelationshipScreeningNode(
+                            next_node=ContractProductUnitScreeningNode(
                                 field_type=keyword_type,
-                                phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
+                                phrase_unit_screening_prompt=phrase_unit_screening_prompt,
                                 next_node=ContractProductReconcileNode(
                                     field_type=keyword_type,
                                 ),
@@ -596,6 +666,9 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
+        # Step 2 (2026-09-22): unit screening over the freehand candidates.
+        phrase_unit_screening_prompt: Prompt,
+        max_unit_screening_records_per_request: int = DEFAULT_UNIT_SCREENING_MAX_RECORDS_PER_REQUEST,
         # v3 3.2: Optional only so older construction sites still compile; the
         # chain always needs it (create_pipelines passes it).
         phrase_synthesis_prompt: Optional[Prompt] = None,
@@ -641,6 +714,9 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_freehand_grounding_pairs_per_request,
             ),
+            llm_phrase_unit_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
+                phrase_unit_screening_prompt, llm_model, model_params, created_at, max_unit_screening_records_per_request
+            ),
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
                 keyword_type, snippet_radius
             ),
@@ -673,9 +749,9 @@ class ExtractionPipelineFactory:
                         next_node=EquipmentFreehandGroundingNode(
                             field_type=keyword_type,
                             phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
-                            next_node=EquipmentRelationshipScreeningNode(
+                            next_node=EquipmentUnitScreeningNode(
                                 field_type=keyword_type,
-                                phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
+                                phrase_unit_screening_prompt=phrase_unit_screening_prompt,
                                 next_node=EquipmentReconcileNode(
                                     field_type=keyword_type,
                                 ),
@@ -784,6 +860,9 @@ class ExtractionPipelineFactory:
         llm_model: LLM_Model,
         model_params: GPTModelParams,
         created_at: datetime,
+        # Step 2 (2026-09-22): unit screening over the freehand candidates.
+        phrase_unit_screening_prompt: Prompt,
+        max_unit_screening_records_per_request: int = DEFAULT_UNIT_SCREENING_MAX_RECORDS_PER_REQUEST,
         # v3 3.2: Optional only so older construction sites still compile; the
         # chain always needs it (create_pipelines passes it).
         phrase_synthesis_prompt: Optional[Prompt] = None,
@@ -824,6 +903,9 @@ class ExtractionPipelineFactory:
                 created_at,
                 max_freehand_grounding_pairs_per_request,
             ),
+            llm_phrase_unit_screening_metadata=ExtractionPipelineFactory._batched_screening_metadata(
+                phrase_unit_screening_prompt, llm_model, model_params, created_at, max_unit_screening_records_per_request
+            ),
             aggregation_fold_metadata=ExtractionPipelineFactory._aggregation_fold_metadata(
                 keyword_type, snippet_radius
             ),
@@ -856,9 +938,9 @@ class ExtractionPipelineFactory:
                         next_node=PureProductFreehandGroundingNode(
                             field_type=keyword_type,
                             phrase_freehand_grounding_prompt=phrase_freehand_grounding_prompt,
-                            next_node=PureProductRelationshipScreeningNode(
+                            next_node=PureProductUnitScreeningNode(
                                 field_type=keyword_type,
-                                phrase_relationship_screening_prompt=phrase_relationship_screening_prompt,
+                                phrase_unit_screening_prompt=phrase_unit_screening_prompt,
                                 next_node=PureProductReconcileNode(
                                     field_type=keyword_type,
                                 ),
@@ -883,6 +965,9 @@ class ExtractionPipelineFactory:
         snippet_radius: int = DEFAULT_SNIPPET_RADIUS,
         max_synthesis_entries_per_request: int = DEFAULT_SYNTHESIS_MAX_ENTRIES_PER_REQUEST,
         search_union_pass: bool = DEFAULT_SEARCH_UNION_PASS,
+        # Step 2 run flags (user decisions 2026-09-21/22), both run identity.
+        proposal_pass_enabled: bool = DEFAULT_PROPOSAL_PASS_ENABLED,
+        leaf_step: bool = DEFAULT_LEAF_STEP,
     ) -> dict[ExtractionFieldType, PrefillNode]:
         """
         Returns a dict mapping field names to their phase pipelines.
@@ -952,6 +1037,7 @@ class ExtractionPipelineFactory:
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_pure_product_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
+                phrase_unit_screening_prompt=prompt_service.product_phrase_unit_screening_pure_product_prompt,
                 ontology_version_id=ontology.s3_version_id,
                 llm_model=llm_model,
                 model_params=model_params,
@@ -970,6 +1056,7 @@ class ExtractionPipelineFactory:
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
                 phrase_relationship_screening_prompt=prompt_service.product_phrase_screening_contract_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.product_phrase_freehand_grounding_prompt,
+                phrase_unit_screening_prompt=prompt_service.product_phrase_unit_screening_contract_prompt,
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,
@@ -987,6 +1074,7 @@ class ExtractionPipelineFactory:
                 max_synthesis_entries_per_request=max_synthesis_entries_per_request,
                 phrase_relationship_screening_prompt=prompt_service.equipment_phrase_relationship_screening_prompt,
                 phrase_freehand_grounding_prompt=prompt_service.equipment_phrase_freehand_grounding_prompt,
+                phrase_unit_screening_prompt=prompt_service.equipment_phrase_unit_screening_prompt,
                 llm_model=llm_model,
                 model_params=model_params,
                 created_at=created_at,
@@ -1013,6 +1101,12 @@ class ExtractionPipelineFactory:
                     else None
                 ),
                 phrase_recursive_grounding_prompt=prompt_service.conformity_attestation_phrase_recursive_grounding_prompt,
+                phrase_grounding_prompt=prompt_service.conformity_attestation_phrase_grounding_prompt,
+                phrase_proposal_prompt=prompt_service.conformity_attestation_phrase_proposal_prompt,
+                phrase_unit_screening_prompt=prompt_service.conformity_attestation_phrase_unit_screening_prompt,
+                phrase_descent_prompt=prompt_service.conformity_attestation_phrase_descent_prompt,
+                proposal_pass_enabled=proposal_pass_enabled,
+                leaf_step=leaf_step,
                 known_concepts=ontology.get_concepts_flat(
                     ConceptTypeEnum.conformity_attestations
                 ),
@@ -1040,6 +1134,12 @@ class ExtractionPipelineFactory:
                     else None
                 ),
                 phrase_recursive_grounding_prompt=prompt_service.industry_phrase_recursive_grounding_prompt,
+                phrase_grounding_prompt=prompt_service.industry_phrase_grounding_prompt,
+                phrase_proposal_prompt=prompt_service.industry_phrase_proposal_prompt,
+                phrase_unit_screening_prompt=prompt_service.industry_phrase_unit_screening_prompt,
+                phrase_descent_prompt=prompt_service.industry_phrase_descent_prompt,
+                proposal_pass_enabled=proposal_pass_enabled,
+                leaf_step=leaf_step,
                 known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.industries),
                 llm_model=llm_model,
                 model_params=model_params,
@@ -1065,6 +1165,12 @@ class ExtractionPipelineFactory:
                     else None
                 ),
                 phrase_recursive_grounding_prompt=prompt_service.process_cap_phrase_recursive_grounding_prompt,
+                phrase_grounding_prompt=prompt_service.process_cap_phrase_grounding_prompt,
+                phrase_proposal_prompt=prompt_service.process_cap_phrase_proposal_prompt,
+                phrase_unit_screening_prompt=prompt_service.process_cap_phrase_unit_screening_prompt,
+                phrase_descent_prompt=prompt_service.process_cap_phrase_descent_prompt,
+                proposal_pass_enabled=proposal_pass_enabled,
+                leaf_step=leaf_step,
                 known_concepts=ontology.get_concepts_flat(ConceptTypeEnum.process_caps),
                 llm_model=llm_model,
                 model_params=model_params,
@@ -1090,6 +1196,12 @@ class ExtractionPipelineFactory:
                     else None
                 ),
                 phrase_recursive_grounding_prompt=prompt_service.material_cap_phrase_recursive_grounding_prompt,
+                phrase_grounding_prompt=prompt_service.material_cap_phrase_grounding_prompt,
+                phrase_proposal_prompt=prompt_service.material_cap_phrase_proposal_prompt,
+                phrase_unit_screening_prompt=prompt_service.material_cap_phrase_unit_screening_prompt,
+                phrase_descent_prompt=prompt_service.material_cap_phrase_descent_prompt,
+                proposal_pass_enabled=proposal_pass_enabled,
+                leaf_step=leaf_step,
                 known_concepts=ontology.get_concepts_flat(
                     ConceptTypeEnum.material_caps
                 ),

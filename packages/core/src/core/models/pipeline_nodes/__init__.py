@@ -69,6 +69,16 @@ from core.models.pipeline_nodes.multi_stage.concept.concept_iterative_grounding_
 from core.models.pipeline_nodes.multi_stage.concept.concept_extraction_prefill_node import (
     ConceptExtractionPrefillNode,
 )
+# Step 2 (2026-09-22): the one grounding call, the proposal pass, descent in waves
+from core.models.pipeline_nodes.multi_stage.concept.concept_grounding_node import (
+    ConceptGroundingNode,
+)
+from core.models.pipeline_nodes.multi_stage.concept.concept_proposal_node import (
+    ConceptProposalNode,
+)
+from core.models.pipeline_nodes.multi_stage.concept.concept_descent_node import (
+    ConceptDescentNode,
+)
 from core.models.pipeline_nodes.multi_stage.concept.concept_reconcile_node import (
     ConceptReconcileNode,
 )
@@ -91,6 +101,9 @@ from core.models.pipeline_nodes.multi_stage.keyword.keyword_relationship_screeni
 )
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_freehand_grounding_node import (
     KeywordFreehandGroundingNode,
+)
+from core.models.pipeline_nodes.multi_stage.keyword.keyword_unit_screening_node import (
+    KeywordUnitScreeningNode,
 )
 from core.models.pipeline_nodes.multi_stage.keyword.keyword_reconcile_node import (
     KeywordReconcileNode,
@@ -148,6 +161,9 @@ __all__ = [
     "ConceptOovGroundingNode",
     "ConceptIterativeGroundingNode",
     "ConceptExtractionPrefillNode",
+    "ConceptGroundingNode",
+    "ConceptProposalNode",
+    "ConceptDescentNode",
     "ConceptReconcileNode",
     "ConceptPhraseSearchNode",
     "ConceptRecursiveSearchNode",
@@ -156,6 +172,7 @@ __all__ = [
     "KeywordRelationshipNode",
     "KeywordRelationshipScreeningNode",
     "KeywordFreehandGroundingNode",
+    "KeywordUnitScreeningNode",
     "KeywordReconcileNode",
     "KeywordPhraseSearchNode",
     "KeywordRecursiveSearchNode",

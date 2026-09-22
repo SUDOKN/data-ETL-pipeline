@@ -14,8 +14,8 @@ from data_etl_app.models.types_and_enums import KeywordTypeEnum
 from llm_providers.field_types import BatchRequestIDType
 
 if TYPE_CHECKING:
-    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_relationship_screening_node import (
-        ContractProductRelationshipScreeningNode,
+    from data_etl_app.models.pipeline_nodes.multi_stage.keyword.contract_product.contract_product_unit_screening_node import (
+        ContractProductUnitScreeningNode,
     )
 
 logger = logging.getLogger(__name__)
@@ -34,7 +34,7 @@ class ContractProductFreehandGroundingNode(KeywordFreehandGroundingNode):
     def __init__(
         self,
         field_type: KeywordTypeEnum,
-        next_node: ContractProductRelationshipScreeningNode,
+        next_node: ContractProductUnitScreeningNode,  # Step 2 (2026-09-22): unit screening
         phrase_freehand_grounding_prompt: Prompt,
     ):
         super().__init__(

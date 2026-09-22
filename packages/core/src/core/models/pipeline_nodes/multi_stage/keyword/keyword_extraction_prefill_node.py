@@ -78,12 +78,15 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
         aggregation_fold_metadata: Optional[AggregationFoldMetadata] = None,
         # v3 (Phase 3.2): the synthesis stage's identity, same contract.
         llm_phrase_synthesis_metadata: Optional[BatchedSynthesisNodeMetadata] = None,
+        # Step 2 (2026-09-22): unit screening over the freehand candidates.
+        llm_phrase_unit_screening_metadata: Optional[BatchedScreeningNodeMetadata] = None,
     ):
         super().__init__(
             field_type=field_type,
             chunk_strategy=chunk_strategy,
             next_node=next_node,
         )
+        self.llm_phrase_unit_screening_metadata = llm_phrase_unit_screening_metadata
         self.ontology_version_id = ontology_version_id
         self.aggregation_fold_metadata = aggregation_fold_metadata
         self.llm_phrase_synthesis_metadata = llm_phrase_synthesis_metadata
@@ -120,6 +123,7 @@ class KeywordExtractionPrefillNode(PrefillNode[ExtractionFieldType]):
             llm_phrase_freehand_grounding=self.llm_phrase_freehand_grounding_metadata,
             aggregation_fold=self.aggregation_fold_metadata,
             llm_phrase_synthesis=self.llm_phrase_synthesis_metadata,
+            llm_phrase_unit_screening=self.llm_phrase_unit_screening_metadata,
         )
 
         if not bool(getattr(deferred_subject, self.field_type.name)):

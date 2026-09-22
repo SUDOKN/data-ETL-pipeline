@@ -14,6 +14,7 @@ from core.models.extraction_results.llm_phrase_extraction_results import (
     ConceptExtractionMetadata,
 )
 from core.models.extraction_results.extraction_node_metadata import (
+    DescentNodeMetadata,
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
     BatchedRelationshipNodeMetadata,
@@ -95,12 +96,24 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
         ] = None,
         # v3 (Phase 3.2): the synthesis stage's identity, same contract.
         llm_phrase_synthesis_metadata: Optional[BatchedSynthesisNodeMetadata] = None,
+        # Step 2 (2026-09-22): the one grounding call, the proposal pass (None =
+        # off for this run), unit screening (the descent's wave screens) and
+        # descent (with the leaf-step flag). Optional only so older
+        # construction sites compile; the factory passes all four.
+        llm_phrase_grounding_metadata: Optional[BatchedInitialGroundingNodeMetadata] = None,
+        llm_phrase_proposal_metadata: Optional[BatchedInitialGroundingNodeMetadata] = None,
+        llm_phrase_unit_screening_metadata: Optional[BatchedScreeningNodeMetadata] = None,
+        llm_phrase_descent_metadata: Optional[DescentNodeMetadata] = None,
     ):
         super().__init__(
             field_type=field_type,
             chunk_strategy=chunk_strategy,
             next_node=next_node,
         )
+        self.llm_phrase_grounding_metadata = llm_phrase_grounding_metadata
+        self.llm_phrase_proposal_metadata = llm_phrase_proposal_metadata
+        self.llm_phrase_unit_screening_metadata = llm_phrase_unit_screening_metadata
+        self.llm_phrase_descent_metadata = llm_phrase_descent_metadata
         self.ontology = ontology
         self.llm_phrase_search_metadata = llm_phrase_search_metadata
         self.llm_phrase_recursive_search_metadata = llm_phrase_recursive_search_metadata
@@ -151,6 +164,10 @@ class ConceptExtractionPrefillNode(PrefillNode[ConceptFieldType]):
             llm_phrase_recursive_grounding=self.llm_phrase_recursive_grounding_metadata,
             aggregation_fold=self.aggregation_fold_metadata,
             llm_phrase_synthesis=self.llm_phrase_synthesis_metadata,
+            llm_phrase_grounding=self.llm_phrase_grounding_metadata,
+            llm_phrase_proposal=self.llm_phrase_proposal_metadata,
+            llm_phrase_unit_screening=self.llm_phrase_unit_screening_metadata,
+            llm_phrase_descent=self.llm_phrase_descent_metadata,
         )
 
         if not bool(getattr(deferred_subject, self.field_type.name)):

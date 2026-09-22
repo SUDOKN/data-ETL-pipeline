@@ -79,6 +79,32 @@ STAGED_PROMPT_FILE_PATHS = {
     "industry_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/industry_phrase_recursive_grounding.txt",
     "material_cap_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/material_cap_phrase_recursive_grounding.txt",
     "process_cap_phrase_recursive_grounding": "multi_stage/6_recursive_grounding/process_cap_phrase_recursive_grounding.txt",
+    # --- Step 2 of the grounding redesign (2026-09-22): the four new families.
+    # Every name listed here is loaded from S3 at bot start, so these must be
+    # PUBLISHED and pinned before the first run on this code.
+    # grounding (one call: initial + OOV merged)
+    "conformity_attestation_phrase_grounding": "multi_stage/5_grounding/conformity_attestation_phrase_grounding.txt",
+    "industry_phrase_grounding": "multi_stage/5_grounding/industry_phrase_grounding.txt",
+    "material_cap_phrase_grounding": "multi_stage/5_grounding/material_cap_phrase_grounding.txt",
+    "process_cap_phrase_grounding": "multi_stage/5_grounding/process_cap_phrase_grounding.txt",
+    # the proposal pass (records the grounding call left with no label; run flag)
+    "conformity_attestation_phrase_proposal": "multi_stage/5_proposal/conformity_attestation_phrase_proposal.txt",
+    "industry_phrase_proposal": "multi_stage/5_proposal/industry_phrase_proposal.txt",
+    "material_cap_phrase_proposal": "multi_stage/5_proposal/material_cap_phrase_proposal.txt",
+    "process_cap_phrase_proposal": "multi_stage/5_proposal/process_cap_phrase_proposal.txt",
+    # unit screening (all seven fields)
+    "conformity_attestation_phrase_unit_screening": "multi_stage/4_phrase_unit_screening/conformity_attestation_phrase_unit_screening.txt",
+    "industry_phrase_unit_screening": "multi_stage/4_phrase_unit_screening/industry_phrase_unit_screening.txt",
+    "material_cap_phrase_unit_screening": "multi_stage/4_phrase_unit_screening/material_cap_phrase_unit_screening.txt",
+    "process_cap_phrase_unit_screening": "multi_stage/4_phrase_unit_screening/process_cap_phrase_unit_screening.txt",
+    "product_phrase_unit_screening_pure_product": "multi_stage/4_phrase_unit_screening/product_phrase_unit_screening_pure_product.txt",
+    "product_phrase_unit_screening_contract": "multi_stage/4_phrase_unit_screening/product_phrase_unit_screening_contract.txt",
+    "equipment_phrase_unit_screening": "multi_stage/4_phrase_unit_screening/equipment_phrase_unit_screening.txt",
+    # descent in depth waves (the leaf step uses the same prompt with an empty list)
+    "conformity_attestation_phrase_descent": "multi_stage/6_descent/conformity_attestation_phrase_descent.txt",
+    "industry_phrase_descent": "multi_stage/6_descent/industry_phrase_descent.txt",
+    "material_cap_phrase_descent": "multi_stage/6_descent/material_cap_phrase_descent.txt",
+    "process_cap_phrase_descent": "multi_stage/6_descent/process_cap_phrase_descent.txt",
 }
 
 
@@ -326,6 +352,83 @@ class PromptService:
     @property
     def find_business_desc_prompt(self) -> Prompt:
         return self._get_prompt("find_business_desc")
+
+    # --- Step 2 (2026-09-22) ---
+    @property
+    def conformity_attestation_phrase_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_grounding")
+
+    @property
+    def conformity_attestation_phrase_proposal_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_proposal")
+
+    @property
+    def conformity_attestation_phrase_unit_screening_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_unit_screening")
+
+    @property
+    def conformity_attestation_phrase_descent_prompt(self) -> Prompt:
+        return self._get_prompt("conformity_attestation_phrase_descent")
+
+    @property
+    def industry_phrase_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("industry_phrase_grounding")
+
+    @property
+    def industry_phrase_proposal_prompt(self) -> Prompt:
+        return self._get_prompt("industry_phrase_proposal")
+
+    @property
+    def industry_phrase_unit_screening_prompt(self) -> Prompt:
+        return self._get_prompt("industry_phrase_unit_screening")
+
+    @property
+    def industry_phrase_descent_prompt(self) -> Prompt:
+        return self._get_prompt("industry_phrase_descent")
+
+    @property
+    def material_cap_phrase_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_phrase_grounding")
+
+    @property
+    def material_cap_phrase_proposal_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_phrase_proposal")
+
+    @property
+    def material_cap_phrase_unit_screening_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_phrase_unit_screening")
+
+    @property
+    def material_cap_phrase_descent_prompt(self) -> Prompt:
+        return self._get_prompt("material_cap_phrase_descent")
+
+    @property
+    def process_cap_phrase_grounding_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_phrase_grounding")
+
+    @property
+    def process_cap_phrase_proposal_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_phrase_proposal")
+
+    @property
+    def process_cap_phrase_unit_screening_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_phrase_unit_screening")
+
+    @property
+    def process_cap_phrase_descent_prompt(self) -> Prompt:
+        return self._get_prompt("process_cap_phrase_descent")
+
+    @property
+    def product_phrase_unit_screening_pure_product_prompt(self) -> Prompt:
+        return self._get_prompt("product_phrase_unit_screening_pure_product")
+
+    @property
+    def product_phrase_unit_screening_contract_prompt(self) -> Prompt:
+        return self._get_prompt("product_phrase_unit_screening_contract")
+
+    @property
+    def equipment_phrase_unit_screening_prompt(self) -> Prompt:
+        return self._get_prompt("equipment_phrase_unit_screening")
 
     @property
     def is_manufacturer_prompt(self) -> Prompt:
