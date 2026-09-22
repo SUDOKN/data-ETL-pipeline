@@ -181,3 +181,55 @@ def pack_units(units: Mapping[str, Sequence[str]], max_records: int) -> list[Uni
             group_records.append(set(ids))
             group_labels.append({label})
     return groups or [[]]
+
+
+# --- Step 2 descent in depth waves (2026-09-22) -------------------------------
+
+
+def wave_group(
+    direct: Mapping[str, Sequence[str]],
+    reached: Mapping[str, Sequence[str]],
+    failed_by_record: Mapping[str, set[str]],
+    ancestors_of: Callable[[str], Sequence[str]],
+) -> tuple[dict[str, list[str]], dict[str, list[str]]]:
+    """One depth wave's units: the labels matched directly at this depth and
+    the ones descent reached from the wave before, deduplicated by (label,
+    record); minus every pair whose label has an ancestor that FAILED
+    screening on that same record (V13, applied structurally: a failed line
+    is never re-litigated further down). Returns ``(units, removed)``, both
+    label → sorted record ids."""
+    merged: dict[str, set[str]] = {}
+    for source in (direct, reached):
+        for label, ids in source.items():
+            merged.setdefault(label, set()).update(ids)
+    units: dict[str, list[str]] = {}
+    removed: dict[str, list[str]] = {}
+    for label in sorted(merged, key=lambda s: s.casefold()):
+        ancestors = set(ancestors_of(label))
+        keep, drop = [], []
+        for rid in sorted(merged[label]):
+            (drop if ancestors & failed_by_record.get(rid, set()) else keep).append(rid)
+        if keep:
+            units[label] = keep
+        if drop:
+            removed[label] = drop
+    return units, removed
+
+
+def deepest_accepted_labels(
+    accepted_by_record: Mapping[str, Sequence[str]],
+    ancestors_of: Callable[[str], Sequence[str]],
+) -> dict[str, list[str]]:
+    """The reconcile rule (V11 as decided 2026-09-22): per record, an accepted
+    label is dropped when one of its DESCENDANTS was accepted on the same
+    record — the deepest accepted label replaces its ancestors, each on its
+    own passed verdict; a parent whose children were rejected, or never
+    screened, stands."""
+    out: dict[str, list[str]] = {}
+    for rid, labels in accepted_by_record.items():
+        accepted = set(labels)
+        covered = {a for label in accepted for a in ancestors_of(label)}
+        kept = sorted(label for label in accepted if label not in covered)
+        if kept:
+            out[rid] = kept
+    return out

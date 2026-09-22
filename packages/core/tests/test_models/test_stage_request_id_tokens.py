@@ -173,10 +173,7 @@ def test_the_tripwire_actually_inspects_something():
     # but its node — and so its builder — was deleted with the location-stage
     # merge (2026-09-03).
     retired_without_a_node = {PipelineStage.mention_collection}
-    # Step 2 stages whose node is not built yet (2026-09-21): each substep
-    # that lands a node with its own custom-id builder removes one entry here.
-    not_yet_built = {PipelineStage.descent}
-    assert len(builders) == len(STAGE_REQUEST_ID_TOKEN) - len(retired_without_a_node) - len(not_yet_built)
+    assert len(builders) == len(STAGE_REQUEST_ID_TOKEN) - len(retired_without_a_node)
 
 
 def test_synthesis_is_its_own_scope_between_mention_collection_and_the_v2_tail():

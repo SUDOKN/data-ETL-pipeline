@@ -48,6 +48,7 @@ from core.models.extraction_results.extraction_node_metadata import (
     ExtractionNodeMetadata,
     RecursiveSearchNodeMetadata,
 )
+from core.models.extraction_schemas.descent import DescentTrail
 from core.models.extraction_schemas.grounding import RecordGroundingResults
 from core.models.extraction_schemas.run_provenance import RunProvenance
 from core.models.extraction_schemas.stored_fold import StoredFold
@@ -175,6 +176,11 @@ class ConceptExtractionStats(LLMPhraseExtractionStats):
     llm_phrase_leaf_step: dict[str, RecordGroundingResults] = Field(
         default_factory=dict
     )
+    # The whole descent, as the wave loop stored it (2026-09-22): every depth
+    # wave's units, verdicts, descent answers, leaf answers and false children,
+    # then the proposal wave. The two blocks above are views the reconcile
+    # step fills from it.
+    llm_phrase_descent_trail: Optional[DescentTrail] = None
 
 
 class KeywordExtractionStats(LLMPhraseExtractionStats):

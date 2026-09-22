@@ -3,6 +3,7 @@ from pydantic import BaseModel, Field
 from typing import Optional
 import logging
 
+from core.models.extraction_schemas.descent import DescentRequest
 from core.models.extraction_schemas.grounding import (
     PhraseToAppliedRulesMap,
     StopReason,
@@ -165,6 +166,13 @@ class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     llm_phrase_proposal_retry_record_ids: Optional[list[str]] = None
     llm_phrase_proposal_retry_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
+    )
+    # Descent in depth waves (Step 2): wave → the descent requests issued
+    # after that wave's screening (a present key with an empty list = the
+    # wave accepted nothing with children). The waves' screening ids live on
+    # the shared ``llm_phrase_unit_screening_req_ids`` (wave 0 = proposals).
+    llm_phrase_descent_reqs: dict[int, list[DescentRequest]] = Field(
+        default_factory=dict
     )
 
 
