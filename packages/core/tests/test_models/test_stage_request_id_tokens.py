@@ -175,7 +175,7 @@ def test_the_tripwire_actually_inspects_something():
     retired_without_a_node = {PipelineStage.mention_collection}
     # Step 2 stages whose node is not built yet (2026-09-21): each substep
     # that lands a node with its own custom-id builder removes one entry here.
-    not_yet_built = {PipelineStage.proposal, PipelineStage.unit_screening, PipelineStage.descent}
+    not_yet_built = {PipelineStage.unit_screening, PipelineStage.descent}
     assert len(builders) == len(STAGE_REQUEST_ID_TOKEN) - len(retired_without_a_node) - len(not_yet_built)
 
 

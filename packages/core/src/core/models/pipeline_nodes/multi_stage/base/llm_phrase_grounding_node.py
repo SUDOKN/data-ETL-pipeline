@@ -21,6 +21,11 @@ the cutover and is otherwise modelled on:
 
 The stored map holds vocabulary matches and proposals together; the reconcile
 step splits them with ``split_vocabulary_and_proposals``.
+
+The class is also the base of the PROPOSAL PASS (``LLMPhraseProposalNode``,
+substep 3): the same request layout, retry and parse over a different record
+set, catalog, metadata slot and bundle slots — the hooks below are what the
+subclass overrides.
 """
 
 from __future__ import annotations
@@ -86,8 +91,6 @@ from core.utils.request_custom_id_util import upstream_digest_segment
 
 logger = logging.getLogger(__name__)
 
-STAGE_LABEL = "grounding"
-
 
 def grounding_metadata_of(
     metadata: ConceptExtractionMetadata,
@@ -106,6 +109,15 @@ class LLMPhraseGroundingNode(
     BaseLLMRecursiveExtractionNode[ConceptFieldType, RecordGroundingResults]
 ):
     stage: ClassVar[PipelineStage] = PipelineStage.grounding
+    # --- the hooks a sibling stage overrides (the proposal pass) ------------
+    STAGE_LABEL: ClassVar[str] = "grounding"
+    CATALOG_STAGE: ClassVar[str] = STAGE_GROUNDING
+    DUMMY_NOTE: ClassVar[str] = (
+        "No grounding needed - no record carries any evidence for this chunk."
+    )
+    # An OFF pass (run flag) embeds no ids; only such a stage may read empty
+    # id lists as "complete with an empty result".
+    EMPTY_IDS_ARE_A_COMPLETE_STAGE: ClassVar[bool] = False
 
     def __init__(
         self,
@@ -115,9 +127,55 @@ class LLMPhraseGroundingNode(
         known_concepts: set[Concept],
     ):
         super().__init__(field_type=field_type, next_node=next_node)
-        self.phrase_grounding_prompt = phrase_grounding_prompt
+        self.prompt = phrase_grounding_prompt
         self.known_concepts = known_concepts
         self.match_label_to_concept_map = get_match_label_to_concept_map(known_concepts)
+
+    # --- the stage's run identity and its bundle slots ---------------------
+
+    @classmethod
+    def stage_metadata(
+        cls, metadata: ConceptExtractionMetadata
+    ) -> Optional[BatchedInitialGroundingNodeMetadata]:
+        """The stage's metadata node; None means the pass is OFF for this run
+        (only a stage with ``EMPTY_IDS_ARE_A_COMPLETE_STAGE`` may return None)."""
+        return grounding_metadata_of(metadata)
+
+    @classmethod
+    def required_stage_metadata(
+        cls, metadata: ConceptExtractionMetadata, doing: str
+    ) -> BatchedInitialGroundingNodeMetadata:
+        node = cls.stage_metadata(metadata)
+        if node is None:
+            raise ValueError(
+                f"{doing} was called for the {cls.STAGE_LABEL} pass while its "
+                f"metadata node is None; an OFF pass embeds no ids at all."
+            )
+        return node
+
+    @staticmethod
+    def _req_ids(bundle: ConceptExtractionRequestBundle) -> list[BatchRequestIDType]:
+        return bundle.llm_phrase_grounding_req_ids
+
+    @staticmethod
+    def _set_req_ids(bundle: ConceptExtractionRequestBundle, ids: list[BatchRequestIDType]) -> None:
+        bundle.llm_phrase_grounding_req_ids = ids
+
+    @staticmethod
+    def _retry_record_ids(bundle: ConceptExtractionRequestBundle) -> Optional[list[str]]:
+        return bundle.llm_phrase_grounding_retry_record_ids
+
+    @staticmethod
+    def _set_retry_record_ids(bundle: ConceptExtractionRequestBundle, ids: list[str]) -> None:
+        bundle.llm_phrase_grounding_retry_record_ids = ids
+
+    @staticmethod
+    def _retry_req_ids(bundle: ConceptExtractionRequestBundle) -> list[BatchRequestIDType]:
+        return bundle.llm_phrase_grounding_retry_req_ids
+
+    @staticmethod
+    def _set_retry_req_ids(bundle: ConceptExtractionRequestBundle, ids: list[BatchRequestIDType]) -> None:
+        bundle.llm_phrase_grounding_retry_req_ids = ids
 
     def get_upstream_synthesis_map(
         self, pipeline_context: PipelineContext
@@ -141,7 +199,7 @@ class LLMPhraseGroundingNode(
         return subject_text
 
     def catalog(self) -> RuleCatalog:
-        return get_rule_catalog(STAGE_GROUNDING, self.field_type.name)
+        return get_rule_catalog(self.CATALOG_STAGE, self.field_type.name)
 
     def allowed_labels(self) -> list[str]:
         return list(self.match_label_to_concept_map.keys())
@@ -191,10 +249,13 @@ class LLMPhraseGroundingNode(
     ):
         if not chunked_request_map:
             raise ValueError(
-                f"Cannot embed req ids for the grounding node, as chunked_request_map "
+                f"Cannot embed req ids for the {self.STAGE_LABEL} node, as chunked_request_map "
                 f"found empty for subject:{subject_unique_id}, field:{self.field_type.name}."
             )
-        max_records_per_request = grounding_metadata_of(metadata).max_pairs_per_request
+        stage_metadata = self.stage_metadata(metadata)
+        if stage_metadata is None:
+            return  # the pass is OFF for this run: zero groups everywhere
+        max_records_per_request = stage_metadata.max_pairs_per_request
         synthesis_map = self.get_upstream_synthesis_map(pipeline_context)
         subject_text = self._subject_text_of(
             pipeline_context, subject_unique_id, self.field_type.name
@@ -203,7 +264,7 @@ class LLMPhraseGroundingNode(
         # PASS 1 — the group requests.
         embedded_groups = False
         for chunk_bounds, bundle in chunked_request_map.items():
-            if bundle.llm_phrase_grounding_req_ids:
+            if self._req_ids(bundle):
                 continue  # already embedded; group count is stable once computed
             payloads = await self._chunk_record_payloads(
                 subject_unique_id=subject_unique_id,
@@ -215,7 +276,7 @@ class LLMPhraseGroundingNode(
                 timestamp=timestamp,
             )
             embedded_groups = True
-            bundle.llm_phrase_grounding_req_ids = [
+            self._set_req_ids(bundle, [
                 self.get_request_custom_id(
                     subject_unique_id=subject_unique_id,
                     field_type=self.field_type,
@@ -227,7 +288,7 @@ class LLMPhraseGroundingNode(
                 for group_index, payload_group in enumerate(
                     grouped_record_payloads(payloads, max_records_per_request)
                 )
-            ]
+            ])
         if embedded_groups:
             return  # the groups must complete before any chunk can be assessed
 
@@ -236,7 +297,7 @@ class LLMPhraseGroundingNode(
         unassessed = [
             (chunk_bounds, bundle)
             for chunk_bounds, bundle in chunked_request_map.items()
-            if bundle.llm_phrase_grounding_retry_record_ids is None
+            if self._retry_record_ids(bundle) is None
         ]
         if not unassessed:
             return
@@ -244,7 +305,7 @@ class LLMPhraseGroundingNode(
             subject_unique_id=subject_unique_id, chunked_request_map=chunked_request_map
         ):
             logger.info(
-                f"[{subject_unique_id}] Waiting for the grounding requests to complete "
+                f"[{subject_unique_id}] Waiting for the {self.STAGE_LABEL} requests to complete "
                 f"before assessing chunks for a retry ({self.field_type.name})."
             )
             return
@@ -253,19 +314,19 @@ class LLMPhraseGroundingNode(
         )
         for chunk_bounds, bundle in unassessed:
             answer = await get_chunk_record_grounding_answer(
-                stage_label=STAGE_LABEL,
+                stage_label=self.STAGE_LABEL,
                 subject_unique_id=subject_unique_id,
                 field_name=self.field_type.name,
                 chunk_bounds=chunk_bounds,
                 catalog=self.catalog(),
-                group_req_ids=bundle.llm_phrase_grounding_req_ids,
+                group_req_ids=self._req_ids(bundle),
                 completed_request_map=completed_request_map,
                 timestamp=timestamp,
                 allowed_labels=self.allowed_labels(),
                 structural=True,
             )
             missing = answer.missing_ids
-            bundle.llm_phrase_grounding_retry_record_ids = missing
+            self._set_retry_record_ids(bundle, missing)
             if not missing:
                 continue
             payloads = await self._chunk_record_payloads(
@@ -278,14 +339,14 @@ class LLMPhraseGroundingNode(
                 timestamp=timestamp,
             )
             retry_payloads = retry_record_payloads(
-                STAGE_LABEL,
+                self.STAGE_LABEL,
                 subject_unique_id,
                 self.field_type.name,
                 chunk_bounds,
                 payloads,
                 missing,
             )
-            bundle.llm_phrase_grounding_retry_req_ids = [
+            self._set_retry_req_ids(bundle, [
                 self.get_request_custom_id(
                     subject_unique_id=subject_unique_id,
                     field_type=self.field_type,
@@ -298,11 +359,11 @@ class LLMPhraseGroundingNode(
                 for group_index, payload_group in enumerate(
                     grouped_record_payloads(retry_payloads, max_records_per_request)
                 )
-            ]
+            ])
             logger.info(
-                f"[{subject_unique_id}] grounding: {len(missing)} of {len(answer.sent_ids)} "
+                f"[{subject_unique_id}] {self.STAGE_LABEL}: {len(missing)} of {len(answer.sent_ids)} "
                 f"record(s) in chunk {chunk_bounds} ({self.field_type.name}) came back "
-                f"unanswered; embedding {len(bundle.llm_phrase_grounding_retry_req_ids)} "
+                f"unanswered; embedding {len(self._retry_req_ids(bundle))} "
                 f"retry request(s)."
             )
 
@@ -313,14 +374,14 @@ class LLMPhraseGroundingNode(
     ) -> set[BatchRequestIDType]:
         req_ids: set[BatchRequestIDType] = set()
         for chunk_bounds, bundle in chunked_request_map.items():
-            if not bundle.llm_phrase_grounding_req_ids:
+            if not self._req_ids(bundle) and not self.EMPTY_IDS_ARE_A_COMPLETE_STAGE:
                 raise ValueError(
                     f"Cannot get embedded request ids for subject_unique_id:"
-                    f"{subject_unique_id}>{chunk_bounds} as llm_phrase_grounding_req_ids "
-                    f"is empty in the extraction_bundle."
+                    f"{subject_unique_id}>{chunk_bounds} as the {self.STAGE_LABEL} "
+                    f"request id list is empty in the extraction_bundle."
                 )
-            req_ids.update(bundle.llm_phrase_grounding_req_ids)
-            req_ids.update(bundle.llm_phrase_grounding_retry_req_ids)
+            req_ids.update(self._req_ids(bundle))
+            req_ids.update(self._retry_req_ids(bundle))
         return req_ids
 
     @staticmethod
@@ -356,7 +417,7 @@ class LLMPhraseGroundingNode(
         timestamp: datetime,
         eager: bool,
     ) -> list[GPTBatchRequest]:
-        stage_metadata = grounding_metadata_of(metadata)
+        stage_metadata = self.required_stage_metadata(metadata, "create_batch_requests")
         synthesis_map = self.get_upstream_synthesis_map(pipeline_context)
         chunk_payload_maps: dict[str, dict[str, dict[str, Any]]] = {}
         group_req_ids_by_chunk: dict[str, list[BatchRequestIDType]] = {}
@@ -365,15 +426,10 @@ class LLMPhraseGroundingNode(
         options_section_by_chunk: dict[str, Optional[str]] = {}
         options_section = self.options_section()
         for chunk_bounds, bundle in chunked_request_map.items():
-            group_req_ids_by_chunk[chunk_bounds] = bundle.llm_phrase_grounding_req_ids
-            retry_req_ids_by_chunk[chunk_bounds] = bundle.llm_phrase_grounding_retry_req_ids
-            retry_record_ids_by_chunk[chunk_bounds] = (
-                bundle.llm_phrase_grounding_retry_record_ids or []
-            )
-            if not (
-                set(bundle.llm_phrase_grounding_req_ids)
-                | set(bundle.llm_phrase_grounding_retry_req_ids)
-            ) & missing_request_ids:
+            group_req_ids_by_chunk[chunk_bounds] = self._req_ids(bundle)
+            retry_req_ids_by_chunk[chunk_bounds] = self._retry_req_ids(bundle)
+            retry_record_ids_by_chunk[chunk_bounds] = self._retry_record_ids(bundle) or []
+            if not (set(self._req_ids(bundle)) | set(self._retry_req_ids(bundle))) & missing_request_ids:
                 continue
             chunk_payload_maps[chunk_bounds] = await self._chunk_record_payloads(
                 subject_unique_id=subject_unique_id,
@@ -387,7 +443,7 @@ class LLMPhraseGroundingNode(
             options_section_by_chunk[chunk_bounds] = options_section
 
         return await create_missing_record_grounding_requests(
-            stage_label=STAGE_LABEL,
+            stage_label=self.STAGE_LABEL,
             subject_unique_id=subject_unique_id,
             field_name=self.field_type.name,
             chunk_payload_maps=chunk_payload_maps,
@@ -395,7 +451,7 @@ class LLMPhraseGroundingNode(
             retry_req_ids_by_chunk=retry_req_ids_by_chunk,
             retry_record_ids_by_chunk=retry_record_ids_by_chunk,
             missing_req_ids=missing_request_ids,
-            prompt=self.phrase_grounding_prompt,
+            prompt=self.prompt,
             catalog=self.catalog(),
             options_section_by_chunk=options_section_by_chunk,
             max_records_per_request=stage_metadata.max_pairs_per_request,
@@ -403,14 +459,13 @@ class LLMPhraseGroundingNode(
             llm_model=stage_metadata.llm_model,
             model_params=stage_metadata.model_params,
             eager=eager,
-            dummy_note=(
-                "No grounding needed - no record carries any evidence for this chunk."
-            ),
+            dummy_note=self.DUMMY_NOTE,
             options_in_system=True,
         )
 
-    @staticmethod
+    @classmethod
     async def get_result(
+        cls,
         subject_unique_id: str,
         field_type: ConceptFieldType,
         chunk_bounds: str,
@@ -422,15 +477,18 @@ class LLMPhraseGroundingNode(
         """The chunk's grounding entries — vocabulary matches and proposals in
         one per-record map. Without ``allowed_labels`` (a generic reader such
         as the partial dump, which has no ontology in hand) no membership hold
-        is applied; every pipeline consumer passes the vocabulary."""
+        is applied; every pipeline consumer passes the vocabulary. An OFF pass
+        (no ids embedded) reads as an empty map."""
+        if not cls._req_ids(extraction_bundle) and cls.EMPTY_IDS_ARE_A_COMPLETE_STAGE:
+            return {}
         return await get_record_grounding_result(
-            stage_label=STAGE_LABEL,
+            stage_label=cls.STAGE_LABEL,
             subject_unique_id=subject_unique_id,
             field_name=field_type.name,
             chunk_bounds=chunk_bounds,
-            catalog=get_rule_catalog(STAGE_GROUNDING, field_type.name),
-            group_req_ids=extraction_bundle.llm_phrase_grounding_req_ids,
-            retry_req_ids=extraction_bundle.llm_phrase_grounding_retry_req_ids,
+            catalog=get_rule_catalog(cls.CATALOG_STAGE, field_type.name),
+            group_req_ids=cls._req_ids(extraction_bundle),
+            retry_req_ids=cls._retry_req_ids(extraction_bundle),
             completed_request_map=completed_request_map,
             timestamp=timestamp,
             allowed_labels=allowed_labels,
@@ -464,5 +522,5 @@ class LLMPhraseGroundingNode(
     ) -> GPTBatchResponse:
         return await dispatch_gpt_batch_request(
             gpt_batch_request=gpt_batch_request,
-            gpt_model=grounding_metadata_of(metadata).llm_model,
+            gpt_model=self.required_stage_metadata(metadata, "dispatch_batch_request").llm_model,
         )

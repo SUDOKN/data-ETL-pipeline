@@ -157,6 +157,15 @@ class ConceptExtractionRequestBundle(LLMPhraseExtractionRequestBundle):
     llm_phrase_grounding_retry_req_ids: list[BatchRequestIDType] = Field(
         default_factory=list
     )
+    # The proposal pass (run flag: the metadata's proposal node is None when
+    # off, and an off pass embeds zero groups — the OOV pass's convention).
+    llm_phrase_proposal_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
+    llm_phrase_proposal_retry_record_ids: Optional[list[str]] = None
+    llm_phrase_proposal_retry_req_ids: list[BatchRequestIDType] = Field(
+        default_factory=list
+    )
 
 
 ConceptExtractionRequestMap = dict[str, ConceptExtractionRequestBundle]
