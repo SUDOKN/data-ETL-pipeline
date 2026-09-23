@@ -192,3 +192,15 @@ def test_a_candidate_encodes_for_bson_without_an_id():
     assert "_id" not in document and "id" not in document
     assert document["run_timestamp"] == T0 and document["records"][0]["record_id"] == "r5"
     assert VocabularyCandidate.model_validate(document).label == "Fastened Assembly"
+
+
+def test_a_spelling_that_is_one_name_and_another_other_name_resolves_to_the_name():
+    """The process vocabulary carries "precision machining" as the name of
+    one concept and an other name of another (2026-09-22); the name wins,
+    whatever order the set yields."""
+    v = Vocabulary({
+        _concept("Precision Machining", 2, ["Machining"]),
+        _concept("Precision Cutting", 3, ["Machining", "Conventional Machining"], alt=["precision machining"]),
+    })
+    assert v.name_of("Precision Machining") == "Precision Machining" and v.name_of("PRECISION MACHINING") == "Precision Machining"
+    assert v.name_of("Precision Cutting") == "Precision Cutting"

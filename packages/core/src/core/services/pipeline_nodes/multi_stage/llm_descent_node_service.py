@@ -233,10 +233,20 @@ class Vocabulary:
         for kids in self.children_of.values():
             kids.sort(key=lambda c: c.name)
         self.max_depth = max((c.level for c in known_concepts), default=1)
-        # casefolded name or other name → vocabulary name
-        self.vocabulary_names: dict[str, str] = {
-            label.casefold(): c.name for c in known_concepts for label in [c.name, *c.altLabels]
-        }
+        # casefolded name or other name → vocabulary name. A spelling that is
+        # one concept's NAME and another's other name resolves to the name
+        # (the process vocabulary carries two such collisions, 2026-09-22:
+        # "precision machining" and "powder metallurgy"); set iteration order
+        # must never decide it.
+        self.vocabulary_names: dict[str, str] = {}
+        for c in sorted(known_concepts, key=lambda c: c.name):
+            for alt in c.altLabels:
+                self.vocabulary_names.setdefault(alt.casefold(), c.name)
+        for c in known_concepts:
+            prior = self.vocabulary_names.get(c.name.casefold())
+            if prior is not None and prior != c.name:
+                logger.warning(f"vocabulary: {c.name!r} is also an other name of {prior!r}; the name wins")
+            self.vocabulary_names[c.name.casefold()] = c.name
 
     def fold(self, label: str) -> str:
         return self.vocabulary_names.get(label.casefold(), label)
